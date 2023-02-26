@@ -11222,11 +11222,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Aleksa\\Fakultet\\Softverski inzenjering\\codespark-energy\\sandbox\\DemoApp\\DemoApp\\DemoApp.csproj",
+      "projectUniqueName": "D:\\Aleksa\\Fakultet\\Softverski inzenjering\\codespark-energy\\sandbox\\DemoAPp\\DemoApp\\DemoApp.csproj",
       "projectName": "DemoApp",
-      "projectPath": "D:\\Aleksa\\Fakultet\\Softverski inzenjering\\codespark-energy\\sandbox\\DemoApp\\DemoApp\\DemoApp.csproj",
+      "projectPath": "D:\\Aleksa\\Fakultet\\Softverski inzenjering\\codespark-energy\\sandbox\\DemoAPp\\DemoApp\\DemoApp.csproj",
       "packagesPath": "C:\\Users\\AS\\.nuget\\packages\\",
-      "outputPath": "D:\\Aleksa\\Fakultet\\Softverski inzenjering\\codespark-energy\\sandbox\\DemoApp\\DemoApp\\obj\\",
+      "outputPath": "D:\\Aleksa\\Fakultet\\Softverski inzenjering\\codespark-energy\\sandbox\\DemoAPp\\DemoApp\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

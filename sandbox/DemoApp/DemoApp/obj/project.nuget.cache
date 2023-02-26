@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "z4dcu/HN1uicihm0MCniNv9swz+PgnM19QoWGyLxFhJX0+c5/xK7KKUJOWU7IJ/tbd1FG0rO01pHtJ6RGomFeA==",
+  "dgSpecHash": "ec7fW51gslaOakCmOQSFDqdb898ZY7ifxPxEQd/cxjUwhKUCMtiiAcdTDwqa57nNNOTxSrk1oTV+JNekNVbr1Q==",
   "success": true,
-  "projectFilePath": "D:\\Aleksa\\Fakultet\\Softverski inzenjering\\codespark-energy\\sandbox\\DemoApp\\DemoApp\\DemoApp.csproj",
+  "projectFilePath": "D:\\Aleksa\\Fakultet\\Softverski inzenjering\\codespark-energy\\sandbox\\DemoAPp\\DemoApp\\DemoApp.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\AS\\.nuget\\packages\\azure.core\\1.24.0\\azure.core.1.24.0.nupkg.sha512",
     "C:\\Users\\AS\\.nuget\\packages\\azure.identity\\1.6.0\\azure.identity.1.6.0.nupkg.sha512",
