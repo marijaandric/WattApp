@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\si\\codespark-energy\\codespark-energy\\sandbox\\Marija Andric\\MA_demo\\back\\demoApp\\demoApp\\demoApp.csproj": {}
+    "C:\\si\\codespark-energy\\codespark-energy\\sandbox\\Marija Andric\\demoAPI\\demoApp\\demoApp\\demoApp.csproj": {}
   },
   "projects": {
-    "C:\\si\\codespark-energy\\codespark-energy\\sandbox\\Marija Andric\\MA_demo\\back\\demoApp\\demoApp\\demoApp.csproj": {
+    "C:\\si\\codespark-energy\\codespark-energy\\sandbox\\Marija Andric\\demoAPI\\demoApp\\demoApp\\demoApp.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\si\\codespark-energy\\codespark-energy\\sandbox\\Marija Andric\\MA_demo\\back\\demoApp\\demoApp\\demoApp.csproj",
+        "projectUniqueName": "C:\\si\\codespark-energy\\codespark-energy\\sandbox\\Marija Andric\\demoAPI\\demoApp\\demoApp\\demoApp.csproj",
         "projectName": "demoApp",
-        "projectPath": "C:\\si\\codespark-energy\\codespark-energy\\sandbox\\Marija Andric\\MA_demo\\back\\demoApp\\demoApp\\demoApp.csproj",
+        "projectPath": "C:\\si\\codespark-energy\\codespark-energy\\sandbox\\Marija Andric\\demoAPI\\demoApp\\demoApp\\demoApp.csproj",
         "packagesPath": "C:\\Users\\marija\\.nuget\\packages\\",
-        "outputPath": "C:\\si\\codespark-energy\\codespark-energy\\sandbox\\Marija Andric\\MA_demo\\back\\demoApp\\demoApp\\obj\\",
+        "outputPath": "C:\\si\\codespark-energy\\codespark-energy\\sandbox\\Marija Andric\\demoAPI\\demoApp\\demoApp\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\marija\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -40,6 +40,24 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "EntityFramework": {
+              "target": "Package",
+              "version": "[6.4.4, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.3, )"
+            },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[7.0.3, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.3, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.2.3, )"
