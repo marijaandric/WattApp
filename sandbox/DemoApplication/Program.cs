@@ -1,3 +1,6 @@
+using DemoApplication.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(new WebApplicationOptions
 {
     WebRootPath = Path.Combine(Directory.GetCurrentDirectory(), "ClientApp", "wwwroot")
@@ -5,7 +8,17 @@ var builder = WebApplication.CreateBuilder(new WebApplicationOptions
 
 // Add services to the container.
 
-builder.Services.AddControllersWithViews();
+builder.Services.AddControllers();
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddDbContext<Context>(options =>
+{
+    options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection"));
+});
+builder.Services.AddCors(options => options.AddPolicy(name: "UserOrigins",
+    policy =>
+    {
+        policy.WithOrigins("https://localhost:44476").AllowAnyMethod().AllowAnyHeader();
+    }));
 
 var app = builder.Build();
 
@@ -16,14 +29,10 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
+app.UseCors("UserOrigins");
 app.UseHttpsRedirection();
+app.UseAuthorization();
 app.UseStaticFiles();
-app.UseRouting();
-
-app.MapControllerRoute(
-    name: "default",
-    pattern: "{controller}/{action=Index}/{id?}");
-
-app.MapFallbackToFile("index.html");
+app.MapControllers();
 
 app.Run();

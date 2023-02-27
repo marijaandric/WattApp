@@ -5,15 +5,18 @@ import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 
 import { AppComponent } from './app.component';
-import { NavMenuComponent } from './nav-menu/nav-menu.component';
-import { HomeComponent } from './home/home.component';
-import { CounterComponent } from './counter/counter.component';
-import { FetchDataComponent } from './fetch-data/fetch-data.component';
+import { NavMenuComponent } from './Features/nav-menu/nav-menu.component';
+import { HomeComponent } from './Features/home/home.component';
+import { CounterComponent } from './Features/counter/counter.component';
+import { FetchDataComponent } from './Features/fetch-data/fetch-data.component';
+import { SimpleUsersTableComponent } from './Features/simple-users-table/simple-users-table.component';
+import { AppRoutingModule } from './app-routing.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavMenuComponent,
+    SimpleUsersTableComponent,
     HomeComponent,
     CounterComponent,
     FetchDataComponent
@@ -26,7 +29,8 @@ import { FetchDataComponent } from './fetch-data/fetch-data.component';
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'counter', component: CounterComponent },
       { path: 'fetch-data', component: FetchDataComponent },
-    ])
+    ]),
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

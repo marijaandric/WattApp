@@ -13,6 +13,11 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.SpaProxy" Version="7.0.3" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.3">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="7.0.3" />
   </ItemGroup>
 
   <ItemGroup>
@@ -27,9 +32,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Domain\Entities\" />
+    <Folder Include="ClientApp\src\app\Core\Entities\" />
+    <Folder Include="ClientApp\src\app\Core\Interfaces\" />
+    <Folder Include="ClientApp\src\app\Infrastructure\Data-access\" />
+    <Folder Include="ClientApp\src\app\Services\" />
     <Folder Include="Domain\Interfaces\" />
-    <Folder Include="Infrastructure\Data\" />
     <Folder Include="Application\Interfaces\" />
     <Folder Include="Application\UseCases\" />
   </ItemGroup>
