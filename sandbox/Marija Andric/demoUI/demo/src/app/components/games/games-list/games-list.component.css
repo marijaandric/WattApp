@@ -1,0 +1,72 @@
+
+body {
+    background-color: #2f6a79;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+    text-align: justify;
+    padding: 0;
+    padding-bottom: 300px;
+    margin: 0px;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  }
+  
+  .card {
+    border-radius: 10px;
+    filter: drop-shadow(0 5px 10px 0 #ffffff);
+    width: 1000px;
+    height: 350px;
+    background-color: #a5b3b4;
+    padding: 20px;
+    position: relative;
+    z-index: 0;
+    overflow: hidden;
+    transition: 0.5s;
+    margin-bottom: 10px;
+  }
+  
+  h1{
+    text-align: center;
+  }
+  h1,label{
+      color:white;
+  }
+  h2{
+      color:rgb(176, 201, 193);
+  }
+  
+  .card:hover{
+      color: #ffffff;
+      background-color: #1f3d44;
+  }
+  
+  .card p{
+      padding: 10px 0;
+  }
+  
+  button{
+      background-color: #416872;
+      padding: 10px;
+      color: white;
+  }
+  
+  .addGame{
+      margin: 30px;
+      float:right;
+  }
+  input[type=text], select {
+      width: 700px;
+      padding: 12px 20px;
+      margin: 8px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+  
+    .addGame button{
+      width: 700px;
+    }
+  
+  
+  
