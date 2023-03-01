@@ -1,0 +1,79 @@
+a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+/* Style for the edit user form */
+#edit-user {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+ h2 {
+  background-color: #333;
+  color: #fff;
+  padding: 12px;
+  margin: 0;
+}
+
+div {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+  width: 400px;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+input {
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.3);
+}
+
+button {
+  background-color: #333;
+  color: #fff;
+  padding: 8px 16px;
+  border: none;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+button:hover {
+  background-color: #555;
+}
+
+#buttons{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+
+#buttons button{
+    margin-left: 8px;
+}
