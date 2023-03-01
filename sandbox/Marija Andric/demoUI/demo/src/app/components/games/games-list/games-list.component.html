@@ -28,6 +28,7 @@
   <h1>My Games</h1>
 
   <div class = "addGame">
+    <h2>Add new game!</h2>
     <form #form="ngForm" (ngSubmit)="onSubmit()">
       <label>Name</label><br>
       <input type="text" name="name" [(ngModel)]="game.name"><br>
@@ -47,9 +48,9 @@
     <div class="row">
       <div class="card">
           <a [routerLink]="['/games','edit', game.id]"><h4>{{game.name}}</h4></a>
-          <p>{{game.description}}</p>
-          <p>Mode : {{game.mode}}</p>
-          <p>Genre : {{game.genre}}</p>
+          <p><b>Description</b> : {{game.description}}</p>
+          <p><b>Mode</b> : {{game.mode}}</p>
+          <p><b>Genre</b> : {{game.genre}}</p>
           <button (click)="DeleteGame(game.id)">Delete game</button>
         </div>
     </div>
