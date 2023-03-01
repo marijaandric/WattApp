@@ -1,0 +1,93 @@
+a.navbar-brand {
+  white-space: normal;
+  text-align: center;
+  word-break: break-all;
+}
+
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+/* Style for the table */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  margin-top: 20px;
+}
+
+thead {
+  background-color: #333;
+  color: #fff;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+th {
+  font-weight: bold;
+}
+
+tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+/* Style for the table actions column */
+.actions {
+  text-align: center;
+}
+
+  .actions button {
+    background-color: #333;
+    color: #fff;
+    padding: 8px 16px;
+    border: none;
+    cursor: pointer;
+    margin: 2px;
+  }
+
+    .actions button:hover {
+      background-color: #555;
+    }
+
+#editUserButton {
+  background-color: #333;
+  color: #fff;
+  padding: 8px 16px;
+  border: none;
+  cursor: pointer;
+  margin: auto;
+  display: flex;
+}
+
+#createUserButton {
+  background-color: #333;
+  color: #fff;
+  padding: 8px 16px;
+  border: none;
+  cursor: pointer;
+  margin-left: auto;
+  margin-top: 20px;
+  display: flex;
+}
+
+button:hover {
+  background-color: #555 !important;
+}
+
+edit-user{
+    display: flex;
+    margin-top: 32px;
+}

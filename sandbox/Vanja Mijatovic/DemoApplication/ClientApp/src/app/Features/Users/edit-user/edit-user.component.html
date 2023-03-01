@@ -1,0 +1,25 @@
+<div id="editUser" *ngIf="user">
+  <h2 *ngIf="user.username">{{ user.username }}</h2>
+  <div>
+    Username:
+    <input [(ngModel)]="user.username" placeholder="Username" />
+  </div>
+  <div>
+    First name:
+    <input [(ngModel)]="user.firstName" placeholder="First name" />
+  </div>
+  <div>
+    Last name:
+    <input [(ngModel)]="user.lastName" placeholder="Last name" />
+  </div>
+  <div>
+    City:
+    <input [(ngModel)]="user.city" placeholder="City" />
+  </div>
+  <div id="buttons">
+    <button (click)="updateUser(user)" *ngIf="user.id">Save</button>
+    <button (click)="deleteUser(user)" *ngIf="user.id">Delete</button>
+    <button (click)="createUser(user)" *ngIf="!user.id">Create</button>
+    <button (click)="cancel()">Cancel</button>
+  </div>
+</div>
