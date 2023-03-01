@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+<html>
+
+<head></head>
+<body>
+    <h1>Edit game</h1>
+    <div class = "addGame">
+      <form #form="ngForm" (ngSubmit)="updateGame()">
+        <label>Name</label><br>
+        <input type="text" name="name" [(ngModel)]="gamedetails.name"><br>
+        <label>Description</label><br>
+        <input type="text" name="description" [(ngModel)]="gamedetails.description"><br>
+        <label>Mode</label><br>
+        <select name="mode"  [(ngModel)]="gamedetails.mode">
+          <option>Multiplayer</option>
+          <option>Singleplayer</option>
+        </select><br>
+        <label>Genre</label><br>
+        <input type="text" name="genre" [(ngModel)]="gamedetails.genre"><br>
+        <button>Edit game!</button>
+      </form>
+    </div>
+      
+</body>
+
+</html>
