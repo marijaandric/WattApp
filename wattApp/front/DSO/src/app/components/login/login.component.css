@@ -1,10 +1,7 @@
-img{
-	width: 100%;
-}
 .login {  
     height: 1000px;
     width: 100%;
-    background: radial-gradient(rgba(39, 93, 209, 0.7), rgba(68, 202, 182, 0.71));
+    background: #1d5f6b;
     position: relative;
 }
 .login_box {
@@ -54,7 +51,7 @@ img{
     border: none;
     width: 80%;
     margin: 15px 0px;
-    border-bottom: 1px solid #4f30677d;
+    border-bottom: 1px solid #3430677d;
     padding: 7px 9px;
     width: 100%;
     overflow: hidden;
@@ -91,6 +88,7 @@ img{
   position: relative;
   transform: translate(0%, 45%);
 }
+
 .right-text h2{
   display: block;
   width: 100%;
@@ -105,21 +103,5 @@ img{
   font-size: 19px;
   font-weight: 400;
 }
-
-.right .right-inductor{
-  position: absolute;
-  width: 70px;
-  height: 7px;
-  background: #fff0;
-  left: 50%;
-  bottom: 70px;
-  transform: translate(-50%, 0%);
-}
-.top_link img {
-    width: 28px;
-    padding-right: 7px;
-    margin-top: -3px;
-}
-
 
 
