@@ -1,1 +1,1 @@
-Folder za figma prototipe.
+Prototip: https://www.figma.com/proto/wScqpPSUuxyVd29xlDdD59/WattApp%2FProsumer?node-id=168%3A7453&scaling=scale-down&page-id=139%3A115&starting-point-node-id=168%3A7453&show-proto-sidebar=1
