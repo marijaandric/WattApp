@@ -1,7 +1,7 @@
 .login {  
     height: 1000px;
     width: 100%;
-    background: #1d5f6b;
+    background: #56857e;
     position: relative;
 }
 .login_box {
@@ -51,7 +51,7 @@
     border: none;
     width: 80%;
     margin: 15px 0px;
-    border-bottom: 1px solid #3430677d;
+    border-bottom: 1px solid #56857e;
     padding: 7px 9px;
     width: 100%;
     overflow: hidden;
@@ -69,16 +69,16 @@
     display: block;
     margin: auto;
     margin-top: 120px;
-    background: #1d526b;
+    background: #56857e;
     color: #fff;
     font-weight: bold;
-    -webkit-box-shadow: 0px 9px 15px -11px #1d5f6b;
-    -moz-box-shadow: 0px 9px 15px -11px #1d5f6b;
-    box-shadow: 0px 9px 15px -11px #1d5f6b;
+    -webkit-box-shadow: 0px 9px 15px -11px #56857e;
+    -moz-box-shadow: 0px 9px 15px -11px #56857e;
+    box-shadow: 0px 9px 15px -11px #56857e;
 }
 
 .right {
-	background: linear-gradient(212.38deg, rgba(39, 93, 209, 0.7) 0%, rgba(68, 202, 182, 0.71) 100%);
+	background : linear-gradient(212.38deg, rgba(118, 133, 184, 0.7) 0%, #95c2bc 100%), url('/assets/images/loginImage.png');
 	color: #fff;
 	position: relative;
 }
