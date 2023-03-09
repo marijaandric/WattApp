@@ -1,0 +1,46 @@
+<div class="container">
+  <h1>PRODAVNICA KNJIGA</h1>
+  <h1>DemoApp</h1>
+
+  <div class="cards-container">
+      <div class="cards-form">
+          <form #form="ngForm" (ngSubmit)="onSubmit()">
+              <div class="form-group">
+                  <label for="">Naziv knjige</label>
+                  <input type="text" name="cardName" [(ngModel)]="book.naslov">
+              </div>
+              <div class="form-group">
+                  <label for="">Pisac</label>
+                  <input type="text" name="cardNumber" [(ngModel)]="book.pisac">
+              </div>
+              <div class="form-group form-group-inline">
+                  <div>
+                      <label for="">Broj strana</label>
+                      <input type="text" name="cvc" [(ngModel)]="book.brojStrana">
+                  </div>
+                  <div>
+                      <label for="">Cena</label>
+                      <input type="text" name="expiryYear"  [(ngModel)]="book.cena">
+                  </div>
+              </div>
+              <div class="form-group" >
+                  <button>Sacuvaj</button>
+              </div>
+          </form>
+      </div>
+      <div class="cards-grid">
+
+          <div class="card-row" *ngFor="let book of books">
+              <div class="card-row-details" (click)="populateForm(book)" >
+                 <span>{{book.naslov}}</span >
+                  <span>{{book.cena}}</span>
+                   
+              </div>
+              <div class="card-row-action" >
+                  <a (click)="deleteBook(book.id)"><i class="fa-solid fa-trash"></i></a>
+              </div>
+          </div>
+
+      </div>
+  </div>
+</div>

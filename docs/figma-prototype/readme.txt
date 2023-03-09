@@ -1,0 +1,1 @@
+Prototip: https://www.figma.com/proto/wScqpPSUuxyVd29xlDdD59/WattApp%2FProsumer?node-id=349-5413&scaling=scale-down&page-id=139%3A115&starting-point-node-id=349%3A5413
