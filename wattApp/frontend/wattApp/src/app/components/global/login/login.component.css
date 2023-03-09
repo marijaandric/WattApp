@@ -1,108 +1,173 @@
-.login {  
-    height: 1000px;
-    width: 100%;
-    background: #56857e;
-    position: relative;
-    top:-70px;
+.login {
+  height: 1000px;
+  width: 100%;
+  background: #56857e;
+  position: relative;
 }
+
 .login_box {
-    width: 1050px;
-    height: 600px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%,-50%);
-    background: #fff;
-    border-radius: 10px;
-    box-shadow: 1px 4px 22px -8px #0004;
-    display: flex;
-    overflow: hidden;
+  width: 1050px;
+  height: 600px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 1px 4px 22px -8px #0004;
+  display: flex;
+  overflow: hidden;
 }
-.login_box .left{
+
+.login_box .left {
   width: 41%;
   height: 100%;
   padding: 25px 25px;
-  
+
 }
-.login_box .right{
+
+.login_box .right {
   width: 59%;
-  height: 100%  
+  height: 100%;
 }
+
 .left .top_link a {
-    color: #1d5f6b;
-    font-weight: 400;
+  color: #1d5f6b;
+  font-weight: 400;
 }
-.left .top_link{
-  height: 20px
+
+.left .top_link {
+  height: 20px;
 }
-.left .contact{
-	display: flex;
-    align-items: center;
-    justify-content: center;
-    align-self: center;
-    height: 100%;
-    width: 73%;
-    margin: auto;
+
+.left .contact {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  height: 100%;
+  width: 73%;
+  margin: auto;
+
 }
-.left h3{
+
+
+.left h3 {
+  color: white;
   text-align: center;
   margin-bottom: 40px;
 }
+
 .left input {
-    border: none;
-    width: 80%;
-    margin: 15px 0px;
-    border-bottom: 1px solid #56857e;
-    padding: 7px 9px;
-    width: 100%;
-    overflow: hidden;
-    background: transparent;
-    font-weight: 600;
-    font-size: 14px;
+  border: none;
+  width: 80%;
+  margin: 15px 0px;
+  border-bottom: 1px solid #787878;
+  padding: 7px 9px;
+  width: 100%;
+  overflow: hidden;
+  background: transparent;
+  font-weight: 600;
+  font-size: 14px;
 }
-.left{
-	background: linear-gradient(-45deg, #dcd7e0, #fff);
+
+.left {
+  background: linear-gradient( #222222, #222222);
 }
+
 .submit {
-    border: none;
-    padding: 15px 70px;
-    border-radius: 8px;
-    display: block;
-    margin: auto;
-    margin-top: 120px;
-    background: #56857e;
-    color: #fff;
-    font-weight: bold;
-    -webkit-box-shadow: 0px 9px 15px -11px #56857e;
-    -moz-box-shadow: 0px 9px 15px -11px #56857e;
-    box-shadow: 0px 9px 15px -11px #56857e;
+  border: none;
+  padding: 15px 70px;
+  border-radius: 8px;
+  display: block;
+  margin: auto;
+  margin-top: 120px;
+  background: #56857e;
+  color: #fff;
+  font-weight: bold;
+  -webkit-box-shadow: 0px 9px 15px -11px #56857e;
+  -moz-box-shadow: 0px 9px 15px -11px #56857e;
+  box-shadow: 0px 9px 15px -11px #56857e;
 }
 
 .right {
-	background : linear-gradient(212.38deg, rgba(118, 133, 184, 0.7) 0%, #95c2bc 100%), url('/assets/images/loginImage.png');
-	color: #fff;
-	position: relative;
+  background: linear-gradient(180deg, rgba(115, 185, 151, 0.54) -15.29%, #252525 100%),
+  url('/assets/images/loginImage_2.png');
+  color: #fff;
+  position: relative;
+  background-size: 650px 600px;
 }
 
-.right .right-text{
+.right .right-text {
   height: 100%;
   position: relative;
   transform: translate(0%, 45%);
 }
 
-.right-text h2{
+.right-text h2 {
   display: block;
   width: 100%;
   text-align: center;
   font-size: 50px;
   font-weight: 500;
 }
-.right-text h5{
+
+.right-text h5 {
   display: block;
-  width: 100%;
+  width: 50%;
   text-align: center;
-  font-size: 19px;
+  font-size: 29px;
   font-weight: 400;
+  margin-left: 150px;
 }
 
+#Header
+{
+    width: 100%;
+    height: 150px;
+}
+#Header img
+{
+    float: left;
+    width: 250px;
+}
+#Header ul
+{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    float: right;   
+}
+#Header  ul li
+{
+    float:left;
+    margin-top: 30px;
+    margin-right: 90px;
+}
+.aboutus
+{
+  border: none;
+  padding: 12px 50px;
+  border-radius: 30px;
+  margin-right: -50px;
+  background: #385752;
+  color: #fff;
+  font-weight: bold;
+  -webkit-box-shadow: 0px 9px 15px -11px #385752;
+  -moz-box-shadow: 0px 9px 15px -11px #385752;
+  box-shadow: 0px 9px 15px -11px #385752;
+}
+
+.contact1
+{
+  border: none;
+  padding: 12px 60px;
+  border-radius: 30px;
+  background: #385752;
+  color: #fff;
+  font-weight: bold;
+  -webkit-box-shadow: 0px 9px 15px -11px #385752;
+  -moz-box-shadow: 0px 9px 15px -11px #385752;
+  box-shadow: 0px 9px 15px -11px #385752;
+}
 
