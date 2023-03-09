@@ -5,16 +5,22 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/global/login/login.component';
 import { NavbarComponent } from './components/global/navbar/navbar.component';
+import { LandingPageComponent } from './components/global/landing-page/landing-page.component';
+import { HttpClientModule } from '@angular/common/http';
+
+//export const url = 'https://localhost:7194/api/User/';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    NavbarComponent
+    NavbarComponent,
+    LandingPageComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
