@@ -5,12 +5,14 @@ import { NavbarComponent } from './components/global/navbar/navbar.component';
 import { LandingPageComponent } from './components/global/landing-page/landing-page.component';
 import { UsersComponent } from './components/dso/users/users.component';
 import { HomeComponent } from './components/global/home/home.component';
+import { DsoSidebarComponent } from './components/dso/dso-sidebar/dso-sidebar.component';
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
   { path: 'login', component: LoginComponent },
   { path: 'home', component: HomeComponent },
   { path: 'users', component: UsersComponent },
+  { path: 'dso-sidebar', component: DsoSidebarComponent },
 ];
 
 @NgModule({

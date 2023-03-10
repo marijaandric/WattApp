@@ -10,6 +10,8 @@ import { LandingPageComponent } from './components/global/landing-page/landing-p
 import { UsersComponent } from './components/dso/users/users.component';
 import { HomeComponent } from './components/global/home/home.component';
 import { StadardTemplateComponent } from './components/global/stadard-template/stadard-template.component';
+import { DsoSidebarComponent } from './components/dso/dso-sidebar/dso-sidebar.component';
+import { ProsumerSidebarComponent } from './components/prosumer/prosumer-sidebar/prosumer-sidebar.component';
 
 //export const url = 'https://localhost:7194/api/User/';
 
@@ -22,6 +24,8 @@ import { StadardTemplateComponent } from './components/global/stadard-template/s
     UsersComponent,
     HomeComponent,
     StadardTemplateComponent,
+    DsoSidebarComponent,
+    ProsumerSidebarComponent,
   ],
   imports: [
     CommonModule,
