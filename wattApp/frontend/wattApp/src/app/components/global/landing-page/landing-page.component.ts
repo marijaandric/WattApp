@@ -9,7 +9,7 @@ declare var Parallax: any;
 export class LandingPageComponent implements OnInit{
   
   @ViewChild('parallaxcon') parallaxcon!: ElementRef;
-
+  
   constructor(private renderer: Renderer2)
   {
 
@@ -23,8 +23,10 @@ export class LandingPageComponent implements OnInit{
   onWindowScroll(event:any){
       const textElement = this.parallaxcon.nativeElement.querySelector('h2');
       const btn = this.parallaxcon.nativeElement.querySelector('button');
-      const marginTop = window.scrollY/2;
-      const marginLeft = -window.scrollY/2;
+      const marginTop = window.scrollY/3;
+      const marginLeft = -window.scrollY/3;
+
+      console.log(marginLeft);
       
       this.renderer.setStyle(textElement, 'marginTop', `${marginTop}px`);
       this.renderer.setStyle(textElement, 'marginRight', `${marginLeft}px`);
@@ -32,5 +34,7 @@ export class LandingPageComponent implements OnInit{
       this.renderer.setStyle(btn, 'marginRight', `${marginLeft}px`);
     
   }
+
+
   
 }
