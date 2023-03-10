@@ -98,3 +98,15 @@ baseline.json
 # Husky
 .husky/_
 aio/content/examples/.DS_Store
+/sandbox/Boris Dugic/DemoApp/Backend/DemoApp/obj/Debug/net7.0/DemoApp.csproj.AssemblyReference.cache
+/sandbox/Boris Dugic/DemoApp/Backend/DemoApp/obj/Debug/net7.0/DemoApp.GeneratedMSBuildEditorConfig.editorconfig
+/sandbox/Boris Dugic/DemoApp/Backend/DemoApp/obj/Release/net7.0/DemoApp.csproj.AssemblyReference.cache
+/sandbox/Boris Dugic/DemoApp/Backend/DemoApp/obj/Release/net7.0/DemoApp.GeneratedMSBuildEditorConfig.editorconfig
+/sandbox/denis_dragoljubovic/back/API/obj/Debug/net7.0/API.csproj.AssemblyReference.cache
+/sandbox/denis_dragoljubovic/back/API/obj/Debug/net7.0/API.GeneratedMSBuildEditorConfig.editorconfig
+/sandbox/denis_dragoljubovic/back/API/obj/Release/net7.0/API.csproj.AssemblyReference.cache
+/sandbox/denis_dragoljubovic/back/API/obj/Release/net7.0/API.GeneratedMSBuildEditorConfig.editorconfig
+/sandbox/Marija Andric/demoAPI/demoApp/demoApp/obj/Debug/net6.0/demoApp.assets.cache
+/sandbox/Marija Andric/demoAPI/demoApp/demoApp/obj/Debug/net6.0/demoApp.GeneratedMSBuildEditorConfig.editorconfig
+/sandbox/Marija Andric/demoAPI/demoApp/demoApp/obj/Release/net6.0/demoApp.assets.cache
+/sandbox/Marija Andric/demoAPI/demoApp/demoApp/obj/Release/net6.0/demoApp.GeneratedMSBuildEditorConfig.editorconfig
