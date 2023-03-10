@@ -15,11 +15,11 @@ namespace backend.Helpers
         {
             StringBuilder sb = new StringBuilder();
             if(password.Length < 8)
-                sb.Append("Minimum password length should be 8" + Environment.NewLine);
+                sb.Append("Minimum password length should be 8\n");
             if(!(Regex.IsMatch(password, "[a-z]") && Regex.IsMatch(password, "[A-Z]") && Regex.IsMatch(password, "[0-9]")))
-                sb.Append("Password should be Alphanumeric, with at least one caps" + Environment.NewLine);
+                sb.Append("Password should be Alphanumeric, with at least one caps\n");
             if (!Regex.IsMatch(password, @"[\W_]"))
-                sb.Append("Password should have at least one special character!" + Environment.NewLine);
+                sb.Append("Password should have at least one special character!\n");
             return sb.ToString();
         }
     }

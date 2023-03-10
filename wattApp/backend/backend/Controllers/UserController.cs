@@ -10,6 +10,7 @@ using backend.Models;
 using Microsoft.DotNet.Scaffolding.Shared.Messaging;
 using Microsoft.AspNetCore.Http.HttpResults;
 using backend.Helpers;
+using Microsoft.CodeAnalysis.CSharp;
 
 namespace backend.Controllers
 {
@@ -28,20 +29,22 @@ namespace backend.Controllers
         [HttpPost("authenticate")]
         public async Task<IActionResult> AuthenticateUser([FromBody] User userObj)
         {
-            if(userObj == null)
+            if (userObj == null)
                 return BadRequest();
 
             var user = await _context.Users
-                .FirstOrDefaultAsync(x=>x.Email == userObj.Email);
+                .FirstOrDefaultAsync(x => x.Email == userObj.Email);
 
-            if(user == null)
-                return NotFound(new { Message = "User Not Found!"});
+            if (user == null)
+                return NotFound(new { Message = "User Not Found!" });
 
-            if(!PasswordHasher.VerifyPassword(userObj.Password, user.Password))
+            if (!PasswordHasher.VerifyPassword(userObj.Password, user.Password))
                 return BadRequest(new { Message = "Wrong password!" });
 
+            user.Token = Token.CreateJwt(user);
             return Ok(
                 new {
+                    Token = user.Token,
                     Message = "Login Success!"
                 });
         }
@@ -54,8 +57,8 @@ namespace backend.Controllers
                 return BadRequest();
 
             //check email
-            if( await Check.ChecEmail(userObj.Email, _context) )
-                return BadRequest( new { Message = " Email already exists. "});
+            if (await Check.ChecEmail(userObj.Email, _context))
+                return BadRequest(new { Message = " Email already exists. " });
 
             //check password strength
             var pass = Check.CheckPasswordStrength(userObj.Password, _context);
@@ -66,7 +69,13 @@ namespace backend.Controllers
             userObj.Token = "";
             await _context.Users.AddAsync(userObj);
             await _context.SaveChangesAsync();
-            return Ok( new {Message = "User Registered!"});
+            return Ok(new { Message = "User Registered!" });
+        }
+
+        [HttpGet]
+        public async Task<ActionResult<User>> GetAllUsers()
+        {
+            return Ok( await _context.Users.ToListAsync());
         }
         
     }
