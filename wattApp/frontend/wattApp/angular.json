@@ -30,7 +30,8 @@
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
-              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+              "node_modules/bootstrap/dist/js/bootstrap.min.js",
+              "node_modules/parallax-js/dist/parallax.min.js"
             ]
           },
           "configurations": {
@@ -98,5 +99,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "4ea6bfa9-e1e3-4d9f-9965-c00625b91b00"
   }
 }
