@@ -1,5 +1,11 @@
-*{
-    z-index:1000;
+:host{
+    z-index:2;
+    position: fixed;
+    width: 500px;
+    height: 100vh;
+    top: 0%;
+    left: 0%;
+    background-color: #222222;
 }
 
 #navbarSupportedContent{

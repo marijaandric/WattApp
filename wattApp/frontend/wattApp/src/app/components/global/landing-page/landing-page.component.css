@@ -1,14 +1,10 @@
-body{
+:host {
+  display: block;
   scroll-behavior: smooth;
   box-sizing: border-box;
-  min-height: 100vh;
-  max-width: 100%;
-}
-
-body{ 
   overflow-x: hidden;
+  background: linear-gradient(#56857E,rgb(62, 106, 119));
 }
-
 
 .parallaxcon{
   position: relative;
