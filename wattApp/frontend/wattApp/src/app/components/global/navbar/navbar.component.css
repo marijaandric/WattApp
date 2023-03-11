@@ -9,10 +9,14 @@ body{
   font-family: sans-serif;
   overflow: hidden;
   user-select: none;
+  position: fixed; 
+  top: 0; 
+  width: 100%; 
 }
 nav .logo{
   width: 150px;
   margin-left: 40px;
+  margin-top: -8px;
 }
 nav{
   height: 73px;
@@ -22,6 +26,7 @@ nav{
 nav ul{
   float: right;
   margin-right: 90px;
+  cursor: pointer;
 }
 nav ul li{
   display: inline-block;
