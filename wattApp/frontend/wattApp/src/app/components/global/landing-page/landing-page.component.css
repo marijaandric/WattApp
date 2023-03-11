@@ -3,12 +3,8 @@ body{
   box-sizing: border-box;
   min-height: 100vh;
   max-width: 100%;
-}
-
-body{ 
   overflow-x: hidden;
 }
-
 
 .parallaxcon{
   position: relative;
@@ -16,6 +12,7 @@ body{
   height: 100vh;
   justify-content: center;
   align-items: center;
+  margin: 0px;
 }
 
 .parallaxcon img{
@@ -51,11 +48,26 @@ body{
   padding-bottom: 50px;
 }
 
+.cards{
+  margin-top: 50px;
+}
+
 .card{
   margin:0px 50px;
 }
 
+.aboutUs{
+  color:white;
+  border-radius: 25px;
+  width: 80%;
+  padding: 20px 70px;
+  margin-bottom: 70px;
+  text-align: justify;
+  margin: auto;
+}
+
 h2{
+  color:white;
   text-align: center;
 }
 
@@ -65,7 +77,6 @@ h2{
 }
 
 button{
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   position: absolute;
   color:#b8dcf1;
   background-color: #df67cf;
@@ -78,3 +89,104 @@ button{
   border-radius: 25px;
   padding: 0 30px;
 }
+
+@media screen and (min-width: 769px) and (max-width: 950){
+  .parallaxcon {
+    height: 75vh;
+  }
+  
+  #text {
+    font-size: 5.8vw;
+    top: 125px;
+  }
+  
+  .card-group {
+    margin: 0 25px;
+    margin-top: 25px;
+  }
+  
+  .card {
+    margin: 0px;
+  }
+  
+  .card-img-top {
+    height: 200px;
+  }
+  
+  button {
+    font-size: 3.5vw;
+    top: 180px;
+    right: 60%;
+    padding: 0 15px;
+  }
+}
+
+.col{
+  height: 100px;
+}
+
+/* Styles for screens up to 576 pixels wide */
+@media screen and (min-width: 375px) and (max-width: 768px){
+  .parallaxcon {
+    height: 75vh;
+  }
+  
+  #text {
+    font-size: 5.8vw;
+    top: 125px;
+  }
+  
+  .card-group {
+    margin: 0 25px;
+    margin-top: 25px;
+  }
+  
+  .card {
+    margin: 0px;
+  }
+  
+  .card-img-top {
+    height: 200px;
+  }
+  
+  button {
+    font-size: 3.5vw;
+    top: 180px;
+    right: 60%;
+    padding: 0 15px;
+  }
+}
+
+
+/* Styles for screens up to 375 pixels wide */
+@media screen and (max-width: 375px) {
+  .parallaxcon {
+    height: 42vh;
+  }
+  
+  #text {
+    font-size: 5.5vw;
+    top: 80px;
+  }
+  
+  .card-group {
+    margin: 0 15px;
+    margin-top: 15px;
+  }
+  
+  .card {
+    margin: 0px;
+  }
+  
+  .card-img-top {
+    height: 150px;
+  }
+  
+  button {
+    font-size: 2.5vw;
+    top: 110px;
+    right: 80%;
+    padding: 0 10px;
+  }
+}
+
