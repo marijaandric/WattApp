@@ -12,6 +12,8 @@ import { HomeComponent } from './components/global/home/home.component';
 import { StadardTemplateComponent } from './components/global/stadard-template/stadard-template.component';
 import { LandingPageFooterComponent } from './components/global/landing-page-componenets/landing-page-footer/landing-page-footer.component';
 import { LandingPageTeamComponent } from './components/global/landing-page-componenets/landing-page-team/landing-page-team.component';
+import { DsoSidebarComponent } from './components/dso/dso-sidebar/dso-sidebar.component';
+import { ProsumerSidebarComponent } from './components/prosumer/prosumer-sidebar/prosumer-sidebar.component';
 
 //export const url = 'https://localhost:7194/api/User/';
 
@@ -26,11 +28,13 @@ import { LandingPageTeamComponent } from './components/global/landing-page-compo
     StadardTemplateComponent,
     LandingPageFooterComponent,
     LandingPageTeamComponent,
+    DsoSidebarComponent,
+    ProsumerSidebarComponent
   ],
   imports: [
     CommonModule,
     BrowserModule,
-    AppRoutingModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
