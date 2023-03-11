@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { LoginComponent } from './components/global/login/login.component';
-import { NavbarComponent } from './components/global/navbar/navbar.component';
-import { LandingPageComponent } from './components/global/landing-page/landing-page.component';
+import { NavbarComponent } from './components/global/landing-page-componenets/navbar/navbar.component';
+import { LandingPageComponent } from './components/global/landing-page-componenets/landing-page/landing-page.component';
 
 
 

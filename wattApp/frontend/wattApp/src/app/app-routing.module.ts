@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/global/login/login.component';
-import { NavbarComponent } from './components/global/navbar/navbar.component';
-import { LandingPageComponent } from './components/global/landing-page/landing-page.component';
+import { NavbarComponent } from './components/global/landing-page-componenets/navbar/navbar.component';
+import { LandingPageComponent } from './components/global/landing-page-componenets/landing-page/landing-page.component';
 import { UsersComponent } from './components/dso/users/users.component';
 import { HomeComponent } from './components/global/home/home.component';
 
