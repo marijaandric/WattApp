@@ -10,6 +10,7 @@ import { LandingPageComponent } from './components/global/landing-page/landing-p
 import { UsersComponent } from './components/dso/users/users.component';
 import { HomeComponent } from './components/global/home/home.component';
 import { StadardTemplateComponent } from './components/global/stadard-template/stadard-template.component';
+import { LandingPageFooterComponent } from './components/global/landing-page-footer/landing-page-footer.component';
 
 //export const url = 'https://localhost:7194/api/User/';
 
@@ -22,6 +23,7 @@ import { StadardTemplateComponent } from './components/global/stadard-template/s
     UsersComponent,
     HomeComponent,
     StadardTemplateComponent,
+    LandingPageFooterComponent,
   ],
   imports: [
     CommonModule,
