@@ -63,3 +63,45 @@ nav ul ul li{
   border: 1px solid #042331;
   border-top: none;
 }
+
+@media (max-width: 768px) {
+  nav {
+    height: auto;
+  }
+  nav ul {
+    margin-right: 0;
+    float: none;
+  }
+  nav ul li {
+    display: block;
+  }
+  nav ul li a {
+    padding: 10px;
+    line-height: 30px;
+    font-size: 16px;
+  }
+  nav ul ul {
+    position: static;
+    display: none;
+    height: auto;
+  }
+  nav ul ul li {
+    width: 100%;
+    display: block;
+    position: relative;
+  }
+  nav ul li:hover > ul {
+    display: block;
+  }
+}
+
+@media (max-width: 768px) {
+  nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 9999;
+  }
+}
+
