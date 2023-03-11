@@ -9,14 +9,12 @@ body{
   font-family: sans-serif;
   overflow: hidden;
   user-select: none;
-  position: fixed; 
-  top: 0; 
-  width: 100%; 
 }
 nav .logo{
-  width: 150px;
-  margin-left: 40px;
-  margin-top: -8px;
+  width: 40px;
+  margin-left: 340px;
+  margin-top: 10px;
+  display: none;
 }
 nav{
   height: 73px;
@@ -26,12 +24,21 @@ nav{
 nav ul{
   float: right;
   margin-right: 90px;
-  cursor: pointer;
 }
 nav ul li{
   display: inline-block;
 }
-nav ul li a{
+.device
+{
+  color: white;
+  background: rgba(250, 216, 93, 0.45);
+  padding: 15px;
+  line-height: 70px;
+  font-size: 20px;
+  border-radius: 25px;
+  transition: .5s;
+}
+.active{
   color: white;
   display: block;
   padding: 0 15px;
@@ -41,7 +48,7 @@ nav ul li a{
   transition: .5s;
 }
 nav ul li a:hover{
-  color: #23dbdb;
+  color: #222;
 }
 nav ul ul{
   position: absolute;
@@ -64,44 +71,16 @@ nav ul ul li{
   border-top: none;
 }
 
-@media (max-width: 768px) {
-  nav {
-    height: auto;
-  }
-  nav ul {
-    margin-right: 0;
-    float: none;
-  }
-  nav ul li {
-    display: block;
-  }
-  nav ul li a {
-    padding: 10px;
-    line-height: 30px;
-    font-size: 16px;
-  }
-  nav ul ul {
-    position: static;
-    display: none;
-    height: auto;
-  }
-  nav ul ul li {
-    width: 100%;
-    display: block;
-    position: relative;
-  }
-  nav ul li:hover > ul {
-    display: block;
-  }
+nav .title{
+  color: white;
+  margin-left: 21.5%;
+  padding: 0 15px;
+  line-height: 70px;
+  font-size: 30px;
+  transition: .5s;
 }
 
-@media (max-width: 768px) {
-  nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 9999;
-  }
+.fa-user
+{
+  padding: 4px;
 }
-
