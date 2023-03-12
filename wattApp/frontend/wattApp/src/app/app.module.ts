@@ -14,8 +14,10 @@ import { LandingPageFooterComponent } from './components/global/landing-page-com
 import { LandingPageTeamComponent } from './components/global/landing-page-componenets/landing-page-team/landing-page-team.component';
 import { TitleBarComponent } from './components/global/layout-components/title-bar/title-bar.component';
 import { SidebarComponent } from './components/global/layout-components/side-bar/sidebar.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
-//export const url = 'https://localhost:7194/api/User/';
+export const url = 'https://localhost:7158';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,9 @@ import { SidebarComponent } from './components/global/layout-components/side-bar
   imports: [
     CommonModule,
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

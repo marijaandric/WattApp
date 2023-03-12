@@ -9,18 +9,19 @@
 		<div class="login_box">
 			<div class="left">
 				<div class="contact">
-					<form action="">
+					<form [formGroup]="loginForm" >
 						<h3>SIGN IN</h3>
-						<input type="text" placeholder="USERNAME" name="username">
-						<input [type]="type" placeholder="PASSWORD" name="password">
+						<input formControlName="email" type="text" placeholder="EMAIL" name="email">
+						<small *ngIf="loginForm.controls['email'].dirty && loginForm.hasError('required','email')" class="danger" style="color: rgb(182, 126, 126);">Morate uneti username</small>
+						<input formControlName="password" [type]="type" placeholder="PASSWORD" name="password">
+						<small *ngIf="loginForm.controls['password'].dirty && loginForm.hasError('required','password')" class="danger" style="color: rgb(182, 126, 126);">Morate uneti password</small>
 						<i (click)="hideShowPass()" class="{{eyeIcon}}" style="color:white"></i>
-						<button class="submit" routerLink="/home">LET'S GO</button>
+						<button (click)="onLogin()" class="submit">LET'S GO</button>
 					</form>
 				</div>
 			</div>
 			<div class="right">
 				<div class="right-text">
-					
 					<h5>Power up your life, but don’t forget to power up your safety</h5>
 				</div>
 			</div>
