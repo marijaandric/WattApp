@@ -42,6 +42,7 @@ export class LoginComponent implements OnInit{
      .subscribe({
       next:(res)=>{
         this.loginForm.reset();
+        this.auth.storeToken(res.token);
         this.toast.success({detail:"SUCCESS",summary:res.message,duration:5000});
         this.router.navigate(['home']);
       },
@@ -52,7 +53,7 @@ export class LoginComponent implements OnInit{
      )
     }
     else{
-      alert ("Your form is invalid");
+      this.toast.error({detail:"ERROR",summary:"Error",duration:5000});
     }
   }
 

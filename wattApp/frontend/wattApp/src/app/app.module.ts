@@ -15,8 +15,9 @@ import { LandingPageTeamComponent } from './components/global/landing-page-compo
 import { TitleBarComponent } from './components/global/layout-components/title-bar/title-bar.component';
 import { SidebarComponent } from './components/global/layout-components/side-bar/sidebar.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgToastModule } from 'ng-angular-popup';
+import { TokenInterceptor } from './interceptors/token.interceptor';
 
 export const url = 'https://localhost:7158';
 
@@ -42,7 +43,11 @@ export const url = 'https://localhost:7158';
     HttpClientModule,
     NgToastModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptor,
+    multi:true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

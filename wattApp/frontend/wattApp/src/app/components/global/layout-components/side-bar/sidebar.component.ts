@@ -1,11 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { APIService } from 'src/app/services/api.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.css']
 })
-export class SidebarComponent {
+export class SidebarComponent implements OnInit{
+  ngOnInit(): void {
+    
+  }
+
+  constructor(private api : APIService, private auth:AuthService){}
+
   list = [
     {
       number: '1',
@@ -28,4 +36,10 @@ export class SidebarComponent {
       icon:'fa-solid fa-house',
     },
   ];
+
+  logout()
+  {
+    this.auth.logout();
+  }
+
 }
