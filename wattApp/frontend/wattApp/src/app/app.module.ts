@@ -16,6 +16,7 @@ import { TitleBarComponent } from './components/global/layout-components/title-b
 import { SidebarComponent } from './components/global/layout-components/side-bar/sidebar.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import { NgToastModule } from 'ng-angular-popup';
 
 export const url = 'https://localhost:7158';
 
@@ -38,7 +39,8 @@ export const url = 'https://localhost:7158';
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgToastModule
   ],
   providers: [],
   bootstrap: [AppComponent]
