@@ -4,6 +4,7 @@
   box-sizing: border-box;
   overflow-x: hidden;
   background: linear-gradient(#56857E,rgb(62, 106, 119));
+  z-index: 2500;
 }
 
 .parallaxcon{

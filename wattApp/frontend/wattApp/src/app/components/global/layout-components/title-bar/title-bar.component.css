@@ -1,0 +1,54 @@
+:host{
+    display: flex;
+    flex-direction: row;
+    padding-top: 16px;
+    width: 85%;
+    margin-left: auto;
+    color: #fff;
+    padding-left: 50px;
+}
+
+.flexRow{
+    display: flex;
+    flex-direction: row;
+}
+  
+.flexColumn{
+    display: flex;
+    flex-direction: column;
+}
+
+.right-part{
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+}
+
+.right-part a {
+    color: #fff;
+    margin-right: 48px;
+    text-decoration: none;
+}
+
+.my-profile{
+    padding: 0px 36px;
+    position: relative;
+}
+
+.my-profile p{
+    margin: 0px;
+}
+
+.circle{
+    position: absolute;
+    left: -12px;
+    top: -6px;
+    background-color: #fff;
+    border-radius: 50%;
+}
+
+.circle-image{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
