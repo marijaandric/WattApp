@@ -2,10 +2,10 @@
     display: flex;
     flex-direction: row;
     padding-top: 16px;
-    width: 85%;
+    width: calc(100% - 332px);
+    height: 60px;
     margin-left: auto;
     color: #fff;
-    padding-left: 50px;
 }
 
 .flexRow{

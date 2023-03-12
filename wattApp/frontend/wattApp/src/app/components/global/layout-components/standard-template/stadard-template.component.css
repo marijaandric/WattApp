@@ -1,0 +1,14 @@
+:host {
+  background-color: #56857E;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  z-index: 1;
+}
+
+.content{
+  height: 100vh;
+  overflow-y: auto;
+  position: relative;
+}
+
