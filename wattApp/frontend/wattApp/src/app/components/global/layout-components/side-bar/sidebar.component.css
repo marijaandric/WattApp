@@ -120,9 +120,14 @@
     position: relative;
     list-style: none;
     transition: all 0.4s ease;
+    box-shadow: inset 0 0 0 0 #363636;
+    color:white;
+    transition: color .3s ease-in-out, box-shadow .3s ease-in-out;
+    
   }
    .nav-links li:hover{
-    background: #363636;
+    box-shadow: inset 280px 0 0 0 #363636;
+    ;
   }
    .nav-links li .iocn-link{
     display: flex;
@@ -164,24 +169,28 @@
     pointer-events: none;
   }
    .nav-links li .sub-menu{
-    padding: 6px 6px 6px 80px;
+    padding: 0 0 0 0;
     margin-top: -10px;
     background: #222222;
     display: none;
   }
-   .nav-links li.showMenu .sub-menu{
+   .nav-links li .sub-menu li {
+    border-radius: 0 6px 6px 0;
+   }
+   .nav-links .sub-menu{
     display: block;
   }
    .nav-links li .sub-menu a{
     color: #fff;
     font-size: 15px;
-    padding: 5px 0;
+    padding: 11px 11px 12px 11px;
     white-space: nowrap;
     opacity: 0.6;
     transition: all 0.3s ease;
   }
-   .nav-links li .sub-menu a:hover{
+   .nav-links li .sub-menu li:hover{
     opacity: 1;
+    border-radius: 0 6px 6px 0;
   }
   .marginLeft {
       padding-left: 70px;
@@ -195,7 +204,6 @@
     left: 100%;
     top: -10px;
     margin-top: 0;
-    padding: 7px 20px;
     border-radius: 0 6px 6px 0;
     opacity: 0;
     display: block;
@@ -216,48 +224,7 @@
     opacity: 1;
     display: block;
   }
-   .nav-links li .sub-menu.blank{
-    opacity: 1;
-    pointer-events: auto;
-    padding: 3px 20px 6px 16px;
-    opacity: 0;
-    pointer-events: none;
-  }
-   .nav-links li:hover .sub-menu.blank{
-    top: 50%;
-    transform: translateY(-50%);
-  }
   
-  .home-section{
-    position: relative;
-    background: #E4E9F7;
-    height: 100vh;
-    left: 260px;
-    width: calc(100% - 260px);
-    transition: all 0.5s ease;
-  }
-  :host.close ~ .home-section{
-    left: 78px;
-    width: calc(100% - 78px);
-  }
-  .home-section .home-content{
-    height: 60px;
-    display: flex;
-    align-items: center;
-  }
-  .home-section .home-content .fa-bars,
-  .home-section .home-content .text{
-    color: #11101d;
-    font-size: 20px;
-  }
-  .home-section .home-content .fa-bars{
-    margin: 0 15px;
-    cursor: pointer;
-  }
-  .home-section .home-content .text{
-    font-size: 20px;
-    font-weight: 600;
-  }
   @media (max-width: 400px) {
     
     :host.close .nav-links li .sub-menu{
@@ -269,9 +236,6 @@
     :host.close .img1 {
       display: none;
     }
-    .submenus{
-      /*display: none;*/
-    }
     :host{
       width: 280px;
     }
@@ -280,15 +244,6 @@
     }
     :host.close{
       width: 0;
-    }/*
-    .home-section{
-      left: 278px;
-      width: calc(100% - 278px);
-      z-index: 100;
     }
-    .close ~ .home-section{
-      width: 100%;
-      left: 0;
-    }*/
   }
   
