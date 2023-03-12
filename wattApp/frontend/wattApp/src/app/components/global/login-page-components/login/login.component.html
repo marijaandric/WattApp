@@ -1,0 +1,29 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+
+  
+<body>
+	<section class="login">
+		<div class="login_box">
+			<div class="left">
+				<div class="contact">
+					<form action="">
+						<h3>SIGN IN</h3>
+						<input type="text" placeholder="USERNAME" name="username">
+						<input [type]="type" placeholder="PASSWORD" name="password">
+						<i (click)="hideShowPass()" class="{{eyeIcon}}" style="color:white"></i>
+						<button class="submit" routerLink="/home">LET'S GO</button>
+					</form>
+				</div>
+			</div>
+			<div class="right">
+				<div class="right-text">
+					
+					<h5>Power up your life, but don’t forget to power up your safety</h5>
+				</div>
+			</div>
+		</div>
+	</section>
+</body>
