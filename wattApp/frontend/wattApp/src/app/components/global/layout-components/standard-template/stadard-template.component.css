@@ -8,6 +8,7 @@
 
 .content{
   height: 100vh;
+  min-height: 600px;
   width: calc(100% - 280px);
   overflow-y: auto;
   position: relative;
