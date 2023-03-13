@@ -3,11 +3,9 @@
     background-color: black;
     display: flex;
     flex-direction: column;
-    margin: 32px 32px 16px calc(300px + 32px);
+    margin: 32px 32px 16px 32px;
     padding: 24px;
-    width: calc(100% - 716px);
-    height: fit-content;
-    min-height: calc(100% - 210px);
+    flex: 1;
     min-width: 500px;
     border-radius: 32px;
 }

@@ -1,5 +1,11 @@
-
+<app-sidebar (toggleEventEmitter)="showSidebar($event)"></app-sidebar>
 <div class="content">
-    <app-sidebar></app-sidebar>
-    <ng-content ></ng-content>
+  <ng-content select="app-title-bar"></ng-content>
+  <div class="flexRow centerContent">
+    <div class="flexColumn remainingSpace">
+      <ng-content select="app-select-one-menu-bar"></ng-content>
+      <ng-content select="app-center-bar"></ng-content>
+    </div>
+    <ng-content select="app-info-bar"></ng-content>
+  </div>
 </div>

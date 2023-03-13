@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit } from '@angular/core';
+import { Component, EventEmitter, Output, ElementRef, OnInit } from '@angular/core';
 import { APIService } from 'src/app/services/api.service';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -12,6 +12,7 @@ export class SidebarComponent implements OnInit {
   isSubMenuShown: boolean = false;
   isSubMenu2Shown: boolean = false;
   hostElement: HTMLElement | undefined;
+  @Output() toggleEventEmitter = new EventEmitter<boolean>();
 
   constructor(private elementRef: ElementRef,private api : APIService, private auth:AuthService) {
   }
@@ -24,6 +25,7 @@ export class SidebarComponent implements OnInit {
   showSidebar() {
     this.isSidebarShown = !this.isSidebarShown;
     this.hostElement?.classList.toggle('close', this.isSidebarShown);
+    this.toggleEventEmitter.emit(this.isSidebarShown);
   }
 
   showSubMenus() {
@@ -42,37 +44,3 @@ export class SidebarComponent implements OnInit {
     this.auth.logout();
   }
 }
-/*import { Component } from '@angular/core';
-
-@Component({
-  selector: 'app-sidebar',
-  templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.scss']
-})
-export class SidebarComponent {
-  isSidebarShown: boolean = false;
-  isSubMenuShown: boolean = false;
-  isSubMenu2Shown: boolean = false;
-
-  showSidebar(){
-    
-    let sidebar = document.querySelector(".sidebar");
-    let sidebarBtn = document.querySelector(".menu");
-    console.log(sidebarBtn);
-    sidebar?.classList.toggle("close");
-    let sidebar = document.
-    this.isSidebarShown = !this.isSidebarShown;
-  }
-
-  showSubMenus() {
-    this.isSubMenuShown = !this.isSubMenuShown;
-    console.log(this.isSubMenuShown);
-  }
-
-  showSubMenus2() {
-    this.isSubMenu2Shown = !this.isSubMenu2Shown;
-    console.log(this.isSubMenu2Shown);
-  }
-}
-*/
-

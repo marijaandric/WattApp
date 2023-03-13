@@ -8,16 +8,6 @@
     height: 370px;
 }
 
-.flexRow{
-  display: flex;
-  flex-direction: row;
-}
-
-.flexColumn{
-  display: flex;
-  flex-direction: column;
-}
-
 .logoAndLinks{
     display: flex;
     flex-direction: row;
