@@ -8,6 +8,7 @@ import { LoginComponent } from './components/global/login/login.component';
 import { NavbarComponent } from './components/global/navbar/navbar.component';
 import { LandingPageComponent } from './components/global/landing-page/landing-page.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ContactComponent } from './components/global/contact/contact.component';
 
 //export const url = 'https://localhost:7194/api/User/';
 
@@ -16,7 +17,8 @@ import { HttpClientModule } from '@angular/common/http';
     AppComponent,
     LoginComponent,
     NavbarComponent,
-    LandingPageComponent
+    LandingPageComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,
