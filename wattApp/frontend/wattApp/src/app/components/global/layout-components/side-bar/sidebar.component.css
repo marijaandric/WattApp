@@ -235,10 +235,6 @@
     opacity: 1;
     display: block;
   }
-
-  a{
-    cursor: pointer;
-  }
   
   @media (max-width: 400px) {
     
