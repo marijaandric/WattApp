@@ -1,4 +1,6 @@
 import { Component, ElementRef, OnInit } from '@angular/core';
+import { APIService } from 'src/app/services/api.service';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -11,7 +13,8 @@ export class SidebarComponent implements OnInit {
   isSubMenu2Shown: boolean = false;
   hostElement: HTMLElement | undefined;
 
-  constructor(private elementRef: ElementRef) { }
+  constructor(private elementRef: ElementRef,private api : APIService, private auth:AuthService) {
+  }
 
   ngOnInit(): void {
     this.hostElement = this.elementRef.nativeElement as HTMLElement;
@@ -31,6 +34,12 @@ export class SidebarComponent implements OnInit {
   showSubMenus2() {
     this.isSubMenu2Shown = !this.isSubMenu2Shown;
     console.log(this.isSubMenu2Shown);
+  }
+
+  logout()
+  {
+    console.log("LOGOUT");
+    this.auth.logout();
   }
 }
 /*import { Component } from '@angular/core';
@@ -66,3 +75,4 @@ export class SidebarComponent {
   }
 }
 */
+
