@@ -5,11 +5,12 @@ import { NavbarComponent } from './components/global/landing-page-componenets/na
 import { LandingPageComponent } from './components/global/landing-page-componenets/landing-page/landing-page.component';
 import { UsersComponent } from './components/dso/users-page-components/users/users.component';
 import { HomeComponent } from './components/global/home-page-components/home/home.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'home', component: HomeComponent },
+  { path: 'login', component: LoginComponent, pathMatch:'full' },
+  { path: 'home', component: HomeComponent, canActivate:[AuthGuard] },
   { path: 'users', component: UsersComponent }
 ];
 
@@ -18,3 +19,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+

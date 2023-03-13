@@ -18,8 +18,12 @@ import { CenterBarComponent } from './components/global/layout-components/center
 import { InfoBarComponent } from './components/global/layout-components/info-bar/info-bar.component';
 import { SelectOneMenuBarComponent } from './components/global/layout-components/select-one-menu-bar/select-one-menu-bar.component';
 import { WidgetComponent } from './components/global/layout-components/widget/widget.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NgToastModule } from 'ng-angular-popup';
+import { TokenInterceptor } from './interceptors/token.interceptor';
 
-//export const url = 'https://localhost:7194/api/User/';
+export const url = 'https://localhost:7158';
 
 @NgModule({
   declarations: [
@@ -42,9 +46,16 @@ import { WidgetComponent } from './components/global/layout-components/widget/wi
   imports: [
     CommonModule,
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    NgToastModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptor,
+    multi:true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
