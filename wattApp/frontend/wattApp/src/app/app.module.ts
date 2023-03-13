@@ -17,6 +17,7 @@ import { SidebarComponent } from './components/global/layout-components/side-bar
 import { CenterBarComponent } from './components/global/layout-components/center-bar/center-bar.component';
 import { InfoBarComponent } from './components/global/layout-components/info-bar/info-bar.component';
 import { SelectOneMenuBarComponent } from './components/global/layout-components/select-one-menu-bar/select-one-menu-bar.component';
+import { WidgetComponent } from './components/global/layout-components/widget/widget.component';
 
 //export const url = 'https://localhost:7194/api/User/';
 
@@ -35,7 +36,8 @@ import { SelectOneMenuBarComponent } from './components/global/layout-components
     SidebarComponent,
     CenterBarComponent,
     InfoBarComponent,
-    SelectOneMenuBarComponent
+    SelectOneMenuBarComponent,
+    WidgetComponent
   ],
   imports: [
     CommonModule,
