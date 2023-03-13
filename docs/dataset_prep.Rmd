@@ -1,0 +1,295 @@
+---
+title: "R Notebook"
+output: html_notebook
+---
+
+
+
+```{r}
+setwd("C:/Users/AS/Desktop/dataset")
+data <- read.table("dataset.txt", sep=";", header=TRUE)
+head(data)
+```
+
+```{r}
+data$minutes <- as.numeric(substr(data$Time, 4, 5))
+
+# Keep only the rows where the minutes are divisible by 4
+data <- data[data$minutes %% 3 == 0, ]
+```
+
+
+```{r}
+data$DeviceName=""
+```
+
+
+```{r}
+data$DeviceID="" 
+```
+
+
+```{r}
+data$Room=""
+```
+
+
+```{r}
+data$DeviceType=""
+```
+
+Device #1
+```{r}
+
+data$DeviceID[data$minutes == 0] = 1;
+
+data$DeviceName[data$minutes == 0] = "Fridge";
+
+data$Room[data$minutes == 0] = "Kitchen";
+
+data$DeviceType[data$minutes == 0] = "Consumer";
+```
+
+Device #2
+```{r}
+
+data$DeviceID[data$minutes == 3] = 2;
+
+data$DeviceName[data$minutes == 3] = "TV";
+
+data$Room[data$minutes == 3] = "Living Room";
+
+data$DeviceType[data$minutes == 3] = "Consumer";
+```
+
+Device #3
+```{r}
+
+data$DeviceID[data$minutes == 6] = 3;
+
+data$DeviceName[data$minutes == 6] = "Washing Machine";
+
+data$Room[data$minutes == 6] = "Kitchen";
+
+data$DeviceType[data$minutes == 6] = "Consumer";
+```
+
+Device #4
+```{r}
+
+data$DeviceID[data$minutes == 9] = 4;
+
+data$DeviceName[data$minutes == 9] = "Laptop";
+
+data$Room[data$minutes == 9] = "Working Room";
+
+data$DeviceType[data$minutes == 9] = "Consumer";
+```
+
+Device #5
+```{r}
+
+data$DeviceID[data$minutes == 12] = 5;
+
+data$DeviceName[data$minutes == 12] = "Lamp";
+
+data$Room[data$minutes == 12] = "Working Room";
+
+data$DeviceType[data$minutes == 12] = "Consumer";
+```
+
+
+Device #6
+```{r}
+
+data$DeviceID[data$minutes == 15] = 6;
+
+data$DeviceName[data$minutes == 15] = "Solar Panel 1";
+
+data$Room[data$minutes == 15] = "Roof";
+
+data$DeviceType[data$minutes == 15] = "Producer";
+```
+
+Device #7
+```{r}
+
+data$DeviceID[data$minutes == 18] = 7;
+
+data$DeviceName[data$minutes == 18] = "Wind Turbine";
+
+data$Room[data$minutes == 18] = "Garden";
+
+data$DeviceType[data$minutes == 18] = "Producer";
+```
+
+Device #8
+```{r}
+
+data$DeviceID[data$minutes == 21] = 8;
+
+data$DeviceName[data$minutes == 21] = "Battery 1";
+
+data$Room[data$minutes == 21] = "Basement";
+
+data$DeviceType[data$minutes == 21] = "Storage";
+```
+
+Device #9
+```{r}
+
+data$DeviceID[data$minutes == 24] = 9;
+
+data$DeviceName[data$minutes == 24] = "Oven";
+
+data$Room[data$minutes == 24] = "Kitchen";
+
+data$DeviceType[data$minutes == 24] = "Consumer";
+```
+
+Device #10
+```{r}
+
+data$DeviceID[data$minutes == 27] = 10;
+
+data$DeviceName[data$minutes == 27] = "Lights";
+
+data$Room[data$minutes == 27] = "Kitchen";
+
+data$DeviceType[data$minutes == 27] = "Consumer";
+```
+
+Device #11
+```{r}
+
+data$DeviceID[data$minutes == 30] = 11;
+
+data$DeviceName[data$minutes == 30] = "Lights";
+
+data$Room[data$minutes == 30] = "Living room";
+
+data$DeviceType[data$minutes == 30] = "Consumer";
+```
+
+Device #12
+```{r}
+
+data$DeviceID[data$minutes == 33] = 12;
+
+data$DeviceName[data$minutes == 33] = "Lights";
+
+data$Room[data$minutes == 33] = "Bedroom";
+
+data$DeviceType[data$minutes == 33] = "Consumer";
+```
+
+Device #13
+```{r}
+
+data$DeviceID[data$minutes == 36] = 13;
+
+data$DeviceName[data$minutes == 36] = "Hair Dryer";
+
+data$Room[data$minutes == 36] = "Kitchen";
+
+data$DeviceType[data$minutes == 36] = "Consumer";
+```
+
+Device #14
+```{r}
+
+data$DeviceID[data$minutes == 39] = 14;
+
+data$DeviceName[data$minutes == 39] = "Battery 2";
+
+data$Room[data$minutes == 39] = "Basement";
+
+data$DeviceType[data$minutes == 39] = "Storage";
+```
+
+Device #15
+```{r}
+
+data$DeviceID[data$minutes == 42] = 15;
+
+data$DeviceName[data$minutes == 42] = "Electric Car Charger";
+
+data$Room[data$minutes == 42] = "Garage";
+
+data$DeviceType[data$minutes == 42] = "Consumer";
+```
+
+Device #16
+```{r}
+
+data$DeviceID[data$minutes == 45] = 16;
+
+data$DeviceName[data$minutes == 45] = "Car Battery";
+
+data$Room[data$minutes == 45] = "Garage";
+
+data$DeviceType[data$minutes == 45] = "Storage";
+```
+
+Device #17
+```{r}
+
+data$DeviceID[data$minutes == 48] = 17;
+
+data$DeviceName[data$minutes == 48] = "Boiler";
+
+data$Room[data$minutes == 48] = "Bathroom";
+
+data$DeviceType[data$minutes == 48] = "Consumer";
+```
+
+Device #18
+```{r}
+
+data$DeviceID[data$minutes == 51] = 18;
+
+data$DeviceName[data$minutes == 51] = "Microwave";
+
+data$Room[data$minutes == 51] = "Kitchen";
+
+data$DeviceType[data$minutes == 51] = "Consumer";
+```
+
+Device #19
+```{r}
+
+data$DeviceID[data$minutes == 54] = 19;
+
+data$DeviceName[data$minutes == 54] = "Home PC";
+
+data$Room[data$minutes == 54] = "Working Room";
+
+data$DeviceType[data$minutes == 54] = "Consumer";
+```
+
+Device #20
+```{r}
+
+data$DeviceID[data$minutes == 57] = 20;
+
+data$DeviceName[data$minutes == 57] = "Air Conditioner";
+
+data$Room[data$minutes == 57] = "Living Room";
+
+data$DeviceType[data$minutes == 57] = "Consumer";
+```
+
+Remove some collumns
+```{r}
+data$Sub_metering_1 <- NULL
+data$Sub_metering_2 <- NULL
+data$Sub_metering_3 <- NULL
+data$Voltage <- NULL
+data$Global_reactive_power <- NULL
+data$Global_intensity <- NULL
+```
+
+```{r}
+colnames(data)[colnames(data) == "Global_active_power"] <- "PowerUsage"
+```
+
