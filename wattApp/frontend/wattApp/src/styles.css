@@ -10,3 +10,56 @@
     flex-direction: column;
 }
 
+/* Table styles */
+
+/* Set the background color of the table */
+.ui-table-default {
+  background-color: #222222;
+  color: white;
+}
+
+/* Set the background color and style of the table header */
+.ui-table-default .ui-table-default-thead > tr > th {
+  background-color: #333333;
+  color: white;
+  border: none;
+}
+
+/* Set the font size and weight of the table header text */
+.ui-table-default .ui-table-default-thead > tr > th {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+/* Set the style of the paginator */
+.ui-paginator {
+  margin-top: 1em;
+  text-align: center;
+}
+
+/* Set the style of the paginator buttons */
+.ui-paginator .ui-paginator-page-link, .ui-paginator .ui-paginator-next-link, .ui-paginator .ui-paginator-prev-link {
+  background-color: #333333;
+  color: white;
+  border: none;
+  padding: 0.5em 1em;
+}
+
+/* Set the style of the paginator active page link */
+.ui-paginator .ui-paginator-page-link.ui-state-active {
+  background-color: #666666;
+}
+
+/* Set the style of the table cells */
+.ui-table-default tbody td {
+  border: none;
+  padding: 0.5em 1em;
+}
+
+/* Set the background color of every other row in the table */
+.ui-table-default tbody tr:nth-child(even) {
+  background-color: #444444;
+}
+
+/* End of table styles */
+
