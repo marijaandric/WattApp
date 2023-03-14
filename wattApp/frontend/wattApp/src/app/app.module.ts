@@ -21,6 +21,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgToastModule } from 'ng-angular-popup';
 import { TokenInterceptor } from './interceptors/token.interceptor';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {TableModule} from 'primeng/table';
 
 export const url = 'https://localhost:7158';
 
@@ -47,7 +49,9 @@ export const url = 'https://localhost:7158';
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
-    NgToastModule
+    NgToastModule,
+    BrowserAnimationsModule,
+    TableModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
