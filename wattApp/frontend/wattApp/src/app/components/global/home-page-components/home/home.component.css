@@ -1,1 +1,29 @@
 
+#blue-widget {
+    top:120px;
+    left:380px;
+}
+
+#yellow-widget {
+    top:120px;
+    left:750px;
+}
+
+#pink-widget {
+    top:120px;
+    left:1120px;
+}
+
+#blue2-widget {
+    top:120px;
+    left:1490px;
+}
+
+
+
+@media only screen and (max-width: 639px) {
+    #blue-widget {
+      -ms-flex-preferred-size: 100%;
+      flex-basis: 100%;
+    }
+}
