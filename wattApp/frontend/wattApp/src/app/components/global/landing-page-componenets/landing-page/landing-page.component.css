@@ -4,7 +4,7 @@
   box-sizing: border-box;
   overflow-x: hidden;
   background: linear-gradient(#56857E,rgb(62, 106, 119));
-  z-index: 2500;
+  z-index: 6;
 }
 
 .parallaxcon{
@@ -32,15 +32,24 @@
 .parallaxcon img#ispred{
   z-index: 10;
 }
+
+.moving-image {
+  animation: moveImage 4s ease-in-out infinite alternate;
+}
+
+@keyframes moveImage {
+  from { transform: translateX(-3%); }
+  to { transform: translateX(3%); }
+}
   
 #text{
   position: absolute;
-  color:#adadad;
+  color:#f5ffc9;
   white-space: nowrap;
-  font-size: 5.5vw;
+  font-size: 4.5vw;
   z-index: 1;
-  top:200px;
-  right:50%
+  top:250px;
+  right:60%
 }
 
 .card-group{
@@ -80,13 +89,22 @@ h2{
 button{
   position: absolute;
   color:#b8dcf1;
-  background-color: #df67cf;
+  background-color: #5668ce;
   border: #adadad;
   white-space: nowrap;
-  font-size: 2.5vw;
+  font-size: 2vw;
   z-index: 1;
-  top:350px;
+  top:380px;
   right:70%;
-  border-radius: 25px;
+  border-radius: 20px;
   padding: 0 30px;
 }
+
+::-webkit-scrollbar,
+::-webkit-scrollbar-thumb{
+  width: 0;
+  height: 0;
+  visibility: hidden;
+}
+
+

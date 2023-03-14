@@ -1,4 +1,5 @@
 import { Component, HostListener, OnInit, Renderer2, ViewChild, ElementRef } from '@angular/core';
+
 declare var Parallax: any;
 
 @Component({
