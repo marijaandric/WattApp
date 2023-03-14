@@ -21,6 +21,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgToastModule } from 'ng-angular-popup';
 import { TokenInterceptor } from './interceptors/token.interceptor';
+import { UserProfileComponent } from './components/global/user-profile/user-profile.component';
 
 export const url = 'https://localhost:7158';
 
@@ -39,7 +40,8 @@ export const url = 'https://localhost:7158';
     SidebarComponent,
     CenterBarComponent,
     InfoBarComponent,
-    SelectOneMenuBarComponent
+    SelectOneMenuBarComponent,
+    UserProfileComponent
   ],
   imports: [
     CommonModule,
