@@ -20,6 +20,38 @@
     min-height: 120px;
     justify-content:space-between;
 }
+.promotions
+{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  
+}
+.promotion
+{
+  flex-basis: calc(23%);
+  margin-bottom: 30px;
+  display: inline-block;
+  position: relative;
+  flex-direction: row;
+  max-width: 23%;
+  min-width: 487px;
+  width:20%;
+  
+}
+.promotion1
+{
+  flex-basis: calc(23%);
+  margin-bottom: 30px;
+  display: inline-block;
+  position: relative;
+  flex-direction: row;
+  max-width: 23%;
+  min-width: 487px;
+  width:20%;
+  margin-left: 2%;
+  
+}
 
 .widget {
     flex-basis: calc(23%);
