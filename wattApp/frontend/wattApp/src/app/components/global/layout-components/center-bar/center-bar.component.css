@@ -1,13 +1,10 @@
 :host{
     position: relative;
-    background-color: black;
+    background-color: #222222;
     display: flex;
     flex-direction: column;
-    margin: 32px 32px 16px calc(300px + 32px);
-    padding: 24px;
-    width: calc(100% - 716px);
+    margin:240px 52px 16px calc(300px + 32px);
     height: fit-content;
-    min-height: calc(100% - 210px);
-    min-width: 500px;
+    min-height: calc(100% - 410px);
     border-radius: 32px;
 }
