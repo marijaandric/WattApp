@@ -1,13 +1,13 @@
 :host{
     display: flex;
     flex-direction: column;
-    position: absolute;
+    position: relative;
     width: 320px;
+    min-width: 320px;
+    margin: 32px 32px 16px auto;
     height: fit-content;
     min-height: 300px;
     padding: 24px;
-    top: 92px;
-    right: 32px;
     background-color: #222222;
     border-radius: 32px;
 }

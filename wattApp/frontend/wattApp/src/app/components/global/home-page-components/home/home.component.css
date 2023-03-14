@@ -1,4 +1,8 @@
-
+:host{
+    width: 100%;
+    height: fit-content;
+    min-height: 100vh;
+}
 #blue-widget {
     top:120px;
     left:380px;
