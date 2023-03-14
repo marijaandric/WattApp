@@ -19,6 +19,7 @@ import { InfoBarComponent } from './components/global/layout-components/info-bar
 import { SelectOneMenuBarComponent } from './components/global/layout-components/select-one-menu-bar/select-one-menu-bar.component';
 import { WidgetComponent } from './components/global/layout-components/widget/widget.component';
 import { ProsumerhomeComponent } from './components/prosumer/home-page-components/prosumerhome/prosumerhome.component';
+import { PromotionComponent } from './components/prosumer/home-page-components/promotion/promotion.component';
 
 //export const url = 'https://localhost:7194/api/User/';
 
@@ -39,7 +40,8 @@ import { ProsumerhomeComponent } from './components/prosumer/home-page-component
     InfoBarComponent,
     SelectOneMenuBarComponent,
     WidgetComponent,
-    ProsumerhomeComponent
+    ProsumerhomeComponent,
+    PromotionComponent
   ],
   imports: [
     CommonModule,
