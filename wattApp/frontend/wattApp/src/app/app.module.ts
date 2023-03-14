@@ -18,6 +18,7 @@ import { CenterBarComponent } from './components/global/layout-components/center
 import { InfoBarComponent } from './components/global/layout-components/info-bar/info-bar.component';
 import { SelectOneMenuBarComponent } from './components/global/layout-components/select-one-menu-bar/select-one-menu-bar.component';
 import { WidgetComponent } from './components/global/layout-components/widget/widget.component';
+import { ProsumerhomeComponent } from './components/prosumer/home-page-components/prosumerhome/prosumerhome.component';
 
 //export const url = 'https://localhost:7194/api/User/';
 
@@ -37,7 +38,8 @@ import { WidgetComponent } from './components/global/layout-components/widget/wi
     CenterBarComponent,
     InfoBarComponent,
     SelectOneMenuBarComponent,
-    WidgetComponent
+    WidgetComponent,
+    ProsumerhomeComponent
   ],
   imports: [
     CommonModule,

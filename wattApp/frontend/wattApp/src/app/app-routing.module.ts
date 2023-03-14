@@ -5,13 +5,16 @@ import { NavbarComponent } from './components/global/landing-page-componenets/na
 import { LandingPageComponent } from './components/global/landing-page-componenets/landing-page/landing-page.component';
 import { UsersComponent } from './components/dso/users-page-components/users/users.component';
 import { HomeComponent } from './components/global/home-page-components/home/home.component';
+import { ProsumerhomeComponent } from './components/prosumer/home-page-components/prosumerhome/prosumerhome.component';
+
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
   { path: 'login', component: LoginComponent, pathMatch:'full' },
   { path: 'home', component: HomeComponent },
   //{ path: 'home', component: HomeComponent, canActivate:[AuthGuard] },
-  { path: 'users', component: UsersComponent }
+  { path: 'users', component: UsersComponent },
+  { path: 'prosumerhome', component: ProsumerhomeComponent }
 ];
 
 @NgModule({
