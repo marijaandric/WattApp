@@ -2,23 +2,23 @@
   <app-title-bar>
     <h3>Home</h3>
   </app-title-bar>
-  <h3 class="hello">Hello, Vanja Mijatovic</h3>
-  <!-- optional -->
-  <app-widget [isBlue]="true" [isBgBlue]="true" id="blue-widget">
-  </app-widget>
-  <app-widget [isYellow]="true" [isBgYellow]="true" id="yellow-widget">
-  </app-widget>
-  <app-widget [isPink]="true" [isBgPink]="true" id="pink-widget">
-  </app-widget>
-  <app-widget [isBlue]="true" [isBgBlue]="true" id="blue2-widget">
-  </app-widget>
+
   <app-center-bar>
-  <div >
-      <iframe class="iframe-div" src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d17698.97958143962!2d20.902382747133068!3d44.01949126285242!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2srs!4v1678806582786!5m2!1sen!2srs" style="border:0;" allowfullscreen="true" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  <h3 class="hello">Hello, Vanja Mijatovic</h3>
+  <div class="widgets">
+      
+    <app-widget [isBlue]="true" [isBgBlue]="true" class="widget">
+    </app-widget>
+    <app-widget [isYellow]="true" [isBgYellow]="true" class="widget">
+    </app-widget>
+    <app-widget [isPink]="true" [isBgPink]="true" class="widget">
+    </app-widget>
+    <app-widget [isBlue]="true" [isBgBlue]="true" class="widget">
+    </app-widget>
       
   </div>
-  <div class="filter-div"><span>filter</span></div>
-  
-
+  <div  class="iFrame-div"><iframe class="iFrame" src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d17698.97958143962!2d20.902382747133068!3d44.01949126285242!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2srs!4v1678806582786!5m2!1sen!2srs" style="border:0;" allowfullscreen="true" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </div>
+  <!--<div class="filter-div"><span>filter</span></div>-->
   </app-center-bar>
 </standard-template>
