@@ -32,6 +32,8 @@ import { TooltipModule } from 'primeng/tooltip';
 import { WidgetComponent } from './components/global/layout-components/widget/widget.component';
 import { ProsumerhomeComponent } from './components/prosumer/home-page-components/prosumerhome/prosumerhome.component';
 import { PromotionComponent } from './components/prosumer/home-page-components/promotion/promotion.component';
+import { OverlayModule } from 'primeng/overlay';
+import { DialogModule } from 'primeng/dialog';
 
 export const url = 'https://localhost:7158';
 
@@ -69,7 +71,9 @@ export const url = 'https://localhost:7158';
     InputTextModule,
     InputNumberModule,
     DropdownModule,
-    TooltipModule
+    TooltipModule,
+    OverlayModule,
+    DialogModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
