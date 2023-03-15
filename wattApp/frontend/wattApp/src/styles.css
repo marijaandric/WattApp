@@ -1,4 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~primeicons/primeicons.css";
 
 .flexRow{
     display: flex;
@@ -10,3 +11,32 @@
     flex-direction: column;
 }
 
+.margin-left__16px{
+  margin-left: 16px;
+}
+
+.margin-right__16px{
+  margin-right: 16px;
+}
+
+.margin-left__auto{
+  margin-left: auto;
+}
+
+.margin-right__auto{
+  margin-right: auto;
+}
+
+.margin__auto{
+  margin: auto;
+}
+
+.p-datatable .p-datatable-header{
+  border-top-left-radius: 32px;
+  border-top-right-radius: 32px;
+}
+
+.p-datatable .p-paginator-bottom{
+  border-bottom-left-radius: 32px !important;
+  border-bottom-right-radius: 32px !important;
+}

@@ -17,11 +17,23 @@ import { SidebarComponent } from './components/global/layout-components/side-bar
 import { CenterBarComponent } from './components/global/layout-components/center-bar/center-bar.component';
 import { InfoBarComponent } from './components/global/layout-components/info-bar/info-bar.component';
 import { SelectOneMenuBarComponent } from './components/global/layout-components/select-one-menu-bar/select-one-menu-bar.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NgToastModule } from 'ng-angular-popup';
+import { TokenInterceptor } from './interceptors/token.interceptor';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TableModule } from 'primeng/table';
+import { ButtonModule } from 'primeng/button';
+import { PaginatorModule } from 'primeng/paginator';
+import { InputTextModule } from 'primeng/inputtext';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { DropdownModule } from 'primeng/dropdown';
+import { TooltipModule } from 'primeng/tooltip';
 import { WidgetComponent } from './components/global/layout-components/widget/widget.component';
 import { ProsumerhomeComponent } from './components/prosumer/home-page-components/prosumerhome/prosumerhome.component';
 import { PromotionComponent } from './components/prosumer/home-page-components/promotion/promotion.component';
 
-//export const url = 'https://localhost:7194/api/User/';
+export const url = 'https://localhost:7158';
 
 @NgModule({
   declarations: [
@@ -46,9 +58,24 @@ import { PromotionComponent } from './components/prosumer/home-page-components/p
   imports: [
     CommonModule,
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule,
+    HttpClientModule,
+    NgToastModule,
+    BrowserAnimationsModule,
+    TableModule,
+    ButtonModule,
+    PaginatorModule,
+    InputTextModule,
+    InputNumberModule,
+    DropdownModule,
+    TooltipModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptor,
+    multi:true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

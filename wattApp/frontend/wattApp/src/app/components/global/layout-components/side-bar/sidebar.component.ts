@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Output, ElementRef, OnInit } from '@angular/core';
-/*import { APIService } from 'src/app/services/api.service';
-import { AuthService } from 'src/app/services/auth.service';
-*/
+import { APIService } from 'src/app/services/api/api.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
+
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
@@ -14,7 +14,8 @@ export class SidebarComponent implements OnInit {
   hostElement: HTMLElement | undefined;
   @Output() toggleEventEmitter = new EventEmitter<boolean>();
 
-  constructor(private elementRef: ElementRef) { }
+  constructor(private elementRef: ElementRef,private api : APIService, private auth:AuthService) {
+  }
 
   ngOnInit(): void {
     this.hostElement = this.elementRef.nativeElement as HTMLElement;
@@ -35,5 +36,11 @@ export class SidebarComponent implements OnInit {
   showSubMenus2() {
     this.isSubMenu2Shown = !this.isSubMenu2Shown;
     console.log(this.isSubMenu2Shown);
+  }
+
+  logout()
+  {
+    console.log("LOGOUT");
+    this.auth.logout();
   }
 }

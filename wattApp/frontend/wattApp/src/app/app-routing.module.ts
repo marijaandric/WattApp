@@ -5,8 +5,8 @@ import { NavbarComponent } from './components/global/landing-page-componenets/na
 import { LandingPageComponent } from './components/global/landing-page-componenets/landing-page/landing-page.component';
 import { UsersComponent } from './components/dso/users-page-components/users/users.component';
 import { HomeComponent } from './components/global/home-page-components/home/home.component';
+import { AuthGuard } from './guards/auth.guard';
 import { ProsumerhomeComponent } from './components/prosumer/home-page-components/prosumerhome/prosumerhome.component';
-
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
@@ -22,3 +22,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+
