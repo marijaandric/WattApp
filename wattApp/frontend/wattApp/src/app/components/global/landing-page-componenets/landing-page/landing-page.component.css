@@ -1,0 +1,92 @@
+:host {
+  display: block;
+  scroll-behavior: smooth;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  background: linear-gradient(#56857E,rgb(62, 106, 119));
+  z-index: 2500;
+}
+
+.parallaxcon{
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  margin: 0px;
+}
+
+.parallaxcon img{
+  position: absolute;
+  top:-70px;
+  left:0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  object-fit: cover;
+}
+
+/*section img#ispred{
+  mix-blend-mode: screen;
+}*/
+.parallaxcon img#ispred{
+  z-index: 10;
+}
+  
+#text{
+  position: absolute;
+  color:#adadad;
+  white-space: nowrap;
+  font-size: 5.5vw;
+  z-index: 1;
+  top:200px;
+  right:50%
+}
+
+.card-group{
+  margin:0 200px;
+  margin-top: 50px;
+  padding-bottom: 50px;
+}
+
+.cards{
+  margin-top: 50px;
+}
+
+.card{
+  margin:0px 50px;
+}
+
+.aboutUs{
+  color:white;
+  border-radius: 25px;
+  width: 80%;
+  padding: 20px 70px;
+  margin-bottom: 70px;
+  text-align: justify;
+  margin: auto;
+}
+
+h2{
+  color:white;
+  text-align: center;
+}
+
+.card-img-top{
+  width: 100%;
+  height: 300px;
+}
+
+button{
+  position: absolute;
+  color:#b8dcf1;
+  background-color: #df67cf;
+  border: #adadad;
+  white-space: nowrap;
+  font-size: 2.5vw;
+  z-index: 1;
+  top:350px;
+  right:70%;
+  border-radius: 25px;
+  padding: 0 30px;
+}

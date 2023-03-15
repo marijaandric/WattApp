@@ -1,0 +1,136 @@
+<div>
+    <div class="logo-details">
+        <i><img class="img1" src="../../../../../assets/images/logo-images/logo1.png"></i> 
+        <span class="logo_name" ><img class="img2" src="../../../../../assets/images/logo-images/logo2.png"></span>
+            
+        
+    </div>
+    <div >
+        <div class="bars"><i class="fa-solid fa-circle-right" [ngClass]="isSidebarShown? 'arrow2' : 'arrow3'" (click)="showSidebar()"></i></div>
+    </div>
+<ul class="nav-links">
+    
+    <li>
+    <a href="#">
+        <i class='fa fa-home' ></i>
+        <span class="link_name">Home</span>
+    </a>
+    <ul class="sub-menu nopadding">
+        <li><a class="link_name" href="#">Home</a></li>
+    </ul>
+    </li>
+    <li>
+    <div class="iocn-link">
+        <a href="#">
+        <i class="fa-solid fa-users"></i>
+        <span class="link_name">Users</span>
+        </a>
+        <div class="round"><i class="fa-solid fa-caret-down arrow" [ngClass]="{'arrow2' : !isSubMenuShown}" id="UsersDrpId" (click)="showSubMenus()"></i></div>
+    </div>
+    <ul  class="sub-menu nopadding">
+        <li><a class="link_name" href="#">Users</a></li>
+        <li *ngIf="!isSubMenuShown"><a href="#">Prosumers</a></li>
+        <li *ngIf="!isSubMenuShown"><a href="#">Operators</a></li>
+    </ul>
+    </li>
+    <li *ngIf="isSubMenuShown" class="submenus" [ngClass]="{'marginLeft' : !isSidebarShown}">
+        <a href="#">
+            <i class="fa-solid fa-user-group"></i>
+            <span class="link_name">Prosumers</span>
+        </a>
+        <ul class="sub-menu nopadding">
+            <li><a class="link_name" href="#">Prosumers</a></li>
+        </ul>
+        </li>
+    <li>
+    <li *ngIf="isSubMenuShown" class="submenus" [ngClass]="{'marginLeft' : !isSidebarShown}">
+        <a href="#">
+            <i class="fa-solid fa-users-gear"></i>
+            <span class="link_name">Operators</span>
+        </a>
+        <ul class="sub-menu nopadding">
+            <li><a class="link_name" href="#">Operators</a></li>
+        </ul>
+        </li>
+    <li>
+
+
+
+    <div class="iocn-link">
+        <a href="#">
+        <i class="fa-solid fa-computer"></i>
+        <span class="link_name">Devices</span>
+        </a>
+        <i class="fa-solid fa-caret-down arrow" [ngClass]="{'arrow2' : !isSubMenu2Shown}" id="UsersDrpId" (click)="showSubMenus2()"></i>
+    </div>
+    <ul  class="sub-menu nopadding">
+        <li><a class="link_name" href="#">Devices</a></li>
+        <li *ngIf="!isSubMenu2Shown"><a href="#">Consumption</a></li>
+        <li *ngIf="!isSubMenu2Shown"><a href="#">Production</a></li>
+        <li *ngIf="!isSubMenu2Shown"><a href="#">Stock</a></li>
+    </ul>
+    </li>
+    <li *ngIf="isSubMenu2Shown" [ngClass]="{'marginLeft' : !isSidebarShown}">
+        <a href="#">
+            <i class="fa-solid fa-bolt"></i>
+            <span class="link_name">Consumption</span>
+        </a>
+        <ul class="sub-menu nopadding">
+            <li><a class="link_name" href="#">Consumption</a></li>
+        </ul>
+        </li>
+    <li>
+    <li *ngIf="isSubMenu2Shown" [ngClass]="{'marginLeft' : !isSidebarShown}">
+        <a href="#">
+            <i class="fa-solid fa-solar-panel"></i>
+            <span class="link_name">Production</span>
+        </a>
+        <ul class="sub-menu nopadding">
+            <li><a class="link_name" href="#">Production</a></li>
+        </ul>
+        </li>
+    <li>
+    <li *ngIf="isSubMenu2Shown" [ngClass]="{'marginLeft' : !isSidebarShown}">
+        <a href="#">
+            <i class="fa-solid fa-database"></i>
+            <span class="link_name">Stock</span>
+        </a>
+        <ul class="sub-menu nopadding">
+            <li><a class="link_name" href="#">Stock</a></li>
+        </ul>
+    </li>
+    
+    
+    <li>
+    <a href="#">
+        <i class="fa-solid fa-chart-pie"></i>
+        <span class="link_name">Dashboard</span>
+    </a>
+    <ul class="sub-menu nopadding">
+        <li><a class="link_name" href="#">Dashboard</a></li>
+    </ul>
+    </li>
+    <li>
+    <a href="#">
+        <i class="fa-solid fa-gear"></i>
+        <span class="link_name">Setting</span>
+    </a>
+    <ul class="sub-menu nopadding">
+        <li><a class="link_name" href="#">Setting</a></li>
+    </ul>
+    </li>
+    <div class="logdiv">
+            <li>
+            <a>
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <span (click)="logout()" class="link_name">Log out</span>
+            </a>
+            <ul class="sub-menu nopadding">
+                <li><a  class="link_name" >Log out</a></li>
+            </ul>
+            </li>
+        </div>
+    
+</ul>
+
+</div>

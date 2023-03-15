@@ -26,7 +26,20 @@
             ],
             "styles": [
               "src/styles.css",
-              "node_modules/bootstrap/dist/css/bootstrap.min.css"
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/assets/primeng-css/primeng.min.css",
+              "src/assets/primeng-css/table.min.css",
+              "src/assets/primeng-css/button.min.css",
+              "src/assets/primeng-css/paginator.min.css",
+              "src/assets/primeng-css/inputtext.min.css",
+              "src/assets/primeng-css/dropdown.min.css",
+              "src/assets/primeng-css/inplace.min.css",
+              "src/assets/primeng-css/inputnumber.min.css",
+              "src/assets/primeng-css/radiobutton.min.css",
+              "src/assets/primeng-css/sidebar.min.css",
+              "src/assets/primeng-css/theme.min.css",
+              "src/assets/primeng-css/toolbar.min.css",
+              "src/assets/primeng-css/tooltip.min.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",

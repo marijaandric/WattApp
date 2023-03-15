@@ -1,0 +1,30 @@
+:host {
+  background-color: #56857E;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  z-index: 0;
+}
+
+.content{
+  height: 100vh;
+  min-height: 600px;
+  width: calc(100% - 280px);
+  overflow-y: auto;
+  position: relative;
+  margin-left: auto;
+  transition: width 0.4s ease-out;
+}
+
+:host(.sidebar-closed) .content{
+  width: calc(100% - 78px) !important;
+}
+
+.centerContent{
+  width: 100%;
+  height: calc(100% - 60px);
+}
+
+.remainingSpace{
+  flex: 1;
+}

@@ -1,14 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LoginComponent } from './components/global/login/login.component';
-import { NavbarComponent } from './components/global/navbar/navbar.component';
-import { LandingPageComponent } from './components/global/landing-page/landing-page.component';
-import { ContactComponent } from './components/global/contact/contact.component';
+import { LoginComponent } from './components/global/login-page-components/login/login.component';
+import { NavbarComponent } from './components/global/landing-page-componenets/navbar/navbar.component';
+import { LandingPageComponent } from './components/global/landing-page-componenets/landing-page/landing-page.component';
+import { UsersComponent } from './components/dso/users-page-components/users/users.component';
+import { HomeComponent } from './components/global/home-page-components/home/home.component';
+import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
-  {path:'login', component:LoginComponent},
-  {path:'', component: LandingPageComponent},
-  {path:'contact', component:ContactComponent},
+  { path: '', component: LandingPageComponent },
+  { path: 'login', component: LoginComponent, pathMatch:'full' },
+  { path: 'home', component: HomeComponent },
+  //{ path: 'home', component: HomeComponent, canActivate:[AuthGuard] },
+  { path: 'users', component: UsersComponent }
 ];
 
 @NgModule({
@@ -16,3 +20,4 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+

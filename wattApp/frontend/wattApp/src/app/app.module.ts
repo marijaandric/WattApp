@@ -1,16 +1,38 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
-import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './components/global/login/login.component';
-import { NavbarComponent } from './components/global/navbar/navbar.component';
-import { LandingPageComponent } from './components/global/landing-page/landing-page.component';
-import { HttpClientModule } from '@angular/common/http';
-import { ContactComponent } from './components/global/contact/contact.component';
+import { LoginComponent } from './components/global/login-page-components/login/login.component';
+import { NavbarComponent } from './components/global/landing-page-componenets/navbar/navbar.component';
+import { LandingPageComponent } from './components/global/landing-page-componenets/landing-page/landing-page.component';
+import { UsersComponent } from './components/dso/users-page-components/users/users.component';
+import { HomeComponent } from './components/global/home-page-components/home/home.component';
+import { StadardTemplateComponent } from './components/global/layout-components/standard-template/stadard-template.component';
+import { LandingPageFooterComponent } from './components/global/landing-page-componenets/landing-page-footer/landing-page-footer.component';
+import { LandingPageTeamComponent } from './components/global/landing-page-componenets/landing-page-team/landing-page-team.component';
+import { TitleBarComponent } from './components/global/layout-components/title-bar/title-bar.component';
+import { SidebarComponent } from './components/global/layout-components/side-bar/sidebar.component';
+import { CenterBarComponent } from './components/global/layout-components/center-bar/center-bar.component';
+import { InfoBarComponent } from './components/global/layout-components/info-bar/info-bar.component';
+import { SelectOneMenuBarComponent } from './components/global/layout-components/select-one-menu-bar/select-one-menu-bar.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { NgToastModule } from 'ng-angular-popup';
+import { TokenInterceptor } from './interceptors/token.interceptor';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TableModule } from 'primeng/table';
+import { ButtonModule } from 'primeng/button';
+import { PaginatorModule } from 'primeng/paginator';
+import { InputTextModule } from 'primeng/inputtext';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { DropdownModule } from 'primeng/dropdown';
+import { TooltipModule } from 'primeng/tooltip';
+import { WidgetComponent } from './components/global/layout-components/widget/widget.component';
 
-//export const url = 'https://localhost:7194/api/User/';
+
+export const url = 'https://localhost:7158';
 
 @NgModule({
   declarations: [
@@ -18,14 +40,39 @@ import { ContactComponent } from './components/global/contact/contact.component'
     LoginComponent,
     NavbarComponent,
     LandingPageComponent,
-    ContactComponent
+    UsersComponent,
+    HomeComponent,
+    StadardTemplateComponent,
+    LandingPageFooterComponent,
+    LandingPageTeamComponent,
+    TitleBarComponent,
+    SidebarComponent,
+    CenterBarComponent,
+    InfoBarComponent,
+    SelectOneMenuBarComponent,
+    WidgetComponent
   ],
   imports: [
+    CommonModule,
     BrowserModule,
     AppRoutingModule,
-    FlexLayoutModule
+    ReactiveFormsModule,
+    HttpClientModule,
+    NgToastModule,
+    BrowserAnimationsModule,
+    TableModule,
+    ButtonModule,
+    PaginatorModule,
+    InputTextModule,
+    InputNumberModule,
+    DropdownModule,
+    TooltipModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptor,
+    multi:true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
