@@ -9,6 +9,31 @@ declare var Parallax: any;
 })
 export class LandingPageComponent implements OnInit{
   
+  images = [
+    '/assets/images/landing-page-images/vetrenjace.jpg',
+    '/assets/images/landing-page-images/vetrenjace.jpg',
+    '/assets/images/landing-page-images/vetrenjace.jpg',
+    '/assets/images/landing-page-images/vetrenjace.jpg',
+    '/assets/images/landing-page-images/vetrenjace.jpg',
+    '/assets/images/landing-page-images/vetrenjace.jpg',
+  ];
+
+  carouselItems = [
+    {
+      imageUrl: '/assets/images/landing-page-images/vetrenjace.jpg',
+      caption: 'First Carousel Item',
+    },
+    {
+      imageUrl: '/assets/images/landing-page-images/citilights.jpg',
+      caption: 'Second Carousel Item',
+    },
+    {
+      imageUrl: '/assets/images/landing-page-images/vetrenjace.jpg',
+      caption: 'Third Carousel Item',
+    },
+    // add more items here...
+  ];
+
   @ViewChild('parallaxcon') parallaxcon!: ElementRef;
   
   constructor(private renderer: Renderer2)
