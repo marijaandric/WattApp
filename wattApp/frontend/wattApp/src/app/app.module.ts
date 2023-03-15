@@ -30,7 +30,8 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { DropdownModule } from 'primeng/dropdown';
 import { TooltipModule } from 'primeng/tooltip';
 import { WidgetComponent } from './components/global/layout-components/widget/widget.component';
-
+import { ProsumerhomeComponent } from './components/prosumer/home-page-components/prosumerhome/prosumerhome.component';
+import { PromotionComponent } from './components/prosumer/home-page-components/promotion/promotion.component';
 
 export const url = 'https://localhost:7158';
 
@@ -50,7 +51,9 @@ export const url = 'https://localhost:7158';
     CenterBarComponent,
     InfoBarComponent,
     SelectOneMenuBarComponent,
-    WidgetComponent
+    WidgetComponent,
+    ProsumerhomeComponent,
+    PromotionComponent
   ],
   imports: [
     CommonModule,
