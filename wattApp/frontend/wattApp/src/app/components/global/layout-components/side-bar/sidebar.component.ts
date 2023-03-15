@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Output, ElementRef, OnInit } from '@angular/core';
-/*import { APIService } from 'src/app/services/api.service';
-import { AuthService } from 'src/app/services/auth.service';
-*/
+import { APIService } from 'src/app/services/api/api.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
+
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
