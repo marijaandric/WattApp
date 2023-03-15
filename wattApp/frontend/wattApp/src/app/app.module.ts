@@ -21,8 +21,15 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgToastModule } from 'ng-angular-popup';
 import { TokenInterceptor } from './interceptors/token.interceptor';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {TableModule} from 'primeng/table';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { TableModule } from 'primeng/table';
+import { ButtonModule } from 'primeng/button';
+import { PaginatorModule } from 'primeng/paginator';
+import { InputTextModule } from 'primeng/inputtext';
+import { InputNumberModule } from 'primeng/inputnumber';
+import { DropdownModule } from 'primeng/dropdown';
+import { TooltipModule } from 'primeng/tooltip';
+
 
 export const url = 'https://localhost:7158';
 
@@ -51,7 +58,13 @@ export const url = 'https://localhost:7158';
     HttpClientModule,
     NgToastModule,
     BrowserAnimationsModule,
-    TableModule
+    TableModule,
+    ButtonModule,
+    PaginatorModule,
+    InputTextModule,
+    InputNumberModule,
+    DropdownModule,
+    TooltipModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

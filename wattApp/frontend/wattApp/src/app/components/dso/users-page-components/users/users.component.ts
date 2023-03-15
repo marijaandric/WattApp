@@ -16,4 +16,12 @@ export class UsersComponent {
   ngOnInit() {
     this.userService.getAllUsers().subscribe((result: UserDTO[]) => (this.users = result));
   }
+
+  clear(dtUsers: any) {
+    dtUsers.clear();
+  }
+
+  onSearch(value: string, dtUsers: any) {
+    dtUsers.filterGlobal(value, 'contains');
+  }
 }

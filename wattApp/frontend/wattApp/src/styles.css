@@ -1,4 +1,5 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~primeicons/primeicons.css";
 
 .flexRow{
     display: flex;
@@ -10,56 +11,32 @@
     flex-direction: column;
 }
 
-/* Table styles */
-
-/* Set the background color of the table */
-.ui-table-default {
-  background-color: #222222;
-  color: white;
+.margin-left__16px{
+  margin-left: 16px;
 }
 
-/* Set the background color and style of the table header */
-.ui-table-default .ui-table-default-thead > tr > th {
-  background-color: #333333;
-  color: white;
-  border: none;
+.margin-right__16px{
+  margin-right: 16px;
 }
 
-/* Set the font size and weight of the table header text */
-.ui-table-default .ui-table-default-thead > tr > th {
-  font-size: 16px;
-  font-weight: bold;
+.margin-left__auto{
+  margin-left: auto;
 }
 
-/* Set the style of the paginator */
-.ui-paginator {
-  margin-top: 1em;
-  text-align: center;
+.margin-right__auto{
+  margin-right: auto;
 }
 
-/* Set the style of the paginator buttons */
-.ui-paginator .ui-paginator-page-link, .ui-paginator .ui-paginator-next-link, .ui-paginator .ui-paginator-prev-link {
-  background-color: #333333;
-  color: white;
-  border: none;
-  padding: 0.5em 1em;
+.margin__auto{
+  margin: auto;
 }
 
-/* Set the style of the paginator active page link */
-.ui-paginator .ui-paginator-page-link.ui-state-active {
-  background-color: #666666;
+.p-datatable .p-datatable-header{
+  border-top-left-radius: 32px;
+  border-top-right-radius: 32px;
 }
 
-/* Set the style of the table cells */
-.ui-table-default tbody td {
-  border: none;
-  padding: 0.5em 1em;
+.p-datatable .p-paginator-bottom{
+  border-bottom-left-radius: 32px !important;
+  border-bottom-right-radius: 32px !important;
 }
-
-/* Set the background color of every other row in the table */
-.ui-table-default tbody tr:nth-child(even) {
-  background-color: #444444;
-}
-
-/* End of table styles */
-
