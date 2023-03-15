@@ -7,6 +7,7 @@
   z-index: 6;
 }
 
+/*parallax effect*/
 .parallaxcon{
   position: relative;
   width: 100%;
@@ -41,6 +42,21 @@
   from { transform: translateX(-3%); }
   to { transform: translateX(3%); }
 }
+
+
+button{
+  position: absolute;
+  color:#b8dcf1;
+  background-color: #5668ce;
+  border: #adadad;
+  white-space: nowrap;
+  font-size: 2vw;
+  z-index: 1;
+  top:380px;
+  right:68%;
+  border-radius: 20px;
+  padding: 0 30px;
+}
   
 #text{
   position: absolute;
@@ -52,14 +68,16 @@
   right:70%
 }
 
+
+/*cards*/
 .card-group{
-  margin:0 400px;
+  margin:0 300px;
   margin-top: 50px;
   padding-bottom: 50px;
 }
 
 .cards{
-  margin: 100px 0px;
+  margin: 50px 0px;
 }
 
 .card{
@@ -67,6 +85,7 @@
   background-color: #222222;
   color: white;position: relative;
   transition: transform 0.2s ease-out;
+  position: relative;
 }
 
 .card:hover {
@@ -85,33 +104,19 @@ h2{
   height: 300px;
 }
 
-button{
-  position: absolute;
-  color:#b8dcf1;
-  background-color: #5668ce;
-  border: #adadad;
-  white-space: nowrap;
-  font-size: 2vw;
-  z-index: 1;
-  top:380px;
-  right:70%;
-  border-radius: 20px;
-  padding: 0 30px;
-}
-
+/*about us*/
 .wrap {
 	display: flex;
 	flex-wrap: nowrap;
 	justify-content: space-between;
-	width: 110vmin;
+	width: 125vmin;
 	height: 38em;
 	border: 8px solid;
 	margin: 2rem auto;
 	transition: .3s ease-in-out;
 	position: relative;
 	overflow: hidden;
-  margin: 100px auto;
-  margin-top: 50px;
+  margin: 50px auto;
   border-radius: 20px;
 }
 .overlay {
@@ -170,7 +175,7 @@ button{
 	transform: translateX(-80vmin);
 }
 .wrap:hover .image-content {
-	width: 30vmin;
+	width: 40vmin;
 }
 .wrap:hover .overlay-content {
 	border: none;
