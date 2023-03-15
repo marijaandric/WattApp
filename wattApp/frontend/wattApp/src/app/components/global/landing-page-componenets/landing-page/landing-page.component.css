@@ -112,6 +112,7 @@ button{
 	overflow: hidden;
   margin: 100px auto;
   margin-top: 50px;
+  border-radius: 20px;
 }
 .overlay {
 	position: relative;
