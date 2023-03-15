@@ -29,9 +29,10 @@ import { InputTextModule } from 'primeng/inputtext';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { DropdownModule } from 'primeng/dropdown';
 import { TooltipModule } from 'primeng/tooltip';
+import { WidgetComponent } from './components/global/layout-components/widget/widget.component';
 
 
-//export const url = 'https://localhost:7194/api/User/';
+export const url = 'https://localhost:7158';
 
 @NgModule({
   declarations: [
@@ -67,7 +68,11 @@ import { TooltipModule } from 'primeng/tooltip';
     DropdownModule,
     TooltipModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptor,
+    multi:true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
