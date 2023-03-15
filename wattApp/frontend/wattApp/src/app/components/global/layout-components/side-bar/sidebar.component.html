@@ -11,24 +11,24 @@
 <ul class="nav-links">
     
     <li>
-    <a href="#">
+    <a routerLink="/home">
         <i class='fa fa-home' ></i>
         <span class="link_name">Home</span>
     </a>
     <ul class="sub-menu nopadding">
-        <li><a class="link_name" href="#">Home</a></li>
+        <li><a class="link_name" routerLink="/home">Home</a></li>
     </ul>
     </li>
     <li>
     <div class="iocn-link">
-        <a href="#">
+        <a routerLink="/users">
         <i class="fa-solid fa-users"></i>
         <span class="link_name">Users</span>
         </a>
         <div class="round"><i class="fa-solid fa-caret-down arrow" [ngClass]="{'arrow2' : !isSubMenuShown}" id="UsersDrpId" (click)="showSubMenus()"></i></div>
     </div>
     <ul  class="sub-menu nopadding">
-        <li><a class="link_name" href="#">Users</a></li>
+        <li><a class="link_name" routerLink="/users">Users</a></li>
         <li *ngIf="!isSubMenuShown"><a href="#">Prosumers</a></li>
         <li *ngIf="!isSubMenuShown"><a href="#">Operators</a></li>
     </ul>
