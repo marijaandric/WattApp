@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { url } from '../app.module';
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root'
@@ -9,14 +10,19 @@ export class UserService {
 
   private baseUrl = url+"/api/User";
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private jwtHelper:JwtHelperService) { }
 
-  getUserProfile(userId: string, token: string) {
+  GetUser(userId: number, token: string) {
     const headers = new HttpHeaders({
       'Authorization': 'Bearer ' + token
     });
 
     return this.http.get(`${this.baseUrl}/${userId}`, { headers });
+  }
+
+  getUserIdFromToken(token: string) {
+    const decodedToken = this.jwtHelper.decodeToken(token);
+    return decodedToken.nameid;
   }
 
 }
