@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { JwtHelperService, JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/global/login-page-components/login/login.component';
@@ -31,6 +32,9 @@ import { DropdownModule } from 'primeng/dropdown';
 import { TooltipModule } from 'primeng/tooltip';
 import { WidgetComponent } from './components/global/layout-components/widget/widget.component';
 
+import { UserProfileComponent } from './components/global/user-profile/user-profile/user-profile.component';
+import { UserProfileComponentComponent } from './components/global/user-profile/user-profile-component/user-profile-component.component';
+import { UserCardComponent } from './components/global/user-profile/user-card/user-card.component';
 
 export const url = 'https://localhost:7158';
 
@@ -50,7 +54,10 @@ export const url = 'https://localhost:7158';
     CenterBarComponent,
     InfoBarComponent,
     SelectOneMenuBarComponent,
-    WidgetComponent
+    WidgetComponent,
+    UserProfileComponent,
+    UserProfileComponentComponent,
+    UserCardComponent
   ],
   imports: [
     CommonModule,
@@ -66,12 +73,20 @@ export const url = 'https://localhost:7158';
     InputTextModule,
     InputNumberModule,
     DropdownModule,
-    TooltipModule
+    TooltipModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: () => localStorage.getItem('access_token'),
+        allowedDomains: ['*'],
+        disallowedRoutes: []
+      }
+    })
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptor,
-    multi:true
+    multi:true,
+    
   }],
   bootstrap: [AppComponent]
 })

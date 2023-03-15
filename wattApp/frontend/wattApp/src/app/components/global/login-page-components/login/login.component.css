@@ -1,12 +1,12 @@
 body{
-  background: #56857e;
-  pointer-events: none;
+  background-color: #56857e;
 }
 
 .login {
   height: 100vh;
   width: 100%;
   position: relative;
+  top:-100px;
 }
 
 .login_box {
