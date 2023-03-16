@@ -39,7 +39,10 @@
               "src/assets/primeng-css/sidebar.min.css",
               "src/assets/primeng-css/theme.min.css",
               "src/assets/primeng-css/toolbar.min.css",
-              "src/assets/primeng-css/tooltip.min.css"
+              "src/assets/primeng-css/tooltip.min.css",
+              "src/assets/primeng-css/dialog.css",
+              "src/assets/primeng-css/inputtextarea.min.css",
+              "src/assets/primeng-css/overlay.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",

@@ -3,12 +3,11 @@
     flex-direction: column;
     position: absolute;
     overflow: hidden;
-
     min-height: 120px;
     /*min-width: 340px;*/
-    border-radius: 32px;
+    border-radius: 20px;
     padding:  20px 40px 20px 20px;
-    background-color: #222222;
+    background-color: #373737;
     flex-basis: calc(33.33333% - 30px);
 
 }

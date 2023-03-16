@@ -110,3 +110,5 @@ aio/content/examples/.DS_Store
 /sandbox/Marija Andric/demoAPI/demoApp/demoApp/obj/Debug/net6.0/demoApp.GeneratedMSBuildEditorConfig.editorconfig
 /sandbox/Marija Andric/demoAPI/demoApp/demoApp/obj/Release/net6.0/demoApp.assets.cache
 /sandbox/Marija Andric/demoAPI/demoApp/demoApp/obj/Release/net6.0/demoApp.GeneratedMSBuildEditorConfig.editorconfig
+wattApp/backend/backend/sqllite.db-shm
+wattApp/backend/backend/sqllite.db-wal

@@ -1,5 +1,6 @@
 :host {
-  background-color: #56857E;
+  /*background-color: #56857e;*/
+  background-color: #171717;
   display: flex;
   flex-direction: row;
   width: 100%;
@@ -27,4 +28,16 @@
 
 .remainingSpace{
   flex: 1;
+}
+
+
+@media only screen and (max-width: 639px) {
+  :host(.sidebar-closed) .content{
+    width: 100% !important;
+  }
+  :host {
+    flex-direction: column;
+  }
+  
+
 }
