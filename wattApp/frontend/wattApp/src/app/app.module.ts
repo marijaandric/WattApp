@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 
+import { JwtHelperService, JwtModule, JWT_OPTIONS } from '@auth0/angular-jwt';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/global/login-page-components/login/login.component';
@@ -32,8 +33,6 @@ import { TooltipModule } from 'primeng/tooltip';
 import { WidgetComponent } from './components/global/layout-components/widget/widget.component';
 import { ProsumerhomeComponent } from './components/prosumer/home-page-components/prosumerhome/prosumerhome.component';
 import { PromotionComponent } from './components/prosumer/home-page-components/promotion/promotion.component';
-import { OverlayModule } from 'primeng/overlay';
-import { DialogModule } from 'primeng/dialog';
 
 export const url = 'https://localhost:7158';
 
@@ -54,6 +53,9 @@ export const url = 'https://localhost:7158';
     InfoBarComponent,
     SelectOneMenuBarComponent,
     WidgetComponent,
+    UserProfileComponent,
+    UserProfileComponentComponent,
+    UserCardComponent,
     ProsumerhomeComponent,
     PromotionComponent
   ],
@@ -71,14 +73,13 @@ export const url = 'https://localhost:7158';
     InputTextModule,
     InputNumberModule,
     DropdownModule,
-    TooltipModule,
-    OverlayModule,
-    DialogModule
+    TooltipModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptor,
-    multi:true
+    multi:true,
+    
   }],
   bootstrap: [AppComponent]
 })

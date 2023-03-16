@@ -1,0 +1,84 @@
+<!--<div class="col-lg-4">
+    <div class="card">
+        <div class="card-body">
+            <div class="d-flex flex-column align-items-center text-center">
+                <img src="/assets/images/team-profile-pictures/vanja.png" class="rounded-circle p-1 bg-primary" width="110">
+                <div class="mt-3">
+                    <h4>{{ userInfo.firstName }}</h4>
+                    <p class="text-secondary mb-1">Full Stack Developer</p>
+                    <p class="text-muted font-size-sm">Kragujevac, Srbija</p>
+                    <button class="btn btn-primary">Edit</button>
+                </div>
+            </div>
+            <hr class="my-4">
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                    <h6 class="mb-0">Full Name</h6>
+                    <span class="text-secondary">{{ userInfo.firstName }} {{ userInfo.lastName }}</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                    <h6 class="mb-0">Username</h6>
+                    <span class="text-secondary">mijatovic</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                    <h6 class="mb-0">Email</h6>
+                    <span class="text-secondary">{{ userInfo.email }}</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                    <h6 class="mb-0">Phone</h6>
+                    <span class="text-secondary">069-111-111</span>
+                </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                    <h6 class="mb-0">Adress</h6>
+                    <span class="text-secondary">Kragujevac</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>-->
+
+      <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="rounded-top text-white d-flex " style="background-color:#161817; height:200px;">
+              <div class="ms-4 mt-5 d-flex flex-column" style="width: 200px;">
+                <img src="/assets/images/team-profile-pictures/vanja.png"
+                  class="img-fluid img-thumbnail mt-4 mb-2"
+                  style="width: 200px; z-index: 1">
+                <button type="button"
+                  style="z-index: 1;">
+                  Edit profile
+                </button>
+              </div>
+              <div class="ms-3" style="margin-top: 150px;">
+                <h3>{{userInfo.firstName}} {{userInfo.lastName}}</h3>
+              </div>
+            </div>
+            <div class="p-4 text-black" style="background-color: #363636; border-radius: 0px 0px 20px 20px;">
+              <div class="d-flex justify-content-end text-center py-1">
+                <div>
+                  <p class="mb-1 h5">25</p>
+                  <p class="small text-muted mb-0">Total devices</p>
+                </div>
+                <div class="px-3">
+                  <p class="mb-1 h5">20</p>
+                  <p class="small text-muted mb-0">Total active devices</p>
+                </div>
+                <div>
+                  <p class="mb-1 h5">5</p>
+                  <p class="small text-muted mb-0">Total inactive devices</p>
+                </div>
+              </div>
+            <div class="card-body p-4 text-black">
+              <div class="mb-5">
+                <p class="lead fw-normal mb-1">About</p>
+                <div class="p-4" style="background-color: #222222; border-radius: 20px;">
+                  <p class="font-italic mb-0"><b>Username</b>: mijatovic</p>
+                  <p class="font-italic mb-0"><b>Email</b>: {{userInfo.email}}</p>
+                  <p class="font-italic mb-1"><b>Address</b>: Kragujevac</p>
+                  <p class="font-italic mb-1"><b>Phone</b>: 069 111-111</p>
+                  <p class="font-italic mb-1"><b>Date of birth</b>: 1.1.2000</p>
+                </div>
+              </div>
+            </div>
+            
+        </div>
+      </div>

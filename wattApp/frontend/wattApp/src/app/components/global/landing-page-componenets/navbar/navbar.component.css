@@ -3,13 +3,14 @@
     padding: 0;
     list-style: none;
     text-decoration: none;
-    z-index: 2500;
+    z-index: 15;
   }
 
   body{
+    position:sticky;
     overflow: hidden;
     user-select: none;
-    position: fixed; 
+    /*position: fixed; */
     top: 0; 
     width: 100%; 
   }

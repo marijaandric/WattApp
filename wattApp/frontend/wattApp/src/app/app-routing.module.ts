@@ -6,7 +6,8 @@ import { LandingPageComponent } from './components/global/landing-page-componene
 import { UsersComponent } from './components/dso/users-page-components/users/users.component';
 import { HomeComponent } from './components/global/home-page-components/home/home.component';
 import { AuthGuard } from './guards/auth.guard';
-import { ProsumerhomeComponent } from './components/prosumer/home-page-components/prosumerhome/prosumerhome.component';
+import { UserProfileComponent } from './components/global/user-profile/user-profile/user-profile.component';
+import { ProsumerhomeComponent } from './components/Prosumer/home-page-components/prosumerhome/prosumerhome.component';
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
@@ -14,6 +15,7 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   //{ path: 'home', component: HomeComponent, canActivate:[AuthGuard] },
   { path: 'users', component: UsersComponent },
+  { path: 'user', component:UserProfileComponent},
   { path: 'prosumerhome', component: ProsumerhomeComponent }
 ];
 
