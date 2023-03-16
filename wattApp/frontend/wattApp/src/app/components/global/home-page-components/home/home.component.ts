@@ -7,5 +7,9 @@ import { StadardTemplateComponent } from '../../layout-components/standard-templ
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
+  display: boolean = false;
 
+  showDialog() {
+      this.display = true;
+  }
 }
