@@ -7,6 +7,7 @@ import { UsersComponent } from './components/dso/users-page-components/users/use
 import { HomeComponent } from './components/global/home-page-components/home/home.component';
 import { AuthGuard } from './guards/auth.guard';
 import { ProsumerhomeComponent } from './components/prosumer/home-page-components/prosumerhome/prosumerhome.component';
+import { DeviceComponent } from './components/Prosumer/device/device.component';
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
@@ -14,7 +15,8 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent },
   //{ path: 'home', component: HomeComponent, canActivate:[AuthGuard] },
   { path: 'users', component: UsersComponent },
-  { path: 'prosumerhome', component: ProsumerhomeComponent }
+  { path: 'prosumerhome', component: ProsumerhomeComponent },
+  {path: 'device', component: DeviceComponent }
 ];
 
 @NgModule({

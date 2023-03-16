@@ -1,0 +1,69 @@
+:host {
+    height: 100%;
+    display: flex;
+    margin: 0;
+  }
+  
+  nav {
+    position: relative;
+    display: block;
+    padding: 10px;
+    margin-left: -5%;
+  }
+  
+  nav a {
+    position: relative;
+    text-decoration: none;
+    color: #fff;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 12px;
+    text-align: center;
+    display: inline-block;
+    width: 100px;
+  }
+  
+  nav a b {
+    position: relative;
+    left:10%; 
+  }
+  
+  nav a i {
+    position: relative;
+    font-size: 20px;
+    left: 10%;
+    margin-bottom: 10px;
+  }
+  
+  .color:hover{
+    color: #FAD85D;
+  }
+  :host.boja{
+    color: white;
+  }
+  :host.boja2{
+    color: white;
+  }
+  :host.boja3{
+    color: white;
+  }
+  :host.boja4{
+    color: white;
+  }
+  
+  :host.fa-bars
+  {
+    color:white;
+  }
+  :host.fa-plug-circle-bolt
+  {
+    color:white;
+  }
+  :host.fa-solar-panel
+  {
+    color:white;
+  }
+  :host.fa-battery-half
+  {
+    color:white;
+  }
+  
