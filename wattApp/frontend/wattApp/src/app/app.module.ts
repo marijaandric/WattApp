@@ -34,6 +34,7 @@ import { ProsumerhomeComponent } from './components/prosumer/home-page-component
 import { PromotionComponent } from './components/prosumer/home-page-components/promotion/promotion.component';
 import { OverlayModule } from 'primeng/overlay';
 import { DialogModule } from 'primeng/dialog';
+import { TabMenuComponent } from './components/Prosumer/tab-menu/tab-menu.component';
 
 export const url = 'https://localhost:7158';
 
@@ -55,7 +56,8 @@ export const url = 'https://localhost:7158';
     SelectOneMenuBarComponent,
     WidgetComponent,
     ProsumerhomeComponent,
-    PromotionComponent
+    PromotionComponent,
+    TabMenuComponent
   ],
   imports: [
     CommonModule,
