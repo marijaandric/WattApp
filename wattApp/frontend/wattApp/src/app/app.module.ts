@@ -33,6 +33,11 @@ import { TooltipModule } from 'primeng/tooltip';
 import { WidgetComponent } from './components/global/layout-components/widget/widget.component';
 import { ProsumerhomeComponent } from './components/prosumer/home-page-components/prosumerhome/prosumerhome.component';
 import { PromotionComponent } from './components/prosumer/home-page-components/promotion/promotion.component';
+import { UserProfileComponent } from './components/global/user-profile/user-profile/user-profile.component';
+import { UserProfileComponentComponent } from './components/global/user-profile/user-profile-component/user-profile-component.component';
+import { UserCardComponent } from './components/global/user-profile/user-card/user-card.component';
+import { OverlayModule } from 'primeng/overlay';
+import { DialogModule } from 'primeng/dialog';
 
 export const url = 'https://localhost:7158';
 
@@ -73,7 +78,9 @@ export const url = 'https://localhost:7158';
     InputTextModule,
     InputNumberModule,
     DropdownModule,
-    TooltipModule
+    TooltipModule,
+    OverlayModule,
+    DialogModule
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
