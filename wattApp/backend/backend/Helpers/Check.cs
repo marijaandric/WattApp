@@ -1,17 +1,11 @@
-﻿using backend.Context;
-using Microsoft.EntityFrameworkCore;
-using System.Text;
+﻿using System.Text;
 using System.Text.RegularExpressions;
 
 namespace backend.Helpers
 {
     public static class Check
     {
-        public static Task<bool> ChecEmail(string email, AppDbContext _context)
-        { 
-            return _context.Users.AnyAsync(x => x.Email == email);
-        }
-        public static string CheckPasswordStrength(string password, AppDbContext _context)
+        public static string CheckPasswordStrength(string password)
         {
             StringBuilder sb = new StringBuilder();
             if(password.Length < 8)

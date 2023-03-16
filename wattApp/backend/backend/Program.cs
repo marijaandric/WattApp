@@ -1,4 +1,8 @@
+using backend.Bussiness_Logic_Layer;
+using backend.Bussiness_Logic_Layer.Interfaces;
 using backend.Context;
+using backend.Data_Access_Layer;
+using backend.Data_Access_Layer.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -13,6 +17,8 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddScoped<IUserBL, UserBL>();
+builder.Services.AddScoped<IUserDAL, UserDAL>();
 builder.Services.AddCors( option =>
 {
     option.AddPolicy("MyPolicy", builder =>
