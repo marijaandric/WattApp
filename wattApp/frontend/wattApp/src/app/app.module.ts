@@ -35,8 +35,8 @@ import { WidgetComponent } from './components/global/layout-components/widget/wi
 import { UserProfileComponent } from './components/global/user-profile/user-profile/user-profile.component';
 import { UserProfileComponentComponent } from './components/global/user-profile/user-profile-component/user-profile-component.component';
 import { UserCardComponent } from './components/global/user-profile/user-card/user-card.component';
-import { PromotionComponent } from './components/Prosumer/home-page-components/promotion/promotion.component';
-import { ProsumerhomeComponent } from './components/Prosumer/home-page-components/prosumerhome/prosumerhome.component';
+import { PromotionComponent } from './components/prosumer/home-page-components/promotion/promotion.component';
+import { ProsumerhomeComponent } from './components/prosumer/home-page-components/prosumerhome/prosumerhome.component';
 
 export const url = 'https://localhost:7158';
 
