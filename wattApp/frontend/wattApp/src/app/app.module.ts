@@ -80,7 +80,15 @@ export const url = 'https://localhost:7158';
     DropdownModule,
     TooltipModule,
     OverlayModule,
-    DialogModule
+    DialogModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: () => localStorage.getItem('access_token'),
+        allowedDomains: ['*'],
+        disallowedRoutes: []
+      }
+    })
+
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
