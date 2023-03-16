@@ -9,6 +9,7 @@
     display: block;
     padding: 10px;
     margin-left: -5%;
+    margin-top: -2%;
   }
   
   nav a {
@@ -66,4 +67,10 @@
   {
     color:white;
   }
-  
+
+@media only screen and (max-width: 600px) {
+
+    nav a div b {
+        display: none;
+        }
+}
