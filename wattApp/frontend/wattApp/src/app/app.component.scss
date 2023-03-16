@@ -11,13 +11,12 @@
     height:fit-content;
     border-radius: 32px;
     margin-bottom: 30px;
-    display: flex;
     position: relative;
     flex-direction: column;
     margin-top:50px;
     font-size:20px;
     overflow: hidden;
-    min-height: 500px; 
+    min-height: 300px; 
 
     .p-dialog-header {
       width:100%;
@@ -28,7 +27,7 @@
       font-size:24px;
     
       span {
-        justify-content: center;
+        margin-left:41%;
       }
     }
 
@@ -59,22 +58,40 @@
         flex-basis: calc(40%);
 
         input {
-        position: relative;
-        border-radius: 24px;
-        width:100%;
+        border: none;
+        border-bottom: 1px solid #787878;
+        padding: 7px 9px;
+        width: 100%;
         overflow: hidden;
+        background: transparent;
+        font-weight: 600;
+        border-radius: 0;
+
+        font-size: 14px;
+        position: relative;
         display:flex;
-        margin:10px 0px 10px 0px;
+        margin:25px 0px 25px 0px;
         }
 
         input:hover, input:active {
           border-color: #56857E;
         }
-      }
-
-      
+      }    
     }
 
+    button.footer-button {
+      border: none;
+      padding: 10px 50px;
+      border-radius: 8px;
+      display: block;
+      margin: auto;
+      background: #56857e;
+      color: #fff;
+      font-weight: bold;
+      -webkit-box-shadow: 0px 9px 15px -11px #56857e;
+      -moz-box-shadow: 0px 9px 15px -11px #56857e;
+      box-shadow: 0px 9px 15px -11px #56857e;
+    }
     
     
     @media only screen and (max-width: 1400px) {
@@ -94,14 +111,19 @@
 
         }
 
+        .p-dialog-header span {
+          margin-left:20%;
+        }
       }
     }
   
     @media only screen and (max-width: 639px) {
       .p-inputgroup {
         flex-basis: calc(100%);
-        
         width:100%;
+      }
+      .p-dialog-header span {
+        margin-left:20%;
       }
     }
 
