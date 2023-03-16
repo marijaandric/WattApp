@@ -7,7 +7,7 @@
 :host ::ng-deep {
   .p-dialog {
     background-color: #222222;
-    width:40%;
+    width:45%;
     height:fit-content;
     border-radius: 32px;
     margin-bottom: 30px;
@@ -17,15 +17,19 @@
     margin-top:50px;
     font-size:20px;
     overflow: hidden;
+    min-height: 500px; 
 
     .p-dialog-header {
       width:100%;
       max-height:10%;
       position: relative;
       font-weight: bold;
-      justify-content: center;
       padding:20px;
       font-size:24px;
+    
+      span {
+        justify-content: center;
+      }
     }
 
     .header-dialog {
@@ -35,38 +39,81 @@
 
     .p-inputgroup { 
       width: 100%;
-      padding:10px; 
+      padding:10px;
+      
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      margin:auto;
+      justify-content: center;
     
       .half {
+        
         display: inline-block;
+        position: relative;
+        flex-direction: row;
         margin: 10px;  
         clear:both;
-        width:100%;
+        width:50%;
+        margin: 20px 20px 0px 20px;
+        flex-basis: calc(40%);
 
         input {
         position: relative;
-        
         border-radius: 24px;
         width:100%;
         overflow: hidden;
         display:flex;
         margin:10px 0px 10px 0px;
         }
+
+        input:hover, input:active {
+          border-color: #56857E;
+        }
+      }
+
+      
+    }
+
+    
+    
+    @media only screen and (max-width: 1400px) {
+      .p-inputgroup {
+        flex-basis: 100%;
+        width:100%;
+        margin:auto;
       }
     }
-/*
-    .p-inputgroup>input {
-      position: relative;
-      
-      border-radius: 24px;
-      width:50%;
-      overflow: hidden;
-      display:flex;
-    }*/
-    
+    @media only screen and (max-width: 979px) {
+      .p-inputgroup {
+        flex-basis: 100%;
+        margin:auto;
+        
+        .half {
+          flex-basis: calc(100%);
+
+        }
+
+      }
+    }
+  
+    @media only screen and (max-width: 639px) {
+      .p-inputgroup {
+        flex-basis: calc(100%);
+        
+        width:100%;
+      }
+    }
+
 
 
   
   }
 
+  
+
+
+  
 }
+
+
