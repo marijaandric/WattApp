@@ -39,6 +39,8 @@ import { UserCardComponent } from './components/global/user-profile/user-card/us
 import { OverlayModule } from 'primeng/overlay';
 import { DialogModule } from 'primeng/dialog';
 import { ContactComponent } from './components/global/contact/contact.component';
+import { PieChartComponent } from './components/global/pie-chart/pie-chart.component';
+import { NgApexchartsModule } from 'ng-apexcharts';
 
 export const url = 'https://localhost:7158';
 
@@ -64,7 +66,8 @@ export const url = 'https://localhost:7158';
     UserCardComponent,
     ProsumerhomeComponent,
     PromotionComponent,
-    ContactComponent
+    ContactComponent,
+    PieChartComponent
   ],
   imports: [
     CommonModule,
@@ -83,6 +86,7 @@ export const url = 'https://localhost:7158';
     TooltipModule,
     OverlayModule,
     DialogModule,
+    NgApexchartsModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: () => localStorage.getItem('access_token'),
