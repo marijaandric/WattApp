@@ -38,6 +38,7 @@ import { UserProfileComponentComponent } from './components/global/user-profile/
 import { UserCardComponent } from './components/global/user-profile/user-card/user-card.component';
 import { OverlayModule } from 'primeng/overlay';
 import { DialogModule } from 'primeng/dialog';
+import { ContactComponent } from './components/global/contact/contact.component';
 
 export const url = 'https://localhost:7158';
 
@@ -62,7 +63,8 @@ export const url = 'https://localhost:7158';
     UserProfileComponentComponent,
     UserCardComponent,
     ProsumerhomeComponent,
-    PromotionComponent
+    PromotionComponent,
+    ContactComponent
   ],
   imports: [
     CommonModule,

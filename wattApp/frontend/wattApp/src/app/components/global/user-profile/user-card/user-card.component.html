@@ -1,18 +1,18 @@
-<!--<div class="col-lg-4">
+<div class="col">
     <div class="card">
         <div class="card-body">
             <div class="d-flex flex-column align-items-center text-center">
                 <img src="/assets/images/team-profile-pictures/vanja.png" class="rounded-circle p-1 bg-primary" width="110">
                 <div class="mt-3">
-                    <h4>{{ userInfo.firstName }}</h4>
-                    <p class="text-secondary mb-1">Full Stack Developer</p>
-                    <p class="text-muted font-size-sm">Kragujevac, Srbija</p>
-                    <button class="btn btn-primary">Edit</button>
+                    <h3 style="margin-bottom: 30px;">{{ userInfo.firstName }}</h3>
+                    <p>Full Stack Developer</p>
+                    <p>Kragujevac, Srbija</p>
+                    <button style="margin-top: 30px;" class="btn btn-primary">Edit</button>
                 </div>
             </div>
             <hr class="my-4">
             <ul class="list-group list-group-flush">
-                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap" >
                     <h6 class="mb-0">Full Name</h6>
                     <span class="text-secondary">{{ userInfo.firstName }} {{ userInfo.lastName }}</span>
                 </li>
@@ -32,12 +32,16 @@
                     <h6 class="mb-0">Adress</h6>
                     <span class="text-secondary">Kragujevac</span>
                 </li>
+                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+                  <h6 class="mb-0">Role</h6>
+                  <span class="text-secondary">{{ userInfo.role }}</span>
+              </li>
             </ul>
         </div>
     </div>
-</div>-->
+</div>
 
-      <div class="row d-flex justify-content-center align-items-center h-100">
+      <!--<div class="row d-flex justify-content-center align-items-center h-100">
             <div class="rounded-top text-white d-flex " style="background-color:#161817; height:200px;">
               <div class="ms-4 mt-5 d-flex flex-column" style="width: 200px;">
                 <img src="/assets/images/team-profile-pictures/vanja.png"
@@ -81,4 +85,4 @@
             </div>
             
         </div>
-      </div>
+      </div>-->

@@ -8,6 +8,7 @@ import { HomeComponent } from './components/global/home-page-components/home/hom
 import { AuthGuard } from './guards/auth.guard';
 import { UserProfileComponent } from './components/global/user-profile/user-profile/user-profile.component';
 import { ProsumerhomeComponent } from './components/prosumer/home-page-components/prosumerhome/prosumerhome.component';
+import { ContactComponent } from './components/global/contact/contact.component';
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
@@ -16,7 +17,8 @@ const routes: Routes = [
   //{ path: 'home', component: HomeComponent, canActivate:[AuthGuard] },
   { path: 'users', component: UsersComponent },
   { path: 'user', component:UserProfileComponent},
-  { path: 'prosumerhome', component: ProsumerhomeComponent }
+  { path: 'prosumerhome', component: ProsumerhomeComponent },
+  { path:'contact', component:ContactComponent}
 ];
 
 @NgModule({
