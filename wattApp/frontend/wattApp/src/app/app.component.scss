@@ -9,7 +9,7 @@
     background-color: #222222;
     width:45%;
     height:fit-content;
-    border-radius: 32px;
+    border-radius: 20px;
     margin-bottom: 30px;
     position: relative;
     flex-direction: column;
@@ -17,6 +17,12 @@
     font-size:20px;
     overflow: hidden;
     min-height: 300px; 
+    border:none;
+
+    .p-dialog-content {
+      padding:0px 0px 20px 0px;
+    }
+
 
     .p-dialog-header {
       width:100%;
@@ -66,7 +72,7 @@
         background: transparent;
         font-weight: 600;
         border-radius: 0;
-
+        border-image: linear-gradient(45deg, purple, orange) 1;
         font-size: 14px;
         position: relative;
         display:flex;
@@ -81,16 +87,13 @@
 
     button.footer-button {
       border: none;
-      padding: 10px 50px;
-      border-radius: 8px;
+      padding: 5px 40px;
+      border-radius: 32px;
       display: block;
       margin: auto;
-      background: #56857e;
+      background: linear-gradient(45deg, purple, orange);
       color: #fff;
       font-weight: bold;
-      -webkit-box-shadow: 0px 9px 15px -11px #56857e;
-      -moz-box-shadow: 0px 9px 15px -11px #56857e;
-      box-shadow: 0px 9px 15px -11px #56857e;
     }
     
     
