@@ -25,4 +25,10 @@ export class UserService {
     return decodedToken.nameid;
   }
 
+  getUserRoleFromToken(token: string)
+  {
+    const decodedToken = this.jwtHelper.decodeToken(token);
+    return decodedToken.role;
+  }
+
 }

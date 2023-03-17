@@ -1,8 +1,7 @@
-<standard-template>
+<standard-template  *ngIf="isAdmin()">
   <app-title-bar>
     <h3>Home</h3>
   </app-title-bar>
-
   <app-center-bar>
   <h3 class="hello">Hello, Vanja Mijatovic</h3>
   <div class="widgets">
@@ -62,5 +61,10 @@
   <iframe class="iframe-div" src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d17698.97958143962!2d20.902382747133068!3d44.01949126285242!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2srs!4v1678806582786!5m2!1sen!2srs" style="border:0;" allowfullscreen="true" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
   -->
   <!--<div class="filter-div"><span>filter</span></div>-->
-  </app-center-bar>
+</app-center-bar>
+
 </standard-template>
+
+<app-prosumerhome *ngIf="!isAdmin()"></app-prosumerhome>
+
+
