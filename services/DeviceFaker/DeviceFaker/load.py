@@ -19,12 +19,14 @@ with open('DevicesData.csv', 'r') as csvfile:
     # Loop over the rows in the CSV file
     for row in reader:
         # Extract the data from the row
-        Date = row[0]
-        Time = row[1]
-        PowerUsage = float(row[2])
-        DeviceID = int(row[3])
+        Time = row[0]
+        PowerUsage = float(row[1])
+        Day = int(row[2])
+        Month = int(row[3])
+        Year = int(row[4])
+        DeviceID = int(row[5])
         # Insert the data into the database
-        cursor.execute('INSERT INTO DevicesData (DeviceID, Date, Time, PowerUsage) VALUES (?, ?, ?, ?)', (DeviceID, Date, Time, PowerUsage))
+        cursor.execute('INSERT INTO DevicesData (DeviceID, Day, Month, Year, Time, PowerUsage) VALUES (?, ?, ?, ?, ?, ?)', (DeviceID, Day, Month, Year, Time, PowerUsage))
     # Commit the changes to the database
     conn.commit()
     # Close the database connection
