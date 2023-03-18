@@ -1,11 +1,11 @@
-﻿using backend.Bussiness_Logic_Layer.Interfaces;
-using backend.Data_Access_Layer.Interfaces;
+﻿using backend.BAL.Interfaces;
+using backend.DAL.Interfaces;
 using backend.Models;
 using Microsoft.AspNetCore.Mvc;
 using backend.Helpers;
 using Microsoft.EntityFrameworkCore;
 
-namespace backend.Bussiness_Logic_Layer
+namespace backend.BAL
 {
     public class UserBL : IUserBL
     {

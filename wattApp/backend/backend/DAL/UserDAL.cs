@@ -1,10 +1,10 @@
 ﻿using backend.Context;
-using backend.Data_Access_Layer.Interfaces;
+using backend.DAL.Interfaces;
 using backend.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 
-namespace backend.Data_Access_Layer
+namespace backend.DAL
 {
     public class UserDAL : IUserDAL
     {

@@ -1,11 +1,11 @@
-﻿using backend.Data_Access_Layer;
+﻿using backend.DAL;
 using backend.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace backend.Bussiness_Logic_Layer.Interfaces
+namespace backend.BAL.Interfaces
 {
     public interface IUserBL
     {

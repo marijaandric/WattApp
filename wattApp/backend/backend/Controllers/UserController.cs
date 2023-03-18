@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using backend.Context;
 using backend.Models;
-using backend.Bussiness_Logic_Layer.Interfaces;
+using backend.BAL.Interfaces;
 using backend.Helpers;
 
 namespace backend.Controllers

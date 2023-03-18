@@ -1,8 +1,8 @@
-using backend.Bussiness_Logic_Layer;
-using backend.Bussiness_Logic_Layer.Interfaces;
+using backend.BAL;
+using backend.BAL.Interfaces;
 using backend.Context;
-using backend.Data_Access_Layer;
-using backend.Data_Access_Layer.Interfaces;
+using backend.DAL;
+using backend.DAL.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
