@@ -41,6 +41,7 @@ import { DialogModule } from 'primeng/dialog';
 import { ContactComponent } from './components/global/contact/contact.component';
 import { PieChartComponent } from './components/global/pie-chart/pie-chart.component';
 import { NgApexchartsModule } from 'ng-apexcharts';
+import { DonutChartComponent } from './components/global/donut-chart/donut-chart.component';
 
 export const url = 'https://localhost:7158';
 
@@ -67,7 +68,8 @@ export const url = 'https://localhost:7158';
     ProsumerhomeComponent,
     PromotionComponent,
     ContactComponent,
-    PieChartComponent
+    PieChartComponent,
+    DonutChartComponent
   ],
   imports: [
     CommonModule,
