@@ -9,6 +9,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { UserProfileComponent } from './components/global/user-profile/user-profile/user-profile.component';
 import { ProsumerhomeComponent } from './components/prosumer/home-page-components/prosumerhome/prosumerhome.component';
 import { ContactComponent } from './components/global/contact/contact.component';
+import { DeviceComponent } from './components/prosumer/device/device.component';
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
@@ -18,7 +19,8 @@ const routes: Routes = [
   { path: 'users', component: UsersComponent },
   { path: 'user', component:UserProfileComponent},
   { path: 'prosumerhome', component: ProsumerhomeComponent },
-  { path:'contact', component:ContactComponent}
+  { path:'contact', component:ContactComponent},
+  {path: 'device', component: DeviceComponent }
 ];
 
 @NgModule({

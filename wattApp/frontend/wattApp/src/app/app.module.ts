@@ -42,6 +42,8 @@ import { ContactComponent } from './components/global/contact/contact.component'
 import { PieChartComponent } from './components/global/pie-chart/pie-chart.component';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { DonutChartComponent } from './components/global/donut-chart/donut-chart.component';
+import { TabMenuComponent } from './components/prosumer/tab-menu/tab-menu.component';
+import { DeviceComponent } from './components/prosumer/device/device.component';
 
 export const url = 'https://localhost:7158';
 
@@ -69,7 +71,9 @@ export const url = 'https://localhost:7158';
     PromotionComponent,
     ContactComponent,
     PieChartComponent,
-    DonutChartComponent
+    DonutChartComponent,
+    TabMenuComponent,
+    DeviceComponent
   ],
   imports: [
     CommonModule,
