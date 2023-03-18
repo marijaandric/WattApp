@@ -1,0 +1,14 @@
+.chartContainer {
+    width: 400px;
+    height: 280px;
+    border-radius: 20px;
+    background-color: #373737;
+}
+@media only screen and (max-width: 639px) {
+    .chartContainer {
+        width: 300px;
+        height: 200px;
+        border-radius: 20px;
+        background-color: #373737;
+    }
+  }

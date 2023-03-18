@@ -18,19 +18,20 @@ export class DonutChartComponent implements OnInit {
   chartSeries: ApexNonAxisChartSeries = [80, 32, 28];
 
   chartDetails: ApexChart = {
-    type: 'pie',
+    type: 'donut',
     toolbar: {
       show: true
     }
   };
 
-  chartLabels = ["Green energy", "Own energy", "Carbon"]
+  chartLabels = ["Carbon", "Green energy", "Own energy"]
 
   chartTitle: ApexTitleSubtitle = {
     text: 'Energy type',
     align: 'center',
     style: {
-      color: '#FFFFFF'
+      color: '#FFFFFF',
+      fontSize: '20px'
     }
   };
 
