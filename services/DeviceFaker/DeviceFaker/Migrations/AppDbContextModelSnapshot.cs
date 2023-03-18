@@ -51,11 +51,13 @@ namespace DeviceFaker.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Date")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<int>("Day")
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("DeviceID")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Month")
                         .HasColumnType("INTEGER");
 
                     b.Property<float>("PowerUsage")
@@ -64,6 +66,9 @@ namespace DeviceFaker.Migrations
                     b.Property<string>("Time")
                         .IsRequired()
                         .HasColumnType("TEXT");
+
+                    b.Property<int>("Year")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 

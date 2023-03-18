@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DeviceFaker.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230314193444_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20230318130019_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -54,11 +54,13 @@ namespace DeviceFaker.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<string>("Date")
-                        .IsRequired()
-                        .HasColumnType("TEXT");
+                    b.Property<int>("Day")
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("DeviceID")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Month")
                         .HasColumnType("INTEGER");
 
                     b.Property<float>("PowerUsage")
@@ -67,6 +69,9 @@ namespace DeviceFaker.Migrations
                     b.Property<string>("Time")
                         .IsRequired()
                         .HasColumnType("TEXT");
+
+                    b.Property<int>("Year")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 

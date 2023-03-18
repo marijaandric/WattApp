@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace backend.Data_Access_Layer.Interfaces
+namespace backend.DAL.Interfaces
 {
     public interface IUserDAL
     {
