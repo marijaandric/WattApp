@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -9,21 +10,32 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class UserCardComponent implements OnInit {
   userInfo: any;
+  display: boolean = false;
+  menageUserForm! : FormGroup;
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService,private fb: FormBuilder) {}
 
   ngOnInit() {
     const token = localStorage.getItem('token');
     if(token)
     {
-      console.log(token);
       const userId = this.userService.getUserIdFromToken(token);
-      console.log(userId);
       this.userService.GetUser(userId,token).subscribe((data) => {
         this.userInfo = data;
-        console.log(this.userInfo.firstName);
       });
     }
     
+    this.menageUserForm = this.fb.group({
+      name: ['', Validators.required],
+      lastname: ['', Validators.required],
+      username: ['', Validators.required],
+      email: ['', Validators.required],
+      phone: ['', Validators.required],
+      address: ['', Validators.required]
+    });
+  }
+
+  showDialog() {
+    this.display = true;
   }
 }
