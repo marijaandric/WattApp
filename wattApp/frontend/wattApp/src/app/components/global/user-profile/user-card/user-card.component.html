@@ -26,28 +26,29 @@
                         <div class="p-inputgroup p-inputtext-lg p-input-filled">
                           <div class="half">
                             <!--<label for="label-input" >Name</label>-->
-                            <input formControlName="name" name="name" appendTo="body" type="text" pInputText  class="p-inputtext-lg"  placeholder="NAME"> 
+                            <input formControlName="FirstName" name="firstName" appendTo="body" type="text" pInputText  class="p-inputtext-lg"  placeholder="NAME"> 
                             <!--<label for="label-input" >Last name</label>-->
-                            <input formControlName="lastname" name="lastname"  appendTo="body" type="text" pInputText  class="p-inputtext-lg"  placeholder="LAST NAME"> 
+                            <input formControlName="LastName" name="lastName"  appendTo="body" type="text" pInputText  class="p-inputtext-lg"  placeholder="LASTNAME" > 
                             <!--<label for="label-input" >Username</label>-->
-                            <input formControlName="username" name="username"  appendTo="body" type="text" pInputText  class="p-inputtext-lg"  placeholder="USERNAME"> 
+                            <input formControlName="Username" name="username"  appendTo="body" type="text" pInputText  class="p-inputtext-lg"  placeholder="USERNAME"> 
                           </div>
                         
                           <div class="half">
                             <!--<label for="label-input" >E-mail</label>-->
-                            <input formControlName="email" name="email" appendTo="body" type="text" pInputText  class="p-inputtext-lg"  placeholder="EMAIL"> 
+                            <input formControlName="Email" name="email" appendTo="body" type="text" pInputText  class="p-inputtext-lg"  placeholder="EMAIL" > 
                             <!--<label for="label-input" >Phone number</label>-->
-                            <input formControlName="phone" name="phone" appendTo="body" type="text" pInputText  class="p-inputtext-lg"  placeholder="PHONE NUMBER"> 
+                            <input formControlName="Phone" name="phone" appendTo="body" type="text" pInputText  class="p-inputtext-lg"  placeholder="PHONE NUMBER"> 
                             <!--<label for="label-input" >Address</label>-->
-                            <input formControlName="address" name="address" appendTo="body" type="text" pInputText  class="p-inputtext-lg"  placeholder="ADDRESS">     
+                            <input formControlName="Address" name="address" appendTo="body" type="text" pInputText  class="p-inputtext-lg"  placeholder="ADDRESS">     
                           </div>
+
                         </div> 
                       </form>
                      <!--</form>-->
                       </ng-template>
                       
                       <ng-template pTemplate="footer" >
-                        <p-button type="button" class="footer-button" icon="pi pi-info-circle" label="Save"></p-button>
+                        <p-button (onClick)="edit()" type="button" class="footer-button" icon="pi pi-info-circle" label="Save"></p-button>
                       </ng-template>
                     </p-dialog>
                 </div>

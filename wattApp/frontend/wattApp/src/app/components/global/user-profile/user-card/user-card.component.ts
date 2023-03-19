@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -13,7 +14,7 @@ export class UserCardComponent implements OnInit {
   display: boolean = false;
   menageUserForm! : FormGroup;
 
-  constructor(private userService: UserService,private fb: FormBuilder) {}
+  constructor(private router:Router,private userService: UserService,private fb: FormBuilder) {}
 
   ngOnInit() {
     const token = localStorage.getItem('token');
@@ -26,16 +27,33 @@ export class UserCardComponent implements OnInit {
     }
     
     this.menageUserForm = this.fb.group({
-      name: ['', Validators.required],
-      lastname: ['', Validators.required],
-      username: ['', Validators.required],
-      email: ['', Validators.required],
-      phone: ['', Validators.required],
-      address: ['', Validators.required]
+      FirstName: ['', Validators.required],
+      LastName: ['', Validators.required],
+      Username: ['', Validators.required],
+      Email: ['', Validators.required],
+      Phone: ['', Validators.required],
+      Address: ['', Validators.required]
     });
   }
 
   showDialog() {
     this.display = true;
+  }
+
+  edit(){
+    const token = localStorage.getItem('token');
+    console.log(this.menageUserForm.value);
+      if(token){
+      this.userService.PutUser(this.userService.getUserIdFromToken(token),this.menageUserForm.value)
+      .subscribe(
+        {
+          next: () => {
+            },
+          error: error => {
+            console.log(error);
+          }
+        }
+      )
+    }
   }
 }
