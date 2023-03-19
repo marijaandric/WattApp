@@ -1,6 +1,5 @@
-﻿namespace backend.BLL.Interfaces
+﻿namespace backend.BLL.Interfaces;
+
+public interface IDevicesDataBL
 {
-    public interface IDevicesDataBL
-    {
-    }
 }

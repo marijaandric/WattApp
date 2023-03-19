@@ -1,8 +1,17 @@
 ﻿using backend.BLL.Interfaces;
+using backend.DAL.Interfaces;
 
 namespace backend.BLL
 {
-    public interface DevicesDataBL : IDevicesDataBL
+    public class DevicesDataBL : IDevicesDataBL
     {
+
+        private readonly IDevicesDataDAL _contextDAL;
+
+        public DevicesDataBL(IDevicesDataDAL context)
+        {
+            _contextDAL = context;
+        }
+
     }
 }

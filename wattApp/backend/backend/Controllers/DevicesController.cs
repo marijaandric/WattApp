@@ -5,8 +5,8 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using backend.Context;
 using backend.Models;
+using backend.BLL.Interfaces;
 
 namespace backend.Controllers
 {
@@ -14,29 +14,43 @@ namespace backend.Controllers
     [ApiController]
     public class DevicesController : ControllerBase
     {
-        private readonly AppDbContext _context;
+        private readonly IDevicesBL _context;
 
-        public DevicesController(AppDbContext context)
+        public DevicesController(IDevicesBL context)
         {
             _context = context;
         }
 
         // GET: api/Devices
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Devices>>> GetDevices()
+        public List<Devices> GetDevices()
         {
-            return await _context.Devices.ToListAsync();
+            return _context.GetDevices();
         }
 
         // GET: api/Devices/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Devices>> GetDevices(int id)
+        [HttpGet("{userId}")]
+        public List<Devices> GetDevicesForUser(int userId)
         {
-            var devices = await _context.Devices.FindAsync(id);
+            var devices = _context.GetDevicesForUser(userId);
 
             if (devices == null)
             {
-                return NotFound();
+                return null;
+            }
+
+            return devices;
+        }
+
+        // GET: api/Devices/5
+        [HttpGet("{userId}/{deviceId}")]
+        public Devices GetDeviceForUser(int userId, int deviceId)
+        {
+            var devices = _context.GetDeviceForUser(userId, deviceId);
+
+            if (devices == null)
+            {
+                return null;
             }
 
             return devices;
@@ -45,22 +59,22 @@ namespace backend.Controllers
         // PUT: api/Devices/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutDevices(int id, Devices devices)
+        public IActionResult PutDevices(int id, Devices device)
         {
-            if (id != devices.Id)
+            if (id != device.Id)
             {
                 return BadRequest();
             }
 
-            _context.Entry(devices).State = EntityState.Modified;
+            _context.ModifiedDevice(device);
 
             try
             {
-                await _context.SaveChangesAsync();
+                _context.SaveChanges();
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!DevicesExists(id))
+                if (!_context.DevicesExists(id))
                 {
                     return NotFound();
                 }
@@ -76,33 +90,28 @@ namespace backend.Controllers
         // POST: api/Devices
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Devices>> PostDevices(Devices devices)
+        public IActionResult PostDevices([FromBody] Devices device)
         {
-            _context.Devices.Add(devices);
-            await _context.SaveChangesAsync();
+            _context.AddDevice(device);
+            _context.SaveChanges();
 
-            return CreatedAtAction("GetDevices", new { id = devices.Id }, devices);
+            return Ok();
         }
 
         // DELETE: api/Devices/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteDevices(int id)
+        public IActionResult DeleteDevices(int id)
         {
-            var devices = await _context.Devices.FindAsync(id);
-            if (devices == null)
+            var device = _context.GetDevice(id);
+            if (device == null)
             {
                 return NotFound();
             }
 
-            _context.Devices.Remove(devices);
-            await _context.SaveChangesAsync();
+            _context.RemoveDevice(device);
+            _context.SaveChanges();
 
-            return NoContent();
-        }
-
-        private bool DevicesExists(int id)
-        {
-            return _context.Devices.Any(e => e.Id == id);
+            return Ok();
         }
     }
 }
