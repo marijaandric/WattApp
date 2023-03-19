@@ -1,0 +1,18 @@
+<standard-template>
+    <app-title-bar>
+      <h3>All devices</h3>
+    </app-title-bar>
+
+    <app-select-one-menu-bar>
+        <app-tab-menu></app-tab-menu>
+    </app-select-one-menu-bar>
+  
+    <app-center-bar>
+      <p-carousel [value]="allDevices">
+        <ng-template let-device pTemplate="device">
+            <p>da</p>
+        </ng-template>
+    </p-carousel>
+    </app-center-bar>
+</standard-template>
+  
