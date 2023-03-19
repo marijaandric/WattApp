@@ -42,7 +42,8 @@
               "src/assets/primeng-css/tooltip.min.css",
               "src/assets/primeng-css/dialog.css",
               "src/assets/primeng-css/inputtextarea.min.css",
-              "src/assets/primeng-css/overlay.css"
+              "src/assets/primeng-css/overlay.css",
+              "src/assets/primeng-css/carousel.min.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",

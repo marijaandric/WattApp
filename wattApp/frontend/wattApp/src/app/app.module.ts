@@ -8,7 +8,7 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './components/global/login-page-components/login/login.component';
 import { NavbarComponent } from './components/global/landing-page-componenets/navbar/navbar.component';
 import { LandingPageComponent } from './components/global/landing-page-componenets/landing-page/landing-page.component';
-import { UsersComponent } from './components/dso/users-page-components/users/users.component';
+import { UsersComponent } from './components/DSO/users-page-components/users/users.component';
 import { HomeComponent } from './components/global/home-page-components/home/home.component';
 import { StadardTemplateComponent } from './components/global/layout-components/standard-template/stadard-template.component';
 import { LandingPageFooterComponent } from './components/global/landing-page-componenets/landing-page-footer/landing-page-footer.component';
@@ -31,8 +31,8 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { DropdownModule } from 'primeng/dropdown';
 import { TooltipModule } from 'primeng/tooltip';
 import { WidgetComponent } from './components/global/layout-components/widget/widget.component';
-import { ProsumerhomeComponent } from './components/prosumer/home-page-components/prosumerhome/prosumerhome.component';
-import { PromotionComponent } from './components/prosumer/home-page-components/promotion/promotion.component';
+import { ProsumerhomeComponent } from './components/Prosumer/home-page-components/prosumerhome/prosumerhome.component';
+import { PromotionComponent } from './components/Prosumer/home-page-components/promotion/promotion.component';
 import { UserProfileComponent } from './components/global/user-profile/user-profile/user-profile.component';
 import { UserProfileComponentComponent } from './components/global/user-profile/user-profile-component/user-profile-component.component';
 import { UserCardComponent } from './components/global/user-profile/user-card/user-card.component';
@@ -42,10 +42,16 @@ import { ContactComponent } from './components/global/contact/contact.component'
 import { PieChartComponent } from './components/global/pie-chart/pie-chart.component';
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { DonutChartComponent } from './components/global/donut-chart/donut-chart.component';
-import { TabMenuComponent } from './components/prosumer/tab-menu/tab-menu.component';
-import { DeviceComponent } from './components/prosumer/device/device.component';
+import { TabMenuComponent } from './components/Prosumer/tab-menu/tab-menu.component';
+import { DeviceComponent } from './components/Prosumer/device/device.component';
+import { CarouselModule } from 'primeng/carousel';
+import { DevicesComponent } from './components/Prosumer/devices-page-components/devices/devices.component';
+import { DevicesConsumptionComponent } from './components/Prosumer/devices-page-components/devices-consumption/devices-consumption.component';
+import { DevicesProductionComponent } from './components/Prosumer/devices-page-components/devices-production/devices-production.component';
+import { DevicesStockComponent } from './components/Prosumer/devices-page-components/devices-stock/devices-stock.component';
 
 export const url = 'https://localhost:7158';
+export const deviceFakerUrl = "https://localhost:7233";
 
 @NgModule({
   declarations: [
@@ -73,7 +79,11 @@ export const url = 'https://localhost:7158';
     PieChartComponent,
     DonutChartComponent,
     TabMenuComponent,
-    DeviceComponent
+    DeviceComponent,
+    DevicesComponent,
+    DevicesConsumptionComponent,
+    DevicesProductionComponent,
+    DevicesStockComponent
   ],
   imports: [
     CommonModule,
@@ -92,6 +102,7 @@ export const url = 'https://localhost:7158';
     TooltipModule,
     OverlayModule,
     DialogModule,
+    CarouselModule,
     NgApexchartsModule,
     JwtModule.forRoot({
       config: {
