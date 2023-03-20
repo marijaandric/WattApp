@@ -21,99 +21,61 @@ namespace DeviceFaker.Controllers
             _context = context;
         }
 
-        // GET: api/DevicesDatas
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<DevicesData>>> GetDevicesData()
-        {
-          if (_context.DevicesData == null)
-          {
-              return NotFound();
-          }
-            return await _context.DevicesData.ToListAsync();
-        }
-
         // GET: api/DevicesDatas/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<DevicesData>> GetDevicesData(int id)
+        [HttpGet("{id}/{year}/{month}/{day}/{time}")]
+        public List<DevicesData> GetDevicesDataByIdDateTime(int id, int year, int month, int day, string time)
         {
-          if (_context.DevicesData == null)
-          {
-              return NotFound();
-          }
-            var devicesData = await _context.DevicesData.FindAsync(id);
+            if (_context.DevicesData == null)
+            {
+                return null;
+            }
+
+            var devicesData = _context.DevicesData.Where(e => e.DeviceID == id && e.Year == year && e.Month == month &&  e.Day == day && e.Time == time).ToList();
 
             if (devicesData == null)
             {
-                return NotFound();
+                return null;
             }
 
             return devicesData;
         }
 
-        // PUT: api/DevicesDatas/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutDevicesData(int id, DevicesData devicesData)
-        {
-            if (id != devicesData.Id)
-            {
-                return BadRequest();
-            }
-
-            _context.Entry(devicesData).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!DevicesDataExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
-
-        // POST: api/DevicesDatas
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<DevicesData>> PostDevicesData(DevicesData devicesData)
-        {
-          if (_context.DevicesData == null)
-          {
-              return Problem("Entity set 'AppDbContext.DevicesData'  is null.");
-          }
-            _context.DevicesData.Add(devicesData);
-            await _context.SaveChangesAsync();
-
-            return CreatedAtAction("GetDevicesData", new { id = devicesData.Id }, devicesData);
-        }
-
-        // DELETE: api/DevicesDatas/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteDevicesData(int id)
+        // GET: api/DevicesDatas/5
+        [HttpGet("{id}/{year}/{month}/{day}")]
+        public List<DevicesData> GetDevicesDataByIdDate(int id, int year, int month, int day)
         {
             if (_context.DevicesData == null)
             {
-                return NotFound();
+                return null;
             }
-            var devicesData = await _context.DevicesData.FindAsync(id);
+
+            var devicesData = _context.DevicesData.Where(e => e.DeviceID == id && e.Year == year && e.Month == month && e.Day == day).ToList();
+
             if (devicesData == null)
             {
-                return NotFound();
+                return null;
             }
 
-            _context.DevicesData.Remove(devicesData);
-            await _context.SaveChangesAsync();
+            return devicesData;
+        }
 
-            return NoContent();
+        // GET: api/DevicesDatas/5
+        [HttpGet("{id}/{year}/{month}")]
+        public List<DevicesData> GetDevicesDataByIdYearMonth(int id, int year, int month)
+        {
+            if (_context.DevicesData == null)
+            {
+                return null;
+            }
+
+            var devicesData = _context.DevicesData.Where(e => e.DeviceID == id && e.Year == year && e.Month == month).ToList();
+
+            if (devicesData == null)
+            {
+                return null;
+            }
+
+            return devicesData;
         }
 
         private bool DevicesDataExists(int id)
