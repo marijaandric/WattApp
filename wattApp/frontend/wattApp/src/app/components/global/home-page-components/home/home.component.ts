@@ -11,6 +11,7 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 })
 export class HomeComponent {
   display: boolean = false;
+  display2: boolean = false;
   menageUserForm! : FormGroup;
   
   constructor(private userService:UserService, private authService:AuthService){}
@@ -18,6 +19,10 @@ export class HomeComponent {
   showDialog() {
       this.display = true;
   }
+
+  showDialog2() {
+    this.display2 = true;
+}
 
   isAdmin()
   {
