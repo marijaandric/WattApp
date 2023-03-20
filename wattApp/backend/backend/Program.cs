@@ -1,5 +1,7 @@
 using backend.BAL;
 using backend.BAL.Interfaces;
+using backend.BLL;
+using backend.BLL.Interfaces;
 using backend.Context;
 using backend.DAL;
 using backend.DAL.Interfaces;
@@ -17,8 +19,19 @@ builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+//User
 builder.Services.AddScoped<IUserBL, UserBL>();
 builder.Services.AddScoped<IUserDAL, UserDAL>();
+
+//Devices
+builder.Services.AddScoped<IDevicesBL, DevicesBL>();
+builder.Services.AddScoped<IDevicesDAL, DevicesDAL>();
+
+//DevicesData
+builder.Services.AddScoped<IDevicesDataBL, DevicesDataBL>();
+builder.Services.AddScoped<IDevicesDataDAL, DevicesDataDAL>();
+
 builder.Services.AddCors( option =>
 {
     option.AddPolicy("MyPolicy", builder =>
