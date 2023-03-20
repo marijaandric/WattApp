@@ -49,6 +49,8 @@ import { DevicesComponent } from './components/Prosumer/devices-page-components/
 import { DevicesConsumptionComponent } from './components/Prosumer/devices-page-components/devices-consumption/devices-consumption.component';
 import { DevicesProductionComponent } from './components/Prosumer/devices-page-components/devices-production/devices-production.component';
 import { DevicesStockComponent } from './components/Prosumer/devices-page-components/devices-stock/devices-stock.component';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConfirmationService } from 'primeng/api';
 
 export const url = 'https://localhost:7158';
 export const deviceFakerUrl = "https://localhost:7233";
@@ -104,6 +106,7 @@ export const deviceFakerUrl = "https://localhost:7233";
     DialogModule,
     CarouselModule,
     NgApexchartsModule,
+    ConfirmDialogModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: () => localStorage.getItem('access_token'),
@@ -113,7 +116,8 @@ export const deviceFakerUrl = "https://localhost:7233";
     })
 
   ],
-  providers: [{
+  providers: [
+    ConfirmationService,{
     provide: HTTP_INTERCEPTORS,
     useClass: TokenInterceptor,
     multi:true,
