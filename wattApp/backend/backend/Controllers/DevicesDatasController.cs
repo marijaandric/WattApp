@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using backend.Context;
 using backend.Models;
+using backend.BLL.Interfaces;
 
 namespace backend.Controllers
 {
@@ -14,95 +15,54 @@ namespace backend.Controllers
     [ApiController]
     public class DevicesDatasController : ControllerBase
     {
-        private readonly AppDbContext _context;
+        private readonly IDevicesDataBL _context;
 
-        public DevicesDatasController(AppDbContext context)
+        public DevicesDatasController(IDevicesDataBL context)
         {
             _context = context;
         }
 
-        // GET: api/DevicesDatas
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<DevicesData>>> GetDevicesData()
-        {
-            return await _context.DevicesData.ToListAsync();
-        }
 
         // GET: api/DevicesDatas/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<DevicesData>> GetDevicesData(int id)
+        public List<DevicesData> GetAllDataForDevice(int id)
         {
-            var devicesData = await _context.DevicesData.FindAsync(id);
-
-            if (devicesData == null)
-            {
-                return NotFound();
-            }
+            var devicesData = _context.GetAllDataForDevice(id);
 
             return devicesData;
         }
 
-        // PUT: api/DevicesDatas/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutDevicesData(int id, DevicesData devicesData)
+        [HttpGet("{id}/{year}")]
+        public List<DevicesData> GetYearDataForDevice(int id, int year)
         {
-            if (id != devicesData.Id)
-            {
-                return BadRequest();
-            }
+            var devicesData = _context.GetYearDataForDevice(id, year);
 
-            _context.Entry(devicesData).State = EntityState.Modified;
-
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!DevicesDataExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
+            return devicesData;
         }
 
-        // POST: api/DevicesDatas
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<DevicesData>> PostDevicesData(DevicesData devicesData)
+        [HttpGet("{id}/{year}/{month}")]
+        public List<DevicesData> GetMonthDataForDevice(int id, int year, int month)
         {
-            _context.DevicesData.Add(devicesData);
-            await _context.SaveChangesAsync();
+            var devicesData = _context.GetMonthDataForDevice(id, year, month);
 
-            return CreatedAtAction("GetDevicesData", new { id = devicesData.Id }, devicesData);
+            return null;
         }
 
-        // DELETE: api/DevicesDatas/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteDevicesData(int id)
+        [HttpGet("{id}/{year}/{month}/{day}")]
+        public List<DevicesData> GetDayDataForDevice(int id, int year, int month, int day)
         {
-            var devicesData = await _context.DevicesData.FindAsync(id);
-            if (devicesData == null)
-            {
-                return NotFound();
-            }
+            var devicesData = _context.GetDayDataForDevice(id, year, month, day);
 
-            _context.DevicesData.Remove(devicesData);
-            await _context.SaveChangesAsync();
-
-            return NoContent();
+            return devicesData;
         }
 
-        private bool DevicesDataExists(int id)
+        [HttpGet("{id}/{year}/{month}/{day}/{time}")]
+        public DevicesData GetHourDataForDevice(int id, int year, int month, int day, string time)
         {
-            return _context.DevicesData.Any(e => e.Id == id);
+            var devicesData = _context.GetHourDataForDevice(id, year, month, day, time);
+
+            return devicesData;
         }
+
     }
 }
