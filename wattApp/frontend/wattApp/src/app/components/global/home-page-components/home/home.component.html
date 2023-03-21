@@ -3,7 +3,6 @@
     <h3>Home</h3>
   </app-title-bar>
   <app-center-bar>
-  <h3 class="hello">Hello, Vanja Mijatovic</h3>
   <div class="widgets">
       
     <app-widget [isBlue]="true" [isBgBlue]="true" class="widget">
@@ -102,6 +101,69 @@
 
   <button type="button" style="margin-top:30px;"  (click)="showDialog2()" icon="pi pi-info-circle" label="Show"></button>
 
+  
+
+  <p-dialog header="Title"  [transitionOptions]="'3ms'" 
+    [draggable]="false" [keepInViewport]="true" [resizable]="false" 
+    [blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true" 
+    [modal]="true" [(visible)]="display3" [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
+    [closable]="true" >
+    <ng-template pTemplate="header" class="header-dialog">
+      <span>Erase device</span>
+    </ng-template>
+    
+    <ng-template pTemplate="center">
+      <div class="delete-device-content">
+        Are you sure you want to erase the device?
+        All data will be deleted and you will not be able to recover it.
+
+      </div>
+    </ng-template>
+    
+    <ng-template pTemplate="footer" >
+      <button type="button" class="no-button" icon="pi pi-info-circle" label="No"><span clas="no-span">No</span></button>
+      <button type="button" class="yes-button" icon="pi pi-info-circle" label="Yes">Yes</button>
+  
+    </ng-template>
+  </p-dialog>
+
+  <button type="button" style="margin-top:30px;"  (click)="showDialog3()" icon="pi pi-info-circle" label="Show"></button>
+
+
+  <!--Dialog
+  <p-dialog header="Title"  [transitionOptions]="'3ms'" 
+    [draggable]="true" [keepInViewport]="true" [resizable]="false" 
+    [blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true" 
+    [modal]="true" [(visible)]="display" [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
+    [closable]="true" >
+    <ng-template pTemplate="header" class="header-dialog">
+      <span>Menage device</span>
+    </ng-template>
+    
+    <ng-template pTemplate="content">
+      <form [formGroup]="menageUserForm" >
+      
+      <div class="p-inputgroup p-inputtext-lg p-input-filled">
+        <div class="half">
+          <label for="label-input" >Name</label
+          <p-dropdown optionLabel="name"></p-dropdown><label for="label-input" >Last name</label>
+          <input formControlName="lastname" name="lastname"  appendTo="body" type="text" pInputText  class="p-inputtext-lg"  placeholder="LAST NAME"> 
+          <div class="gradient"></div>
+          <label for="label-input" >Username</label>
+          <input formControlName="username" name="username"  appendTo="body" type="text" pInputText  class="p-inputtext-lg"  placeholder="USERNAME"> 
+        </div>
+      </div> 
+   </form>
+    </ng-template>
+    
+    <ng-template pTemplate="footer" style="min-height:100px;" >
+      <button type="button" class="footer-button" icon="pi pi-info-circle" label="Show">Save</button>
+
+    </ng-template>
+  </p-dialog>
+
+  <button type="button"  (click)="showDialog()" icon="pi pi-info-circle" label="Show"></button>
+-->
 <!--
   <iframe class="iframe-div" src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d17698.97958143962!2d20.902382747133068!3d44.01949126285242!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2srs!4v1678806582786!5m2!1sen!2srs" style="border:0;" allowfullscreen="true" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
   -->
