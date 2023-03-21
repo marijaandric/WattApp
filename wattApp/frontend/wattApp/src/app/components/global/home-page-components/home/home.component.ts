@@ -18,9 +18,14 @@ export class HomeComponent {
   display: boolean = false;
   display2: boolean = false;
   display3: boolean = false;
+  display4: boolean = false;
+  display5: boolean = false;
+  display6: boolean = false;
+
   menageUserForm! : FormGroup;
   cities: City[];
   selectedCity!: City;
+
   constructor(private userService:UserService, private authService:AuthService) {
     this.cities = [
       {name: 'New York', code: 'NY'},
@@ -32,14 +37,22 @@ export class HomeComponent {
   }
 
   showDialog() {
-      this.display = true;
+    this.display = true;
   }
-
   showDialog2() {
     this.display2 = true;
   }
   showDialog3() {
     this.display3 = true;
+  }
+  showDialog4() {
+    this.display4 = true;
+  }
+  showDialog5() {
+    this.display5 = true;
+  }
+  showDialog6() {
+    this.display6 = true;
   }
 
   isAdmin()
