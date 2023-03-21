@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { UserService } from 'src/app/services/user.service';
-import * as CryptoJS from 'crypto-js';
 
 @Component({
   selector: 'app-user-card',
@@ -52,7 +51,7 @@ export class UserCardComponent implements OnInit {
       id : this.userInfo.id
     })
     this.menageUserForm.patchValue({
-      password : CryptoJS.SHA256(this.userInfo.password).toString(CryptoJS.enc.Base64),
+      password : this.userInfo.password
     })
     this.menageUserForm.patchValue({
       role : this.userInfo.role
@@ -66,6 +65,7 @@ export class UserCardComponent implements OnInit {
       .subscribe(
         {
           next: () => {
+            this.router.navigate(['user']);
             },
           error: error => {
             console.log(error);
