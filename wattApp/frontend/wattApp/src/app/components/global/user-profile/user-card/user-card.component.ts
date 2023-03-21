@@ -67,6 +67,7 @@ export class UserCardComponent implements OnInit {
         {
           next: () => {
             this.display = false;
+            this.router.navigate(['user']);
             },
           error: error => {
             alert("Niste lepo azurirali profil");
