@@ -23,6 +23,7 @@ export class UserCardComponent implements OnInit {
       const userId = this.userService.getUserIdFromToken(token);
       this.userService.GetUser(userId,token).subscribe((data) => {
         this.userInfo = data;
+        console.log(this.userInfo.password);
       });
     }
     
@@ -65,10 +66,11 @@ export class UserCardComponent implements OnInit {
       .subscribe(
         {
           next: () => {
-            this.router.navigate(['user']);
+            this.display = false;
             },
           error: error => {
-            console.log(error);
+            alert("Niste lepo azurirali profil");
+            // mislim da alert treba da bude konkretniji
           }
         }
       )

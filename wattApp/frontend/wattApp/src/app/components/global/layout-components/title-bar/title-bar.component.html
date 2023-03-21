@@ -1,5 +1,44 @@
 <ng-content></ng-content>
 <div id="right-part" class="right-part flexRow">
+    <a (click)="showDialog()" style="cursor: pointer;">Add user</a>
+    <p-dialog [style]="{width:'40%'}" header="Title2"  [transitionOptions]="'3ms'" 
+  [draggable]="true" [keepInViewport]="true" [resizable]="false" 
+  [blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true" 
+  [modal]="true" [(visible)]="display" [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
+  [closable]="true" >
+  <ng-template pTemplate="header" class="header-dialog">
+    <span>Registration</span>
+  </ng-template>
+  
+  <ng-template pTemplate="content">
+    <form [formGroup]="menageUserForm" >
+    
+    <div class="p-inputgroup p-inputtext-lg p-input-filled">
+      <div class="half">
+        <input formControlName="name" name="name" appendTo="body" type="text"  class="p-inputtext-lg"  placeholder="NAME">
+        <input formControlName="lastname" name="lastname"  appendTo="body" type="text"   class="p-inputtext-lg"  placeholder="LAST NAME"> 
+        <input formControlName="username" name="username"  appendTo="body" type="text"   class="p-inputtext-lg"  placeholder="USERNAME"> 
+        <input formControlName="password" name="password" appendTo="body" type="text"  class="p-inputtext-lg"  placeholder="PASSWORD"> 
+        <input formControlName="password2" name="password2" appendTo="body" type="text"  class="p-inputtext-lg"  placeholder="REPEAT PASSWORD"> 
+        
+      </div>
+    
+      <div class="half">
+        <input formControlName="email" name="email" appendTo="body" type="text"   class="p-inputtext-lg"  placeholder="EMAIL"> 
+        <input formControlName="phone" name="phone" appendTo="body" type="text"   class="p-inputtext-lg"  placeholder="PHONE NUMBER"> 
+        <input formControlName="address" name="address" appendTo="body" type="text"   class="p-inputtext-lg"  placeholder="ADDRESS">     
+        <input formControlName="role" name="role" appendTo="body" type="text"  class="p-inputtext-lg"  placeholder="ROLE"> 
+        
+      </div>
+    </div> 
+  </form>
+  </ng-template>
+  
+  <ng-template pTemplate="footer" >
+    <button type="button" class="footer-button" icon="pi pi-info-circle" label="Show"><span>Save</span></button>
+
+  </ng-template>
+</p-dialog>
     <a href="">About us</a>
     <a routerLink="/contact">Contact</a>
     <div id="my-profile" class="my-profile flexRow">
