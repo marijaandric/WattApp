@@ -101,3 +101,15 @@
       flex-basis: 100%;
     }
   }
+
+  ::ng-deep .apexcharts-series path:nth-child(1) {
+    fill: #F48207;
+  }
+  
+  ::ng-deep .apexcharts-series path:nth-child(2) {
+    fill: #85E000;
+  }
+  
+  ::ng-deep .apexcharts-series path:nth-child(3) {
+    fill: #D63F74;
+  }
