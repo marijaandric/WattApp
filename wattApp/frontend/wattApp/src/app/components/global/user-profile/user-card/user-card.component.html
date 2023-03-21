@@ -6,7 +6,7 @@
                 <div class="mt-3">
                     <h3 style="margin-bottom: 30px;">{{ userInfo?.firstName }}</h3>
                     <p>Full Stack Developer</p>
-                    <p>Kragujevac, Srbija</p>
+                    <p>{{userInfo?.address}}</p>
                     <button label="Edit" (click)="showDialog()">Edit</button>
 
 
@@ -26,22 +26,21 @@
                         <div class="p-inputgroup p-inputtext-lg p-input-filled">
                           <div class="half">
                             <!--<label for="label-input" >Name</label>-->
-                            <input formControlName="FirstName" name="firstName" appendTo="body" type="text" pInputText  class="p-inputtext-lg"  placeholder="NAME"> 
+                            <input formControlName="firstName" name="firstName" appendTo="body" type="text" pInputText  class="p-inputtext-lg"  placeholder="NAME"> 
                             <!--<label for="label-input" >Last name</label>-->
-                            <input formControlName="LastName" name="lastName"  appendTo="body" type="text" pInputText  class="p-inputtext-lg"  placeholder="LASTNAME" > 
+                            <input formControlName="lastName" name="lastName"  appendTo="body" type="text" pInputText  class="p-inputtext-lg"  placeholder="LASTNAME" > 
                             <!--<label for="label-input" >Username</label>-->
-                            <input formControlName="Username" name="username"  appendTo="body" type="text" pInputText  class="p-inputtext-lg"  placeholder="USERNAME"> 
+                            <input formControlName="username" name="username"  appendTo="body" type="text" pInputText  class="p-inputtext-lg"  placeholder="USERNAME"> 
                           </div>
                         
                           <div class="half">
                             <!--<label for="label-input" >E-mail</label>-->
-                            <input formControlName="Email" name="email" appendTo="body" type="text" pInputText  class="p-inputtext-lg"  placeholder="EMAIL" > 
+                            <input formControlName="email" name="email" appendTo="body" type="text" pInputText  class="p-inputtext-lg"  placeholder="EMAIL" > 
                             <!--<label for="label-input" >Phone number</label>-->
-                            <input formControlName="Phone" name="phone" appendTo="body" type="text" pInputText  class="p-inputtext-lg"  placeholder="PHONE NUMBER"> 
+                            <input formControlName="phoneNumber" name="phone" appendTo="body" type="text" pInputText  class="p-inputtext-lg"  placeholder="PHONE NUMBER"> 
                             <!--<label for="label-input" >Address</label>-->
-                            <input formControlName="Address" name="address" appendTo="body" type="text" pInputText  class="p-inputtext-lg"  placeholder="ADDRESS">     
+                            <input formControlName="address" name="address" appendTo="body" type="text" pInputText  class="p-inputtext-lg"  placeholder="ADDRESS">     
                           </div>
-
                         </div> 
                       </form>
                      <!--</form>-->
@@ -61,7 +60,7 @@
                 </li>
                 <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                     <h6 class="mb-0">Username</h6>
-                    <span class="text-secondary">mijatovic</span>
+                    <span class="text-secondary">{{userInfo?.username}}</span>
                 </li>
                 <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                     <h6 class="mb-0">Email</h6>
@@ -69,11 +68,11 @@
                 </li>
                 <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                     <h6 class="mb-0">Phone</h6>
-                    <span class="text-secondary">069-111-111</span>
+                    <span class="text-secondary">{{userInfo?.phoneNumber}}</span>
                 </li>
                 <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                     <h6 class="mb-0">Adress</h6>
-                    <span class="text-secondary">Kragujevac</span>
+                    <span class="text-secondary">{{userInfo?.address}}</span>
                 </li>
                 <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
                   <h6 class="mb-0">Role</h6>
