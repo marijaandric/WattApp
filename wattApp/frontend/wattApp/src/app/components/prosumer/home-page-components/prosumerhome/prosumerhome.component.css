@@ -19,35 +19,39 @@
     padding: 20px 0;
     min-height: 120px;
     justify-content:space-between;
+    
 }
 .promotions
 {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  padding-top: 25px;
   
 }
 .promotion
 {
+  padding-top: 15px;
   flex-basis: calc(23%);
   margin-bottom: 30px;
   display: inline-block;
   position: relative;
   flex-direction: row;
   max-width: 23%;
-  min-width: 487px;
+  min-width: 32%;
   width:20%;
   
 }
 .promotion1
 {
+  padding-top: 15px;
   flex-basis: calc(23%);
   margin-bottom: 30px;
   display: inline-block;
   position: relative;
   flex-direction: row;
   max-width: 23%;
-  min-width: 487px;
+  min-width: 32%;
   width:20%;
   margin-left: 2%;
   
@@ -62,6 +66,7 @@
     max-width: 23%;
     min-width: 240px;
     width:20%;
+    box-shadow: 10px 10px 50px black;  
 }
 
 .iframe-div {
@@ -85,6 +90,15 @@
     z-index:2;
     background-color: #222222;
     border-radius: 32px;
+}
+
+.line
+{
+  background-color: #1b1b1b;
+  width: 600px;
+  border-radius: 20px;
+  padding-top: 10px;
+  margin-top: 20px;
 }
 
 
@@ -115,5 +129,5 @@
   } */
 
   ::ng-deep .apexcharts-line-series path {
-    stroke: green;
+    stroke: rgb(4,167,119);
   }
