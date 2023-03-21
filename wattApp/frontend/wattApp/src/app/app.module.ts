@@ -49,6 +49,7 @@ import { DevicesComponent } from './components/Prosumer/devices-page-components/
 import { DevicesConsumptionComponent } from './components/Prosumer/devices-page-components/devices-consumption/devices-consumption.component';
 import { DevicesProductionComponent } from './components/Prosumer/devices-page-components/devices-production/devices-production.component';
 import { DevicesStockComponent } from './components/Prosumer/devices-page-components/devices-stock/devices-stock.component';
+import { BarChartComponent } from './components/global/bar-chart/bar-chart.component';
 
 export const url = 'https://localhost:7158';
 export const deviceFakerUrl = "https://localhost:7233";
@@ -83,7 +84,8 @@ export const deviceFakerUrl = "https://localhost:7233";
     DevicesComponent,
     DevicesConsumptionComponent,
     DevicesProductionComponent,
-    DevicesStockComponent
+    DevicesStockComponent,
+    BarChartComponent
   ],
   imports: [
     CommonModule,
