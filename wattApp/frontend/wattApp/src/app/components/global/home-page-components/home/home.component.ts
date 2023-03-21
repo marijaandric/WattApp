@@ -5,6 +5,10 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { UserService } from 'src/app/services/user.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { ConfirmationService } from 'primeng/api';
+interface City {
+  name: string,
+  code: string
+}
 @Component({
   selector: 'home',
   templateUrl: './home.component.html',
@@ -15,8 +19,17 @@ export class HomeComponent {
   display2: boolean = false;
   display3: boolean = false;
   menageUserForm! : FormGroup;
-  
-  constructor(private userService:UserService, private authService:AuthService) {}
+  cities: City[];
+  selectedCity!: City;
+  constructor(private userService:UserService, private authService:AuthService) {
+    this.cities = [
+      {name: 'New York', code: 'NY'},
+      {name: 'Rome', code: 'RM'},
+      {name: 'London', code: 'LDN'},
+      {name: 'Istanbul', code: 'IST'},
+      {name: 'Paris', code: 'PRS'}
+  ];
+  }
 
   showDialog() {
       this.display = true;
