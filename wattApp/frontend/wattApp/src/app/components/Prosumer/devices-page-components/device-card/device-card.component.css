@@ -1,0 +1,7 @@
+.device-card{
+    width: 250px;
+    height: 150px;
+    background-color: #222222;
+    border-radius: 32px;
+    padding: 16px;
+}

@@ -1,0 +1,16 @@
+.hederContainer{
+    width: 600px;
+    min-width: 600px;
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+}
+
+.roomNameHeader{
+    margin-left: 48px;
+    font-size: 24px;
+}
+
+.roomSizeHeader{
+    margin-left: auto;
+}

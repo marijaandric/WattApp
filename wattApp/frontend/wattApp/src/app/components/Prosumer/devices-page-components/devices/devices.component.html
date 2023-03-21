@@ -8,11 +8,19 @@
     </app-select-one-menu-bar>
   
     <app-center-bar>
-      <p-carousel [value]="allDevices">
-        <ng-template let-device pTemplate="device">
-            <p>da</p>
-        </ng-template>
-    </p-carousel>
+      <div *ngFor="let devices of devicesByRoomType | keyvalue">
+        <p-carousel [value]="devices.value" [numVisible]="numVisible" [circular]="false" [numScroll]="1">
+          <ng-template pTemplate="header">
+            <div class="hederContainer">
+              <p class="roomNameHeader">{{ devices.key }}</p>
+              <p class="roomSizeHeader">Total number of devices: {{ devices.value.length }}</p>
+            </div>
+          </ng-template>
+          <ng-template let-device pTemplate="device">
+              <app-device-card [device]="device"></app-device-card>
+          </ng-template>
+        </p-carousel>
+      </div>
     </app-center-bar>
 </standard-template>
   
