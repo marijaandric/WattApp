@@ -52,6 +52,7 @@ import { DevicesStockComponent } from './components/Prosumer/devices-page-compon
 import { BarChartComponent } from './components/global/bar-chart/bar-chart.component';
 import { LineChartComponent } from './components/global/line-chart/line-chart.component';
 import { DeviceCardComponent } from './components/Prosumer/devices-page-components/device-card/device-card.component';
+import { SelectButtonModule } from 'primeng/selectbutton';
 
 export const url = 'https://localhost:7158';
 export const deviceFakerUrl = "https://localhost:7233";
@@ -110,6 +111,7 @@ export const deviceFakerUrl = "https://localhost:7233";
     DialogModule,
     CarouselModule,
     NgApexchartsModule,
+    SelectButtonModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: () => localStorage.getItem('access_token'),
