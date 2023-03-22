@@ -59,7 +59,7 @@ export class UserCardComponent implements OnInit {
     this.menageUserForm.patchValue({
       token: token
     })
-    console.log(this.menageUserForm.value);
+    
       if(token){
       this.userService.PutUser(this.userService.getUserIdFromToken(token),this.menageUserForm.value)
       .subscribe(

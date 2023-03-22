@@ -37,4 +37,10 @@ export class AuthService {
   {
     return !!localStorage.getItem('token');
   }
+
+  signUp(userObj : any)
+  {
+    return this.http.post<any>(`${this.baseUrl}register`,userObj);
+  }
+
 }
