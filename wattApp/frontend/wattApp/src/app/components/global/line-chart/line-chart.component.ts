@@ -39,7 +39,8 @@ export class LineChartComponent implements OnInit {
     text: 'Resource',
     style: {
       color: '#FFFFFF',
-      fontSize: '19px'
+      fontSize: '19px',
+      fontFamily: 'Montserrat'
     }
   };
 
