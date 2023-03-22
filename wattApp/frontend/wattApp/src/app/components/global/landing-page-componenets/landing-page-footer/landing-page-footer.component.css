@@ -1,7 +1,7 @@
 :host {
     display: flex;
     flex-direction: column;
-    background-color: #222222;
+    background-color: #1b1b1b;;
     color: #fff;
     padding: 40px 60px;
     width: 100%;
@@ -29,6 +29,7 @@
 
 .linkContainers{
     margin-left: 128px;
+    font-family: 'Montserrat', sans-serif;
 }
 
 hr{
