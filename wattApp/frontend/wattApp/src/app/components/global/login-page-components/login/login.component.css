@@ -1,5 +1,5 @@
 body{
-  background-color: #56857e;
+  background-color: #121212;
 }
 
 .login {
@@ -7,6 +7,7 @@ body{
   width: 100%;
   position: relative;
   top:-100px;
+  
 }
 
 .login_box {
