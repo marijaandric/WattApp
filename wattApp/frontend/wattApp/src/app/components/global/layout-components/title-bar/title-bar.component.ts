@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgToastService } from 'ng-angular-popup';
 import { AuthService } from 'src/app/services/auth/auth.service';
 
 interface Roles{
@@ -18,7 +19,7 @@ export class TitleBarComponent implements OnInit{
   roles : Roles[];
   roleSelected : string;
   
-  constructor(private router:Router,private fb: FormBuilder,private authService: AuthService) {
+  constructor(private router:Router,private fb: FormBuilder,private authService: AuthService,private toast:NgToastService) {
     this.roles = [
       {role:'prosumer'},
       {role:'operator'},
@@ -54,24 +55,22 @@ export class TitleBarComponent implements OnInit{
     this.signUpForm.patchValue({
       role : this.roleSelected
     })
-    console.log(this.signUpForm.value)
     if(this.signUpForm.valid)
     {
       this.authService.signUp(this.signUpForm.value).subscribe({
         next:(res => {
-          alert(res.message)
           this.signUpForm.reset()
+          this.toast.success({detail:"SUCCESS",summary:"You have successfully registered",duration:4000});
           this.display = false;
         }),
         error:(err => {
-          alert(err?.error.message)
+          this.toast.error({detail:"ERROR",summary:"Error",duration:4000});
         })
         
       })
-      console.log(this.signUpForm);
     }
     else{
-      console.log(this.signUpForm.value)
+      this.toast.error({detail:"ERROR",summary:"Error",duration:4000});
       this.validateAllFormFields(this.signUpForm)
     }
   }
