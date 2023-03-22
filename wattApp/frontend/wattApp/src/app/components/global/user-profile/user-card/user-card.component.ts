@@ -23,7 +23,6 @@ export class UserCardComponent implements OnInit {
       const userId = this.userService.getUserIdFromToken(token);
       this.userService.GetUser(userId,token).subscribe((data) => {
         this.userInfo = data;
-        console.log(this.userInfo.password);
       });
     }
     

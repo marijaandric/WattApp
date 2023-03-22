@@ -15,7 +15,6 @@ export class TitleBarComponent implements OnInit{
 
   ngOnInit(): void {
     this.menageUserForm = this.fb.group({
-      id: ['', Validators.required],
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       username: ['', Validators.required],
@@ -23,8 +22,8 @@ export class TitleBarComponent implements OnInit{
       phoneNumber: ['', Validators.required],
       address: ['', Validators.required],
       password: ['', Validators.required],
-      role: ['', Validators.required],
-      token: ['', Validators.required]
+      password2: ['', Validators.required],
+      role: ['', Validators.required]
     });
   }
   showDialog(){
