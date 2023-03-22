@@ -5,6 +5,7 @@ p{
 }
 
 .card{
+    color: white;
     background-color: transparent;
 }
 
@@ -17,16 +18,17 @@ button {
     background: #0BF4C8;
     color: #000000;
     font-weight: bold;
-    -webkit-box-shadow: 0px 9px 15px -11px #FAD85D;
+    -webkit-box-shadow: 0px 9px 15px -11px orange;
     -moz-box-shadow: 0px 9px 15px -11px #000000;
     box-shadow: 0px 9px 15px -11px #000000;
 }
 
 button:hover{
-    background-color: #FAD85D;
+    background-color: orange;
     color: #000000;
 }
 
 li{
+    color: white;
     background-color: transparent;
 }
