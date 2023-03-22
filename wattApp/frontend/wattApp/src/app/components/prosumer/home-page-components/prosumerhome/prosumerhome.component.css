@@ -114,3 +114,6 @@
     fill: #D63F74;
   } */
 
+  ::ng-deep .apexcharts-line-series path {
+    stroke: green;
+  }
