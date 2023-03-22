@@ -14,7 +14,7 @@ body{
   width: 1050px;
   height: 600px;
   position: absolute;
-  top: 60%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   background: #fff;
@@ -29,7 +29,7 @@ body{
   width: 41%;
   height: 100%;
   padding: 25px 25px;
-  font-weight: bolder;
+
 }
 
 .login_box .right {
@@ -40,7 +40,6 @@ body{
 .left .top_link a {
   color: #1d5f6b;
   font-weight: 400;
-  font-weight: bolder;
 }
 
 .left .top_link {
@@ -72,6 +71,7 @@ body{
   width: 80%;
   margin: 15px 0px;
   border-bottom: 1px solid #787878;
+  border-image: linear-gradient(45deg,  rgb(125, 2, 210),#F75C03) 1;
   padding: 7px 9px;
   width: 100%;
   overflow: hidden;
@@ -86,18 +86,27 @@ body{
 
 .submit {
   border: none;
-  padding: 15px 70px;
-  border-radius: 8px;
+  padding: 10px 50px;
+  border-radius: 32px;
   display: block;
   margin: auto;
-  margin-top: 70px;
-  background: #56857e;
+  margin-top:120px;
+  background: linear-gradient(90deg, rgb(125, 2, 210) -15.29%, #F75C03 100%);
   color: #fff;
-  font-weight: bold;
-  -webkit-box-shadow: 0px 9px 15px -11px #56857e;
-  -moz-box-shadow: 0px 9px 15px -11px #56857e;
-  box-shadow: 0px 9px 15px -11px #56857e;
+  font-weight:bolder;
+  box-shadow: 5px 5px 10px 1px black;
 }
+
+.submit:hover{
+  span {
+    background: -webkit-linear-gradient(90deg, rgb(125, 2, 210) -15.29%, #F75C03 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  background: none;
+  box-shadow: none;
+}
+
 
 .right {
   background: linear-gradient(45deg,rgb(125, 2, 210, 0.54)  -15.29%,rgb(247, 92, 3, 0.5) 100%);
@@ -114,7 +123,7 @@ body{
 }
 .info{
 
-  padding-left: 80px;
+  padding-left: 60px;
 }
 .info p {
   display: inline-block;
@@ -124,7 +133,6 @@ body{
 
 .fa-sharp {
   color: white;
-  background-color: #222222;
   border-radius: 90%;
   width: 40px;
   height: 40px;
@@ -136,7 +144,7 @@ body{
 .bold
 {
   font-weight: 500;
-  padding-left: 20px;
+  padding-left: 10px;
 }
 .naziv
 {
@@ -144,7 +152,6 @@ body{
 }
 .fa-phone {
   color: white;
-  background-color: #222222;
   border-radius: 90%;
   width: 40px;
   height: 40px;
@@ -155,7 +162,6 @@ body{
 }
 .fa-envelope {
   color: white;
-  background-color: #222222;
   border-radius: 90%;
   width: 40px;
   height: 40px;
@@ -166,7 +172,6 @@ body{
 }
 .fa-earth-americas {
   color: white;
-  background-color: #222222;
   border-radius: 90%;
   width: 40px;
   height: 40px;

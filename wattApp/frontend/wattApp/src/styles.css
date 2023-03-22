@@ -53,7 +53,7 @@
   border-bottom-right-radius: 32px !important;
 }
 
-p,a,li,body{
+p,a,li,body, div{
   color: white;
   font-family: 'Lato', sans-serif;
   
