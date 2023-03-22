@@ -3,7 +3,6 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
-<app-navbar></app-navbar>
 <body>
 	<section class="login">
 		<div class="login_box">
@@ -16,13 +15,13 @@
 						<input formControlName="password" [type]="type" placeholder="PASSWORD" name="password">
 						<small *ngIf="loginForm.controls['password'].dirty && loginForm.hasError('required','password')" class="danger" style="color: rgb(182, 126, 126);">Morate uneti password</small>
 						<i (click)="hideShowPass()" class="{{eyeIcon}}" style="color:white"></i>
-						<button (click)="onLogin()" class="submit">LET'S GO</button>
+						<button (click)="onLogin()" class="submit"><span>LET'S GO</span></button>
 					</form>
 				</div>
 			</div>
 			<div class="right">
 				<div class="right-text">
-					<h5>Power up your life, but don’t forget to power up your safety</h5>
+					<h5 style="">Power up your life, but don’t forget to power up your safety</h5>
 				</div>
 			</div>
 		</div>

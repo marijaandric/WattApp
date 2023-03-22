@@ -1,0 +1,146 @@
+body{ 
+}
+
+.login {
+  height: 100vh;
+  width: 100%;
+  position: relative;
+  background-size: cover;
+    
+  background-color:#121212; 
+  background-repeat:repeat;
+  
+}
+
+.login_box {
+  width: 1050px;
+  height: 600px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  border-radius: 20px;
+  display: flex;
+  overflow: hidden;
+  box-shadow: 5px 5px 10px 1px black;
+  background-color:#121212; 
+}
+
+.login_box .left {
+  width: 41%;
+  height: 100%;
+  padding: 25px 25px;
+
+}
+
+.login_box .right {
+  width: 59%;
+  height: 100%;
+}
+
+.left .top_link a {
+  color: #1d5f6b;
+  font-weight: 400;
+}
+
+.left .top_link {
+  height: 20px;
+}
+
+.left .contact {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: center;
+  height: 100%;
+  width: 73%;
+  margin: auto;
+
+}
+
+
+.left h3 {
+  color: white;
+  text-align: center;
+  margin-bottom: 40px;
+  font-weight: bolder;
+}
+
+.left input {
+  border: none;
+  width: 80%;
+  margin: 15px 0px;
+  border-bottom: 1px solid #787878;
+  border-image: linear-gradient(45deg,  rgb(125, 2, 210),#F75C03) 1;
+  padding: 7px 9px;
+  width: 100%;
+  overflow: hidden;
+  background: transparent;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.left {
+  background: linear-gradient( #222222, #222222);
+}
+
+.submit {
+  border: none;
+  padding: 10px 50px;
+  border-radius: 32px;
+  display: block;
+  margin: auto;
+  margin-top:150px;
+  background: linear-gradient(90deg, rgb(125, 2, 210) -15.29%, #F75C03 100%);
+  color: #fff;
+  font-weight:bolder;
+  box-shadow: 5px 5px 10px 1px black;
+}
+
+.submit:hover{
+  span {
+    background: -webkit-linear-gradient(90deg, rgb(125, 2, 210) -15.29%, #F75C03 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  background: none;
+  box-shadow: none;
+}
+
+.right {
+  background: linear-gradient(45deg,rgb(125, 2, 210, 0.54)  -15.29%,rgb(247, 92, 3, 0.5) 100%),
+  url('/assets/images/logo-images/loginImage_2.png');
+  color: #fff;
+  position: relative;
+  background-size: 650px 600px;
+}
+
+.right .right-text {
+  height: 100%;
+  position: relative;
+  transform: translate(0%, 45%);
+}
+
+.right-text h2 {
+  display: block;
+  width: 100%;
+  text-align: center;
+  font-size: 50px;
+  font-weight: bolder;
+}
+
+.right-text h5 {
+  display: block;
+  width: 60%;
+  text-align: center;
+  font-size: 29px;
+  font-weight: 400;
+  margin:auto;
+  font-weight:bolder;
+}
+
+i{
+  float:right;
+}
+

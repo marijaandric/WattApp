@@ -94,6 +94,14 @@
   background-color:rgb(4, 167, 119);
 }
 
+
+.pink-color {
+  color: #F75C03;
+}
+.bg-pink-color {
+  background-color:#F75C03;
+}
+
 @media only screen and (max-width: 639px) {
   :host {
     -ms-flex-preferred-size: 100%;
