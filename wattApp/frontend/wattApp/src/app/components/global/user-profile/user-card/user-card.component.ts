@@ -39,9 +39,6 @@ export class UserCardComponent implements OnInit {
       token: ['', Validators.required]
     });
 
-    this.menageUserForm.patchValue({
-      firstName: 'John'
-    });
     
   }
 
