@@ -101,6 +101,15 @@
   margin-top: 20px;
 }
 
+.line3
+{
+  background-color: #1b1b1b;
+  width: 400px;
+  border-radius: 20px;
+  padding-top: 10px;
+  margin-top: 20px;
+}
+
 .line2{
   float:left;
 }

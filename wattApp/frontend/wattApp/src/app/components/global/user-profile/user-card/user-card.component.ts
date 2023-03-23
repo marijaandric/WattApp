@@ -38,6 +38,10 @@ export class UserCardComponent implements OnInit {
       role: ['', Validators.required],
       token: ['', Validators.required]
     });
+
+    this.menageUserForm.patchValue({
+      firstName: 'John'
+    });
     
   }
 
