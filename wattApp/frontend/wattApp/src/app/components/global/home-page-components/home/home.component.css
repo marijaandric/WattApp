@@ -1,202 +1,75 @@
-body{
-  background: #121212;
-  pointer-events: none;
-  height: 100vh;
-}
-
-.login {
-  height: 900px;
+:host{
   width: 100%;
+  height: fit-content;
+  min-height: 100vh;
+}
+
+.hello {
+  position:relative;
   position: relative;
-}
-
-.login_box {
-  width: 1050px;
-  height: 600px;
-  position: absolute;
-  top: 60%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: #fff;
-  box-shadow: 5px 5px 15px black;
-  border-radius: 20px;
-  display: flex;
-  overflow: hidden;
-  background: #121212;
-}
-
-.login_box .left {
-  width: 41%;
-  height: 100%;
-  padding: 25px 25px;
-  font-weight: bolder;
-}
-
-.login_box .right {
-  width: 59%;
-  height: 100%;
-}
-
-.left .top_link a {
-  color: #1d5f6b;
-  font-weight: 400;
-  font-weight: bolder;
-}
-
-.left .top_link {
-  height: 20px;
-  font-weight: bolder;
-}
-
-.left .contact {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  align-self: center;
-  height: 100%;
-  width: 73%;
-  margin: auto;
-  font-weight: bolder;
-  
-}
-
-.left h3 {
-  color: white;
-  text-align: center;
-  margin-bottom: 40px;
-  font-weight: bolder;
-}
-
-.left input {
-  border: none;
-  width: 80%;
-  margin: 15px 0px;
-  border-bottom: 1px solid #787878;
-  padding: 7px 9px;
-  width: 100%;
-  overflow: hidden;
-  background: transparent;
-  font-weight: 600;
-  font-size: 14px;
-}
-
-.left {
-  background: linear-gradient( #222222, #222222);
-}
-
-.submit {
-  border: none;
-  padding: 15px 70px;
-  border-radius: 8px;
-  display: block;
-  margin: auto;
-  margin-top: 70px;
-  background: #56857e;
-  color: #fff;
-  font-weight: bold;
-  -webkit-box-shadow: 0px 9px 15px -11px #56857e;
-  -moz-box-shadow: 0px 9px 15px -11px #56857e;
-  box-shadow: 0px 9px 15px -11px #56857e;
-}
-
-.right {
-  background: linear-gradient(45deg,rgb(125, 2, 210, 0.54)  -15.29%,rgb(247, 92, 3, 0.5) 100%);
-
-  color: #fff;
-  position: relative;
-  background-size: 650px 600px;
-}
-
-.right .right-text {
-  height: 100%;
-  position: relative;
-  transform: translate(0%, 45%);
-}
-.info{
-
-  padding-left: 80px;
-}
-.info p {
   display: inline-block;
-  /* ili */
-  /* float: left; */
+  flex-direction: column;
+  color:white;
 }
 
-.fa-sharp {
-  color: white;
-  background-color: #222222;
-  border-radius: 90%;
-  width: 40px;
-  height: 40px;
-  text-align: center;
-  padding-top: 7px;
-  font-size: 26px;
-
-}
-.bold
-{
-  font-weight: 500;
-  padding-left: 20px;
-}
-.naziv
-{
-  padding-left: 7px;
-}
-.fa-phone {
-  color: white;
-  background-color: #222222;
-  border-radius: 90%;
-  width: 40px;
-  height: 40px;
-  text-align: center;
-  padding-top: 8px;
-  font-size: 22px;
-
-}
-.fa-envelope {
-  color: white;
-  background-color: #222222;
-  border-radius: 90%;
-  width: 40px;
-  height: 40px;
-  text-align: center;
-  padding-top: 8px;
-  font-size: 22px;
-
-}
-.fa-earth-americas {
-  color: white;
-  background-color: #222222;
-  border-radius: 90%;
-  width: 40px;
-  height: 40px;
-  text-align: center;
-  padding-top: 8px;
-  font-size: 22px;
-
-}
-.text2
-{
-  font-size: 29px;
-  padding-left: 40px;
-  padding-top: 70px;
-  font-weight: bolder;
-}
-.text3
-{
-  font-size: 20px;
-  padding-left: 40px;
-  width:500px;
-  margin-bottom: 5%;
-  font-weight: bolder;
-
-}
-
-
-
-
-
+.widgets {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 20px 0;
+  min-height: 120px;
+  justify-content:space-between;
   
+}
+
+.widget {
+  flex-basis: calc(23%);
+  margin-bottom: 30px;
+  display: inline-block;
+  position: relative;
+  flex-direction: row;
+  max-width: 23%;
+  min-width: 240px;
+  width:20%;
+  box-shadow: 5px 5px 15px black;
+  
+}
+
+.iframe-div {
+  position: relative;
+  display:flex;
+  overflow: hidden;
+  flex-direction: row;
+  border-radius: 32px; 
+  z-index:1;  
+  width:100%;
+  height: 90%;
+}
+
+:host>.filter-div {
+  position: absolute;
+  right:30px;
+  top :30px;
+  width:120px;
+  height:50px;
+  font-size: 20px;
+  z-index:2;
+  background-color: #222222;
+  border-radius: 32px;
+}
 
 
+@media only screen and (max-width: 979px) {
+  .widget {
+    -ms-flex-preferred-size: calc(50% - 30px);
+    flex-basis: calc(50% - 30px);
+  }
+}
+
+@media only screen and (max-width: 639px) {
+  .widget {
+    -ms-flex-preferred-size: 100%;
+    flex-basis: 100%;
+  }
+}
 
