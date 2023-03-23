@@ -26,13 +26,14 @@
   margin-top: 20px;
   min-height: 40px;
   overflow: hidden;
-  font-weight: bold;
+  font-weight: bolder;
   font-size: 30px;
   color: #FFF;
   align-items: end;
   cursor: default;
   z-index: 2;
   position: relative;
+  font-family: 'Montserrat', sans-serif;
 }
 
 :host>.item_date-box {
@@ -40,22 +41,24 @@
   z-index: 2;
   position: relative;
   cursor: default;
-  font-weight: bold;
+  font-weight: bolder;
   font-size: 20px;
   padding-right: 10px;
   -webkit-transition: color .5s ease;
   -o-transition: color .5s ease;
   transition: color .5s ease;
+  font-family: 'Montserrat', sans-serif;
 }
 
 :host>.item_date {
-  font-weight: bold;
+  font-weight: bolder;
   cursor: default;
   font-size: 20px;
   padding-right: 10px;
   -webkit-transition: color .5s ease;
   -o-transition: color .5s ease;
   transition: color .5s ease;
+  font-family: 'Montserrat', sans-serif;
 }
 
 :host>.item_bg {
@@ -92,6 +95,14 @@
 }
 .bg-pink-color {
   background-color:rgb(4, 167, 119);
+}
+
+
+.orange-color {
+  color:#F75C03;
+}
+.bg-orange-color {
+  background-color: #F75C03;
 }
 
 @media only screen and (max-width: 639px) {

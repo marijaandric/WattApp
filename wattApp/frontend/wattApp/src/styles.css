@@ -53,12 +53,12 @@
   border-bottom-right-radius: 32px !important;
 }
 
-p,a,li,span,body{
+p,a,li,body, div{
   color: white;
   font-family: 'Lato', sans-serif;
   
 }
-h1,h2,h3,h4,h5,h6 {
+h1,h2,h3,h4,h5,h6 ,span{
   font-family: 'Montserrat', sans-serif;
   color:white;
 
