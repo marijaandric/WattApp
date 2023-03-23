@@ -13,4 +13,8 @@ export class APIService {
     return this.http.get<any>(this.baseUrl);
   }
 
+  getWeatherData(cityName:string)
+  {
+   
+  }
 }

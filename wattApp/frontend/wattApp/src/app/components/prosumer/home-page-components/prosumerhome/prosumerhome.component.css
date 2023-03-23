@@ -101,6 +101,10 @@
   margin-top: 20px;
 }
 
+.line2{
+  float:left;
+}
+
 
 @media only screen and (max-width: 979px) {
     .widget {

@@ -18,7 +18,7 @@
         
     </div>
     <h3 class="hello">News and funs</h3>
-    <div class="promotions">
+    <div class="promotions" >
       <app-promotion [isBlue]="true" [isBgBlue]="true" class="promotion">
       </app-promotion>
       <app-promotion [isYellow]="true" [isBgYellow]="true" class="promotion1">
@@ -26,12 +26,18 @@
       <app-promotion [isPink]="true" [isBgPink]="true" class="promotion1">
       </app-promotion>     
     </div>
-    <div class="line">
-      <app-line-chart></app-line-chart>
+    <div style="display: inline-block;">
+      <div class="line2">
+      <div class="line">
+        <app-line-chart></app-line-chart>
+      </div>
+    </div>
+      <div class="line2">
+      <app-weather-forecast ></app-weather-forecast>
+    </div>
     </div>
     <h3 class="hello">Rooms</h3>
    
-    
     <!--<div class="filter-div"><span>filter</span></div>-->
     </app-center-bar>
   </standard-template>
