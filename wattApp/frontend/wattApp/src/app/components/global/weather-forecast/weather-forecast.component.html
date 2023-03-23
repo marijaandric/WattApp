@@ -7,7 +7,9 @@
       <h2 class="location">{{WeatherData.name}}</h2>
       <h2 class="location">{{WeatherData.temp_celcius}}°C</h2>
       <p class="date">{{ time }} | {{ date }}</p>
-      <!--<h1 class="temp">Humidity: {{WeatherData.main.humidity}}%</h1>-->
-      <h1 class="temp">Feels Like: {{WeatherData.temp_feels_like}}°</h1>
+      <div class="info2">
+        <h4 >Humidity: {{WeatherData.main.humidity}}%</h4>
+        <h4 >Feels Like: {{WeatherData.temp_feels_like}}°</h4>
+      </div>
     </div>
   </div>
