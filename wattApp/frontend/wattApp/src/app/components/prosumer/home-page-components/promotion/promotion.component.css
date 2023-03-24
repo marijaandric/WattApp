@@ -23,15 +23,15 @@
   z-index: 2;
   position: relative;
   font-family: 'Lato', sans-serif;
+  text-align: justify;
 }
 
 :host>.item_date-box {
-  font-size: 18px;
   z-index: 2;
   position: relative;
   cursor: default;
   font-weight: bold;
-  font-size: 28px;
+  font-size: 24px;
   padding-right: 10px;
   -webkit-transition: color .5s ease;
   -o-transition: color .5s ease;
