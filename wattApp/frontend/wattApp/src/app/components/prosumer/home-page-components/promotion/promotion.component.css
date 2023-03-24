@@ -16,7 +16,7 @@
   min-height: 40px;
   overflow: hidden;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 19px;
   color: #FFF;
   align-items: end;
   cursor: default;
@@ -42,7 +42,7 @@
 :host>.item_date {
   font-weight: bold;
   cursor: default;
-  font-size: 30px;
+  font-size: 25px;
   padding-right: 10px;
   -webkit-transition: color .5s ease;
   -o-transition: color .5s ease;
