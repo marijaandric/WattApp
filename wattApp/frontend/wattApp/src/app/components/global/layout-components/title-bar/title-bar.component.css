@@ -38,6 +38,12 @@ li :hover{
 li :visited{
     text-decoration: none;
 }
+
+.profile-image{
+    background-color: white;
+    width: 2em;
+    border-radius: 20px;
+}
   
 @media (max-width: 767px) {
     .hidden-xs {
