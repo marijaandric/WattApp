@@ -2,7 +2,6 @@
   display: block;
   scroll-behavior: smooth;
   box-sizing: border-box;
-  overflow-x: hidden;
   background-color: #1b1b1b;
   z-index: 6;
 }
@@ -173,20 +172,6 @@ h2{
 	box-shadow: inset 1px 1px 15px 0 rgba(0 0 0 / .4);
   color: white;
 }
-
-.wrap:hover .overlay
- {
-	transform: translateX(-80vmin);
-}
-.wrap:hover .image-content {
-	width: 40vmin;
-}
-.wrap:hover .overlay-content {
-	border: none;
-	transition-delay: .2s;
-	transform: translateX(80vmin);
-}
-
 /* Animations and timing delays */
 .animate {
   animation-duration: 0.7s;

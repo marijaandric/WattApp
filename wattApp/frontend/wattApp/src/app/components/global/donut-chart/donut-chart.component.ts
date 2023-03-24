@@ -25,7 +25,7 @@ export class DonutChartComponent implements OnInit {
   };
 
   chartLabels = ["Carbon", "Green energy", "Own energy"]
-
+  
   chartTitle: ApexTitleSubtitle = {
     text: 'Energy type',
     align: 'center',
@@ -42,6 +42,7 @@ export class DonutChartComponent implements OnInit {
   chartLegend: ApexLegend = {
     position: 'right',
     offsetY: 0,
+    
     labels: {
       colors: '#FFFFFF'
     }

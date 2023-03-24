@@ -18,6 +18,7 @@ export class TitleBarComponent implements OnInit{
   signUpForm! : FormGroup;
   roles : Roles[];
   roleSelected : string;
+  showText = false;
   
   constructor(private router:Router,private fb: FormBuilder,private authService: AuthService,private toast:NgToastService) {
     this.roles = [
