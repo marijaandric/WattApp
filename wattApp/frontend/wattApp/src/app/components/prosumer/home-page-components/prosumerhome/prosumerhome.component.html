@@ -4,7 +4,7 @@
     </app-title-bar>
   
     <app-center-bar>
-    <h3 class="hello">Hello, Vanja Mijatovic</h3>
+    <h3 class="hello">Hello, {{user?.firstName}} {{user?.lastName}}</h3>
     <div class="widgets">
         
       <app-widget [isBlue]="true" [isBgBlue]="true" class="widget">
@@ -24,23 +24,32 @@
       <app-promotion [isYellow]="true" [isBgYellow]="true" class="promotion1">
       </app-promotion>
       <app-promotion [isPink]="true" [isBgPink]="true" class="promotion1">
-      </app-promotion>     
+      </app-promotion>  
     </div>
     <div style="display: inline-block;">
       <div class="line2">
         <div class="line">
           <app-line-chart></app-line-chart>
         </div>
-     </div><div class="line2">
+     </div>
+     <div class="line2">
       <div class="line3">
         <app-pie-chart></app-pie-chart>
       </div>
     </div>
-      <div class="line2">
+    <div class="line2">
       <app-weather-forecast ></app-weather-forecast>
-      </div>
+    </div>
       
     </div>
+    <div style="display: inline-block;">
+      <div class="line2" style="background-color: #1b1b1b; border-radius: 20px;">
+      <app-bar-chart></app-bar-chart>
+      </div>
+      <div class="line2" style="background-color: #1b1b1b;margin-left: 30px;border-radius: 20px;">
+      <app-donut-chart></app-donut-chart>
+    </div>
+      </div>
     <h3 class="hello">Rooms</h3>
    
     <!--<div class="filter-div"><span>filter</span></div>-->

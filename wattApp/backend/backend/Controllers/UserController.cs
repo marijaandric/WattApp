@@ -69,7 +69,6 @@ namespace backend.Controllers
             if (userObj == null || string.IsNullOrEmpty(userObj.Email) || string.IsNullOrEmpty(userObj.Password) || string.IsNullOrEmpty(userObj.FirstName) || string.IsNullOrEmpty(userObj.LastName))
                 return BadRequest();
             return _context.registerUser(userObj);
-            //return Ok();
         }
 
 

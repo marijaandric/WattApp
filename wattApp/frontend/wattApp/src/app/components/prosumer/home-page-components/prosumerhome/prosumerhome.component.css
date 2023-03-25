@@ -63,7 +63,7 @@
     display: inline-block;
     position: relative;
     flex-direction: row;
-    max-width: 23%;
+    /*max-width: 23%;*/
     min-width: 240px;
     width:20%;
     box-shadow: 10px 10px 50px black;  
@@ -98,7 +98,6 @@
   width: 600px;
   border-radius: 20px;
   padding-top: 10px;
-  margin-top: 20px;
 }
 
 .line3
@@ -108,12 +107,13 @@
   border-radius: 20px;
   padding-top: 10px;
   margin-top: 20px;
-  margin-left: 30px;
+  margin-left: 40px;
 }
 
 .line2{
   float:left;
 }
+
 
 
 @media only screen and (max-width: 979px) {
@@ -129,7 +129,57 @@
       flex-basis: 100%;
     }
   }
+  @media only screen and (max-width: 500px) {
+    .promotions {
+      min-width: 250px;
+      overflow-x: scroll;
+      display: flex;
+      flex-wrap: nowrap;
+    }
 
+    .promotion, .promotion1{
+      display: inline-block;
+      vertical-align: top;
+      min-width: 240px;
+      margin-right: 10px;
+      margin-left: 10px;
+      margin-bottom: 10px;
+      height: 180px;
+    }
+
+    .widgets{
+      overflow-x: scroll;
+      display: flex;
+      flex-wrap: nowrap;
+    }
+    .widget{
+      margin-right: 10px;
+      margin-left: 10px;
+      display: inline-block;
+      vertical-align: top;
+    }
+
+    .widgets::-webkit-scrollbar {
+      width: 10px; /* adjust to your desired width */
+      margin-bottom: -5px;
+    }
+
+    .widgets::-webkit-scrollbar-thumb {
+      background-color: rgba(214, 214, 214, 0.212); /* adjust to your desired color */
+      border-radius: 10px; /* adjust to your desired radius */
+    }
+
+    .promotions::-webkit-scrollbar {
+      width: 10px; /* adjust to your desired width */
+    }
+
+    .promotions::-webkit-scrollbar-thumb {
+      background-color: rgba(214, 214, 214, 0.212); /* adjust to your desired color */
+      border-radius: 10px; /* adjust to your desired radius */
+    }
+  }
+
+  
   /* ::ng-deep .apexcharts-series path:nth-child(1) {
     fill: #F48207;
   }

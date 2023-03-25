@@ -78,3 +78,40 @@ p-dropdown {
   }
 }
 
+
+@media only screen and (max-width: 500px) {
+  .promotions {
+    overflow-x: scroll;
+    white-space: nowrap;
+    display: flex;
+    flex-wrap: nowrap;
+  }
+
+  .promotion, .promotion1{
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  .widgets{
+    overflow-x: scroll;
+    white-space: nowrap;
+    display: flex;
+    flex-wrap: nowrap;
+  }
+  .widget{
+    margin-right: 10px;
+    margin-left: 10px;
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  .widgets::-webkit-scrollbar {
+    width: 10px; /* adjust to your desired width */
+  }
+
+  .widgets::-webkit-scrollbar-thumb {
+    background-color: rgba(214, 214, 214, 0.212); /* adjust to your desired color */
+    border-radius: 10px; /* adjust to your desired radius */
+  }
+}
+

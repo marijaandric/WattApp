@@ -5,6 +5,9 @@ using backend.BLL.Interfaces;
 using backend.Context;
 using backend.DAL;
 using backend.DAL.Interfaces;
+using backend.Services.Weather;
+using Hangfire;
+using Hangfire.Storage.SQLite;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
@@ -61,6 +64,15 @@ builder.Services.AddAuthentication(x =>
     };
 });
 
+builder.Services.AddHangfire( config => config
+                            .UseSimpleAssemblyNameTypeSerializer()
+                            .UseRecommendedSerializerSettings()
+                            .UseSQLiteStorage(builder.Configuration.GetConnectionString("DefaultConnection"))
+);
+
+builder.Services.AddHangfireServer();
+builder.Services.AddTransient<IWeatherService, WeatherService>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -77,5 +89,10 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseHangfireDashboard();
+app.MapHangfireDashboard();
+
+RecurringJob.AddOrUpdate<IWeatherService>(x => x.ScrapeWeatherApi(), "0 * * ? * *");
 
 app.Run();
