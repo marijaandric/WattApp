@@ -142,9 +142,6 @@
     fill: #D63F74;
   } */
 
-  ::ng-deep .apexcharts-line-series path {
-    stroke: rgb(4,167,119);
-  }
 
   ::ng-deep #SvgjsPath1012 {
     fill:red;

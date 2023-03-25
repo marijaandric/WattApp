@@ -25,6 +25,9 @@ export class HomeComponent {
   menageUserForm! : FormGroup;
   cities: City[];
   selectedCity!: City;
+  type: City[];
+  selectedType!: City;
+
 
   constructor(private userService:UserService, private authService:AuthService) {
     this.cities = [
@@ -34,7 +37,14 @@ export class HomeComponent {
       {name: 'Istanbul', code: 'IST'},
       {name: 'Paris', code: 'PRS'}
   ];
+  this.type = [
+    {name: 'Production', code: 'NY'},
+    {name: 'Consumption', code: 'RM'},
+    {name: 'Stock', code: 'LDN'},
+    {name: 'All', code: 'IST'},
+];
   }
+
 
   showDialog() {
     this.display = true;

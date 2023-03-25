@@ -15,8 +15,8 @@ export class BarChartComponent implements OnInit {
   ];
   public chart: ApexChart = {
     type: 'bar',
-    height: 500,
-    width: 600,
+    height: 300,
+    width: '100%',
   };
   public xaxis: ApexXAxis = {
     categories: ['Consumption', 'Production', 'Stock'],
