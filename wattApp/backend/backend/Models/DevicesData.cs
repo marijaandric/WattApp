@@ -5,12 +5,12 @@ namespace backend.Models
     public class DevicesData
     {
         [Key]
-        public int Id { get; set; }
-        public int DeviceID { get; set; }
-        public int Day { get; set; }
-        public int Month { get; set; }
-        public int Year { get; set; }
-        public string Time { get; set; }
-        public float PowerUsage { get; set; }
+        public string id { get; set; }
+        public int deviceID { get; set; }
+        public int day { get; set; }
+        public int month { get; set; }
+        public int year { get; set; }
+        public string time { get; set; }
+        public double powerUsage { get; set; }
     }
 }
