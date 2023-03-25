@@ -8,6 +8,7 @@ import {  ApexAxisChartSeries, ApexChart, ApexXAxis, ApexTitleSubtitle,ApexYAxis
 })
 export class LineChartComponent implements OnInit {
   @Input() chartHeight: number = 400;
+  @Input() chartWidth: number = 400;
   public series: ApexAxisChartSeries = [
     {
       name: 'Resorce',
@@ -16,7 +17,7 @@ export class LineChartComponent implements OnInit {
   ];
   public chart: ApexChart = {
     type: 'line',
-    width: 600,
+    width:this.chartWidth,
     height:this.chartHeight 
   };
   public xaxis: ApexXAxis = {
@@ -47,6 +48,7 @@ export class LineChartComponent implements OnInit {
 
   ngOnInit(): void {
     this.chart.height = this.chartHeight;
+    this.chart.width = this.chartWidth;
   }
 
 }

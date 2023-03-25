@@ -7,13 +7,35 @@
   .chart-container {
     display: inline-block;
     margin: 10px;
+    width: 400px;
+    height: 300px;
+    border-radius: 20px;
+    background-color: #1b1b1b;
+    box-shadow: 5px 5px 15px black;
   }
   .chart-container-pie {
     margin-top: 20px;
     margin-bottom: 20px;
   }
+  .chart-container-bar
+  {
+    display: inline-block;
+    margin: 10px;
+    height: 300px;
+    border-radius: 20px;
+    background-color: #1b1b1b;
+    box-shadow: 5px 5px 15px black;
+  }
 
-  
+  .chart-container-pie {
+    width: 400px;
+    height: 212px;
+    border-radius: 20px;
+    background-color: #1b1b1b;
+    box-shadow: 5px 5px 15px black;
+    padding-right: 200px;
+
+  }
   
   
   

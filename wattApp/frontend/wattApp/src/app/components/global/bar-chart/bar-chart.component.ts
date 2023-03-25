@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input } from '@angular/core';
 import {  ApexAxisChartSeries, ApexChart, ApexXAxis, ApexTitleSubtitle,ApexYAxis } from 'ng-apexcharts';
 
 @Component({
@@ -7,6 +7,7 @@ import {  ApexAxisChartSeries, ApexChart, ApexXAxis, ApexTitleSubtitle,ApexYAxis
   template: '<apx-chart [series]="series" [chart]="chart" [xaxis]="xaxis" [yaxis]="yaxis" [title]="title"></apx-chart>',
 })
 export class BarChartComponent implements OnInit {
+  @Input() chartHeight: number = 400;
   public series: ApexAxisChartSeries = [
     {
       name: 'Resorce',
@@ -15,7 +16,7 @@ export class BarChartComponent implements OnInit {
   ];
   public chart: ApexChart = {
     type: 'bar',
-    height: 500,
+    height: this.chartHeight,
     width: 600,
   };
   public xaxis: ApexXAxis = {
@@ -43,5 +44,7 @@ export class BarChartComponent implements OnInit {
     }
   };
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.chart.height = this.chartHeight;
+  }
 }
