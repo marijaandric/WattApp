@@ -111,3 +111,17 @@
     flex-basis: 100%;
   }
 }
+
+@media only screen and (max-width: 500px) {
+  :host {
+    max-height: 100px;
+    margin-bottom: 5px;
+  }
+  :host>.item_title {
+    font-size: 20px;
+  }
+  :host>.item_date-box {
+    font-size: 15px;
+    padding-right: 5px;
+  }
+}
