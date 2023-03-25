@@ -3,6 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { UserService } from 'src/app/services/user.service';
 
 interface Roles{
   role:string;
@@ -19,8 +20,9 @@ export class TitleBarComponent implements OnInit{
   roles : Roles[];
   roleSelected : string;
   showText = false;
+  rola:any;
   
-  constructor(private router:Router,private fb: FormBuilder,private authService: AuthService,private toast:NgToastService) {
+  constructor(private router:Router,private fb: FormBuilder,private authService: AuthService,private toast:NgToastService,private userService:UserService) {
     this.roles = [
       {role:'prosumer'},
       {role:'operator'},
@@ -87,5 +89,26 @@ export class TitleBarComponent implements OnInit{
         this.validateAllFormFields(control)
       }
     })
+  }
+
+  isAdmin()
+  {
+    const token = this.authService.getToken();
+    if(token)
+    {
+      if(this.userService.getUserRoleFromToken(token))
+      {
+        this.rola = this.userService.getUserRoleFromToken(token);
+        if(this.rola == "prosumer")
+        {
+          return false;
+        }
+        else{
+          return true;
+        }
+      }
+    }
+    return false;
+    
   }
 }

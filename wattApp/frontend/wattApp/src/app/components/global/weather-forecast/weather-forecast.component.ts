@@ -18,7 +18,6 @@ export class WeatherForecastComponent implements OnInit {
       isDay: true
     };
     this.getWeatherData();
-    console.log(this.WeatherData);
 
     setInterval(() => {
       this.time = new Date().toLocaleTimeString();

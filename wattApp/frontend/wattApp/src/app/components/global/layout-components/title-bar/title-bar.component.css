@@ -18,10 +18,11 @@
 
 .right-part li{
     width: fit-content;
+    min-width: 20px;
     float:right;
     margin-left: 2.5em;
 }
-
+  
 .text{
     display:inline;
     margin-left: 1em;
@@ -45,6 +46,13 @@ li :visited{
     border-radius: 20px;
 }
   
+@media (min-width: 768px)
+{
+    .right-part li{
+        min-width: 100px;
+    }
+}
+
 @media (max-width: 767px) {
     .hidden-xs {
       display: none;
