@@ -2,4 +2,37 @@
     <app-title-bar>
       <h3>Statistic</h3>
     </app-title-bar>
+
+    <app-center-bar>
+        <div class="dijagram">
+            <app-line-chart [chartHeight]="chartHeight"></app-line-chart>
+        </div>
+
+        <div class="dijagrami">
+            <div class="chart-container">
+              <app-pie-chart></app-pie-chart>
+            </div>
+            <div class="chart-container">
+              <app-bar-chart></app-bar-chart>
+            </div>
+          </div>
+    </app-center-bar>
+
+    <app-info-bar>
+        <div class="podaci">
+            <div class="chart-container-pie">
+                <app-pie-chart></app-pie-chart>
+              </div>
+              <div class="chart-container-pie">
+                <app-pie-chart></app-pie-chart>
+              </div>
+              <div class="chart-container-pie">
+                <app-pie-chart></app-pie-chart>
+              </div>
+
+        </div>
+    </app-info-bar>
+
+
+
 </standard-template>

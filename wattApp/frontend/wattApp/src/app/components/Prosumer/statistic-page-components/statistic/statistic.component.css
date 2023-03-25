@@ -1,0 +1,20 @@
+.dijagrami {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .chart-container {
+    display: inline-block;
+    margin: 10px;
+  }
+  .chart-container-pie {
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+
+  
+  
+  
+  
+  
