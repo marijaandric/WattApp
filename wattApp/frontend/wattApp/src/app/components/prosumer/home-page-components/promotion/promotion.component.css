@@ -8,9 +8,10 @@
     /*min-width: 340px;*/
     border-radius: 20px;
     padding:  40px 40px 20px 20px;
-    box-shadow: 5px 5px 15px black; 
     flex-basis: calc(33.33333% - 30px);
+    box-shadow: 5px 5px 15px black; 
 }
+
 :host>.item_title {
   margin-top: 20px;
   min-height: 40px;
@@ -89,5 +90,16 @@
   :host {
     -ms-flex-preferred-size: 100%;
     flex-basis: 100%;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  
+  :host>.item_title {
+    font-size: 10px;
+  }
+  :host>.item_date-box {
+    font-size: 15px;
+    padding-right: 8px;
   }
 }

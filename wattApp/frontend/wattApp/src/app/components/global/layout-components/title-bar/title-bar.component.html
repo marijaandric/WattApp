@@ -1,58 +1,59 @@
 <ng-content></ng-content>
-<div id="right-part" class="right-part flexRow">
-    <a (click)="showDialog()" style="cursor: pointer;">Add user</a>
-    <p-dialog [style]="{width:'40%'}" header="Title2"  [transitionOptions]="'3ms'" 
-  [draggable]="true" [keepInViewport]="true" [resizable]="false" 
-  [blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true" 
-  [modal]="true" [(visible)]="display" [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
-  [closable]="true" >
-  <ng-template pTemplate="header" class="header-dialog">
-    <span>Registration</span>
-  </ng-template>
-  
-  <ng-template pTemplate="content">
-    <form [formGroup]="signUpForm" >
-    
-    <div class="p-inputgroup p-inputtext-lg p-input-filled">
-      <div class="half">
-        <input formControlName="firstName" name="firstName" appendTo="body" type="text"  class="p-inputtext-lg"  placeholder="NAME">
-        <small class="text-danger" *ngIf="signUpForm.controls['firstName'].dirty && signUpForm.hasError('required','firstName')">First name is required</small>
-        <input formControlName="lastName" name="lastName"  appendTo="body" type="text"   class="p-inputtext-lg"  placeholder="LAST NAME"> 
-        <small class="text-danger" *ngIf="signUpForm.controls['lastName'].dirty && signUpForm.hasError('required','lastName')">Last name is required</small>
-        <input formControlName="username" name="username"  appendTo="body" type="text"   class="p-inputtext-lg"  placeholder="USERNAME"> 
-        <small class="text-danger" *ngIf="signUpForm.controls['username'].dirty && signUpForm.hasError('required','username')">Username is required</small>
-        <input formControlName="password" name="password" appendTo="body" type="text"  class="p-inputtext-lg"  placeholder="PASSWORD"> 
-        <small class="text-danger" *ngIf="signUpForm.controls['password'].dirty && signUpForm.hasError('required','password')">Password is required</small>
-        <input formControlName="password2" name="password2" appendTo="body" type="text"  class="p-inputtext-lg"  placeholder="REPEAT PASSWORD"> 
-        <small class="text-danger" *ngIf="signUpForm.controls['password2'].dirty && signUpForm.hasError('required','password2')">Password is required</small>
-        
-      </div>
-    
-      <div class="half">
-        <input formControlName="email" name="email" appendTo="body" type="text"   class="p-inputtext-lg"  placeholder="EMAIL"> 
-        <small class="text-danger" *ngIf="signUpForm.controls['email'].dirty && signUpForm.hasError('required','email')">Email is required</small>
-        <input formControlName="phoneNumber" name="phone" appendTo="body" type="text"   class="p-inputtext-lg"  placeholder="PHONE NUMBER"> 
-        <small class="text-danger" *ngIf="signUpForm.controls['phoneNumber'].dirty && signUpForm.hasError('required','phoneNumber')">Phone number is required</small>
-        <input formControlName="address" name="address" appendTo="body" type="text"   class="p-inputtext-lg"  placeholder="ADDRESS">     
-        <small class="text-danger" *ngIf="signUpForm.controls['address'].dirty && signUpForm.hasError('required','address')">Address is required</small>
-        <p-dropdown  [options]="roles" appendTo="body" optionLabel="role" (onChange)="onRoleChange($event)"></p-dropdown>
-        
-      </div>
-    </div> 
-  </form>
-  </ng-template>
-  
-  <ng-template pTemplate="footer" >
-    <button (click)="onSignUp()" type="button" class="footer-button" icon="pi pi-info-circle" label="Show"><span>Save</span></button>
 
-  </ng-template>
-</p-dialog>
-    <a href="">About us</a>
-    <a routerLink="/contact">Contact</a>
-    <div id="my-profile" class="my-profile flexRow">
-        <div class="circle">
-            <img class="circle-image" src="/assets/images/team-profile-pictures/vanja.png" alt="My profile picture">
-        </div>
-        <p routerLink="/user" style="cursor: pointer;">Vanja Mijatovic</p>
+<p-dialog [style]="{width:'40%'}" header="Title2"  [transitionOptions]="'3ms'" 
+[draggable]="true" [keepInViewport]="true" [resizable]="false" 
+[blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true" 
+[modal]="true" [(visible)]="display" [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
+[closable]="true">
+<ng-template pTemplate="header" class="header-dialog">
+
+  
+<span>Registration</span>
+</ng-template>
+
+<ng-template pTemplate="content">
+  <form [formGroup]="signUpForm" >
+  
+  <div class="p-inputgroup p-inputtext-lg p-input-filled">
+    <div class="half">
+      <input formControlName="firstName" name="firstName" appendTo="body" type="text"  class="p-inputtext-lg"  placeholder="NAME">
+      <small class="text-danger" *ngIf="signUpForm.controls['firstName'].dirty && signUpForm.hasError('required','firstName')">First name is required</small>
+      <input formControlName="lastName" name="lastName"  appendTo="body" type="text"   class="p-inputtext-lg"  placeholder="LAST NAME"> 
+      <small class="text-danger" *ngIf="signUpForm.controls['lastName'].dirty && signUpForm.hasError('required','lastName')">Last name is required</small>
+      <input formControlName="username" name="username"  appendTo="body" type="text"   class="p-inputtext-lg"  placeholder="USERNAME"> 
+      <small class="text-danger" *ngIf="signUpForm.controls['username'].dirty && signUpForm.hasError('required','username')">Username is required</small>
+      <input formControlName="password" name="password" appendTo="body" type="text"  class="p-inputtext-lg"  placeholder="PASSWORD"> 
+      <small class="text-danger" *ngIf="signUpForm.controls['password'].dirty && signUpForm.hasError('required','password')">Password is required</small>
+      <input formControlName="password2" name="password2" appendTo="body" type="text"  class="p-inputtext-lg"  placeholder="REPEAT PASSWORD"> 
+      <small class="text-danger" *ngIf="signUpForm.controls['password2'].dirty && signUpForm.hasError('required','password2')">Password is required</small>
+      
     </div>
-</div>
+  
+    <div class="half">
+      <input formControlName="email" name="email" appendTo="body" type="text"   class="p-inputtext-lg"  placeholder="EMAIL"> 
+      <small class="text-danger" *ngIf="signUpForm.controls['email'].dirty && signUpForm.hasError('required','email')">Email is required</small>
+      <input formControlName="phoneNumber" name="phone" appendTo="body" type="text"   class="p-inputtext-lg"  placeholder="PHONE NUMBER"> 
+      <small class="text-danger" *ngIf="signUpForm.controls['phoneNumber'].dirty && signUpForm.hasError('required','phoneNumber')">Phone number is required</small>
+      <input formControlName="address" name="address" appendTo="body" type="text"   class="p-inputtext-lg"  placeholder="ADDRESS">     
+      <small class="text-danger" *ngIf="signUpForm.controls['address'].dirty && signUpForm.hasError('required','address')">Address is required</small>
+      <p-dropdown  [options]="roles" appendTo="body" optionLabel="role" (onChange)="onRoleChange($event)"></p-dropdown>
+      
+    </div>
+  </div> 
+</form>
+</ng-template>
+
+<ng-template pTemplate="footer" >
+  <button (click)="onSignUp()" type="button" class="footer-button" icon="pi pi-info-circle" label="Show"><span>Save</span></button>
+
+</ng-template>
+</p-dialog>
+
+<nav>
+  <ul class="right-part">
+    <div *ngIf="isAdmin()" style="cursor:pointer"><li><a (click)="showDialog()"><div class="fa fa-user-plus " ></div><div class="text" [ngClass]="{ 'hidden-xs': !showText }">Add user</div></a></li></div>
+    <li><a href="#"><div class="fa fa-address-book" ></div><div class="text" [ngClass]="{ 'hidden-xs': !showText }">About us</div></a></li>
+    <li><a routerLink="/user"><img src="/assets/images/team-profile-pictures/vanja.png" class="profile-image"><div class="text" [ngClass]="{ 'hidden-xs': !showText }">Profile</div></a></li>
+  </ul>
+</nav>
+

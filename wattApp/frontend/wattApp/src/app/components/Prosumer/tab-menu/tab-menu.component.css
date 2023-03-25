@@ -84,3 +84,12 @@
         display: none;
         }
 }
+
+@media only screen and (max-width: 500px) {
+  nav a div b {
+      display: none;
+      }
+  nav a {
+    width: 50px;
+  }
+}
