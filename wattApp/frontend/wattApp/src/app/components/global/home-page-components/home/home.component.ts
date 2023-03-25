@@ -4,6 +4,11 @@ import { StadardTemplateComponent } from '../../layout-components/standard-templ
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { UserService } from 'src/app/services/user.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { ConfirmationService } from 'primeng/api';
+interface City {
+  name: string,
+  code: string
+}
 @Component({
   selector: 'home',
   templateUrl: './home.component.html',
@@ -12,17 +17,43 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 export class HomeComponent {
   display: boolean = false;
   display2: boolean = false;
-  menageUserForm! : FormGroup;
-  
-  constructor(private userService:UserService, private authService:AuthService){}
+  display3: boolean = false;
+  display4: boolean = false;
+  display5: boolean = false;
+  display6: boolean = false;
 
-  showDialog() {
-      this.display = true;
+  menageUserForm! : FormGroup;
+  cities: City[];
+  selectedCity!: City;
+
+  constructor(private userService:UserService, private authService:AuthService) {
+    this.cities = [
+      {name: 'New York', code: 'NY'},
+      {name: 'Rome', code: 'RM'},
+      {name: 'London', code: 'LDN'},
+      {name: 'Istanbul', code: 'IST'},
+      {name: 'Paris', code: 'PRS'}
+  ];
   }
 
+  showDialog() {
+    this.display = true;
+  }
   showDialog2() {
     this.display2 = true;
-}
+  }
+  showDialog3() {
+    this.display3 = true;
+  }
+  showDialog4() {
+    this.display4 = true;
+  }
+  showDialog5() {
+    this.display5 = true;
+  }
+  showDialog6() {
+    this.display6 = true;
+  }
 
   isAdmin()
   {

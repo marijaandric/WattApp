@@ -6,6 +6,7 @@ import { url } from '../../app.module';
   providedIn: 'root'
 })
 export class APIService {
+  WeatherData:any;
   private baseUrl = url+"/api/User";
   constructor(private http:HttpClient) { }
 
@@ -13,4 +14,5 @@ export class APIService {
     return this.http.get<any>(this.baseUrl);
   }
 
+  
 }

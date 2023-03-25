@@ -7,9 +7,8 @@
     /*min-width: 340px;*/
     border-radius: 20px;
     padding:  20px 40px 20px 20px;
-    background-color: #373737;
+    background-color: #1b1b1b;
     flex-basis: calc(33.33333% - 30px);
-
 }
 
 
@@ -27,13 +26,14 @@
   margin-top: 20px;
   min-height: 40px;
   overflow: hidden;
-  font-weight: bold;
+  font-weight: bolder;
   font-size: 30px;
   color: #FFF;
   align-items: end;
   cursor: default;
   z-index: 2;
   position: relative;
+  font-family: 'Montserrat', sans-serif;
 }
 
 :host>.item_date-box {
@@ -41,22 +41,24 @@
   z-index: 2;
   position: relative;
   cursor: default;
-  font-weight: bold;
+  font-weight: bolder;
   font-size: 20px;
   padding-right: 10px;
   -webkit-transition: color .5s ease;
   -o-transition: color .5s ease;
   transition: color .5s ease;
+  font-family: 'Montserrat', sans-serif;
 }
 
 :host>.item_date {
-  font-weight: bold;
+  font-weight: bolder;
   cursor: default;
   font-size: 20px;
   padding-right: 10px;
   -webkit-transition: color .5s ease;
   -o-transition: color .5s ease;
   transition: color .5s ease;
+  font-family: 'Montserrat', sans-serif;
 }
 
 :host>.item_bg {
@@ -74,25 +76,33 @@
 }
 
 .blue-color {
-  color:#0BF4C8;
+  color:rgb(125, 2, 210);
 }
 
 .bg-blue-color {
-  background-color:#0BF4C8;
+  background-color:rgb(125, 2, 210);
 }
 
 .yellow-color {
-  color:#FAD85D;
+  color: rgb(217, 3, 114);
 }
 .bg-yellow-color {
-  background-color:#FAD85D;
+  background-color:rgb(217, 3, 114);
 }
 
 .pink-color {
-  color:#F2A0FF;
+  color:rgb(4, 167, 119);
 }
 .bg-pink-color {
-  background-color:#F2A0FF;
+  background-color:rgb(4, 167, 119);
+}
+
+
+.orange-color {
+  color:#F75C03;
+}
+.bg-orange-color {
+  background-color: #F75C03;
 }
 
 @media only screen and (max-width: 639px) {

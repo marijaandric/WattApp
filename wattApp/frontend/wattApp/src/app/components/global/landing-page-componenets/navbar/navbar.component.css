@@ -20,7 +20,7 @@
   }
   nav{
     height: 90px;
-    background: #56857e;
+    background: #222222;
     box-shadow: 0 3px 15px rgba(0,0,0,.4);
   }
   nav ul{
@@ -38,7 +38,7 @@
     padding: 0 15px;
     line-height: 70px;
     font-size: 20px;
-    background: #56857e;
+    background: #222222;
     transition: .5s;
   }
   nav ul li a:hover{
@@ -47,7 +47,6 @@
   nav ul ul{
     position: absolute;
     top: 85px;
-    border-top: 3px solid #56857e;
     opacity: 0;
     visibility: hidden;
   }

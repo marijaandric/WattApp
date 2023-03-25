@@ -5,9 +5,54 @@
 }
 
 :host ::ng-deep {
+
+  .p-inputtext{
+    background-color: none;
+    background: none;
+    padding: none;
+    margin:none;
+    border:none;
+    width: 100%;
+    overflow: visible;
+    font-weight: 600;
+    border-radius: 0px;
+    font-size: 14px;
+  }
+  .p-dropdown-label{
+    background-color: none;
+    background: none;
+    padding: none;
+    margin:none;
+    border:none;
+    width: 100%;
+    font-weight: 600;
+  }
+  .p-element{
+    background-color: none;
+    background: none;
+    padding: none;
+    margin:none;
+    border:none;
+    width: 100%;
+    font-weight: 600;
+    border-radius: 0px;
+    font-size: 14px;
+  }
+  .p-inputtext{
+    background-color: none;
+    background: none;
+    padding: none;
+    margin:none;
+    border:none;
+    width: 100%;
+    font-weight: 600;
+    border-radius: 0px;
+    font-size: 14px;
+    position: relative;
+    display:flex;
+  }
   .p-dialog {
     background-color: #222222;
-    width:45%;
     height:fit-content;
     border-radius: 20px;
     margin-bottom: 30px;
@@ -19,6 +64,10 @@
     min-height: 300px; 
     border:none;
 
+    .p-dialog-small{
+      width:25%;
+    }
+    
     .p-dialog-content {
       padding:0px 0px 20px 0px;
     }
@@ -29,11 +78,12 @@
       max-height:10%;
       position: relative;
       font-weight: bold;
-      padding:20px;
+      padding:20px 20px 20px 20px;
       font-size:24px;
     
       span {
-        margin-left:41%;
+        margin:auto;
+        padding-left: 5%;
       }
     }
 
@@ -44,7 +94,6 @@
 
     .p-inputgroup { 
       width: 100%;
-      padding:10px;
       
       display: flex;
       flex-direction: row;
@@ -57,32 +106,63 @@
         display: inline-block;
         position: relative;
         flex-direction: row;
+        flex-basis: calc(100%);
         margin: 10px;  
         clear:both;
         width:50%;
-        margin: 20px 20px 0px 20px;
+        margin: 0px 20px 0px 20px;
         flex-basis: calc(40%);
 
         input {
-        border: none;
+          border:none;
         border-bottom: 1px solid #787878;
         padding: 7px 9px;
         width: 100%;
         overflow: hidden;
-        background: transparent;
+        background: none;
         font-weight: 600;
-        border-radius: 0;
-        border-image: linear-gradient(45deg, purple, orange) 1;
+        border-radius: 0px;
         font-size: 14px;
         position: relative;
         display:flex;
-        margin:25px 0px 25px 0px;
+        margin:25px auto;
+        border-image: linear-gradient(45deg, purple, orange) 1;
+          
         }
 
-        input:hover, input:active {
-          border-color: #56857E;
-        }
+        .p-dropdown{
+          border:none;
+          border-bottom: 1px solid #787878;
+          padding: 7px 9px;
+          width: 100%;
+          overflow: hidden;
+          background: none;
+          font-weight: 600;
+          border-radius: 0px;
+          font-size: 14px;
+          position: relative;
+          display:flex;
+          margin:25px auto;
+          border-image: linear-gradient(45deg, purple, orange) 1;
+        
+          .p-element .p-dropdown-label .p-inputtext .ng-star-inserted{
+            background: none;
+          }
+        } 
+
+
       }    
+    }
+
+    button{
+      border: none;
+      padding: 5px 40px;
+      border-radius: 32px;
+      display: block;
+      margin: auto;
+      background: linear-gradient(45deg, purple, orange);
+      color: #fff;
+      font-weight: bold;
     }
 
     button.footer-button {
@@ -95,7 +175,65 @@
       color: #fff;
       font-weight: bold;
     }
-    
+    button.footer-button:hover{
+      span {
+        background: -webkit-linear-gradient(45deg, purple, orange);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      background: none;
+    }
+
+    button.yes-button {
+      border: none;
+      padding: 5px 40px;
+      border-radius: 32px;
+      display: block;
+      float:right;
+      background: linear-gradient(45deg, purple, orange);
+      color: #fff;
+      font-weight: bold;
+    }
+
+    button.no-button {
+      border: none;
+      padding: 5px 40px;
+      border-radius: 32px;
+      display: block;
+      float:right;
+      background: transparent;
+      font-weight: bold;
+      span {
+        background: white;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      
+    }
+
+    button.no-button:hover{
+      span {
+        background: -webkit-linear-gradient(45deg, purple, orange);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+     
+    }
+
+    button.yes-button:hover{
+      background:none;
+      span {
+        background: -webkit-linear-gradient(45deg, purple, orange);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+    }
+
+    .delete-device-content {
+      padding:20px;
+    }
+
+
     
     @media only screen and (max-width: 1400px) {
       .p-inputgroup {

@@ -40,7 +40,6 @@ export class SidebarComponent implements OnInit {
 
   logout()
   {
-    console.log("LOGOUT");
     this.auth.logout();
   }
 }

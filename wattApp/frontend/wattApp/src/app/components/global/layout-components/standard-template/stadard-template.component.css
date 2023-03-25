@@ -1,10 +1,18 @@
 :host {
   /*background-color: #56857e;*/
-  background-color: #171717;
+  background-color: #0d0d0d;
   display: flex;
   flex-direction: row;
   width: 100%;
   z-index: 0;
+
+
+}
+
+.sidebar{
+  box-shadow: 5px 5px 30px black;
+  border-radius: 0px 20px 20px 0px;
+  
 }
 
 .content{
@@ -28,6 +36,7 @@
 
 .remainingSpace{
   flex: 1;
+  width: 100%;
 }
 
 

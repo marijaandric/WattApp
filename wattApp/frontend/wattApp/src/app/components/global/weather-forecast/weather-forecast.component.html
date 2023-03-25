@@ -1,0 +1,15 @@
+<div class='box'>
+    <div class='wave -one'></div>
+    <div class='wave -two'></div>
+    <div class='wave -three'></div>
+    <div class="weathercon"><i class='{{icon}}' style='color: orange;'></i></div>
+    <div class="info">
+      <h2 class="location">{{WeatherData.name}}</h2>
+      <h2 class="location">{{WeatherData.temp_celcius}}°C</h2>
+      <p class="date">{{ time }} | {{ date }}</p>
+      <div class="info2">
+        <h4 >Humidity: {{WeatherData.main.humidity}}%</h4>
+        <h4 >Feels Like: {{WeatherData.temp_feels_like}}°C</h4>
+      </div>
+    </div>
+  </div>

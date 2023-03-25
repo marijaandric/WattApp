@@ -3,18 +3,14 @@
     flex-direction: column;
     position: absolute;
     overflow: hidden;
-
+    background-color: #1b1b1b;
     min-height: 120px;
     /*min-width: 340px;*/
-    border-radius: 32px;
-    padding:  20px 40px 20px 20px;
-    background-color: #222222;
+    border-radius: 20px;
+    padding:  40px 40px 20px 20px;
+    box-shadow: 5px 5px 15px black; 
     flex-basis: calc(33.33333% - 30px);
 }
-
-
-
-
 :host>.item_title {
   margin-top: 20px;
   min-height: 40px;
@@ -26,6 +22,7 @@
   cursor: default;
   z-index: 2;
   position: relative;
+  font-family: 'Lato', sans-serif;
 }
 
 :host>.item_date-box {
@@ -38,13 +35,14 @@
   padding-right: 10px;
   -webkit-transition: color .5s ease;
   -o-transition: color .5s ease;
+  font-family: 'Montserrat', sans-serif;
   transition: color .5s ease;
 }
 
 :host>.item_date {
   font-weight: bold;
   cursor: default;
-  font-size: 20px;
+  font-size: 30px;
   padding-right: 10px;
   -webkit-transition: color .5s ease;
   -o-transition: color .5s ease;
@@ -66,25 +64,25 @@
 }
 
 .blue-color {
-  color:#0BF4C8;
+  color:rgb(125, 2, 210);;
 }
 
 .bg-blue-color {
-  background-color:#222;
+  background-color:#1b1b1b;;
 }
 
 .yellow-color {
-  color:#FAD85D;
+  color:rgb(217, 3, 114);;
 }
 .bg-yellow-color {
-  background-color:#222;
+  background-color:#1b1b1b;;
 }
 
 .pink-color {
-  color:#F2A0FF;
+  color:rgb(4,167,119);;
 }
 .bg-pink-color {
-  background-color:#222;
+  background-color:#1b1b1b;;
 }
 
 @media only screen and (max-width: 639px) {

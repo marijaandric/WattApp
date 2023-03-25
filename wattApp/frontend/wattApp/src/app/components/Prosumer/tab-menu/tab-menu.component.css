@@ -10,15 +10,23 @@
     padding: 10px;
     margin-left: -5%;
     margin-top: -2%;
+    
+  }
+  .color
+  {
+    text-align: center;
+    justify-content: center;
+    
   }
   
   nav a {
     position: relative;
     text-decoration: none;
     color: #fff;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-Family: 'Montserrat';
     font-size: 12px;
     text-align: center;
+    font-Family: 'Montserrat';
     display: inline-block;
     width: 100px;
   }
@@ -26,6 +34,8 @@
   nav a b {
     position: relative;
     left:10%; 
+    display: inline-block;
+    text-align: center;
   }
   
   nav a i {
@@ -36,7 +46,7 @@
   }
   
   .color:hover{
-    color: #FAD85D;
+    color: rgb(4,167,119);
   }
   :host.boja{
     color: white;

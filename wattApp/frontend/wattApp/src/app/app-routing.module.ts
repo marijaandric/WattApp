@@ -23,7 +23,7 @@ const routes: Routes = [
   { path: 'users', component: UsersComponent },
   { path: 'user', component:UserProfileComponent},
   { path: 'prosumerhome', component: ProsumerhomeComponent },
-  { path:'contact', component:ContactComponent},
+  { path: 'contact', component:ContactComponent},
   { path: 'device', component: DeviceComponent },
   { path: 'devices', component: DevicesComponent },
   { path: 'devices/production', component: DevicesProductionComponent },

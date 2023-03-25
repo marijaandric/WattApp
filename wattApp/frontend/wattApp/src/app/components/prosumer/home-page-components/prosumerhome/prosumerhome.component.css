@@ -19,35 +19,39 @@
     padding: 20px 0;
     min-height: 120px;
     justify-content:space-between;
+    
 }
 .promotions
 {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
+  padding-top: 25px;
   
 }
 .promotion
 {
+  padding-top: 15px;
   flex-basis: calc(23%);
   margin-bottom: 30px;
   display: inline-block;
   position: relative;
   flex-direction: row;
   max-width: 23%;
-  min-width: 487px;
+  min-width: 32%;
   width:20%;
   
 }
 .promotion1
 {
+  padding-top: 15px;
   flex-basis: calc(23%);
   margin-bottom: 30px;
   display: inline-block;
   position: relative;
   flex-direction: row;
   max-width: 23%;
-  min-width: 487px;
+  min-width: 32%;
   width:20%;
   margin-left: 2%;
   
@@ -62,6 +66,7 @@
     max-width: 23%;
     min-width: 240px;
     width:20%;
+    box-shadow: 10px 10px 50px black;  
 }
 
 .iframe-div {
@@ -87,6 +92,29 @@
     border-radius: 32px;
 }
 
+.line
+{
+  background-color: #1b1b1b;
+  width: 600px;
+  border-radius: 20px;
+  padding-top: 10px;
+  margin-top: 20px;
+}
+
+.line3
+{
+  background-color: #1b1b1b;
+  width: 400px;
+  border-radius: 20px;
+  padding-top: 10px;
+  margin-top: 20px;
+  margin-left: 30px;
+}
+
+.line2{
+  float:left;
+}
+
 
 @media only screen and (max-width: 979px) {
     .widget {
@@ -100,4 +128,24 @@
       -ms-flex-preferred-size: 100%;
       flex-basis: 100%;
     }
+  }
+
+  /* ::ng-deep .apexcharts-series path:nth-child(1) {
+    fill: #F48207;
+  }
+  
+  ::ng-deep .apexcharts-series path:nth-child(2) {
+    fill: #85E000;
+  }
+  
+  ::ng-deep .apexcharts-series path:nth-child(3) {
+    fill: #D63F74;
+  } */
+
+  ::ng-deep .apexcharts-line-series path {
+    stroke: rgb(4,167,119);
+  }
+
+  ::ng-deep #SvgjsPath1012 {
+    fill:red;
   }

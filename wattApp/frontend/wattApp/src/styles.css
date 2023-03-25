@@ -12,23 +12,35 @@
 }
 
 .margin-left__16px{
-  margin-left: 16px;
+  margin-left: 16px !important;
 }
 
 .margin-right__16px{
-  margin-right: 16px;
+  margin-right: 16px !important;
+}
+
+.margin-top__16px{
+  margin-top: 16px !important;
+}
+
+.margin-bottom__16px{
+  margin-bottom: 16px !important;
 }
 
 .margin-left__auto{
-  margin-left: auto;
+  margin-left: auto !important;
 }
 
 .margin-right__auto{
-  margin-right: auto;
+  margin-right: auto !important;
 }
 
 .margin__auto{
-  margin: auto;
+  margin: auto !important;
+}
+
+.width__fit-content{
+  width: fit-content !important;
 }
 
 .p-datatable .p-datatable-header{
@@ -41,6 +53,14 @@
   border-bottom-right-radius: 32px !important;
 }
 
-h1,h2,h3,h4,h5,h6,p{
+p,a,li,body, div{
   color: white;
+  font-family: 'Lato', sans-serif;
+  
 }
+h1,h2,h3,h4,h5,h6 ,span{
+  font-family: 'Montserrat', sans-serif;
+  color:white;
+
+}
+

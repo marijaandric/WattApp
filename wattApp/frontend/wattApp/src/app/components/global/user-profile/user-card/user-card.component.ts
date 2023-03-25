@@ -27,13 +27,19 @@ export class UserCardComponent implements OnInit {
     }
     
     this.menageUserForm = this.fb.group({
-      FirstName: ['', Validators.required],
-      LastName: ['', Validators.required],
-      Username: ['', Validators.required],
-      Email: ['', Validators.required],
-      Phone: ['', Validators.required],
-      Address: ['', Validators.required]
+      id: ['', Validators.required],
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      username: ['', Validators.required],
+      email: ['', Validators.required],
+      phoneNumber: ['', Validators.required],
+      address: ['', Validators.required],
+      password: ['', Validators.required],
+      role: ['', Validators.required],
+      token: ['', Validators.required]
     });
+
+    
   }
 
   showDialog() {
@@ -42,15 +48,30 @@ export class UserCardComponent implements OnInit {
 
   edit(){
     const token = localStorage.getItem('token');
-    console.log(this.menageUserForm.value);
+    this.menageUserForm.patchValue({
+      id : this.userInfo.id
+    })
+    this.menageUserForm.patchValue({
+      password : this.userInfo.password
+    })
+    this.menageUserForm.patchValue({
+      role : this.userInfo.role
+    })
+    this.menageUserForm.patchValue({
+      token: token
+    })
+    
       if(token){
       this.userService.PutUser(this.userService.getUserIdFromToken(token),this.menageUserForm.value)
       .subscribe(
         {
           next: () => {
+            this.display = false;
+            this.router.navigate(['user']);
             },
           error: error => {
-            console.log(error);
+            alert("Niste lepo azurirali profil");
+            // mislim da alert treba da bude konkretniji
           }
         }
       )

@@ -18,6 +18,9 @@ export class WidgetComponent implements OnInit{
   @Input() @HostBinding("pink-color") public isPink = false;
   @Input() @HostBinding("bg-pink-color") public isBgPink = false;
 
+  @Input() @HostBinding("orange-color") public isOrange = false;
+  @Input() @HostBinding("bg-orange-color") public isBgOrange = false;
+
   ngOnInit(): void {
     console.log(this.isBlue);
     console.log(this.isBgBlue);
