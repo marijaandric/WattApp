@@ -54,6 +54,7 @@ import { LineChartComponent } from './components/global/line-chart/line-chart.co
 import { DeviceCardComponent } from './components/Prosumer/devices-page-components/device-card/device-card.component';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { WeatherForecastComponent } from './components/global/weather-forecast/weather-forecast.component';
+import { HistoryForecastComponent } from './components/global/history-forecast/history-forecast.component';
 
 export const url = 'https://localhost:7158';
 export const deviceFakerUrl = "https://localhost:7233";
@@ -92,7 +93,8 @@ export const deviceFakerUrl = "https://localhost:7233";
     BarChartComponent,
     LineChartComponent,
     DeviceCardComponent,
-    WeatherForecastComponent
+    WeatherForecastComponent,
+    HistoryForecastComponent
   ],
   imports: [
     CommonModule,
