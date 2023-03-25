@@ -52,6 +52,7 @@
 <nav>
   <ul class="right-part">
     <div *ngIf="isAdmin()" style="cursor:pointer"><li><a (click)="showDialog()"><div class="fa fa-user-plus " ></div><div class="text" [ngClass]="{ 'hidden-xs': !showText }">Add user</div></a></li></div>
+    <div *ngIf="!isAdmin()" style="cursor:pointer"><li><a (click)="showDialog()"><div class="fa fa-plus " ></div><div class="text" [ngClass]="{ 'hidden-xs': !showText }">Add device</div></a></li></div>
     <li><a href="#"><div class="fa fa-address-book" ></div><div class="text" [ngClass]="{ 'hidden-xs': !showText }">About us</div></a></li>
     <li><a routerLink="/user"><img src="/assets/images/team-profile-pictures/vanja.png" class="profile-image"><div class="text" [ngClass]="{ 'hidden-xs': !showText }">Profile</div></a></li>
   </ul>

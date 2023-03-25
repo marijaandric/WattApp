@@ -49,7 +49,7 @@ li :visited{
 @media (min-width: 768px)
 {
     .right-part li{
-        min-width: 100px;
+        min-width: 120px;
     }
 }
 
