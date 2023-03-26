@@ -93,6 +93,6 @@ app.MapControllers();
 app.UseHangfireDashboard();
 app.MapHangfireDashboard();
 
-RecurringJob.AddOrUpdate<IWeatherService>(x => x.ScrapeWeatherApi(), "0 * * ? * *");
+RecurringJob.AddOrUpdate<IWeatherService>(x => x.ScrapeWeatherApi(), "0 0 * * *");
 
 app.Run();
