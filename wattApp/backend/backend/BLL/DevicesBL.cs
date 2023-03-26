@@ -55,6 +55,7 @@ namespace backend.BLL
             int deviceWithValue = -1;
             double value = -1;
             string deviceName = "";
+
             foreach (var device in devices)
             {
                 List<DevicesData> devicesDatas = _contextDataDAL.GetDayDataForDevice(device.Id, year, month, day);

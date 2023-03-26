@@ -30,5 +30,17 @@ namespace backend.Helpers
                 
             }
         }
+
+        public static string SendHttpRequestForWeather(string url)
+        {
+            using (var httpClient = new HttpClient())
+            {
+                HttpResponseMessage response = httpClient.GetAsync(url).Result;
+                response.EnsureSuccessStatusCode();
+                return response.Content.ReadAsStringAsync().Result;
+
+            }
+        }
+
     }
 }
