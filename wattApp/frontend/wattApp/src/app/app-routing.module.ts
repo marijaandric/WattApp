@@ -14,6 +14,7 @@ import { DevicesComponent } from './components/Prosumer/devices-page-components/
 import { DevicesProductionComponent } from './components/Prosumer/devices-page-components/devices-production/devices-production.component';
 import { DevicesConsumptionComponent } from './components/Prosumer/devices-page-components/devices-consumption/devices-consumption.component';
 import { DevicesStockComponent } from './components/Prosumer/devices-page-components/devices-stock/devices-stock.component';
+import { StatisticComponent } from './components/Prosumer/statistic-page-components/statistic/statistic.component';
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
@@ -28,7 +29,8 @@ const routes: Routes = [
   { path: 'devices', component: DevicesComponent },
   { path: 'devices/production', component: DevicesProductionComponent },
   { path: 'devices/consumption', component: DevicesConsumptionComponent },
-  { path: 'devices/stock', component: DevicesStockComponent }
+  { path: 'devices/stock', component: DevicesStockComponent },
+  { path: 'statistic', component: StatisticComponent }
 ];
 
 @NgModule({

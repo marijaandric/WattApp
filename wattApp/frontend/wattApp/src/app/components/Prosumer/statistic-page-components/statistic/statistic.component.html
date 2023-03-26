@@ -1,0 +1,38 @@
+<standard-template>
+    <app-title-bar>
+      <h3>Statistic</h3>
+    </app-title-bar>
+
+    <app-center-bar>
+        <div class="dijagram">
+            <app-line-chart [chartHeight]="chartHeight" [chartWidth]="chartWidth"  ></app-line-chart>
+        </div>
+
+        <div class="dijagrami">
+            <div class="chart-container">
+              <app-pie-chart [Series]="niz1" [chartText]="text" [chartHeight]="piechartHeight1" ></app-pie-chart>
+            </div>
+            <div class="chart-container-bar">
+              <app-bar-chart [chartHeight]="barchartHeight"></app-bar-chart>
+            </div>
+          </div>
+    </app-center-bar>
+
+    <app-info-bar>
+        <div class="podaci">
+            <div class="chart-container-pie">
+                <app-pie-chart [Series]="niz2" [chartText]="text2"></app-pie-chart>
+              </div>
+              <div class="chart-container-pie">
+                <app-pie-chart [Series]="niz3"  [chartText]="text3"></app-pie-chart>
+              </div>
+              <div class="chart-container-pie">
+                <app-pie-chart [Series]="niz4" [chartText]="text4"></app-pie-chart>
+              </div>
+
+        </div>
+    </app-info-bar>
+
+
+
+</standard-template>
