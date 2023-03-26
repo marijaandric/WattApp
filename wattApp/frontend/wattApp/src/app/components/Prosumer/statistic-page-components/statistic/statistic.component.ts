@@ -21,9 +21,9 @@ export class StatisticComponent  implements OnInit {
   text3='Producers per room';
   text4='Storage per room';
 
-  niz1=[90,10,20,40];
-  niz2=[40, 32, 28, 15];
-  niz3=[10,20,20,1];
-  niz4=[15,15,20,30];
+  niz1=[90,10,20,40,60,30];
+  niz2=[40, 32, 28, 15,90,31];
+  niz3=[10,20,20,1,6,23];
+  niz4=[15,15,20,30,4,12];
   ngOnInit(): void {}
   }

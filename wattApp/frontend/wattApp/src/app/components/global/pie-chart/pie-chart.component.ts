@@ -5,7 +5,10 @@ import {
   ApexNonAxisChartSeries,
   ApexTitleSubtitle,
   ApexOptions,
-  ApexLegend
+  ApexLegend,
+  ApexPlotOptions,
+  ApexFill,
+  ApexStroke
 } from 'ng-apexcharts';
 
 @Component({
@@ -16,7 +19,7 @@ import {
 export class PieChartComponent implements OnInit {
   @Input() chartHeight: number = 200;
   @Input() chartText: string = 'Total devices per room';
-  @Input() Series: number[] = [40, 32, 28, 55];
+  @Input() Series: number[] = [40, 32, 28, 55,23,43];
 
   chartSeries: ApexNonAxisChartSeries = this.Series;
 
@@ -26,10 +29,12 @@ export class PieChartComponent implements OnInit {
       show: true
     },
     height:this.chartHeight,
-    width: '400'
+    width: '400',
+    redrawOnParentResize:true,
+    redrawOnWindowResize:true
   };
 
-  chartLabels = ["Kitchen", "Living room", "Bathroom", "Other"]
+  chartLabels = ["Kitchen", "Living room", "Bathroom", "Garden", "Working room", "Other"]
 
   chartTitle: ApexTitleSubtitle = {
     text:  this.chartText,
@@ -39,6 +44,19 @@ export class PieChartComponent implements OnInit {
     },
     
   };
+  stroke: ApexStroke = {
+    show:false
+  }
+
+  fill: ApexFill = {
+    colors: ['#7d02d4', '#d90372', 'rgb(4, 167, 119)','#ff7bbf', '#ab36ff','rgb(114, 255, 213)']
+  }
+  plotOptions: ApexPlotOptions = {
+    pie :  {
+      startAngle: -90,
+      endAngle: 270
+    }
+  }
 
   chartDataLabels: ApexDataLabels = {
     enabled: true
@@ -59,7 +77,7 @@ export class PieChartComponent implements OnInit {
     title: this.chartTitle,
     dataLabels: this.chartDataLabels,
     legend: this.chartLegend,
-    colors: ['#f4fafe', '#00E396', '#FEB019', '#FF4560'],
+    colors: ['#7d02d4', '#d90372', 'rgb(4, 167, 119)','#ff7bbf', '#ab36ff','rgb(114, 255, 213)'],
   };
 
   constructor() { }

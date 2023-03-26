@@ -2,12 +2,18 @@
     display: flex;
     position: relative;
     flex-direction: column;
-    height: 300;
-    width: 74.3%;
+    overflow: hidden;
+    height: 350;
     border-radius: 20px;
     padding:  20px 40px 20px 20px;
     background-color: #1b1b1b;
+    flex-basis: calc(22.8%);
     box-shadow: 5px 5px 15px black;
+    margin-left: calc(2.8%);
     transition: ease-in-out;
     
+}
+
+.tooltip {
+    background-color: #1b1b1b;
 }
