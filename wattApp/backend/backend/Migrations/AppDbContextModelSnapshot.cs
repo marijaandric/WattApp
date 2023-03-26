@@ -26,6 +26,9 @@ namespace backend.Migrations
                     b.Property<int>("DeviceID")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("DeviceModel")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("DeviceName")
                         .HasColumnType("TEXT");
 

@@ -9,6 +9,7 @@ namespace backend.Models
         public int DeviceID { get; set; }
         public int UserID { get; set; }
         public string DeviceName { get; set; }
+        public string DeviceModel { get; set; }
         public string Room { get; set; }
         public string DeviceType { get; set; }
     }
