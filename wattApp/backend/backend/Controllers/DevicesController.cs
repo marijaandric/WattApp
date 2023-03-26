@@ -113,5 +113,20 @@ namespace backend.Controllers
 
             return Ok();
         }
+
+        [HttpGet("{userId}/{year}/{month}/{day}/{type}/{size}")]
+        public IActionResult GetExrtemeDevice(int userId, int year, int month, int day, string type, string size)
+        {
+            var result = _context.GetExtremeDevice(userId, year, month, day, type, size);
+            Console.WriteLine($"Name: {result.Item1}, Age: {result.Item2}, Location: {result.Item3}");
+            return Ok(
+                    new
+                    {
+                        DeviceId = result.Item1,
+                        DeviceName = result.Item2,
+                        AveragePowerUsage = result.Item3
+                    }); ;
+        }
+
     }
 }

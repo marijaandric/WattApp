@@ -45,6 +45,11 @@ namespace backend.DAL
             return _context.Devices.Where(e => e.UserID == userId).ToList();
         }
 
+        public List<Devices> GetUserDevicesByType(int userId, string type)
+        {
+            return _context.Devices.Where(e => e.UserID == userId && e.DeviceType == type).ToList();
+        }
+
         public void ModifiedDevice(Devices device)
         {
             _context.Entry(device).State = EntityState.Modified;

@@ -11,26 +11,23 @@
     </app-widget>
     <app-widget [isPink]="true" [isBgPink]="true" class="widget">
     </app-widget>
-    <app-widget [isBlue]="true" [isBgBlue]="true" class="widget">
+    <app-widget [isOrange]="true" [isBgOrange]="true" class="widget">
     </app-widget>
       
   </div>
-  <div class="widgets">
-      
-    <app-widget [isBlue]="true" [isBgBlue]="true" class="widget">
-    </app-widget>
-    <app-widget [isYellow]="true" [isBgYellow]="true" class="widget">
-    </app-widget>
-    <app-widget [isPink]="true" [isBgPink]="true" class="widget">
-    </app-widget>
-    <app-widget [isBlue]="true" [isBgBlue]="true" class="widget">
-    </app-widget>
-      
+  <p-dropdown [options]="type" appendTo="body" [(ngModel)]="selectedType" optionLabel="name"  >
+  </p-dropdown>
+ 
+  <div class="main-grid">
+    <app-history-forecast clas="hist-forecast"></app-history-forecast>
+    <app-bar-chart  clas="bar-plot"></app-bar-chart>
   </div>
   
-  <!--          MENAGE USER         -->
   
-
+  
+      <!--          MENAGE USER         -->
+  
+<!--
   <p-dialog [style]="{width:'40%'}" header="Title"  [transitionOptions]="'3ms'" 
     [draggable]="true" [keepInViewport]="true" [resizable]="false" 
     [blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true" 
@@ -68,7 +65,7 @@
   <button type="button"  (click)="showDialog()" icon="pi pi-info-circle" label="Show"></button>
 
 
-  <!--          ADD USER         -->
+      ADD USER         
 
   <p-dialog [style]="{width:'40%'}" header="Title2"  [transitionOptions]="'3ms'" 
     [draggable]="true" [keepInViewport]="true" [resizable]="false" 
@@ -84,20 +81,14 @@
       
       <div class="p-inputgroup p-inputtext-lg p-input-filled">
         <div class="half">
-          <!--<label for="label-input" >Name</label>-->
           <input formControlName="name" name="name" appendTo="body" type="text"  class="p-inputtext-lg"  placeholder="NAME"> 
-          <!--<label for="label-input" >Last name</label>-->
           <input formControlName="lastname" name="lastname"  appendTo="body" type="text"   class="p-inputtext-lg"  placeholder="LAST NAME"> 
-          <!--<label for="label-input" >Username</label>-->
           <input formControlName="username" name="username"  appendTo="body" type="text"   class="p-inputtext-lg"  placeholder="USERNAME"> 
         </div>
       
         <div class="half">
-          <!--<label for="label-input" >E-mail</label>-->
           <input formControlName="email" name="email" appendTo="body" type="text"   class="p-inputtext-lg"  placeholder="EMAIL"> 
-          <!--<label for="label-input" >Phone number</label>-->
           <input formControlName="phone" name="phone" appendTo="body" type="text"   class="p-inputtext-lg"  placeholder="PHONE NUMBER"> 
-          <!--<label for="label-input" >Address</label>-->
           <input formControlName="address" name="address" appendTo="body" type="text"   class="p-inputtext-lg"  placeholder="ADDRESS">     
         </div>
       </div> 
@@ -113,8 +104,6 @@
   <button type="button" style="margin-top:30px;"  (click)="showDialog2()" icon="pi pi-info-circle" label="Show"></button>
 
   
-  <!--          DELETE DEVICE         -->
-
   <p-dialog [style]="{width:'20%'}" header="Title"  [transitionOptions]="'3ms'" 
     [draggable]="false" [keepInViewport]="true" [resizable]="false" 
     [blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true" 
@@ -142,8 +131,6 @@
   <button type="button" style="margin-top:30px;"  (click)="showDialog3()" icon="pi pi-info-circle" label="Show"></button>
 
 
-  <!--          MENAGE DEVICE         -->
-
   <p-dialog [style]="{width:'40%'}" header="Title"  [transitionOptions]="'3ms'" 
   [draggable]="true" [keepInViewport]="true" [resizable]="false" 
   [blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true" 
@@ -157,16 +144,16 @@
     <form [formGroup]="menageUserForm" >  
     <div class="p-inputgroup p-inputtext-lg p-input-filled">
       <div class="half">  
-        <!-- ZA UREDJAJ [FRIZIDER / SPORET...] -->    
+        ZA UREDJAJ [FRIZIDER / SPORET...] 
         <p-dropdown [options]="cities" appendTo="body" [(ngModel)]="selectedCity" optionLabel="name"></p-dropdown>
-        <!-- ZA TIP UREDJAJA [PRODUCTION / CONSUMPTION / STOCK] -->    
+        ZA TIP UREDJAJA [PRODUCTION / CONSUMPTION / STOCK] 
         <p-dropdown [options]="cities" appendTo="body" [(ngModel)]="selectedCity" optionLabel="name"></p-dropdown>
       </div>
       
       <div class="half">       
-        <!-- ZA SOBU [KUPATILO / KUHINJA ...] -->    
+        ZA SOBU [KUPATILO / KUHINJA ...] 
         <p-dropdown [options]="cities" appendTo="body" [(ngModel)]="selectedCity" optionLabel="name"></p-dropdown>
-        <!-- ZA NAZIV UREDJAJA-->
+        ZA NAZIV UREDJAJA
         <input style="margin-top:45px;" formControlName="name" name="name"  appendTo="body" type="text"   class="p-inputtext-lg"  placeholder="DEVICE NAME"> 
       </div>
     </div> 
@@ -182,8 +169,6 @@
 <button type="button" style="margin-top:30px;" (click)="showDialog4()" icon="pi pi-info-circle" label="Show"></button>
 
 
-  <!--          ADD DEVICE         -->
-
 <p-dialog [style]="{width:'40%'}" header="Title"  [transitionOptions]="'3ms'" 
 [draggable]="true" [keepInViewport]="true" [resizable]="false" 
 [blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true" 
@@ -197,16 +182,16 @@
   <form [formGroup]="menageUserForm" >  
   <div class="p-inputgroup p-inputtext-lg p-input-filled">
     <div class="half">  
-      <!-- ZA UREDJAJ [FRIZIDER / SPORET...] -->    
+       ZA UREDJAJ [FRIZIDER / SPORET...]    
       <p-dropdown [options]="cities" appendTo="body" [(ngModel)]="selectedCity" optionLabel="name"></p-dropdown>
-      <!-- ZA TIP UREDJAJA [PRODUCTION / CONSUMPTION / STOCK] -->    
+       ZA TIP UREDJAJA [PRODUCTION / CONSUMPTION / STOCK]    
       <p-dropdown [options]="cities" appendTo="body" [(ngModel)]="selectedCity" optionLabel="name"></p-dropdown>
     </div>
     
     <div class="half">       
-      <!-- ZA SOBU [KUPATILO / KUHINJA ...] -->    
+       ZA SOBU [KUPATILO / KUHINJA ...] 
       <p-dropdown [options]="cities" appendTo="body" [(ngModel)]="selectedCity" optionLabel="name"></p-dropdown>
-      <!-- ZA NAZIV UREDJAJA-->
+       ZA NAZIV UREDJAJA
       <input style="margin-top:45px;" formControlName="name" name="name"  appendTo="body" type="text"   class="p-inputtext-lg"  placeholder="DEVICE NAME"> 
     </div>
   </div> 
@@ -220,8 +205,6 @@
 </p-dialog>
 
 <button type="button" style="margin-top:30px;" (click)="showDialog5()" icon="pi pi-info-circle" label="Show"></button>
-
-  <!--          REGISTRATION         -->
 
 
 <p-dialog [style]="{width:'40%'}" header="Title2"  [transitionOptions]="'3ms'" 
@@ -264,8 +247,7 @@
 </p-dialog>
 
 <button type="button" style="margin-top:30px;"  (click)="showDialog6()" icon="pi pi-info-circle" label="Show"></button>
-
-
+ -->
 
 <!--
   <iframe class="iframe-div" src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d17698.97958143962!2d20.902382747133068!3d44.01949126285242!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2srs!4v1678806582786!5m2!1sen!2srs" style="border:0;" allowfullscreen="true" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
@@ -276,3 +258,4 @@
 </standard-template>
 <app-prosumerhome *ngIf="!isAdmin()"></app-prosumerhome>
 
+ 

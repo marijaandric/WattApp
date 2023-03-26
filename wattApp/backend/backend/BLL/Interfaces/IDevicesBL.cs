@@ -1,4 +1,5 @@
 ﻿using backend.Models;
+using Microsoft.AspNetCore.Mvc;
 
 namespace backend.BLL.Interfaces
 {
@@ -13,5 +14,6 @@ namespace backend.BLL.Interfaces
         public void AddDevice(Devices device);
         public Devices GetDevice(int deviceId);
         public void RemoveDevice(Devices device);
+        public (int, string, double) GetExtremeDevice(int userId, int year, int month, int day, string type, string size);
     }
 }
