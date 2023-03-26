@@ -13,5 +13,6 @@ namespace backend.DAL.Interfaces
         public void AddDevice(Devices device);
         public Devices GetDevice(int deviceId);
         public void RemoveDevice(Devices device);
+        public List<Devices> GetUserDevicesByType(int userId, string type);
     }
 }
