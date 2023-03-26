@@ -1,6 +1,7 @@
+import { style } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import {  ApexAxisChartSeries,ApexDataLabels, ApexStroke, ApexFill, ApexChart, ApexXAxis, ApexTitleSubtitle,ApexYAxis } from 'ng-apexcharts';
+import {  ApexAxisChartSeries,ApexDataLabels,ApexLegend, ApexTooltip, ApexStroke, ApexFill, ApexChart, ApexXAxis, ApexTitleSubtitle,ApexYAxis } from 'ng-apexcharts';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -21,44 +22,44 @@ export class HistoryForecastComponent {
 
   constructor(private userService:UserService, private authService:AuthService) {
     this.cities = [
-      {name: 'Production', code: '1'},
-      {name: 'Consumption', code: '2'},
+      {name: 'Consumption', code: '1'},
+      {name: 'Production', code: '2'},
       {name: 'Stock', code: '3'},
       {name: 'All', code: '4'},
   ];
   }
   public series: ApexAxisChartSeries = [
     {
-      name: 'History',
+      name: 'Consumption history',
       data: [12, 19, 3, 5, 2, 6, 5, null,null,null,null, null, null, null],
       color: '#7d02d4'
     },
     {
-      name: "Forecast",
+      name: "Consumption forecast",
       data: [null,null, null, null, null, null,5,10,12,3,16,5,10,5],
       color: '#ab36ff',
     },
     {
-      name: 'History2',
+      name: 'Production history',
       data: [1, 4, 15, 5, 12, 6, 18, null,null,null,null, null, null, null],
-      color: 'rgb(4, 167, 119)'
+      color:  '#d90372'
     },
     {
-      name: "Forecast2",
+      name: "Production forecast",
       data: [null,null, null, null, null, null,18,1,2,7,6,9,10,5],
+      color: '#ff7bbf'
+    },
+    {
+      name: 'Stock history',
+      data: [12, 1, 3, 15, 12, 6, 9, null,null,null,null, null, null, null],
+      color:'rgb(4, 167, 119)'
+    },
+    {
+      name: "Stock forecast",
+      data: [null,null, null, null, null, null,9,17,12,10,16,5,1,2],
       color: 'rgb(114, 255, 213)'
     },
-    {
-      name: 'History3',
-      data: [12, 1, 3, 15, 12, 6, 9, null,null,null,null, null, null, null],
-      color: '#d90372'
-    },
-    {
-      name: "Forecast3",
-      data: [null,null, null, null, null, null,9,17,12,10,16,5,1,2],
-      color: '#ff7bbf'
       
-    }
   ];
   public chart: ApexChart = {
     type: 'line',
@@ -67,17 +68,7 @@ export class HistoryForecastComponent {
     offsetX: 0,
     background: '#1b1b1b',
     animations: {
-      enabled: true,
-      easing: 'easeinout',
-      speed: 700,
-      animateGradually: {
-          enabled: true,
-          delay: 150
-      },
-      dynamicAnimation: {
-          enabled: true,
-          speed: 350
-      }
+      enabled: false,
     },
     dropShadow: {
       enabled: true,
@@ -92,6 +83,27 @@ export class HistoryForecastComponent {
     redrawOnWindowResize: true,
   };
 
+  public tooltip: ApexTooltip = {
+    theme:'dark',
+    style : {
+      fontSize:'17px'
+    }
+  }
+
+  public legend: ApexLegend = {
+    showForNullSeries:false,
+    showForSingleSeries:false,
+    showForZeroSeries:false,
+    fontFamily: 'Lato, sans-serif',
+    fontSize: '16px',
+    offsetY:10,
+    labels : {
+      colors: ['#7d02d4','#ab36ff', '#d90372', '#ff7bbf','rgb(4, 167, 119)', 'rgb(114, 255, 213)', ],
+      useSeriesColors:true
+    },
+    
+  }
+
   public xaxis: ApexXAxis = {
     categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun','Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
     labels: {
@@ -104,15 +116,15 @@ export class HistoryForecastComponent {
   public yaxis: ApexYAxis = {
     labels: {
       style: {
-        colors: ['white'],
+        colors: ['#FFF'],
       },
     },
   };
 
   public title: ApexTitleSubtitle = {
-    text: 'History & forecast',
+    text: 'History & forecast of all users',
     style: {
-      color: '#FFFFFF',
+      color: '#FFF',
       fontSize: '19px',
       fontFamily: 'Montserrat'
     }

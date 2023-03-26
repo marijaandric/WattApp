@@ -15,11 +15,13 @@
     </app-widget>
       
   </div>
-  <p-dropdown [options]="type" appendTo="body" [(ngModel)]="selectedType" optionLabel="name"></p-dropdown>
+  <p-dropdown [options]="type" appendTo="body" [(ngModel)]="selectedType" optionLabel="name"  >
+  </p-dropdown>
  
-    <app-history-forecast ></app-history-forecast>
-    <app-bar-chart></app-bar-chart>
- 
+  <div class="main-grid">
+    <app-history-forecast clas="hist-forecast"></app-history-forecast>
+    <app-bar-chart  clas="bar-plot"></app-bar-chart>
+  </div>
   
   
   
