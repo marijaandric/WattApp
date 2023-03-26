@@ -6,8 +6,8 @@ import { Component, HostBinding, Input, OnInit } from '@angular/core';
   styleUrls: ['./widget.component.css']
 })
 export class WidgetComponent implements OnInit{
-  subTitle : String ="Current price of electricity";
-  Title : String ="9,051 din/kWh";
+  @Input() subTitle : String ="Current price of electricity";
+  @Input() Title : String ="9,051 din/kWh";
 
   @Input() @HostBinding("blue-color") public isBlue = false;
   @Input() @HostBinding("bg-blue-color") public isBgBlue = false;

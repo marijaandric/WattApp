@@ -1,9 +1,9 @@
 
   .box {
     width: 270%;
-    height: 54vh;
+    height: 43vh;
     border-radius: 20px;
-    box-shadow: 0 2px 30px rgba(black, 0.2);
+    
     background: #1b1b1b;
     position: relative;
     overflow: hidden;
@@ -11,6 +11,7 @@
     min-width: 200px;
     min-height: 350px;
     margin: 20px 30px;
+    box-shadow: 10px 10px 50px black;  
   }
   
   .wave {
