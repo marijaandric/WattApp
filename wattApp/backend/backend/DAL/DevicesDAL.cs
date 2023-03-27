@@ -1,4 +1,5 @@
 ﻿
+using backend.BAL;
 using backend.Context;
 using backend.DAL.Interfaces;
 using backend.Models;
@@ -38,6 +39,11 @@ namespace backend.DAL
         public List<Devices> GetDevices()
         {
             return _context.Devices.ToList();
+        }
+
+        public List<Devices> GetDevicesByType(string type)
+        {
+            return _context.Devices.Where(e => e.DeviceType == type).ToList();
         }
 
         public List<Devices> GetDevicesForUser(int userId)

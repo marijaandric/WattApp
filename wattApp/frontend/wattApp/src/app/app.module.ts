@@ -59,6 +59,7 @@ import { HistoryForecastComponent } from './components/global/history-forecast/h
 import { AreaBarChartComponent } from './components/global/home-page-components/area-bar-chart/area-bar-chart.component';
 import { ToggleButtonModule } from 'primeng/togglebutton';
 import { InputSwitchModule } from 'primeng/inputswitch';
+import { DevicesAllComponent } from './components/Prosumer/devices-page-components/devices-all/devices-all.component';
 
 export const url = 'https://localhost:7158';
 export const deviceFakerUrl = "https://localhost:7233";
@@ -100,7 +101,8 @@ export const deviceFakerUrl = "https://localhost:7233";
     WeatherForecastComponent,
     StatisticComponent,
     HistoryForecastComponent,
-    AreaBarChartComponent
+    AreaBarChartComponent,
+    DevicesAllComponent
   ],
   imports: [
     CommonModule,

@@ -28,6 +28,13 @@ namespace backend.Controllers
             return _context.GetDevices();
         }
 
+        // GET: api/Devices/type
+        [HttpGet("type/{deviceType}")]
+        public List<Devices> GetDevicesByType(string deviceType)
+        {
+            return _context.GetDevicesByType(deviceType);
+        }
+
         // GET: api/Devices/5
         [HttpGet("{userId}")]
         public List<Devices> GetDevicesForUser(int userId)

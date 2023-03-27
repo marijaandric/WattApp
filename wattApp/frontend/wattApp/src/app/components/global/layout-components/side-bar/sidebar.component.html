@@ -57,21 +57,21 @@
 
 
     <div class="iocn-link">
-        <a routerLink="/devices">
+        <a routerLink="devices">
         <i class="fa-solid fa-computer"></i>
         <span class="link_name" >Devices</span>
         </a>
         <i class="fa-solid fa-caret-down arrow" [ngClass]="{'arrow2' : !isSubMenu2Shown}" id="UsersDrpId" (click)="showSubMenus2()"></i>
     </div>
     <ul  class="sub-menu nopadding">
-        <li><a class="link_name" href="#">Devices</a></li>
-        <li *ngIf="!isSubMenu2Shown"><a href="#">Consumption</a></li>
-        <li *ngIf="!isSubMenu2Shown"><a href="#">Production</a></li>
-        <li *ngIf="!isSubMenu2Shown"><a href="#">Stock</a></li>
+        <li><a class="link_name" href="devices">Devices</a></li>
+        <li *ngIf="!isSubMenu2Shown"><a href="devices/consumption">Consumption</a></li>
+        <li *ngIf="!isSubMenu2Shown"><a href="devices/production">Production</a></li>
+        <li *ngIf="!isSubMenu2Shown"><a href="devices/stock">Stock</a></li>
     </ul>
     </li>
     <li *ngIf="isSubMenu2Shown" [ngClass]="{'marginLeft' : !isSidebarShown}">
-        <a href="#">
+        <a href="devices/consumption">
             <i class="fa-solid fa-bolt"></i>
             <span class="link_name">Consumption</span>
         </a>
@@ -81,7 +81,7 @@
         </li>
     <li>
     <li *ngIf="isSubMenu2Shown" [ngClass]="{'marginLeft' : !isSidebarShown}">
-        <a href="#">
+        <a href="devices/production">
             <i class="fa-solid fa-solar-panel"></i>
             <span class="link_name">Production</span>
         </a>
@@ -91,7 +91,7 @@
         </li>
     <li>
     <li *ngIf="isSubMenu2Shown" [ngClass]="{'marginLeft' : !isSidebarShown}">
-        <a href="#">
+        <a href="devices/stock">
             <i class="fa-solid fa-database"></i>
             <span class="link_name">Stock</span>
         </a>
