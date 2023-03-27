@@ -76,6 +76,11 @@
   display: flex;
   flex-wrap: wrap;
 }
+
+.left-margin {
+  
+  margin-left: calc(2.8%);
+}
 .consumption {
   background-color:#7d02d4;
 }
@@ -98,6 +103,9 @@
   margin-left:50px;
 }
 
+.marginLeft {
+  margin-left:2.8%;
+}
 
 @media only screen and (max-width: 979px) {
   .widget {

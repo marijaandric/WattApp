@@ -25,11 +25,11 @@ export class PieChartComponent implements OnInit {
 
   chartDetails: ApexChart = {
     type: 'pie',
+    offsetX:-40,
     toolbar: {
       show: true
     },
-    height:this.chartHeight,
-    width: '400',
+    width:'135%',
     redrawOnParentResize:true,
     redrawOnWindowResize:true
   };
@@ -54,7 +54,9 @@ export class PieChartComponent implements OnInit {
   plotOptions: ApexPlotOptions = {
     pie :  {
       startAngle: -90,
-      endAngle: 270
+      endAngle: 270,
+      customScale: 0.8,
+
     }
   }
 
@@ -64,9 +66,10 @@ export class PieChartComponent implements OnInit {
 
   chartLegend: ApexLegend = {
     position: 'right',
-    offsetY: 0,
+    offsetY: 20,
+    offsetX:40,
     labels: {
-      colors: '#FFFFFF'
+      colors: '#FFFFFF',
     }
   };
 

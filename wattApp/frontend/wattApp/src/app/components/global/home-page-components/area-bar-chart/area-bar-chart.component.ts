@@ -15,7 +15,7 @@ export class AreaBarChartComponent implements OnInit {
   ];
   public chart: ApexChart = {
     type: 'bar',
-    height: 300,
+    height: 250,
     width: '100%',
 
     
