@@ -23,9 +23,6 @@ namespace backend.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("DeviceID")
-                        .HasColumnType("INTEGER");
-
                     b.Property<string>("DeviceModel")
                         .HasColumnType("TEXT");
 
@@ -39,6 +36,9 @@ namespace backend.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<int>("UserID")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("isActive")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");

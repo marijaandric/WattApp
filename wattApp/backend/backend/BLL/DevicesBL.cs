@@ -1,4 +1,5 @@
 ﻿using backend.BLL.Interfaces;
+using backend.DAL;
 using backend.DAL.Interfaces;
 using backend.Helpers;
 using backend.Models;
@@ -94,6 +95,18 @@ namespace backend.BLL
             deviceName = _contextDAL.GetDeviceForUser(userId, deviceWithValue).DeviceName;
             Console.WriteLine((deviceWithValue, deviceName, value));
             return (deviceWithValue, deviceName, value);
+        }
+
+        public double GetMonthlyStatistics(int userId, int year, int month, string type)
+        {
+            List<Devices> devices = _contextDAL.GetUserDevicesByType(userId, type);
+            double total = 0;
+            foreach (var device in devices)
+            {
+                List<DevicesData> devicesDatas = _contextDataDAL.GetMonthDataForDevice(device.Id, year, month);
+                total += Calculator.CalculateTotalPowerUsage(devicesDatas);
+            }
+            return total;
         }
 
         public void ModifiedDevice(Devices device)

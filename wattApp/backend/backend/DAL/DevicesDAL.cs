@@ -27,12 +27,12 @@ namespace backend.DAL
 
         public Devices GetDevice(int deviceId)
         {
-            return _context.Devices.FirstOrDefault(e => e.DeviceID == deviceId);
+            return _context.Devices.FirstOrDefault(e => e.Id == deviceId);
         }
 
         public Devices GetDeviceForUser(int userId, int deviceId)
         {
-            return _context.Devices.FirstOrDefault(e => e.UserID == userId && e.DeviceID == deviceId);
+            return _context.Devices.FirstOrDefault(e => e.UserID == userId && e.Id == deviceId);
         }
 
         public List<Devices> GetDevices()
