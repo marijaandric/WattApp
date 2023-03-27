@@ -76,6 +76,11 @@
   display: flex;
   flex-wrap: wrap;
 }
+
+.left-margin {
+  
+  margin-left: calc(2.8%);
+}
 .consumption {
   background-color:#7d02d4;
 }

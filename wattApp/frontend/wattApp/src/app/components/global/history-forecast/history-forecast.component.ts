@@ -63,7 +63,7 @@ export class HistoryForecastComponent {
   ];
   public chart: ApexChart = {
     type: 'line',
-    height: 300,
+    height: 250,
     width: '100%',
     offsetX: 0,
     background: '#1b1b1b',

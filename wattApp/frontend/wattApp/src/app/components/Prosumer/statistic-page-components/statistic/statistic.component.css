@@ -37,6 +37,49 @@
 
   }
   
+::ng-deep #SvgjsG4317 {
+  width:50%
+}
+
+  .hist-forecast {
+    display: inline-flex;
+  }
   
+  .bar-plot {
+    display: inline-flex;
+  }
+  
+  .main-grid {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .consumption {
+    background-color:#7d02d4;
+  }
+  .production {
+    background-color: #d90372;
+  }
+  .stock {
+    background-color: #04a777;
+  }
+  .all {
+    background-color: #F75C03;
+  }
+  
+::ng-deep .p-dropdown {
+  display: block;
+  position:relative;
+  margin-bottom: 20px;
+  border-radius: 30px;
+  border:none;
+}
+::ng-deep #pr_id_1_label{
+  border-radius: 30px 30px;
+  background-color:#7d02d4;
+  font-size: 17px;
+  padding:5px 20px;
+  border:none;
+}
   
   
