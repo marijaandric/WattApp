@@ -1,7 +1,9 @@
 ﻿using backend.BLL.Interfaces;
+using backend.DAL;
 using backend.DAL.Interfaces;
 using backend.Helpers;
 using backend.Models;
+using backend.Models.NotDbModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -11,10 +13,12 @@ namespace backend.BLL
     {
         private readonly IDevicesDAL _contextDAL;
         private readonly IDevicesDataDAL _contextDataDAL;
-        public DevicesBL(IDevicesDAL context, IDevicesDataDAL contextDataDAL)
+        private readonly IUserDAL _contextUserDAL;
+        public DevicesBL(IDevicesDAL context, IDevicesDataDAL contextDataDAL, IUserDAL contextUserDAL)
         {
             _contextDataDAL = contextDataDAL;
             _contextDAL = context;
+            _contextUserDAL = contextUserDAL;
         }
 
         public void AddDevice(Devices device)
@@ -99,6 +103,64 @@ namespace backend.BLL
             deviceName = _contextDAL.GetDeviceForUser(userId, deviceWithValue).DeviceName;
             Console.WriteLine((deviceWithValue, deviceName, value));
             return (deviceWithValue, deviceName, value);
+        }
+
+        public double GetMonthlyStatistics(int userId, int year, int month, string type)
+        {
+            List<Devices> devices = _contextDAL.GetUserDevicesByType(userId, type);
+            double total = 0;
+            foreach (var device in devices)
+            {
+                List<DevicesData> devicesDatas = _contextDataDAL.GetMonthDataForDevice(device.Id, year, month);
+                total += Calculator.CalculateTotalPowerUsage(devicesDatas);
+            }
+            return total;
+        }
+
+        public List<BigTableContent> GetTableContent(int userId, int year, int month, int day, string time, string type)
+        {
+            User userObj = _contextUserDAL.getUser(userId);
+            List<Devices> devices = _contextDAL.GetDevicesForUser(userId);
+            List<BigTableContent> content = new List<BigTableContent>();
+            int id = 0;
+            foreach (var device in devices)
+            {
+                List<DevicesData> devicesDatas = new List<DevicesData>();
+                if (type == "hour")
+                    devicesDatas.Add(_contextDataDAL.GetHourDataForDevice(device.Id, year, month, day, time));
+                else if (type == "day")
+                    devicesDatas = _contextDataDAL.GetDayDataForDevice(device.Id, year, month, day);
+                else if (type == "month")
+                    devicesDatas = _contextDataDAL.GetMonthDataForDevice(device.Id, year, month);
+                else
+                    devicesDatas = _contextDataDAL.GetYearDataForDevice(device.Id, year);
+
+                Console.WriteLine(devicesDatas.Count);
+
+                foreach (var deviceData in devicesDatas)
+                {
+                    
+                    BigTableContent contentData = new BigTableContent();
+                    contentData.Id = id++;
+                    contentData.userId = userObj.Id;
+                    contentData.deviceID = device.Id;
+                    contentData.Username = userObj.Username;
+                    contentData.DeviceName = device.DeviceName;
+                    contentData.DeviceModel = device.DeviceModel;
+                    contentData.Room = device.Room;
+                    contentData.DeviceType = device.DeviceType;
+                    contentData.isActive = device.isActive;
+                    contentData.day = day;
+                    contentData.month = month;
+                    contentData.year = year;
+                    contentData.time = time;
+                    contentData.powerUsage = deviceData.powerUsage;
+
+                    content.Add(contentData);
+                }
+
+            }
+            return content;
         }
 
         public void ModifiedDevice(Devices device)
