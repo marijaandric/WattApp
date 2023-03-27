@@ -50,18 +50,10 @@ export class DevicesComponent {
 
   private updateNumVisible(windowWidth: number) {
     console.log("resized" + windowWidth);
-    if (windowWidth < 576) {
+    if (windowWidth < 768) {
       this.numVisible = 1;
-    } else if (windowWidth < 768) {
-      this.numVisible = 1;
-    } else if (windowWidth < 992) {
-      this.numVisible = 2;
-    } else if (windowWidth < 1200) {
-      this.numVisible = 3;
-    } else if (windowWidth < 1600) {
-      this.numVisible = 4;
     } else {
-      this.numVisible = 5;
+      this.numVisible = 2;
     }
   }
 

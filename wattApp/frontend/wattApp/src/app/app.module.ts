@@ -57,6 +57,8 @@ import { WeatherForecastComponent } from './components/global/weather-forecast/w
 import { StatisticComponent } from './components/Prosumer/statistic-page-components/statistic/statistic.component';
 import { HistoryForecastComponent } from './components/global/history-forecast/history-forecast.component';
 import { AreaBarChartComponent } from './components/global/home-page-components/area-bar-chart/area-bar-chart.component';
+import { ToggleButtonModule } from 'primeng/togglebutton';
+import { InputSwitchModule } from 'primeng/inputswitch';
 
 export const url = 'https://localhost:7158';
 export const deviceFakerUrl = "https://localhost:7233";
@@ -120,6 +122,8 @@ export const deviceFakerUrl = "https://localhost:7233";
     CarouselModule,
     NgApexchartsModule,
     SelectButtonModule,
+    ToggleButtonModule,
+    InputSwitchModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: () => localStorage.getItem('access_token'),

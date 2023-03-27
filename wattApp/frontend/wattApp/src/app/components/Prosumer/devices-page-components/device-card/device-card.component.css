@@ -1,7 +1,14 @@
 .device-card{
-    width: 250px;
+    min-width: 240px;
+    width: 100%;
     height: 150px;
     background-color: #222222;
     border-radius: 32px;
     padding: 16px;
+    margin: auto;
+}
+
+.device-name{
+    max-width: 75%;
+    width: fit-content;
 }
