@@ -50,8 +50,34 @@ export class ProsumerhomeComponent implements OnInit{
   
   }
 
+  IdBiggestProducer: any;
+  NameBiggestProducer: any;
+  PowerUsageBiggestProducer : any;
+  
+
+
+  getBiggestProducer() {
+    const deviceId = 1 ;
+    const currentDate = new Date();
+    const day = currentDate.getDate();
+    const month = currentDate.getMonth() + 1;
+    const year = currentDate.getFullYear();
+    const consumer = 'Producer';
+    const max = 'max';
+
+    const url = `https://localhost:7158/api/Devices/${deviceId}/${year}/${month}/${day}/${consumer}/${max}`;
+
+    this.http.get(url).subscribe((response: any) => {
+       this.IdBiggestProducer=response.deviceId;
+       this.NameBiggestProducer=response.deviceName;
+       this.PowerUsageBiggestProducer=response.averagePowerUsage;
+    });
+  
+  }
+
   ngOnInit(): void {
     this.getBiggestConsumer();
+    this.getBiggestProducer();
   }
   
 
