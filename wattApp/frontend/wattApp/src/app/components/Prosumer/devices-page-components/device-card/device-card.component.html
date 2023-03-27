@@ -3,14 +3,19 @@
         <h4 class="device-name abbreviate-text">{{ device.deviceName }}</h4>
         <p-inputSwitch [(ngModel)]="isChecked" class="margin-left__auto width__fit-content"></p-inputSwitch>
     </div>
-    <div class="flexRow margin-top__16px">
-        <span>Type:</span>
-        <span class="margin-left__16px">{{ device.deviceType }}</span>
+    <div class="flexRow" style="margin-top: 16px;">
+        <span>Status:</span>
+        <span *ngIf="!isChecked" class="margin-left__auto">Idle</span>
+        <span *ngIf="isChecked" class="margin-left__auto">Running</span>
     </div>
-    <div class="flexRow" style="margin-top: 8px;">
-        <span *ngIf="device.deviceType === 'Potrosac'">Power consumed:</span>
-        <span *ngIf="device.deviceType === 'Proizvodjac'">Power produced:</span>
-        <span *ngIf="device.deviceType !== 'Potrosac' && device.deviceType !== 'Proizvodjac'">Power stored:</span>
-        <span class="margin-left__16px">{{ deviceData ? deviceData.powerUsage : 'N/A' }}</span>
+    <div class="flexRow" style="margin-top: 4px;">
+        <span>Type:</span>
+        <span class="margin-left__auto">{{ device.deviceType }}</span>
+    </div>
+    <div class="flexRow" style="margin-top: 4px;">
+        <span *ngIf="device.deviceType === 'Consumer'">Power consumed:</span>
+        <span *ngIf="device.deviceType === 'Producer'">Power produced:</span>
+        <span *ngIf="device.deviceType !== 'Consumer' && device.deviceType !== 'Producer'">Power stored:</span>
+        <span class="margin-left__auto">{{ 'N/A' }}</span>
     </div>
 </div>
