@@ -125,7 +125,6 @@ namespace backend.Controllers
         public IActionResult GetExrtemeDevice(int userId, int year, int month, int day, string type, string size)
         {
             var result = _context.GetExtremeDevice(userId, year, month, day, type, size);
-            Console.WriteLine($"Name: {result.Item1}, Age: {result.Item2}, Location: {result.Item3}");
             return Ok(
                     new
                     {
@@ -133,6 +132,23 @@ namespace backend.Controllers
                         DeviceName = result.Item2,
                         AveragePowerUsage = result.Item3
                     }); ;
+        }
+
+        [HttpGet("{userId}/{year}/{month}/{type}")]
+        public double GetMonthlyStatistics(int userId, int year, int month, string type)
+        {
+            return _context.GetMonthlyStatistics(userId, year, month, type);
+            
+        }
+
+
+        [HttpGet("price")]
+        public double getElectricalPowerPrice()
+        {
+            Random random = new Random();
+            double randomNumber = random.NextDouble();
+            double result = 0.2 + randomNumber * 0.05;
+            return Math.Round(result, 2);
         }
 
     }
