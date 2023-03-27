@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using backend.Models;
 using backend.BLL.Interfaces;
+using backend.Models.NotDbModels;
 
 namespace backend.Controllers
 {
@@ -134,6 +135,12 @@ namespace backend.Controllers
             
         }
 
+        [HttpGet("tableContent/{userId}/{year}/{month}/{day}/{time}/{type}")]
+        public List<BigTableContent> GetTableContent(int userId, int year, int month, int day, string time,string type)
+        {
+            List<BigTableContent> result = _context.GetTableContent(userId, year, month, day, time, type);
+            return result;
+        }
 
         [HttpGet("price")]
         public double getElectricalPowerPrice()
