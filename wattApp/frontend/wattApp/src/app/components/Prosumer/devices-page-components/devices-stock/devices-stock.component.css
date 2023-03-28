@@ -1,0 +1,7 @@
+:host::ng-deep app-tab-menu .boja4 {
+    color: rgb(4,167,119);
+  }
+  
+  :host::ng-deep app-tab-menu .fa-battery-half {
+    color: rgb(4,167,119);
+  }

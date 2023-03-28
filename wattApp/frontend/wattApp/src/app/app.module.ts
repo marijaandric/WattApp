@@ -62,6 +62,8 @@ import { InputSwitchModule } from 'primeng/inputswitch';
 import { DevicesAllComponent } from './components/Prosumer/devices-page-components/devices-all/devices-all.component';
 import { WeatherForecast7Component } from './components/global/weather-forecast7/weather-forecast7.component';
 import { HistoryForecastTableComponent } from './components/global/history-forecast-table/history-forecast-table.component';
+import { TabMenuDsoComponent } from './components/DSO/users-page-components/tab-menu-dso/tab-menu-dso.component';
+import { TabMenuUsersComponent } from './components/DSO/users-page-components/tab-menu-users/tab-menu-users.component';
 
 export const url = 'https://localhost:7158';
 export const deviceFakerUrl = "https://localhost:7233";
@@ -106,7 +108,9 @@ export const deviceFakerUrl = "https://localhost:7233";
     AreaBarChartComponent,
     DevicesAllComponent,
     WeatherForecast7Component,
-    HistoryForecastTableComponent
+    HistoryForecastTableComponent,
+    TabMenuDsoComponent,
+    TabMenuUsersComponent
   ],
   imports: [
     CommonModule,

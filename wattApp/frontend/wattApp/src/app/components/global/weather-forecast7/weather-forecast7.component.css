@@ -1,6 +1,7 @@
 
 .box {
-    width: 70%;
+    width: 100%;
+    height: auto;
     border-radius: 20px;
     background: #1b1b1b;
     position: relative;
@@ -8,7 +9,7 @@
     transform: translate3d(0, 0, 0);
     min-width: 200px;
     min-height: 350px;
-    margin: 20px 0px;
+    margin: 40px 40px;
     box-shadow: 10px 10px 50px black;  
     padding: 40px;
     display: flex; 
@@ -54,13 +55,13 @@
 
   .info{
     display: inline;
-    margin: 10px; /* added */
+    margin: 3px; /* added */
     width: 100px; /* added */
     text-align: center; /* added */
-    margin-top: 25%;
+    margin-top: 35%;
     z-index: 4;
   }
-  h4{
+h4{
     font-size: 12px;
 }
 h6{
