@@ -3,6 +3,7 @@
     height: 280px;
     border-radius: 20px;
 }
+/*
 @media only screen and (max-width: 639px) {
     .chartContainer {
         width: 300px;
@@ -10,3 +11,4 @@
         border-radius: 20px;
     }
   }
+  */
