@@ -1,0 +1,80 @@
+:host {
+    height: 100%;
+    display: flex;
+    margin: 0;
+  }
+  
+  nav {
+    position: relative;
+    display: block;
+    padding: 10px;
+    margin-left: -5%;
+    margin-top: -2%;
+    
+  }
+  .color
+  {
+    text-align: center;
+    justify-content: center;
+    
+  }
+  
+  nav a {
+    position: relative;
+    text-decoration: none;
+    font-Family: 'Montserrat';
+    font-size: 12px;
+    color:white;
+    text-align: center;
+    font-Family: 'Montserrat';
+    display: inline-block;
+    width: 100px;
+  }
+  
+  nav a b {
+    position: relative;
+    left:10%; 
+    display: inline-block;
+    text-align: center;
+  }
+  
+  nav a i {
+    position: relative;
+    font-size: 20px;
+    left: 10%;
+    margin-bottom: 10px;
+  }
+  
+  nav .color:hover{
+    color: rgb(4,167,119);
+  }
+
+  :host a.color b.boja1 {
+    color: red; /* promenite boju ikone ovde */
+  }
+  
+
+  :host i.fa-solid.fa-chart-pie:before {
+    color: white;
+  }
+  
+  :host a.color i.fa-chart-pie {
+    color: white; /* promenite boju ikone ovde */
+  }
+
+
+@media only screen and (max-width: 600px) {
+
+    nav a div b {
+        display: none;
+        }
+}
+
+@media only screen and (max-width: 500px) {
+  nav a div b {
+      display: none;
+      }
+  nav a {
+    width: 50px;
+  }
+}

@@ -1,0 +1,7 @@
+:host::ng-deep app-tab-menu .boja {
+    color: rgb(4,167,119);
+  }
+  
+  :host::ng-deep app-tab-menu .fa-bars {
+    color: rgb(4,167,119);
+  }
