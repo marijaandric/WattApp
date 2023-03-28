@@ -45,7 +45,7 @@ export class ProsumerhomeComponent implements OnInit{
        this.IdBiggestConsumer=response.deviceId;
        this.NameBiggestConsumer=response.deviceName;
        this.PowerUsageBiggestConsumer=response.averagePowerUsage.toFixed(3);
-     console.log(response);
+    // console.log(response);
     });
   
   }
@@ -99,10 +99,79 @@ export class ProsumerhomeComponent implements OnInit{
   
   }
 
+  monthPowerUsageConsumer: any;
+  
+  getmonthPowerUsageConsume() {
+    const deviceId = 1 ;
+    const currentDate = new Date();
+    const month = currentDate.getMonth() + 1;
+    const year = currentDate.getFullYear();
+    const consumer = 'Consumer';
+
+    const url = `https://localhost:7158/api/Devices/${deviceId}/${year}/${month}/${consumer}`;
+
+    this.http.get(url).subscribe((response: any) => {
+      this.monthPowerUsageConsumer=response.toFixed(2);
+    });
+  
+  }
+
+  monthPowerUsageProducer: any;
+  
+  getmonthPowerUsageProducer() {
+    const deviceId = 1 ;
+    const currentDate = new Date();
+    const month = currentDate.getMonth() + 1;
+    const year = currentDate.getFullYear();
+    const consumer = 'Producer';
+
+    const url = `https://localhost:7158/api/Devices/${deviceId}/${year}/${month}/${consumer}`;
+
+    this.http.get(url).subscribe((response: any) => {
+      this.monthPowerUsageProducer=response.toFixed(2);
+    });
+  
+  }
+
+  monthPowerUsageStorage: any;
+  
+  getmonthPowerUsageStorage() {
+    const deviceId = 1 ;
+    const currentDate = new Date();
+    const month = currentDate.getMonth() + 1;
+    const year = currentDate.getFullYear();
+    const consumer = 'Storage';
+
+    const url = `https://localhost:7158/api/Devices/${deviceId}/${year}/${month}/${consumer}`;
+
+    this.http.get(url).subscribe((response: any) => {
+      this.monthPowerUsageStorage=response.toFixed(2);
+    });
+  
+  }
+
+  dayPowerPrice: any;
+  
+  getdayPowerPrice() {
+   
+
+    const url = `https://localhost:7158/api/Devices/price`;
+
+    this.http.get(url).subscribe((response: any) => {
+      this.dayPowerPrice=response.toFixed(2);
+    });
+  
+  }
+
+
   ngOnInit(): void {
     this.getBiggestConsumer();
     this.getBiggestProducer();
     this.getBiggestStorage();
+    this.getmonthPowerUsageConsume();
+    this.getmonthPowerUsageProducer();
+    this.getmonthPowerUsageStorage();
+    this.getdayPowerPrice();
   }
   
 
