@@ -1,0 +1,18 @@
+<table>
+    <thead>
+      <tr>
+        <th>Date</th>
+        <th>High Temp</th>
+        <th>Low Temp</th>
+        <th>Conditions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let forecast of weatherData">
+        <td>{{ forecast.dt_txt }}</td>
+        <td>{{ ((forecast.main.temp_max - 32)*5/9 ).toFixed(0) }}</td>
+        <td>{{ ((forecast.main.temp_min - 32)*5/9 ).toFixed(0) }}</td>
+        <td>{{ forecast.weather[0].description }}</td>
+      </tr>
+    </tbody>
+  </table>
