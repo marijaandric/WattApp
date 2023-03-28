@@ -22,14 +22,14 @@ export class StatisticComponent  implements OnInit {
   }
   barchartHeight=250;
 
-  piechartHeight1=400;
+  piechartHeight1=300;
 
   text='Total devices per room';
   text2='Consumers per room';
   text3='Producers per room';
   text4='Storage per room';
 
-  niz1=[90,10,20,40];
+  niz1=[50,10,20,30];
   niz2=[40, 32, 28, 15];
   niz3=[10,20,20,1];
   niz4=[15,15,20,30];

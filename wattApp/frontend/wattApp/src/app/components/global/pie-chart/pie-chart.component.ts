@@ -8,7 +8,8 @@ import {
   ApexLegend,
   ApexPlotOptions,
   ApexFill,
-  ApexStroke
+  ApexStroke,
+  ApexTooltip,
 } from 'ng-apexcharts';
 
 @Component({
@@ -25,16 +26,25 @@ export class PieChartComponent implements OnInit {
 
   chartDetails: ApexChart = {
     type: 'pie',
-    offsetX:-40,
+    offsetY:0,
     toolbar: {
       show: true
     },
-    width:'135%',
-    redrawOnParentResize:true,
-    redrawOnWindowResize:true
+    width:'100%',
+    redrawOnParentResize:false,
+    redrawOnWindowResize:false,
+    dropShadow: {
+      enabled: true,
+      enabledOnSeries: undefined,
+      top: 0,
+      left: 0,
+      blur: 3,
+      color: '#000',
+      opacity: 0.7
+  }
   };
 
-  chartLabels = ["Kitchen", "Living room", "Bathroom", "Garden", "Working room", "Other"]
+  chartLabels = ["Kitchen", "Living room", "Bathroom",  "Other"]
 
   chartTitle: ApexTitleSubtitle = {
     text:  this.chartText,
@@ -49,27 +59,39 @@ export class PieChartComponent implements OnInit {
   }
 
   fill: ApexFill = {
-    colors: ['#7d02d4', '#d90372', 'rgb(4, 167, 119)','#ff7bbf', '#ab36ff','rgb(114, 255, 213)']
+    colors: ['#7d02d4', '#d90372', 'rgb(4, 167, 119)','#F75C03'],
   }
   plotOptions: ApexPlotOptions = {
     pie :  {
       startAngle: -90,
       endAngle: 270,
-      customScale: 0.8,
-
+      customScale: 1.2,
+      offsetX:0,
+      offsetY:60,
     }
   }
 
+  tooltip:ApexTooltip = {
+    enabled:true,
+    
+    marker: {
+      show:true,
+      fillColors:['#7d02d4', '#d90372', 'rgb(4, 167, 119)', '#F75C03'],
+    }
+  }
   chartDataLabels: ApexDataLabels = {
-    enabled: true
+    enabled: true,
   };
 
   chartLegend: ApexLegend = {
     position: 'right',
-    offsetY: 20,
-    offsetX:40,
+    offsetY: 40,
+    offsetX: -30,
     labels: {
       colors: '#FFFFFF',
+    },
+    markers:{
+      fillColors:['#7d02d4', '#d90372', 'rgb(4, 167, 119)', '#F75C03'],
     }
   };
 
@@ -80,13 +102,14 @@ export class PieChartComponent implements OnInit {
     title: this.chartTitle,
     dataLabels: this.chartDataLabels,
     legend: this.chartLegend,
-    colors: ['#7d02d4', '#d90372', 'rgb(4, 167, 119)','#ff7bbf', '#ab36ff','rgb(114, 255, 213)'],
+    tooltip: this.tooltip,
+    colors: ['#7d02d4', '#d90372', 'rgb(4, 167, 119)', '#F75C03'],
   };
 
   constructor() { }
 
   ngOnInit(): void {
-    this.chartDetails.height = this.chartHeight;
+    this.chartDetails.height = '175.5%';
     this.chartTitle.text=this.chartText;
     this.chartSeries=this.Series;
   }
