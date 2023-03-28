@@ -20,12 +20,12 @@ import {
 export class DonutChartComponent implements OnInit {
   @Input() chartHeight: number = 200;
   @Input() chartText: string = 'Total devices per room';
-  @Input() Series: number[] = [40, 32, 28, 55,23,43];
+  @Input() Series: number[] = [40, 32, 28, 55];
 
   chartSeries: ApexNonAxisChartSeries = this.Series;
 
   chartDetails: ApexChart = {
-    type: 'pie',
+    type: 'donut',
     offsetY:0,
     toolbar: {
       show: true
