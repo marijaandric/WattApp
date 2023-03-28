@@ -22,9 +22,9 @@
   nav a {
     position: relative;
     text-decoration: none;
+    color: #fff;
     font-Family: 'Montserrat';
     font-size: 12px;
-    color:white;
     text-align: center;
     font-Family: 'Montserrat';
     display: inline-block;
@@ -45,23 +45,38 @@
     margin-bottom: 10px;
   }
   
-  nav .color:hover{
+  .color:hover{
     color: rgb(4,167,119);
   }
-
-  :host a.color b.boja1 {
-    color: white; /* promenite boju ikone ovde */
+  :host.boja{
+    color: white;
   }
-  
-
-  :host i.fa-solid.fa-chart-pie:before {
+  :host.boja2{
+    color: white;
+  }
+  :host.boja3{
+    color: white;
+  }
+  :host.boja4{
     color: white;
   }
   
-  :host a.color i.fa-chart-pie {
-    color: white; /* promenite boju ikone ovde */
+  :host.fa-users
+  {
+    color:white;
   }
-
+  :host.fa-user-headset
+  {
+    color:white;
+  }
+  :host.fa-user-check
+  {
+    color:white;
+  }
+  :host.fa-battery-half
+  {
+    color:white;
+  }
 
 @media only screen and (max-width: 600px) {
 

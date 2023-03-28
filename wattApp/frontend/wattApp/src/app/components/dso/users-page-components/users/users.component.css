@@ -1,7 +1,7 @@
-app-tab-menu-dso  i.fa-solid.fa-chart-pie:before {
-    color: rgb(4,167,119) !important; /* Primena nove boje */
+app-tab-menu-users .boja {
+    color: rgb(4,167,119);
   }
-  
-app-tab-menu-dso  a.color b.boja1 {
-    color: rgb(4,167,119) !important; /* promenite boju ovde */
-    }
+
+app-tab-menu-users .fa-users {
+    color: rgb(4,167,119);
+  }
