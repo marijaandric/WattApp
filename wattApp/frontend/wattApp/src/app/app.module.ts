@@ -43,7 +43,7 @@ import { PieChartComponent } from './components/global/pie-chart/pie-chart.compo
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { DonutChartComponent } from './components/global/donut-chart/donut-chart.component';
 import { TabMenuComponent } from './components/Prosumer/tab-menu/tab-menu.component';
-import { DeviceComponent } from './components/Prosumer/device/device.component';
+import { DeviceComponent } from './components/global/device-page-components/device/device.component';
 import { CarouselModule } from 'primeng/carousel';
 import { DevicesComponent } from './components/Prosumer/devices-page-components/devices/devices.component';
 import { DevicesConsumptionComponent } from './components/Prosumer/devices-page-components/devices-consumption/devices-consumption.component';

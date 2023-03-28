@@ -50,6 +50,14 @@ namespace backend.Controllers
             return devices;
         }
 
+        // GET: api/Devices/device/5
+        // actual ID
+        [HttpGet("device/{id}")]
+        public Devices GetDeviceById(int id)
+        {
+            return _context.GetDevice(id);
+        }
+
         // GET: api/Devices/5
         [HttpGet("{userId}/{deviceId}")]
         public Devices GetDeviceForUser(int userId, int deviceId)

@@ -1,6 +1,6 @@
 <div id="device-card" class="device-card">
     <div class="flexRow">
-        <h4 class="device-name abbreviate-text">{{ device.deviceName }}</h4>
+        <a [routerLink]="['/device', device.id]" class="device-name abbreviate-text">{{ device.deviceName }}</a>
         <p-inputSwitch [(ngModel)]="isChecked" class="margin-left__auto width__fit-content"></p-inputSwitch>
     </div>
     <div class="flexRow" style="margin-top: 16px;">

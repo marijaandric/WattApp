@@ -42,4 +42,8 @@ export class DeviceService {
     );
   }
 
+  getDeviceById(id: string): Observable<DeviceDTO>{
+    return this.http.get<DeviceDTO>(this.baseUrl + "device/" + id);
+  }
+
 }
