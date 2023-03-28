@@ -9,7 +9,7 @@
     transform: translate3d(0, 0, 0);
     min-width: 200px;
     min-height: 350px;
-    margin: 35px 30px;
+    margin: 40px 40px;
     box-shadow: 10px 10px 50px black;  
     padding: 40px;
     display: flex; 
