@@ -2,9 +2,12 @@ import { Component, ElementRef, Renderer2  } from '@angular/core';
 import { StadardTemplateComponent } from '../../layout-components/standard-template/stadard-template.component';
 
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { UserService } from 'src/app/services/user.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { ConfirmationService } from 'primeng/api';
+import { UserDTO } from '../../../../dtos/UserDTO';
+import { UserService } from '../../../../services/user/user.service';
+/*import { UserService } from 'src/app/services/user.service';
+*/
 interface City {
   name: string,
   code: string
@@ -79,6 +82,20 @@ export class HomeComponent {
     }
   }
 
+  users: UserDTO[] = [];
+
+
+  ngOnInit() {
+    this.userService.getAllUsers().subscribe((result: UserDTO[]) => (this.users = result));
+  }
+
+  clear(dtUsers: any) {
+    dtUsers.clear();
+  }
+
+  onSearch(value: string, dtUsers: any) {
+    dtUsers.filterGlobal(value, 'contains');
+  }
 
 
   showDialog() {
@@ -99,7 +116,7 @@ export class HomeComponent {
   showDialog6() {
     this.display6 = true;
   }
-
+/*
   isAdmin()
   {
     const token = this.authService.getToken();
@@ -120,4 +137,5 @@ export class HomeComponent {
     }
     
   }
+  */
 }
