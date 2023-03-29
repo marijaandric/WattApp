@@ -53,6 +53,8 @@ namespace backend.DAL
 
         public List<Devices> GetUserDevicesByType(int userId, string type)
         {
+            if(type == "All")
+                return GetDevicesForUser(userId);
             return _context.Devices.Where(e => e.UserID == userId && e.DeviceType == type).ToList();
         }
 
