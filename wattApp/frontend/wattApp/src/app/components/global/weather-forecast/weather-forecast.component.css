@@ -1,6 +1,6 @@
 
   .box {
-    height: 550px;
+    height: 450px;
     border-radius: 20px;
     background: #1b1b1b;
     position: relative;
@@ -128,7 +128,7 @@
     .box {
       margin-top: 10px;
       width: 84vw;
-      height: 70vw;
+      height: 85vw;
     }
   
     .wave {

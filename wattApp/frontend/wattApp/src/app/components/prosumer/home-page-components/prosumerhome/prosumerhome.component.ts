@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { StadardTemplateComponent } from 'src/app/components/global/layout-components/standard-template/stadard-template.component';
 import { UserService } from 'src/app/services/user.service';
 import { HttpClient } from '@angular/common/http';
+import { DeviceDTO } from 'src/app/dtos/DeviceDTO';
 
 @Component({
   selector: 'app-prosumerhome',
@@ -11,6 +12,9 @@ import { HttpClient } from '@angular/common/http';
 export class ProsumerhomeComponent implements OnInit{
   user:any;
   token = localStorage.getItem('token');
+  @Input() device:any={id:1,deviceName:"ime", deviceType:"prezime"}
+  @Input() device2:any={id:2,deviceName:"ime", deviceType:"prezime"}
+  devices: any[] = [];
 
   constructor(private userService:UserService,private http: HttpClient)
   {
@@ -172,6 +176,8 @@ export class ProsumerhomeComponent implements OnInit{
     this.getmonthPowerUsageProducer();
     this.getmonthPowerUsageStorage();
     this.getdayPowerPrice();
+    this.devices.push(this.device);
+    this.devices.push(this.device);
   }
   
 

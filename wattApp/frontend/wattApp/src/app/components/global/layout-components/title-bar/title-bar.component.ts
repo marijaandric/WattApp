@@ -16,7 +16,9 @@ interface Roles{
 })
 export class TitleBarComponent implements OnInit{
   display : boolean = false;
+  display2 : boolean = false;
   signUpForm! : FormGroup;
+  addDeviceForm! : FormGroup;
   roles : Roles[];
   roleSelected : string;
   showText = false;
@@ -33,6 +35,31 @@ export class TitleBarComponent implements OnInit{
   }
 
   ngOnInit(): void {
+    this.isAdmin();
+    if(this.rola == "operator")
+    {
+      this.roles = [
+        {role:'prosumer'}
+    ];
+    }
+    else if(this.rola == "admin")
+    {
+      this.roles = [
+        {role:'prosumer'},
+        {role:'operator'}
+    ];
+    }
+    else
+    {
+      this.roles = [
+        {role:'prosumer'},
+        {role:'operator'},
+        {role:'admin'},
+        {role:'superadmin'},
+    ];
+    }
+
+
     this.signUpForm = this.fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
@@ -44,15 +71,29 @@ export class TitleBarComponent implements OnInit{
       password2: ['', Validators.required],
       role: ['', Validators.required]
     });
+
+    this.addDeviceForm = this.fb.group({
+      deviceName: ['', Validators.required],
+      deviceModel: ['', Validators.required],
+      room: ['', Validators.required],
+      deviceType: ['', Validators.required],
+    })
   }
+
+  // prikaz dijaloga
   showDialog(){
     this.display = true;
+  }
+
+  showDialog2(){
+    this.display2 = true;
   }
 
   onRoleChange(event:any){
     this.roleSelected = event.value.role;
   }
 
+  //registracija
   onSignUp()
   {
     this.signUpForm.patchValue({
@@ -78,6 +119,7 @@ export class TitleBarComponent implements OnInit{
     }
   }
 
+  //validacija
   private validateAllFormFields(formGroup : FormGroup)
   {
     Object.keys(formGroup.controls).forEach(field => {
@@ -91,6 +133,12 @@ export class TitleBarComponent implements OnInit{
     })
   }
 
+
+
+
+
+
+  // da li je neko admin 
   isAdmin()
   {
     const token = this.authService.getToken();

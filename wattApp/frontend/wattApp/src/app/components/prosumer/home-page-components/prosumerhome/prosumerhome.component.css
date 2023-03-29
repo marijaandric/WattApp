@@ -199,24 +199,24 @@
       vertical-align: top;
     }
 
-    .widgets::-webkit-scrollbar {
-      width: 10px; /* adjust to your desired width */
+    /*.widgets::-webkit-scrollbar {
+      width: 10px;
       margin-bottom: -5px;
     }
 
     .widgets::-webkit-scrollbar-thumb {
-      background-color: rgba(214, 214, 214, 0.212); /* adjust to your desired color */
-      border-radius: 10px; /* adjust to your desired radius */
+      background-color: rgba(214, 214, 214, 0.212); 
+      border-radius: 10px; 
     }
 
     .promotions::-webkit-scrollbar {
-      width: 10px; /* adjust to your desired width */
+      width: 10px;
     }
 
     .promotions::-webkit-scrollbar-thumb {
-      background-color: rgba(214, 214, 214, 0.212); /* adjust to your desired color */
-      border-radius: 10px; /* adjust to your desired radius */
-    }
+      background-color: rgba(214, 214, 214, 0.212); 
+      border-radius: 10px; 
+    }*/
   }
 
   
