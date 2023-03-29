@@ -40,6 +40,11 @@ namespace backend.DAL
             return _context.Devices.ToList();
         }
 
+        public List<Devices> GetDevicesByType(string type)
+        {
+            return _context.Devices.Where(e => e.DeviceType == type).ToList();
+        }
+
         public List<Devices> GetDevicesForUser(int userId)
         {
             return _context.Devices.Where(e => e.UserID == userId).ToList();
