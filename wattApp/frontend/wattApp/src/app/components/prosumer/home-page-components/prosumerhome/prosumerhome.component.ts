@@ -12,9 +12,11 @@ import { DeviceDTO } from 'src/app/dtos/DeviceDTO';
 export class ProsumerhomeComponent implements OnInit{
   user:any;
   token = localStorage.getItem('token');
-  @Input() device:any={id:1,deviceName:"ime", deviceType:"prezime"}
-  @Input() device2:any={id:2,deviceName:"ime", deviceType:"prezime"}
   devices: any[] = [];
+
+  @Input() device:any={id:1,deviceName: "device", deviceType:"Consumer",power: 10}
+  @Input() device1:any={id:1,deviceName: "device", deviceType:"Producer",power: 10}
+  @Input() device2:any={id:1,deviceName: "device", deviceType:"Storage",power: 10}
 
   constructor(private userService:UserService,private http: HttpClient)
   {
@@ -26,13 +28,11 @@ export class ProsumerhomeComponent implements OnInit{
     }
     
   }
+
   IdBiggestConsumer: any;
   NameBiggestConsumer: any;
   PowerUsageBiggestConsumer : any;
-
   
-
-
   getBiggestConsumer() {
     const deviceId = 1 ;
    // const deviceId = this.user.id ;
@@ -48,11 +48,15 @@ export class ProsumerhomeComponent implements OnInit{
     this.http.get(url).subscribe((response: any) => {
        this.IdBiggestConsumer=response.deviceId;
        this.NameBiggestConsumer=response.deviceName;
-       this.PowerUsageBiggestConsumer=response.averagePowerUsage.toFixed(3);
-    // console.log(response);
+       this.PowerUsageBiggestConsumer=response.averagePowerUsage.toFixed(2);
+       this.device.deviceName = this.NameBiggestConsumer;
+       this.device.id=this.IdBiggestConsumer;
+       this.device.power=this.PowerUsageBiggestConsumer;
+       this.device.deviceType="Consumer";
+     //console.log(response);
     });
-  
   }
+  
 
   IdBiggestProducer: any;
   NameBiggestProducer: any;
@@ -74,7 +78,12 @@ export class ProsumerhomeComponent implements OnInit{
     this.http.get(url).subscribe((response: any) => {
        this.IdBiggestProducer=response.deviceId;
        this.NameBiggestProducer=response.deviceName;
-       this.PowerUsageBiggestProducer=response.averagePowerUsage;
+       this.PowerUsageBiggestProducer=response.averagePowerUsage.toFixed(2);
+       this.device1.deviceName = this.NameBiggestProducer;
+       this.device1.id=this.IdBiggestProducer;
+       this.device1.power=this.PowerUsageBiggestProducer;
+       this.device1.deviceType="Producer";
+     //console.log(response);
     });
   
   }
@@ -98,10 +107,18 @@ export class ProsumerhomeComponent implements OnInit{
     this.http.get(url).subscribe((response: any) => {
        this.IdBiggestStorage=response.deviceId;
        this.NameBiggestStorage=response.deviceName;
-       this.PowerUsageBiggestStorage=response.averagePowerUsage;
+       this.PowerUsageBiggestStorage=response.averagePowerUsage.toFixed(2);
+       this.device2.deviceName = this.NameBiggestStorage;
+       this.device2.id=this.IdBiggestStorage;
+       this.device2.power=this.PowerUsageBiggestStorage;
+       this.device2.deviceType="Storage";
+     //console.log(response);
     });
   
   }
+
+
+
 
   monthPowerUsageConsumer: any;
   
@@ -169,6 +186,9 @@ export class ProsumerhomeComponent implements OnInit{
 
 
   ngOnInit(): void {
+    this.devices.push(this.device);
+    this.devices.push(this.device1);
+    this.devices.push(this.device2);
     this.getBiggestConsumer();
     this.getBiggestProducer();
     this.getBiggestStorage();
@@ -176,9 +196,10 @@ export class ProsumerhomeComponent implements OnInit{
     this.getmonthPowerUsageProducer();
     this.getmonthPowerUsageStorage();
     this.getdayPowerPrice();
-    this.devices.push(this.device);
-    this.devices.push(this.device);
+
+    
   }
+
   
 
 }
