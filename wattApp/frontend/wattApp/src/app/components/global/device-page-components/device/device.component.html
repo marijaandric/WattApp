@@ -27,12 +27,6 @@
       </div>
 
       <div class="flexRow margin-top__8px">
-        <span *ngIf="!isRunning">Idle</span>
-        <span *ngIf="isRunning">Running</span>
-        <p-inputSwitch [(ngModel)]="isRunning" class="margin-left__auto width__fit-content"/>
-      </div>
-
-      <div class="flexRow margin-top__8px">
         <span>Visible to DSO</span>
         <p-inputSwitch [(ngModel)]="isVisibleToDSO" class="margin-left__auto width__fit-content"/>
       </div>
@@ -47,14 +41,32 @@
       </div>
     </div>
 
-    <div>
+    <div class="flexColumn device-information margin-top__16px">
+      <div class="flexRow">
+        <span *ngIf="!isRunning">Idle</span>
+        <span *ngIf="isRunning">Running</span>
+        <p-inputSwitch [(ngModel)]="isRunning" class="margin-left__auto width__fit-content"/>
+      </div>
 
+      <div class="flexRow margin-top__8px">
+        <span>Current consumption:</span>
+        <span class="margin-left__auto">{{ 'N/A' }}</span>
+      </div>
+
+      <div class="flexRow margin-top__8px">
+        <span>Totaly ever consumed:</span>
+        <span class="margin-left__auto">{{ 'N/A' }}</span>
+      </div>
+    </div>
+
+    <div>
+      <app-device-area-bar-chart clas="bar-plot" class="margin-top__16px"/>
     </div>
   </app-center-bar>
 </standard-template>
 
 <form [formGroup]="editDeviceDialogForm">
-  <p-dialog
+  <p-dialog id="editDeviceDialogId"
     [draggable]="false" [keepInViewport]="true" [resizable]="false" 
     [blockScroll]="true" [closeOnEscape]="true" 
     [modal]="true" [(visible)]="displayEditDeviceDialog" [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
