@@ -46,6 +46,10 @@ li :visited{
     width: 2em;
     border-radius: 20px;
 }
+
+a{
+    color:white;
+}
   
 @media (min-width: 768px)
 {

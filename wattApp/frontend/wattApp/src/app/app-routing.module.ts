@@ -31,7 +31,7 @@ const routes: Routes = [
   { path: 'devices/production', component: DevicesProductionComponent },
   { path: 'devices/consumption', component: DevicesConsumptionComponent },
   { path: 'devices/stock', component: DevicesStockComponent },
-  { path: 'statistic', component: StatisticComponent }
+  { path: 'statistics', component: StatisticComponent }
 ];
 
 @NgModule({
