@@ -19,6 +19,7 @@
       </app-widget>
         
     </div>
+    <h3 class="hello">Top Device</h3>
     <p-carousel [value] = "devices" [circular]="false" [numScroll]="1">
       <ng-template let-device pTemplate="device">
           <app-device-card [device]="device"></app-device-card>
@@ -32,7 +33,7 @@
       </div>
     </div>
   </div>
-  <h3 class="hello">New</h3>
+  <h3 class="hello">News</h3>
   <div class="promotions" >
     <app-promotion [subTitle]="'Exclusive Promotion'"
      [Title]="'We are delighted to offer you an exclusive promotion as a featured member of our Direct Selling Organization (DSO). As a token of our appreciation, we dо like to offer you a 10% discount if you allow all of your devices to be visible.'" 
@@ -49,7 +50,7 @@
     [isPink]="true" [isBgPink]="true" class="promotion1">
     </app-promotion> 
   </div>
-    <h3 class="hello">Top Consumers</h3>
+
     
     <!--<div class="filter-div"><span>filter</span></div>-->
   </app-center-bar>
