@@ -43,7 +43,7 @@ namespace backend.Controllers
             return devices;
         }
 
-        [HttpGet("DevicesByType{type}")]
+        [HttpGet("DevicesByType/{type}")]
         public List<Devices> GetDevicesByType(string type)
         {
             return _context.GetDevicesByType(type);
