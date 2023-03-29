@@ -27,4 +27,23 @@ export class DeviceService {
     );
   }
 
+  getDevicesByType(type: string): Observable<DeviceDTO[]>{
+    return this.http.get<DeviceDTO[]>(this.baseUrl + "type/" + type).pipe(
+      map(devices => {
+        return devices.map(device => new DeviceDTO(
+          device.id,
+          device.deviceId,
+          device.userId,
+          device.deviceName,
+          device.room,
+          device.deviceType
+        ));
+      })
+    );
+  }
+
+  getDeviceById(id: string): Observable<DeviceDTO>{
+    return this.http.get<DeviceDTO>(this.baseUrl + "device/" + id);
+  }
+
 }

@@ -5,6 +5,7 @@ namespace backend.DAL.Interfaces
     public interface IDevicesDAL
     {
         public List<Devices> GetDevices();
+        public List<Devices> GetDevicesByType(String type);
         public List<Devices> GetDevicesForUser(int userId);
 
         public List<Devices> GetDevicesByType(String type);

@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WeatherForecastComponent implements OnInit {
   WeatherData:any;
-  icon : string = "fas fa-sun";
+  icon : string = "fa fa-sun";
   currentDate : Date = new Date;
   time : string = this.currentDate.toLocaleTimeString();
   date : string = this.currentDate.toLocaleDateString();
@@ -18,7 +18,6 @@ export class WeatherForecastComponent implements OnInit {
       isDay: true
     };
     this.getWeatherData();
-    console.log(this.WeatherData);
 
     setInterval(() => {
       this.time = new Date().toLocaleTimeString();
@@ -27,9 +26,9 @@ export class WeatherForecastComponent implements OnInit {
       const currentHour = new Date().getHours();
 
       if (currentHour >= 6 && currentHour < 18) {
-        this.icon = "fas fa-sun";
+        this.icon = "fa fa-sun";
       } else {
-        this.icon = "fa-moon-o";
+        this.icon = "fa fa-moon-o";
       }
 
     },1000);

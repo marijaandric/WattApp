@@ -8,30 +8,31 @@
     /*min-width: 340px;*/
     border-radius: 20px;
     padding:  40px 40px 20px 20px;
-    box-shadow: 5px 5px 15px black; 
     flex-basis: calc(33.33333% - 30px);
+    box-shadow: 5px 5px 15px black; 
 }
+
 :host>.item_title {
   margin-top: 20px;
   min-height: 40px;
   overflow: hidden;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 19px;
   color: #FFF;
   align-items: end;
   cursor: default;
   z-index: 2;
   position: relative;
   font-family: 'Lato', sans-serif;
+  text-align: justify;
 }
 
 :host>.item_date-box {
-  font-size: 18px;
   z-index: 2;
   position: relative;
   cursor: default;
   font-weight: bold;
-  font-size: 28px;
+  font-size: 24px;
   padding-right: 10px;
   -webkit-transition: color .5s ease;
   -o-transition: color .5s ease;
@@ -42,7 +43,7 @@
 :host>.item_date {
   font-weight: bold;
   cursor: default;
-  font-size: 30px;
+  font-size: 25px;
   padding-right: 10px;
   -webkit-transition: color .5s ease;
   -o-transition: color .5s ease;
@@ -89,5 +90,16 @@
   :host {
     -ms-flex-preferred-size: 100%;
     flex-basis: 100%;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  
+  :host>.item_title {
+    font-size: 10px;
+  }
+  :host>.item_date-box {
+    font-size: 15px;
+    padding-right: 8px;
   }
 }

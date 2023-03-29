@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -29,6 +29,13 @@ namespace backend.Controllers
             return _context.GetDevices();
         }
 
+        // GET: api/Devices/type
+        [HttpGet("type/{deviceType}")]
+        public List<Devices> GetDevicesByType(string deviceType)
+        {
+            return _context.GetDevicesByType(deviceType);
+        }
+
         // GET: api/Devices/5
         [HttpGet("{userId}")]
         public List<Devices> GetDevicesForUser(int userId)
@@ -47,6 +54,13 @@ namespace backend.Controllers
         public List<Devices> GetDevicesByType(string type)
         {
             return _context.GetDevicesByType(type);
+        }
+        // GET: api/Devices/device/5
+        // actual ID
+        [HttpGet("device/{id}")]
+        public Devices GetDeviceById(int id)
+        {
+            return _context.GetDevice(id);
         }
 
         // GET: api/Devices/5

@@ -43,7 +43,7 @@ import { PieChartComponent } from './components/global/pie-chart/pie-chart.compo
 import { NgApexchartsModule } from 'ng-apexcharts';
 import { DonutChartComponent } from './components/global/donut-chart/donut-chart.component';
 import { TabMenuComponent } from './components/Prosumer/tab-menu/tab-menu.component';
-import { DeviceComponent } from './components/Prosumer/device/device.component';
+import { DeviceComponent } from './components/global/device-page-components/device/device.component';
 import { CarouselModule } from 'primeng/carousel';
 import { DevicesComponent } from './components/Prosumer/devices-page-components/devices/devices.component';
 import { DevicesConsumptionComponent } from './components/Prosumer/devices-page-components/devices-consumption/devices-consumption.component';
@@ -54,6 +54,17 @@ import { LineChartComponent } from './components/global/line-chart/line-chart.co
 import { DeviceCardComponent } from './components/Prosumer/devices-page-components/device-card/device-card.component';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { WeatherForecastComponent } from './components/global/weather-forecast/weather-forecast.component';
+import { StatisticComponent } from './components/Prosumer/statistic-page-components/statistic/statistic.component';
+import { HistoryForecastComponent } from './components/global/history-forecast/history-forecast.component';
+import { AreaBarChartComponent } from './components/global/home-page-components/area-bar-chart/area-bar-chart.component';
+import { DeviceAreaBarChartComponent } from './components/global/device-page-components/device-area-bar-chart/device-area-bar-chart.component';
+import { ToggleButtonModule } from 'primeng/togglebutton';
+import { InputSwitchModule } from 'primeng/inputswitch';
+import { DevicesAllComponent } from './components/Prosumer/devices-page-components/devices-all/devices-all.component';
+import { WeatherForecast7Component } from './components/global/weather-forecast7/weather-forecast7.component';
+import { HistoryForecastTableComponent } from './components/global/history-forecast-table/history-forecast-table.component';
+import { TabMenuDsoComponent } from './components/DSO/users-page-components/tab-menu-dso/tab-menu-dso.component';
+import { TabMenuUsersComponent } from './components/DSO/users-page-components/tab-menu-users/tab-menu-users.component';
 
 export const url = 'https://localhost:7158';
 export const deviceFakerUrl = "https://localhost:7233";
@@ -92,7 +103,16 @@ export const deviceFakerUrl = "https://localhost:7233";
     BarChartComponent,
     LineChartComponent,
     DeviceCardComponent,
-    WeatherForecastComponent
+    WeatherForecastComponent,
+    StatisticComponent,
+    HistoryForecastComponent,
+    AreaBarChartComponent,
+    DevicesAllComponent,
+    WeatherForecast7Component,
+    HistoryForecastTableComponent,
+    TabMenuDsoComponent,
+    TabMenuUsersComponent,
+    DeviceAreaBarChartComponent
   ],
   imports: [
     CommonModule,
@@ -114,6 +134,8 @@ export const deviceFakerUrl = "https://localhost:7233";
     CarouselModule,
     NgApexchartsModule,
     SelectButtonModule,
+    ToggleButtonModule,
+    InputSwitchModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: () => localStorage.getItem('access_token'),

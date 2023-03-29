@@ -1,13 +1,11 @@
-body{ 
+body{
+  background-color:#121212; 
 }
-
 .login {
   height: 100vh;
   width: 100%;
   position: relative;
   background-size: cover;
-    
-  background-color:#121212; 
   background-repeat:repeat;
   
 }
@@ -144,3 +142,59 @@ i{
   float:right;
 }
 
+@media only screen and (min-width: 768px) {
+  .login_box {
+    max-width: 100%;
+  }
+
+  .left input {
+    max-width: 100%;
+  }
+
+  .right-text h2 {
+    font-size: 2.5rem;
+  }
+
+  .right-text h5 {
+    font-size: 1.5rem;
+  }
+}
+
+
+@media (max-width: 743px) {
+  body{
+    display: flex;
+    justify-content: center; /* new CSS */
+    align-items: center; 
+  }
+
+  .right{
+    display: none;
+  }
+
+  .login_box{
+    flex-direction: column;
+    height: auto;
+    width: 90%;
+    padding: 25px;
+    display: flex;
+    justify-content: center; /* new CSS */
+    align-items: center; 
+    top:45%;
+  }
+
+  .login{
+    width: 85%;
+  }
+
+  .left {
+    height: auto;
+    padding-right: 0;
+  }
+
+
+  button{
+    padding:5px 10px;
+    font-size: 10px;
+  }
+}

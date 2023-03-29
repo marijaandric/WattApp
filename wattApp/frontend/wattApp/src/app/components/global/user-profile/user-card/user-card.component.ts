@@ -13,6 +13,7 @@ export class UserCardComponent implements OnInit {
   userInfo: any;
   display: boolean = false;
   menageUserForm! : FormGroup;
+  
 
   constructor(private router:Router,private userService: UserService,private fb: FormBuilder) {}
 
@@ -44,6 +45,18 @@ export class UserCardComponent implements OnInit {
 
   showDialog() {
     this.display = true;
+    this.menageUserForm = this.fb.group({
+      id: this.userInfo.id,
+      firstName: this.userInfo.firstName,
+      lastName: this.userInfo.lastName,
+      username: this.userInfo.username,
+      email: this.userInfo.email,
+      phoneNumber: this.userInfo.phoneNumber,
+      address: this.userInfo.address,
+      password: this.userInfo.password,
+      role: this.userInfo.role,
+      token: this.userInfo.token,
+    });
   }
 
   edit(){

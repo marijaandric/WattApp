@@ -29,6 +29,15 @@
   padding-top: 25px;
   
 }
+
+.prviDeoPrognoza{
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding-top: 25px;
+  
+}
 .promotion
 {
   padding-top: 15px;
@@ -63,12 +72,11 @@
     display: inline-block;
     position: relative;
     flex-direction: row;
-    max-width: 23%;
+    /*max-width: 23%;*/
     min-width: 240px;
     width:20%;
     box-shadow: 10px 10px 50px black;  
 }
-
 .iframe-div {
     position: relative;
     display:flex;
@@ -98,7 +106,6 @@
   width: 600px;
   border-radius: 20px;
   padding-top: 10px;
-  margin-top: 20px;
 }
 
 .line3
@@ -108,13 +115,39 @@
   border-radius: 20px;
   padding-top: 10px;
   margin-top: 20px;
-  margin-left: 30px;
+  margin-left: 40px;
 }
 
 .line2{
   float:left;
 }
 
+.vreme{
+  margin: 20px; 
+  width: 100%;
+}
+
+.divVreme{
+  width: 20%; 
+  display: inline;
+}
+
+.prviDeo{
+  width: 80%;
+}
+
+@media only screen and (max-width: 1126px) {
+  .prviDeo{
+    width: 100%;
+  }
+  .divVreme{
+    width: 50%;
+  }
+
+  .vreme{
+    margin: 0;
+  }
+}
 
 @media only screen and (max-width: 979px) {
     .widget {
@@ -123,13 +156,69 @@
     }
   }
 
-  @media only screen and (max-width: 639px) {
+  @media only screen and (max-width: 796px) {
     .widget {
       -ms-flex-preferred-size: 100%;
       flex-basis: 100%;
     }
+
+    .slika{
+      display:none;
+    }
+  }
+  @media only screen and (max-width: 500px) {
+    .vreme{
+      margin-left:5px;
+    }
+    .promotions {
+      min-width: 250px;
+      overflow-x: scroll;
+      display: flex;
+      flex-wrap: nowrap;
+    }
+    .promotion, .promotion1{
+      display: inline-block;
+      vertical-align: top;
+      min-width: 240px;
+      margin-right: 10px;
+      margin-left: 10px;
+      margin-bottom: 10px;
+      height: 180px;
+    }
+
+    .widgets{
+      overflow-x: scroll;
+      display: flex;
+      flex-wrap: nowrap;
+    }
+    .widget{
+      margin-right: 10px;
+      margin-left: 10px;
+      display: inline-block;
+      vertical-align: top;
+    }
+
+    /*.widgets::-webkit-scrollbar {
+      width: 10px;
+      margin-bottom: -5px;
+    }
+
+    .widgets::-webkit-scrollbar-thumb {
+      background-color: rgba(214, 214, 214, 0.212); 
+      border-radius: 10px; 
+    }
+
+    .promotions::-webkit-scrollbar {
+      width: 10px;
+    }
+
+    .promotions::-webkit-scrollbar-thumb {
+      background-color: rgba(214, 214, 214, 0.212); 
+      border-radius: 10px; 
+    }*/
   }
 
+  
   /* ::ng-deep .apexcharts-series path:nth-child(1) {
     fill: #F48207;
   }
@@ -142,9 +231,6 @@
     fill: #D63F74;
   } */
 
-  ::ng-deep .apexcharts-line-series path {
-    stroke: rgb(4,167,119);
-  }
 
   ::ng-deep #SvgjsPath1012 {
     fill:red;

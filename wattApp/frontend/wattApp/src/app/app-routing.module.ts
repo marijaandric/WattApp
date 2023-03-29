@@ -9,11 +9,13 @@ import { AuthGuard } from './guards/auth.guard';
 import { UserProfileComponent } from './components/global/user-profile/user-profile/user-profile.component';
 import { ProsumerhomeComponent } from './components/Prosumer/home-page-components/prosumerhome/prosumerhome.component';
 import { ContactComponent } from './components/global/contact/contact.component';
-import { DeviceComponent } from './components/Prosumer/device/device.component';
+import { DeviceComponent } from './components/global/device-page-components/device/device.component';
 import { DevicesComponent } from './components/Prosumer/devices-page-components/devices/devices.component';
 import { DevicesProductionComponent } from './components/Prosumer/devices-page-components/devices-production/devices-production.component';
 import { DevicesConsumptionComponent } from './components/Prosumer/devices-page-components/devices-consumption/devices-consumption.component';
 import { DevicesStockComponent } from './components/Prosumer/devices-page-components/devices-stock/devices-stock.component';
+import { StatisticComponent } from './components/Prosumer/statistic-page-components/statistic/statistic.component';
+import { DevicesAllComponent } from './components/Prosumer/devices-page-components/devices-all/devices-all.component';
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
@@ -24,11 +26,12 @@ const routes: Routes = [
   { path: 'user', component:UserProfileComponent},
   { path: 'prosumerhome', component: ProsumerhomeComponent },
   { path: 'contact', component:ContactComponent},
-  { path: 'device', component: DeviceComponent },
-  { path: 'devices', component: DevicesComponent },
+  { path: 'device/:id', component: DeviceComponent },
+  { path: 'devices', component: DevicesAllComponent },
   { path: 'devices/production', component: DevicesProductionComponent },
   { path: 'devices/consumption', component: DevicesConsumptionComponent },
-  { path: 'devices/stock', component: DevicesStockComponent }
+  { path: 'devices/stock', component: DevicesStockComponent },
+  { path: 'statistics', component: StatisticComponent }
 ];
 
 @NgModule({

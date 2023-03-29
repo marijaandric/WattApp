@@ -7,6 +7,7 @@ namespace backend.BLL.Interfaces
     public interface IDevicesBL
     {
         public List<Devices> GetDevices();
+        public List<Devices> GetDevicesByType(String type);
         public List<Devices> GetDevicesForUser(int userId);
         public List<Devices> GetDevicesByType(String type);
         public Devices GetDeviceForUser(int userId, int deviceId);
