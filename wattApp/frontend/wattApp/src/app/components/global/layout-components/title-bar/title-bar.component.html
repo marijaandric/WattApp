@@ -64,14 +64,14 @@
   <div class="p-inputgroup p-inputtext-lg p-input-filled">
     <div class="half">  
       Device type 
-      <p-dropdown [options]="roles" appendTo="body" optionLabel="name"></p-dropdown>
+      <p-dropdown [options]="types" appendTo="body" optionLabel="type" (onChange)="onTypeChange($event)"></p-dropdown>
       Device model 
-      <p-dropdown [options]="roles" appendTo="body" optionLabel="name"></p-dropdown>
+      <p-dropdown [options]="models" appendTo="body" optionLabel="models"></p-dropdown>
     </div>
     
     <div class="half">       
        Room
-      <p-dropdown [options]="roles" appendTo="body" optionLabel="name"></p-dropdown>
+      <p-dropdown [options]="rooms" appendTo="body" optionLabel="room"></p-dropdown>
        Name
       <input style="margin-top:45px;" formControlName="deviceName" name="name"  appendTo="body" type="text"   class="p-inputtext-lg"  placeholder="DEVICE NAME"> 
     </div>
