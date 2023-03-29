@@ -138,8 +138,23 @@ namespace backend.Controllers
         [HttpGet("tableContent/{userId}/{year}/{month}/{day}/{time}/{type}")]
         public List<BigTableContent> GetTableContent(int userId, int year, int month, int day, string time,string type)
         {
-            List<BigTableContent> result = _context.GetTableContent(userId, year, month, day, time, type);
-            return result;
+            return _context.GetTableContent(userId, year, month, day, time, type);
+            
+        }
+
+        [HttpGet("chart/{userId}/{type}/{limit}")]
+        public IActionResult GetTableContent(int userId, string type, int limit)
+        {
+            var result = _context.GetDevicesCountByType(userId,type, limit);
+            return Ok(
+                    new
+                    {
+                        Rooms = result.Item1,
+                        Count = result.Item2
+                    }
+
+                );
+
         }
 
         [HttpGet("price")]
