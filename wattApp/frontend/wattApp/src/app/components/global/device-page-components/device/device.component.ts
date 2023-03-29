@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { DeviceDTO } from 'src/app/dtos/DeviceDTO';
 import { DeviceService } from 'src/app/services/device/device.service';
 import { Location } from '@angular/common';
+import { FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-device',
@@ -11,6 +12,11 @@ import { Location } from '@angular/common';
 })
 export class DeviceComponent {
   device!: DeviceDTO;
+  displayEditDeviceDialog: boolean = false;
+  editDeviceDialogForm! : FormGroup;
+  isRunning: boolean = true;
+  isVisibleToDSO: boolean = true;
+  isDSOControll: boolean = true;
 
   constructor(private route: ActivatedRoute, private deviceService: DeviceService, private location: Location) { }
 
@@ -29,5 +35,13 @@ export class DeviceComponent {
 
   goBack(): void {
     this.location.back();
+  }
+
+  showEditDeviceDialog() {
+    this.displayEditDeviceDialog = true;
+  }
+
+  save(){
+    this.displayEditDeviceDialog = false;
   }
 }
