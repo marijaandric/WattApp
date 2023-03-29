@@ -204,5 +204,10 @@ namespace backend.BLL
         {
             _contextDAL?.SaveChanges();
         }
+
+        public List<Devices> GetDevicesByType(String type)
+        {
+            return _contextDAL.GetDevicesByType(type);
+        }
     }
 }

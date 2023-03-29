@@ -7,6 +7,7 @@ namespace backend.DAL.Interfaces
         public List<Devices> GetDevices();
         public List<Devices> GetDevicesByType(String type);
         public List<Devices> GetDevicesForUser(int userId);
+
         public Devices GetDeviceForUser(int userId, int deviceId);
         public void ModifiedDevice(Devices device);
         public void SaveChanges();
