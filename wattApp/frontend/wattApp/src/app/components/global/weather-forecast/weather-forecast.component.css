@@ -1,16 +1,12 @@
 
   .box {
-    width: 270%;
-    height: 43vh;
+    height: 550px;
     border-radius: 20px;
-    
     background: #1b1b1b;
     position: relative;
     overflow: hidden;
     transform: translate3d(0, 0, 0);
     min-width: 200px;
-    min-height: 350px;
-    margin: 20px 30px;
     box-shadow: 10px 10px 50px black;  
   }
   
@@ -78,7 +74,7 @@
   .date {
     text-align: center;
     margin-top: 5%;
-    color: lighten(grey, 10%);
+    color:white;
     font-size: 70%;
   }
   
@@ -103,30 +99,61 @@
   
   @media (max-width: 600px) {
     .box {
-      width: 90vw;
-      height: 80vh;
-    }
-  
-    .wave {
-      top: 85%;
-    }
-  
-    .weathercon {
-      font-size: 5em;
-    }
-  
-    .info {
-      font-size: 1.5rem;
-    }
-  }
-  
-  @media (max-height: 500px) {
-    .box {
-      height: 80vh;
+      width: 88vw;
+      height: 60vw;
     }
   
     .wave {
       top: 115%;
+    }
+  
+    .weathercon {
+      font-size: 3em;
+    }
+  
+    .info {
+      font-size: 1rem;
+    }
+
+    .info2{
+      margin-top: 10px;
+    }
+
+    h4{
+      font-size: 1rem;
+    }
+  }
+
+  @media (max-width: 500px) {
+    .box {
+      margin-top: 10px;
+      width: 84vw;
+      height: 70vw;
+    }
+  
+    .wave {
+      top: 135%;
+    }
+  
+    .weathercon {
+      font-size: 2.5em;
+      z-index: 4;
+    }
+  
+    .info {
+      font-size: 1rem;
+    }
+
+    .info2{
+      margin-top: 10px;
+    }
+
+    h4{
+      font-size: 0.7rem;
+    }
+
+    h2{
+      font-size: 1.2rem;
     }
   }
   

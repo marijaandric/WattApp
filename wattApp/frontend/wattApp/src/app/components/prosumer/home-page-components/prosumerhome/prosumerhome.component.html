@@ -5,6 +5,8 @@
   
     <app-center-bar>
     <h3 class="hello">Hello, {{user?.firstName}} {{user?.lastName}}</h3>
+    <div class="prviDeoPrognoza">
+    <div class="prviDeo">
     <div class="widgets">
         
       <app-widget [subTitle]="'Current price of electricity'" [Title]="dayPowerPrice + ' RSD/h'" [isBlue]="true" [isBgBlue]="true" class="widget">
@@ -32,18 +34,20 @@
       [subTitle]="'Pay for better tomorrow'"
       [Title]="'Our Direct Selling Organization (DSO) has a new promotion that will allow you to save on your next electricity bill. If you pay your next months bill in advance, you will receive a 3% discount on the total amount of your bill.'"
       [isPink]="true" [isBgPink]="true" class="promotion1">
-      </app-promotion>     
+      </app-promotion> 
     </div>
 
+    </div>
+    <div class="divVreme">
+      <div class="vreme">
+        <app-weather-forecast></app-weather-forecast>
+      </div>
+    </div>
+  </div>
     <h3 class="hello">Top Consumers</h3>
-   
+    
     <!--<div class="filter-div"><span>filter</span></div>-->
   </app-center-bar>
 
-  <app-info-bar>
-    <div class="vreme">
-      <app-weather-forecast></app-weather-forecast>
-    </div>
-  </app-info-bar>
   </standard-template>
   

@@ -29,6 +29,15 @@
   padding-top: 25px;
   
 }
+
+.prviDeoPrognoza{
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding-top: 25px;
+  
+}
 .promotion
 {
   padding-top: 15px;
@@ -70,7 +79,7 @@
 }
 .vreme
 {
-  width: 130px;
+  width: 100%;
 }
 
 .iframe-div {
@@ -118,7 +127,32 @@
   float:left;
 }
 
+.vreme{
+  margin: 20px; 
+  width: 100%;
+}
 
+.divVreme{
+  width: 20%; 
+  display: inline;
+}
+
+.prviDeo{
+  width: 80%;
+}
+
+@media only screen and (max-width: 1126px) {
+  .prviDeo{
+    width: 100%;
+  }
+  .divVreme{
+    width: 50%;
+  }
+
+  .vreme{
+    margin: 0;
+  }
+}
 
 @media only screen and (max-width: 979px) {
     .widget {
@@ -134,13 +168,15 @@
     }
   }
   @media only screen and (max-width: 500px) {
+    .vreme{
+      margin-left:5px;
+    }
     .promotions {
       min-width: 250px;
       overflow-x: scroll;
       display: flex;
       flex-wrap: nowrap;
     }
-
     .promotion, .promotion1{
       display: inline-block;
       vertical-align: top;

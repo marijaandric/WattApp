@@ -116,7 +116,7 @@ export class HomeComponent {
   showDialog6() {
     this.display6 = true;
   }
-/*
+  
   isAdmin()
   {
     const token = this.authService.getToken();
@@ -137,5 +137,4 @@ export class HomeComponent {
     }
     
   }
-  */
 }
