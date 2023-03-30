@@ -46,4 +46,9 @@ export class DeviceService {
     return this.http.get<DeviceDTO>(this.baseUrl + "device/" + id);
   }
 
+  AddDevice(deviceObj:any)
+  {
+    return this.http.post<any>(`${this.baseUrl}`,deviceObj);
+  }
+
 }

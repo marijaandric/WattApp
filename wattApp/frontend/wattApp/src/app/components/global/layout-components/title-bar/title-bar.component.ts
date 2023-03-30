@@ -1,8 +1,10 @@
+import { Token } from '@angular/compiler';
 import { Component, OnInit, ɵɵqueryRefresh } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { DeviceService } from 'src/app/services/device/device.service';
 import { UserService } from 'src/app/services/user.service';
 
 interface Roles{
@@ -44,7 +46,7 @@ export class TitleBarComponent implements OnInit{
   showText = false;
   rola:any;
   
-  constructor(private router:Router,private fb: FormBuilder,private authService: AuthService,private toast:NgToastService,private userService:UserService) {
+  constructor(private router:Router,private fb: FormBuilder,private authService: AuthService,private toast:NgToastService,private userService:UserService,private deviceService:DeviceService) {
     this.roles = [
       {role:'prosumer'},
       {role:'operator'},
@@ -98,9 +100,10 @@ export class TitleBarComponent implements OnInit{
       {room:'Garden'},
     ]
   this.roleSelected = 'prosumer';
-  this.typeSelected = 'consumer';
-  this.modelSelected = 'fridge';
+  this.typeSelected = 'Consumer';
+  this.modelSelected = 'Lamp';
   this.roomSelected = 'Living room';
+  
   }
 
   ngOnInit(): void {
@@ -142,6 +145,7 @@ export class TitleBarComponent implements OnInit{
     });
 
     this.addDeviceForm = this.fb.group({
+      userID :[0, Validators.required],
       deviceName: ['', Validators.required],
       deviceModel: ['', Validators.required],
       room: ['', Validators.required],
@@ -168,6 +172,14 @@ export class TitleBarComponent implements OnInit{
     this.models = this.modelsRez;
     const filteredModels = this.models.filter(models => models.type === this.typeSelected);
     this.models = filteredModels;
+    this.modelSelected = filteredModels[0].models
+  }
+  onModelChange(event:any){
+    this.modelSelected = event.value.models;
+  }
+  onRoomChange(event:any)
+  {
+    this.roomSelected = event.value.room;
   }
 
   //registracija
@@ -198,7 +210,36 @@ export class TitleBarComponent implements OnInit{
 
   addDevice()
   {
+    const token = localStorage.getItem('token');
+    let id = 0;
+    if(token)
+    {
+      id = this.userService.getUserIdFromToken(token)
+    }
     
+    this.addDeviceForm.patchValue({
+      deviceType : this.typeSelected
+    })
+    this.addDeviceForm.patchValue({
+      userID : id
+    })
+    this.addDeviceForm.patchValue({
+      deviceModel : this.modelSelected
+    })
+    this.addDeviceForm.patchValue({
+      room : this.roomSelected
+    })
+    console.log(this.addDeviceForm.value)
+    this.deviceService.AddDevice(this.addDeviceForm.value).subscribe({
+      next:(res => {
+        this.addDeviceForm.reset()
+        this.toast.success({detail:"SUCCESS",summary:"You have successfully added device",duration:4000});
+        this.display2 = false;
+      }),
+      error:(err => {
+        this.toast.error({detail:"ERROR",summary:"Error",duration:4000});
+      })
+    }) 
   }
 
   //validacija
