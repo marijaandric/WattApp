@@ -51,4 +51,8 @@ export class DeviceService {
     return this.http.post<any>(`${this.baseUrl}`,deviceObj);
   }
 
+  deleteDevice(deviceId: number) {
+    return this.http.delete(this.baseUrl + deviceId);
+  }
+
 }

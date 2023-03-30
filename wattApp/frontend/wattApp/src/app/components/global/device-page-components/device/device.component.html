@@ -8,7 +8,7 @@
       <div class="flexRow">
         <h3>{{ device.deviceName }}</h3>
         <p-button label="Edit" (click)="showEditDeviceDialog()" class="margin-left__auto"/>
-        <p-button label="Delete" class="margin-left__8px"/>
+        <p-button label="Delete" (onClick)="deleteDevice(device.id)" class="margin-left__8px"/>
       </div>
 
       <div class="flexRow margin-top__16px">
@@ -65,7 +65,7 @@
   </app-center-bar>
 </standard-template>
 
-<form [formGroup]="editDeviceDialogForm">
+<form>
   <p-dialog id="editDeviceDialogId"
     [draggable]="false" [keepInViewport]="true" [resizable]="false" 
     [blockScroll]="true" [closeOnEscape]="true" 

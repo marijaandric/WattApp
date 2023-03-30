@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { DeviceDTO } from 'src/app/dtos/DeviceDTO';
 import { DeviceService } from 'src/app/services/device/device.service';
-import { Location } from '@angular/common';
 import { FormGroup } from '@angular/forms';
 
 @Component({
@@ -18,7 +17,7 @@ export class DeviceComponent {
   isVisibleToDSO: boolean = true;
   isDSOControll: boolean = true;
 
-  constructor(private route: ActivatedRoute, private deviceService: DeviceService, private location: Location) { }
+  constructor(private route: ActivatedRoute, private deviceService: DeviceService, private router: Router) { }
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
@@ -27,14 +26,14 @@ export class DeviceComponent {
         .subscribe(device => {
           this.device = device;
           if(!this.device){
-            this.goBack();
+            this.navigateToDevices();
           }
       });
     }
   }
 
-  goBack(): void {
-    this.location.back();
+  navigateToDevices(): void {
+    this.router.navigateByUrl("devices");
   }
 
   showEditDeviceDialog() {
@@ -43,5 +42,12 @@ export class DeviceComponent {
 
   save(){
     this.displayEditDeviceDialog = false;
+  }
+
+  deleteDevice(id: number) {
+    console.log("Deleting device with ID: " + id);
+    this.deviceService.deleteDevice(id).subscribe(() => {
+      this.navigateToDevices();
+    });
   }
 }
