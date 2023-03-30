@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using backend.Models;
 using backend.BLL.Interfaces;
+using backend.Models.NotDbModels;
 
 namespace backend.Controllers
 {
@@ -28,6 +29,13 @@ namespace backend.Controllers
             return _context.GetDevices();
         }
 
+        // GET: api/Devices/type
+        [HttpGet("type/{deviceType}")]
+        public List<Devices> GetDevicesByType(string deviceType)
+        {
+            return _context.GetDevicesByType(deviceType);
+        }
+
         // GET: api/Devices/5
         [HttpGet("{userId}")]
         public List<Devices> GetDevicesForUser(int userId)
@@ -40,6 +48,14 @@ namespace backend.Controllers
             }
 
             return devices;
+        }
+
+        // GET: api/Devices/device/5
+        // actual ID
+        [HttpGet("device/{id}")]
+        public Devices GetDeviceById(int id)
+        {
+            return _context.GetDevice(id);
         }
 
         // GET: api/Devices/5
@@ -113,5 +129,57 @@ namespace backend.Controllers
 
             return Ok();
         }
+
+        [HttpGet("{userId}/{year}/{month}/{day}/{type}/{size}")]
+        public IActionResult GetExrtemeDevice(int userId, int year, int month, int day, string type, string size)
+        {
+            var result = _context.GetExtremeDevice(userId, year, month, day, type, size);
+            return Ok(
+                    new
+                    {
+                        DeviceId = result.Item1,
+                        DeviceName = result.Item2,
+                        AveragePowerUsage = result.Item3
+                    }); ;
+        }
+
+        [HttpGet("{userId}/{year}/{month}/{type}")]
+        public double GetMonthlyStatistics(int userId, int year, int month, string type)
+        {
+            return _context.GetMonthlyStatistics(userId, year, month, type);
+            
+        }
+
+        [HttpGet("tableContent/{userId}/{year}/{month}/{day}/{time}/{type}")]
+        public List<BigTableContent> GetTableContent(int userId, int year, int month, int day, string time,string type)
+        {
+            return _context.GetTableContent(userId, year, month, day, time, type);
+            
+        }
+
+        [HttpGet("chart/{userId}/{type}/{limit}")]
+        public IActionResult GetTableContent(int userId, string type, int limit)
+        {
+            var result = _context.GetDevicesCountByType(userId,type, limit);
+            return Ok(
+                    new
+                    {
+                        Rooms = result.Item1,
+                        Count = result.Item2
+                    }
+
+                );
+
+        }
+
+        [HttpGet("price")]
+        public double getElectricalPowerPrice()
+        {
+            Random random = new Random();
+            double randomNumber = random.NextDouble();
+            double result = 0.2 + randomNumber * 0.05;
+            return Math.Round(result, 2);
+        }
+
     }
 }

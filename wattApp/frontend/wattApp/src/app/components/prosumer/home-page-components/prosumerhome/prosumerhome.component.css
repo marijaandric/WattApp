@@ -29,6 +29,15 @@
   padding-top: 25px;
   
 }
+
+.prviDeoPrognoza{
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding-top: 25px;
+  
+}
 .promotion
 {
   padding-top: 15px;
@@ -68,7 +77,6 @@
     width:20%;
     box-shadow: 10px 10px 50px black;  
 }
-
 .iframe-div {
     position: relative;
     display:flex;
@@ -114,7 +122,32 @@
   float:left;
 }
 
+.vreme{
+  margin: 20px; 
+  width: 100%;
+}
 
+.divVreme{
+  width: 20%; 
+  display: inline;
+}
+
+.prviDeo{
+  width: 80%;
+}
+
+@media only screen and (max-width: 1126px) {
+  .prviDeo{
+    width: 100%;
+  }
+  .divVreme{
+    width: 50%;
+  }
+
+  .vreme{
+    margin: 0;
+  }
+}
 
 @media only screen and (max-width: 979px) {
     .widget {
@@ -123,20 +156,26 @@
     }
   }
 
-  @media only screen and (max-width: 639px) {
+  @media only screen and (max-width: 796px) {
     .widget {
       -ms-flex-preferred-size: 100%;
       flex-basis: 100%;
     }
+
+    .slika{
+      display:none;
+    }
   }
   @media only screen and (max-width: 500px) {
+    .vreme{
+      margin-left:5px;
+    }
     .promotions {
       min-width: 250px;
       overflow-x: scroll;
       display: flex;
       flex-wrap: nowrap;
     }
-
     .promotion, .promotion1{
       display: inline-block;
       vertical-align: top;
@@ -159,24 +198,24 @@
       vertical-align: top;
     }
 
-    .widgets::-webkit-scrollbar {
-      width: 10px; /* adjust to your desired width */
+    /*.widgets::-webkit-scrollbar {
+      width: 10px;
       margin-bottom: -5px;
     }
 
     .widgets::-webkit-scrollbar-thumb {
-      background-color: rgba(214, 214, 214, 0.212); /* adjust to your desired color */
-      border-radius: 10px; /* adjust to your desired radius */
+      background-color: rgba(214, 214, 214, 0.212); 
+      border-radius: 10px; 
     }
 
     .promotions::-webkit-scrollbar {
-      width: 10px; /* adjust to your desired width */
+      width: 10px;
     }
 
     .promotions::-webkit-scrollbar-thumb {
-      background-color: rgba(214, 214, 214, 0.212); /* adjust to your desired color */
-      border-radius: 10px; /* adjust to your desired radius */
-    }
+      background-color: rgba(214, 214, 214, 0.212); 
+      border-radius: 10px; 
+    }*/
   }
 
   
@@ -192,9 +231,6 @@
     fill: #D63F74;
   } */
 
-  ::ng-deep .apexcharts-line-series path {
-    stroke: rgb(4,167,119);
-  }
 
   ::ng-deep #SvgjsPath1012 {
     fill:red;

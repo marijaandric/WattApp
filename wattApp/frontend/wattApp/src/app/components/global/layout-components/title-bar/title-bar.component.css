@@ -4,6 +4,7 @@
     justify-content: space-between;
     padding: 16px 32px 0px 32px;
     height: 60px;
+    color: white;
 }
 
 .right-part{
@@ -45,11 +46,15 @@ li :visited{
     width: 2em;
     border-radius: 20px;
 }
+
+a{
+    color:white;
+}
   
 @media (min-width: 768px)
 {
     .right-part li{
-        min-width: 100px;
+        min-width: 120px;
     }
 }
 

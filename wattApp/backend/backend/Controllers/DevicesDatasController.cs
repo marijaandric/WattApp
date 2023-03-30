@@ -35,33 +35,29 @@ namespace backend.Controllers
         [HttpGet("{id}/{year}")]
         public List<DevicesData> GetYearDataForDevice(int id, int year)
         {
-            var devicesData = _context.GetYearDataForDevice(id, year);
+            return _context.GetYearDataForDevice(id, year);
 
-            return devicesData;
         }
 
         [HttpGet("{id}/{year}/{month}")]
         public List<DevicesData> GetMonthDataForDevice(int id, int year, int month)
         {
-            var devicesData = _context.GetMonthDataForDevice(id, year, month);
+            return _context.GetMonthDataForDevice(id, year, month);
 
-            return null;
         }
 
         [HttpGet("{id}/{year}/{month}/{day}")]
         public List<DevicesData> GetDayDataForDevice(int id, int year, int month, int day)
         {
-            var devicesData = _context.GetDayDataForDevice(id, year, month, day);
+            return _context.GetDayDataForDevice(id, year, month, day);
 
-            return devicesData;
         }
 
         [HttpGet("{id}/{year}/{month}/{day}/{time}")]
         public DevicesData GetHourDataForDevice(int id, int year, int month, int day, string time)
         {
-            var devicesData = _context.GetHourDataForDevice(id, year, month, day, time);
+            return _context.GetHourDataForDevice(id, year, month, day, time);
 
-            return devicesData;
         }
 
     }

@@ -1,5 +1,5 @@
-﻿using backend.BAL;
-using backend.BLL;
+﻿
+using backend.BAL;
 using backend.Context;
 using backend.DAL.Interfaces;
 using backend.Models;
@@ -28,12 +28,12 @@ namespace backend.DAL
 
         public Devices GetDevice(int deviceId)
         {
-            return _context.Devices.FirstOrDefault(e => e.DeviceID == deviceId);
+            return _context.Devices.FirstOrDefault(e => e.Id == deviceId);
         }
 
         public Devices GetDeviceForUser(int userId, int deviceId)
         {
-            return _context.Devices.FirstOrDefault(e => e.UserID == userId && e.DeviceID == deviceId);
+            return _context.Devices.FirstOrDefault(e => e.UserID == userId && e.Id == deviceId);
         }
 
         public List<Devices> GetDevices()
@@ -41,9 +41,21 @@ namespace backend.DAL
             return _context.Devices.ToList();
         }
 
+        public List<Devices> GetDevicesByType(string type)
+        {
+            return _context.Devices.Where(e => e.DeviceType == type).ToList();
+        }
+
         public List<Devices> GetDevicesForUser(int userId)
         {
             return _context.Devices.Where(e => e.UserID == userId).ToList();
+        }
+
+        public List<Devices> GetUserDevicesByType(int userId, string type)
+        {
+            if(type == "All")
+                return GetDevicesForUser(userId);
+            return _context.Devices.Where(e => e.UserID == userId && e.DeviceType == type).ToList();
         }
 
         public void ModifiedDevice(Devices device)

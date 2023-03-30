@@ -5,54 +5,67 @@
   
     <app-center-bar>
     <h3 class="hello">Hello, {{user?.firstName}} {{user?.lastName}}</h3>
+    <div class="prviDeoPrognoza">
+    <div class="prviDeo">
     <div class="widgets">
         
-      <app-widget [isBlue]="true" [isBgBlue]="true" class="widget">
+      <app-widget [subTitle]="'Current price of electricity'" [Title]="dayPowerPrice + ' RSD/h'" [isBlue]="true" [isBgBlue]="true" class="widget">
       </app-widget>
-      <app-widget [isYellow]="true" [isBgYellow]="true" class="widget">
+      <app-widget [subTitle]="'Total consumed electricity this month'" [Title]="monthPowerUsageConsumer + ' kW/h'" [isYellow]="true" [isBgYellow]="true" class="widget">
       </app-widget>
-      <app-widget [isPink]="true" [isBgPink]="true" class="widget">
+      <app-widget [subTitle]="'Total produced electricity this month'" [Title]="monthPowerUsageProducer + ' kW/h'" [isPink]="true" [isBgPink]="true" class="widget">
       </app-widget>
-      <app-widget [isOrange]="true" [isBgOrange]="true" class="widget">
+      <app-widget  [subTitle]="'Total stocked  electricity this month'" [Title]="monthPowerUsageStorage+ ' kW/h'" [isOrange]="true" [isBgOrange]="true" class="widget">
       </app-widget>
         
     </div>
-    <h3 class="hello">News and funs</h3>
-    <div class="promotions" >
-      <app-promotion [isBlue]="true" [isBgBlue]="true" class="promotion">
-      </app-promotion>
-      <app-promotion [isYellow]="true" [isBgYellow]="true" class="promotion1">
-      </app-promotion>
-      <app-promotion [isPink]="true" [isBgPink]="true" class="promotion1">
-      </app-promotion>  
-    </div>
-    <div style="display: inline-block;">
-      <div class="line2">
-        <div class="line">
-          <app-line-chart></app-line-chart>
+    <h3 class="hello">Top Devices</h3>
+    <div style="display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;">
+    <div class="" style="width: 50%;">
+        <p-carousel [value] = "devices" [circular]="false" [numScroll]="1">
+          <ng-template let-device pTemplate="device">
+              <h6 style="text-align: center;">The biggest {{device.deviceType}}</h6>
+              <app-device-card [device]="device"></app-device-card>
+          </ng-template>
+        </p-carousel>
         </div>
-     </div>
-     <div class="line2">
-      <div class="line3">
-        <app-pie-chart></app-pie-chart>
+        
+        <div class="slika" style="margin-top:20px;border-radius: 20px;float:right;height: 170px; width: 48%;background-image: url('/assets/images/landing-page-images/saveEnergy.jpg');background-size: cover;">
+          
+        </div>
+    </div>
+  
+
+    </div>
+    <div class="divVreme">
+      <div class="vreme">
+        <app-weather-forecast></app-weather-forecast>
       </div>
     </div>
-    <div class="line2">
-      <app-weather-forecast ></app-weather-forecast>
-    </div>
-      
-    </div>
-    <div style="display: inline-block;">
-      <div class="line2" style="background-color: #1b1b1b; border-radius: 20px;">
-      <app-bar-chart></app-bar-chart>
-      </div>
-      <div class="line2" style="background-color: #1b1b1b;margin-left: 30px;border-radius: 20px;">
-      <app-donut-chart></app-donut-chart>
-    </div>
-      </div>
-    <h3 class="hello">Rooms</h3>
-   
+  </div>
+  <h3 class="hello">News and fun</h3>
+  <div class="promotions" >
+    <app-promotion [subTitle]="'Exclusive Promotion'"
+     [Title]="'We are delighted to offer you an exclusive promotion as a featured member of our Direct Selling Organization (DSO). As a token of our appreciation, we dо like to offer you a 10% discount if you allow all of your devices to be visible.'" 
+     [isBlue]="true" [isBgBlue]="true" class="promotion">
+    </app-promotion>
+    <app-promotion
+    [subTitle]="'Save and Get with us'"
+    [Title]="'We are pleased to inform you about a new promotion offered by our Direct Selling Organization (DSO). If your electricity consumption this month is lower than last month, you will receive a 5% discount on the total amount of your next electricity bill.'"
+    [isYellow]="true" [isBgYellow]="true" class="promotion1">
+    </app-promotion>
+    <app-promotion
+    [subTitle]="'Pay for better tomorrow'"
+    [Title]="'Our Direct Selling Organization (DSO) has a new promotion that will allow you to save on your next electricity bill. If you pay your next months bill in advance, you will receive a 3% discount on the total amount of your bill.'"
+    [isPink]="true" [isBgPink]="true" class="promotion1">
+    </app-promotion> 
+  </div>
+
+    
     <!--<div class="filter-div"><span>filter</span></div>-->
   </app-center-bar>
+
   </standard-template>
   

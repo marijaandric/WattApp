@@ -1,16 +1,18 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using MongoDB.Bson;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace DeviceFaker.Models
 {
     public class DevicesData
     {
-        [Key]
-        public int Id { get; set; }
+        [BsonId]
+        [BsonRepresentation(BsonType.ObjectId)]
+        public string Id { get; set; }
         public int DeviceID { get; set; }
         public int Day { get; set; }
         public int Month { get; set; }
         public int Year { get; set; }
         public string Time { get; set; }
-        public float PowerUsage { get; set; }
+        public double PowerUsage { get; set; }
     }
 }

@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Route, Router } from '@angular/router';
+import { TokenApi } from 'src/app/models/token-api.model';
 import { url } from '../../app.module';
 
 @Injectable({
@@ -28,9 +29,19 @@ export class AuthService {
     localStorage.setItem("token",tokenValue);
   }
 
+  storeRefreshToken(tokenValue:string)
+  {
+    localStorage.setItem("refreshToken",tokenValue);
+  }
+
   getToken()
   {
     return localStorage.getItem('token');
+  }
+
+  getRefreshToken()
+  {
+    return localStorage.getItem('refreshToken');
   }
 
   isLoggedIn():boolean
@@ -41,6 +52,11 @@ export class AuthService {
   signUp(userObj : any)
   {
     return this.http.post<any>(`${this.baseUrl}register`,userObj);
+  }
+
+  renewTooken(tokenApi:TokenApi)
+  {
+    return this.http.post<any>(`${this.baseUrl}refresh`,tokenApi)
   }
 
 }

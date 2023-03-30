@@ -1,10 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, Renderer2  } from '@angular/core';
 import { StadardTemplateComponent } from '../../layout-components/standard-template/stadard-template.component';
 
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { UserService } from 'src/app/services/user.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { ConfirmationService } from 'primeng/api';
+import { UserDTO } from '../../../../dtos/UserDTO';
+import { UserService } from '../../../../services/user/user.service';
+/*import { UserService } from 'src/app/services/user.service';
+*/
 interface City {
   name: string,
   code: string
@@ -25,8 +28,14 @@ export class HomeComponent {
   menageUserForm! : FormGroup;
   cities: City[];
   selectedCity!: City;
+  type: City[];
+  selectedType!: City;
+  isConsumption: boolean = true;
+  isProduction: boolean = false;
+  isStock: boolean = false;
+  isAll: boolean = false;
 
-  constructor(private userService:UserService, private authService:AuthService) {
+  constructor(private userService:UserService, private authService:AuthService, private elementRef: ElementRef, private renderer: Renderer2) {
     this.cities = [
       {name: 'New York', code: 'NY'},
       {name: 'Rome', code: 'RM'},
@@ -34,7 +43,60 @@ export class HomeComponent {
       {name: 'Istanbul', code: 'IST'},
       {name: 'Paris', code: 'PRS'}
   ];
+    this.type = [
+      {name: 'Consumption', code: '1'},
+      {name: 'Production', code: '2'},
+      {name: 'Stock', code: '3'},
+      {name: 'All', code: '4'},
+  ];
   }
+
+  changeBg(selectedType: City) {
+    const element =document.getElementById('::ng-deep .pr_id_1_labelt');
+    if(selectedType.code == '1')
+    {
+      this.renderer.addClass(element, 'consumption');
+      this.isConsumption = true;
+      this.isProduction = false;
+      this.isStock = false;
+      this.isAll = false;
+
+    } else if (selectedType.code == '2') {
+      this.renderer.addClass(element, 'production');
+      this.isConsumption = false;
+      this.isProduction = true;
+      this.isStock = false;
+      this.isAll = false;
+    } else if (selectedType.code == '3') {
+      this.renderer.addClass(element, 'stock');
+      this.isConsumption = false;
+      this.isProduction = false;
+      this.isStock = true;
+      this.isAll = false;
+    } else {
+      this.renderer.addClass(element, 'all');
+      this.isConsumption = false;
+      this.isProduction = false;
+      this.isStock = false;
+      this.isAll = true;
+    }
+  }
+
+  users: UserDTO[] = [];
+
+
+  ngOnInit() {
+    this.userService.getAllUsers().subscribe((result: UserDTO[]) => (this.users = result));
+  }
+
+  clear(dtUsers: any) {
+    dtUsers.clear();
+  }
+
+  onSearch(value: string, dtUsers: any) {
+    dtUsers.filterGlobal(value, 'contains');
+  }
+
 
   showDialog() {
     this.display = true;
@@ -54,7 +116,7 @@ export class HomeComponent {
   showDialog6() {
     this.display6 = true;
   }
-
+  
   isAdmin()
   {
     const token = this.authService.getToken();

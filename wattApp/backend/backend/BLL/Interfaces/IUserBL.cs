@@ -1,4 +1,5 @@
 ﻿using backend.Models;
+using backend.Models.NotDbModels;
 using Microsoft.AspNetCore.Mvc;
 
 namespace backend.BAL.Interfaces
@@ -12,5 +13,6 @@ namespace backend.BAL.Interfaces
         public IActionResult deleteUser(int id);
         public User authenticateUser(User userObj);
         public IActionResult registerUser(User userObj);
+        public TokenApiDto refreshToken(TokenApiDto tokenApiDto);
     }
 }

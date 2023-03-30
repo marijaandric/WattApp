@@ -21,6 +21,11 @@ namespace backend.DAL
             return new StatusCodeResult(200);
         }
 
+        public void SaveChanges()
+        {
+            _context.SaveChangesAsync();
+        }
+
         public IActionResult deleteUser(int id)
         {
             var user = _context.Users.Find(id);
@@ -55,6 +60,11 @@ namespace backend.DAL
             return _context.Users.ToList();
         }
 
+        public bool refreshTokenExists(string refreshToken)
+        {
+            return _context.Users.Any(a => a.RefreshToken == refreshToken);
+        }
+
         public IActionResult updateUser(int id, User user)
         {
             _context.Entry(user).State = EntityState.Modified;
@@ -82,5 +92,9 @@ namespace backend.DAL
             return _context.Users.Any(e => e.Id == id);
         }
 
+        public User getUserByUsername(string username)
+        {
+            return _context.Users.FirstOrDefault(u => u.Username == username);
+        }
     }
 }

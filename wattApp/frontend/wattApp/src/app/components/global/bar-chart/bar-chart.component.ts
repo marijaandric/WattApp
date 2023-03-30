@@ -1,12 +1,13 @@
-import { Component, OnInit } from '@angular/core';
-import {  ApexAxisChartSeries, ApexChart, ApexXAxis, ApexTitleSubtitle,ApexYAxis } from 'ng-apexcharts';
+import { Component, OnInit,Input } from '@angular/core';
+import {  ApexAxisChartSeries,ApexFill, ApexTooltip,ApexPlotOptions, ApexStroke,ApexLegend, ApexChart, ApexXAxis, ApexTitleSubtitle,ApexYAxis } from 'ng-apexcharts';
 
 @Component({
   selector: 'app-bar-chart',
   styleUrls: ['./bar-chart.component.css'],
-  template: '<apx-chart [series]="series" [chart]="chart" [xaxis]="xaxis" [yaxis]="yaxis" [title]="title"></apx-chart>',
+  template: '<apx-chart [series]="series" [tooltip]="tooltip" [plotOptions]="plotOptions" [stroke]="stroke"  [legend]="legend" [fill]="fill" [chart]="chart" [xaxis]="xaxis" [yaxis]="yaxis" [title]="title"></apx-chart>',
 })
 export class BarChartComponent implements OnInit {
+  @Input() chartHeight: number = 400;
   public series: ApexAxisChartSeries = [
     {
       name: 'Resorce',
@@ -15,17 +16,47 @@ export class BarChartComponent implements OnInit {
   ];
   public chart: ApexChart = {
     type: 'bar',
-    height: 500,
+    height: this.chartHeight,
     width: 600,
+
+    
+    redrawOnParentResize:true,
+    redrawOnWindowResize:true
   };
   public xaxis: ApexXAxis = {
-    categories: ['Consumption', 'Production', 'Stock'],
+    categories: ['Erdoglija', 'Centar', 'Pivara'],
+    offsetY: 10,
     labels: {
       style: {
-        colors: ['#F48207', '#85E000', '#D63F74']
+        colors: ['#7d02d4', 'rgb(217, 3, 114)','rgb(4, 167, 119)', ],
+        fontSize: '17px',
       }
     }
   };
+
+  public stroke: ApexStroke = {
+    curve: 'smooth',
+  }
+
+  public legend: ApexLegend = {
+    show:false
+  }
+
+  public fill: ApexFill = {
+    type: 'solid',
+    opacity: 1,
+    colors: ['#7d02d4','rgb(217, 3, 114)',  'rgb(4, 167, 119)', ],
+    
+  }
+
+  public tooltip: ApexTooltip = {
+    fillSeriesColor : false,
+    theme:'dark',
+    style: {
+      fontSize: '17px',
+      fontFamily: 'Lato, sans-serif',
+    },
+  }
 
   public yaxis: ApexYAxis = {
     labels: {
@@ -35,13 +66,24 @@ export class BarChartComponent implements OnInit {
     },
   };
 
+  public plotOptions: ApexPlotOptions = {
+    bar : {
+      borderRadius: 10,
+      columnWidth: '50%',
+      distributed:true,
+      borderRadiusWhenStacked: 'last',
+    }
+  }
+
   public title: ApexTitleSubtitle = {
-    text: 'Resource',
+    text: 'City areas',
     style: {
       color: '#FFFFFF',
       fontSize: '19px'
     }
   };
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.chart.height = this.chartHeight;
+  }
 }

@@ -1,0 +1,95 @@
+:host {
+    height: 100%;
+    display: flex;
+    margin: 0;
+  }
+  
+  nav {
+    position: relative;
+    display: block;
+    padding: 10px;
+    margin-left: -5%;
+    margin-top: -2%;
+    
+  }
+  .color
+  {
+    text-align: center;
+    justify-content: center;
+    
+  }
+  
+  nav a {
+    position: relative;
+    text-decoration: none;
+    color: #fff;
+    font-Family: 'Montserrat';
+    font-size: 12px;
+    text-align: center;
+    font-Family: 'Montserrat';
+    display: inline-block;
+    width: 100px;
+  }
+  
+  nav a b {
+    position: relative;
+    left:10%; 
+    display: inline-block;
+    text-align: center;
+  }
+  
+  nav a i {
+    position: relative;
+    font-size: 20px;
+    left: 10%;
+    margin-bottom: 10px;
+  }
+  
+  .color:hover{
+    color: rgb(4,167,119);
+  }
+  :host.boja{
+    color: white;
+  }
+  :host.boja2{
+    color: white;
+  }
+  :host.boja3{
+    color: white;
+  }
+  :host.boja4{
+    color: white;
+  }
+  
+  :host.fa-users
+  {
+    color:white;
+  }
+  :host.fa-user-headset
+  {
+    color:white;
+  }
+  :host.fa-user-check
+  {
+    color:white;
+  }
+  :host.fa-battery-half
+  {
+    color:white;
+  }
+
+@media only screen and (max-width: 600px) {
+
+    nav a div b {
+        display: none;
+        }
+}
+
+@media only screen and (max-width: 500px) {
+  nav a div b {
+      display: none;
+      }
+  nav a {
+    width: 50px;
+  }
+}

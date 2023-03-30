@@ -1,0 +1,91 @@
+<standard-template>
+  <app-title-bar>
+    <h3>Device</h3>
+  </app-title-bar>
+
+  <app-center-bar>
+    <div id="deviceInformation" class="flexColumn device-information">
+      <div class="flexRow">
+        <h3>{{ device.deviceName }}</h3>
+        <p-button label="Edit" (click)="showEditDeviceDialog()" class="margin-left__auto"/>
+        <p-button label="Delete" class="margin-left__8px"/>
+      </div>
+
+      <div class="flexRow margin-top__16px">
+        <span>Device ID:</span>
+        <span class="margin-left__auto">{{ device.id }}</span>
+      </div>
+
+      <div class="flexRow margin-top__8px">
+        <span>Room:</span>
+        <span class="margin-left__auto">{{ device.room }}</span>
+      </div>
+
+      <div class="flexRow margin-top__8px">
+        <span>Device type:</span>
+        <span class="margin-left__auto">{{ device.deviceType }}</span>
+      </div>
+
+      <div class="flexRow margin-top__8px">
+        <span>Visible to DSO</span>
+        <p-inputSwitch [(ngModel)]="isVisibleToDSO" class="margin-left__auto width__fit-content"/>
+      </div>
+
+      <div class="flexRow margin-top__8px">
+        <span>Allow DSO controll</span>
+        <p-inputSwitch [(ngModel)]="isDSOControll" class="margin-left__auto width__fit-content"/>
+      </div>
+
+      <div class="flexRow margin-top__16px">
+        <span>More data about device will be displayed here</span>
+      </div>
+    </div>
+
+    <div class="flexColumn device-information margin-top__16px">
+      <div class="flexRow">
+        <span *ngIf="!isRunning">Idle</span>
+        <span *ngIf="isRunning">Running</span>
+        <p-inputSwitch [(ngModel)]="isRunning" class="margin-left__auto width__fit-content"/>
+      </div>
+
+      <div class="flexRow margin-top__8px">
+        <span>Current consumption:</span>
+        <span class="margin-left__auto">{{ 'N/A' }}</span>
+      </div>
+
+      <div class="flexRow margin-top__8px">
+        <span>Totaly ever consumed:</span>
+        <span class="margin-left__auto">{{ 'N/A' }}</span>
+      </div>
+    </div>
+
+    <div>
+      <app-device-area-bar-chart clas="bar-plot" class="margin-top__16px"/>
+    </div>
+  </app-center-bar>
+</standard-template>
+
+<form [formGroup]="editDeviceDialogForm">
+  <p-dialog id="editDeviceDialogId"
+    [draggable]="false" [keepInViewport]="true" [resizable]="false" 
+    [blockScroll]="true" [closeOnEscape]="true" 
+    [modal]="true" [(visible)]="displayEditDeviceDialog" [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
+    [closable]="true" >
+    <ng-template pTemplate="header" class="header-dialog">
+      <span>Edit device</span>
+    </ng-template>
+    
+    <ng-template pTemplate="center">
+        <div class="p-inputgroup p-inputtext-lg p-input-filled">
+            <input formControlName="deviceName" name="deviceName" appendTo="body" type="text" pInputText  class="p-inputtext-lg"  placeholder="Device name"> 
+            <input formControlName="room" name="room"  appendTo="body" type="text" pInputText  class="p-inputtext-lg"  placeholder="Room" > 
+            <input formControlName="deviceType" name="deviceType"  appendTo="body" type="text" pInputText  class="p-inputtext-lg"  placeholder="Device type"> 
+        </div> 
+    </ng-template>
+
+    <ng-template pTemplate="footer" >
+      <button (click)="save()" type="submit">Save</button>
+    </ng-template>
+  </p-dialog>
+</form>
+  

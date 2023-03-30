@@ -1,6 +1,21 @@
 <div id="device-card" class="device-card">
     <div class="flexRow">
-        <p>{{ device.deviceName }}</p>
-        <p class="margin-left__auto">{{ device.deviceType }}</p>
+        <a [routerLink]="['/device', device.id]" class="device-name abbreviate-text">{{ device.deviceName }}</a>
+        <p-inputSwitch [(ngModel)]="isChecked" class="margin-left__auto width__fit-content"/>
+    </div>
+    <div class="flexRow" style="margin-top: 16px;">
+        <span>Status:</span>
+        <span *ngIf="!isChecked" class="margin-left__auto">Idle</span>
+        <span *ngIf="isChecked" class="margin-left__auto">Running</span>
+    </div>
+    <div class="flexRow" style="margin-top: 4px;">
+        <span>Type:</span>
+        <span class="margin-left__auto">{{ device.deviceType }}</span>
+    </div>
+    <div class="flexRow" style="margin-top: 4px;">
+        <span *ngIf="device.deviceType === 'Consumer'">Power consumed:</span>
+        <span *ngIf="device.deviceType === 'Producer'">Power produced:</span>
+        <span *ngIf="device.deviceType !== 'Consumer' && device.deviceType !== 'Producer'">Power stored:</span>
+        <span class="margin-left__auto">{{ device.power }} kW/h</span>
     </div>
 </div>

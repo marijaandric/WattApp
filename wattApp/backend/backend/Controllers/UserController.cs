@@ -9,6 +9,7 @@ using backend.Context;
 using backend.Models;
 using backend.BAL.Interfaces;
 using backend.Helpers;
+using backend.Models.NotDbModels;
 
 namespace backend.Controllers
 {
@@ -52,13 +53,16 @@ namespace backend.Controllers
                 return BadRequest();
 
             var user = _context.authenticateUser(userObj);
+            var newAccessToken = user.Token;
+
             if (user != null)
                 return Ok(
-                    new
+                    new TokenApiDto()
                     {
-                        Token = user.Token,
-                        Message = "Login Success!"
-                    });
+                        AccessToken = newAccessToken,
+                        RefreshToken = user.RefreshToken
+                    }
+                    );
             return BadRequest();
         }
 
@@ -69,7 +73,6 @@ namespace backend.Controllers
             if (userObj == null || string.IsNullOrEmpty(userObj.Email) || string.IsNullOrEmpty(userObj.Password) || string.IsNullOrEmpty(userObj.FirstName) || string.IsNullOrEmpty(userObj.LastName))
                 return BadRequest();
             return _context.registerUser(userObj);
-            //return Ok();
         }
 
 
@@ -94,6 +97,19 @@ namespace backend.Controllers
         {
             return _context.userExists(id);
         }
-        
+
+        [HttpPost("refresh")]
+        public IActionResult refreshToken(TokenApiDto tokenApiDto)
+        {
+            if (tokenApiDto == null)
+                return BadRequest("Invalid Client Request");
+
+            TokenApiDto token = _context.refreshToken(tokenApiDto);
+            if (token == null)
+                return BadRequest("Invalid request");
+
+            return Ok(token);
+        }
+
     }
 }

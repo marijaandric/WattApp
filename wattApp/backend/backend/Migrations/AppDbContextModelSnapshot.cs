@@ -15,7 +15,7 @@ namespace backend.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "7.0.3");
+            modelBuilder.HasAnnotation("ProductVersion", "7.0.4");
 
             modelBuilder.Entity("backend.Models.Devices", b =>
                 {
@@ -23,8 +23,8 @@ namespace backend.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("DeviceID")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("DeviceModel")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("DeviceName")
                         .HasColumnType("TEXT");
@@ -38,6 +38,9 @@ namespace backend.Migrations
                     b.Property<int>("UserID")
                         .HasColumnType("INTEGER");
 
+                    b.Property<bool>("isActive")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("Id");
 
                     b.ToTable("devices", (string)null);
@@ -45,29 +48,28 @@ namespace backend.Migrations
 
             modelBuilder.Entity("backend.Models.DevicesData", b =>
                 {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("Day")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("DeviceID")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("Month")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<float>("PowerUsage")
-                        .HasColumnType("REAL");
-
-                    b.Property<string>("Time")
+                    b.Property<string>("id")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("Year")
+                    b.Property<int>("day")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("Id");
+                    b.Property<int>("deviceID")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("month")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<double>("powerUsage")
+                        .HasColumnType("REAL");
+
+                    b.Property<string>("time")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("year")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("id");
 
                     b.ToTable("devicesdata", (string)null);
                 });
@@ -114,6 +116,32 @@ namespace backend.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("users", (string)null);
+                });
+
+            modelBuilder.Entity("backend.Models.Weather", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Day")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Month")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<float>("Temperature")
+                        .HasColumnType("REAL");
+
+                    b.Property<string>("Time")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Year")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("weather", (string)null);
                 });
 #pragma warning restore 612, 618
         }
