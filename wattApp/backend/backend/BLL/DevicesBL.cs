@@ -46,13 +46,18 @@ namespace backend.BLL
             return _contextDAL.GetDevices();
         }
 
+        public List<Devices> GetDevicesByType(String type)
+        {
+            return _contextDAL.GetDevicesByType(type);
+        }
+
         public (List<string>, List<int>) GetDevicesCountByType(int userId, string type, int limit)
         {
             List<Devices> devices = _contextDAL.GetUserDevicesByType(userId, type);
             var map = new Dictionary<string, int>();
             int counter = 0;
             Console.WriteLine(limit);
-            for(int i = 0; i < devices.Count; i++)
+            for (int i = 0; i < devices.Count; i++)
             {
                 if (!map.ContainsKey(devices[i].Room) && counter < limit)
                 {
@@ -64,7 +69,7 @@ namespace backend.BLL
                             pom = pom + 1;
                     map.Add(devices[i].Room, pom);
                 }
-                if(counter + 1 == limit)
+                if (counter + 1 == limit)
                 {
                     int pom = 0;
                     for (int j = i; j < devices.Count; j++)
@@ -76,6 +81,7 @@ namespace backend.BLL
             }
 
             return (new List<string>(map.Keys), new List<int>(map.Values));
+
         }
 
         public List<Devices> GetDevicesForUser(int userId)
@@ -205,9 +211,11 @@ namespace backend.BLL
             _contextDAL?.SaveChanges();
         }
 
+        /*
         public List<Devices> GetDevicesByType(String type)
         {
             return _contextDAL.GetDevicesByType(type);
-        }
+        }*/
+
     }
 }

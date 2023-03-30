@@ -5,8 +5,8 @@
   <p-carousel [value]="devices.value" [numVisible]="numVisible" [circular]="false" [numScroll]="1">
     <ng-template pTemplate="header">
       <div class="hederContainer">
-        <p class="roomNameHeader">{{ devices.key }}</p>
-        <p class="roomSizeHeader">Total: {{ devices.value.length }}</p>
+        <p style="color:white" class="roomNameHeader">{{ devices.key }}</p>
+        <p style="color:white" class="roomSizeHeader">Total: {{ devices.value.length }}</p>
       </div>
     </ng-template>
     <ng-template let-device pTemplate="device">

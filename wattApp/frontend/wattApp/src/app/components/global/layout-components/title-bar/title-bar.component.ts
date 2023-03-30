@@ -196,6 +196,11 @@ export class TitleBarComponent implements OnInit{
     }
   }
 
+  addDevice()
+  {
+    
+  }
+
   //validacija
   private validateAllFormFields(formGroup : FormGroup)
   {

@@ -42,7 +42,8 @@ export class LoginComponent implements OnInit{
      .subscribe({
       next:(res)=>{
         this.loginForm.reset();
-        this.auth.storeToken(res.token);
+        this.auth.storeToken(res.accessToken);
+        this.auth.storeRefreshToken(res.refreshToken);
         this.toast.success({detail:"SUCCESS",summary:res.message,duration:5000});
         this.router.navigate(['home']);
       },
