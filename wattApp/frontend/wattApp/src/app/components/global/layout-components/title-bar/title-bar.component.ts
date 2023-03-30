@@ -49,7 +49,7 @@ export class TitleBarComponent implements OnInit{
       {role:'prosumer'},
       {role:'operator'},
       {role:'admin'},
-      {role:'superadmin'},
+      {role:'superAdmin'},
   ];
 
     this.types=[

@@ -28,13 +28,14 @@ button {
     background: linear-gradient(90deg, rgb(125, 2, 210) -15.29%, #F75C03 100%);
     color: #fff;
     font-weight:bolder;
-    box-shadow: 5px 5px 10px 1px black;
-    color:black
+    box-shadow: 5px 5px 15px black;
+    color:white
   }
 
   button:hover{
     background: none;
     color:#F75C03;
+    box-shadow: none;
   }
 
 li{
