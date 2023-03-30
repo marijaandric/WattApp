@@ -26,12 +26,13 @@
     <div class="" style="width: 50%;">
         <p-carousel [value] = "devices" [circular]="false" [numScroll]="1">
           <ng-template let-device pTemplate="device">
+              <h6 style="text-align: center;">The biggest {{device.deviceType}}</h6>
               <app-device-card [device]="device"></app-device-card>
           </ng-template>
         </p-carousel>
         </div>
         
-        <div class="slika" style="border-radius: 20px;float:right;height: 160px; width: 48%;background-image: url('/assets/images/landing-page-images/saveEnergy.jpg');background-size: cover;">
+        <div class="slika" style="margin-top:20px;border-radius: 20px;float:right;height: 170px; width: 48%;background-image: url('/assets/images/landing-page-images/saveEnergy.jpg');background-size: cover;">
           
         </div>
     </div>
