@@ -55,4 +55,9 @@ export class DeviceService {
     return this.http.delete(this.baseUrl + deviceId);
   }
 
+  devicesPerRooms(deviceId : number, type : string, number : number)
+  {
+    return this.http.get<any>(this.baseUrl + "chart/" + deviceId + "/" + type+ "/" + number);
+  }
+
 }
