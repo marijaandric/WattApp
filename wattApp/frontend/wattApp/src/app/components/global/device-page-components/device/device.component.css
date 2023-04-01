@@ -7,27 +7,3 @@
   color: white;
   background-color: #1b1b1b;
 }
-
-button{
-  background: linear-gradient(90deg, rgb(125, 2, 210) -15.29%, #F75C03 100%);
-  padding:5px 40px;
-  border-radius: 20px;
-}
-
-button {
-  border: none;
-  padding: 10px 50px;
-  border-radius: 32px;
-  display: block;
-  margin: auto;
-  background: linear-gradient(90deg, rgb(125, 2, 210) -15.29%, #F75C03 100%);
-  color: #fff;
-  font-weight:bolder;
-  box-shadow: 5px 5px 10px 1px black;
-  color:black
-}
-
-button:hover{
-  background: none;
-  color:#F75C03;
-}

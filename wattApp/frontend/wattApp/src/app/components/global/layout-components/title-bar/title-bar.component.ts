@@ -3,17 +3,13 @@ import { Component, OnInit, ɵɵqueryRefresh } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
+import { map } from 'rxjs';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { DeviceTypesService } from 'src/app/services/device-types/device-types.service';
 import { DeviceService } from 'src/app/services/device/device.service';
+import { RoleTypesService } from 'src/app/services/role-types/role-types.service';
+import { RoomTypesService } from 'src/app/services/room-types/room-types.service';
 import { UserService } from 'src/app/services/user.service';
-
-interface Roles{
-  role:string;
-}
-
-interface Types{
-  type:string;
-}
 
 interface Models{
   type : string;
@@ -21,7 +17,18 @@ interface Models{
 }
 
 interface Rooms{
-  room:string;
+  code: string;
+  name: string;
+}
+
+interface Types{
+  code: string;
+  name: string;
+}
+
+interface Roles{
+  code: string;
+  name: string;
 }
 
 @Component({
@@ -34,31 +41,19 @@ export class TitleBarComponent implements OnInit{
   display2 : boolean = false;
   signUpForm! : FormGroup;
   addDeviceForm! : FormGroup;
-  roles : Roles[];
-  types : Types[];
+  roles!: Roles[];
+  types!: Types[];
+  rooms!: Rooms[];
   models : Models[];
   modelsRez : Models[];
-  rooms : Rooms[];
-  roleSelected : string;
-  typeSelected : string;
+  roleSelected! : string;
+  typeSelected! : string;
   modelSelected : string;
-  roomSelected : string;
+  roomSelected! : string;
   showText = false;
   rola:any;
   
-  constructor(private router:Router,private fb: FormBuilder,private authService: AuthService,private toast:NgToastService,private userService:UserService,private deviceService:DeviceService) {
-    this.roles = [
-      {role:'prosumer'},
-      {role:'operator'},
-      {role:'admin'},
-      {role:'superAdmin'},
-  ];
-
-    this.types=[
-      {type:'Consumer'},
-      {type:'Producer'},
-      {type:'Stock'}
-    ]
+  constructor(private router:Router,private fb: FormBuilder,private authService: AuthService,private toast:NgToastService,private userService:UserService,private deviceService:DeviceService, private  deviceTypesService:DeviceTypesService, private  roomTypesService:RoomTypesService, private  roleTypesService:RoleTypesService) {
 
     this.models=[
       {models:'Lamp',type:'Consumer'},
@@ -82,55 +77,46 @@ export class TitleBarComponent implements OnInit{
     ]
 
     this.modelsRez = this.models;
-
-    this.rooms=[
-      {room:'Living room'},
-      {room:'Dining room'},
-      {room:'Kitchen'},
-      {room:'Bedroom'},
-      {room:'Bathroom'},
-      {room:'Home office'},
-      {room:'Laundry room'},
-      {room:'Garage'},
-      {room:'Basement'},
-      {room:'Game room'},
-      {room:'Guest room'},
-      {room:'Hallway'},
-      {room:'Roof'},
-      {room:'Garden'},
-    ]
-  this.roleSelected = 'prosumer';
-  this.typeSelected = 'Consumer';
-  this.modelSelected = 'Lamp';
-  this.roomSelected = 'Living room';
-  
+    this.modelSelected = 'Lamp';
   }
 
   ngOnInit(): void {
-    this.isAdmin();
-    if(this.rola == "operator")
-    {
-      this.roles = [
-        {role:'prosumer'}
-    ];
-    }
-    else if(this.rola == "admin")
-    {
-      this.roles = [
-        {role:'prosumer'},
-        {role:'operator'}
-    ];
-    }
-    else
-    {
-      this.roles = [
-        {role:'prosumer'},
-        {role:'operator'},
-        {role:'admin'},
-        {role:'superadmin'},
-    ];
-    }
+    this.roleTypesService.getAllRoleTypes()
+      .pipe(
+        map(roleTypes => roleTypes.map(roleType => ({ code: roleType, name: roleType })))
+      )
+      .subscribe(mappedRoleTypes => {
+        this.roles = mappedRoleTypes;
+    });
 
+    this.deviceTypesService.getAllDeviceTypes()
+      .pipe(
+        map(deviceTypes => deviceTypes.map(deviceType => ({ code: deviceType, name: deviceType })))
+      )
+      .subscribe(mappedDeviceTypes => {
+        this.types = mappedDeviceTypes;
+    });
+
+    this.roomTypesService.getAllRoomTypes()
+      .pipe(
+        map(roomTypes => roomTypes.map(roomType => ({ code: roomType, name: roomType })))
+      )
+      .subscribe(mappedRoomTypes => {
+        this.rooms = mappedRoomTypes;
+    });
+
+    this.roleSelected = this.roles[0].name;
+    this.typeSelected = this.types[0].name;
+    this.roomSelected = this.rooms[0].name;
+
+    this.isAdmin();
+
+    if (this.rola === "operator") {
+      this.roles = this.roles.filter(roleType => roleType.name === 'prosumer');
+    }
+    else if (this.rola === "admin") {
+      this.roles = this.roles.filter(roleType => roleType.name === 'prosumer' || roleType.name === 'operator');
+    }
 
     this.signUpForm = this.fb.group({
       firstName: ['', Validators.required],
@@ -256,30 +242,13 @@ export class TitleBarComponent implements OnInit{
     })
   }
 
-
-
-
-
-
   // da li je neko admin 
-  isAdmin()
-  {
+  isAdmin(): boolean {
     const token = this.authService.getToken();
-    if(token)
-    {
-      if(this.userService.getUserRoleFromToken(token))
-      {
-        this.rola = this.userService.getUserRoleFromToken(token);
-        if(this.rola == "prosumer")
-        {
-          return false;
-        }
-        else{
-          return true;
-        }
-      }
+    if (!token) {
+      return false;
     }
-    return false;
-    
+    const userRole = this.userService.getUserRoleFromToken(token);
+    return userRole === 'operator' || userRole === 'admin' || userRole === 'superadmin';
   }
 }
