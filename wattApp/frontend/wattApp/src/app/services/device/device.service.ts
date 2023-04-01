@@ -60,4 +60,19 @@ export class DeviceService {
     return this.http.get<any>(this.baseUrl + "chart/" + deviceId + "/" + type+ "/" + number);
   }
 
+  getBiggest(deviceId: number,year: number,month: number,day: number,consumer: string,max: string)
+  {
+    return this.http.get<any>(this.baseUrl + deviceId + "/" + year+ "/" + month+ "/" + day+ "/" + consumer+ "/" + max);
+  }
+
+  getmonth(deviceId: number,year: number,month: number,consumer: string)
+  {
+    return this.http.get<any>(this.baseUrl+ deviceId + "/" + year+ "/" + month+ "/" + consumer+ "/" );
+  }
+
+  getprice()
+  {
+    return this.http.get<any>(this.baseUrl + "price");
+  }
+
 }
