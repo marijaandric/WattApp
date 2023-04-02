@@ -1,14 +1,14 @@
 
 .device-card{
     min-width: 200px;
-    width: 95%;
-    background-color: #222222;
+    width: 92%;
+    background-color: #1b1b1b;
     border-radius: 20px;
     padding: 16px;
     margin: auto;
     box-shadow: 5px 5px 15px black;
-    min-height: 170px;
-    height:90%;
+    height: fit-content;
+    height:170px;
     margin-top: 2%;
 }
 
