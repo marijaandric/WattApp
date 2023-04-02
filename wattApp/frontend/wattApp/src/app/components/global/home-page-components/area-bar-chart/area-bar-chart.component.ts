@@ -68,8 +68,8 @@ export class AreaBarChartComponent implements OnInit {
   public plotOptions: ApexPlotOptions = {
     bar : {
       borderRadius: 10,
-      columnWidth: '50%',
-      distributed:true,
+      columnWidth: '40%',
+      distributed:false,
       borderRadiusWhenStacked: 'last',
     }
   }

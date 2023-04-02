@@ -20,7 +20,7 @@ import {
 export class PieChartComponent implements OnInit {
   @Input() chartHeight: number = 200;
   @Input() chartText: string = 'Total devices per room';
-  @Input() Series: number[] = [40, 32, 28, 55,23,43];
+  @Input() Series: number[] = [40, 32, 28, 55];
 
   chartSeries: ApexNonAxisChartSeries = this.Series;
 
