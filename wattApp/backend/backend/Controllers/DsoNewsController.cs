@@ -70,9 +70,5 @@ namespace backend.Controllers
             return NoContent();
         }
 
-        private bool DsoNewsExists(int id)
-        {
-            return _context.News.Any(e => e.Id == id);
-        }
     }
 }

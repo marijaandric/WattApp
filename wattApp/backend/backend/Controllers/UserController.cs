@@ -53,6 +53,8 @@ namespace backend.Controllers
                 return BadRequest();
 
             var user = _context.authenticateUser(userObj);
+            if(user == null)
+                return BadRequest();
             var newAccessToken = user.Token;
 
             if (user != null)
