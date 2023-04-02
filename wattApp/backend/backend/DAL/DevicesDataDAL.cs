@@ -30,7 +30,7 @@ namespace backend.DAL
             return Helpers.HttpRequest.SendHttpRequest($"http://{host}:{port}/api/DevicesDatas/{id}/{year}/{month}/{day}");
         }
 
-        public DevicesData GetHourDataForDevice(int id, int year, int month, int day, string time)
+        public DevicesData GetHourDataForDevice(int id, int year, int month, int day, int time)
         {
             return Helpers.HttpRequest.SendHttpRequestForDevice($"http://{host}:{port}/api/DevicesDatas/{id}/{year}/{month}/{day}/{time}");
         }

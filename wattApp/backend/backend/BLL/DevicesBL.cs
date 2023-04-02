@@ -150,7 +150,7 @@ namespace backend.BLL
             return total;
         }
 
-        public List<BigTableContent> GetTableContent(int userId, int year, int month, int day, string time, string type)
+        public List<BigTableContent> GetTableContent(int userId, int year, int month, int day, int time, string type)
         {
             User userObj = _contextUserDAL.getUser(userId);
             List<Devices> devices = _contextDAL.GetDevicesForUser(userId);

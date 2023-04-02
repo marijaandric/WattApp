@@ -18,7 +18,7 @@ namespace backend.BLL.Interfaces
         public void RemoveDevice(Devices device);
         public (int, string, double) GetExtremeDevice(int userId, int year, int month, int day, string type, string size);
         public double GetMonthlyStatistics(int userId, int year, int month, string type);
-        public  List<BigTableContent> GetTableContent(int userId, int year, int month, int day, string time, string type);
+        public  List<BigTableContent> GetTableContent(int userId, int year, int month, int day, int time, string type);
         public (List<String>, List<int>) GetDevicesCountByType(int userId, string type, int limit);
     }
 }

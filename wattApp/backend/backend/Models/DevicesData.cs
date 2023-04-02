@@ -10,7 +10,7 @@ namespace backend.Models
         public int day { get; set; }
         public int month { get; set; }
         public int year { get; set; }
-        public string time { get; set; }
+        public int time { get; set; }
         public double powerUsage { get; set; }
     }
 }
