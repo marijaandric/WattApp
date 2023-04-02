@@ -65,6 +65,7 @@ import { WeatherForecast7Component } from './components/global/weather-forecast7
 import { HistoryForecastTableComponent } from './components/global/history-forecast-table/history-forecast-table.component';
 import { TabMenuDsoComponent } from './components/DSO/users-page-components/tab-menu-dso/tab-menu-dso.component';
 import { TabMenuUsersComponent } from './components/DSO/users-page-components/tab-menu-users/tab-menu-users.component';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 export const url = 'https://localhost:7158';
 export const deviceFakerUrl = "https://localhost:7233";
@@ -136,6 +137,7 @@ export const deviceFakerUrl = "https://localhost:7233";
     SelectButtonModule,
     ToggleButtonModule,
     InputSwitchModule,
+    LeafletModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: () => localStorage.getItem('access_token'),

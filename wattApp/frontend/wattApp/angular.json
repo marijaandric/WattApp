@@ -44,7 +44,8 @@
               "src/assets/primeng-css/inputtextarea.min.css",
               "src/assets/primeng-css/overlay.css",
               "src/assets/primeng-css/carousel.min.css",
-              "src/assets/primeng-css/inputswitch.css"
+              "src/assets/primeng-css/inputswitch.css",
+              "node_modules/leaflet/dist/leaflet.css" 
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",

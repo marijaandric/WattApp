@@ -3,7 +3,7 @@ using backend.DAL;
 using backend.DAL.Interfaces;
 using backend.Helpers;
 using backend.Models;
-using backend.Models.NotDbModels;
+using backend.Models.DTOs;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -24,6 +24,24 @@ namespace backend.BLL
         public void AddDevice(Devices device)
         {
             _contextDAL.AddDevice(device);
+        }
+
+        public double currentMonthAllUsersDevicesUsage(string deviceType)
+        {
+            DateTime now = DateTime.Now;
+            List<Devices> devices = _contextDAL.GetDevicesByType(deviceType);
+            List<DevicesData> devicesData = _contextDataDAL.GetMonthDataForAllDevices(now.Year, now.Month);
+            List<int> ids = devices.Select(d => d.Id).ToList();
+
+            double total = 0;
+
+            foreach (DevicesData deviceData in devicesData)
+            {
+                if (ids.Contains(deviceData.deviceID))
+                    total += deviceData.powerUsage;
+            }
+
+            return total;
         }
 
         public bool DevicesExists(int id)
@@ -150,7 +168,7 @@ namespace backend.BLL
             return total;
         }
 
-        public List<BigTableContent> GetTableContent(int userId, int year, int month, int day, string time, string type)
+        public List<BigTableContent> GetTableContent(int userId, int year, int month, int day, int time, string type)
         {
             User userObj = _contextUserDAL.getUser(userId);
             List<Devices> devices = _contextDAL.GetDevicesForUser(userId);
@@ -210,12 +228,6 @@ namespace backend.BLL
         {
             _contextDAL?.SaveChanges();
         }
-
-        /*
-        public List<Devices> GetDevicesByType(String type)
-        {
-            return _contextDAL.GetDevicesByType(type);
-        }*/
 
     }
 }

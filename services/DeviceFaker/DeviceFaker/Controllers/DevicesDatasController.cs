@@ -23,7 +23,7 @@ namespace DeviceFaker.Controllers
 
         // GET: api/DevicesDatas/5/2023/9/19/13:00:00
         [HttpGet("{id}/{year}/{month}/{day}/{time}")]
-        public DevicesData GetDevicesDataByIdDateTime(int id, int year, int month, int day, string time)
+        public DevicesData GetDevicesDataByIdDateTime(int id, int year, int month, int day, int time)
         {
            
             var devicesData = _devicesDataService.GetDevicesDataByIdDateTime(id, year, month, day, time);
@@ -65,6 +65,13 @@ namespace DeviceFaker.Controllers
         {
             var devicesData = _devicesDataService.GetDevicesDataById(id);
 
+            return devicesData;
+        }
+
+        [HttpGet("GetMonthDataForAllDevices/{year}/{month}")]
+        public List<DevicesData> GetMonthDataForAllDevices(int year, int month)
+        {
+            var devicesData = _devicesDataService.GetMonthDataForAllDevices(year, month);
             return devicesData;
         }
 

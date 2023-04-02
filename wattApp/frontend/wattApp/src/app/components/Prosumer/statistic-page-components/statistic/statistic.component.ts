@@ -16,12 +16,6 @@ interface City {
 export class StatisticComponent  implements OnInit {
   type: City[];
   selectedType!: City;
-  @ViewChild('myChart', { static: true }) myChart! : PieChartComponent;
-
-  niz1 = [];
-  niz2 = [6,3,3,3];
-  niz3 : number[] = new Array(4);
-  niz4 = [15,15,20,30];
   
   barchartHeight=250;
 
@@ -32,31 +26,30 @@ export class StatisticComponent  implements OnInit {
   text3='Producers per room';
   text4='Storage per room';
 
-
   rooms: string[] =[];
   count: number[]=[];
-
 
   constructor(private http: HttpClient, private deviceService : DeviceService) {
     this.type = [
       {name: 'Consumption', code: '1'},
       {name: 'Production', code: '2'},
+      {name: 'Stock', code: '3'},
       {name: 'All', code: '4'},
     ];
   }
-
+  findConsumer(code: string): string {
+    const type = this.type.find(item => item.code === code);
+    return 'Consumer';
+  }
 
   getDevicePerRoom(){
-    const deviceId = 1 ;
+  const deviceId = 1 ;
    // const deviceId = this.user.id ;
-    const type = 'Consumer';
-    const number = 4;
-    this.deviceService.devicesPerRooms(deviceId, type, number).subscribe(data => {
+  const type = this.findConsumer('1');
+  const number = 4;
+  this.deviceService.devicesPerRooms(deviceId, type, number).subscribe(data => {
       this.rooms = data.rooms;
       this.count = data.count;
-     // this.niz1 = data.count;
-     this.niz3 = this.count;
-     this.myChart.Series = this.niz3;
     });
   }
   

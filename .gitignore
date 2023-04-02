@@ -113,3 +113,4 @@ aio/content/examples/.DS_Store
 wattApp/backend/backend/sqllite.db-shm
 wattApp/backend/backend/sqllite.db-wal
 wattApp/frontend/wattApp/package-lock.json
+*.db
