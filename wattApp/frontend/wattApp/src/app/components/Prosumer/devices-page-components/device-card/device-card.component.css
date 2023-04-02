@@ -1,13 +1,19 @@
 
 .device-card{
-    min-width: 240px;
-    width: 100%;
-    height: 160px;
+    min-width: 200px;
+    width: 95%;
     background-color: #222222;
     border-radius: 20px;
     padding: 16px;
     margin: auto;
     box-shadow: 5px 5px 15px black;
+    min-height: 170px;
+    height:90%;
+    margin-top: 2%;
+}
+
+.device-card:hover{
+    transform: scale(1.01);
 }
 
 .device-name{
@@ -20,5 +26,8 @@ a{
     text-decoration: none;
     color: rgb(4, 167, 119);
     font-weight: bold;
-    ;
+}
+
+.bold-text {
+    font-weight: bold;
 }

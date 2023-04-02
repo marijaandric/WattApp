@@ -100,8 +100,13 @@
   border:none;
 }
 
+.p-carousel-items-content {
+  min-height: 200px !important;
+}
 .p-link {
   border-radius: 20px !important;
+  height:15px !important;
+  width:40px !important;
 }
 p,a,li,body, div{
   color: white;
