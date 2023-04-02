@@ -172,12 +172,22 @@ namespace backend.Controllers
 
         }
 
+        [HttpGet("currentMonthAllUsersDevicesUsage/{deviceType}")]
+        public IActionResult currentMonthAllUsersDevicesUsage(string deviceType)
+        {
+            double result = _context.currentMonthAllUsersDevicesUsage(deviceType);
+            return Ok( new
+            {
+                Usage = result
+            });
+        }
+
         [HttpGet("price")]
         public double getElectricalPowerPrice()
         {
             Random random = new Random();
             double randomNumber = random.NextDouble();
-            double result = 0.2 + randomNumber * 0.05;
+            double result = 20 + (randomNumber % 5);
             return Math.Round(result, 2);
         }
 

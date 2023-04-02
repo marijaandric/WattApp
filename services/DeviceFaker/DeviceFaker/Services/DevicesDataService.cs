@@ -39,6 +39,15 @@ namespace DeviceFaker.Services
                 return _devicesDataCollection.Find(e => e.DeviceID == id && e.Year == year && e.Month == month && e.Day <= now.Day && e.Time <= now.Hour).ToList();
         }
 
+        public List<DevicesData> GetMonthDataForAllDevices(int year, int month)
+        {
+            DateTime now = DateTime.Now;
+            if (year != now.Year || month != now.Month)
+                return _devicesDataCollection.Find(e => e.Year == year && e.Month == month).ToList();
+            else
+                return _devicesDataCollection.Find(e => e.Year == year && e.Month == month && e.Day <= now.Day && e.Time <= now.Hour).ToList();
+        }
+
         public List<DevicesData> GetDevicesDataByIdYear(int id, int year)
         {
             DateTime now = DateTime.Now;

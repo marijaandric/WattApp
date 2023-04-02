@@ -35,6 +35,9 @@ namespace backend.DAL
             return Helpers.HttpRequest.SendHttpRequestForDevice($"http://{host}:{port}/api/DevicesDatas/{id}/{year}/{month}/{day}/{time}");
         }
 
-       
+        public List<DevicesData> GetMonthDataForAllDevices(int year, int month)
+        {
+            return Helpers.HttpRequest.SendHttpRequest($"http://{host}:{port}/api/DevicesDatas/GetMonthDataForAllDevices/{year}/{month}");
+        }
     }
 }

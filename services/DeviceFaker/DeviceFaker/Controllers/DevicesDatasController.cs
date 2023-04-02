@@ -68,6 +68,13 @@ namespace DeviceFaker.Controllers
             return devicesData;
         }
 
+        [HttpGet("GetMonthDataForAllDevices/{year}/{month}")]
+        public List<DevicesData> GetMonthDataForAllDevices(int year, int month)
+        {
+            var devicesData = _devicesDataService.GetMonthDataForAllDevices(year, month);
+            return devicesData;
+        }
+
 
     }
 }

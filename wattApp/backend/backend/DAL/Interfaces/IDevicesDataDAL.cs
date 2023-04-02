@@ -9,5 +9,6 @@ namespace backend.DAL.Interfaces
         public List<DevicesData> GetMonthDataForDevice(int id, int year, int month);
         public List<DevicesData> GetDayDataForDevice(int id, int year, int month, int day);
         public DevicesData GetHourDataForDevice(int id, int year, int month, int day, int time);
+        public List<DevicesData> GetMonthDataForAllDevices(int year, int month);
     }
 }

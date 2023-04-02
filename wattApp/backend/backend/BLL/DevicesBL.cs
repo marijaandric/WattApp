@@ -26,6 +26,24 @@ namespace backend.BLL
             _contextDAL.AddDevice(device);
         }
 
+        public double currentMonthAllUsersDevicesUsage(string deviceType)
+        {
+            DateTime now = DateTime.Now;
+            List<Devices> devices = _contextDAL.GetDevicesByType(deviceType);
+            List<DevicesData> devicesData = _contextDataDAL.GetMonthDataForAllDevices(now.Year, now.Month);
+            List<int> ids = devices.Select(d => d.Id).ToList();
+
+            double total = 0;
+
+            foreach (DevicesData deviceData in devicesData)
+            {
+                if (ids.Contains(deviceData.deviceID))
+                    total += deviceData.powerUsage;
+            }
+
+            return total;
+        }
+
         public bool DevicesExists(int id)
         {
             return _contextDAL.DevicesExists(id);
@@ -210,12 +228,6 @@ namespace backend.BLL
         {
             _contextDAL?.SaveChanges();
         }
-
-        /*
-        public List<Devices> GetDevicesByType(String type)
-        {
-            return _contextDAL.GetDevicesByType(type);
-        }*/
 
     }
 }
