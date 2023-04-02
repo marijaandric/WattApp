@@ -70,7 +70,7 @@ body{
   width: 80%;
   margin: 15px 0px;
   border-bottom: 1px solid #787878;
-  border-image: linear-gradient(45deg,  rgb(125, 2, 210),#F75C03) 1;
+  border-image: linear-gradient(45deg,  rgb(4, 167, 119)  -10%,rgb(125, 2, 210) 100%) 1;
   padding: 7px 9px;
   width: 100%;
   overflow: hidden;
@@ -90,7 +90,7 @@ body{
   display: block;
   margin: auto;
   margin-top:150px;
-  background: linear-gradient(90deg, rgb(125, 2, 210) -15.29%, #F75C03 100%);
+  background: linear-gradient(45deg, rgb(4, 167, 119) 20%, rgb(125, 2, 210) 100%);
   color: #fff;
   font-weight:bolder;
   box-shadow: 5px 5px 10px 1px black;
@@ -98,7 +98,7 @@ body{
 
 .submit:hover{
   span {
-    background: -webkit-linear-gradient(90deg, rgb(125, 2, 210) -15.29%, #F75C03 100%);
+    background: -webkit-linear-gradient(90deg, rgb(4, 167, 119) -15.29%, rgb(125, 2, 210) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
@@ -107,7 +107,7 @@ body{
 }
 
 .right {
-  background: linear-gradient(45deg,rgb(125, 2, 210, 0.54)  -15.29%,rgb(247, 92, 3, 0.5) 100%),
+  background: linear-gradient(45deg,rgb(4, 167, 119)  -15.29%,rgb(125, 2, 210, 0.5) 100%),
   url('/assets/images/logo-images/loginImage_2.png');
   color: #fff;
   position: relative;

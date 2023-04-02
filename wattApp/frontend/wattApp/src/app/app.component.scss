@@ -139,7 +139,7 @@
         position: relative;
         display:flex;
         margin:25px auto;
-        border-image: linear-gradient(45deg, purple, orange) 1;
+        border-image:linear-gradient(45deg, rgb(4, 167, 119) 20%, rgb(125, 2, 210) 100%) 1;
           
         }
 
@@ -156,7 +156,7 @@
           position: relative;
           display:flex;
           margin:25px auto;
-          border-image: linear-gradient(45deg, purple, orange) 1;
+          border-image: linear-gradient(45deg, rgb(4, 167, 119) 20%, rgb(125, 2, 210) 100%)1;
         
           .p-element .p-dropdown-label .p-inputtext .ng-star-inserted{
             background: none;
@@ -173,7 +173,7 @@
       border-radius: 32px;
       display: block;
       margin: auto;
-      background: linear-gradient(45deg, purple, orange);
+      background: -webkit-linear-gradient(45deg, rgb(4, 167, 119) 20%, rgb(125, 2, 210) 100%);
       color: #fff;
       font-weight: bold;
     }
@@ -184,13 +184,13 @@
       border-radius: 32px;
       display: block;
       margin: auto;
-      background: linear-gradient(45deg, purple, orange);
+      background: -webkit-linear-gradient(45deg, rgb(4, 167, 119) 20%, rgb(125, 2, 210) 100%);
       color: #fff;
       font-weight: bold;
     }
     button.footer-button:hover{
       span {
-        background: -webkit-linear-gradient(45deg, purple, orange);
+        background: -webkit-linear-gradient(45deg, rgb(4, 167, 119) 20%, rgb(125, 2, 210) 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
       }
@@ -203,7 +203,7 @@
       border-radius: 32px;
       display: block;
       float:right;
-      background: linear-gradient(45deg, purple, orange);
+      background: linear-gradient(45deg, rgb(4, 167, 119), #7d02d4);
       color: #fff;
       font-weight: bold;
     }
@@ -226,7 +226,7 @@
 
     button.no-button:hover{
       span {
-        background: -webkit-linear-gradient(45deg, purple, orange);
+        background: -webkit-linear-gradient(45deg, rgb(4, 167, 119), #7d02d4);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
       }
@@ -236,7 +236,7 @@
     button.yes-button:hover{
       background:none;
       span {
-        background: -webkit-linear-gradient(45deg, purple, orange);
+        background: -webkit-linear-gradient(45deg, rgb(4, 167, 119), #7d02d4);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
       }
