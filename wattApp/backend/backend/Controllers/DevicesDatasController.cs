@@ -6,8 +6,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using backend.Context;
-using backend.Models;
 using backend.BLL.Interfaces;
+using backend.Models.DTOs;
 
 namespace backend.Controllers
 {

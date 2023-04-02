@@ -11,14 +11,14 @@ using backend.Context;
 namespace backend.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230319123546_addedDevicesAgain")]
-    partial class addedDevicesAgain
+    [Migration("20230402150838_fixedTitleType")]
+    partial class fixedTitleType
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "7.0.3");
+            modelBuilder.HasAnnotation("ProductVersion", "7.0.4");
 
             modelBuilder.Entity("backend.Models.Devices", b =>
                 {
@@ -26,8 +26,8 @@ namespace backend.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("DeviceID")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("DeviceModel")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("DeviceName")
                         .HasColumnType("TEXT");
@@ -41,38 +41,38 @@ namespace backend.Migrations
                     b.Property<int>("UserID")
                         .HasColumnType("INTEGER");
 
+                    b.Property<bool>("isActive")
+                        .HasColumnType("INTEGER");
+
                     b.HasKey("Id");
 
                     b.ToTable("devices", (string)null);
                 });
 
-            modelBuilder.Entity("backend.Models.DevicesData", b =>
+            modelBuilder.Entity("backend.Models.DsoNews", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("Day")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("DeviceID")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("Month")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<float>("PowerUsage")
-                        .HasColumnType("REAL");
-
-                    b.Property<string>("Time")
+                    b.Property<string>("Author")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("Year")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("Content")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Priority")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
-                    b.ToTable("devicesdata", (string)null);
+                    b.ToTable("News");
                 });
 
             modelBuilder.Entity("backend.Models.User", b =>
@@ -117,6 +117,32 @@ namespace backend.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("users", (string)null);
+                });
+
+            modelBuilder.Entity("backend.Models.Weather", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Day")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Month")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<float>("Temperature")
+                        .HasColumnType("REAL");
+
+                    b.Property<string>("Time")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Year")
+                        .HasColumnType("INTEGER");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("dso_news", (string)null);
                 });
 #pragma warning restore 612, 618
         }
