@@ -9,6 +9,7 @@
   </app-select-one-menu-bar>
 
   <app-center-bar>
+    <app-map [users] = 'users'></app-map>
     <p-table #dtUsers class="ui-table-default" [value]="users" dataKey="id" [scrollable]="true" 
       [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]"
       [globalFilterFields]="['id','firstName','lastName','email','role']" [paginator]="true">
@@ -82,8 +83,5 @@
     </p-table>
   </app-center-bar>
 
-  <!-- optional -->
-  <app-info-bar>
-    <!-- add your componenets here -->
-  </app-info-bar>
+  
 </standard-template>

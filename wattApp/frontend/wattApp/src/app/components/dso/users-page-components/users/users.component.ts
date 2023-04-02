@@ -1,6 +1,7 @@
 import { Component, ViewEncapsulation  } from '@angular/core';
 import { UserDTO } from '../../../../dtos/UserDTO';
 import { UserService } from '../../../../services/user/user.service';
+import axios from 'axios';
 
 @Component({
   selector: 'users',
@@ -24,4 +25,6 @@ export class UsersComponent {
   onSearch(value: string, dtUsers: any) {
     dtUsers.filterGlobal(value, 'contains');
   }
+
+
 }

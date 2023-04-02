@@ -66,6 +66,7 @@ import { HistoryForecastTableComponent } from './components/global/history-forec
 import { TabMenuDsoComponent } from './components/DSO/users-page-components/tab-menu-dso/tab-menu-dso.component';
 import { TabMenuUsersComponent } from './components/DSO/users-page-components/tab-menu-users/tab-menu-users.component';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { MapComponent } from './components/DSO/map/map.component';
 
 export const url = 'https://localhost:7158';
 export const deviceFakerUrl = "https://localhost:7233";
@@ -113,7 +114,8 @@ export const deviceFakerUrl = "https://localhost:7233";
     HistoryForecastTableComponent,
     TabMenuDsoComponent,
     TabMenuUsersComponent,
-    DeviceAreaBarChartComponent
+    DeviceAreaBarChartComponent,
+    MapComponent
   ],
   imports: [
     CommonModule,
