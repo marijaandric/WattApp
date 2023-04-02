@@ -9,7 +9,7 @@
   </p-dropdown>
   <div class="main-grid">
     <app-history-forecast ></app-history-forecast>
-    <app-pie-chart #myChart [Series]="niz3" [chartText]="text" [chartHeight]="piechartHeight1"></app-pie-chart>
+    <app-pie-chart [Series]="count" [chartLabels]="rooms" [chartText]="text" [chartHeight]="piechartHeight1"></app-pie-chart>
     
     <p-table class="d-table" #dtUsers class="ui-table-default" dataKey="id" [scrollable]="true" 
     [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]"

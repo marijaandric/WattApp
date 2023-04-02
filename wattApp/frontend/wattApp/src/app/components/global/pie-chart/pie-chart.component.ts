@@ -1,4 +1,4 @@
-import { Component, OnInit,Input} from '@angular/core';
+import { Component, OnInit,Input,OnChanges, SimpleChanges } from '@angular/core';
 import {
   ApexChart,
   ApexDataLabels,
@@ -21,8 +21,16 @@ export class PieChartComponent implements OnInit {
   @Input() chartHeight: number = 200;
   @Input() chartText: string = 'Total devices per room';
   @Input() Series: number[] = [40, 32, 28, 55];
+  @Input() chartLabels = ["Kitchen", "Living room", "Bathroom",  "Other"];
 
   chartSeries: ApexNonAxisChartSeries = this.Series;
+
+  ngOnChanges(changes: SimpleChanges) {
+    if ('Series' in changes) {
+      this.chartSeries = this.Series;
+    }
+  }
+
 
   chartDetails: ApexChart = {
     type: 'pie',
@@ -44,7 +52,7 @@ export class PieChartComponent implements OnInit {
   }
   };
 
-  chartLabels = ["Kitchen", "Living room", "Bathroom",  "Other"]
+  
 
   chartTitle: ApexTitleSubtitle = {
     text:  this.chartText,
