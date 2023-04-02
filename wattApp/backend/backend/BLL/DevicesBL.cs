@@ -69,9 +69,11 @@ namespace backend.BLL
             return _contextDAL.GetDevicesByType(type);
         }
 
-        public (List<string>, List<int>) GetDevicesCountByType(int userId, string type, int limit)
+        public (List<string>?, List<int>?) GetDevicesCountByType(int userId, string type, int limit)
         {
             List<Devices> devices = _contextDAL.GetUserDevicesByType(userId, type);
+            if (devices == null)
+                return (null, null);
             var map = new Dictionary<string, int>();
             int counter = 0;
             Console.WriteLine(limit);
@@ -107,10 +109,13 @@ namespace backend.BLL
             return _contextDAL.GetDevicesForUser(userId);
         }
 
-        public (int, string, double) GetExtremeDevice(int userId, int year, int month, int day, string type, string size)
+        public (int?, string?, double?) GetExtremeDevice(int userId, int year, int month, int day, string type, string size)
         {
             List<Devices> devices = _contextDAL.GetUserDevicesByType(userId, type);
             Dictionary<int, double> devicesMap = new Dictionary<int, double>();
+
+            if (devices.Count == 0)
+                return (null, null, null);
 
             int deviceWithValue = -1;
             double value = -1;
@@ -159,6 +164,8 @@ namespace backend.BLL
         public double GetMonthlyStatistics(int userId, int year, int month, string type)
         {
             List<Devices> devices = _contextDAL.GetUserDevicesByType(userId, type);
+            if(devices.Count == 0)
+                return 0;
             double total = 0;
             foreach (var device in devices)
             {
@@ -173,6 +180,10 @@ namespace backend.BLL
             User userObj = _contextUserDAL.getUser(userId);
             List<Devices> devices = _contextDAL.GetDevicesForUser(userId);
             List<BigTableContent> content = new List<BigTableContent>();
+
+            if (userObj == null || devices == null)
+                return null;
+
             int id = 0;
             foreach (var device in devices)
             {
