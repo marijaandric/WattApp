@@ -67,10 +67,12 @@
   border-top-right-radius: 20px;
   background-color: #1b1b1b !important;
 }
-/*
-.p-datatable .p-datatable-tbody>tr>td {
-  padding: 0.7rem 1rem !important;
-}*/
+
+.p-datatable .p-datatable-tbody>tr:hover {
+  background-color: #363636 !important;
+  transform: scaley(1.01) !important;
+  box-shadow: 2px 2px 8px 1px black;
+}
 .p-datatable .p-datatable-thead>tr>th {
   padding: 0.5rem 1rem !important;
 }
@@ -97,7 +99,10 @@
   border-bottom-right-radius: 20px !important;
   border:none;
 }
-*/
+
+.p-link {
+  border-radius: 20px !important;
+}
 p,a,li,body, div{
   color: white;
   font-family: 'Lato', sans-serif;

@@ -6,8 +6,8 @@
   <app-center-bar>
     <div id="deviceInformation" class="flexColumn device-information">
       <div class="flexRow">
-        <h3>{{ device.deviceName }}</h3>
-        <p-button label="Edit" (click)="showEditDeviceDialog()" class="margin-left__auto"/>
+        <h3 style="color:rgb(4, 167, 119);font-weight:bold;">{{ device.deviceName }}</h3>
+        <p-button label="Edit" (click)="showEditDeviceDialog()" class="margin-left__auto" style="border-radius:32px !important;"/>
         <p-button label="Delete" (onClick)="deleteDevice(device.id)" class="margin-left__8px"/>
       </div>
 

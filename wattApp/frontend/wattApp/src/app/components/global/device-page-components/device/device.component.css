@@ -3,7 +3,8 @@
   min-width: 300px;
   height: fit-content;
   padding: 16px;
-  border-radius: 32px;
+  border-radius: 20px;
   color: white;
   background-color: #1b1b1b;
+  box-shadow: 5px 5px 15px black;
 }

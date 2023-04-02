@@ -6,7 +6,9 @@
 
 :host ::ng-deep {
 
-  
+  .p-button {
+    border-radius: 32px;
+  }
   
   .p-overlay-content{
     border-radius: 30px;
