@@ -11,8 +11,8 @@ using backend.Context;
 namespace backend.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230327191958_addedIsActive")]
-    partial class addedIsActive
+    [Migration("20230402144137_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -24,9 +24,6 @@ namespace backend.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("DeviceID")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("DeviceModel")
@@ -52,32 +49,30 @@ namespace backend.Migrations
                     b.ToTable("devices", (string)null);
                 });
 
-            modelBuilder.Entity("backend.Models.DevicesData", b =>
+            modelBuilder.Entity("backend.Models.DsoNews", b =>
                 {
-                    b.Property<string>("id")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Author")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("day")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("deviceID")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("month")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<double>("powerUsage")
-                        .HasColumnType("REAL");
-
-                    b.Property<string>("time")
+                    b.Property<string>("Content")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("year")
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Priority")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Title")
                         .HasColumnType("INTEGER");
 
-                    b.HasKey("id");
+                    b.HasKey("Id");
 
-                    b.ToTable("devicesdata", (string)null);
+                    b.ToTable("News");
                 });
 
             modelBuilder.Entity("backend.Models.User", b =>
@@ -147,7 +142,7 @@ namespace backend.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("weather", (string)null);
+                    b.ToTable("dso_news", (string)null);
                 });
 #pragma warning restore 612, 618
         }

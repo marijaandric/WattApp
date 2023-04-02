@@ -1,4 +1,4 @@
-﻿using backend.Models;
+﻿using backend.Models.DTOs;
 
 namespace backend.BLL.Interfaces;
 

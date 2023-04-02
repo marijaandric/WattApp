@@ -46,32 +46,30 @@ namespace backend.Migrations
                     b.ToTable("devices", (string)null);
                 });
 
-            modelBuilder.Entity("backend.Models.DevicesData", b =>
+            modelBuilder.Entity("backend.Models.DsoNews", b =>
                 {
-                    b.Property<string>("id")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Author")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("day")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("Content")
+                        .HasColumnType("TEXT");
 
-                    b.Property<int>("deviceID")
-                        .HasColumnType("INTEGER");
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("TEXT");
 
-                    b.Property<int>("month")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("Priority")
+                        .HasColumnType("TEXT");
 
-                    b.Property<double>("powerUsage")
-                        .HasColumnType("REAL");
+                    b.Property<string>("Title")
+                        .HasColumnType("TEXT");
 
-                    b.Property<int>("time")
-                        .HasColumnType("INTEGER");
+                    b.HasKey("Id");
 
-                    b.Property<int>("year")
-                        .HasColumnType("INTEGER");
-
-                    b.HasKey("id");
-
-                    b.ToTable("devicesdata", (string)null);
+                    b.ToTable("News");
                 });
 
             modelBuilder.Entity("backend.Models.User", b =>
@@ -141,7 +139,7 @@ namespace backend.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("weather", (string)null);
+                    b.ToTable("dso_news", (string)null);
                 });
 #pragma warning restore 612, 618
         }
