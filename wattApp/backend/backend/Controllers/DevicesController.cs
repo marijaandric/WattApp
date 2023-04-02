@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using backend.Models;
 using backend.BLL.Interfaces;
-using backend.Models.NotDbModels;
+using backend.Models.DTOs;
 
 namespace backend.Controllers
 {

@@ -1,4 +1,4 @@
-﻿namespace backend.Models.NotDbModels
+﻿namespace backend.Models.DTOs
 {
     public class BigTableContent
     {

@@ -3,7 +3,7 @@ using backend.DAL;
 using backend.DAL.Interfaces;
 using backend.Helpers;
 using backend.Models;
-using backend.Models.NotDbModels;
+using backend.Models.DTOs;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 

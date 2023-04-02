@@ -1,5 +1,5 @@
 ﻿using backend.Models;
-using backend.Models.NotDbModels;
+using backend.Models.DTOs;
 using Microsoft.AspNetCore.Mvc;
 
 namespace backend.BLL.Interfaces
