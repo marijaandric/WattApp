@@ -12,7 +12,7 @@ namespace DeviceFaker.Models
         public int Day { get; set; }
         public int Month { get; set; }
         public int Year { get; set; }
-        public string Time { get; set; }
+        public int Time { get; set; }
         public double PowerUsage { get; set; }
     }
 }

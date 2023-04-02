@@ -63,8 +63,8 @@ namespace backend.Migrations
                     b.Property<double>("powerUsage")
                         .HasColumnType("REAL");
 
-                    b.Property<string>("time")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("time")
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("year")
                         .HasColumnType("INTEGER");

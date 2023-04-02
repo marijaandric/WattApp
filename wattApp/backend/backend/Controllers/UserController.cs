@@ -9,7 +9,7 @@ using backend.Context;
 using backend.Models;
 using backend.BAL.Interfaces;
 using backend.Helpers;
-using backend.Models.NotDbModels;
+using backend.Models.DTOs;
 
 namespace backend.Controllers
 {
