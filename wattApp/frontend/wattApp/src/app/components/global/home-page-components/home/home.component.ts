@@ -6,6 +6,7 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 import { ConfirmationService } from 'primeng/api';
 import { UserDTO } from '../../../../dtos/UserDTO';
 import { UserService } from '../../../../services/user/user.service';
+import { DeviceService } from 'src/app/services/device/device.service';
 /*import { UserService } from 'src/app/services/user.service';
 */
 interface City {
@@ -35,7 +36,7 @@ export class HomeComponent {
   isStock: boolean = false;
   isAll: boolean = false;
 
-  constructor(private userService:UserService, private authService:AuthService, private elementRef: ElementRef, private renderer: Renderer2) {
+  constructor(private deviceService : DeviceService,private userService:UserService, private authService:AuthService, private elementRef: ElementRef, private renderer: Renderer2) {
     this.cities = [
       {name: 'New York', code: 'NY'},
       {name: 'Rome', code: 'RM'},
@@ -84,9 +85,52 @@ export class HomeComponent {
 
   users: UserDTO[] = [];
 
+  monthPowerUsageProducer: any;
+  
+  getmonthPowerUsageProducer() {
+    const type = 'Producer';
+
+    this.deviceService.getmonthDSO(type).subscribe((response: any) => {
+      this.monthPowerUsageProducer=response.usage.toFixed(2);
+      console.log(response.usage);
+    });
+  }
+
+  monthPowerUsageConsumer: any;
+  
+  getmonthPowerUsageConsumer() {
+    const type = 'Consumer';
+
+    this.deviceService.getmonthDSO(type).subscribe((response: any) => {
+      this.monthPowerUsageConsumer=response.usage.toFixed(2);
+    });
+  }
+
+  monthPowerUsageStorage: any;
+
+  getmonthPowerUsageStorage() {
+    const type = 'Storage';
+
+    this.deviceService.getmonthDSO(type).subscribe((response: any) => {
+      this.monthPowerUsageStorage=response.usage.toFixed(2);
+    });
+  }
+
+  dayPowerPrice: any;
+
+  getdayPowerPrice() {
+  
+    this.deviceService.getprice().subscribe((response: any) => {
+      this.dayPowerPrice=response.toFixed(2);
+    });
+  }
 
   ngOnInit() {
     this.userService.getAllUsers().subscribe((result: UserDTO[]) => (this.users = result));
+    this.getmonthPowerUsageConsumer();
+    this.getmonthPowerUsageProducer();
+    this.getmonthPowerUsageStorage();
+    this.getdayPowerPrice();
   }
 
   clear(dtUsers: any) {
