@@ -83,7 +83,6 @@ export class TitleBarComponent implements OnInit{
     {
       this.rola = userService.getUserRoleFromToken(token)
     }
-      
   }
 
   ngOnInit(): void {
@@ -135,7 +134,9 @@ export class TitleBarComponent implements OnInit{
       address: ['', Validators.required],
       password: ['', Validators.required],
       password2: ['', Validators.required],
-      role: ['', Validators.required]
+      role: ['', Validators.required],
+      token:['', Validators.required],
+      refreshToken:['', Validators.required]
     });
 
     this.addDeviceForm = this.fb.group({
@@ -158,7 +159,7 @@ export class TitleBarComponent implements OnInit{
 
   //dropdown event
   onRoleChange(event:any){
-    this.roleSelected = event.value.role;
+    this.roleSelected = event.value.name;
   }
 
   onTypeChange(event:any){
@@ -182,8 +183,10 @@ export class TitleBarComponent implements OnInit{
     this.signUpForm.patchValue({
       role : this.roleSelected
     })
-    if(this.signUpForm.valid)
+
+    if(this.signUpForm)
     {
+      console.log(this.signUpForm.value)
       this.authService.signUp(this.signUpForm.value).subscribe({
         next:(res => {
           this.signUpForm.reset()
