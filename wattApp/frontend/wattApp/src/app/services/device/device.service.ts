@@ -72,7 +72,7 @@ export class DeviceService {
 
   getmonthDSO(type: string)
   {
-    return this.http.get<any>(this.baseUrl + "currentMonthAllUsersDevicesUsage/" + type);
+    return this.http.get<any>(this.baseUrl + "currentMonthAllUsersDevicesUsage" +"/"+ type);
   } 
 
   getprice()

@@ -91,7 +91,8 @@ export class HomeComponent {
     const type = 'Producer';
 
     this.deviceService.getmonthDSO(type).subscribe((response: any) => {
-      this.monthPowerUsageProducer=response.toFixed(2);
+      this.monthPowerUsageProducer=response.usage.toFixed(2);
+      console.log(response.usage);
     });
   }
 
@@ -101,7 +102,7 @@ export class HomeComponent {
     const type = 'Consumer';
 
     this.deviceService.getmonthDSO(type).subscribe((response: any) => {
-      this.monthPowerUsageConsumer=response.toFixed(2);
+      this.monthPowerUsageConsumer=response.usage.toFixed(2);
     });
   }
 
@@ -111,7 +112,7 @@ export class HomeComponent {
     const type = 'Storage';
 
     this.deviceService.getmonthDSO(type).subscribe((response: any) => {
-      this.monthPowerUsageStorage=response.toFixed(2);
+      this.monthPowerUsageStorage=response.usage.toFixed(2);
     });
   }
 
@@ -126,6 +127,10 @@ export class HomeComponent {
 
   ngOnInit() {
     this.userService.getAllUsers().subscribe((result: UserDTO[]) => (this.users = result));
+    this.getmonthPowerUsageConsumer();
+    this.getmonthPowerUsageProducer();
+    this.getmonthPowerUsageStorage();
+    this.getdayPowerPrice();
   }
 
   clear(dtUsers: any) {
