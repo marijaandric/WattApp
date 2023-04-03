@@ -67,7 +67,6 @@ import { TabMenuDsoComponent } from './components/DSO/users-page-components/tab-
 import { TabMenuUsersComponent } from './components/DSO/users-page-components/tab-menu-users/tab-menu-users.component';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { MapComponent } from './components/DSO/map/map.component';
-import { MarkerComponent } from './components/DSO/marker/marker.component';
 
 export const url = 'https://localhost:7158';
 export const deviceFakerUrl = "https://localhost:7233";
@@ -116,8 +115,7 @@ export const deviceFakerUrl = "https://localhost:7233";
     TabMenuDsoComponent,
     TabMenuUsersComponent,
     DeviceAreaBarChartComponent,
-    MapComponent,
-    MarkerComponent
+    MapComponent
   ],
   imports: [
     CommonModule,
