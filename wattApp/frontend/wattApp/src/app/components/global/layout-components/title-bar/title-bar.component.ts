@@ -27,7 +27,7 @@ interface Types{
 }
 
 interface Roles{
-  code: string;
+  code :string;
   name: string;
 }
 
@@ -78,15 +78,28 @@ export class TitleBarComponent implements OnInit{
 
     this.modelsRez = this.models;
     this.modelSelected = 'Lamp';
+    const token = localStorage.getItem('token');
+    if(token)
+    {
+      this.rola = userService.getUserRoleFromToken(token)
+    }
+      
   }
 
   ngOnInit(): void {
     this.roleTypesService.getAllRoleTypes()
       .pipe(
-        map(roleTypes => roleTypes.map(roleType => ({ code: roleType, name: roleType })))
+        map(roleTypes => roleTypes.map(roleType => ({ code:roleType, name: roleType })))
       )
       .subscribe(mappedRoleTypes => {
         this.roles = mappedRoleTypes;
+        this.roleSelected = this.roles[0].name;
+        if (this.rola == "operator") {
+          this.roles = this.roles.filter(roleType => roleType.name === 'prosumer');
+        }
+        else if (this.rola == "admin") {
+          this.roles = this.roles.filter(roleType => roleType.name === 'prosumer' || roleType.name === 'operator');
+        }
     });
 
     this.deviceTypesService.getAllDeviceTypes()
@@ -95,6 +108,8 @@ export class TitleBarComponent implements OnInit{
       )
       .subscribe(mappedDeviceTypes => {
         this.types = mappedDeviceTypes;
+        this.typeSelected = this.types[0].name;
+        
     });
 
     this.roomTypesService.getAllRoomTypes()
@@ -103,20 +118,13 @@ export class TitleBarComponent implements OnInit{
       )
       .subscribe(mappedRoomTypes => {
         this.rooms = mappedRoomTypes;
+        this.roomSelected = this.rooms[0].name;
     });
 
-    this.roleSelected = this.roles[0].name;
-    this.typeSelected = this.types[0].name;
-    this.roomSelected = this.rooms[0].name;
 
     this.isAdmin();
 
-    if (this.rola === "operator") {
-      this.roles = this.roles.filter(roleType => roleType.name === 'prosumer');
-    }
-    else if (this.rola === "admin") {
-      this.roles = this.roles.filter(roleType => roleType.name === 'prosumer' || roleType.name === 'operator');
-    }
+    
 
     this.signUpForm = this.fb.group({
       firstName: ['', Validators.required],

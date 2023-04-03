@@ -36,7 +36,7 @@
       <small class="text-danger" *ngIf="signUpForm.controls['phoneNumber'].dirty && signUpForm.hasError('required','phoneNumber')">Phone number is required</small>
       <input formControlName="address" name="address" appendTo="body" type="text"   class="p-inputtext-lg"  placeholder="ADDRESS">     
       <small class="text-danger" *ngIf="signUpForm.controls['address'].dirty && signUpForm.hasError('required','address')">Address is required</small>
-      <p-dropdown  [options]="roles" appendTo="body" optionLabel="role" (onChange)="onRoleChange($event)"></p-dropdown>
+      <p-dropdown  [options]="roles" appendTo="body" optionLabel="name" (onChange)="onRoleChange($event)"></p-dropdown>
       
     </div>
   </div> 
@@ -66,7 +66,7 @@
       Device type 
       <p-dropdown [options]="types" appendTo="body" optionLabel="name" (onChange)="onTypeChange($event)"/>
       Device model 
-      <p-dropdown [options]="models" appendTo="body" optionLabel="models" (onChange)="onModelChange($event)"/>
+      <p-dropdown [options]="models" appendTo="body" optionLabel="name" (onChange)="onModelChange($event)"/>
     </div>
     
     <div class="half">       

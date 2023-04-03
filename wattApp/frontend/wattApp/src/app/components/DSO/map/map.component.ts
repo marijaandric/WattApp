@@ -17,17 +17,16 @@ export class MapComponent implements OnInit, OnChanges{
   area! : string;
   map! : any;
 
-  constructor(private http: HttpClient)
-  {
-
+  constructor(private http: HttpClient){
+    
   }
 
   ngOnInit(): void {
-    this.mapa()
     this.map = L.map('map').setView([44.007247, 20.904429], 13);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; OpenStreetMap contributors'
     }).addTo(this.map);
+    this.mapa()
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -88,7 +87,6 @@ export class MapComponent implements OnInit, OnChanges{
       {
         const location = this.users[i].address
         const [lan, lon] = await this.getCoordinates(location)
-        console.log(await this.getDistrict(lan,lon))
         if (lan != undefined && lon != undefined) {
           const marker = L.marker([lan, lon], {icon : markerIcon}).addTo(this.map);
           marker.bindPopup("<div class='black-popup' style='color:black'>"+this.users[i].firstName+" "+this.users[i].lastName+"<br>"+this.users[i].address+"</div>");
