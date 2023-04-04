@@ -12,7 +12,7 @@ export class DeviceDataService {
 
   constructor(private http: HttpClient) { }
 
-  getDeviceData(deviceId: number): Observable<DeviceDataDTO>{
-    return this.http.get<DeviceDataDTO>(this.baseUrl + deviceId);
+  getDeviceData(id: number): Observable<DeviceDataDTO>{
+    return this.http.get<DeviceDataDTO>(this.baseUrl + id);
   }
 }

@@ -43,11 +43,11 @@ export class StatisticComponent  implements OnInit {
   }
 
   getDevicePerRoom(){
-  const deviceId = 1 ;
+  const id = 1 ;
    // const deviceId = this.user.id ;
   const type = this.findConsumer('1');
   const number = 4;
-  this.deviceService.devicesPerRooms(deviceId, type, number).subscribe(data => {
+  this.deviceService.devicesPerRooms(id, type, number).subscribe(data => {
       this.rooms = data.rooms;
       this.count = data.count;
     });

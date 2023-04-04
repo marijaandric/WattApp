@@ -34,7 +34,7 @@ export class ProsumerhomeComponent implements OnInit{
   PowerUsageBiggestConsumer : any;
   
   getBiggestConsumer() {
-    const deviceId = 1 ;
+    const id = 1 ;
    // const deviceId = this.user.id ;
     const currentDate = new Date();
     const day = currentDate.getDate();
@@ -44,8 +44,8 @@ export class ProsumerhomeComponent implements OnInit{
     const max = 'max';
 
 
-    this.deviceService.getBiggest(deviceId,year,month,day,consumer,max).subscribe((response: any) => {
-       this.IdBiggestConsumer=response.deviceId;
+    this.deviceService.getBiggest(id,year,month,day,consumer,max).subscribe((response: any) => {
+       this.IdBiggestConsumer=response.id;
        this.NameBiggestConsumer=response.deviceName;
        this.PowerUsageBiggestConsumer=response.averagePowerUsage.toFixed(2);
        this.device.deviceName = this.NameBiggestConsumer;
@@ -63,7 +63,7 @@ export class ProsumerhomeComponent implements OnInit{
 
 
   getBiggestProducer() {
-    const deviceId = 1 ;
+    const id = 1 ;
     const currentDate = new Date();
     const day = currentDate.getDate();
     const month = currentDate.getMonth() + 1;
@@ -71,8 +71,8 @@ export class ProsumerhomeComponent implements OnInit{
     const consumer = 'Producer';
     const max = 'max';
 
-    this.deviceService.getBiggest(deviceId,year,month,day,consumer,max).subscribe((response: any) => {
-       this.IdBiggestProducer=response.deviceId;
+    this.deviceService.getBiggest(id,year,month,day,consumer,max).subscribe((response: any) => {
+       this.IdBiggestProducer=response.id;
        this.NameBiggestProducer=response.deviceName;
        this.PowerUsageBiggestProducer=response.averagePowerUsage.toFixed(2);
        this.device1.deviceName = this.NameBiggestProducer;
@@ -90,7 +90,7 @@ export class ProsumerhomeComponent implements OnInit{
 
 
   getBiggestStorage() {
-    const deviceId = 1 ;
+    const id = 1 ;
     const currentDate = new Date();
     const day = currentDate.getDate();
     const month = currentDate.getMonth() + 1;
@@ -99,8 +99,8 @@ export class ProsumerhomeComponent implements OnInit{
     const max = 'max';
 
 
-    this.deviceService.getBiggest(deviceId,year,month,day,consumer,max).subscribe((response: any) => {
-       this.IdBiggestStorage=response.deviceId;
+    this.deviceService.getBiggest(id,year,month,day,consumer,max).subscribe((response: any) => {
+       this.IdBiggestStorage=response.id;
        this.NameBiggestStorage=response.deviceName;
        this.PowerUsageBiggestStorage=response.averagePowerUsage.toFixed(2);
        this.device2.deviceName = this.NameBiggestStorage;
@@ -118,14 +118,14 @@ export class ProsumerhomeComponent implements OnInit{
   monthPowerUsageConsumer: any;
   
   getmonthPowerUsageConsume() {
-    const deviceId = 1 ;
+    const id = 1 ;
     const currentDate = new Date();
     const month = currentDate.getMonth() + 1;
     const year = currentDate.getFullYear();
     const consumer = 'Consumer';
 ;
 
-  this.deviceService.getmonth(deviceId,year,month,consumer).subscribe((response: any) => {
+  this.deviceService.getmonth(id,year,month,consumer).subscribe((response: any) => {
       this.monthPowerUsageConsumer=response.toFixed(2);
     });
   
@@ -134,14 +134,14 @@ export class ProsumerhomeComponent implements OnInit{
   monthPowerUsageProducer: any;
   
   getmonthPowerUsageProducer() {
-    const deviceId = 1 ;
+    const id = 1 ;
     const currentDate = new Date();
     const month = currentDate.getMonth() + 1;
     const year = currentDate.getFullYear();
     const consumer = 'Producer';
 
 
-    this.deviceService.getmonth(deviceId,year,month,consumer).subscribe((response: any) => {
+    this.deviceService.getmonth(id,year,month,consumer).subscribe((response: any) => {
       this.monthPowerUsageProducer=response.toFixed(2);
     });
   
@@ -150,13 +150,13 @@ export class ProsumerhomeComponent implements OnInit{
   monthPowerUsageStorage: any;
   
   getmonthPowerUsageStorage() {
-    const deviceId = 1 ;
+    const id = 1 ;
     const currentDate = new Date();
     const month = currentDate.getMonth() + 1;
     const year = currentDate.getFullYear();
     const consumer = 'Storage';
 
-    this.deviceService.getmonth(deviceId,year,month,consumer).subscribe((response: any) => {
+    this.deviceService.getmonth(id,year,month,consumer).subscribe((response: any) => {
       this.monthPowerUsageStorage=response.toFixed(2);
     });
   

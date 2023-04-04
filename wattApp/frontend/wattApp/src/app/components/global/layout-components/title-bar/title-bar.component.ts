@@ -7,13 +7,14 @@ import { map } from 'rxjs';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { DeviceTypesService } from 'src/app/services/device-types/device-types.service';
 import { DeviceService } from 'src/app/services/device/device.service';
+import { ModelTypesService } from 'src/app/services/model-types/model-types.service';
 import { RoleTypesService } from 'src/app/services/role-types/role-types.service';
 import { RoomTypesService } from 'src/app/services/room-types/room-types.service';
 import { UserService } from 'src/app/services/user.service';
 
 interface Models{
-  type : string;
-  models:string;
+  code: string;
+  name: string;
 }
 
 interface Rooms{
@@ -44,40 +45,25 @@ export class TitleBarComponent implements OnInit{
   roles!: Roles[];
   types!: Types[];
   rooms!: Rooms[];
-  models : Models[];
-  modelsRez : Models[];
+  models! : Models[];
+  modelsRez! : Models[];
   roleSelected! : string;
   typeSelected! : string;
-  modelSelected : string;
+  modelSelected! : string;
   roomSelected! : string;
   showText = false;
   rola:any;
   
-  constructor(private router:Router,private fb: FormBuilder,private authService: AuthService,private toast:NgToastService,private userService:UserService,private deviceService:DeviceService, private  deviceTypesService:DeviceTypesService, private  roomTypesService:RoomTypesService, private  roleTypesService:RoleTypesService) {
-
-    this.models=[
-      {models:'Lamp',type:'Consumer'},
-      {models:'Fans',type:'Consumer'},
-      {models:'Television',type:'Consumer'},
-      {models:'Computer',type:'Consumer'},
-      {models:'Laptop',type:'Consumer'},
-      {models:'Fridge',type:'Consumer'},
-      {models:'Air conditioner',type:'Consumer'},
-      {models:'Washing machine',type:'Consumer'},
-      {models:'Dryer',type:'Consumer'},
-      {models:'Microwave',type:'Consumer'},
-      {models:'Vacuum cleaner',type:'Consumer'},
-      {models:'Curling iron',type:'Consumer'},
-      {models:'Charger',type:'Consumer'},
-      {models:'Solar panel',type:'Producer'},
-      {models:'Wind turbine',type:'Producer'},
-      {models:'Generators',type:'Producer'},
-      {models:'Batteries',type:'Stock'},
-      {models:'Capacitors',type:'Stock'}
-    ]
-
-    this.modelsRez = this.models;
-    this.modelSelected = 'Lamp';
+  constructor(private router: Router,
+              private fb: FormBuilder,
+              private authService: AuthService,
+              private toast: NgToastService,
+              private userService: UserService,
+              private deviceService: DeviceService, 
+              private deviceTypesService: DeviceTypesService, 
+              private roomTypesService: RoomTypesService, 
+              private roleTypesService: RoleTypesService,
+              private modelTypesService: ModelTypesService) {
     const token = localStorage.getItem('token');
     if(token)
     {
@@ -120,10 +106,17 @@ export class TitleBarComponent implements OnInit{
         this.roomSelected = this.rooms[0].name;
     });
 
+    this.modelTypesService.getAllModelTypes()
+      .pipe(
+        map(modelTypes => modelTypes.map(modelType => ({ code: modelType, name: modelType })))
+      )
+      .subscribe(mappedModelTypes => {
+        this.models = mappedModelTypes;
+        this.modelsRez = this.models;
+        this.modelSelected = this.models[0].name;
+    });
 
     this.isAdmin();
-
-    
 
     this.signUpForm = this.fb.group({
       firstName: ['', Validators.required],
@@ -165,9 +158,9 @@ export class TitleBarComponent implements OnInit{
   onTypeChange(event:any){
     this.typeSelected = event.value.type;
     this.models = this.modelsRez;
-    const filteredModels = this.models.filter(models => models.type === this.typeSelected);
+    const filteredModels = this.models.filter(models => models.code === this.typeSelected);
     this.models = filteredModels;
-    this.modelSelected = filteredModels[0].models
+    this.modelSelected = filteredModels[0].name;
   }
   onModelChange(event:any){
     this.modelSelected = event.value.models;

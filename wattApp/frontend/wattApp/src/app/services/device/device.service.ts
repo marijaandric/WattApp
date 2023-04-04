@@ -17,11 +17,12 @@ export class DeviceService {
       map(devices => {
         return devices.map(device => new DeviceDTO(
           device.id,
-          device.deviceId,
           device.userId,
           device.deviceName,
+          device.deviceModel,
           device.room,
-          device.deviceType
+          device.deviceType,
+          device.isActive
         ));
       })
     );
@@ -32,11 +33,12 @@ export class DeviceService {
       map(devices => {
         return devices.map(device => new DeviceDTO(
           device.id,
-          device.deviceId,
           device.userId,
           device.deviceName,
+          device.deviceModel,
           device.room,
-          device.deviceType
+          device.deviceType,
+          device.isActive
         ));
       })
     );
@@ -51,23 +53,23 @@ export class DeviceService {
     return this.http.post<any>(`${this.baseUrl}`,deviceObj);
   }
 
-  deleteDevice(deviceId: number) {
-    return this.http.delete(this.baseUrl + deviceId);
+  deleteDevice(id: number) {
+    return this.http.delete(this.baseUrl + id);
   }
 
-  devicesPerRooms(deviceId : number, type : string, number : number)
+  devicesPerRooms(id : number, type : string, number : number)
   {
-    return this.http.get<any>(this.baseUrl + "chart/" + deviceId + "/" + type+ "/" + number);
+    return this.http.get<any>(this.baseUrl + "chart/" + id + "/" + type+ "/" + number);
   }
 
-  getBiggest(deviceId: number,year: number,month: number,day: number,consumer: string,max: string)
+  getBiggest(id: number,year: number,month: number,day: number,consumer: string,max: string)
   {
-    return this.http.get<any>(this.baseUrl + deviceId + "/" + year+ "/" + month+ "/" + day+ "/" + consumer+ "/" + max);
+    return this.http.get<any>(this.baseUrl + id + "/" + year+ "/" + month+ "/" + day+ "/" + consumer+ "/" + max);
   }
 
-  getmonth(deviceId: number,year: number,month: number,consumer: string)
+  getmonth(id: number,year: number,month: number,consumer: string)
   {
-    return this.http.get<any>(this.baseUrl+ deviceId + "/" + year+ "/" + month+ "/" + consumer+ "/" );
+    return this.http.get<any>(this.baseUrl+ id + "/" + year+ "/" + month+ "/" + consumer+ "/" );
   }
 
   getmonthDSO(type: string)
