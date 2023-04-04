@@ -27,12 +27,9 @@ export class RegistrationMapComponent implements OnInit{
     iconUrl: '/assets/icons/images/marker-green.png',
     iconRetinaUrl: '/assets/icons/images/marker-green.png',
     iconSize: [50, 50],
-    iconAnchor: [2, 11],
+    iconAnchor: [25,55],
     popupAnchor: [1, -34],
-    tooltipAnchor: [16, -28],
-    shadowUrl: '/assets/icons/images/marker-shadow.png',
-    shadowSize: [60, 60],
-    shadowAnchor: [0, 15]
+    tooltipAnchor: [16, -28]
   });
 
   constructor(private toast:NgToastService, private http:HttpClient)
@@ -131,15 +128,6 @@ export class RegistrationMapComponent implements OnInit{
     }
   }
 
-  async getAddressFromCoordinates(lat: number, lon: number): Promise<string> {
-    const url = `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=jsonv2`;
-    return this.http.get(url).toPromise().then((response: any) => {
-      const address = response.address;
-      const result = response.address.suburb
-      return `${address.road}, ${address.city}, ${address.country}`;
-    });
-  }
-
   async getAddressFromCoordinates2(lat: number, lon: number): Promise<{address: string, result: string}> {
     const url = `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=jsonv2`;
     return this.http.get(url).toPromise().then((response: any) => {
@@ -147,13 +135,6 @@ export class RegistrationMapComponent implements OnInit{
       const result = response.address.suburb;
       const fullAddress = `${address.road}, ${address.city}, ${address.country}`;
       return {address: fullAddress, result: result};
-    });
-  }
-
-  async getSuburb(lat: number, lon: number): Promise<string> {
-    const url = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lon}`;
-    return await this.http.get<any>(url).toPromise().then(response => {
-      return response.address.suburb;
     });
   }
 
