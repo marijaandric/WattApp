@@ -38,7 +38,7 @@
       <input formControlName="address" name="address" appendTo="body" type="text"   class="p-inputtext-lg"  placeholder="ADDRESS" (change)="onAddressChange($event)">     
       <small class="text-danger" *ngIf="signUpForm.controls['address'].dirty && signUpForm.hasError('required','address')">Address is required</small>
 
-      <app-registration-map [address] = "value"></app-registration-map>
+      <app-registration-map [address] = "value" (messageEvent)="receiveMessage($event)"></app-registration-map>
     </div>
   </div> 
 </form>

@@ -1,6 +1,8 @@
-import { Component, Input, OnInit, SimpleChanges } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import axios from 'axios';
 import * as L from 'leaflet';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-registration-map',
@@ -9,7 +11,15 @@ import * as L from 'leaflet';
 })
 export class RegistrationMapComponent implements OnInit{
   map!:any;
+  marker!:any;
   @Input() address! : string;
+  @Output() messageEvent = new EventEmitter<any>();
+  message = {
+    lat:0,
+    lon:0,
+    address:null as any,
+    district: null as any
+  }
 
   markerIcon = L.icon({
     iconUrl: '/assets/icons/images/marker-green.png',
@@ -23,11 +33,54 @@ export class RegistrationMapComponent implements OnInit{
     shadowAnchor: [0, 15]
   });
 
-  ngOnInit(): void {
+  constructor(private toast:NgToastService, private http:HttpClient)
+  {
+
+  }
+
+  async ngOnInit(): Promise<void> {
     this.map = L.map('mapa').setView([44.01761719631536, 20.900995763392213], 13);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; OpenStreetMap contributors'
     }).addTo(this.map);
+
+    // Add a click event listener to the map
+      this.map.on('click', async (event: { latlng: { lat: any; lng: any; }; }) => {
+        // Get the clicked coordinates
+        const lat = event.latlng.lat;
+        const lng = event.latlng.lng;
+        if(this.marker)
+        {
+          // Update the marker's position
+          this.marker.setLatLng([lat, lng]);
+
+          // Emit an event with the new coordinates
+          this.message.lat = lat;
+          this.message.lon = lng;
+          this.message.address = await this.getAddressFromCoordinates(this.message.lat,this.message.lon);
+          this.message.district = await this.getSuburb(this.message.lat,this.message.lon)
+          if(this.message.district === undefined)
+          {
+            this.message.district = "Grad Kragujevac"
+          }
+          this.messageEvent.emit(this.message);
+        }
+        else{
+          this.marker = L.marker([lat, lng], {icon:this.markerIcon}).addTo(this.map);
+          // Emit an event with the new coordinates
+          this.message.lat = lat;
+          this.message.lon = lng;
+          this.message.address = await this.getAddressFromCoordinates(this.message.lat,this.message.lon);
+          this.message.district = await this.getSuburb(this.message.lat,this.message.lon)
+          if(this.message.district === undefined)
+          {
+            this.message.district = "Grad Kragujevac"
+          }
+          this.messageEvent.emit(this.message);
+        }
+
+        
+      });
   }
 
   async ngOnChanges(changes: SimpleChanges): Promise<void> {
@@ -45,20 +98,47 @@ export class RegistrationMapComponent implements OnInit{
           const response = await axios.get(url, { params });
           const lat = response.data[0].lat
           const lon =  response.data[0].lon;
-          const marker = L.marker([lat, lon], {icon:this.markerIcon}).addTo(this.map);
-
-          this.map.on('click', (event: L.LeafletMouseEvent) => {
-            const latlng = event.latlng;
-            marker.setLatLng(latlng);
-            console.log(latlng.lat, latlng.lng);
-          });
+          if (this.marker) {
+            // If a marker already exists, update its position
+            this.marker.setLatLng([lat, lon]);
+          } else {
+            // Otherwise, create a new marker
+            this.marker = L.marker([lat, lon], {icon:this.markerIcon}).addTo(this.map);
+          }
+          
+          this.message.lat = lat;
+          this.message.lon = lon;
+          this.message.address = await this.getAddressFromCoordinates(this.message.lat,this.message.lon);
+          this.message.district = await this.getSuburb(this.message.lat,this.message.lon)
+          if(this.message.district === undefined)
+          {
+            this.message.district = "Grad Kragujevac"
+          }
+          this.messageEvent.emit(this.message)
         } catch (error) {
-          console.error("GRESKA");
+          if(this.address != undefined)
+          {
+            this.toast.error({detail:"Error",summary:"Wrong address",duration:4000});
+          }
+          
         }
       }
     }
-   
-    
+  }
+
+  async getAddressFromCoordinates(lat: number, lon: number): Promise<string> {
+    const url = `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=jsonv2`;
+    return this.http.get(url).toPromise().then((response: any) => {
+      const address = response.address;
+      return `${address.road}, ${address.city}, ${address.country}`;
+    });
+  }
+
+  async getSuburb(lat: number, lon: number): Promise<string> {
+    const url = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${lat}&lon=${lon}`;
+    return await this.http.get<any>(url).toPromise().then(response => {
+      return response.address.suburb;
+    });
   }
 
 }
