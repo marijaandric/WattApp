@@ -13,11 +13,11 @@ import {
 } from 'ng-apexcharts';
 
 @Component({
-  selector: 'app-pie-chart',
-  templateUrl: './pie-chart.component.html',
-  styleUrls: ['./pie-chart.component.css']
+  selector: 'app-all-areas-donut',
+  templateUrl: './all-areas-donut.component.html',
+  styleUrls: ['./all-areas-donut.component.css']
 })
-export class PieChartComponent implements OnInit {
+export class AllAreasDonutComponent {
   @Input() chartHeight: number = 200;
   @Input() chartText: string = 'Total devices per room';
   @Input() Series: number[] = [40, 32, 28, 55];
@@ -33,7 +33,7 @@ export class PieChartComponent implements OnInit {
 
 
   chartDetails: ApexChart = {
-    type: 'pie',
+    type: 'donut',
     offsetY:0,
     toolbar: {
       show: true
@@ -74,8 +74,8 @@ export class PieChartComponent implements OnInit {
   }
   plotOptions: ApexPlotOptions = {
     pie :  {
-      startAngle: -90,
-      endAngle: 270,
+      startAngle: 180,
+      endAngle: -180,
       customScale: 1,
       offsetX:-10,
       offsetY:40,
@@ -131,5 +131,4 @@ export class PieChartComponent implements OnInit {
     this.chartTitle.text=this.chartText;
     this.chartSeries=this.Series;
   }
-
 }

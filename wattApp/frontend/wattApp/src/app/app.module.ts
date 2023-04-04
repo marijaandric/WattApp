@@ -70,6 +70,8 @@ import { MapComponent } from './components/DSO/map/map.component';
 import { MarkerComponent } from './components/DSO/marker/marker.component';
 import { MapSuburbComponent } from './components/DSO/map-suburb/map-suburb.component';
 import { RegistrationMapComponent } from './components/DSO/registration-map/registration-map.component';
+import { SingleAreaPieComponent } from './components/DSO/single-area-pie/single-area-pie.component';
+import { AllAreasDonutComponent } from './components/DSO/all-areas-donut/all-areas-donut.component';
 
 export const url = 'https://localhost:7158';
 export const deviceFakerUrl = "https://localhost:7233";
@@ -121,7 +123,9 @@ export const deviceFakerUrl = "https://localhost:7233";
     MapComponent,
     MarkerComponent,
     MapSuburbComponent,
-    RegistrationMapComponent
+    RegistrationMapComponent,
+    SingleAreaPieComponent,
+    AllAreasDonutComponent
   ],
   imports: [
     CommonModule,

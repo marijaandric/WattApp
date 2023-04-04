@@ -13,11 +13,11 @@ import {
 } from 'ng-apexcharts';
 
 @Component({
-  selector: 'app-pie-chart',
-  templateUrl: './pie-chart.component.html',
-  styleUrls: ['./pie-chart.component.css']
+  selector: 'app-single-area-pie',
+  templateUrl: './single-area-pie.component.html',
+  styleUrls: ['./single-area-pie.component.css']
 })
-export class PieChartComponent implements OnInit {
+export class SingleAreaPieComponent {
   @Input() chartHeight: number = 200;
   @Input() chartText: string = 'Total devices per room';
   @Input() Series: number[] = [40, 32, 28, 55];
@@ -131,5 +131,4 @@ export class PieChartComponent implements OnInit {
     this.chartTitle.text=this.chartText;
     this.chartSeries=this.Series;
   }
-
 }
