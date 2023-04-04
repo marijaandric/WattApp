@@ -21,5 +21,6 @@ namespace backend.BLL.Interfaces
         public  List<BigTableContent> GetTableContent(int userId, int year, int month, int day, int time, string type);
         public (List<String>?, List<int>?) GetDevicesCountByType(int userId, string type, int limit);
         public double currentMonthAllUsersDevicesUsage(string deviceType);
+        public double getExtremeUsageByArea(string area, string type, string timeType);
     }
 }
