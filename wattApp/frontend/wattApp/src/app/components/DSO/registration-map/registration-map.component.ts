@@ -20,6 +20,8 @@ export class RegistrationMapComponent implements OnInit{
     address:null as any,
     district: null as any
   }
+  
+  all = {address : "", result:""}
 
   markerIcon = L.icon({
     iconUrl: '/assets/icons/images/marker-green.png',
@@ -57,8 +59,9 @@ export class RegistrationMapComponent implements OnInit{
           // Emit an event with the new coordinates
           this.message.lat = lat;
           this.message.lon = lng;
-          this.message.address = await this.getAddressFromCoordinates(this.message.lat,this.message.lon);
-          this.message.district = await this.getSuburb(this.message.lat,this.message.lon)
+          this.all = await this.getAddressFromCoordinates2(this.message.lat,this.message.lon)
+          this.message.address = this.all.address;
+          this.message.district = this.all.result;
           if(this.message.district === undefined)
           {
             this.message.district = "Grad Kragujevac"
@@ -70,8 +73,9 @@ export class RegistrationMapComponent implements OnInit{
           // Emit an event with the new coordinates
           this.message.lat = lat;
           this.message.lon = lng;
-          this.message.address = await this.getAddressFromCoordinates(this.message.lat,this.message.lon);
-          this.message.district = await this.getSuburb(this.message.lat,this.message.lon)
+          this.all = await this.getAddressFromCoordinates2(this.message.lat,this.message.lon)
+          this.message.address = this.all.address;
+          this.message.district = this.all.result;
           if(this.message.district === undefined)
           {
             this.message.district = "Grad Kragujevac"
@@ -108,8 +112,9 @@ export class RegistrationMapComponent implements OnInit{
           
           this.message.lat = lat;
           this.message.lon = lon;
-          this.message.address = await this.getAddressFromCoordinates(this.message.lat,this.message.lon);
-          this.message.district = await this.getSuburb(this.message.lat,this.message.lon)
+          this.all = await this.getAddressFromCoordinates2(this.message.lat,this.message.lon)
+          this.message.address = this.all.address;
+          this.message.district = this.all.result;
           if(this.message.district === undefined)
           {
             this.message.district = "Grad Kragujevac"
@@ -130,7 +135,18 @@ export class RegistrationMapComponent implements OnInit{
     const url = `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=jsonv2`;
     return this.http.get(url).toPromise().then((response: any) => {
       const address = response.address;
+      const result = response.address.suburb
       return `${address.road}, ${address.city}, ${address.country}`;
+    });
+  }
+
+  async getAddressFromCoordinates2(lat: number, lon: number): Promise<{address: string, result: string}> {
+    const url = `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=jsonv2`;
+    return this.http.get(url).toPromise().then((response: any) => {
+      const address = response.address;
+      const result = response.address.suburb;
+      const fullAddress = `${address.road}, ${address.city}, ${address.country}`;
+      return {address: fullAddress, result: result};
     });
   }
 
