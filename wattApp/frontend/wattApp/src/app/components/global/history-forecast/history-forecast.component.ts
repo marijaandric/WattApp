@@ -132,6 +132,7 @@ export class HistoryForecastComponent {
 
   public stroke: ApexStroke = {
     curve: 'straight',
+    width: 2,
   }
 
   public dataLabels: ApexDataLabels = {

@@ -70,15 +70,15 @@ export class MapComponent implements OnInit, OnChanges{
   async mapa()
   {
     const markerIcon = L.icon({
-      iconUrl: '/assets/icons/images/marker-icon.png',
-      iconRetinaUrl: '/assets/icons/images/marker-icon-2x.png',
-      iconSize: [25, 41],
-      iconAnchor: [12, 41],
+      iconUrl: '/assets/icons/images/marker-green.png',
+      iconRetinaUrl: '/assets/icons/images/marker-green.png',
+      iconSize: [50, 50],
+      iconAnchor: [2, 11],
       popupAnchor: [1, -34],
       tooltipAnchor: [16, -28],
       shadowUrl: '/assets/icons/images/marker-shadow.png',
-      shadowSize: [41, 41],
-      shadowAnchor: [12, 41]
+      shadowSize: [60, 60],
+      shadowAnchor: [0, 15]
     });
 
     if(this.users != null)
