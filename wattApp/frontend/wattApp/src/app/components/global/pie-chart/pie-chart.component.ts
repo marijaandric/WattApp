@@ -56,9 +56,12 @@ export class PieChartComponent implements OnInit {
 
   chartTitle: ApexTitleSubtitle = {
     text:  this.chartText,
-    align: 'center',
+    align: 'left',
     style: {
-      color: '#FFFFFF'
+      color: '#FFFFFF',
+      fontSize: '19px',
+      fontFamily:'Montserrat',
+      fontWeight:'bold'  
     },
     
   };
@@ -73,15 +76,18 @@ export class PieChartComponent implements OnInit {
     pie :  {
       startAngle: -90,
       endAngle: 270,
-      customScale: 1.2,
+      customScale: 1,
       offsetX:0,
-      offsetY:60,
+      offsetY:20,
     }
   }
 
   tooltip:ApexTooltip = {
     enabled:true,
-    
+    style: {
+      fontSize:'16px',
+      fontFamily: 'Lato, sans-serif'
+    },  
     marker: {
       show:true,
       fillColors:['#7d02d4', '#d90372', 'rgb(4, 167, 119)', '#F75C03'],
@@ -95,6 +101,10 @@ export class PieChartComponent implements OnInit {
     position: 'right',
     offsetY: 40,
     offsetX: -30,
+    
+    fontSize:'12px',
+    fontWeight:'bold',
+    fontFamily: 'Montserrat, sans-serif',
     labels: {
       colors: '#FFFFFF',
     },
@@ -117,7 +127,7 @@ export class PieChartComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.chartDetails.height = '175.5%';
+    this.chartDetails.height = '220px';
     this.chartTitle.text=this.chartText;
     this.chartSeries=this.Series;
   }

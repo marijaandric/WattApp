@@ -37,11 +37,13 @@
     background-color: #1b1b1b;
     box-shadow: 5px 5px 15px black;
     transition: ease-in-out;
+    padding:10px 20px;
     ">
 
     <ng-template pTemplate="caption">
       <div class="flexRow">
-          <h3>Users</h3>
+          <h3 >
+          Users</h3>
           <span class="p-input-icon-left margin-left__auto margin-right__16px">
               <i class="pi pi-search"></i>
               <input pInputText type="text" (input)="dtUsers.filterGlobal($any($event.target).value, 'contains')" placeholder="Search keyword" />
@@ -52,30 +54,30 @@
 
     <ng-template pTemplate="header">
       <tr>
-        <th pSortableColumn="firstName" style="min-width:10rem">
+        <th pSortableColumn="firstName" style="min-width:8rem;  border-top:3px solid #04a777; border-bottom:3px solid #04a777;">
           <div class="flexRow">
-              <p>First name</p>
+              <p style=" font-size: 18px !important;">First name</p>
               <p-sortIcon field="firstName"></p-sortIcon>
               <p-columnFilter class="ml-auto" type="text" field="firstName" display="menu"></p-columnFilter>
           </div>
         </th>
-        <th pSortableColumn="lastName" style="min-width:10rem">
+        <th pSortableColumn="lastName" style="min-width:9rem;  border-top:3px solid #04a777; border-bottom:3px solid #04a777;">
           <div class="flexRow">
-              <p>Last name</p>
+              <p style=" font-size: 18px !important;">Last name</p>
               <p-sortIcon field="lastName"></p-sortIcon>
               <p-columnFilter class="ml-auto" type="text" field="lastName" display="menu"></p-columnFilter>
           </div>
         </th>
-        <th pSortableColumn="email" style="min-width:15rem">
+        <th pSortableColumn="email" style="min-width:10rem;  border-top:3px solid #04a777; border-bottom:3px solid #04a777;">
           <div class="flexRow">
-              <p>Email</p>
+              <p style=" font-size: 18px !important;">Email</p>
               <p-sortIcon field="email"></p-sortIcon>
               <p-columnFilter class="ml-auto" type="text" field="email" display="menu"></p-columnFilter>
           </div>
         </th>
-        <th pSortableColumn="role" style="min-width:10rem">
+        <th pSortableColumn="role" style="min-width:8rem; border-top:3px solid #04a777; border-bottom:3px solid #04a777;">
           <div class="flexRow">
-              <p>Role</p>
+              <p style=" font-size: 18px !important;">Role</p>
               <p-sortIcon field="role"></p-sortIcon>
               <p-columnFilter class="ml-auto" type="text" field="role" display="menu"></p-columnFilter>
           </div>
@@ -101,7 +103,6 @@
   </p-table>
 
 <!---  VREMENSKA PROGNOZA -->
-
 <app-weather-forecast7 style="width: 49%;"></app-weather-forecast7>
 
 

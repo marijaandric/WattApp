@@ -1,7 +1,7 @@
 import { style } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import {  ApexAxisChartSeries,ApexDataLabels,ApexLegend, ApexTooltip, ApexStroke, ApexFill, ApexChart, ApexXAxis, ApexTitleSubtitle,ApexYAxis } from 'ng-apexcharts';
+import {  ApexAxisChartSeries,ApexDataLabels,ApexLegend,ApexMarkers, ApexTooltip, ApexStroke, ApexFill, ApexChart, ApexXAxis, ApexTitleSubtitle,ApexYAxis } from 'ng-apexcharts';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -61,6 +61,16 @@ export class HistoryForecastComponent {
     },
       
   ];
+
+  public marker: ApexMarkers = {
+    size:6,
+    strokeWidth: 0,
+    fillOpacity: 1,
+    radius: 10,
+    hover: {
+      size:8
+    }
+  };
   public chart: ApexChart = {
     type: 'line',
     height: 250,
@@ -108,15 +118,22 @@ export class HistoryForecastComponent {
     categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun','Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
     labels: {
       style: {
-        colors: ['#FFF','#FFF','#FFF','#FFF', '#FFF','#FFF','#FFF','#FFF','#FFF','#FFF','#FFF','#FFF','#FFF','#FFF','#FFF']
+        colors: ['#FFF','#FFF','#FFF','#FFF', '#FFF','#FFF','#FFF','#FFF','#FFF','#FFF','#FFF','#FFF','#FFF','#FFF','#FFF'],
+        fontSize: '16px',
+        fontWeight: 'bolder',
+        fontFamily: 'Lato, sans-serif'
       }
     }
   };
 
   public yaxis: ApexYAxis = {
+
     labels: {
       style: {
         colors: ['#FFF'],
+        fontSize:'16px',
+        fontWeight:'bold',
+        fontFamily: 'Lato, sans-serif'
       },
     },
   };
@@ -132,7 +149,7 @@ export class HistoryForecastComponent {
 
   public stroke: ApexStroke = {
     curve: 'straight',
-    width: 2,
+    width: 3,
   }
 
   public dataLabels: ApexDataLabels = {
@@ -148,8 +165,8 @@ export class HistoryForecastComponent {
   },
   background: {
     enabled: true,
-    foreColor: '#222234',
-    padding: 4,
+    foreColor: '#FFF',
+    padding: 10,
     borderRadius: 2,
     borderWidth: 1,
     borderColor: '#fff',
