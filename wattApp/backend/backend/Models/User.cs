@@ -17,5 +17,8 @@ namespace backend.Models
         public string Role { get; set; }
         public string RefreshToken { get; set; }
         public DateTime RefreshTokenExpiryTime { get; set; }
+        public double x { get; set; }
+        public double y { get; set; }
+        public string area { get; set; }
     }
 }
