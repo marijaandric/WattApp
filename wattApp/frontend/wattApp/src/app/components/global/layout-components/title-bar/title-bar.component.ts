@@ -163,17 +163,18 @@ export class TitleBarComponent implements OnInit{
 
   //od mape
   receiveMessage(message : any) {
-    const ltn = message.lat
-    const lon = message.lon
     this.address = message.address
     this.signUpForm.patchValue({
-      x : ltn
+      x : message.lat
     })
     this.signUpForm.patchValue({
-      y : lon
+      y : message.lon
     })
     this.signUpForm.patchValue({
       address : this.address
+    })
+    this.signUpForm.patchValue({
+      address : message.district
     })
   }
 
