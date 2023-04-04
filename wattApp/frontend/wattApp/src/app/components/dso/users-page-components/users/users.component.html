@@ -20,6 +20,7 @@
     background-color: #1b1b1b;
     box-shadow: 5px 5px 15px black;"></app-map>
       <p-table #dtUsers class="ui-table-default" [value]="users" dataKey="id" [scrollable]="true" 
+
       [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]"
       [globalFilterFields]="['id','firstName','lastName','email','role']" [paginator]="true" style="
       display: flex;

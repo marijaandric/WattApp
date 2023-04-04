@@ -1,5 +1,5 @@
 import { Token } from '@angular/compiler';
-import { Component, OnInit, ɵɵqueryRefresh } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild, ɵɵqueryRefresh } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
@@ -11,6 +11,8 @@ import { ModelTypesService } from 'src/app/services/model-types/model-types.serv
 import { RoleTypesService } from 'src/app/services/role-types/role-types.service';
 import { RoomTypesService } from 'src/app/services/room-types/room-types.service';
 import { UserService } from 'src/app/services/user.service';
+import * as L from 'leaflet';
+import axios from 'axios';
 
 interface Models{
   code: string;
@@ -53,6 +55,7 @@ export class TitleBarComponent implements OnInit{
   roomSelected! : string;
   showText = false;
   rola:any;
+  value!:string;
   
   constructor(private router: Router,
               private fb: FormBuilder,
@@ -72,6 +75,7 @@ export class TitleBarComponent implements OnInit{
   }
 
   ngOnInit(): void {
+
     this.roleTypesService.getAllRoleTypes()
       .pipe(
         map(roleTypes => roleTypes.map(roleType => ({ code:roleType, name: roleType })))
@@ -139,15 +143,22 @@ export class TitleBarComponent implements OnInit{
       room: ['', Validators.required],
       deviceType: ['', Validators.required],
     })
+
+
   }
 
   // prikaz dijaloga
-  showDialog(){
+   showDialog(){
     this.display = true;
+    
   }
 
   showDialog2(){
     this.display2 = true;
+  }
+
+  async onAddressChange(event:any){
+    this.value = event.target.value;
   }
 
   //dropdown event
