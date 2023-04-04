@@ -174,7 +174,7 @@ export class TitleBarComponent implements OnInit{
       address : this.address
     })
     this.signUpForm.patchValue({
-      address : message.district
+      oblast : message.district
     })
   }
 
