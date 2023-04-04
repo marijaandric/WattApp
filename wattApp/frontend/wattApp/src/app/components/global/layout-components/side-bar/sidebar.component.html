@@ -29,27 +29,27 @@
     </div>
     <ul  class="sub-menu nopadding">
         <li><a class="link_name" routerLink="/users">Users</a></li>
-        <li *ngIf="!isSubMenuShown"><a href="#">Prosumers</a></li>
-        <li *ngIf="!isSubMenuShown"><a href="#">Operators</a></li>
+        <li *ngIf="!isSubMenuShown"><a routerLink="/users">Prosumers</a></li>
+        <li *ngIf="!isSubMenuShown"><a routerLink="/users">Operators</a></li>
     </ul>
     </li>
     <li *ngIf="isSubMenuShown" class="submenus" [ngClass]="{'marginLeft' : !isSidebarShown}">
-        <a href="#">
+        <a routerLink="#">
             <i class="fa-solid fa-user-group"></i>
             <span class="link_name">Prosumers</span>
         </a>
         <ul class="sub-menu nopadding">
-            <li><a class="link_name" href="#">Prosumers</a></li>
+            <li><a class="link_name" routerLink="#">Prosumers</a></li>
         </ul>
         </li>
     <li>
     <li *ngIf="isSubMenuShown" class="submenus" [ngClass]="{'marginLeft' : !isSidebarShown}">
-        <a href="#">
+        <a routerLink="#">
             <i class="fa-solid fa-users-gear"></i>
             <span class="link_name">Operators</span>
         </a>
         <ul class="sub-menu nopadding">
-            <li><a class="link_name" href="#">Operators</a></li>
+            <li><a class="link_name" routerLink="#">Operators</a></li>
         </ul>
         </li>
     <li>
@@ -57,46 +57,46 @@
 
 
     <div class="iocn-link">
-        <a href="devices">
+        <a routerLink="/devices">
         <i class="fa-solid fa-computer"></i>
         <span class="link_name" >Devices</span>
         </a>
         <i class="fa-solid fa-caret-down arrow" [ngClass]="{'arrow2' : !isSubMenu2Shown}" id="UsersDrpId" (click)="showSubMenus2()"></i>
     </div>
     <ul  class="sub-menu nopadding">
-        <li><a class="link_name" href="devices">Devices</a></li>
-        <li *ngIf="!isSubMenu2Shown"><a href="devices/consumption">Consumption</a></li>
-        <li *ngIf="!isSubMenu2Shown"><a href="devices/production">Production</a></li>
-        <li *ngIf="!isSubMenu2Shown"><a href="devices/stock">Stock</a></li>
+        <li><a class="link_name" routerLink="/devices">Devices</a></li>
+        <li *ngIf="!isSubMenu2Shown"><a routerLink="/devices/consumption">Consumption</a></li>
+        <li *ngIf="!isSubMenu2Shown"><a routerLink="/devices/production">Production</a></li>
+        <li *ngIf="!isSubMenu2Shown"><a routerLink="/devices/stock">Stock</a></li>
     </ul>
     </li>
     <li *ngIf="isSubMenu2Shown" [ngClass]="{'marginLeft' : !isSidebarShown}">
-        <a href="devices/consumption">
+        <a routerLink="/devices/consumption">
             <i class="fa-solid fa-bolt"></i>
             <span class="link_name">Consumption</span>
         </a>
         <ul class="sub-menu nopadding">
-            <li><a class="link_name" href="#">Consumption</a></li>
+            <li><a class="link_name" routerLink="#">Consumption</a></li>
         </ul>
         </li>
     <li>
     <li *ngIf="isSubMenu2Shown" [ngClass]="{'marginLeft' : !isSidebarShown}">
-        <a href="devices/production">
+        <a routerLink="/devices/production">
             <i class="fa-solid fa-solar-panel"></i>
             <span class="link_name">Production</span>
         </a>
         <ul class="sub-menu nopadding">
-            <li><a class="link_name" href="#">Production</a></li>
+            <li><a class="link_name" routerLink="#">Production</a></li>
         </ul>
         </li>
     <li>
     <li *ngIf="isSubMenu2Shown" [ngClass]="{'marginLeft' : !isSidebarShown}">
-        <a href="devices/stock">
+        <a routerLink="/devices/stock">
             <i class="fa-solid fa-database"></i>
             <span class="link_name">Stock</span>
         </a>
         <ul class="sub-menu nopadding">
-            <li><a class="link_name" href="#">Stock</a></li>
+            <li><a class="link_name" routerLink="#">Stock</a></li>
         </ul>
     </li>
     
@@ -111,12 +111,12 @@
     </ul>
     </li>
     <li>
-    <a href="#">
+    <a routerLink="#">
         <i class="fa-solid fa-gear"></i>
         <span class="link_name">Setting</span>
     </a>
     <ul class="sub-menu nopadding">
-        <li><a class="link_name" href="#">Setting</a></li>
+        <li><a class="link_name" routerLink="#">Setting</a></li>
     </ul>
     </li>
     <div class="logdiv">
