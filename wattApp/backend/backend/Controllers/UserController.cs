@@ -24,7 +24,6 @@ namespace backend.Controllers
             _context = context;
         }
 
-
         [HttpGet]
         public List<User> getUsers()
         {
@@ -76,7 +75,6 @@ namespace backend.Controllers
                 return BadRequest();
             return _context.registerUser(userObj);
         }
-
 
         // DELETE: api/proba/5
         [HttpDelete("{id}")]
