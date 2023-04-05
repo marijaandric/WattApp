@@ -4,6 +4,7 @@ import { UserService } from 'src/app/services/user.service';
 import { HttpClient } from '@angular/common/http';
 import { DeviceDTO } from 'src/app/dtos/DeviceDTO';
 import { DeviceService } from 'src/app/services/device/device.service';
+import { DsonewsService } from 'src/app/services/dsonews/dsonews.service';
 
 @Component({
   selector: 'app-prosumerhome',
@@ -19,7 +20,7 @@ export class ProsumerhomeComponent implements OnInit{
   @Input() device1:any={id:1,deviceName: "device", deviceType:"Producer",power: 10}
   @Input() device2:any={id:1,deviceName: "device", deviceType:"Storage",power: 10}
 
-  constructor(private userService:UserService,private http: HttpClient,private deviceService : DeviceService)
+  constructor(private userService:UserService,private http: HttpClient,private deviceService : DeviceService,private dsonew : DsonewsService)
   {
     if(this.token)
     {
@@ -172,8 +173,41 @@ export class ProsumerhomeComponent implements OnInit{
   
   }
 
+  news: any[] = [];
+  
+  naslov1 : any;
+  naslov2 : any;
+  naslov3 : any;
+
+  sadrzaj1 : any;
+  sadrzaj2 : any;
+  sadrzaj3 : any;
+
+
+  getNews() {
+  
+    this.dsonew.getnew().subscribe((data: any) => {
+      this.news = data;
+      this.news.sort((a, b) => b.id - a.id);
+      //console.log(this.news);
+
+
+     this.naslov1 = this.news[0].title;
+     this.naslov2 = this.news[1].title;
+     this.naslov3 = this.news[2].title;
+
+     this.sadrzaj1 = this.news[0].content;
+     this.sadrzaj2 = this.news[1].content;
+     this.sadrzaj3 = this.news[2].content;
+
+    });
+  
+  }
+
+
 
   ngOnInit(): void {
+    this.getNews();
     this.devices.push(this.device);
     this.devices.push(this.device1);
     this.devices.push(this.device2);
