@@ -96,5 +96,10 @@ namespace backend.DAL
         {
             return _context.Users.FirstOrDefault(u => u.Username == username);
         }
+
+        public List<User> GetUsersByArea(string area)
+        {
+            return _context.Users.Where(u => u.Area == area).ToList();
+        }
     }
 }

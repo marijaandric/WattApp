@@ -19,6 +19,6 @@ namespace backend.DAL.Interfaces
         public IActionResult deleteUser(int id);
         public IActionResult addUser(User userObj);
         public void SaveChanges();
-
+        List<User> GetUsersByArea(string area);
     }
 }

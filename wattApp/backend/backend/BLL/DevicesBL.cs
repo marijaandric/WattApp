@@ -161,6 +161,31 @@ namespace backend.BLL
             return (deviceWithValue, deviceName, value);
         }
 
+        public double getExtremeUsageByArea(string area, string type, string timeType)
+        {
+            DateTime time = DateTime.Now;
+            List<User> users = _contextUserDAL.GetUsersByArea(area);
+            List<Devices> devices = new List<Devices>();
+            List<DevicesData> devicesdata = new List<DevicesData>();
+
+            foreach (User user in users)
+            {
+                devices.AddRange(_contextDAL.GetDevicesByType(type));
+            }
+
+            foreach (Devices device in devices)
+            {
+                if(timeType == "Month")
+                    devicesdata.AddRange(_contextDataDAL.GetMonthDataForDevice(device.Id, time.Year, time.Month));
+                if(timeType == "Day")
+                    devicesdata.AddRange(_contextDataDAL.GetDayDataForDevice(device.Id, time.Year, time.Month, time.Day));
+            }
+
+            double total = Calculator.CalculateTotalPowerUsage(devicesdata);
+
+            return total;
+        }
+
         public double GetMonthlyStatistics(int userId, int year, int month, string type)
         {
             List<Devices> devices = _contextDAL.GetUserDevicesByType(userId, type);

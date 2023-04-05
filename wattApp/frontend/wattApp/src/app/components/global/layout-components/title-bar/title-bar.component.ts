@@ -56,6 +56,7 @@ export class TitleBarComponent implements OnInit{
   showText = false;
   rola:any;
   value!:string;
+  address!:string;
   
   constructor(private router: Router,
               private fb: FormBuilder,
@@ -133,7 +134,10 @@ export class TitleBarComponent implements OnInit{
       password2: ['', Validators.required],
       role: ['', Validators.required],
       token:['', Validators.required],
-      refreshToken:['', Validators.required]
+      refreshToken:['', Validators.required],
+      x: ['', Validators.required],
+      y: ['', Validators.required],
+      oblast :['', Validators.required],
     });
 
     this.addDeviceForm = this.fb.group({
@@ -155,6 +159,23 @@ export class TitleBarComponent implements OnInit{
 
   showDialog2(){
     this.display2 = true;
+  }
+
+  //od mape
+  receiveMessage(message : any) {
+    this.address = message.address
+    this.signUpForm.patchValue({
+      x : message.lat
+    })
+    this.signUpForm.patchValue({
+      y : message.lon
+    })
+    this.signUpForm.patchValue({
+      address : this.address
+    })
+    this.signUpForm.patchValue({
+      oblast : message.district
+    })
   }
 
   async onAddressChange(event:any){

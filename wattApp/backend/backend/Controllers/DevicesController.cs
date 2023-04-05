@@ -182,6 +182,21 @@ namespace backend.Controllers
             });
         }
 
+        [HttpGet("getUsageByArea/{area}/{type}/{timeType}")]
+        public IActionResult getExtremeUsageByArea(string area, string type, string timeType)
+        {
+
+            var result = _context.getExtremeUsageByArea(area, type, timeType);
+
+            return Ok(
+                new
+                {
+                    Area = area,
+                    Type = type,
+                    Usage = result
+                });
+        }
+
         [HttpGet("price")]
         public double getElectricalPowerPrice()
         {
