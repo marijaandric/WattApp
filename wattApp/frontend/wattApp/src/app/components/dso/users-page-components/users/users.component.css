@@ -6,6 +6,10 @@ app-tab-menu-users .fa-users {
     color: rgb(4,167,119);
   }
 
+app-tab-menu-users .color:hover{
+    color: rgb(4,167,119) !important;
+  }
+
 .right {
   margin-bottom: 10%;
   width:45%;
