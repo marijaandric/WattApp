@@ -82,4 +82,8 @@ export class DeviceService {
     return this.http.get<any>(this.baseUrl + "price");
   }
 
+  updateDevice(device: DeviceDTO): Observable<DeviceDTO>{
+    return this.http.put<DeviceDTO>(this.baseUrl + device.id, device);
+}
+
 }
