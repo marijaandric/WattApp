@@ -23,7 +23,7 @@ export class AreaBarChartComponent implements OnInit {
     redrawOnWindowResize:true
   };
   public xaxis: ApexXAxis = {
-    categories: ['Erdoglija', 'Centar', 'Pivara'],
+    categories: ['Producers', 'Consumers', 'Stock'],
     offsetY: 10,
     labels: {
       style: {
@@ -75,7 +75,7 @@ export class AreaBarChartComponent implements OnInit {
   }
 
   public title: ApexTitleSubtitle = {
-    text: 'City areas',
+    text: 'The ratio of the number of consumers, producers and batteries',
     style: {
       color: '#FFFFFF',
       fontSize: '19px'

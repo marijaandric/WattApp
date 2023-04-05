@@ -213,9 +213,8 @@ export class TitleBarComponent implements OnInit{
       role : this.roleSelected
     })
 
-    if(this.signUpForm)
+    if(this.signUpForm && this.signUpForm.value.password === this.signUpForm.value.password2)
     {
-      console.log(this.signUpForm.value)
       this.authService.signUp(this.signUpForm.value).subscribe({
         next:(res => {
           this.signUpForm.reset()

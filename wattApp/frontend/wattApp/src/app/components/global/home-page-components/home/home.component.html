@@ -20,7 +20,8 @@
  
   <div class="main-grid">
     <app-history-forecast clas="hist-forecast"></app-history-forecast>
-    <app-pie-chart  clas="bar-plot"></app-pie-chart>
+    <!-- <app-pie-chart  clas="bar-plot"></app-pie-chart> -->
+    <app-map-suburb style="width: 22.5%;margin-left:35px"></app-map-suburb>
     
 
     <p-table class="d-table" #dtUsers class="ui-table-default" [value]="users" dataKey="id" [scrollable]="true" 
@@ -105,9 +106,8 @@
 <!---  VREMENSKA PROGNOZA -->
 <app-weather-forecast7 style="width: 49%;"></app-weather-forecast7>
 
-
-  
 </div>
+
   
     <!--<app-history-forecast-table></app-history-forecast-table>
     -->
