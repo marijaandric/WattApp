@@ -22,5 +22,6 @@ namespace backend.BLL.Interfaces
         public (List<String>?, List<int>?) GetDevicesCountByType(int userId, string type, int limit);
         public double currentMonthAllUsersDevicesUsage(string deviceType);
         public double getTotalUsageByArea(string area, string type, string timeType);
+        public (string?, double?) getExtremeUsageForAreas(string type, string timeType);
     }
 }

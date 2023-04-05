@@ -182,8 +182,8 @@ namespace backend.Controllers
             });
         }
 
-        [HttpGet("getUsageByArea/{area}/{type}/{timeType}")]
-        public IActionResult getExtremeUsageByArea(string area, string type, string timeType)
+        [HttpGet("getTotalUsageByArea/{area}/{type}/{timeType}")]
+        public IActionResult getTotalUsageByArea(string area, string type, string timeType)
         {
 
             var result = _context.getTotalUsageByArea(area, type, timeType);
@@ -194,6 +194,20 @@ namespace backend.Controllers
                     Area = area,
                     Type = type,
                     Usage = result
+                });
+        }
+
+        [HttpGet("getExtremeUsageForAreas/{type}/{timeType}")]
+        public IActionResult getExtremeUsageForAreas(string type, string timeType)
+        {
+
+            var result = _context.getExtremeUsageForAreas(type, timeType);
+
+            return Ok(
+                new
+                {
+                    Area = result.Item1,
+                    Usage = result.Item2
                 });
         }
 
