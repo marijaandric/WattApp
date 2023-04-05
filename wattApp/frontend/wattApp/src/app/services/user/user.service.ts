@@ -25,6 +25,9 @@ export class UserService {
           user.token,
           user.address,
           user.role,
+          user.x,
+          user.y,
+          user.area
         ));
       })
     );

@@ -164,6 +164,10 @@ export class TitleBarComponent implements OnInit{
   //od mape
   receiveMessage(message : any) {
     this.address = message.address
+    if(message.district == null)
+    {
+      message.district = "Grad Kragujevac"
+    }
     this.signUpForm.patchValue({
       x : message.lat
     })

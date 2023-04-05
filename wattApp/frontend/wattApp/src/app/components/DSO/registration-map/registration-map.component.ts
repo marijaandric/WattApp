@@ -133,7 +133,11 @@ export class RegistrationMapComponent implements OnInit{
     return this.http.get(url).toPromise().then((response: any) => {
       const address = response.address;
       const result = response.address.suburb;
-      const fullAddress = `${address.road}, ${address.city}, ${address.country}`;
+      let fullAddress = `${address.road}, ${address.city}`;
+      if(address.house_number != undefined)
+      {
+        fullAddress = `${address.road} ${address.house_number}, ${address.city}`;
+      }
       return {address: fullAddress, result: result};
     });
   }
