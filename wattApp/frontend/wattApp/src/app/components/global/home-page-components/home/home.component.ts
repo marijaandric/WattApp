@@ -53,6 +53,7 @@ export class HomeComponent {
   }
 
   changeBg(selectedType: City) {
+    /*
     const element =document.getElementById('::ng-deep .pr_id_1_labelt');
     if(selectedType.code == '1')
     {
@@ -80,7 +81,7 @@ export class HomeComponent {
       this.isProduction = false;
       this.isStock = false;
       this.isAll = true;
-    }
+    }*/
   }
 
   users: UserDTO[] = [];

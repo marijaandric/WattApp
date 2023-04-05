@@ -9,13 +9,12 @@ interface City {
   name: string,
   code: string
 }
-
 @Component({
-  selector: 'app-history-forecast',
-  styleUrls: ['./history-forecast.component.scss'],
-  templateUrl: './history-forecast.component.html',
+  selector: 'app-forecast-line-chart',
+  templateUrl: './forecast-line-chart.component.html',
+  styleUrls: ['./forecast-line-chart.component.css']
 })
-export class HistoryForecastComponent {
+export class ForecastLineChartComponent {
   menageUserForm! : FormGroup;
   cities: City[];
   selectedCity!: City;
@@ -30,33 +29,18 @@ export class HistoryForecastComponent {
   }
   public series: ApexAxisChartSeries = [
     {
-      name: 'Consumption history',
-      data: [12, 19, 3, 5, 2, 6, 5, null,null,null,null, null, null, null],
-      color: '#7d02d4'
-    },
-    {
       name: "Consumption forecast",
-      data: [null,null, null, null, null, null,5,10,12,3,16,5,10,5],
+      data: [5,10,12,3,16,5,10],
       color: '#ab36ff',
     },
     {
-      name: 'Production history',
-      data: [1, 4, 15, 5, 12, 6, 18, null,null,null,null, null, null, null],
-      color:  '#d90372'
-    },
-    {
       name: "Production forecast",
-      data: [null,null, null, null, null, null,18,1,2,7,6,9,10,5],
+      data: [18,1,2,7,6,9,10],
       color: '#ff7bbf'
     },
     {
-      name: 'Stock history',
-      data: [12, 1, 3, 15, 12, 6, 9, null,null,null,null, null, null, null],
-      color:'rgb(4, 167, 119)'
-    },
-    {
       name: "Stock forecast",
-      data: [null,null, null, null, null, null,9,17,12,10,16,5,1,2],
+      data: [9,17,12,10,16,5,1],
       color: 'rgb(114, 255, 213)'
     },
       
@@ -80,15 +64,15 @@ export class HistoryForecastComponent {
     
     animations: {
       enabled: true,
-      easing: 'easein',
+      easing: 'easeinout',
       speed: 800,
       animateGradually: {
-          enabled: false,
+          enabled: true,
           delay: 150
       },
       dynamicAnimation: {
           enabled: true,
-          speed: 650
+          speed: 350
       }
     },
     dropShadow: {
@@ -100,8 +84,8 @@ export class HistoryForecastComponent {
       color: '#000',
       opacity: 1
     },
-    redrawOnParentResize: true,
-    redrawOnWindowResize: true,
+    redrawOnParentResize: false,
+    redrawOnWindowResize: false,
   };
 
   public tooltip: ApexTooltip = {
@@ -119,17 +103,17 @@ export class HistoryForecastComponent {
     fontSize: '16px',
     offsetY:10,
     labels : {
-      colors: ['#7d02d4','#ab36ff', '#d90372', '#ff7bbf','rgb(4, 167, 119)', 'rgb(114, 255, 213)', ],
+      colors: ['#ab36ff', '#ff7bbf', 'rgb(114, 255, 213)' ],
       useSeriesColors:true
     },
     
   }
 
   public xaxis: ApexXAxis = {
-    categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun','Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+    categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
     labels: {
       style: {
-        colors: ['#FFF','#FFF','#FFF','#FFF', '#FFF','#FFF','#FFF','#FFF','#FFF','#FFF','#FFF','#FFF','#FFF','#FFF','#FFF'],
+        colors: ['#FFF','#FFF','#FFF','#FFF','#FFF','#FFF','#FFF'],
         fontSize: '16px',
         fontWeight: 'bolder',
         fontFamily: 'Lato, sans-serif'
@@ -150,7 +134,7 @@ export class HistoryForecastComponent {
   };
 
   public title: ApexTitleSubtitle = {
-    text: 'History & forecast of all users',
+    text: 'Forecast',
     style: {
       color: '#FFF',
       fontSize: '19px',
