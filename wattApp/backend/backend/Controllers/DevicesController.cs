@@ -186,7 +186,7 @@ namespace backend.Controllers
         public IActionResult getExtremeUsageByArea(string area, string type, string timeType)
         {
 
-            var result = _context.getExtremeUsageByArea(area, type, timeType);
+            var result = _context.getTotalUsageByArea(area, type, timeType);
 
             return Ok(
                 new
