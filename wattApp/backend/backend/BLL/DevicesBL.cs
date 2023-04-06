@@ -167,6 +167,10 @@ namespace backend.BLL
             List<User> users = _contextUserDAL.GetUsersByArea(area);
             List<Devices> devices = new List<Devices>();
             List<DevicesData> devicesdata;
+
+            if (users == null)
+                return 0;
+
             double total = 0;
             foreach (User user in users)
             {
@@ -181,7 +185,6 @@ namespace backend.BLL
                     devicesdata = _contextDataDAL.GetDayDataForDevice(device.Id, time.Year, time.Month, time.Day);
                 total += Calculator.CalculateTotalPowerUsage(devicesdata);
             }
-
 
             return total;
         }
@@ -265,5 +268,41 @@ namespace backend.BLL
             _contextDAL?.SaveChanges();
         }
 
+        public (string?, double?) getExtremeUsageForAreas(string type, string timeType, string minmax)
+        {
+            List<User> users = _contextUserDAL.getUsers();
+            List<string> areas = users.Select(d => d.Area).ToList().Distinct().ToList();
+
+            if(users == null || areas == null)
+                return (null, null);
+
+            string maxArea = "";
+            string minArea = "";
+
+            double max = -1;
+            double min = double.MaxValue;
+            double areaTotalUsage;
+            foreach(string area in areas)
+            {
+                areaTotalUsage = getTotalUsageByArea(area, type, timeType);
+                if(areaTotalUsage > max)
+                {
+                    max = areaTotalUsage;
+                    maxArea = area;
+                }
+                if(areaTotalUsage < min)
+                {
+                    min = areaTotalUsage;
+                    minArea = area;
+                }
+            }
+            if(max < 0)
+                return (null, null);
+
+            if(minmax == "Max")
+                return (maxArea, max);
+            else
+                return (minArea, min);
+        }
     }
 }
