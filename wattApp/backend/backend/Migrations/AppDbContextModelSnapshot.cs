@@ -38,6 +38,12 @@ namespace backend.Migrations
                     b.Property<int>("UserID")
                         .HasColumnType("INTEGER");
 
+                    b.Property<bool>("allowOperatorControll")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<bool>("allowOperatorVisibility")
+                        .HasColumnType("INTEGER");
+
                     b.Property<bool>("isActive")
                         .HasColumnType("INTEGER");
 
@@ -46,32 +52,30 @@ namespace backend.Migrations
                     b.ToTable("devices", (string)null);
                 });
 
-            modelBuilder.Entity("backend.Models.DevicesData", b =>
+            modelBuilder.Entity("backend.Models.DsoNews", b =>
                 {
-                    b.Property<string>("id")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("AuthorId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Content")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("day")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("deviceID")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("month")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<double>("powerUsage")
-                        .HasColumnType("REAL");
-
-                    b.Property<string>("time")
+                    b.Property<DateTime>("Created")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("year")
-                        .HasColumnType("INTEGER");
+                    b.Property<string>("Priority")
+                        .HasColumnType("TEXT");
 
-                    b.HasKey("id");
+                    b.Property<string>("Title")
+                        .HasColumnType("TEXT");
 
-                    b.ToTable("devicesdata", (string)null);
+                    b.HasKey("Id");
+
+                    b.ToTable("dso_news", (string)null);
                 });
 
             modelBuilder.Entity("backend.Models.User", b =>
@@ -81,6 +85,9 @@ namespace backend.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Address")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Area")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Email")
@@ -112,6 +119,12 @@ namespace backend.Migrations
 
                     b.Property<string>("Username")
                         .HasColumnType("TEXT");
+
+                    b.Property<double>("X")
+                        .HasColumnType("REAL");
+
+                    b.Property<double>("Y")
+                        .HasColumnType("REAL");
 
                     b.HasKey("Id");
 

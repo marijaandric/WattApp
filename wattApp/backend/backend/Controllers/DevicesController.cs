@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using backend.Models;
 using backend.BLL.Interfaces;
-using backend.Models.NotDbModels;
+using backend.Models.DTOs;
 
 namespace backend.Controllers
 {
@@ -151,7 +151,7 @@ namespace backend.Controllers
         }
 
         [HttpGet("tableContent/{userId}/{year}/{month}/{day}/{time}/{type}")]
-        public List<BigTableContent> GetTableContent(int userId, int year, int month, int day, string time,string type)
+        public List<BigTableContent> GetTableContent(int userId, int year, int month, int day, int time,string type)
         {
             return _context.GetTableContent(userId, year, month, day, time, type);
             
@@ -172,12 +172,51 @@ namespace backend.Controllers
 
         }
 
+        [HttpGet("currentMonthAllUsersDevicesUsage/{deviceType}")]
+        public IActionResult currentMonthAllUsersDevicesUsage(string deviceType)
+        {
+            double result = _context.currentMonthAllUsersDevicesUsage(deviceType);
+            return Ok( new
+            {
+                Usage = result
+            });
+        }
+
+        [HttpGet("getTotalUsageByArea/{area}/{type}/{timeType}")]
+        public IActionResult getTotalUsageByArea(string area, string type, string timeType)
+        {
+
+            var result = _context.getTotalUsageByArea(area, type, timeType);
+
+            return Ok(
+                new
+                {
+                    Area = area,
+                    Type = type,
+                    Usage = result
+                });
+        }
+
+        [HttpGet("getExtremeUsageForAreas/{type}/{timeType}/{minmax}")]
+        public IActionResult getExtremeUsageForAreas(string type, string timeType, string minmax)
+        {
+
+            var result = _context.getExtremeUsageForAreas(type, timeType, minmax);
+
+            return Ok(
+                new
+                {
+                    Area = result.Item1,
+                    Usage = result.Item2
+                });
+        }
+
         [HttpGet("price")]
         public double getElectricalPowerPrice()
         {
             Random random = new Random();
             double randomNumber = random.NextDouble();
-            double result = 0.2 + randomNumber * 0.05;
+            double result = 20 + (randomNumber % 5);
             return Math.Round(result, 2);
         }
 

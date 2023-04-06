@@ -12,5 +12,7 @@ namespace backend.Models
         public string Room { get; set; }
         public string DeviceType { get; set; }
         public bool isActive { get; set; }
+        public bool allowOperatorControll { get; set; } = false;
+        public bool allowOperatorVisibility { get; set; } = true;
     }
 }

@@ -1,7 +1,7 @@
 import { style } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import {  ApexAxisChartSeries,ApexDataLabels,ApexLegend, ApexTooltip, ApexStroke, ApexFill, ApexChart, ApexXAxis, ApexTitleSubtitle,ApexYAxis } from 'ng-apexcharts';
+import {  ApexAxisChartSeries,ApexDataLabels,ApexLegend,ApexMarkers, ApexTooltip, ApexStroke, ApexFill, ApexChart, ApexXAxis, ApexTitleSubtitle,ApexYAxis } from 'ng-apexcharts';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -61,14 +61,35 @@ export class HistoryForecastComponent {
     },
       
   ];
+
+  public marker: ApexMarkers = {
+    size:4,
+    strokeWidth: 0,
+    fillOpacity: 1,
+    radius: 10,
+    hover: {
+      size:8
+    }
+  };
   public chart: ApexChart = {
     type: 'line',
     height: 250,
     width: '100%',
     offsetX: 0,
     background: '#1b1b1b',
+    
     animations: {
-      enabled: false,
+      enabled: true,
+      easing: 'easein',
+      speed: 800,
+      animateGradually: {
+          enabled: false,
+          delay: 150
+      },
+      dynamicAnimation: {
+          enabled: true,
+          speed: 650
+      }
     },
     dropShadow: {
       enabled: true,
@@ -108,15 +129,22 @@ export class HistoryForecastComponent {
     categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun','Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
     labels: {
       style: {
-        colors: ['#FFF','#FFF','#FFF','#FFF', '#FFF','#FFF','#FFF','#FFF','#FFF','#FFF','#FFF','#FFF','#FFF','#FFF','#FFF']
+        colors: ['#FFF','#FFF','#FFF','#FFF', '#FFF','#FFF','#FFF','#FFF','#FFF','#FFF','#FFF','#FFF','#FFF','#FFF','#FFF'],
+        fontSize: '16px',
+        fontWeight: 'bolder',
+        fontFamily: 'Lato, sans-serif'
       }
     }
   };
 
   public yaxis: ApexYAxis = {
+
     labels: {
       style: {
         colors: ['#FFF'],
+        fontSize:'16px',
+        fontWeight:'bold',
+        fontFamily: 'Lato, sans-serif'
       },
     },
   };
@@ -132,6 +160,7 @@ export class HistoryForecastComponent {
 
   public stroke: ApexStroke = {
     curve: 'straight',
+    width: 3,
   }
 
   public dataLabels: ApexDataLabels = {
@@ -147,8 +176,8 @@ export class HistoryForecastComponent {
   },
   background: {
     enabled: true,
-    foreColor: '#222234',
-    padding: 4,
+    foreColor: '#FFF',
+    padding: 10,
     borderRadius: 2,
     borderWidth: 1,
     borderColor: '#fff',

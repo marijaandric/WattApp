@@ -3,7 +3,7 @@ using backend.DAL;
 using backend.DAL.Interfaces;
 using backend.Helpers;
 using backend.Models;
-using backend.Models.NotDbModels;
+using backend.Models.DTOs;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -24,6 +24,24 @@ namespace backend.BLL
         public void AddDevice(Devices device)
         {
             _contextDAL.AddDevice(device);
+        }
+
+        public double currentMonthAllUsersDevicesUsage(string deviceType)
+        {
+            DateTime now = DateTime.Now;
+            List<Devices> devices = _contextDAL.GetDevicesByType(deviceType);
+            List<DevicesData> devicesData = _contextDataDAL.GetMonthDataForAllDevices(now.Year, now.Month);
+            List<int> ids = devices.Select(d => d.Id).ToList();
+
+            double total = 0;
+
+            foreach (DevicesData deviceData in devicesData)
+            {
+                if (ids.Contains(deviceData.deviceID))
+                    total += deviceData.powerUsage;
+            }
+
+            return total;
         }
 
         public bool DevicesExists(int id)
@@ -51,9 +69,11 @@ namespace backend.BLL
             return _contextDAL.GetDevicesByType(type);
         }
 
-        public (List<string>, List<int>) GetDevicesCountByType(int userId, string type, int limit)
+        public (List<string>?, List<int>?) GetDevicesCountByType(int userId, string type, int limit)
         {
             List<Devices> devices = _contextDAL.GetUserDevicesByType(userId, type);
+            if (devices == null)
+                return (null, null);
             var map = new Dictionary<string, int>();
             int counter = 0;
             Console.WriteLine(limit);
@@ -89,10 +109,13 @@ namespace backend.BLL
             return _contextDAL.GetDevicesForUser(userId);
         }
 
-        public (int, string, double) GetExtremeDevice(int userId, int year, int month, int day, string type, string size)
+        public (int?, string?, double?) GetExtremeDevice(int userId, int year, int month, int day, string type, string size)
         {
             List<Devices> devices = _contextDAL.GetUserDevicesByType(userId, type);
             Dictionary<int, double> devicesMap = new Dictionary<int, double>();
+
+            if (devices.Count == 0)
+                return (null, null, null);
 
             int deviceWithValue = -1;
             double value = -1;
@@ -138,9 +161,39 @@ namespace backend.BLL
             return (deviceWithValue, deviceName, value);
         }
 
+        public double getTotalUsageByArea(string area, string type, string timeType)
+        {
+            DateTime time = DateTime.Now;
+            List<User> users = _contextUserDAL.GetUsersByArea(area);
+            List<Devices> devices = new List<Devices>();
+            List<DevicesData> devicesdata;
+
+            if (users == null)
+                return 0;
+
+            double total = 0;
+            foreach (User user in users)
+            {
+                devices.AddRange(_contextDAL.GetUserDevicesByType(user.Id, type));
+            }
+
+            foreach (Devices device in devices)
+            {
+                if(timeType == "Month")
+                    devicesdata = _contextDataDAL.GetMonthDataForDevice(device.Id, time.Year, time.Month);
+                else
+                    devicesdata = _contextDataDAL.GetDayDataForDevice(device.Id, time.Year, time.Month, time.Day);
+                total += Calculator.CalculateTotalPowerUsage(devicesdata);
+            }
+
+            return total;
+        }
+
         public double GetMonthlyStatistics(int userId, int year, int month, string type)
         {
             List<Devices> devices = _contextDAL.GetUserDevicesByType(userId, type);
+            if(devices.Count == 0)
+                return 0;
             double total = 0;
             foreach (var device in devices)
             {
@@ -150,11 +203,15 @@ namespace backend.BLL
             return total;
         }
 
-        public List<BigTableContent> GetTableContent(int userId, int year, int month, int day, string time, string type)
+        public List<BigTableContent> GetTableContent(int userId, int year, int month, int day, int time, string type)
         {
             User userObj = _contextUserDAL.getUser(userId);
             List<Devices> devices = _contextDAL.GetDevicesForUser(userId);
             List<BigTableContent> content = new List<BigTableContent>();
+
+            if (userObj == null || devices == null)
+                return null;
+
             int id = 0;
             foreach (var device in devices)
             {
@@ -211,11 +268,41 @@ namespace backend.BLL
             _contextDAL?.SaveChanges();
         }
 
-        /*
-        public List<Devices> GetDevicesByType(String type)
+        public (string?, double?) getExtremeUsageForAreas(string type, string timeType, string minmax)
         {
-            return _contextDAL.GetDevicesByType(type);
-        }*/
+            List<User> users = _contextUserDAL.getUsers();
+            List<string> areas = users.Select(d => d.Area).ToList().Distinct().ToList();
 
+            if(users == null || areas == null)
+                return (null, null);
+
+            string maxArea = "";
+            string minArea = "";
+
+            double max = -1;
+            double min = double.MaxValue;
+            double areaTotalUsage;
+            foreach(string area in areas)
+            {
+                areaTotalUsage = getTotalUsageByArea(area, type, timeType);
+                if(areaTotalUsage > max)
+                {
+                    max = areaTotalUsage;
+                    maxArea = area;
+                }
+                if(areaTotalUsage < min)
+                {
+                    min = areaTotalUsage;
+                    minArea = area;
+                }
+            }
+            if(max < 0)
+                return (null, null);
+
+            if(minmax == "Max")
+                return (maxArea, max);
+            else
+                return (minArea, min);
+        }
     }
 }

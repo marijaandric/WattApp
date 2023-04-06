@@ -23,7 +23,11 @@ export class UserService {
           user.email,
           user.password,
           user.token,
-          user.role
+          user.address,
+          user.role,
+          user.x,
+          user.y,
+          user.area
         ));
       })
     );

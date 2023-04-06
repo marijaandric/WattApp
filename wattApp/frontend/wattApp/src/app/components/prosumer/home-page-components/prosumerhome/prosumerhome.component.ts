@@ -3,6 +3,8 @@ import { StadardTemplateComponent } from 'src/app/components/global/layout-compo
 import { UserService } from 'src/app/services/user.service';
 import { HttpClient } from '@angular/common/http';
 import { DeviceDTO } from 'src/app/dtos/DeviceDTO';
+import { DeviceService } from 'src/app/services/device/device.service';
+import { DsonewsService } from 'src/app/services/dsonews/dsonews.service';
 
 @Component({
   selector: 'app-prosumerhome',
@@ -18,7 +20,7 @@ export class ProsumerhomeComponent implements OnInit{
   @Input() device1:any={id:1,deviceName: "device", deviceType:"Producer",power: 10}
   @Input() device2:any={id:1,deviceName: "device", deviceType:"Storage",power: 10}
 
-  constructor(private userService:UserService,private http: HttpClient)
+  constructor(private userService:UserService,private http: HttpClient,private deviceService : DeviceService,private dsonew : DsonewsService)
   {
     if(this.token)
     {
@@ -28,13 +30,12 @@ export class ProsumerhomeComponent implements OnInit{
     }
     
   }
-
   IdBiggestConsumer: any;
   NameBiggestConsumer: any;
   PowerUsageBiggestConsumer : any;
   
   getBiggestConsumer() {
-    const deviceId = 1 ;
+    const id = 1 ;
    // const deviceId = this.user.id ;
     const currentDate = new Date();
     const day = currentDate.getDate();
@@ -43,10 +44,9 @@ export class ProsumerhomeComponent implements OnInit{
     const consumer = 'Consumer';
     const max = 'max';
 
-    const url = `https://localhost:7158/api/Devices/${deviceId}/${year}/${month}/${day}/${consumer}/${max}`;
 
-    this.http.get(url).subscribe((response: any) => {
-       this.IdBiggestConsumer=response.deviceId;
+    this.deviceService.getBiggest(id,year,month,day,consumer,max).subscribe((response: any) => {
+       this.IdBiggestConsumer=response.id;
        this.NameBiggestConsumer=response.deviceName;
        this.PowerUsageBiggestConsumer=response.averagePowerUsage.toFixed(2);
        this.device.deviceName = this.NameBiggestConsumer;
@@ -56,16 +56,15 @@ export class ProsumerhomeComponent implements OnInit{
      //console.log(response);
     });
   }
-  
 
-  IdBiggestProducer: any;
+   IdBiggestProducer: any;
   NameBiggestProducer: any;
   PowerUsageBiggestProducer : any;
   
 
 
   getBiggestProducer() {
-    const deviceId = 1 ;
+    const id = 1 ;
     const currentDate = new Date();
     const day = currentDate.getDate();
     const month = currentDate.getMonth() + 1;
@@ -73,10 +72,8 @@ export class ProsumerhomeComponent implements OnInit{
     const consumer = 'Producer';
     const max = 'max';
 
-    const url = `https://localhost:7158/api/Devices/${deviceId}/${year}/${month}/${day}/${consumer}/${max}`;
-
-    this.http.get(url).subscribe((response: any) => {
-       this.IdBiggestProducer=response.deviceId;
+    this.deviceService.getBiggest(id,year,month,day,consumer,max).subscribe((response: any) => {
+       this.IdBiggestProducer=response.id;
        this.NameBiggestProducer=response.deviceName;
        this.PowerUsageBiggestProducer=response.averagePowerUsage.toFixed(2);
        this.device1.deviceName = this.NameBiggestProducer;
@@ -94,7 +91,7 @@ export class ProsumerhomeComponent implements OnInit{
 
 
   getBiggestStorage() {
-    const deviceId = 1 ;
+    const id = 1 ;
     const currentDate = new Date();
     const day = currentDate.getDate();
     const month = currentDate.getMonth() + 1;
@@ -102,10 +99,9 @@ export class ProsumerhomeComponent implements OnInit{
     const consumer = 'Storage';
     const max = 'max';
 
-    const url = `https://localhost:7158/api/Devices/${deviceId}/${year}/${month}/${day}/${consumer}/${max}`;
 
-    this.http.get(url).subscribe((response: any) => {
-       this.IdBiggestStorage=response.deviceId;
+    this.deviceService.getBiggest(id,year,month,day,consumer,max).subscribe((response: any) => {
+       this.IdBiggestStorage=response.id;
        this.NameBiggestStorage=response.deviceName;
        this.PowerUsageBiggestStorage=response.averagePowerUsage.toFixed(2);
        this.device2.deviceName = this.NameBiggestStorage;
@@ -123,15 +119,14 @@ export class ProsumerhomeComponent implements OnInit{
   monthPowerUsageConsumer: any;
   
   getmonthPowerUsageConsume() {
-    const deviceId = 1 ;
+    const id = 1 ;
     const currentDate = new Date();
     const month = currentDate.getMonth() + 1;
     const year = currentDate.getFullYear();
     const consumer = 'Consumer';
+;
 
-    const url = `https://localhost:7158/api/Devices/${deviceId}/${year}/${month}/${consumer}`;
-
-    this.http.get(url).subscribe((response: any) => {
+  this.deviceService.getmonth(id,year,month,consumer).subscribe((response: any) => {
       this.monthPowerUsageConsumer=response.toFixed(2);
     });
   
@@ -140,15 +135,14 @@ export class ProsumerhomeComponent implements OnInit{
   monthPowerUsageProducer: any;
   
   getmonthPowerUsageProducer() {
-    const deviceId = 1 ;
+    const id = 1 ;
     const currentDate = new Date();
     const month = currentDate.getMonth() + 1;
     const year = currentDate.getFullYear();
     const consumer = 'Producer';
 
-    const url = `https://localhost:7158/api/Devices/${deviceId}/${year}/${month}/${consumer}`;
 
-    this.http.get(url).subscribe((response: any) => {
+    this.deviceService.getmonth(id,year,month,consumer).subscribe((response: any) => {
       this.monthPowerUsageProducer=response.toFixed(2);
     });
   
@@ -157,15 +151,13 @@ export class ProsumerhomeComponent implements OnInit{
   monthPowerUsageStorage: any;
   
   getmonthPowerUsageStorage() {
-    const deviceId = 1 ;
+    const id = 1 ;
     const currentDate = new Date();
     const month = currentDate.getMonth() + 1;
     const year = currentDate.getFullYear();
     const consumer = 'Storage';
 
-    const url = `https://localhost:7158/api/Devices/${deviceId}/${year}/${month}/${consumer}`;
-
-    this.http.get(url).subscribe((response: any) => {
+    this.deviceService.getmonth(id,year,month,consumer).subscribe((response: any) => {
       this.monthPowerUsageStorage=response.toFixed(2);
     });
   
@@ -174,18 +166,48 @@ export class ProsumerhomeComponent implements OnInit{
   dayPowerPrice: any;
   
   getdayPowerPrice() {
-   
-
-    const url = `https://localhost:7158/api/Devices/price`;
-
-    this.http.get(url).subscribe((response: any) => {
+  
+    this.deviceService.getprice().subscribe((response: any) => {
       this.dayPowerPrice=response.toFixed(2);
     });
   
   }
 
+  news: any[] = [];
+  
+  naslov1 : any;
+  naslov2 : any;
+  naslov3 : any;
+
+  sadrzaj1 : any;
+  sadrzaj2 : any;
+  sadrzaj3 : any;
+
+
+  getNews() {
+  
+    this.dsonew.getnew().subscribe((data: any) => {
+      this.news = data;
+      this.news.sort((a, b) => b.id - a.id);
+      //console.log(this.news);
+
+
+     this.naslov1 = this.news[0].title;
+     this.naslov2 = this.news[1].title;
+     this.naslov3 = this.news[2].title;
+
+     this.sadrzaj1 = this.news[0].content;
+     this.sadrzaj2 = this.news[1].content;
+     this.sadrzaj3 = this.news[2].content;
+
+    });
+  
+  }
+
+
 
   ngOnInit(): void {
+    this.getNews();
     this.devices.push(this.device);
     this.devices.push(this.device1);
     this.devices.push(this.device2);

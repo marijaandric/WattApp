@@ -17,11 +17,12 @@ export class DeviceService {
       map(devices => {
         return devices.map(device => new DeviceDTO(
           device.id,
-          device.deviceId,
           device.userId,
           device.deviceName,
+          device.deviceModel,
           device.room,
-          device.deviceType
+          device.deviceType,
+          device.isActive
         ));
       })
     );
@@ -32,11 +33,12 @@ export class DeviceService {
       map(devices => {
         return devices.map(device => new DeviceDTO(
           device.id,
-          device.deviceId,
           device.userId,
           device.deviceName,
+          device.deviceModel,
           device.room,
-          device.deviceType
+          device.deviceType,
+          device.isActive
         ));
       })
     );
@@ -45,5 +47,43 @@ export class DeviceService {
   getDeviceById(id: string): Observable<DeviceDTO>{
     return this.http.get<DeviceDTO>(this.baseUrl + "device/" + id);
   }
+
+  AddDevice(deviceObj:any)
+  {
+    return this.http.post<any>(`${this.baseUrl}`,deviceObj);
+  }
+
+  deleteDevice(id: number) {
+    return this.http.delete(this.baseUrl + id);
+  }
+
+  devicesPerRooms(id : number, type : string, number : number)
+  {
+    return this.http.get<any>(this.baseUrl + "chart/" + id + "/" + type+ "/" + number);
+  }
+
+  getBiggest(id: number,year: number,month: number,day: number,consumer: string,max: string)
+  {
+    return this.http.get<any>(this.baseUrl + id + "/" + year+ "/" + month+ "/" + day+ "/" + consumer+ "/" + max);
+  }
+
+  getmonth(id: number,year: number,month: number,consumer: string)
+  {
+    return this.http.get<any>(this.baseUrl+ id + "/" + year+ "/" + month+ "/" + consumer+ "/" );
+  }
+
+  getmonthDSO(type: string)
+  {
+    return this.http.get<any>(this.baseUrl + "currentMonthAllUsersDevicesUsage" +"/"+ type);
+  } 
+
+  getprice()
+  {
+    return this.http.get<any>(this.baseUrl + "price");
+  }
+
+  updateDevice(device: DeviceDTO): Observable<DeviceDTO>{
+    return this.http.put<DeviceDTO>(this.baseUrl + device.id, device);
+}
 
 }

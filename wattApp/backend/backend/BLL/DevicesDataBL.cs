@@ -1,6 +1,6 @@
 ﻿using backend.BLL.Interfaces;
 using backend.DAL.Interfaces;
-using backend.Models;
+using backend.Models.DTOs;
 
 namespace backend.BLL
 {
@@ -24,7 +24,7 @@ namespace backend.BLL
             return _contextDAL.GetDayDataForDevice(id, year, month, day);
         }
 
-        public DevicesData GetHourDataForDevice(int id, int year, int month, int day, string time)
+        public DevicesData GetHourDataForDevice(int id, int year, int month, int day, int time)
         {
             return _contextDAL.GetHourDataForDevice(id, year, month, day, time);
         }

@@ -1,4 +1,4 @@
-import { Component, OnInit,Input} from '@angular/core';
+import { Component, OnInit,Input,OnChanges, SimpleChanges } from '@angular/core';
 import {
   ApexChart,
   ApexDataLabels,
@@ -20,9 +20,17 @@ import {
 export class PieChartComponent implements OnInit {
   @Input() chartHeight: number = 200;
   @Input() chartText: string = 'Total devices per room';
-  @Input() Series: number[] = [40, 32, 28, 55,23,43];
+  @Input() Series: number[] = [40, 32, 28, 55];
+  @Input() chartLabels = ["Kitchen", "Living room", "Bathroom",  "Other"];
 
   chartSeries: ApexNonAxisChartSeries = this.Series;
+
+  ngOnChanges(changes: SimpleChanges) {
+    if ('Series' in changes) {
+      this.chartSeries = this.Series;
+    }
+  }
+
 
   chartDetails: ApexChart = {
     type: 'pie',
@@ -31,8 +39,8 @@ export class PieChartComponent implements OnInit {
       show: true
     },
     width:'100%',
-    redrawOnParentResize:false,
-    redrawOnWindowResize:false,
+    redrawOnParentResize:true,
+    redrawOnWindowResize:true,
     dropShadow: {
       enabled: true,
       enabledOnSeries: undefined,
@@ -44,13 +52,16 @@ export class PieChartComponent implements OnInit {
   }
   };
 
-  chartLabels = ["Kitchen", "Living room", "Bathroom",  "Other"]
+  
 
   chartTitle: ApexTitleSubtitle = {
     text:  this.chartText,
-    align: 'center',
+    align: 'left',
     style: {
-      color: '#FFFFFF'
+      color: '#FFFFFF',
+      fontSize: '19px',
+      fontFamily:'Montserrat',
+      fontWeight:'bold'  
     },
     
   };
@@ -65,15 +76,18 @@ export class PieChartComponent implements OnInit {
     pie :  {
       startAngle: -90,
       endAngle: 270,
-      customScale: 1.2,
-      offsetX:0,
-      offsetY:60,
+      customScale: 1,
+      offsetX:-10,
+      offsetY:40,
     }
   }
 
   tooltip:ApexTooltip = {
     enabled:true,
-    
+    style: {
+      fontSize:'16px',
+      fontFamily: 'Lato, sans-serif'
+    },  
     marker: {
       show:true,
       fillColors:['#7d02d4', '#d90372', 'rgb(4, 167, 119)', '#F75C03'],
@@ -85,8 +99,12 @@ export class PieChartComponent implements OnInit {
 
   chartLegend: ApexLegend = {
     position: 'right',
-    offsetY: 40,
-    offsetX: -30,
+    offsetY: 50,
+    offsetX: -40,
+    
+    fontSize:'12px',
+    fontWeight:'bold',
+    fontFamily: 'Montserrat, sans-serif',
     labels: {
       colors: '#FFFFFF',
     },
@@ -109,7 +127,7 @@ export class PieChartComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.chartDetails.height = '175.5%';
+    this.chartDetails.height = '210px';
     this.chartTitle.text=this.chartText;
     this.chartSeries=this.Series;
   }

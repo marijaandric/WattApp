@@ -19,7 +19,19 @@
 <div *ngIf="switchValue == false">
 <p-table #dtAllDevices class="ui-table-default" [value]="devices" dataKey="id" [scrollable]="true" 
   [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]"
-  [globalFilterFields]="['userId','deviceName','room', 'deviceType']" [paginator]="true">
+  [globalFilterFields]="['userId','deviceName','room', 'deviceType']" [paginator]="true"
+  style="
+    margin-top:calc(2.8%);
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    height: fit-content;
+    border-radius: 20px;
+    background-color: #1b1b1b;
+    box-shadow: 5px 5px 15px black;
+    transition: ease-in-out;
+    padding:10px 20px;
+    ">
 
   <ng-template pTemplate="caption">
     <div class="flexRow">
@@ -34,21 +46,21 @@
 
   <ng-template pTemplate="header">
     <tr>
-      <th pSortableColumn="deviceName" style="min-width:15rem">
+      <th pSortableColumn="deviceName" style="min-width:15rem;  border-top:3px solid #04a777; border-bottom:3px solid #04a777;">
         <div class="flexRow">
             <p>Device name</p>
             <p-sortIcon field="deviceName"></p-sortIcon>
             <p-columnFilter class="ml-auto" type="text" field="deviceName" display="menu"></p-columnFilter>
         </div>
       </th>
-      <th pSortableColumn="room" style="min-width:15rem">
+      <th pSortableColumn="room" style="min-width:15rem;  border-top:3px solid #04a777; border-bottom:3px solid #04a777;">
         <div class="flexRow">
             <p>Room</p>
             <p-sortIcon field="room"></p-sortIcon>
             <p-columnFilter class="ml-auto" type="text" field="room" display="menu"></p-columnFilter>
         </div>
       </th>
-      <th pSortableColumn="deviceType" style="min-width:10rem">
+      <th pSortableColumn="deviceType" style="min-width:10rem;  border-top:3px solid #04a777; border-bottom:3px solid #04a777;">
         <div class="flexRow">
             <p>Type</p>
             <p-sortIcon field="deviceType"></p-sortIcon>

@@ -9,7 +9,7 @@
     <div class="prviDeo">
     <div class="widgets">
         
-      <app-widget [subTitle]="'Current price of electricity'" [Title]="dayPowerPrice + ' RSD/h'" [isBlue]="true" [isBgBlue]="true" class="widget">
+      <app-widget [subTitle]="'Current price of electricity'" [Title]="dayPowerPrice + ' RSD kW/h'" [isBlue]="true" [isBgBlue]="true" class="widget">
       </app-widget>
       <app-widget [subTitle]="'Total consumed electricity this month'" [Title]="monthPowerUsageConsumer + ' kW/h'" [isYellow]="true" [isBgYellow]="true" class="widget">
       </app-widget>
@@ -47,18 +47,18 @@
   </div>
   <h3 class="hello">News and fun</h3>
   <div class="promotions" >
-    <app-promotion [subTitle]="'Exclusive Promotion'"
-     [Title]="'We are delighted to offer you an exclusive promotion as a featured member of our Direct Selling Organization (DSO). As a token of our appreciation, we dо like to offer you a 10% discount if you allow all of your devices to be visible.'" 
+    <app-promotion [subTitle]="naslov1"
+     [Title]="sadrzaj1" 
      [isBlue]="true" [isBgBlue]="true" class="promotion">
     </app-promotion>
     <app-promotion
-    [subTitle]="'Save and Get with us'"
-    [Title]="'We are pleased to inform you about a new promotion offered by our Direct Selling Organization (DSO). If your electricity consumption this month is lower than last month, you will receive a 5% discount on the total amount of your next electricity bill.'"
+    [subTitle]="naslov2"
+    [Title]="sadrzaj2"
     [isYellow]="true" [isBgYellow]="true" class="promotion1">
     </app-promotion>
     <app-promotion
-    [subTitle]="'Pay for better tomorrow'"
-    [Title]="'Our Direct Selling Organization (DSO) has a new promotion that will allow you to save on your next electricity bill. If you pay your next months bill in advance, you will receive a 3% discount on the total amount of your bill.'"
+    [subTitle]="naslov3"
+    [Title]="sadrzaj3"
     [isPink]="true" [isBgPink]="true" class="promotion1">
     </app-promotion> 
   </div>

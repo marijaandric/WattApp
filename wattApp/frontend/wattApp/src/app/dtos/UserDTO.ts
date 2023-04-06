@@ -6,6 +6,10 @@ export class UserDTO {
     public email: string,
     public password: string,
     public token: string,
-    public role: string
+    public address: string,
+    public role: string,
+    public x: number,
+    public y:number,
+    public area:string
   ) { }
 }

@@ -26,18 +26,19 @@
       <small class="text-danger" *ngIf="signUpForm.controls['password'].dirty && signUpForm.hasError('required','password')">Password is required</small>
       <input formControlName="password2" name="password2" appendTo="body" type="text"  class="p-inputtext-lg"  placeholder="REPEAT PASSWORD"> 
       <small class="text-danger" *ngIf="signUpForm.controls['password2'].dirty && signUpForm.hasError('required','password2')">Password is required</small>
+      <input formControlName="email" name="email" appendTo="body" type="text"   class="p-inputtext-lg"  placeholder="EMAIL"> 
+      <small class="text-danger" *ngIf="signUpForm.controls['email'].dirty && signUpForm.hasError('required','email')">Email is required</small>
+      <p-dropdown  [options]="roles" appendTo="body" optionLabel="name" (onChange)="onRoleChange($event)"></p-dropdown>
       
     </div>
   
     <div class="half">
-      <input formControlName="email" name="email" appendTo="body" type="text"   class="p-inputtext-lg"  placeholder="EMAIL"> 
-      <small class="text-danger" *ngIf="signUpForm.controls['email'].dirty && signUpForm.hasError('required','email')">Email is required</small>
       <input formControlName="phoneNumber" name="phone" appendTo="body" type="text"   class="p-inputtext-lg"  placeholder="PHONE NUMBER"> 
       <small class="text-danger" *ngIf="signUpForm.controls['phoneNumber'].dirty && signUpForm.hasError('required','phoneNumber')">Phone number is required</small>
-      <input formControlName="address" name="address" appendTo="body" type="text"   class="p-inputtext-lg"  placeholder="ADDRESS">     
+      <input formControlName="address" name="address" appendTo="body" type="text"   class="p-inputtext-lg"  placeholder="ADDRESS" (change)="onAddressChange($event)">     
       <small class="text-danger" *ngIf="signUpForm.controls['address'].dirty && signUpForm.hasError('required','address')">Address is required</small>
-      <p-dropdown  [options]="roles" appendTo="body" optionLabel="role" (onChange)="onRoleChange($event)"></p-dropdown>
-      
+
+      <app-registration-map [address] = "value" (messageEvent)="receiveMessage($event)"></app-registration-map>
     </div>
   </div> 
 </form>
@@ -64,14 +65,14 @@
   <div class="p-inputgroup p-inputtext-lg p-input-filled">
     <div class="half">  
       Device type 
-      <p-dropdown [options]="types" appendTo="body" optionLabel="type" (onChange)="onTypeChange($event)"></p-dropdown>
+      <p-dropdown [options]="types" appendTo="body" optionLabel="name" (onChange)="onTypeChange($event)"/>
       Device model 
-      <p-dropdown [options]="models" appendTo="body" optionLabel="models"></p-dropdown>
+      <p-dropdown [options]="models" appendTo="body" optionLabel="name" (onChange)="onModelChange($event)"/>
     </div>
     
     <div class="half">       
        Room
-      <p-dropdown [options]="rooms" appendTo="body" optionLabel="room"></p-dropdown>
+      <p-dropdown [options]="rooms" appendTo="body" optionLabel="name" (onChange)="onRoomChange($event)"/>
        Name
       <input style="margin-top:45px;" formControlName="deviceName" name="name"  appendTo="body" type="text"   class="p-inputtext-lg"  placeholder="DEVICE NAME"> 
     </div>

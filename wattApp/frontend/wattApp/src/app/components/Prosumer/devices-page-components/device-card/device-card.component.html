@@ -4,18 +4,18 @@
         <p-inputSwitch [(ngModel)]="isChecked" class="margin-left__auto width__fit-content"/>
     </div>
     <div class="flexRow" style="margin-top: 16px;">
-        <span>Status:</span>
+        <span class="bold-text">Status:</span>
         <span *ngIf="!isChecked" class="margin-left__auto">Idle</span>
         <span *ngIf="isChecked" class="margin-left__auto">Running</span>
     </div>
-    <div class="flexRow" style="margin-top: 4px;">
-        <span>Type:</span>
+    <div class="flexRow" style="margin-top: 6px;">
+        <span  class="bold-text">Type:</span>
         <span class="margin-left__auto">{{ device.deviceType }}</span>
     </div>
-    <div class="flexRow" style="margin-top: 4px;">
-        <span *ngIf="device.deviceType === 'Consumer'">Power consumed:</span>
-        <span *ngIf="device.deviceType === 'Producer'">Power produced:</span>
-        <span *ngIf="device.deviceType !== 'Consumer' && device.deviceType !== 'Producer'">Power stored:</span>
+    <div class="flexRow" style="margin-top: 6px;">
+        <span *ngIf="device.deviceType === 'Consumer'"  class="bold-text">Power consumed:</span>
+        <span *ngIf="device.deviceType === 'Producer'"  class="bold-text">Power produced:</span>
+        <span *ngIf="device.deviceType !== 'Consumer' && device.deviceType !== 'Producer'"  class="bold-text">Power stored:</span>
         <span class="margin-left__auto">{{ device.power }} kW/h</span>
     </div>
 </div>

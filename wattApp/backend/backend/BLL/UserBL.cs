@@ -10,7 +10,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Security.Cryptography;
 using SQLitePCL;
-using backend.Models.NotDbModels;
+using backend.Models.DTOs;
 
 namespace backend.BAL
 {

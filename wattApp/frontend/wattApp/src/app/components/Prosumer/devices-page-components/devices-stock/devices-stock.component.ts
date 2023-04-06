@@ -13,7 +13,7 @@ export class DevicesStockComponent {
   constructor(private deviceService: DeviceService) { }
 
   ngOnInit() {
-    this.deviceService.getDevicesByType("Storage").subscribe((result: DeviceDTO[]) => {
+    this.deviceService.getDevicesByType("Stock").subscribe((result: DeviceDTO[]) => {
       this.stockDevices = result;
     });
   }

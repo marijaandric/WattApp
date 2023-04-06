@@ -4,7 +4,6 @@ import { NavbarComponent } from './components/global/landing-page-componenets/na
 import { LandingPageComponent } from './components/global/landing-page-componenets/landing-page/landing-page.component';
 
 
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',

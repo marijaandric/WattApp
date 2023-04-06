@@ -10,7 +10,7 @@
     flex-basis: calc(22.8%);
     box-shadow: 5px 5px 15px black;
     transition: ease-in-out;
-    min-width: 340px;
+    min-width: 320px;
 }
 
 .tooltip {

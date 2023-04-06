@@ -1,0 +1,57 @@
+
+.pin {
+    border-radius: 50% 50% 50% 0;
+    border: 3px solid;
+    width: 30px;
+    height: 30px;
+    transform: rotate(-45deg);
+    animation: animate 1s ease-in-out;
+}
+
+ 
+.bolt{
+    position: absolute;
+    content: '';
+    border-radius: 50%;
+    top: 50%;
+    left: 40%;
+    margin-left: -5px;
+    margin-top: -5px;    
+    transform: rotate(45deg);
+    color:rgb(4, 167, 119)
+  }
+
+
+
+.blue-color {
+    color:#04a777;
+  }
+  
+  .bg-blue-color { 
+    border: 3px solid #04a777;
+  }
+  
+  .yellow-color {
+    color: #1b1b1b;
+    
+  }
+  .bg-yellow-color {
+    border: 3px solid #1b1b1b;
+  }
+  
+  .pink-color {
+    color: rgb(217, 3, 114);
+  }
+  .bg-pink-color {
+    border: 3px solid rgb(217, 3, 114);
+  }
+  
+
+@keyframes animate {
+    0% {
+        opacity:0;
+    }
+    100% {
+        opacity:1;
+    }
+  }

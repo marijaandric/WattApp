@@ -6,8 +6,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using backend.Context;
-using backend.Models;
 using backend.BLL.Interfaces;
+using backend.Models.DTOs;
 
 namespace backend.Controllers
 {
@@ -54,7 +54,7 @@ namespace backend.Controllers
         }
 
         [HttpGet("{id}/{year}/{month}/{day}/{time}")]
-        public DevicesData GetHourDataForDevice(int id, int year, int month, int day, string time)
+        public DevicesData GetHourDataForDevice(int id, int year, int month, int day, int time)
         {
             return _context.GetHourDataForDevice(id, year, month, day, time);
 

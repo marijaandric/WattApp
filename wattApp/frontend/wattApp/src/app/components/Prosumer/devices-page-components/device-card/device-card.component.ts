@@ -18,8 +18,8 @@ export class DeviceCardComponent {
     this.getDeviceData(this.device.id); 
   }
 
-  getDeviceData(deviceId: number) {
-    this.deviceDataService.getDeviceData(deviceId).subscribe(data => {
+  getDeviceData(id: number) {
+    this.deviceDataService.getDeviceData(id).subscribe(data => {
       this.deviceData = data;
     });
   }
