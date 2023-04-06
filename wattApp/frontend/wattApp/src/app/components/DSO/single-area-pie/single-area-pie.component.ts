@@ -19,9 +19,9 @@ import {
 })
 export class SingleAreaPieComponent {
   @Input() chartHeight: number = 200;
-  @Input() chartText: string = 'Total devices per room';
-  @Input() Series: number[] = [40, 32, 28, 55];
-  @Input() chartLabels = ["Kitchen", "Living room", "Bathroom",  "Other"];
+  @Input() chartText: string = 'Info by suburbs';
+  @Input() Series: number[] = [40, 32, 52];
+  @Input() chartLabels = ["Станово", "Град Крагујевац", "Виногради"];
 
   chartSeries: ApexNonAxisChartSeries = this.Series;
 

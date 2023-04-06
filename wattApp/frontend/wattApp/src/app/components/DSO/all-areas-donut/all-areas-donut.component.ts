@@ -19,9 +19,9 @@ import {
 })
 export class AllAreasDonutComponent {
   @Input() chartHeight: number = 200;
-  @Input() chartText: string = 'Total devices per room';
-  @Input() Series: number[] = [40, 32, 28, 55];
-  @Input() chartLabels = ["Kitchen", "Living room", "Bathroom",  "Other"];
+  @Input() chartText: string = 'Станово';
+  @Input() Series: number[] = [55, 32, 28];
+  @Input() chartLabels = ["Consumption", "Prodaction", "Stock"];
 
   chartSeries: ApexNonAxisChartSeries = this.Series;
 
