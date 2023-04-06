@@ -10,14 +10,14 @@ namespace backend.Context
         public DbSet<User> Users { get; set; }
         public DbSet<Devices> Devices { get; set; }
         public DbSet<Weather> Weathers { get; set; }
-        public DbSet<DsoNews> News { get; set; }
+        public DbSet<DsoNews> DsoNews { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<User>().ToTable("users");
             modelBuilder.Entity<Devices>().ToTable("devices");
             modelBuilder.Entity<Weather>().ToTable("weather");
-            modelBuilder.Entity<Weather>().ToTable("dso_news");
+            modelBuilder.Entity<DsoNews>().ToTable("dso_news");
         }
 
     }

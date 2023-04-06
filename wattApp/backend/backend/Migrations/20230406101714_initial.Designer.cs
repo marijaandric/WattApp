@@ -11,8 +11,8 @@ using backend.Context;
 namespace backend.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230406100414_updatedDevices")]
-    partial class updatedDevices
+    [Migration("20230406101714_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -78,7 +78,7 @@ namespace backend.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("News");
+                    b.ToTable("dso_news", (string)null);
                 });
 
             modelBuilder.Entity("backend.Models.User", b =>
@@ -157,7 +157,7 @@ namespace backend.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("dso_news", (string)null);
+                    b.ToTable("weather", (string)null);
                 });
 #pragma warning restore 612, 618
         }

@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace backend.Migrations
 {
     /// <inheritdoc />
-    public partial class init : Migration
+    public partial class initial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -22,7 +22,9 @@ namespace backend.Migrations
                     DeviceModel = table.Column<string>(type: "TEXT", nullable: true),
                     Room = table.Column<string>(type: "TEXT", nullable: true),
                     DeviceType = table.Column<string>(type: "TEXT", nullable: true),
-                    isActive = table.Column<bool>(type: "INTEGER", nullable: false)
+                    isActive = table.Column<bool>(type: "INTEGER", nullable: false),
+                    allowOperatorControll = table.Column<bool>(type: "INTEGER", nullable: false),
+                    allowOperatorVisibility = table.Column<bool>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -35,32 +37,15 @@ namespace backend.Migrations
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
-                    Year = table.Column<int>(type: "INTEGER", nullable: false),
-                    Month = table.Column<int>(type: "INTEGER", nullable: false),
-                    Day = table.Column<int>(type: "INTEGER", nullable: false),
-                    Time = table.Column<string>(type: "TEXT", nullable: true),
-                    Temperature = table.Column<float>(type: "REAL", nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_dso_news", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "News",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Title = table.Column<int>(type: "INTEGER", nullable: false),
-                    Author = table.Column<string>(type: "TEXT", nullable: true),
+                    Title = table.Column<string>(type: "TEXT", nullable: true),
+                    AuthorId = table.Column<int>(type: "INTEGER", nullable: false),
                     Content = table.Column<string>(type: "TEXT", nullable: true),
                     Created = table.Column<DateTime>(type: "TEXT", nullable: false),
                     Priority = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_News", x => x.Id);
+                    table.PrimaryKey("PK_dso_news", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -79,11 +64,31 @@ namespace backend.Migrations
                     Token = table.Column<string>(type: "TEXT", nullable: true),
                     Role = table.Column<string>(type: "TEXT", nullable: true),
                     RefreshToken = table.Column<string>(type: "TEXT", nullable: true),
-                    RefreshTokenExpiryTime = table.Column<DateTime>(type: "TEXT", nullable: false)
+                    RefreshTokenExpiryTime = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    X = table.Column<double>(type: "REAL", nullable: false),
+                    Y = table.Column<double>(type: "REAL", nullable: false),
+                    Area = table.Column<string>(type: "TEXT", nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_users", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "weather",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Year = table.Column<int>(type: "INTEGER", nullable: false),
+                    Month = table.Column<int>(type: "INTEGER", nullable: false),
+                    Day = table.Column<int>(type: "INTEGER", nullable: false),
+                    Time = table.Column<string>(type: "TEXT", nullable: true),
+                    Temperature = table.Column<float>(type: "REAL", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_weather", x => x.Id);
                 });
         }
 
@@ -97,10 +102,10 @@ namespace backend.Migrations
                 name: "dso_news");
 
             migrationBuilder.DropTable(
-                name: "News");
+                name: "users");
 
             migrationBuilder.DropTable(
-                name: "users");
+                name: "weather");
         }
     }
 }

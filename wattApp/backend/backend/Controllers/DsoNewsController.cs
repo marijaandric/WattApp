@@ -25,14 +25,14 @@ namespace backend.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<DsoNews>>> GetNews()
         {
-            return await _context.News.OrderByDescending(e => e.Created).ToListAsync();
+            return await _context.DsoNews.OrderByDescending(e => e.Created).ToListAsync();
         }
 
         // GET: api/DsoNews/5
         [HttpGet("{id}")]
         public async Task<ActionResult<DsoNews>> GetDsoNews(int id)
         {
-            var dsoNews = await _context.News.FindAsync(id);
+            var dsoNews = await _context.DsoNews.FindAsync(id);
 
             if (dsoNews == null)
             {
@@ -48,7 +48,7 @@ namespace backend.Controllers
         [HttpPost]
         public async Task<ActionResult<DsoNews>> PostDsoNews(DsoNews dsoNews)
         {
-            _context.News.Add(dsoNews);
+            _context.DsoNews.Add(dsoNews);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction("GetDsoNews", new { id = dsoNews.Id }, dsoNews);
@@ -58,13 +58,13 @@ namespace backend.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteDsoNews(int id)
         {
-            var dsoNews = await _context.News.FindAsync(id);
+            var dsoNews = await _context.DsoNews.FindAsync(id);
             if (dsoNews == null)
             {
                 return NotFound();
             }
 
-            _context.News.Remove(dsoNews);
+            _context.DsoNews.Remove(dsoNews);
             await _context.SaveChangesAsync();
 
             return NoContent();
