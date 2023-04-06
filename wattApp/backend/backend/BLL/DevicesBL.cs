@@ -268,7 +268,7 @@ namespace backend.BLL
             _contextDAL?.SaveChanges();
         }
 
-        public (string?, double?) getExtremeUsageForAreas(string type, string timeType)
+        public (string?, double?) getExtremeUsageForAreas(string type, string timeType, string minmax)
         {
             List<User> users = _contextUserDAL.getUsers();
             List<string> areas = users.Select(d => d.Area).ToList().Distinct().ToList();
@@ -277,7 +277,10 @@ namespace backend.BLL
                 return (null, null);
 
             string maxArea = "";
+            string minArea = "";
+
             double max = -1;
+            double min = double.MaxValue;
             double areaTotalUsage;
             foreach(string area in areas)
             {
@@ -287,11 +290,19 @@ namespace backend.BLL
                     max = areaTotalUsage;
                     maxArea = area;
                 }
+                if(areaTotalUsage < min)
+                {
+                    min = areaTotalUsage;
+                    minArea = area;
+                }
             }
             if(max < 0)
                 return (null, null);
 
-            return (maxArea, max);
+            if(minmax == "Max")
+                return (maxArea, max);
+            else
+                return (minArea, min);
         }
     }
 }

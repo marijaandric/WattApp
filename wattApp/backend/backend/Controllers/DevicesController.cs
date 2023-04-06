@@ -197,11 +197,11 @@ namespace backend.Controllers
                 });
         }
 
-        [HttpGet("getExtremeUsageForAreas/{type}/{timeType}")]
-        public IActionResult getExtremeUsageForAreas(string type, string timeType)
+        [HttpGet("getExtremeUsageForAreas/{type}/{timeType}/{minmax}")]
+        public IActionResult getExtremeUsageForAreas(string type, string timeType, string minmax)
         {
 
-            var result = _context.getExtremeUsageForAreas(type, timeType);
+            var result = _context.getExtremeUsageForAreas(type, timeType, minmax);
 
             return Ok(
                 new
