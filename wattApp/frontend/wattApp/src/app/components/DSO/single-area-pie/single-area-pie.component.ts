@@ -20,8 +20,8 @@ import {
 export class SingleAreaPieComponent {
   @Input() chartHeight: number = 200;
   @Input() chartText: string = 'Info by suburbs';
-  @Input() Series: number[] = [40, 32, 52];
-  @Input() chartLabels = ["Станово", "Град Крагујевац", "Виногради"];
+  @Input() Series: number[] = [40, 32, 52,30];
+  @Input() chartLabels = ["Станово", "Град Крагујевац", "Виногради", "Others"];
 
   chartSeries: ApexNonAxisChartSeries = this.Series;
 
