@@ -75,7 +75,7 @@ namespace backend.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("News");
+                    b.ToTable("dso_news", (string)null);
                 });
 
             modelBuilder.Entity("backend.Models.User", b =>
@@ -154,7 +154,7 @@ namespace backend.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("dso_news", (string)null);
+                    b.ToTable("weather", (string)null);
                 });
 #pragma warning restore 612, 618
         }
