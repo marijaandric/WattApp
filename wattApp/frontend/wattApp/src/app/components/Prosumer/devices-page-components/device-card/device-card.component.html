@@ -1,7 +1,7 @@
 <div id="device-card" class="device-card">
     <div class="flexRow">
         <a [routerLink]="['/device', device.id]" class="device-name abbreviate-text">{{ device.deviceName }}</a>
-        <p-inputSwitch [(ngModel)]="isChecked" class="margin-left__auto width__fit-content"/>
+        <p-inputSwitch [(ngModel)]="device.isActive" (onChange)="handleRunningSwitchChange()" class="margin-left__auto width__fit-content"/>
     </div>
     <div class="flexRow" style="margin-top: 16px;">
         <span class="bold-text">Status:</span>

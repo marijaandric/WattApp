@@ -6,7 +6,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { RoomTypesService } from 'src/app/services/room-types/room-types.service';
 import { ModelTypesService } from 'src/app/services/model-types/model-types.service';
 import { DeviceTypesService } from 'src/app/services/device-types/device-types.service';
-import { map, tap } from 'rxjs';
+import { lastValueFrom, map, tap } from 'rxjs';
 
 interface Models{
   code: string;
@@ -33,7 +33,6 @@ export class DeviceComponent implements OnInit{
 
   displayEditDeviceDialog: boolean = false;
   isRunning: boolean = true;
-  isVisibleToDSO: boolean = true;
 
   editDeviceDialogForm! : FormGroup;
   nameSelected!: string;
@@ -100,23 +99,23 @@ export class DeviceComponent implements OnInit{
     this.displayEditDeviceDialog = true;
   }
 
-  onTypeChange(event:any){
-    this.typeSelected = event.value.type;
+  async handleVisibilitySwitchChange(){
+    await lastValueFrom(this.deviceService.updateDevice(this.device));
   }
 
-  onModelChange(event:any){
-    this.modelSelected = event.value.models;
+  async handleManagementSwitchChange(){
+    await lastValueFrom(this.deviceService.updateDevice(this.device));
   }
 
-  onRoomChange(event:any)
-  {
-    this.roomSelected = event.value.room;
+  async handleRunningSwitchChange(){
+    await lastValueFrom(this.deviceService.updateDevice(this.device));
   }
 
   save(){
     this.device.deviceModel = this.modelSelected.name;
     this.device.deviceType = this.typeSelected.name;
     this.device.room = this.roomSelected.name;
+    this.device.deviceName = this.nameSelected;
     this.deviceService.updateDevice(this.device).subscribe(
       (updatedDevice: DeviceDTO) => {
         this.displayEditDeviceDialog = false;

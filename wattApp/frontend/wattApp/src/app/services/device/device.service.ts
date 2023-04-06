@@ -22,7 +22,9 @@ export class DeviceService {
           device.deviceModel,
           device.room,
           device.deviceType,
-          device.isActive
+          device.isActive,
+          device.allowOperatorControll,
+          device.allowOperatorVisibility
         ));
       })
     );
@@ -38,7 +40,9 @@ export class DeviceService {
           device.deviceModel,
           device.room,
           device.deviceType,
-          device.isActive
+          device.isActive,
+          device.allowOperatorControll,
+          device.allowOperatorVisibility
         ));
       })
     );
@@ -84,6 +88,6 @@ export class DeviceService {
 
   updateDevice(device: DeviceDTO): Observable<DeviceDTO>{
     return this.http.put<DeviceDTO>(this.baseUrl + device.id, device);
-}
+  }
 
 }

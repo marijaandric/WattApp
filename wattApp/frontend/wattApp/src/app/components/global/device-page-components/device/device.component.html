@@ -31,9 +31,14 @@
         <span class="margin-left__auto">{{ device.room }}</span>
       </div>
 
-      <div class="flexRow margin-top__8px">
+      <div class="flexRow margin-top__16px">
         <span>Visible to operators:</span>
-        <p-inputSwitch [(ngModel)]="isVisibleToDSO" class="margin-left__auto width__fit-content"/>
+        <p-inputSwitch [(ngModel)]="device.allowOperatorVisibility" (onChange)="handleVisibilitySwitchChange()" class="margin-left__auto width__fit-content"/>
+      </div>
+
+      <div class="flexRow margin-top__8px">
+        <span>Managed by operators:</span>
+        <p-inputSwitch [(ngModel)]="device.allowOperatorControll" (onChange)="handleManagementSwitchChange()" class="margin-left__auto width__fit-content"/>
       </div>
     </div>
 
@@ -41,7 +46,7 @@
       <div class="flexRow">
         <span *ngIf="!isRunning">Idle</span>
         <span *ngIf="isRunning">Running</span>
-        <p-inputSwitch [(ngModel)]="isRunning" class="margin-left__auto width__fit-content"/>
+        <p-inputSwitch [(ngModel)]="device.isActive" (onChange)="handleRunningSwitchChange()" class="margin-left__auto width__fit-content"/>
       </div>
 
       <div class="flexRow margin-top__8px">

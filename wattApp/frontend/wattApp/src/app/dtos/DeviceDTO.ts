@@ -6,6 +6,8 @@ export class DeviceDTO {
     public deviceModel: string,
     public room: string,
     public deviceType: string,
-    public isActive: boolean
+    public isActive: boolean,
+    public allowOperatorControll: boolean,
+    public allowOperatorVisibility: boolean
   ) { }
 }
