@@ -63,7 +63,7 @@ export class HistoryForecastComponent {
   ];
 
   public marker: ApexMarkers = {
-    size:6,
+    size:4,
     strokeWidth: 0,
     fillOpacity: 1,
     radius: 10,
