@@ -110,7 +110,7 @@ export class HomeComponent {
   monthPowerUsageStorage: any;
 
   getmonthPowerUsageStorage() {
-    const type = 'Storage';
+    const type = 'Stock';
 
     this.deviceService.getmonthDSO(type).subscribe((response: any) => {
       this.monthPowerUsageStorage=response.usage.toFixed(2);
@@ -142,26 +142,6 @@ export class HomeComponent {
     dtUsers.filterGlobal(value, 'contains');
   }
 
-
-  showDialog() {
-    this.display = true;
-  }
-  showDialog2() {
-    this.display2 = true;
-  }
-  showDialog3() {
-    this.display3 = true;
-  }
-  showDialog4() {
-    this.display4 = true;
-  }
-  showDialog5() {
-    this.display5 = true;
-  }
-  showDialog6() {
-    this.display6 = true;
-  }
-  
   isAdmin()
   {
     const token = this.authService.getToken();
@@ -182,4 +162,33 @@ export class HomeComponent {
     }
     
   }
+
+
+
+
+
+
+
+  //dijalozi
+
+  showDialog() {
+    this.display = true;
+  }
+  showDialog2() {
+    this.display2 = true;
+  }
+  showDialog3() {
+    this.display3 = true;
+  }
+  showDialog4() {
+    this.display4 = true;
+  }
+  showDialog5() {
+    this.display5 = true;
+  }
+  showDialog6() {
+    this.display6 = true;
+  }
+  
+  
 }

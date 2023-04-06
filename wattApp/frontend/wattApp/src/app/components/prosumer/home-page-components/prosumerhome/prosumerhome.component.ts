@@ -18,7 +18,7 @@ export class ProsumerhomeComponent implements OnInit{
 
   @Input() device:any={id:1,deviceName: "device", deviceType:"Consumer",power: 10}
   @Input() device1:any={id:1,deviceName: "device", deviceType:"Producer",power: 10}
-  @Input() device2:any={id:1,deviceName: "device", deviceType:"Storage",power: 10}
+  @Input() device2:any={id:1,deviceName: "device", deviceType:"Stock",power: 10}
 
   constructor(private userService:UserService,private http: HttpClient,private deviceService : DeviceService,private dsonew : DsonewsService)
   {
@@ -96,7 +96,7 @@ export class ProsumerhomeComponent implements OnInit{
     const day = currentDate.getDate();
     const month = currentDate.getMonth() + 1;
     const year = currentDate.getFullYear();
-    const consumer = 'Storage';
+    const consumer = 'Stock';
     const max = 'max';
 
 
@@ -107,7 +107,7 @@ export class ProsumerhomeComponent implements OnInit{
        this.device2.deviceName = this.NameBiggestStorage;
        this.device2.id=this.IdBiggestStorage;
        this.device2.power=this.PowerUsageBiggestStorage;
-       this.device2.deviceType="Storage";
+       this.device2.deviceType="Stock";
      //console.log(response);
     });
   
@@ -155,7 +155,7 @@ export class ProsumerhomeComponent implements OnInit{
     const currentDate = new Date();
     const month = currentDate.getMonth() + 1;
     const year = currentDate.getFullYear();
-    const consumer = 'Storage';
+    const consumer = 'Stock';
 
     this.deviceService.getmonth(id,year,month,consumer).subscribe((response: any) => {
       this.monthPowerUsageStorage=response.toFixed(2);
