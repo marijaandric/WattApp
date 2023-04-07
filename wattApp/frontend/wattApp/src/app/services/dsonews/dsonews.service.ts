@@ -18,4 +18,9 @@ export class DsonewsService {
     return this.http.get<any>(this.baseUrl);
   }
 
+  AddNews(NewObj:any)
+  {
+    return this.http.post<any>(`${this.baseUrl}`,NewObj);
+  }
+
 }

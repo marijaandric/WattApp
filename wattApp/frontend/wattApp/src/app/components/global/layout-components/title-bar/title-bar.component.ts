@@ -13,6 +13,7 @@ import { RoomTypesService } from 'src/app/services/room-types/room-types.service
 import { UserService } from 'src/app/services/user.service';
 import * as L from 'leaflet';
 import axios from 'axios';
+import { DsonewsService } from 'src/app/services/dsonews/dsonews.service';
 
 interface Models{
   code: string;
@@ -42,8 +43,10 @@ interface Roles{
 export class TitleBarComponent implements OnInit{
   display : boolean = false;
   display2 : boolean = false;
+  display3 : boolean = false;
   signUpForm! : FormGroup;
   addDeviceForm! : FormGroup;
+  newsForm! :FormGroup;
   roles!: Roles[];
   types!: Types[];
   rooms!: Rooms[];
@@ -57,6 +60,7 @@ export class TitleBarComponent implements OnInit{
   rola:any;
   value!:string;
   address!:string;
+ 
   
   constructor(private router: Router,
               private fb: FormBuilder,
@@ -67,7 +71,8 @@ export class TitleBarComponent implements OnInit{
               private deviceTypesService: DeviceTypesService, 
               private roomTypesService: RoomTypesService, 
               private roleTypesService: RoleTypesService,
-              private modelTypesService: ModelTypesService) {
+              private modelTypesService: ModelTypesService,
+              private dsonewsService : DsonewsService) {
     const token = localStorage.getItem('token');
     if(token)
     {
@@ -142,10 +147,17 @@ export class TitleBarComponent implements OnInit{
 
     this.addDeviceForm = this.fb.group({
       userID :[0, Validators.required],
-      deviceName: ['', Validators.required],
       deviceModel: ['', Validators.required],
       room: ['', Validators.required],
       deviceType: ['', Validators.required],
+    })
+
+    this.newsForm = this.fb.group({
+      title: ['', Validators.required],
+      userID :[0, Validators.required],
+      content: ['', Validators.required],
+      priority: ['', Validators.required],
+      created: ['', Validators.required],
     })
 
 
@@ -159,6 +171,10 @@ export class TitleBarComponent implements OnInit{
 
   showDialog2(){
     this.display2 = true;
+  }
+
+  showDialog3(){
+    this.display3 = true;
   }
 
   //od mape
@@ -260,6 +276,58 @@ export class TitleBarComponent implements OnInit{
         this.addDeviceForm.reset()
         this.toast.success({detail:"SUCCESS",summary:"You have successfully added device",duration:4000});
         this.display2 = false;
+      }),
+      error:(err => {
+        this.toast.error({detail:"ERROR",summary:"Error",duration:4000});
+      })
+    }) 
+  }
+  
+  addNews()
+  {
+    const regularChecked = this.newsForm.get('regular')?.value;
+    const importantChecked = this.newsForm.get('important')?.value;
+
+    const token = localStorage.getItem('token');
+    let id = 0;
+    if(token)
+    {
+      id = this.userService.getUserIdFromToken(token)
+    }
+    
+    this.newsForm.patchValue({
+      title : this.newsForm.get('title')!.value
+    })
+    this.newsForm.patchValue({
+      userID : id
+    })
+    this.newsForm.patchValue({
+      content: this.newsForm.get('content')!.value
+    })
+    if (regularChecked) {
+      this.newsForm.patchValue({
+        priority: 'Regular'
+      });
+    } else if (importantChecked) {
+      this.newsForm.patchValue({
+        priority: 'Important'
+      });
+    } else {
+      this.newsForm.patchValue({
+        priority: 'None'
+      });
+    }
+    this.newsForm.patchValue({
+      created: new Date()
+    });
+  
+
+    console.log(this.newsForm.value);
+    this.dsonewsService.AddNews(this.newsForm.value).subscribe({
+      next:(res => {
+        this.newsForm.reset()
+        this.toast.success({detail:"SUCCESS",summary:"You have successfully added news",duration:4000});
+        this.display3 = false;
       }),
       error:(err => {
         this.toast.error({detail:"ERROR",summary:"Error",duration:4000});
