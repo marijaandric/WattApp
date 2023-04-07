@@ -86,12 +86,63 @@
 </ng-template>
 </p-dialog>
 
+
+
+
+
+<p-dialog [style]="{width:'40%'}" header="Title"  [transitionOptions]="'3ms'" 
+    [draggable]="true" [keepInViewport]="true" [resizable]="false" 
+    [blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true" 
+    [modal]="true" [(visible)]="display3" [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
+    [closable]="true" >
+    <ng-template pTemplate="header" class="header-dialog">
+      <span>Add news</span>
+    </ng-template>
+
+    <ng-template pTemplate="content">
+      <form [formGroup]="newsForm" > 
+      
+      <div class="p-inputgroup p-inputtext-lg p-input-filled">
+        <div class="half">
+          <input formControlName="title" name="name" appendTo="body" type="text" class="p-inputtext-lg" placeholder="TITLE"> 
+          <textarea id="text" formControlName="content" name="name" appendTo="body" type="text" class="p-inputtext-lg" style="width:100%;height: 300px;"></textarea>
+          <div style="display: flex; align-items: center;margin-right: 4%;">
+            <span style="font-size: 19px;color:grey">Priority:</span>
+            <input formControlName="regular" id="regular" type="checkbox" name="regular" />
+            <label for="regular">Regular</label>
+            <input formControlName="important" id="important" type="checkbox" name="important" />
+            <label for="important">Important</label>
+          </div>
+        </div>
+      </div> 
+      </form>
+      <script>
+        function uncheckOther(clickedCheckbox) {
+          var checkboxes = document.getElementsByName(clickedCheckbox.name);
+          for (var i = 0; i < checkboxes.length; i++) {
+            if (checkboxes[i] !== clickedCheckbox) {
+              checkboxes[i].checked = false;
+            }
+          }
+        }
+      </script>
+    </ng-template>
+    
+    <ng-template pTemplate="footer" style="min-height:100px;" >
+      <button type="button" class="footer-button" icon="pi pi-info-circle" label="Show" (click)="addNews()">Save</button>
+
+    </ng-template>
+  </p-dialog>
+
+
+
+
 <nav>
   <ul class="right-part">
     <div *ngIf="isAdmin()" style="cursor:pointer"><li><a (click)="showDialog()"><div class="fa fa-user-plus " ></div><div class="text" [ngClass]="{ 'hidden-xs': !showText }">Add user</div></a></li></div>
     <div *ngIf="!isAdmin()" style="cursor:pointer"><li><a (click)="showDialog2()"><div class="fa fa-plus " ></div><div class="text" [ngClass]="{ 'hidden-xs': !showText }">Add device</div></a></li></div>
+    <div *ngIf="isAdmin()" style="cursor:pointer"><li><a (click)="showDialog3()"><div class="fa-solid fa-newspaper " ></div><div class="text" [ngClass]="{ 'hidden-xs': !showText }">Add news</div></a></li></div>
     <li><a href="#"><div class="fa fa-address-book" ></div><div class="text" [ngClass]="{ 'hidden-xs': !showText }">About us</div></a></li>
     <li><a routerLink="/user"><img src="/assets/images/team-profile-pictures/vanja.png" class="profile-image"><div class="text" [ngClass]="{ 'hidden-xs': !showText }">Profile</div></a></li>
   </ul>
 </nav>
-
