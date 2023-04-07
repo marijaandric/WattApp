@@ -117,4 +117,28 @@ p-table{
   }
 }
   
+@media only screen and (max-width: 768px) {
+  .chart{
+    width: 100%;
+    margin: 10px 0px;
+  }
+  p-table{
+    width:100%
+  }
+
+  .twoCharts{
+    width: 100%;
+    margin: 10px 0px;
+  }
+
+  .handf{
+    margin: 10px 0px;
+  }
+
+  #oneChart
+  {
+    display: none;
+  }
+}
+  
   
