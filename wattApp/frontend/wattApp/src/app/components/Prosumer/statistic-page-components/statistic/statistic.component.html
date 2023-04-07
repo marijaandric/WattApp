@@ -8,13 +8,13 @@
   <p-dropdown [options]="type" appendTo="body" [(ngModel)]="selectedType" optionLabel="name"  >
   </p-dropdown>
   <div class="main-grid">
-    <app-history-forecast ></app-history-forecast>
-    <app-pie-chart [Series]="count" [chartLabels]="rooms" [chartText]="text" [chartHeight]="piechartHeight1"></app-pie-chart>
+    <app-history-forecast class="chart"></app-history-forecast>
+    <app-pie-chart class="chart" [Series]="count" [chartLabels]="rooms" [chartText]="text" [chartHeight]="piechartHeight1"></app-pie-chart>
     
     <p-table class="d-table" #dtUsers class="ui-table-default" dataKey="id" [scrollable]="true" 
     [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]"
     [globalFilterFields]="['id','firstName','lastName','email','role']" [paginator]="true" 
-    style="margin-top:calc(2.8%);display: flex;position: relative;flex-direction: column;height: fit-content;width: 48.5%;border-radius: 20px;background-color: #1b1b1b;box-shadow: 5px 5px 15px black;transition: ease-in-out;
+    style="margin-top:calc(2.8%);display: flex;position: relative;flex-direction: column;height: fit-content;border-radius: 20px;background-color: #1b1b1b;box-shadow: 5px 5px 15px black;transition: ease-in-out;
     ">
 
     <ng-template pTemplate="caption">
@@ -76,7 +76,7 @@
       </tr>
   </ng-template>
   </p-table>
-<app-area-bar-chart style="margin-top:calc(2.6%);"></app-area-bar-chart>
+<app-area-bar-chart style="margin-top:calc(2.6%);" class="chart"></app-area-bar-chart>
 </div>
   </app-center-bar>
 </standard-template>

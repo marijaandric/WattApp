@@ -49,11 +49,6 @@
     display: inline-flex;
   }
   
-  .main-grid {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-  }
   .consumption {
     background-color:#7d02d4;
   }
@@ -80,6 +75,28 @@
   font-size: 17px;
   padding:5px 20px;
   border:none;
+}
+
+p-table{
+  width: 48.5%
+}
+
+@media only screen and (min-width: 769px) {
+  .main-grid {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .chart{
+    width: 100%;
+    margin: 10px 0px;
+  }
+  p-table{
+    width:100%
+  }
 }
   
   
