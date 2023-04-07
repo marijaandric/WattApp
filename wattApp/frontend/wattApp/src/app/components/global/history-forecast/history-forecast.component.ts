@@ -33,11 +33,13 @@ export class HistoryForecastComponent {
       name: 'Consumption history',
       data: [12, 19, 3, 5, 2, 6, 5, null,null,null,null, null, null, null],
       color: '#7d02d4'
+      
     },
     {
       name: "Consumption forecast",
       data: [null,null, null, null, null, null,5,10,12,3,16,5,10,5],
-      color: '#ab36ff',
+      color: '#ab36ff'
+      
     },
     {
       name: 'Production history',
@@ -104,12 +106,27 @@ export class HistoryForecastComponent {
     redrawOnWindowResize: true,
   };
 
+  
+
   public tooltip: ApexTooltip = {
     theme:'dark',
     style : {
       fontSize:'17px'
     }
   }
+
+  /*public fill: ApexFill = {
+    type: 'gradient',
+    gradient: {
+      shade: 'dark',
+      gradientToColors: ['#3f016b','ab36ff','#6e023a','#ab36ff'],
+      shadeIntensity: 1,
+      opacityFrom: 0.9,
+      opacityTo: 0.8,
+      stops: [0, 90, 100],
+    }
+  }*/
+  
 
   public legend: ApexLegend = {
     showForNullSeries:false,
@@ -161,6 +178,7 @@ export class HistoryForecastComponent {
   public stroke: ApexStroke = {
     curve: 'straight',
     width: 3,
+    dashArray:[0,5,0,5,0,5]
   }
 
   public dataLabels: ApexDataLabels = {
