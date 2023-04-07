@@ -24,7 +24,7 @@ export class HomeComponent {
   display3: boolean = false;
   display4: boolean = false;
   display5: boolean = false;
-  display6: boolean = false;
+  display6: boolean = true;
 
   menageUserForm! : FormGroup;
   cities: City[];
