@@ -4,13 +4,18 @@
   </app-title-bar>
 
   <app-center-bar>
-      
+
   <p-dropdown [options]="type" appendTo="body" [(ngModel)]="selectedType" optionLabel="name"  >
   </p-dropdown>
   <div class="main-grid">
-    <app-history-forecast class="chart"></app-history-forecast>
-    <app-pie-chart class="chart" [Series]="count" [chartLabels]="rooms" [chartText]="text" [chartHeight]="piechartHeight1"></app-pie-chart>
-    
+    <div class="twoCharts">
+      <p-selectButton class="flexRow width__fit-content margin-left__auto margin-bottom__16px" [options]="switchOptions" [(ngModel)]="switchValue" optionLabel="label" optionValue="value"></p-selectButton>
+      <app-history-line-chart class="handf" *ngIf="switchValue == true"></app-history-line-chart>
+      <app-forecast-line-chart class="handf" *ngIf="switchValue == false"></app-forecast-line-chart>
+    </div>
+    <app-history-forecast class="chart" id="oneChart"></app-history-forecast>
+
+    <app-pie-chart class="chart" [Series]="count" [chartLabels]="rooms" [chartText]="text" [chartHeight]="piechartHeight1"></app-pie-chart>    
     <p-table class="d-table" #dtUsers class="ui-table-default" dataKey="id" [scrollable]="true" 
     [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]"
     [globalFilterFields]="['id','firstName','lastName','email','role']" [paginator]="true" 
