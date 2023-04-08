@@ -109,6 +109,18 @@ export class ForecastLineChartComponent {
     
   }
 
+  public fill: ApexFill = {
+    type: 'gradient',
+    gradient: {
+      shade: 'dark',
+      gradientToColors: ['#7d02d4', '#d90372','rgb(4, 167, 119)'],
+      shadeIntensity: 1,
+      opacityFrom: 1,
+      opacityTo: 1,
+      stops: [0, 100, 200],
+    }
+  }
+
   public xaxis: ApexXAxis = {
     categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
     labels: {

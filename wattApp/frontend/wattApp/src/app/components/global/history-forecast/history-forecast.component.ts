@@ -119,11 +119,11 @@ export class HistoryForecastComponent {
     type: 'gradient',
     gradient: {
       shade: 'dark',
-      gradientToColors: ['#3f016b','ab36ff','#6e023a','#ab36ff'],
+      gradientToColors: ['#a17abd','','#e1a2c7','','#afecda',''],
       shadeIntensity: 1,
-      opacityFrom: 0.9,
-      opacityTo: 0.8,
-      stops: [0, 90, 100],
+      opacityFrom: 1,
+      opacityTo: 1,
+      stops: [0, 30, 70],
     }
   }*/
   
