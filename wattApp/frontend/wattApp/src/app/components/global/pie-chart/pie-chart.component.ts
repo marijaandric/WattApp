@@ -1,4 +1,4 @@
-import { Component, OnInit,Input,OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit,Input, SimpleChanges} from '@angular/core';
 import {
   ApexChart,
   ApexDataLabels,
@@ -20,17 +20,10 @@ import {
 export class PieChartComponent implements OnInit {
   @Input() chartHeight: number = 200;
   @Input() chartText: string = 'Total devices per room';
-  @Input() Series: number[] = [40, 32, 28, 55];
-  @Input() chartLabels = ["Kitchen", "Living room", "Bathroom",  "Other"];
+  @Input() Series: number[] = [40, 32, 28, 55,23,43];
+  @Input() chartLabels : string[] = ["Kitchen", "Living room", "Bathroom",  "Other"]
 
   chartSeries: ApexNonAxisChartSeries = this.Series;
-
-  ngOnChanges(changes: SimpleChanges) {
-    if ('Series' in changes) {
-      this.chartSeries = this.Series;
-    }
-  }
-
 
   chartDetails: ApexChart = {
     type: 'pie',
@@ -52,16 +45,14 @@ export class PieChartComponent implements OnInit {
   }
   };
 
-  
-
   chartTitle: ApexTitleSubtitle = {
     text:  this.chartText,
-    align: 'left',
+    align: 'center',
     style: {
-      color: '#FFFFFF',
-      fontSize: '19px',
-      fontFamily:'Montserrat',
-      fontWeight:'bold'  
+    color: '#FFFFFF',
+    fontSize: '19px',
+    fontFamily:'Montserrat',
+    fontWeight:'bold' 
     },
     
   };
@@ -83,11 +74,12 @@ export class PieChartComponent implements OnInit {
   }
 
   tooltip:ApexTooltip = {
-    enabled:true,
+    enabled:true, 
     style: {
       fontSize:'16px',
       fontFamily: 'Lato, sans-serif'
     },  
+    
     marker: {
       show:true,
       fillColors:['#7d02d4', '#d90372', 'rgb(4, 167, 119)', '#F75C03'],
@@ -127,9 +119,15 @@ export class PieChartComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.chartDetails.height = '210px';
+    this.chartDetails.height = '175.5%';
     this.chartTitle.text=this.chartText;
     this.chartSeries=this.Series;
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    if ('Series' in changes) {
+      this.chartSeries = this.Series;
+    }
   }
 
 }
