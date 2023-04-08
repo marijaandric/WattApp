@@ -9,7 +9,8 @@
       box-shadow: 5px 5px 15px black;
       transition: ease-in-out;
       z-index: 1;
-      margin: 20px;
+      margin-top: 20px;
+      margin-left:2.6%;
 }
 
 button {
@@ -23,7 +24,6 @@ button {
       font-weight:bolder;
       box-shadow: 5px 5px 15px black;
       color:white;
-      margin-top:20px;
 }
   
 button:hover{
