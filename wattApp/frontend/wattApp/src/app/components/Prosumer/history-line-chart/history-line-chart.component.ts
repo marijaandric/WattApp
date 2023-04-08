@@ -133,6 +133,18 @@ export class HistoryLineChartComponent {
     },
   };
 
+  public fill: ApexFill = {
+    type: 'gradient',
+    gradient: {
+      shade: 'dark',
+      gradientToColors: ['#a17abd','#e1a2c7','#afecda'],
+      shadeIntensity: 1,
+      opacityFrom: 1,
+      opacityTo: 1,
+      stops: [0, 100, 200],
+    }
+  }
+
   public title: ApexTitleSubtitle = {
     text: 'History',
     style: {
