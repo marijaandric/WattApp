@@ -2,14 +2,32 @@
       display: flex;
       position: relative;
       flex-direction: column;
-      width:100%;
+      width:95%;
       height:100%;
       border-radius: 20px;
       background-color: #1b1b1b;
       box-shadow: 5px 5px 15px black;
       transition: ease-in-out;
       z-index: 1;
+      margin: 20px;
 }
 
-
-
+button {
+      border: none;
+      padding: 10px 50px;
+      border-radius: 32px;
+      display: block;
+      margin: auto;
+      background:rgb(4, 167, 119) ;
+      color: #fff;
+      font-weight:bolder;
+      box-shadow: 5px 5px 15px black;
+      color:white;
+      margin-top:20px;
+}
+  
+button:hover{
+      background: none;
+      color: rgb(4, 167, 119);
+      box-shadow: none;
+    }
