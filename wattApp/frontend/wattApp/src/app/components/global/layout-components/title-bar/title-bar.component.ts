@@ -60,6 +60,7 @@ export class TitleBarComponent implements OnInit{
   rola:any;
   value!:string;
   address!:string;
+  selectedPriority:string = 'None';
  
   
   constructor(private router: Router,
@@ -156,11 +157,9 @@ export class TitleBarComponent implements OnInit{
       title: ['', Validators.required],
       userID :[0, Validators.required],
       content: ['', Validators.required],
-      priority: ['', Validators.required],
+      priority: ['Regular', Validators.required],
       created: ['', Validators.required],
     })
-
-
   }
 
   // prikaz dijaloga
@@ -285,8 +284,6 @@ export class TitleBarComponent implements OnInit{
   
   addNews()
   {
-    const regularChecked = this.newsForm.get('regular')?.value;
-    const importantChecked = this.newsForm.get('important')?.value;
 
     const token = localStorage.getItem('token');
     let id = 0;
@@ -296,32 +293,13 @@ export class TitleBarComponent implements OnInit{
     }
     
     this.newsForm.patchValue({
-      title : this.newsForm.get('title')!.value
-    })
-    this.newsForm.patchValue({
       userID : id
     })
     this.newsForm.patchValue({
-      content: this.newsForm.get('content')!.value
-    })
-    if (regularChecked) {
-      this.newsForm.patchValue({
-        priority: 'Regular'
-      });
-    } else if (importantChecked) {
-      this.newsForm.patchValue({
-        priority: 'Important'
-      });
-    } else {
-      this.newsForm.patchValue({
-        priority: 'None'
-      });
-    }
-    this.newsForm.patchValue({
       created: new Date()
     });
-  
 
+  
     console.log(this.newsForm.value);
     this.dsonewsService.AddNews(this.newsForm.value).subscribe({
       next:(res => {
