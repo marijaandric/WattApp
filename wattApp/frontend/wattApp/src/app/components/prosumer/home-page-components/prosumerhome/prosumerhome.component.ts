@@ -211,9 +211,11 @@ export class ProsumerhomeComponent implements OnInit{
      this.datum3 = new Date(this.news[2].created).toLocaleDateString();
 
      this.status1 = this.news[0].priority;
+     this.status2 = this.news[1].priority;
+     this.status3 = this.news[2].priority;
 
 
-     console.log(this.status1);
+     console.log(this.news);
     });
   
   }
