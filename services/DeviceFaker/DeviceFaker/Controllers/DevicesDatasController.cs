@@ -75,6 +75,26 @@ namespace DeviceFaker.Controllers
             return devicesData;
         }
 
+        [HttpGet("GetWeekDataForAllDevices/{deviceid}/{year}/{month}/{day}")]
+        public List<DevicesData> GetWeekDataForAllDevices(int deviceid, int year, int month, int day)
+        {
+            var devicesData = _devicesDataService.GetWeekDataForAllDevices(deviceid, year, month, day);
+            return devicesData;
+        }
+
+        [HttpGet("GetWeekDataForAllDevicesInFuture/{deviceid}/{year}/{month}/{day}")]
+        public List<DevicesData> GetWeekDataForAllDevicesInFuture(int deviceid, int year, int month, int day)
+        {
+            var devicesData = _devicesDataService.GetWeekDataForAllDevicesInFuture(deviceid, year, month, day);
+            return devicesData;
+        }
+
+        [HttpGet("GetWeekHistoryAndFutureForAllDevices/{deviceid}/{year}/{month}/{day}")]
+        public List<DevicesData> GetWeekHistoryAndFutureForAllDevices(int deviceid, int year, int month, int day)
+        {
+            var devicesData = _devicesDataService.GetWeekHistoryAndFutureForAllDevices(deviceid, year, month, day);
+            return devicesData;
+        }
 
     }
 }
