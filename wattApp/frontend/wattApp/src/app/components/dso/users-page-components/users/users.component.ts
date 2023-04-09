@@ -1,7 +1,8 @@
-import { Component, ViewEncapsulation  } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges, ViewEncapsulation  } from '@angular/core';
 import { UserDTO } from '../../../../dtos/UserDTO';
 import { UserService } from '../../../../services/user/user.service';
 import axios from 'axios';
+import { DeviceService } from 'src/app/services/device/device.service';
 interface City {
   name: string,
   code: string
@@ -13,12 +14,12 @@ interface City {
   styleUrls: ['./users.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-export class UsersComponent {
+export class UsersComponent implements OnInit{
   users: UserDTO[] = [];
   type: City[];
   selectedType!: City;
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private deviceService : DeviceService) {
     this.type = [
       {name: 'Consumption', code: '1'},
       {name: 'Production', code: '2'},
@@ -38,6 +39,5 @@ export class UsersComponent {
   onSearch(value: string, dtUsers: any) {
     dtUsers.filterGlobal(value, 'contains');
   }
-
 
 }

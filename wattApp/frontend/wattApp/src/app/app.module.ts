@@ -75,6 +75,7 @@ import { AllAreasDonutComponent } from './components/DSO/all-areas-donut/all-are
 import { HistoryLineChartComponent } from './components/Prosumer/history-line-chart/history-line-chart.component';
 import { ForecastLineChartComponent } from './components/Prosumer/forecast-line-chart/forecast-line-chart.component';
 
+
 export const url = 'https://localhost:7158';
 export const deviceFakerUrl = "https://localhost:7233";
 

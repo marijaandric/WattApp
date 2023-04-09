@@ -74,6 +74,9 @@ async ngOnInit(): Promise<void> {
     }).addTo(this.map);
 
 
+    let radius = circle.getRadius();
+    let expanding = true;
+
     await this.getAreas("Min");
     const circle2 = L.circle([this.lowestCoordinates[0],this.lowestCoordinates[1]], {
       color: 'rgb(4, 167, 119)',
@@ -81,6 +84,24 @@ async ngOnInit(): Promise<void> {
       fillOpacity: 0.5,
       radius: 500 // in meters
     }).addTo(this.map);
+
+    /* ako se odlucimo da kruzici ne budu staticni
+    setInterval(() => {
+      if (expanding) {
+        radius += 50;
+      } else {
+        radius -= 50;
+      }
+      
+      circle.setRadius(radius);
+      circle2.setRadius(radius)
+      
+      if (radius >= 800) {
+        expanding = false;
+      } else if (radius <= 550) {
+        expanding = true;
+      }
+    }, 150);*/
 
 
     // Bind a popup to the circle

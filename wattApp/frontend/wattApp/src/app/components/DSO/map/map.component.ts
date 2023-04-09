@@ -35,6 +35,7 @@ export class MapComponent implements OnInit, OnChanges{
       attribution: '&copy; OpenStreetMap contributors'
     });
     
+
     this.mapa()
   }
 
