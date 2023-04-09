@@ -148,6 +148,7 @@ export class TitleBarComponent implements OnInit{
 
     this.addDeviceForm = this.fb.group({
       userID :[0, Validators.required],
+      deviceName:['', Validators.required],
       deviceModel: ['', Validators.required],
       room: ['', Validators.required],
       deviceType: ['', Validators.required],
@@ -214,7 +215,7 @@ export class TitleBarComponent implements OnInit{
     this.modelSelected = filteredModels[0].name;
   }
   onModelChange(event:any){
-    this.modelSelected = event.value.models;
+    this.modelSelected = event.value.name;
   }
   onRoomChange(event:any)
   {
