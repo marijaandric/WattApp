@@ -52,15 +52,9 @@ export class LandingPageComponent implements OnInit{
       const marginTop = window.scrollY/3;
       const marginLeft = -window.scrollY/3;
 
-      console.log(marginLeft);
-      
       this.renderer.setStyle(textElement, 'marginTop', `${marginTop}px`);
       this.renderer.setStyle(textElement, 'marginRight', `${marginLeft}px`);
       this.renderer.setStyle(btn, 'marginTop', `${marginTop}px`);
       this.renderer.setStyle(btn, 'marginRight', `${marginLeft}px`);
-    
-  }
-
-
-  
+  }  
 }

@@ -140,12 +140,12 @@ export class RegistrationMapComponent implements OnInit{
         fullAddress = `${address.road} ${address.house_number}, ${address.city}`;
       }
       else{
-        this.toast.error({detail:"Error",summary:"Please, enter your building number!",duration:4000});
+        this.toast.warning({detail:"Warning",summary:"Please, enter your building number!",duration:4000});
       }
 
       if(address.city != "Град Крагујевац")
       {
-        this.toast.error({detail:"Error",summary:"Please, choose a location that belongs to Kragujevac!",duration:4000});
+        this.toast.warning({detail:"Warning",summary:"Please, choose a location that belongs to Kragujevac!",duration:4000});
       }
 
       return {address: fullAddress, result: result};
