@@ -16,6 +16,8 @@ export class MapSuburbComponent implements OnInit {
   lowestCoordinates!:any;
   prom!:any;
   data: any;
+  private darkLayer!: L.TileLayer;
+  private lightLayer!: L.TileLayer;
 
   constructor(private areaService:AreasService,private http:HttpClient){}
 
@@ -59,6 +61,12 @@ async ngOnInit(): Promise<void> {
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; OpenStreetMap contributors'
     }).addTo(this.map);
+    this.darkLayer = L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png', { //https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png
+      attribution: '&copy; OpenStreetMap contributors'
+    });
+    this.lightLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    });
 
     await this.getAreas("Max");
 
@@ -74,9 +82,6 @@ async ngOnInit(): Promise<void> {
     }).addTo(this.map);
 
 
-    let radius = circle.getRadius();
-    let expanding = true;
-
     await this.getAreas("Min");
     const circle2 = L.circle([this.lowestCoordinates[0],this.lowestCoordinates[1]], {
       color: 'rgb(4, 167, 119)',
@@ -85,12 +90,13 @@ async ngOnInit(): Promise<void> {
       radius: 500 // in meters
     }).addTo(this.map);
 
-    /* ako se odlucimo da kruzici ne budu staticni
+    let radius = circle.getRadius();
+    let expanding = true;
     setInterval(() => {
       if (expanding) {
-        radius += 50;
+        radius += 40;
       } else {
-        radius -= 50;
+        radius -= 40;
       }
       
       circle.setRadius(radius);
@@ -101,7 +107,7 @@ async ngOnInit(): Promise<void> {
       } else if (radius <= 550) {
         expanding = true;
       }
-    }, 150);*/
+    }, 150);
 
 
     // Bind a popup to the circle
@@ -122,5 +128,17 @@ async ngOnInit(): Promise<void> {
       circle2.closePopup();
     });
     
+  }
+
+  toggleDarkMode(): void {
+    if (this.map.hasLayer(this.darkLayer)) {
+      // if the dark layer is already active, switch to light
+      this.map.removeLayer(this.darkLayer);
+      this.lightLayer.addTo(this.map);
+    } else {
+      // if the light layer is active, switch to dark
+      this.map.removeLayer(this.lightLayer);
+      this.darkLayer.addTo(this.map);
+    }
   }
 }
