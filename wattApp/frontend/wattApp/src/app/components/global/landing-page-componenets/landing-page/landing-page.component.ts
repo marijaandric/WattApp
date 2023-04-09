@@ -51,7 +51,7 @@ export class LandingPageComponent implements OnInit{
       for(var i = 0; i < cards.length; i++) {
         var windowHeight = window.innerHeight;
         var revealtop = cards[i].getBoundingClientRect().top;
-        var revealpoint = 400;
+        var revealpoint = 300;
 
         if(revealtop < windowHeight - revealpoint){
           cards[i].classList.add('active');
