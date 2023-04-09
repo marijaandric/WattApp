@@ -36,21 +36,36 @@ export class LandingPageComponent implements OnInit{
 
   @ViewChild('parallaxcon') parallaxcon!: ElementRef;
   
+  ngOnInit(): void {
+      
+  }
   constructor(private renderer: Renderer2)
   {
 
   }
 
-  ngOnInit(): void {
-  }
-  
-
   @HostListener('window:scroll',["$event"])
   onWindowScroll(event:any){
+      var cards = document.querySelectorAll('.card');
+
+      for(var i = 0; i < cards.length; i++) {
+        var windowHeight = window.innerHeight;
+        var revealtop = cards[i].getBoundingClientRect().top;
+        var revealpoint = 400;
+
+        if(revealtop < windowHeight - revealpoint){
+          cards[i].classList.add('active');
+        }
+        else {
+          cards[i].classList.remove('active');
+        }
+      }
+      
       const textElement = this.parallaxcon.nativeElement.querySelector('h2');
       const btn = this.parallaxcon.nativeElement.querySelector('button');
       const marginTop = window.scrollY/3;
       const marginLeft = -window.scrollY/3;
+
 
       console.log(marginLeft);
       
