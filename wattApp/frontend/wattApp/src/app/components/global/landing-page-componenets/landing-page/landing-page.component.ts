@@ -73,9 +73,5 @@ export class LandingPageComponent implements OnInit{
       this.renderer.setStyle(textElement, 'marginRight', `${marginLeft}px`);
       this.renderer.setStyle(btn, 'marginTop', `${marginTop}px`);
       this.renderer.setStyle(btn, 'marginRight', `${marginLeft}px`);
-    
-  }
-
-
-  
+  }  
 }
