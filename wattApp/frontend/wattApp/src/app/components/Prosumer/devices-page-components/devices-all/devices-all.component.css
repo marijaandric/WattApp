@@ -5,3 +5,60 @@
   :host::ng-deep app-tab-menu .fa-bars {
     color: rgb(4,167,119);
   }
+  .widgets {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 20px 0;
+    min-height: 120px;
+    justify-content:space-between;
+    
+}
+.widget {
+  flex-basis: calc(23%);
+  margin-bottom: 30px;
+  display: inline-block;
+  position: relative;
+  flex-direction: row;
+  /*max-width: 23%;*/
+  min-width: 240px;
+  width:20%;
+  box-shadow: 10px 10px 50px black;  
+}
+
+@media only screen and (max-width: 979px) {
+  .widget {
+    -ms-flex-preferred-size: calc(50% - 30px);
+    flex-basis: calc(50% - 30px);
+  }
+}
+
+@media only screen and (max-width: 796px) {
+  .widget {
+    -ms-flex-preferred-size: 100%;
+    flex-basis: 100%;
+  }
+
+  .slika{
+    display:none;
+  }
+}
+@media only screen and (max-width: 500px) {
+
+  .widgets{
+    overflow-x: scroll;
+    display: flex;
+    flex-wrap: nowrap;
+  }
+  .widget{
+    margin-right: 10px;
+    margin-left: 10px;
+    display: inline-block;
+    vertical-align: top;
+  }
+
+
+}
+
+
+

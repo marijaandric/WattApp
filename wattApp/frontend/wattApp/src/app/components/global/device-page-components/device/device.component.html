@@ -8,7 +8,7 @@
       <div class="flexRow">
         <h3 style="color:rgb(4, 167, 119);font-weight:bold;">{{ device.deviceName }}</h3>
         <p-button label="Edit" (click)="showEditDeviceDialog()" class="margin-left__auto" style="border-radius:32px !important;"/>
-        <p-button label="Delete" (onClick)="deleteDevice(device.id)" class="margin-left__8px"/>
+        <p-button label="Delete" (click)="showDialog()" class="margin-left__8px"/>
       </div>
 
       <div class="flexRow margin-top__16px">
@@ -101,4 +101,29 @@
       <button class="margin-left__16px" (click)="cancel()" type="submit">Cancel</button>
     </div>
   </ng-template>
+</p-dialog>
+
+
+<p-dialog [style]="{width:'20%'}" header="Title"  [transitionOptions]="'3ms'" 
+[draggable]="false" [keepInViewport]="true" [resizable]="false" 
+[blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true" 
+[modal]="true" [(visible)]="display3" [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
+[closable]="true" >
+<ng-template pTemplate="header" class="header-dialog">
+  <span>Delete device</span>
+</ng-template>
+
+<ng-template pTemplate="center">
+  <div class="delete-device-content">
+    Are you sure you want to erase the device?
+    All data will be deleted and you will not be able to recover it.
+
+  </div>
+</ng-template>
+
+<ng-template pTemplate="footer" >
+  <button type="button" class="no-button" icon="fa-home" label="No" (click)="showDialog()"><span clas="no-span">No</span></button>
+  <button type="button" class="yes-button" icon="pi pi-info-circle" label="Yes" (click)="deleteDevice(device.id)"><span clas="no-span">Yes</span></button>
+
+</ng-template>
 </p-dialog>

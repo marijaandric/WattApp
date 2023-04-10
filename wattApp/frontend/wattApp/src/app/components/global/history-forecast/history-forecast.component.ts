@@ -1,5 +1,5 @@
 import { style } from '@angular/animations';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import {  ApexAxisChartSeries,ApexDataLabels,ApexLegend,ApexMarkers, ApexTooltip, ApexStroke, ApexFill, ApexChart, ApexXAxis, ApexTitleSubtitle,ApexYAxis } from 'ng-apexcharts';
 import { AuthService } from 'src/app/services/auth/auth.service';
@@ -19,6 +19,8 @@ export class HistoryForecastComponent {
   menageUserForm! : FormGroup;
   cities: City[];
   selectedCity!: City;
+  @Input() tip : any;
+  @Input() prom : any = "Consumer";
 
   constructor(private userService:UserService, private authService:AuthService) {
     this.cities = [
