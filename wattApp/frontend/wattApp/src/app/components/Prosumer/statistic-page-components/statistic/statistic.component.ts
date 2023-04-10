@@ -19,7 +19,7 @@ interface SwitchOption {
 })
 export class StatisticComponent  implements OnInit {
   type: City[];
-  selectedType!: City;
+  selectedType : City ={name: 'Consumption', code: 'Consumer'};
   @ViewChild('myChart', { static: true }) myChart! : PieChartComponent;
 
   switchValue: boolean = true;
@@ -51,9 +51,9 @@ export class StatisticComponent  implements OnInit {
 
   constructor(private http: HttpClient, private deviceService : DeviceService) {
     this.type = [
-      {name: 'Consumption', code: '1'},
-      {name: 'Production', code: '2'},
-      {name: 'All', code: '4'},
+      {name: 'Consumption', code: 'Consumer'},
+      {name: 'Production', code: 'Producer'},
+      {name: 'Stock', code: 'Stock'},
     ];
   }
 
@@ -61,7 +61,7 @@ export class StatisticComponent  implements OnInit {
   getDevicePerRoom(){
     const deviceId = 1 ;
    // const deviceId = this.user.id ;
-    const type = 'Consumer';
+    const type = this.selectedType.code;
     const number = 4;
     this.deviceService.devicesPerRooms(deviceId, type, number).subscribe(data => {
       this.rooms = data.rooms;
@@ -74,5 +74,11 @@ export class StatisticComponent  implements OnInit {
   
  ngOnInit(): void {
    this.getDevicePerRoom();
+  }
+
+  dropdownChange()
+  {
+    console.log(this.selectedType)
+    this.getDevicePerRoom();
   }
 }

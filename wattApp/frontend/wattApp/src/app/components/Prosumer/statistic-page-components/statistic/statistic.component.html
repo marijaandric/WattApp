@@ -5,7 +5,7 @@
 
   <app-center-bar>
 
-  <p-dropdown [options]="type" appendTo="body" [(ngModel)]="selectedType" optionLabel="name"  >
+  <p-dropdown [options]="type" appendTo="body" [(ngModel)]="selectedType" optionLabel="name"  (onChange)="dropdownChange()">
   </p-dropdown>
   <div class="main-grid">
     <div class="twoCharts">
