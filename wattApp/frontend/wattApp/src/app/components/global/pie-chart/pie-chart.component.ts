@@ -71,20 +71,24 @@ export class PieChartComponent implements OnInit {
       offsetX:-10,
       offsetY:40,
     }
+    
   }
 
   tooltip:ApexTooltip = {
-    enabled:true, 
+    enabled:true,
+    fillSeriesColor: false, 
+    theme:'dark',
     style: {
       fontSize:'16px',
-      fontFamily: 'Lato, sans-serif'
-    },  
-    
+      fontFamily: 'Lato, sans-serif',
+    },
     marker: {
-      show:true,
-      fillColors:['#7d02d4', '#d90372', 'rgb(4, 167, 119)', '#F75C03'],
+      show:false,
+      fillColors:['#7d02d4', '#d90372', 'rgb(4, 167, 119)', '#F75C03']
     }
+    
   }
+
   chartDataLabels: ApexDataLabels = {
     enabled: true,
   };
@@ -112,8 +116,8 @@ export class PieChartComponent implements OnInit {
     title: this.chartTitle,
     dataLabels: this.chartDataLabels,
     legend: this.chartLegend,
-    tooltip: this.tooltip,
     colors: ['#7d02d4', '#d90372', 'rgb(4, 167, 119)', '#F75C03'],
+    tooltip: this.tooltip
   };
 
   constructor() { }

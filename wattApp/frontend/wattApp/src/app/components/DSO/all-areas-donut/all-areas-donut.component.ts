@@ -84,6 +84,7 @@ export class AllAreasDonutComponent {
 
   tooltip:ApexTooltip = {
     enabled:true,
+    fillSeriesColor: false,
     style: {
       fontSize:'16px',
       fontFamily: 'Lato, sans-serif'

@@ -84,12 +84,13 @@ export class SingleAreaPieComponent {
 
   tooltip:ApexTooltip = {
     enabled:true,
+    fillSeriesColor: false,
     style: {
       fontSize:'16px',
       fontFamily: 'Lato, sans-serif'
     },  
     marker: {
-      show:true,
+      show:false,
       fillColors:['#7d02d4', '#d90372', 'rgb(4, 167, 119)', '#F75C03'],
     }
   }

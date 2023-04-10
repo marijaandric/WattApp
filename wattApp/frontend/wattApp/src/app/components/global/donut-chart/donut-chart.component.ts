@@ -73,9 +73,10 @@ export class DonutChartComponent implements OnInit {
 
   tooltip:ApexTooltip = {
     enabled:true,
+    fillSeriesColor: false,
     
     marker: {
-      show:true,
+      show:false,
       fillColors:['#7d02d4', '#d90372', 'rgb(4, 167, 119)', '#F75C03'],
     }
   }
