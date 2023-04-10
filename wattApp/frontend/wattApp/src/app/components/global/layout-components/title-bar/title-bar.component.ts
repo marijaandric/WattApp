@@ -219,7 +219,7 @@ export class TitleBarComponent implements OnInit{
   }
   onRoomChange(event:any)
   {
-    this.roomSelected = event.value.room;
+    this.roomSelected = event.value.name;
   }
 
   //registracija
