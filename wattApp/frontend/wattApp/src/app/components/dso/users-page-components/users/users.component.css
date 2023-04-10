@@ -19,7 +19,6 @@ app-tab-menu-users .color:hover{
 }
 
 .p-dropdown {
-  display: block;
   position:relative;
   margin-bottom: 20px;
   border-radius: 30px;
