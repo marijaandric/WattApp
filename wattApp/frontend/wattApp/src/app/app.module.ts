@@ -74,6 +74,7 @@ import { SingleAreaPieComponent } from './components/DSO/single-area-pie/single-
 import { AllAreasDonutComponent } from './components/DSO/all-areas-donut/all-areas-donut.component';
 import { HistoryLineChartComponent } from './components/Prosumer/history-line-chart/history-line-chart.component';
 import { ForecastLineChartComponent } from './components/Prosumer/forecast-line-chart/forecast-line-chart.component';
+import { DevicePrototypeComponent } from './components/global/device-page-components/device-prototype/device-prototype.component';
 
 
 export const url = 'https://localhost:7158';
@@ -130,7 +131,8 @@ export const deviceFakerUrl = "https://localhost:7233";
     SingleAreaPieComponent,
     AllAreasDonutComponent,
     HistoryLineChartComponent,
-    ForecastLineChartComponent
+    ForecastLineChartComponent,
+    DevicePrototypeComponent
   ],
   imports: [
     CommonModule,

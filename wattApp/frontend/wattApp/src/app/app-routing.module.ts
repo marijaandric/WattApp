@@ -16,6 +16,7 @@ import { DevicesConsumptionComponent } from './components/Prosumer/devices-page-
 import { DevicesStockComponent } from './components/Prosumer/devices-page-components/devices-stock/devices-stock.component';
 import { StatisticComponent } from './components/Prosumer/statistic-page-components/statistic/statistic.component';
 import { DevicesAllComponent } from './components/Prosumer/devices-page-components/devices-all/devices-all.component';
+import { DevicePrototypeComponent } from './components/global/device-page-components/device-prototype/device-prototype.component';
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
@@ -27,6 +28,7 @@ const routes: Routes = [
   { path: 'prosumerhome', component: ProsumerhomeComponent },
   { path: 'contact', component:ContactComponent},
   { path: 'device/:id', component: DeviceComponent },
+  { path: 'device-prototype/:id', component: DevicePrototypeComponent },
   { path: 'devices', component: DevicesAllComponent },
   { path: 'devices/production', component: DevicesProductionComponent },
   { path: 'devices/consumption', component: DevicesConsumptionComponent },

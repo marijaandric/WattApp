@@ -1,0 +1,159 @@
+<standard-template>
+    <app-title-bar>
+      <h3>Device</h3>
+    </app-title-bar>
+  
+    <app-center-bar>
+    <div class="main-card">
+        <div class="card-1">
+            <div class="flexRow" style="height:100px;">
+                <h5 style="color:rgb(4, 167, 119);font-weight:bold;">{{ device.deviceName }}</h5>
+                <p-button label="Edit" (click)="showEditDeviceDialog()" class="margin-left__auto" style="border-radius:32px !important;"/>
+                <p-button label="Delete" (onClick)="deleteDevice(device.id)" class="margin-left__8px"/>
+              </div>
+            <div class=" circle circle-1">
+                <div class="circle circle-2">
+                    <div class="circle-icon">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+                    <div class="main-stat">
+                        <span>15.24</span> 
+                    </div>
+                    <div class="kwh">
+                        <span>kWh</span>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="stats">
+
+            </div>
+            
+            <div class="stats">
+
+            </div>
+            <div class="stats">
+
+            </div>
+        </div>  
+        <div class="card-1-1">
+       
+            <div style="display:flex;float:left; background-color:red; flex-direction:column;  width:47%; height:100%" >
+            nameSelected
+            </div>
+            <div style="display:flex;float:left; background-color:blue; flex-direction:column; margin-left:calc(6%); width:47%; height:100%" >
+           sdsd
+            </div>    
+        </div>
+        <div style="display:flex;float:right; flex-direction:row; width:100%; height:400px">
+            <div style="display:flex;float:right; flex-direction:column;  width:47%; height:100%" >
+            </div>
+            <div style="display:flex;float:right; flex-direction:column; margin-left:calc(6%); width:47%; height:100%" >
+            </div>
+        </div>
+    
+        <div style="display:flex;float:right; flex-direction:row; width:100%; height:100%">
+              
+        </div>
+    </div>
+    <!--
+      <div id="deviceInformation" class="flexColumn device-information">
+        <div class="flexRow">
+          <h3 style="color:rgb(4, 167, 119);font-weight:bold;">{{ device.deviceName }}</h3>
+          <p-button label="Edit" (click)="showEditDeviceDialog()" class="margin-left__auto" style="border-radius:32px !important;"/>
+          <p-button label="Delete" (onClick)="deleteDevice(device.id)" class="margin-left__8px"/>
+        </div>
+  
+        <div class="flexRow margin-top__16px">
+          <span>ID:</span>
+          <span class="margin-left__auto">{{ device.id }}</span>
+        </div>
+  
+        <div class="flexRow margin-top__8px">
+          <span>Model:</span>
+          <span class="margin-left__auto">{{ device.deviceModel }}</span>
+        </div>
+  
+        <div class="flexRow margin-top__8px">
+          <span>Type:</span>
+          <span class="margin-left__auto">{{ device.deviceType }}</span>
+        </div>
+  
+        <div class="flexRow margin-top__8px">
+          <span>Room:</span>
+          <span class="margin-left__auto">{{ device.room }}</span>
+        </div>
+  
+        <div class="flexRow margin-top__16px">
+          <span>Visible to operators:</span>
+          <p-inputSwitch [(ngModel)]="device.allowOperatorVisibility" (onChange)="handleVisibilitySwitchChange()" class="margin-left__auto width__fit-content"/>
+        </div>
+  
+        <div class="flexRow margin-top__8px">
+          <span>Managed by operators:</span>
+          <p-inputSwitch [(ngModel)]="device.allowOperatorControll" (onChange)="handleManagementSwitchChange()" class="margin-left__auto width__fit-content"/>
+        </div>
+      </div>
+  
+      <div class="flexColumn device-information margin-top__16px">
+        <div class="flexRow">
+          <span *ngIf="!isRunning">Idle</span>
+          <span *ngIf="isRunning">Running</span>
+          <p-inputSwitch [(ngModel)]="device.isActive" (onChange)="handleRunningSwitchChange()" class="margin-left__auto width__fit-content"/>
+        </div>
+  
+        <div class="flexRow margin-top__8px">
+          <span>Current consumption:</span>
+          <span class="margin-left__auto">{{ 'N/A' }}</span>
+        </div>
+  
+        <div class="flexRow margin-top__8px">
+          <span>Totaly ever consumed:</span>
+          <span class="margin-left__auto">{{ 'N/A' }}</span>
+        </div>
+      </div>
+  
+      <div>
+        <app-device-area-bar-chart clas="bar-plot" class="margin-top__16px"/>
+      </div>
+      -->
+    </app-center-bar>
+  </standard-template>
+  
+  <p-dialog id="editDeviceDialogId" [style]="{width:'40%'}"
+    [draggable]="false" [keepInViewport]="true" [resizable]="false" 
+    [blockScroll]="true" [closeOnEscape]="true" 
+    [modal]="true" [(visible)]="displayEditDeviceDialog" [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
+    [closable]="true" >
+    <ng-template pTemplate="header" class="header-dialog">
+      <span>Edit device</span>
+    </ng-template>
+    
+    <ng-template pTemplate="content">
+      <form id="editDeviceDialogForm" >  
+        <div class="p-inputgroup p-inputtext-lg p-input-filled">
+          <div class="half">
+            Device type
+            <p-dropdown [options]="types" [(ngModel)]="typeSelected" name="typeSelected" appendTo="body" optionLabel="name" />
+            Device model
+            <p-dropdown [options]="models" [(ngModel)]="modelSelected" name="modelSelected" appendTo="body" optionLabel="name" />
+          </div> 
+          
+          <div class="half">
+              Room
+            <p-dropdown [options]="rooms" [(ngModel)]="roomSelected" name="roomSelected" appendTo="body" optionLabel="name" />
+              Name
+            <input style="margin-top:45px;" [(ngModel)]="nameSelected" name="nameSelected" appendTo="body" type="text" class="p-inputtext-lg" placeholder="DEVICE NAME"> 
+          </div>
+        </div> 
+      </form>
+    </ng-template>
+  
+    <ng-template pTemplate="footer" >
+      <div class="flexRow">
+        <button style="margin-right: 0px;" (click)="save()" type="submit">Save</button>
+        <button class="margin-left__16px" (click)="cancel()" type="submit">Cancel</button>
+      </div>
+    </ng-template>
+  </p-dialog>
