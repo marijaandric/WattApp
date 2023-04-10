@@ -1,7 +1,10 @@
 ﻿using DeviceFaker.Configurations;
+using DeviceFaker.Helpers;
 using DeviceFaker.Models;
 using Microsoft.Extensions.Options;
 using MongoDB.Driver;
+using NuGet.Packaging;
+using System.Collections.Generic;
 
 namespace DeviceFaker.Services
 {
@@ -29,6 +32,34 @@ namespace DeviceFaker.Services
             else
                 return _devicesDataCollection.Find(e => e.DeviceID == id && e.Year == year && e.Month == month && e.Day == day && e.Time <= now.Hour).ToList();
         }
+
+        public List<DevicesData> GetAllDevicesByDay(int year, int month, int day)
+        {
+            DateTime now = DateTime.Now;
+            if (year != now.Year || month != now.Month || day != now.Day)
+                return _devicesDataCollection.Find(e => e.Year == year && e.Month == month && e.Day == day).ToList();
+            else
+                return _devicesDataCollection.Find(e => e.Year == year && e.Month == month && e.Day == day && e.Time <= now.Hour).ToList();
+        }
+
+        public List<DevicesData> GetAllDevicesByDayForFuture(int year, int month, int day)
+        {
+            DateTime now = DateTime.Now;
+            if (year != now.Year || month != now.Month || day != now.Day)
+                return _devicesDataCollection.Find(e => e.Year == year && e.Month == month && e.Day == day).ToList();
+            else
+                return _devicesDataCollection.Find(e => e.Year == year && e.Month == month && e.Day == day && e.Time >= now.Hour).ToList();
+        }
+
+        public List<DevicesData> GetIdDeviceByDayForFuture(int id, int year, int month, int day)
+        {
+            DateTime now = DateTime.Now;
+            if (year != now.Year || month != now.Month || day != now.Day)
+                return _devicesDataCollection.Find(e => e.DeviceID == id && e.Year == year && e.Month == month && e.Day == day).ToList();
+            else
+                return _devicesDataCollection.Find(e => e.DeviceID == id && e.Year == year && e.Month == month && e.Day == day && e.Time >= now.Hour).ToList();
+        }
+
 
         public List<DevicesData> GetDevicesDataByIdYearMonth(int id, int year, int month)
         {
@@ -61,5 +92,193 @@ namespace DeviceFaker.Services
         {
             return _devicesDataCollection.Find(e => e.DeviceID == id).ToList();
         }
+
+        public List<DevicesData> GetWeekDataForAllDevicesOrDevice(int deviceid, int year, int month, int day)
+        {
+            int count = 0;
+            List<DevicesData> devicesdata = new List<DevicesData>();
+            List<DevicesData> current;
+            while (count < 7)
+            {
+                if(day >= 1)
+                {
+                    if (deviceid == -1)
+                        current = GetAllDevicesByDay(year, month, day);
+                    else
+                        current = GetDevicesDataByIdDate(deviceid, year, month, day);
+                    if(current.Count != 0)
+                    {
+                        devicesdata.AddRange(current);
+                        count++;
+                    }
+                    day--;
+                    
+                }
+                else
+                {
+                    if(month > 1)
+                    {
+                        month--;
+                        day = 31;
+                    }
+                    else
+                    {
+                        year--;
+                        month = 12;
+                        day = 31;
+                    }    
+                }
+            }
+            devicesdata.Reverse();
+            return devicesdata;
+        }
+
+
+        public List<DevicesData> GetWeekDataForAllDevicesOrDeviceInFuture(int deviceid, int year, int month, int day)
+        {
+            int count = 0;
+            List<DevicesData> devicesdata = new List<DevicesData>();
+            List<DevicesData> current;
+            while (count < 7)
+            {
+                if (day <= 31)
+                {
+                    if (deviceid == -1)
+                        current = GetAllDevicesByDayForFuture(year, month, day);
+                    else
+                        current = GetIdDeviceByDayForFuture(deviceid, year, month, day);
+
+                    if (current.Count != 0)
+                    {
+                        devicesdata.AddRange(current);
+                        count++;
+                    }
+                    day++;
+
+                }
+                else
+                {
+                    if (month <= 11)
+                    {
+                        month++;
+                        day = 1;
+                    }
+                    else
+                    {
+                        year++;
+                        month = 1;
+                        day = 1;
+                    }
+                }
+            }
+            
+            return devicesdata;
+        }
+
+        public List<DevicesData> GetWeekHistoryAndFutureForAllDevices(int deviceid, int year, int month, int day)
+        {
+            List<DevicesData> history = GetWeekDataForAllDevicesOrDevice(deviceid, year, month, day);
+            List<DevicesData> future = GetWeekDataForAllDevicesOrDeviceInFuture(deviceid, year, month, day);
+
+            return history.Concat(future).ToList();
+        }
+
+
+        public WeekDatasDTO GetWeekDataByDayForAllDevicesOrDevice(int deviceid, int year, int month, int day)
+        {
+            int count = 0;
+            List<string> dates = new List<string>();
+            List<double> devicesdata = new List<double>();
+            List<DevicesData> current;
+            while (count < 7)
+            {
+                if (day >= 1)
+                {
+                    if(deviceid == -1)
+                        current = GetAllDevicesByDay(year, month, day);
+                    else
+                        current = GetDevicesDataByIdDate(deviceid, year, month, day);
+                    if (current.Count != 0)
+                    {
+                        devicesdata.Add(Calculate.CalculateTotalPowerUsage(current));
+                        dates.Add($"{month}.{day}");
+                        count++;
+                    }
+                    day--;
+
+                }
+                else
+                {
+                    if (month > 1)
+                    {
+                        month--;
+                        day = 31;
+                    }
+                    else
+                    {
+                        year--;
+                        month = 12;
+                        day = 31;
+                    }
+                }
+            }
+            devicesdata.Reverse();
+            dates.Reverse();
+            return new WeekDatasDTO(dates, devicesdata);
+        }
+
+        public WeekDatasDTO GetWeekDataByDayForAllDevicesOrDeviceInFuture(int deviceid, int year, int month, int day)
+        {
+            int count = 0;
+            List<string> dates = new List<string>();
+            List<double> devicesdata = new List<double>();
+            List<DevicesData> current;
+            while (count < 7)
+            {
+                if (day <= 31)
+                {
+                    if (deviceid == -1)
+                        current = GetAllDevicesByDayForFuture(year, month, day);
+                    else
+                        current = GetIdDeviceByDayForFuture(deviceid, year, month, day);
+
+                    if (current.Count != 0)
+                    {
+                        devicesdata.Add(Calculate.CalculateTotalPowerUsage(current));
+                        dates.Add($"{month}.{day}");
+                        count++;
+                    }
+                    day++;
+
+                }
+                else
+                {
+                    if (month <= 11)
+                    {
+                        month++;
+                        day = 1;
+                    }
+                    else
+                    {
+                        year++;
+                        month = 1;
+                        day = 1;
+                    }
+                }
+            }
+            return new WeekDatasDTO(dates, devicesdata);
+        }
+        
+        public WeekDatasDTO GetWeekByDayHistoryAndFutureForAllDevicesOrDevice(int deviceid, int year, int month, int day)
+        {
+            WeekDatasDTO history = GetWeekDataByDayForAllDevicesOrDevice(deviceid, year, month, day);
+            WeekDatasDTO future = GetWeekDataByDayForAllDevicesOrDeviceInFuture(deviceid, year, month, day);
+
+            List<string> dates = history.dates;
+            List<double> datas = history.datas;
+
+            return new WeekDatasDTO(dates.Concat(future.dates).ToList(), datas.Concat(future.datas).ToList());
+        }
+
     }
 }

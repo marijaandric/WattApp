@@ -147,20 +147,20 @@ namespace backend.Controllers
         public double GetMonthlyStatistics(int userId, int year, int month, string type)
         {
             return _context.GetMonthlyStatistics(userId, year, month, type);
-            
+
         }
 
         [HttpGet("tableContent/{userId}/{year}/{month}/{day}/{time}/{type}")]
-        public List<BigTableContent> GetTableContent(int userId, int year, int month, int day, int time,string type)
+        public List<BigTableContent> GetTableContent(int userId, int year, int month, int day, int time, string type)
         {
             return _context.GetTableContent(userId, year, month, day, time, type);
-            
+
         }
 
         [HttpGet("chart/{userId}/{type}/{limit}")]
         public IActionResult GetTableContent(int userId, string type, int limit)
         {
-            var result = _context.GetDevicesCountByType(userId,type, limit);
+            var result = _context.GetDevicesCountByType(userId, type, limit);
             return Ok(
                     new
                     {
@@ -176,7 +176,7 @@ namespace backend.Controllers
         public IActionResult currentMonthAllUsersDevicesUsage(string deviceType)
         {
             double result = _context.currentMonthAllUsersDevicesUsage(deviceType);
-            return Ok( new
+            return Ok(new
             {
                 Usage = result
             });
@@ -209,6 +209,27 @@ namespace backend.Controllers
                     Area = result.Item1,
                     Usage = result.Item2
                 });
+        }
+
+        [HttpGet("getHistoryAndForecastByDayForDevice/{deviceid}")]
+        public IActionResult getHistoryAndForecastByDayForDevice(int deviceid)
+        {
+            var result = _context.GetWeekByDayHistoryAndFutureForDevice(deviceid);
+            return Ok(result);
+        }
+
+        [HttpGet("getHistoryAndForecastByDayForAllDevices")]
+        public IActionResult getHistoryAndForecastByDayForAllDevices()
+        {
+            var result = _context.GetWeekByDayHistoryAndFutureForAllDevices();
+            return Ok(result);
+        }
+
+        [HttpGet("getHistoryAndForecastByDayForAllUserDevices/{userid}")]
+        public IActionResult getHistoryAndForecastByDayForAllUserDevices(int userid)
+        {
+            var result = _context.GetWeekByDayHistoryAndFutureForAllUserDevices(userid);
+            return Ok(result);
         }
 
         [HttpGet("price")]
