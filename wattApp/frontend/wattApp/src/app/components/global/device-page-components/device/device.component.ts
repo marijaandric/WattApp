@@ -42,6 +42,7 @@ export class DeviceComponent implements OnInit{
   typeSelected! : Types;
   roomSelected! : Rooms;
   modelSelected! : Models;
+  display3 : Boolean = false;
 
 
   constructor(private route: ActivatedRoute, 
@@ -99,6 +100,10 @@ export class DeviceComponent implements OnInit{
     this.displayEditDeviceDialog = true;
   }
 
+  showDialog(){
+    this.display3 = !this.display3 ;
+  }
+
   async handleVisibilitySwitchChange(){
     await lastValueFrom(this.deviceService.updateDevice(this.device));
   }
@@ -143,4 +148,6 @@ export class DeviceComponent implements OnInit{
       this.navigateToDevices();
     });
   }
+
+
 }

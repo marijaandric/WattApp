@@ -31,6 +31,19 @@ namespace backend.Helpers
             }
         }
 
+        public static WeekDatasDTO SendHttpRequestForWeekDatas(string url)
+        {
+            using (var httpClient = new HttpClient())
+            {
+                HttpResponseMessage response = httpClient.GetAsync(url).Result;
+                response.EnsureSuccessStatusCode();
+                string responseBody = response.Content.ReadAsStringAsync().Result;
+                Console.WriteLine(responseBody);
+                return JsonSerializer.Deserialize<WeekDatasDTO>(responseBody);
+
+            }
+        }
+
         public static string SendHttpRequestForWeather(string url)
         {
             using (var httpClient = new HttpClient())

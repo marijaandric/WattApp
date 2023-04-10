@@ -8,6 +8,17 @@
     </app-select-one-menu-bar>
   
     <app-center-bar>
+      <div class="widgets">
+      <app-widget [subTitle]="'Total number of all devices'" [Title]="'0'" [isBlue]="true" [isBgBlue]="true" class="widget">
+      </app-widget>
+      <app-widget [subTitle]="'Total number of connected devices'" [Title]="'0'" [isYellow]="true" [isBgYellow]="true" class="widget">
+      </app-widget>
+      <app-widget [subTitle]="'Total number of devices visible to DSO'" [Title]="'0'" [isPink]="true" [isBgPink]="true" class="widget">
+      </app-widget>
+      <app-widget  [subTitle]="'Total number of devices managed by DSO'" [Title]="'0'" [isOrange]="true" [isBgOrange]="true" class="widget">
+      </app-widget>
+      </div>
+
       <app-devices [devices]="allDevices"></app-devices>
     </app-center-bar>
 </standard-template>
