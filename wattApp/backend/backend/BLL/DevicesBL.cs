@@ -317,8 +317,6 @@ namespace backend.BLL
         {
             DateTime now = DateTime.Now;
             List<Devices> devices = _contextDAL.GetDevicesForUser(userid);
-            User user = _contextUserDAL.getUser(userid);
-            Console.WriteLine(user.Email);
             List<WeekDatasDTO> weekDatas = new List<WeekDatasDTO>();
             List<double> totaldatas = new List<double>();
             double sum;
