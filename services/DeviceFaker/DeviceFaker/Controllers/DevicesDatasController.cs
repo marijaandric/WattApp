@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using DeviceFaker.Models;
 using DeviceFaker.Services;
+using MongoDB.Driver.Core.Misc;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace DeviceFaker.Controllers
 {
@@ -78,14 +80,14 @@ namespace DeviceFaker.Controllers
         [HttpGet("GetWeekDataForAllDevices/{deviceid}/{year}/{month}/{day}")]
         public List<DevicesData> GetWeekDataForAllDevices(int deviceid, int year, int month, int day)
         {
-            var devicesData = _devicesDataService.GetWeekDataForAllDevices(deviceid, year, month, day);
+            var devicesData = _devicesDataService.GetWeekDataForAllDevicesOrDevice(deviceid, year, month, day);
             return devicesData;
         }
 
         [HttpGet("GetWeekDataForAllDevicesInFuture/{deviceid}/{year}/{month}/{day}")]
         public List<DevicesData> GetWeekDataForAllDevicesInFuture(int deviceid, int year, int month, int day)
         {
-            var devicesData = _devicesDataService.GetWeekDataForAllDevicesInFuture(deviceid, year, month, day);
+            var devicesData = _devicesDataService.GetWeekDataForAllDevicesOrDeviceInFuture(deviceid, year, month, day);
             return devicesData;
         }
 
@@ -94,6 +96,19 @@ namespace DeviceFaker.Controllers
         {
             var devicesData = _devicesDataService.GetWeekHistoryAndFutureForAllDevices(deviceid, year, month, day);
             return devicesData;
+        }
+
+
+        [HttpGet("GetWeekByDayHistoryAndFutureForAllDevices/{year}/{month}/{day}")]
+        public WeekDatasDTO GetWeekByDayHistoryAndFutureForAllDevices(int year, int month, int day)
+        {
+            return _devicesDataService.GetWeekByDayHistoryAndFutureForAllDevicesOrDevice(-1, year, month, day);
+        }
+
+        [HttpGet("GetWeekByDayHistoryAndFutureForDevice/{deviceid}/{year}/{month}/{day}")]
+        public WeekDatasDTO GetWeekByDayHistoryAndFutureForDevice(int deviceid, int year, int month, int day)
+        {
+            return _devicesDataService.GetWeekByDayHistoryAndFutureForAllDevicesOrDevice(deviceid, year, month, day);
         }
 
     }

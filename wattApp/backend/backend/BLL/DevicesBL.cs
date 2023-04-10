@@ -304,5 +304,50 @@ namespace backend.BLL
             else
                 return (minArea, min);
         }
+
+        public WeekDatasDTO GetWeekByDayHistoryAndFutureForDevice(int deviceid)
+        {
+            DateTime now = DateTime.Now;
+            WeekDatasDTO devicesDatas = _contextDataDAL.GetWeekByDayHistoryAndFutureForDevice(deviceid, now.Year, now.Month, now.Day);
+
+            return devicesDatas;
+        }
+
+        public WeekDatasDTO GetWeekByDayHistoryAndFutureForAllUserDevices(int userid)
+        {
+            DateTime now = DateTime.Now;
+            List<Devices> devices = _contextDAL.GetDevicesForUser(userid);
+            User user = _contextUserDAL.getUser(userid);
+            Console.WriteLine(user.Email);
+            List<WeekDatasDTO> weekDatas = new List<WeekDatasDTO>();
+            List<double> totaldatas = new List<double>();
+            double sum;
+            foreach(Devices device in devices)
+            {
+                weekDatas.Add(_contextDataDAL.GetWeekByDayHistoryAndFutureForDevice(device.Id, now.Year, now.Month, now.Day));
+            }
+
+            if (weekDatas.Count == 0)
+                return null;
+
+            for(int i = 0; i < weekDatas[0].datas.Count; i++)
+            {
+                sum = 0;
+                for (int j = 0; j < weekDatas.Count; j++)
+                {
+                    sum += weekDatas[j].datas[i];
+                }
+                totaldatas.Add(sum);
+            }
+            return new WeekDatasDTO(weekDatas[0].dates, totaldatas);
+        }
+
+        public WeekDatasDTO GetWeekByDayHistoryAndFutureForAllDevices()
+        {
+            DateTime now = DateTime.Now;
+            WeekDatasDTO devicesDatas = _contextDataDAL.GetWeekByDayHistoryAndFutureForAllDevices(now.Year, now.Month, now.Day);
+
+            return devicesDatas;
+        }
     }
 }
