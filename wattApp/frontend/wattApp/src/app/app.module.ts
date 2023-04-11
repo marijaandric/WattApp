@@ -76,6 +76,7 @@ import { HistoryLineChartComponent } from './components/Prosumer/history-line-ch
 import { ForecastLineChartComponent } from './components/Prosumer/forecast-line-chart/forecast-line-chart.component';
 import { DevicePrototypeComponent } from './components/global/device-page-components/device-prototype/device-prototype.component';
 import { AreaChartComponent } from './components/global/area-chart/area-chart.component';
+import { UsersProsumersComponent } from './components/DSO/users-page-components/users-prosumers/users-prosumers.component';
 
 
 export const url = 'https://localhost:7158';
@@ -134,7 +135,8 @@ export const deviceFakerUrl = "https://localhost:7233";
     HistoryLineChartComponent,
     ForecastLineChartComponent,
     DevicePrototypeComponent,
-    AreaChartComponent
+    AreaChartComponent,
+    UsersProsumersComponent
   ],
   imports: [
     CommonModule,
