@@ -47,6 +47,9 @@ export class StatisticComponent  implements OnInit {
 
   rooms: string[] =[];
   count: number[]=[];
+  
+  array = [12, 19, 3, 5, 2, 6, 5, null,null,null,null, null, null, null];
+  array2 = [null,null, null, null, null, null,5,10,12,3,16,5,10,5];
 
 
   constructor(private http: HttpClient, private deviceService : DeviceService) {
@@ -81,4 +84,6 @@ export class StatisticComponent  implements OnInit {
     console.log(this.selectedType)
     this.getDevicePerRoom();
   }
+
+  
 }

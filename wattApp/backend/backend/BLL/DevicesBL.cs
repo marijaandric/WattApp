@@ -313,39 +313,49 @@ namespace backend.BLL
             return devicesDatas;
         }
 
-        public WeekDatasDTO GetWeekByDayHistoryAndFutureForAllUserDevices(int userid)
+        public WeekDatasTypesDTO GetWeekByDayHistoryAndFutureForAllUserDevicesOrAllDevices(int userid)
         {
             DateTime now = DateTime.Now;
-            List<Devices> devices = _contextDAL.GetDevicesForUser(userid);
-            List<WeekDatasDTO> weekDatas = new List<WeekDatasDTO>();
-            List<double> totaldatas = new List<double>();
-            double sum;
+            List<Devices> devices;
+            if (userid != -1)
+                devices = _contextDAL.GetDevicesForUser(userid);
+            else
+                devices = _contextDAL.GetDevices();
+
+            if (devices.Count == 0 || devices == null)
+                return null;
+            WeekDatasDTO weekdata = _contextDataDAL.GetWeekByDayHistoryAndFutureForDevice(devices[0].Id, now.Year, now.Month, now.Day);
+            
+            List<double> totaldatasConsumer = new List<double>();
+            List<double> totaldatasProducer = new List<double>();
+            List<double> totaldatasStock = new List<double>();
+
+            for(int i = 0; i < weekdata.datas.Count; i++)
+            {
+                totaldatasConsumer.Add(0.0);
+                totaldatasProducer.Add(0.0);
+                totaldatasStock.Add(0.0);
+            }
+
             foreach(Devices device in devices)
             {
-                weekDatas.Add(_contextDataDAL.GetWeekByDayHistoryAndFutureForDevice(device.Id, now.Year, now.Month, now.Day));
-            }
-
-            if (weekDatas.Count == 0)
-                return null;
-
-            for(int i = 0; i < weekDatas[0].datas.Count; i++)
-            {
-                sum = 0;
-                for (int j = 0; j < weekDatas.Count; j++)
+                weekdata = _contextDataDAL.GetWeekByDayHistoryAndFutureForDevice(device.Id, now.Year, now.Month, now.Day);
+                
+                for (int j = 0; j < weekdata.datas.Count; j++)
                 {
-                    sum += weekDatas[j].datas[i];
+                    if (device.DeviceType.ToLower() == "consumer")
+                        totaldatasConsumer[j] += weekdata.datas[j];
+                    if (device.DeviceType.ToLower() == "producer")
+                        totaldatasProducer[j] += weekdata.datas[j];
+                    if(device.DeviceType.ToLower() == "stock")
+                        totaldatasStock[j] += weekdata.datas[j];
                 }
-                totaldatas.Add(sum);
             }
-            return new WeekDatasDTO(weekDatas[0].dates, totaldatas);
+            foreach (var pom in totaldatasProducer)
+                Console.WriteLine(pom);
+
+            return new WeekDatasTypesDTO(weekdata.dates, totaldatasConsumer, totaldatasProducer, totaldatasStock);
         }
 
-        public WeekDatasDTO GetWeekByDayHistoryAndFutureForAllDevices()
-        {
-            DateTime now = DateTime.Now;
-            WeekDatasDTO devicesDatas = _contextDataDAL.GetWeekByDayHistoryAndFutureForAllDevices(now.Year, now.Month, now.Day);
-
-            return devicesDatas;
-        }
     }
 }
