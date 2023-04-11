@@ -221,16 +221,17 @@ namespace backend.Controllers
         [HttpGet("getHistoryAndForecastByDayForAllDevices")]
         public IActionResult getHistoryAndForecastByDayForAllDevices()
         {
-            var result = _context.GetWeekByDayHistoryAndFutureForAllDevices();
+            var result = _context.GetWeekByDayHistoryAndFutureForAllUserDevicesOrAllDevices(-1);
             return Ok(result);
         }
 
         [HttpGet("getHistoryAndForecastByDayForAllUserDevices/{userid}")]
         public IActionResult getHistoryAndForecastByDayForAllUserDevices(int userid)
         {
-            var result = _context.GetWeekByDayHistoryAndFutureForAllUserDevices(userid);
+            var result = _context.GetWeekByDayHistoryAndFutureForAllUserDevicesOrAllDevices(userid);
             return Ok(result);
         }
+
 
         [HttpGet("price")]
         public double getElectricalPowerPrice()
@@ -240,6 +241,5 @@ namespace backend.Controllers
             double result = 20 + (randomNumber % 5);
             return Math.Round(result, 2);
         }
-
     }
 }
