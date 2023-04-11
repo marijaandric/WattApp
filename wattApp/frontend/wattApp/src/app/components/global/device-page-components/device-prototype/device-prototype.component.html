@@ -4,59 +4,114 @@
     </app-title-bar>
   
     <app-center-bar>
+      
     <div class="main-card">
-        <div class="card-1">
-            <div class="flexRow" style="height:100px;">
-                <h5 style="color:rgb(4, 167, 119);font-weight:bold;">{{ device.deviceName }}</h5>
-                <p-button label="Edit" (click)="showEditDeviceDialog()" class="margin-left__auto" style="border-radius:32px !important;"/>
-                <p-button label="Delete" (onClick)="deleteDevice(device.id)" class="margin-left__8px"/>
+      <div class="card-1">
+          <div class="flexRow" style="height:100px;">
+              <div class="colored-text"><h5>{{ device.deviceName }}</h5></div>
+              <!--
+              <p-button label="Edit" (click)="showEditDeviceDialog()" class="margin-left__auto" style="border-radius:32px !important;"/>
+              <p-button label="Delete" (onClick)="deleteDevice(device.id)" class="margin-left__8px"/>
+              -->
+            </div>
+          <div class=" circle circle-1">
+              <div class="circle circle-2">
+                  <div class="circle-icon">
+                      <i class="fa-solid fa-bolt"></i>
+                  </div>
+                  <div class="main-stat">
+                      <span>15.24</span> 
+                  </div>
+                  <div class="kwh">
+                      <span>kWh</span>
+                  </div>
+
               </div>
-            <div class=" circle circle-1">
-                <div class="circle circle-2">
-                    <div class="circle-icon">
-                        <i class="fa-solid fa-bolt"></i>
-                    </div>
-                    <div class="main-stat">
-                        <span>15.24</span> 
-                    </div>
-                    <div class="kwh">
-                        <span>kWh</span>
-                    </div>
-
-                </div>
-            </div>
-
+          </div>
+      </div>  
+      <div class="card-2">
+     
+          <div class="card-2-1" >
             <div class="stats">
+              <div class="main-stat-card">
+                  <span>15.24</span> 
+              </div>
+              <div class="circle-icon">
+                <i class="fa-solid fa-bolt"></i>
+              </div>
+              <div class="kwh-card">
+                  <span>kWh</span>
+              </div>
 
             </div>
-            
-            <div class="stats">
-
-            </div>
-            <div class="stats">
-
-            </div>
-        </div>  
-        <div class="card-1-1">
-       
-            <div style="display:flex;float:left; background-color:red; flex-direction:column;  width:47%; height:100%" >
-            nameSelected
-            </div>
-            <div style="display:flex;float:left; background-color:blue; flex-direction:column; margin-left:calc(6%); width:47%; height:100%" >
-           sdsd
-            </div>    
-        </div>
-        <div style="display:flex;float:right; flex-direction:row; width:100%; height:400px">
-            <div style="display:flex;float:right; flex-direction:column;  width:47%; height:100%" >
-            </div>
-            <div style="display:flex;float:right; flex-direction:column; margin-left:calc(6%); width:47%; height:100%" >
-            </div>
-        </div>
-    
-        <div style="display:flex;float:right; flex-direction:row; width:100%; height:100%">
+            <!--
+            <div class="circle circle-3">
+              <div class=" circle-4"></div>
+            </div>-->
+          </div>
+          <div  class="card-2-2" >
+            <!--
+            <div class="circle circle-3">
+              <div class=" circle-4"></div>
+            </div>-->
+              <div class="stats ">
               
+            </div>
+
+          </div>   
+      </div>
+      
+      <div class="card-2 card-3">
+     
+        <div class="card-2-1" >
+          <div class="stats stat-3">
+            <div class="inner-card">
+              <div class="main-stat-card">
+                <span>15.24</span> 
+              </div>
+              <div class="circle-icon">
+                <i class="fa-solid fa-bolt"></i>
+              </div>
+              <div class="kwh-card">
+                  <span>kWh</span>
+              </div>  
+            </div>
+          </div>
+          <!--
+          <div class="circle circle-3">
+            <div class=" circle-4"></div>
+          </div>-->
         </div>
+        <div  class="card-2-2" >
+          <!--
+          <div class="circle circle-3">
+            <div class=" circle-4"></div>
+          </div>-->
+            <div class="stats stat-3">
+              <div class="main-stat-card">
+                <span>15.24</span> 
+              </div>
+              <div class="circle-icon">
+                <i class="fa-solid fa-bolt"></i>
+              </div>
+              <div class="kwh-card">
+                  <span>kWh</span>
+              </div> 
+            </div>
+
+        </div>   
     </div>
+      <div style="display:flex;float:right; flex-direction:row; width:100%; height:400px">
+          <div style="display:flex;float:right; flex-direction:column;  width:47%; height:100%" >
+          </div>
+          <div style="display:flex;float:right; flex-direction:column; margin-left:calc(6%); width:47%; height:100%" >
+          </div>
+      </div>
+  
+      <div style="display:flex;float:right; flex-direction:row; width:100%; height:100%">
+            
+      </div>
+  </div>
     <!--
       <div id="deviceInformation" class="flexColumn device-information">
         <div class="flexRow">
