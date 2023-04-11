@@ -322,6 +322,8 @@ namespace backend.BLL
             else
                 devices = _contextDAL.GetDevices();
 
+            if (devices.Count == 0 || devices == null)
+                return null;
             WeekDatasDTO weekdata = _contextDataDAL.GetWeekByDayHistoryAndFutureForDevice(devices[0].Id, now.Year, now.Month, now.Day);
             
             List<double> totaldatasConsumer = new List<double>();
