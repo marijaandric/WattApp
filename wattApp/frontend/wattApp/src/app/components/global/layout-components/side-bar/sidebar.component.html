@@ -29,8 +29,8 @@
     </div>
     <ul  class="sub-menu nopadding">
         <li><a class="link_name" routerLink="/users">Users</a></li>
-        <li *ngIf="!isSubMenuShown"><a routerLink="/users">Prosumers</a></li>
-        <li *ngIf="!isSubMenuShown"><a routerLink="/users">Operators</a></li>
+        <li *ngIf="!isSubMenuShown"><a routerLink="/users/prosumers">Prosumers</a></li>
+        <li *ngIf="!isSubMenuShown"><a routerLink="/users/operators">Operators</a></li>
     </ul>
     </li>
     <li *ngIf="isSubMenuShown" class="submenus" [ngClass]="{'marginLeft' : !isSidebarShown}">
