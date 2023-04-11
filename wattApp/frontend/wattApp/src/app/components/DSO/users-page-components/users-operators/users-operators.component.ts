@@ -3,15 +3,17 @@ import { UserDTO } from '../../../../dtos/UserDTO';
 import { UserService } from '../../../../services/user/user.service';
 import axios from 'axios';
 
+
 @Component({
-  selector: 'app-users-prosumers',
-  templateUrl: './users-prosumers.component.html',
-  styleUrls: ['./users-prosumers.component.css'],
+  selector: 'app-users-operators',
+  templateUrl: './users-operators.component.html',
+  styleUrls: ['./users-operators.component.css'],
   encapsulation: ViewEncapsulation.None
 })
-
-export class UsersProsumersComponent implements OnInit {
+export class UsersOperatorsComponent implements OnInit {
   users: UserDTO[] = [];
+
+
   constructor(private userService: UserService) {
 
  }
@@ -29,3 +31,4 @@ export class UsersProsumersComponent implements OnInit {
   }
 
 }
+

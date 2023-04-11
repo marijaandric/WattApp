@@ -77,6 +77,7 @@ import { ForecastLineChartComponent } from './components/Prosumer/forecast-line-
 import { DevicePrototypeComponent } from './components/global/device-page-components/device-prototype/device-prototype.component';
 import { AreaChartComponent } from './components/global/area-chart/area-chart.component';
 import { UsersProsumersComponent } from './components/DSO/users-page-components/users-prosumers/users-prosumers.component';
+import { UsersOperatorsComponent } from './components/DSO/users-page-components/users-operators/users-operators.component';
 
 
 export const url = 'https://localhost:7158';
@@ -136,7 +137,8 @@ export const deviceFakerUrl = "https://localhost:7233";
     ForecastLineChartComponent,
     DevicePrototypeComponent,
     AreaChartComponent,
-    UsersProsumersComponent
+    UsersProsumersComponent,
+    UsersOperatorsComponent
   ],
   imports: [
     CommonModule,
