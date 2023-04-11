@@ -8,12 +8,22 @@
     <div class="main-card">
       <div class="card-1">
           <div class="flexRow" style="height:100px;">
-              <div class="colored-text"><h5>{{ device.deviceName }}</h5></div>
+            <div class="icon-1"><i class="fa-solid fa-tv"></i></div>
+              <div class="colored-text" ><h5>{{ device.deviceName }}</h5></div>
               <!--
               <p-button label="Edit" (click)="showEditDeviceDialog()" class="margin-left__auto" style="border-radius:32px !important;"/>
               <p-button label="Delete" (onClick)="deleteDevice(device.id)" class="margin-left__8px"/>
               -->
+            <div class="menu">
+              <div class="icon-2"><i class="fa-solid fa-bars"></i></div>
+              <div class="menu-container">
+                <i class="fa-solid fa-pen-to-square"></i>
+                <i class="fa-solid fa-trash"></i>
+                <i class="fa-solid fa-toggle-on"></i>
+                <i class="fa-solid fa-toggle-off"></i>
+              </div>
             </div>
+          </div>
           <div class=" circle circle-1">
               <div class="circle circle-2">
                   <div class="circle-icon">
@@ -29,20 +39,22 @@
               </div>
           </div>
       </div>  
+    
       <div class="card-2">
      
           <div class="card-2-1" >
             <div class="stats">
-              <div class="main-stat-card">
-                  <span>15.24</span> 
+              <div class="inner-card">
+                <div class="icon">
+                  <i class="fa-solid fa-arrow-trend-up" style="color: #000000; "></i>
+                </div>
+                <div class="main-stat-card">
+                    <span>15.24</span> 
+                </div>
+                <div class="kwh-card">
+                    <span>kWh</span>
+                </div>
               </div>
-              <div class="circle-icon">
-                <i class="fa-solid fa-bolt"></i>
-              </div>
-              <div class="kwh-card">
-                  <span>kWh</span>
-              </div>
-
             </div>
             <!--
             <div class="circle circle-3">
@@ -55,6 +67,20 @@
               <div class=" circle-4"></div>
             </div>-->
               <div class="stats ">
+                <div class="inner-card">
+                  <div class="icon">
+                    <i class="fa-solid fa-arrow-trend-up" style="color: #000000;"></i>
+                  </div>
+                  <div class="more-than">
+                    <span>5.6% more than yesterday</span>
+                  </div>  
+                  <div class="main-stat-card">
+                    <span>15.24</span>
+                  </div>
+                  <div class="kwh-card">
+                      <span>kWh</span>
+                  </div>  
+                </div>
               
             </div>
 
@@ -66,11 +92,11 @@
         <div class="card-2-1" >
           <div class="stats stat-3">
             <div class="inner-card">
+              <div class="icon">
+                <i class="fa-solid fa-arrow-trend-up " style="color: #000000;"></i>
+              </div>
               <div class="main-stat-card">
                 <span>15.24</span> 
-              </div>
-              <div class="circle-icon">
-                <i class="fa-solid fa-bolt"></i>
               </div>
               <div class="kwh-card">
                   <span>kWh</span>
@@ -87,16 +113,18 @@
           <div class="circle circle-3">
             <div class=" circle-4"></div>
           </div>-->
-            <div class="stats stat-3">
-              <div class="main-stat-card">
-                <span>15.24</span> 
+            <div class="stats">
+              <div class="inner-card"> 
+                <div class="icon">
+                  <i class="fa-solid fa-arrow-trend-up" style="color: #000000;"></i>
+                </div>  
+                <div class="main-stat-card">
+                  <span>15.24</span> 
+                </div>
+                <div class="kwh-card">
+                    <span>kWh</span>
+                </div> 
               </div>
-              <div class="circle-icon">
-                <i class="fa-solid fa-bolt"></i>
-              </div>
-              <div class="kwh-card">
-                  <span>kWh</span>
-              </div> 
             </div>
 
         </div>   
