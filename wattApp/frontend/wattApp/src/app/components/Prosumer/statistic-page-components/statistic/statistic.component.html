@@ -13,7 +13,7 @@
       <app-history-line-chart class="handf" *ngIf="switchValue == true"></app-history-line-chart>
       <app-forecast-line-chart class="handf" *ngIf="switchValue == false"></app-forecast-line-chart>
     </div>
-    <app-history-forecast class="chart" id="oneChart"></app-history-forecast>
+    <app-history-forecast class="chart" id="oneChart"  ></app-history-forecast>
 
     <app-pie-chart class="chart" [Series]="count" [chartLabels]="rooms" [chartText]="text" [chartHeight]="piechartHeight1"></app-pie-chart>    
     <p-table class="d-table" #dtUsers class="ui-table-default" dataKey="id" [scrollable]="true" 
