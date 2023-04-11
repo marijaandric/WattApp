@@ -24,7 +24,6 @@ namespace backend.BLL.Interfaces
         public double getTotalUsageByArea(string area, string type, string timeType);
         public (string?, double?) getExtremeUsageForAreas(string type, string timeType, string minmax);
         public WeekDatasDTO GetWeekByDayHistoryAndFutureForDevice(int deviceid);
-        public WeekDatasDTO GetWeekByDayHistoryAndFutureForAllDevices();
-        public WeekDatasDTO GetWeekByDayHistoryAndFutureForAllUserDevices(int userid);
+        public WeekDatasTypesDTO GetWeekByDayHistoryAndFutureForAllUserDevicesOrAllDevices(int userid);
     }
 }
