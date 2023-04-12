@@ -111,5 +111,13 @@ namespace backend.Controllers
             return Ok(token);
         }
 
+        [HttpGet("getUsersByRole/{type}")]
+        public List<User> GetUsersByType(string type)
+        {
+            var user = _context.GetUsersByType(type);
+
+            return user;
+        }
+
     }
 }

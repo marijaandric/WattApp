@@ -101,5 +101,10 @@ namespace backend.DAL
         {
             return _context.Users.Where(u => u.Area == area).ToList();
         }
+
+        public List<User> GetUsersByType(string type)
+        {
+            return _context.Users.Where(e => e.Role == type).ToList();
+        }
     }
 }

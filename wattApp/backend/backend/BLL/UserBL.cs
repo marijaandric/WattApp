@@ -60,6 +60,11 @@ namespace backend.BAL
             return _contextDAL.getUsers();
         }
 
+        public List<User> GetUsersByType(string type)
+        {
+            return _contextDAL.GetUsersByType(type);
+        }
+
         public TokenApiDto refreshToken(TokenApiDto tokenApiDto)
         {
             string accessToken = tokenApiDto.AccessToken;
