@@ -14,7 +14,7 @@ export class AreaChartComponent implements OnInit  {
     {
       name: 'Resorce',
       data: [12, 19, 13, 15, 12, 13,10,12,3,4,5],
-      color:'#00E396'
+      color: '#b855a4'
     },
   ];
 

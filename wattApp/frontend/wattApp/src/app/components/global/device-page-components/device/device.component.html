@@ -4,7 +4,12 @@
   </app-title-bar>
 
   <app-center-bar>
-    <div id="deviceInformation" class="flexColumn device-information">
+    <div class="device" >
+      <div class="circles">
+        <app-device-prototype style="width:100%"></app-device-prototype>
+      </div>
+    <div class="info" >
+    <div id="deviceInformation" class="flexColumn device-information" >
       <div class="flexRow">
         <h3 style="color:rgb(4, 167, 119);font-weight:bold;">{{ device.deviceName }}</h3>
         <p-button label="Edit" (click)="showEditDeviceDialog()" class="margin-left__auto" style="border-radius:32px !important;"/>
@@ -48,6 +53,7 @@
         <span *ngIf="isRunning">Running</span>
         <p-inputSwitch [(ngModel)]="device.isActive" (onChange)="handleRunningSwitchChange()" class="margin-left__auto width__fit-content"/>
       </div>
+    
 
       <div class="flexRow margin-top__8px">
         <span>Current consumption:</span>
@@ -58,12 +64,23 @@
         <span>Totaly ever consumed:</span>
         <span class="margin-left__auto">{{ 'N/A' }}</span>
       </div>
+      
     </div>
-
     <div>
+      
+      <div class="twoCharts">
+        <p-selectButton class="flexRow width__fit-content margin-left__auto margin-bottom__16px" [options]="switchOptions" [(ngModel)]="switchValue" optionLabel="label" optionValue="value"></p-selectButton>
+        <app-history-line-chart class="handf" *ngIf="switchValue == true"></app-history-line-chart>
+        <app-forecast-line-chart class="handf" *ngIf="switchValue == false"></app-forecast-line-chart>
+      </div>
       <!--<app-device-area-bar-chart clas="bar-plot" class="margin-top__16px"/>-->
-      <app-history-forecast class="margin-top__16px" [array] = 'array' [array2]="array2" [array3] = 'array3'></app-history-forecast>
+      <app-history-forecast id="oneChart" class="margin-top__16px" style="width: 100%;" [array] = 'array' [array2]="array2" [array3] = 'array3'></app-history-forecast>
     </div>
+    </div>
+  </div>
+  
+
+  
   </app-center-bar>
 </standard-template>
 

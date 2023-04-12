@@ -95,4 +95,21 @@ export class DeviceService {
     return this.http.get<any>(this.baseUrl+"getHistoryAndForecastByDayForDevice/"+id)
   }
 
+  GetNumberOfUserDevices(id :number)
+  {
+    return this.http.get<any>(this.baseUrl+"getNumberOfUserDevices"+"/"+id)
+  }
+  GetNumberOfActiveUserDevices(id :number)
+  {
+    return this.http.get<any>(this.baseUrl+"getNumberOfActiveUserDevices"+"/"+id)
+  }
+  GetNumberOfDevicesForUserThatDSOCanSee(id :number)
+  {
+    return this.http.get<any>(this.baseUrl+"GetNumberOfDevicesForUserThatDSOCanSee"+"/"+id)
+  }
+  GetNumberOfDevicesForUserThatDSOCanManage(id :number)
+  {
+    return this.http.get<any>(this.baseUrl+"GetNumberOfDevicesForUserThatDSOCanManage"+"/"+id)
+  }
+
 }
