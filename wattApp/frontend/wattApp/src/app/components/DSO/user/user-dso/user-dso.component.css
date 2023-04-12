@@ -1,0 +1,32 @@
+.firstHalf{
+    width: 40%;
+}
+
+.user, .donuts{
+    display: flex;
+    flex-direction: row;
+}
+
+.secondHalf{
+    justify-content: center;
+    align-items: center;
+}
+.donuts{
+    margin: 0% 5%;
+    align-items: center;
+}
+
+.chart{
+    width: 140%;
+    padding: 10%;
+    background-color: #222222;
+    margin:10% 0px 10% 10%;
+    box-shadow: 5px 5px 15px black;
+    border-radius: 20px;
+}
+
+.usercard{
+    width: 100%;
+}
+
+

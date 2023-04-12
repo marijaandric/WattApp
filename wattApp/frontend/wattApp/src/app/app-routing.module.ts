@@ -19,6 +19,7 @@ import { DevicesAllComponent } from './components/Prosumer/devices-page-componen
 import { DevicePrototypeComponent } from './components/global/device-page-components/device-prototype/device-prototype.component';
 import { UsersProsumersComponent } from './components/DSO/users-page-components/users-prosumers/users-prosumers.component';
 import { UsersOperatorsComponent } from './components/DSO/users-page-components/users-operators/users-operators.component';
+import { UserDSOComponent } from './components/DSO/user/user-dso/user-dso.component';
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
@@ -38,6 +39,7 @@ const routes: Routes = [
   { path: 'statistics', component: StatisticComponent },
   { path: 'users/prosumers', component: UsersProsumersComponent},
   { path: 'users/operators', component: UsersOperatorsComponent},
+  { path: 'userDSO', component: UserDSOComponent},
 ];
 
 @NgModule({

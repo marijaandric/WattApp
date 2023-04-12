@@ -78,6 +78,9 @@ import { DevicePrototypeComponent } from './components/global/device-page-compon
 import { AreaChartComponent } from './components/global/area-chart/area-chart.component';
 import { UsersProsumersComponent } from './components/DSO/users-page-components/users-prosumers/users-prosumers.component';
 import { UsersOperatorsComponent } from './components/DSO/users-page-components/users-operators/users-operators.component';
+import { CardComponent } from './components/DSO/user/card/card.component';
+import { UserDSOComponent } from './components/DSO/user/user-dso/user-dso.component';
+import { CircleComponent } from './components/DSO/user/circle/circle.component';
 
 
 export const url = 'https://localhost:7158';
@@ -138,7 +141,10 @@ export const deviceFakerUrl = "https://localhost:7233";
     DevicePrototypeComponent,
     AreaChartComponent,
     UsersProsumersComponent,
-    UsersOperatorsComponent
+    UsersOperatorsComponent,
+    CardComponent,
+    UserDSOComponent,
+    CircleComponent,
   ],
   imports: [
     CommonModule,
