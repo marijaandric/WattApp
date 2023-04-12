@@ -45,11 +45,10 @@ export class HomeComponent {
       {name: 'Paris', code: 'PRS'}
   ];
     this.type = [
-      {name: 'Consumption', code: '1'},
-      {name: 'Production', code: '2'},
-      {name: 'Stock', code: '3'},
-      {name: 'All', code: '4'},
-  ];
+      {name: 'Consumption', code: 'Consumer'},
+      {name: 'Production', code: 'Producer'},
+      {name: 'Stock', code: 'Stock'},
+    ];
   }
 
   changeBg(selectedType: City) {
@@ -131,6 +130,7 @@ export class HomeComponent {
     this.getmonthPowerUsageConsumer();
     this.getmonthPowerUsageProducer();
     this.getmonthPowerUsageStorage();
+    this.getHistoryAndForecastByDayForAllDevices();
     this.getdayPowerPrice();
   }
 
@@ -163,8 +163,97 @@ export class HomeComponent {
     
   }
 
+  History = [12, 19, 3, 5, 2, 6, 5, null,null,null,null, null, null, null];
+  Forecast= [null,null, null, null, null, null,5,10,12,3,16,5,10,5];
 
 
+  arrayData = [1,2,3,4,5,6,7,8,9,10,11,12,13,14];
+
+  name1 = "history";
+  name2 = "forecast";
+
+  color1 = '#f5805a';
+  color2 = '#f9b59f';
+
+  getHistoryAndForecastByDayForAllDevices() {
+    this.deviceService.GetHistoryAndForecastByDayForAllDevices().subscribe(data => {
+      if (this.selectedType.code == 'Consumer') {
+        this.arrayData = data.dates; //.slice(0, 7).concat(data.dates.slice(8));
+
+        this.History = data.totaldatasConsumer.map((val: number) => +val.toFixed(2));
+        this.Forecast = data.totaldatasConsumer.map((val: number) => +val.toFixed(2));
+
+        for (let i = 8; i < 14; i++) {
+          this.History[i] = null;
+        }
+
+        for (let i = 0; i < 7; i++) {
+          this.Forecast[i] = null;
+        }
+
+        this.name1="Consumption history";
+        this.name2="Consumption forecast";
+
+        this.color1 = '#f5805a';
+        this.color2 = '#f9b59f';
+      }
+
+      else if (this.selectedType.code == 'Producer') {
+        this.arrayData = data.dates; //.slice(0, 7).concat(data.dates.slice(8));
+
+        this.History = data.totaldatasProducer.map((val: number) => +val.toFixed(2));
+        this.Forecast = data.totaldatasProducer.map((val: number) => +val.toFixed(2));
+
+        for (let i = 8; i < 14; i++) {
+          this.History[i] = null;
+        }
+
+        for (let i = 0; i < 7; i++) {
+          this.Forecast[i] = null;
+        }
+
+        this.name1="Production history";
+        this.name2="Production forecast";
+
+        this.color1 = '#46c5f1';
+        this.color2 = '#71d3f4';
+      }
+
+      else if (this.selectedType.code == 'Stock') {
+        this.arrayData = data.dates; //.slice(0, 7).concat(data.dates.slice(8));
+
+        this.History = data.totaldatasStock.map((val: number) => +val.toFixed(2));
+        this.Forecast = data.totaldatasStock.map((val: number) => +val.toFixed(2));
+
+        for (let i = 8; i < 14; i++) {
+          this.History[i] = null;
+        }
+
+        for (let i = 0; i < 7; i++) {
+          this.Forecast[i] = null;
+        }
+
+        this.name1="Stock history";
+        this.name2="Stock forecast";
+
+        this.color1 = '#885ec0';
+        this.color2 = '#ae91d4';
+      }
+
+      console.log(this.History);
+      console.log(this.Forecast);
+
+      // console.log(this.arrayData);
+    });
+  }
+
+
+  dropdownChange()
+  {
+    console.log(this.selectedType);
+    this.getHistoryAndForecastByDayForAllDevices();
+   
+  }
 
 
 
