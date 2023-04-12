@@ -25,8 +25,13 @@ export class HistoryForecastComponent implements OnInit,OnChanges{
 
   @Input() array : any[]  = [12.00, 19.00, 33.00, 5.00, 2.00, 6.00, 5.00, null,null,null,null, null, null, null]
   @Input() array2 : any[] = [null,null, null, null, null, null,5.00,10.00,12.00,23.00,16.00,5.00,10.00,5.00]
-  @Input() array3 : any[] = [null,null, null, null, null, null,null,null, null, null, null, null]
-  
+  @Input() array3 : any[] = [null,null, null, null, null, null,null,null, null, null, null, null,null,null]
+  @Input() naziv1 = "History";
+  @Input() naziv2 = "Forecast";
+  @Input() boja1 = '#f5805a';
+  @Input() boja2 = '#f5805a';
+
+
   constructor(private userService:UserService, private authService:AuthService, private deviceService:DeviceService) {
     this.cities = [
       {name: 'Consumption', code: '1'},
@@ -43,15 +48,15 @@ export class HistoryForecastComponent implements OnInit,OnChanges{
   ngOnChanges(changes: SimpleChanges) {
     this.series = [
       {
-        name: 'Consumption history',
+        name: this.naziv1,
         data: this.array,
-        color: '#7d02d4'
+        color: this.boja1,
         
       },
       {
-        name: "Consumption forecast",
+        name: this.naziv2,
         data: this.array2,
-        color: '#ab36ff'
+        color: this.boja2,
       }
     ];
 

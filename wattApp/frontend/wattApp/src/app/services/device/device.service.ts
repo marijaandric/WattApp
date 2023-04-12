@@ -111,5 +111,9 @@ export class DeviceService {
   {
     return this.http.get<any>(this.baseUrl+"GetNumberOfDevicesForUserThatDSOCanManage"+"/"+id)
   }
+  GetHistoryAndForecastByDayForAllUserDevices(id :number)
+  {
+    return this.http.get<any>(this.baseUrl+"getHistoryAndForecastByDayForAllUserDevices"+"/"+id)
+  }
 
 }
