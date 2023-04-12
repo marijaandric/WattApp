@@ -23,10 +23,15 @@ interface Types{
   name: string;
 }
 
-interface Datas{
-  data: any[];
-  date: any[];
+interface City {
+  name: string,
+  code: string
 }
+interface SwitchOption {
+  label: string;
+  value: boolean;
+}
+
 
 @Component({
   selector: 'app-device',
@@ -48,11 +53,17 @@ export class DeviceComponent implements OnInit{
   roomSelected! : Rooms;
   modelSelected! : Models;
   display3 : Boolean = false;
-
   
   array : any[]  = [null,null, null, null, null, null, null,null,null,null, null, null, null]
   array2 : any[] = [null,null, null, null, null, null,null,null, null, null, null, null,null]
   array3 : any[] = []
+
+  switchValue: boolean = true;
+
+  switchOptions: SwitchOption[] = [
+    {label: 'History', value: true},
+    {label: 'Forecast', value: false}
+  ];
 
 
   constructor(private route: ActivatedRoute, 
@@ -61,7 +72,8 @@ export class DeviceComponent implements OnInit{
               private fromBuilder: FormBuilder,
               private roomTypesService: RoomTypesService,
               private modelTypesService: ModelTypesService,
-              private deviceTypesService: DeviceTypesService) { }
+              private deviceTypesService: DeviceTypesService) 
+              { }
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
@@ -184,5 +196,6 @@ export class DeviceComponent implements OnInit{
       this.array3 = c;
     })
   }
+
 
 }
