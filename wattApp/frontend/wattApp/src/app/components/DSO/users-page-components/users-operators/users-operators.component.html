@@ -9,17 +9,21 @@
     </app-select-one-menu-bar>
   
     <app-center-bar>
-    <div  class="main-grid"> 
-      <app-map [users] = 'users' style="
-        height: 92vh;
-        width:48.5%; display: flex;
-        float:left;
-        flex-direction: column;
-        border-radius: 20px;
-        background-color: #1b1b1b;
-        box-shadow: 5px 5px 15px black;">
-      </app-map>
-  
+    <div  class="main-grid">
+      <div style="display:flex;flex-direction:row">
+        <div class="promotions">
+          <div class="promo" *ngFor="let n of news">
+            <div class="card">
+              <app-promotion [subTitle]="n.title"
+              [Title]="n.content" 
+              [Status]="n.status"
+              [Datum]="n.date"
+              [isBlue]="true" [isBgBlue]="true" class="promotion">
+              </app-promotion>
+            </div>
+          </div>
+        </div>
+      
       <div style="display:flex;float:right; flex-direction:column; width:48.5%; height:100%">
         <div style="display:flex;float:right; flex-direction:row; width:100%; height:100%">
               
@@ -104,6 +108,7 @@
           </div>
         </div>
       </div>
+    </div>
     </app-center-bar>
   
     
