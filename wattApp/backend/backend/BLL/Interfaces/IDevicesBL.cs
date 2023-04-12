@@ -28,5 +28,6 @@ namespace backend.BLL.Interfaces
         public WeekDatasTypesDTO GetWeekByDayHistoryAndFutureForAllUserDevicesOrAllDevices(int userid);
         public int GetNumberOfDevicesForUserThatDSOCanSee(int userId);
         public int GetNumberOfDevicesForUserThatDSOCanManage(int userId);
+        public List<double> GetMonthlyPowerUsageAndProduceOfUser(int userid, int year, int month);
     }
 }

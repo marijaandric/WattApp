@@ -374,6 +374,29 @@ namespace backend.BLL
             return new WeekDatasTypesDTO(weekdata.dates, totaldatasConsumer, totaldatasProducer, totaldatasStock);
         }
 
-        
+        public List<double> GetMonthlyPowerUsageAndProduceOfUser(int userid, int year, int month)
+        {
+            List<Devices> devices = _contextDAL.GetDevicesForUser(userid);
+            List<double> result = new List<double>();
+            double consumed = 0;
+            double produced = 0;
+            double stocked = 0;
+            double sum;
+            foreach (var device in devices)
+            {
+                sum = Calculator.CalculateTotalPowerUsage(_contextDataDAL.GetMonthDataForDevice(device.Id, year, month));
+                if(device.DeviceType.ToLower() == "consumer")
+                    consumed += sum;
+                else if (device.DeviceType.ToLower() == "producer")
+                    produced += sum;
+                else
+                    stocked += sum;
+            }
+            result.Add(consumed);
+            result.Add(produced);
+            result.Add(stocked);
+
+            return result;
+        }
     }
 }

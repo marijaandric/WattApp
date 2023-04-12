@@ -270,6 +270,19 @@ namespace backend.Controllers
             return Ok(result);
         }
 
+        [HttpGet("getMonthlyPowerUsageAndProduceOfUser/{userid}/{year}/{month}")]
+        public IActionResult GetMonthlyPowerUsageAndProduceOfUser(int userid, int year, int month)
+        {
+            List<double> result = _context.GetMonthlyPowerUsageAndProduceOfUser(userid, year, month);
+            return Ok(
+                new
+                {
+                    consumed = result[0],
+                    produced = result[1],
+                    stocked = result[2]
+                });
+        }
+
 
         [HttpGet("price")]
         public double getElectricalPowerPrice()
