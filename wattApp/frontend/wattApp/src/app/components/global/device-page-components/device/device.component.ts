@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DeviceDTO } from 'src/app/dtos/DeviceDTO';
 import { DeviceService } from 'src/app/services/device/device.service';
@@ -7,6 +7,9 @@ import { RoomTypesService } from 'src/app/services/room-types/room-types.service
 import { ModelTypesService } from 'src/app/services/model-types/model-types.service';
 import { DeviceTypesService } from 'src/app/services/device-types/device-types.service';
 import { lastValueFrom, map, tap } from 'rxjs';
+import { HistoryLineChartComponent } from 'src/app/components/Prosumer/history-line-chart/history-line-chart.component';
+import { HistoryForecastComponent } from '../../history-forecast/history-forecast.component';
+import { ForecastLineChartComponent } from 'src/app/components/Prosumer/forecast-line-chart/forecast-line-chart.component';
 
 interface Models{
   code: string;
@@ -186,6 +189,7 @@ export class DeviceComponent implements OnInit{
         c[i] = data.dates[i]
         b[i] = null
       }
+      
       for(let i = 6;i<14;i++)
       {
         b[i] = data.datas[i].toFixed(2)

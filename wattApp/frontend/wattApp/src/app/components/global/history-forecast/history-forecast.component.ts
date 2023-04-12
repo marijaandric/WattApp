@@ -1,10 +1,11 @@
 import { style } from '@angular/animations';
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import {  ApexAxisChartSeries,ApexDataLabels,ApexLegend,ApexMarkers, ApexTooltip, ApexStroke, ApexFill, ApexChart, ApexXAxis, ApexTitleSubtitle,ApexYAxis } from 'ng-apexcharts';
+import {  ApexAxisChartSeries,ApexDataLabels,ApexLegend,ApexMarkers, ApexTooltip, ApexStroke, ApexFill, ApexChart, ApexXAxis, ApexTitleSubtitle,ApexYAxis, ApexNonAxisChartSeries } from 'ng-apexcharts';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { DeviceService } from 'src/app/services/device/device.service';
 import { UserService } from 'src/app/services/user.service';
+import { HistoryLineChartComponent } from '../../Prosumer/history-line-chart/history-line-chart.component';
 
 interface City {
   name: string,
@@ -21,10 +22,11 @@ export class HistoryForecastComponent implements OnInit,OnChanges{
   cities: City[];
   selectedCity!: City;
   Title : any = "History & forecast";
+
   @Input() array : any[]  = [12.00, 19.00, 33.00, 5.00, 2.00, 6.00, 5.00, null,null,null,null, null, null, null]
   @Input() array2 : any[] = [null,null, null, null, null, null,5.00,10.00,12.00,23.00,16.00,5.00,10.00,5.00]
   @Input() array3 : any[] = [null,null, null, null, null, null,null,null, null, null, null, null]
-
+  
   constructor(private userService:UserService, private authService:AuthService, private deviceService:DeviceService) {
     this.cities = [
       {name: 'Consumption', code: '1'},
