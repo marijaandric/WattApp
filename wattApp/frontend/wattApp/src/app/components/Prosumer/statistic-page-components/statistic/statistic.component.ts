@@ -51,8 +51,11 @@ export class StatisticComponent  implements OnInit {
   History = [12, 19, 3, 5, 2, 6, 5, null,null,null,null, null, null, null];
   Forecast= [null,null, null, null, null, null,5,10,12,3,16,5,10,5];
   miniHistory = [12, 19, 3, 5, 2, 6, 5];
+  miniForecast= [5,10,12,3,16,5,10,5];
 
   arrayData = [1,2,3,4,5,6,7,8,9,10,11,12,13,14];
+  arrayData1 = [1,2,3,4,5,6,7];
+  arrayData2 = [8,9,10,11,12,13,14];
 
   name1 = "history";
   name2 = "forecast";
@@ -111,6 +114,9 @@ export class StatisticComponent  implements OnInit {
         this.color2 = '#f9b59f';
 
         this.miniHistory = data.totaldatasConsumer.slice(0, 7).map((val: number) => +val.toFixed(2));
+        this.miniForecast = data.totaldatasConsumer.slice(8,14).map((val: number) => +val.toFixed(2));
+        this.arrayData1 = data.dates.slice(0, 7);
+        this.arrayData2 = data.dates.slice(8, 14);
       }
 
       else if (this.selectedType.code == 'Producer') {
@@ -133,7 +139,10 @@ export class StatisticComponent  implements OnInit {
         this.color1 = '#46c5f1';
         this.color2 = '#71d3f4';
 
-        this.History = data.totaldatasProducer.slice(0, 7).map((val: number) => +val.toFixed(2));
+        this.miniHistory = data.totaldatasProducer.slice(0, 7).map((val: number) => +val.toFixed(2));
+        this.miniForecast = data.totaldatasProducer.slice(8,14).map((val: number) => +val.toFixed(2));
+        this.arrayData1 = data.dates.slice(0, 7);
+        this.arrayData2 = data.dates.slice(8, 14);
       }
 
       else if (this.selectedType.code == 'Stock') {
@@ -157,12 +166,15 @@ export class StatisticComponent  implements OnInit {
         this.color2 = '#ae91d4';
 
         this.miniHistory = data.totaldatasStock.slice(0, 7).map((val: number) => +val.toFixed(2));
+        this.miniForecast = data.totaldatasStock.slice(8,14).map((val: number) => +val.toFixed(2));
+        this.arrayData1 = data.dates.slice(0, 7);
+        this.arrayData2 = data.dates.slice(8, 14);
       }
 
       console.log(this.History);
       console.log(this.Forecast);
       console.log(this.miniHistory);
-       console.log(this.Forecast);
+      console.log(this.miniForecast);
 
       // console.log(this.arrayData);
     });

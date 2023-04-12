@@ -10,8 +10,8 @@
   <div class="main-grid">
     <div class="twoCharts">
       <p-selectButton class="flexRow width__fit-content margin-left__auto margin-bottom__16px" [options]="switchOptions" [(ngModel)]="switchValue" optionLabel="label" optionValue="value"></p-selectButton>
-      <app-history-line-chart [boja1]="color1" [array2] = "miniHistory" [array3] = "arrayData" class="handf" *ngIf="switchValue == true"></app-history-line-chart>
-      <app-forecast-line-chart class="handf" *ngIf="switchValue == false"></app-forecast-line-chart>
+      <app-history-line-chart [boja1]="color1" [array2] = "miniHistory" [array3] = "arrayData1" class="handf" *ngIf="switchValue == true"></app-history-line-chart>
+      <app-forecast-line-chart  [boja1]="color1" [array2] = "miniForecast" [array3] = "arrayData2" class="handf" *ngIf="switchValue == false"></app-forecast-line-chart>
     </div>
     <app-history-forecast [boja1]="color1" [naziv1]="name1" [naziv2]="name2" [array] = "History" [array2]="Forecast" [array3] = "arrayData" class="chart" id="oneChart"  ></app-history-forecast>
 
