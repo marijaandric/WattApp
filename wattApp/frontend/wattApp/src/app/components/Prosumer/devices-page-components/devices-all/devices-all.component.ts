@@ -44,9 +44,33 @@ export class DevicesAllComponent {
     });
   }
 
+  NumberOfDevicesForUserThatDSOCanSee : any;
+
+  GetNumberOfDevicesForUserThatDSOCanSee() {
+    //const deviceId = this.user.id ;
+    const deviceId = 1;
+    this.deviceService.GetNumberOfDevicesForUserThatDSOCanSee(deviceId).subscribe((response: any) => {
+      this.NumberOfDevicesForUserThatDSOCanSee=response;
+      console.log(response);
+    });
+  }
+
+  NumberOfDevicesForUserThatDSOCanManage : any;
+
+  GetNumberOfDevicesForUserThatDSOCanManage() {
+    //const deviceId = this.user.id ;
+    const deviceId = 1;
+    this.deviceService.GetNumberOfDevicesForUserThatDSOCanManage(deviceId).subscribe((response: any) => {
+      this.NumberOfDevicesForUserThatDSOCanManage=response;
+      console.log(response);
+    });
+  }
+
   ngOnInit() {
   this.GetNumberOfUserDevices();
   this.GetNumberOfActiveUserDevices();
+  this.GetNumberOfDevicesForUserThatDSOCanSee();
+  this.GetNumberOfDevicesForUserThatDSOCanManage();
 
     this.deviceService.getAllDevices().subscribe((result: DeviceDTO[]) => {
       this.allDevices = result;
