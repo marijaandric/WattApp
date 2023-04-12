@@ -40,7 +40,26 @@ export class HistoryLineChartComponent implements OnChanges{
         data: [this.array[0],this.array[1],this.array[2],this.array[3],this.array[4],this.array[5],this.array[6]],
         color: '#7d02d4'
       }
-    ]
+    ],
+    this.xaxis = {
+      title:{
+        text:"date",
+        style :{
+          color:'white',
+          fontFamily: 'Montserrat,sans-serif',
+          fontSize: '16px' 
+        }
+      },
+      categories: [this.array2[0],this.array2[1],this.array2[2],this.array2[3],this.array2[4],this.array2[5],this.array2[6]],
+      labels: {
+        style: {
+          colors: ['#FFF','#FFF','#FFF','#FFF','#FFF','#FFF','#FFF'],
+          fontSize: '16px',
+          fontWeight: 'bolder',
+          fontFamily: 'Lato, sans-serif'
+        }
+      }
+    };
   }
 
 
@@ -118,6 +137,14 @@ export class HistoryLineChartComponent implements OnChanges{
   }
 
   public xaxis: ApexXAxis = {
+    title:{
+      text:"date",
+      style :{
+        color:'white',
+        fontFamily: 'Montserrat,sans-serif',
+        fontSize: '16px' 
+      }
+    },
     categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
     labels: {
       style: {
@@ -130,7 +157,14 @@ export class HistoryLineChartComponent implements OnChanges{
   };
 
   public yaxis: ApexYAxis = {
-
+    title:{
+      text:"kwh",
+      style :{
+        color:'white',
+        fontFamily: 'Montserrat,sans-serif',
+        fontSize: '16px' 
+      }
+    },
     labels: {
       style: {
         colors: ['#FFF'],

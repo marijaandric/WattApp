@@ -41,7 +41,26 @@ export class ForecastLineChartComponent implements OnChanges{
         color: '#ab36ff'
         
       }
-    ]
+    ],
+    this.xaxis = {
+      title:{
+        text:"date",
+        style :{
+          color:'white',
+          fontFamily: 'Montserrat,sans-serif',
+          fontSize: '16px' 
+        }
+      },
+      categories: [this.array2[6],this.array2[7],this.array2[8],this.array2[9],this.array2[10],this.array2[11],this.array2[12]],
+      labels: {
+        style: {
+          colors: ['#FFF','#FFF','#FFF','#FFF','#FFF','#FFF','#FFF'],
+          fontSize: '16px',
+          fontWeight: 'bolder',
+          fontFamily: 'Lato, sans-serif'
+        }
+      }
+    };
   }
 
 
@@ -130,6 +149,14 @@ export class ForecastLineChartComponent implements OnChanges{
   }
 
   public xaxis: ApexXAxis = {
+    title:{
+      text:"date",
+      style :{
+        color:'white',
+        fontFamily: 'Montserrat,sans-serif',
+        fontSize: '16px' 
+      }
+    },
     categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
     labels: {
       style: {
@@ -142,7 +169,14 @@ export class ForecastLineChartComponent implements OnChanges{
   };
 
   public yaxis: ApexYAxis = {
-
+    title:{
+      text:"kwh",
+      style :{
+        color:'white',
+        fontFamily: 'Montserrat,sans-serif',
+        fontSize: '16px' 
+      }
+    },
     labels: {
       style: {
         colors: ['#FFF'],
