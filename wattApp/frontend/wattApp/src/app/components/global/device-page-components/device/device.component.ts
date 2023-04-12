@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DeviceDTO } from 'src/app/dtos/DeviceDTO';
 import { DeviceService } from 'src/app/services/device/device.service';
@@ -23,6 +23,11 @@ interface Types{
   name: string;
 }
 
+interface Datas{
+  data: any[];
+  date: any[];
+}
+
 @Component({
   selector: 'app-device',
   templateUrl: './device.component.html',
@@ -44,6 +49,11 @@ export class DeviceComponent implements OnInit{
   modelSelected! : Models;
   display3 : Boolean = false;
 
+  
+  array : any[]  = [null,null, null, null, null, null, null,null,null,null, null, null, null]
+  array2 : any[] = [null,null, null, null, null, null,null,null, null, null, null, null,null]
+  array3 : any[] = []
+
 
   constructor(private route: ActivatedRoute, 
               private deviceService: DeviceService, 
@@ -55,6 +65,7 @@ export class DeviceComponent implements OnInit{
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
+    this.getHistoryAndForecastByDayForDevice(id)
     if (id){
       this.deviceService.getDeviceById(id)
         .subscribe(device => {
@@ -149,5 +160,29 @@ export class DeviceComponent implements OnInit{
     });
   }
 
+
+  getHistoryAndForecastByDayForDevice(id:any)
+  {
+    this.deviceService.getHistoryAndForecastByDayForDevice(id).subscribe(data => {
+      let a = [];
+      let b = [];
+      let c = [];
+
+      for(let i = 0;i<7;i++)
+      {
+        a[i] = data.datas[i].toFixed(2)
+        c[i] = data.dates[i]
+        b[i] = null
+      }
+      for(let i = 6;i<14;i++)
+      {
+        b[i] = data.datas[i].toFixed(2)
+        c[i] = data.dates[i]
+      }
+      this.array = a;
+      this.array2 =b;
+      this.array3 = c;
+    })
+  }
 
 }
