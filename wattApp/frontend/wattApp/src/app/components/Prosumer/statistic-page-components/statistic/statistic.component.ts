@@ -51,7 +51,7 @@ export class StatisticComponent  implements OnInit {
   History = [12, 19, 3, 5, 2, 6, 5, null,null,null,null, null, null, null];
   Forecast= [null,null, null, null, null, null,5,10,12,3,16,5,10,5];
   miniHistory = [12, 19, 3, 5, 2, 6, 5];
-  miniForecast= [5,10,12,3,16,5,10,5];
+  miniForecast= [5,10,12,3,16,5,10];
 
   arrayData = [1,2,3,4,5,6,7,8,9,10,11,12,13,14];
   arrayData1 = [1,2,3,4,5,6,7];
