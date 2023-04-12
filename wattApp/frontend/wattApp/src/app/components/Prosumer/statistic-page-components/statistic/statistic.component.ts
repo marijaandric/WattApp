@@ -50,7 +50,7 @@ export class StatisticComponent  implements OnInit {
   
   History = [12, 19, 3, 5, 2, 6, 5, null,null,null,null, null, null, null];
   Forecast= [null,null, null, null, null, null,5,10,12,3,16,5,10,5];
-
+  miniHistory = [12, 19, 3, 5, 2, 6, 5];
 
   arrayData = [1,2,3,4,5,6,7,8,9,10,11,12,13,14];
 
@@ -94,6 +94,7 @@ export class StatisticComponent  implements OnInit {
 
         this.History = data.totaldatasConsumer.map((val: number) => +val.toFixed(2));
         this.Forecast = data.totaldatasConsumer.map((val: number) => +val.toFixed(2));
+  
 
         for (let i = 8; i < 14; i++) {
           this.History[i] = null;
@@ -108,6 +109,8 @@ export class StatisticComponent  implements OnInit {
 
         this.color1 = '#f5805a';
         this.color2 = '#f9b59f';
+
+        this.miniHistory = data.totaldatasConsumer.slice(0, 7).map((val: number) => +val.toFixed(2));
       }
 
       else if (this.selectedType.code == 'Producer') {
@@ -129,6 +132,8 @@ export class StatisticComponent  implements OnInit {
 
         this.color1 = '#46c5f1';
         this.color2 = '#71d3f4';
+
+        this.History = data.totaldatasProducer.slice(0, 7).map((val: number) => +val.toFixed(2));
       }
 
       else if (this.selectedType.code == 'Stock') {
@@ -150,14 +155,19 @@ export class StatisticComponent  implements OnInit {
 
         this.color1 = '#885ec0';
         this.color2 = '#ae91d4';
+
+        this.miniHistory = data.totaldatasStock.slice(0, 7).map((val: number) => +val.toFixed(2));
       }
 
       console.log(this.History);
       console.log(this.Forecast);
+      console.log(this.miniHistory);
+       console.log(this.Forecast);
 
       // console.log(this.arrayData);
     });
   }
+
   
  ngOnInit(): void {
    this.getDevicePerRoom();
