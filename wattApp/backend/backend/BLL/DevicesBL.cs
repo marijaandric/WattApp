@@ -1,4 +1,5 @@
-﻿using backend.BLL.Interfaces;
+﻿using backend.BAL;
+using backend.BLL.Interfaces;
 using backend.DAL;
 using backend.DAL.Interfaces;
 using backend.Helpers;
@@ -57,6 +58,22 @@ namespace backend.BLL
         public Devices GetDeviceForUser(int userId, int deviceId)
         {
             return _contextDAL.GetDeviceForUser(userId, deviceId);
+        }
+
+        public int GetNumberOfActiveUserDevices(int userid)
+        {
+            return _contextDAL.GetNumberOfActiveUserDevices(userid);
+        }
+
+        public int GetNumberOfDevicesForUserThatDSOCanSee(int userId)
+        {
+            Console.WriteLine("Can see: " + _contextDAL.GetNumberOfDevicesForUserThatDSOCanSee(userId));
+            return _contextDAL.GetNumberOfDevicesForUserThatDSOCanSee(userId);
+        }
+
+        public int GetNumberOfDevicesForUserThatDSOCanManage(int userId)
+        {
+            return _contextDAL.GetNumberOfDevicesForUserThatDSOCanManage(userId);
         }
 
         public List<Devices> GetDevices()
@@ -357,5 +374,6 @@ namespace backend.BLL
             return new WeekDatasTypesDTO(weekdata.dates, totaldatasConsumer, totaldatasProducer, totaldatasStock);
         }
 
+        
     }
 }

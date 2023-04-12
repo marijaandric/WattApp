@@ -50,6 +50,44 @@ namespace backend.Controllers
             return devices;
         }
 
+        // GET: api/Devices/5
+        [HttpGet("getNumberOfUserDevices/{userId}")]
+        public int GetNumberOfUserDevices(int userId)
+        {
+            var devices = _context.GetDevicesForUser(userId);
+
+            if (devices == null)
+            {
+                return 0;
+            }
+
+            return devices.Count;
+        }
+
+        [HttpGet("getNumberOfActiveUserDevices/{userId}")]
+        public int GetNumberOfActiveUserDevices(int userId)
+        {
+            int result = _context.GetNumberOfActiveUserDevices(userId);
+
+            return result;
+        }
+
+        [HttpGet("getNumberOfDevicesForUserThatDSOCanSee/{userId}")]
+        public int GetNumberOfDevicesForUserThatDSOCanSee(int userId)
+        {
+            int result = _context.GetNumberOfDevicesForUserThatDSOCanSee(userId);
+
+            return result;
+        }
+
+        [HttpGet("getNumberOfDevicesForUserThatDSOCanManage/{userId}")]
+        public int GetNumberOfDevicesForUserThatDSOCanManage(int userId)
+        {
+            int result = _context.GetNumberOfDevicesForUserThatDSOCanManage(userId);
+
+            return result;
+        }
+
         // GET: api/Devices/device/5
         // actual ID
         [HttpGet("device/{id}")]
