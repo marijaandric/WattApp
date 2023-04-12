@@ -23,10 +23,10 @@
 .main-card {
     display:flex;
     flex-direction:column; 
+    width:40%; 
     height:1000px;
     border-radius: 20px;
     min-width: 330px;
-    max-width: 750px;
 }
 
 .card-1 {
@@ -106,6 +106,9 @@
     border-radius: 20px;
     box-shadow: 5px 5px 15px rgb(0, 0, 0);
     overflow: hidden;
+}
+.stats:hover, .stats:focus, .stats:active {
+    scale: 1.05;
 }
 
 .stat-3{
@@ -268,24 +271,65 @@
     position: relative;
 }
 
-.icon-2 i{
-    font-size: 24px;
-    background: -webkit-linear-gradient(45deg, #b855a4 0%, #f5805a 100%);
+
+
+.menu{
     
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    right: 0;
+    margin: 0px 10px;
+    cursor:pointer;
+
+    -webkit-transform: translatey(5px);
+            transform: translatey(5px);
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-2 {
+    width:40px;
+    height:40px;
+    font-size:16px;
+    background-color: #1b1b1b;
+    border-radius: 50%;
+    box-shadow:2px 2px 15px black;
+    -webkit-transition: all 0.3s;
+    transition: all 0.3s;
+}
+
+.icon-2 {
+    padding:9px 12px;
+}
+
+.float-element {
+    width:40px;
+    height:40px;
+    margin:10px 0px;
+    border-radius: 50%;
+    background: #1b1b1b;
+    box-shadow:2px 2px 15px black;
+    font-size: 16px;
+    padding:8px 0px 0px 13px;
+    opacity: 0;
+    -webkit-transform: translateY(100px);
+            transform: translateY(100px);
+
+}
+.icon-3 {
+    width:100%;
+    height:100%;
+    background: -webkit-linear-gradient(45deg, #b855a4 20%, #f5805a 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    margin-top:20px;
-    margin-right:10px;
-    position: relative;
-    position:absolute; 
-    right:0; 
-    cursor:pointer;
 }
+
 
 @-webkit-keyframes come-in {
     0% {
-      -webkit-transform: translatey(100px);
-              transform: translatey(100px);
       opacity: 0;
     }
     30% {
@@ -304,8 +348,6 @@
   }
   @keyframes come-in {
     0% {
-      -webkit-transform: translatey(100px);
-              transform: translatey(100px);
       opacity: 0;
     }
     30% {
@@ -322,50 +364,26 @@
       opacity: 1;
     }
   }
-  * {
-    margin: 0;
-    padding: 0;
+  .menu:hover {
+    height: 150px;
   }
-  
-  html, body {
-    background: #eaedf2;
-    font-family: 'Roboto', sans-serif;
-  }
-  
-  .floating-container {
-    position: fixed;
-    width: 100px;
-    height: 100px;
-    bottom: 0;
-    right: 0;
-    margin: 35px 25px;
-  }
-  .floating-container:hover {
-    height: 300px;
-  }
-  .floating-container:hover .floating-button {
-    box-shadow: 0 10px 25px rgba(44, 179, 240, 0.6);
-    -webkit-transform: translatey(5px);
-            transform: translatey(5px);
-    -webkit-transition: all 0.3s;
-    transition: all 0.3s;
-  }
-  .floating-container:hover .element-container .float-element:nth-child(1) {
+
+  .menu:hover .menu-container .float-element:nth-child(1) {
     -webkit-animation: come-in 0.4s forwards 0.2s;
             animation: come-in 0.4s forwards 0.2s;
   }
-  .floating-container:hover .element-container .float-element:nth-child(2) {
+  .menu:hover .menu-container .float-element:nth-child(2) {
     -webkit-animation: come-in 0.4s forwards 0.4s;
             animation: come-in 0.4s forwards 0.4s;
   }
-  .floating-container:hover .element-container .float-element:nth-child(3) {
+  .menu:hover .menu-container .float-element:nth-child(3) {
     -webkit-animation: come-in 0.4s forwards 0.6s;
             animation: come-in 0.4s forwards 0.6s;
   }
   .floating-container .floating-button {
     position: absolute;
-    width: 100px;
-    height: 100px;
+    width: 65px;
+    height: 65px;
     background: #2cb3f0;
     bottom: 0;
     border-radius: 50%;
@@ -377,7 +395,7 @@
     text-align: center;
     font-size: 23px;
     z-index: 100;
-    box-shadow: 0 10px 45px -5px rgba(44, 179, 240, 0.6);
+    box-shadow: 0 10px 25px -5px rgba(44, 179, 240, 0.6);
     cursor: pointer;
     -webkit-transition: all 0.3s;
     transition: all 0.3s;
@@ -402,18 +420,6 @@
     vertical-align: middle;
     font-size: 16px;
   }
-  .floating-container .float-element:nth-child(1) {
-    background: #42A5F5;
-    box-shadow: 0 20px 20px -10px rgba(66, 165, 245, 0.5);
-  }
-  .floating-container .float-element:nth-child(2) {
-    background: #4CAF50;
-    box-shadow: 0 20px 20px -10px rgba(76, 175, 80, 0.5);
-  }
-  .floating-container .float-element:nth-child(3) {
-    background: #FF9800;
-    box-shadow: 0 20px 20px -10px rgba(255, 152, 0, 0.5);
-  }
   
   
 
@@ -430,7 +436,7 @@
 
 @media only screen and (max-width: 1400px) {
     .main-card {
-        width:50%;
+        width:100%;
     }
 }
 
