@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { DeviceDTO } from 'src/app/dtos/DeviceDTO';
+import { Router } from '@angular/router';
 import { DeviceService } from 'src/app/services/device/device.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -13,7 +14,9 @@ export class DevicesAllComponent {
   token = localStorage.getItem('token');
   user:any;
 
-  constructor(private userService:UserService,private deviceService: DeviceService) { 
+  constructor(private userService:UserService,
+              private deviceService: DeviceService,
+              private router: Router) { 
     if(this.token)
     {
       userService.GetUser(userService.getUserIdFromToken(this.token),this.token).subscribe((data) => {
@@ -25,9 +28,7 @@ export class DevicesAllComponent {
   NumberOfUserDevices: any;
   
   GetNumberOfUserDevices() {
-    //const deviceId = this.user.id ;
-    const deviceId = 1;
-    this.deviceService.GetNumberOfUserDevices(deviceId).subscribe((response: any) => {
+    this.deviceService.GetNumberOfUserDevices(this.user.nameid).subscribe((response: any) => {
       this.NumberOfUserDevices=response;
       console.log(response);
     });
@@ -36,9 +37,7 @@ export class DevicesAllComponent {
   NumberOfActiveUserDevices: any;
 
   GetNumberOfActiveUserDevices() {
-    //const deviceId = this.user.id ;
-    const deviceId = 1;
-    this.deviceService.GetNumberOfActiveUserDevices(deviceId).subscribe((response: any) => {
+    this.deviceService.GetNumberOfActiveUserDevices(this.user.nameid).subscribe((response: any) => {
       this.NumberOfActiveUserDevices=response;
       console.log(response);
     });
@@ -47,9 +46,7 @@ export class DevicesAllComponent {
   NumberOfDevicesForUserThatDSOCanSee : any;
 
   GetNumberOfDevicesForUserThatDSOCanSee() {
-    //const deviceId = this.user.id ;
-    const deviceId = 1;
-    this.deviceService.GetNumberOfDevicesForUserThatDSOCanSee(deviceId).subscribe((response: any) => {
+    this.deviceService.GetNumberOfDevicesForUserThatDSOCanSee(this.user.nameid).subscribe((response: any) => {
       this.NumberOfDevicesForUserThatDSOCanSee=response;
       console.log(response);
     });
@@ -58,9 +55,7 @@ export class DevicesAllComponent {
   NumberOfDevicesForUserThatDSOCanManage : any;
 
   GetNumberOfDevicesForUserThatDSOCanManage() {
-    //const deviceId = this.user.id ;
-    const deviceId = 1;
-    this.deviceService.GetNumberOfDevicesForUserThatDSOCanManage(deviceId).subscribe((response: any) => {
+    this.deviceService.GetNumberOfDevicesForUserThatDSOCanManage(this.user.nameid).subscribe((response: any) => {
       this.NumberOfDevicesForUserThatDSOCanManage=response;
       console.log(response);
     });
@@ -72,7 +67,7 @@ export class DevicesAllComponent {
   this.GetNumberOfDevicesForUserThatDSOCanSee();
   this.GetNumberOfDevicesForUserThatDSOCanManage();
 
-    this.deviceService.getAllDevices().subscribe((result: DeviceDTO[]) => {
+    this.deviceService.getDevicesByUserId(this.user.nameid).subscribe((result: DeviceDTO[]) => {
       this.allDevices = result;
     });
   }
