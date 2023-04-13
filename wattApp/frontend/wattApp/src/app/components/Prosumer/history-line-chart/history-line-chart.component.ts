@@ -20,7 +20,10 @@ export class HistoryLineChartComponent implements OnChanges{
   selectedCity!: City;
 
   @Input() array : any[]  = [12.00, 19.00, 33.00, 5.00, 2.00, 6.00, 5.00]
-  @Input() array2 : any[] = [5.00,10.00,12.00,23.00,16.00,5.00,10.00,5.00]
+  @Input() array2 : any[] = [null,null, null, null, null, null,5.00,10.00,12.00,23.00,16.00,5.00,10.00,5.00]
+  @Input() array3 : any[] = [null,null, null, null, null, null,null]
+  @Input() boja1 = '#f5805a';
+
 
 
   constructor(private userService:UserService, private authService:AuthService) {
@@ -36,11 +39,11 @@ export class HistoryLineChartComponent implements OnChanges{
   {
     this.series = [
       {
-        name: 'History',
-        data: [this.array[0],this.array[1],this.array[2],this.array[3],this.array[4],this.array[5],this.array[6]],
-        color: '#7d02d4'
+        data: this.array2,
+        color: this.boja1,
+        
       }
-    ],
+    ];
     this.xaxis = {
       title:{
         text:"date",
@@ -50,7 +53,7 @@ export class HistoryLineChartComponent implements OnChanges{
           fontSize: '16px' 
         }
       },
-      categories: [this.array2[0],this.array2[1],this.array2[2],this.array2[3],this.array2[4],this.array2[5],this.array2[6]],
+      categories: [this.array3[0],this.array3[1],this.array3[2],this.array3[3],this.array3[4],this.array3[5],this.array3[6]],
       labels: {
         style: {
           colors: ['#FFF','#FFF','#FFF','#FFF','#FFF','#FFF','#FFF'],

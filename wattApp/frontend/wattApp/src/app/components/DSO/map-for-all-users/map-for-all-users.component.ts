@@ -4,12 +4,15 @@ import axios from 'axios';
 import * as L from 'leaflet';
 import { UserDTO } from 'src/app/dtos/UserDTO';
 
+
+
 @Component({
-  selector: 'app-map',
-  templateUrl: './map.component.html',
-  styleUrls: ['./map.component.css']
+  selector: 'app-map-for-all-users',
+  templateUrl: './map-for-all-users.component.html',
+  styleUrls: ['./map-for-all-users.component.css']
 })
-export class MapComponent implements OnInit, OnChanges{
+
+export class MapForAllUsersComponent implements OnInit, OnChanges{
   @Input() users! : UserDTO[];
   lan! : number;
   lon! : number;
@@ -24,7 +27,7 @@ export class MapComponent implements OnInit, OnChanges{
   }
 
   ngOnInit(): void {
-    this.map = L.map('map').setView([44.007247, 20.904429], 13);
+    this.map = L.map('map3').setView([44.007247, 20.904429], 13);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; OpenStreetMap contributors'
     }).addTo(this.map);

@@ -26,7 +26,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent, pathMatch:'full' },
   { path: 'home', component: HomeComponent },
   //{ path: 'home', component: HomeComponent, canActivate:[AuthGuard] },
-  { path: 'users', component: UsersComponent },
+  { path: 'users', component: UsersProsumersComponent },
   { path: 'user', component:UserProfileComponent},
   { path: 'prosumerhome', component: ProsumerhomeComponent },
   { path: 'contact', component:ContactComponent},
@@ -37,7 +37,7 @@ const routes: Routes = [
   { path: 'devices/consumption', component: DevicesConsumptionComponent },
   { path: 'devices/stock', component: DevicesStockComponent },
   { path: 'statistics', component: StatisticComponent },
-  { path: 'users/prosumers', component: UsersProsumersComponent},
+  { path: 'users/prosumers', component: UsersComponent},
   { path: 'users/operators', component: UsersOperatorsComponent},
   { path: 'userDSO', component: UserDSOComponent},
 ];

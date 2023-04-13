@@ -20,7 +20,9 @@ export class ForecastLineChartComponent implements OnChanges{
   selectedCity!: City;
 
   @Input() array : any[]  = [12.00, 19.00, 33.00, 5.00, 2.00, 6.00, 5.00]
-  @Input() array2 : any[] = [null,null, null, null, null, null,null]
+  @Input() array2 : any[] = [null,null, null, null, null, null,5.00,10.00,12.00,23.00,16.00,5.00,10.00,5.00]
+  @Input() array3 : any[] = [null,null, null, null, null, null,null]
+  @Input() boja1 = '#f5805a';
 
 
   constructor(private userService:UserService, private authService:AuthService) {
@@ -36,12 +38,11 @@ export class ForecastLineChartComponent implements OnChanges{
   {
     this.series = [
       {
-        name: 'Forecast',
-        data: [this.array[6],this.array[7],this.array[8],this.array[9],this.array[10],this.array[11],this.array[12]],
-        color: '#ab36ff'
+        data: this.array2,
+        color: this.boja1,
         
       }
-    ],
+    ];
     this.xaxis = {
       title:{
         text:"date",
@@ -51,7 +52,7 @@ export class ForecastLineChartComponent implements OnChanges{
           fontSize: '16px' 
         }
       },
-      categories: [this.array2[6],this.array2[7],this.array2[8],this.array2[9],this.array2[10],this.array2[11],this.array2[12]],
+      categories: [this.array3[0],this.array3[1],this.array3[2],this.array3[3],this.array3[4],this.array3[5],this.array3[6]],
       labels: {
         style: {
           colors: ['#FFF','#FFF','#FFF','#FFF','#FFF','#FFF','#FFF'],

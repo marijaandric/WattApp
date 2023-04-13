@@ -48,8 +48,20 @@ export class StatisticComponent  implements OnInit {
   rooms: string[] =[];
   count: number[]=[];
   
-  array = [12, 19, 3, 5, 2, 6, 5, null,null,null,null, null, null, null];
-  array2 = [null,null, null, null, null, null,5,10,12,3,16,5,10,5];
+  History = [12, 19, 3, 5, 2, 6, 5, null,null,null,null, null, null, null];
+  Forecast= [null,null, null, null, null, null,5,10,12,3,16,5,10,5];
+  miniHistory = [12, 19, 3, 5, 2, 6, 5];
+  miniForecast= [5,10,12,3,16,5,10];
+
+  arrayData = [1,2,3,4,5,6,7,8,9,10,11,12,13,14];
+  arrayData1 = [1,2,3,4,5,6,7];
+  arrayData2 = [8,9,10,11,12,13,14];
+
+  name1 = "history";
+  name2 = "forecast";
+
+  color1 = '#f5805a';
+  color2 = '#f9b59f';
 
 
   constructor(private http: HttpClient, private deviceService : DeviceService) {
@@ -74,15 +86,111 @@ export class StatisticComponent  implements OnInit {
      this.myChart.Series = this.niz3;
     });
   }
+
+  getHistoryAndForecastByDayForAllUserDevices() {
+    const deviceId = 1;
+    // const deviceId = this.user.id ;
+
+    this.deviceService.GetHistoryAndForecastByDayForAllUserDevices(deviceId).subscribe(data => {
+      if (this.selectedType.code == 'Consumer') {
+        this.arrayData = data.dates; //.slice(0, 7).concat(data.dates.slice(8));
+
+        this.History = data.totaldatasConsumer.map((val: number) => +val.toFixed(2));
+        this.Forecast = data.totaldatasConsumer.map((val: number) => +val.toFixed(2));
+  
+
+        for (let i = 8; i < 14; i++) {
+          this.History[i] = null;
+        }
+
+        for (let i = 0; i < 7; i++) {
+          this.Forecast[i] = null;
+        }
+
+        this.name1="Consumption history";
+        this.name2="Consumption forecast";
+
+        this.color1 = '#f5805a';
+        this.color2 = '#f9b59f';
+
+        this.miniHistory = data.totaldatasConsumer.slice(0, 7).map((val: number) => +val.toFixed(2));
+        this.miniForecast = data.totaldatasConsumer.slice(8,14).map((val: number) => +val.toFixed(2));
+        this.arrayData1 = data.dates.slice(0, 7);
+        this.arrayData2 = data.dates.slice(8, 14);
+      }
+
+      else if (this.selectedType.code == 'Producer') {
+        this.arrayData = data.dates; //.slice(0, 7).concat(data.dates.slice(8));
+
+        this.History = data.totaldatasProducer.map((val: number) => +val.toFixed(2));
+        this.Forecast = data.totaldatasProducer.map((val: number) => +val.toFixed(2));
+
+        for (let i = 8; i < 14; i++) {
+          this.History[i] = null;
+        }
+
+        for (let i = 0; i < 7; i++) {
+          this.Forecast[i] = null;
+        }
+
+        this.name1="Production history";
+        this.name2="Production forecast";
+
+        this.color1 = '#46c5f1';
+        this.color2 = '#71d3f4';
+
+        this.miniHistory = data.totaldatasProducer.slice(0, 7).map((val: number) => +val.toFixed(2));
+        this.miniForecast = data.totaldatasProducer.slice(8,14).map((val: number) => +val.toFixed(2));
+        this.arrayData1 = data.dates.slice(0, 7);
+        this.arrayData2 = data.dates.slice(8, 14);
+      }
+
+      else if (this.selectedType.code == 'Stock') {
+        this.arrayData = data.dates; //.slice(0, 7).concat(data.dates.slice(8));
+
+        this.History = data.totaldatasStock.map((val: number) => +val.toFixed(2));
+        this.Forecast = data.totaldatasStock.map((val: number) => +val.toFixed(2));
+
+        for (let i = 8; i < 14; i++) {
+          this.History[i] = null;
+        }
+
+        for (let i = 0; i < 7; i++) {
+          this.Forecast[i] = null;
+        }
+
+        this.name1="Stock history";
+        this.name2="Stock forecast";
+
+        this.color1 = '#885ec0';
+        this.color2 = '#ae91d4';
+
+        this.miniHistory = data.totaldatasStock.slice(0, 7).map((val: number) => +val.toFixed(2));
+        this.miniForecast = data.totaldatasStock.slice(8,14).map((val: number) => +val.toFixed(2));
+        this.arrayData1 = data.dates.slice(0, 7);
+        this.arrayData2 = data.dates.slice(8, 14);
+      }
+
+      console.log(this.History);
+      console.log(this.Forecast);
+      console.log(this.miniHistory);
+      console.log(this.miniForecast);
+
+      // console.log(this.arrayData);
+    });
+  }
+
   
  ngOnInit(): void {
    this.getDevicePerRoom();
+   this.getHistoryAndForecastByDayForAllUserDevices();
   }
 
   dropdownChange()
   {
     console.log(this.selectedType)
     this.getDevicePerRoom();
+    this.getHistoryAndForecastByDayForAllUserDevices();
   }
 
   
