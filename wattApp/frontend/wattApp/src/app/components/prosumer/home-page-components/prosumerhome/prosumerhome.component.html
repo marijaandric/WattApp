@@ -32,7 +32,7 @@
         </p-carousel>
         </div>
         
-        <div class="slika" style="margin-top:20px;border-radius: 20px;float:right;height: 170px; width: 48%;background-image: url('/assets/images/landing-page-images/saveEnergy.jpg');background-size: cover;">
+        <div class="slika" style="margin-top:20px;border-radius: 20px;float:right;height: 170px; width: 48%;background-image: url('/assets/images/application-images/blue.jpg');background-size: cover;">
           
         </div>
     </div>
@@ -49,15 +49,21 @@
   <div class="promotions" >
     <app-promotion [subTitle]="naslov1"
      [Title]="sadrzaj1" 
+     [Status]="status1"
+     [Datum]="datum1"
      [isBlue]="true" [isBgBlue]="true" class="promotion">
     </app-promotion>
     <app-promotion
     [subTitle]="naslov2"
+    [Datum]="datum2"
+    [Status]="status2"
     [Title]="sadrzaj2"
     [isYellow]="true" [isBgYellow]="true" class="promotion1">
     </app-promotion>
     <app-promotion
     [subTitle]="naslov3"
+    [Datum]="datum3"
+    [Status]="status3"
     [Title]="sadrzaj3"
     [isPink]="true" [isBgPink]="true" class="promotion1">
     </app-promotion> 

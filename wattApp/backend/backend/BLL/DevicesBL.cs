@@ -1,4 +1,5 @@
-﻿using backend.BLL.Interfaces;
+﻿using backend.BAL;
+using backend.BLL.Interfaces;
 using backend.DAL;
 using backend.DAL.Interfaces;
 using backend.Helpers;
@@ -57,6 +58,22 @@ namespace backend.BLL
         public Devices GetDeviceForUser(int userId, int deviceId)
         {
             return _contextDAL.GetDeviceForUser(userId, deviceId);
+        }
+
+        public int GetNumberOfActiveUserDevices(int userid)
+        {
+            return _contextDAL.GetNumberOfActiveUserDevices(userid);
+        }
+
+        public int GetNumberOfDevicesForUserThatDSOCanSee(int userId)
+        {
+            Console.WriteLine("Can see: " + _contextDAL.GetNumberOfDevicesForUserThatDSOCanSee(userId));
+            return _contextDAL.GetNumberOfDevicesForUserThatDSOCanSee(userId);
+        }
+
+        public int GetNumberOfDevicesForUserThatDSOCanManage(int userId)
+        {
+            return _contextDAL.GetNumberOfDevicesForUserThatDSOCanManage(userId);
         }
 
         public List<Devices> GetDevices()
@@ -303,6 +320,83 @@ namespace backend.BLL
                 return (maxArea, max);
             else
                 return (minArea, min);
+        }
+
+        public WeekDatasDTO GetWeekByDayHistoryAndFutureForDevice(int deviceid)
+        {
+            DateTime now = DateTime.Now;
+            WeekDatasDTO devicesDatas = _contextDataDAL.GetWeekByDayHistoryAndFutureForDevice(deviceid, now.Year, now.Month, now.Day);
+
+            return devicesDatas;
+        }
+
+        public WeekDatasTypesDTO GetWeekByDayHistoryAndFutureForAllUserDevicesOrAllDevices(int userid)
+        {
+            DateTime now = DateTime.Now;
+            List<Devices> devices;
+            if (userid != -1)
+                devices = _contextDAL.GetDevicesForUser(userid);
+            else
+                devices = _contextDAL.GetDevices();
+
+            if (devices.Count == 0 || devices == null)
+                return null;
+            WeekDatasDTO weekdata = _contextDataDAL.GetWeekByDayHistoryAndFutureForDevice(devices[0].Id, now.Year, now.Month, now.Day);
+            
+            List<double> totaldatasConsumer = new List<double>();
+            List<double> totaldatasProducer = new List<double>();
+            List<double> totaldatasStock = new List<double>();
+
+            for(int i = 0; i < weekdata.datas.Count; i++)
+            {
+                totaldatasConsumer.Add(0.0);
+                totaldatasProducer.Add(0.0);
+                totaldatasStock.Add(0.0);
+            }
+
+            foreach(Devices device in devices)
+            {
+                weekdata = _contextDataDAL.GetWeekByDayHistoryAndFutureForDevice(device.Id, now.Year, now.Month, now.Day);
+                
+                for (int j = 0; j < weekdata.datas.Count; j++)
+                {
+                    if (device.DeviceType.ToLower() == "consumer")
+                        totaldatasConsumer[j] += weekdata.datas[j];
+                    if (device.DeviceType.ToLower() == "producer")
+                        totaldatasProducer[j] += weekdata.datas[j];
+                    if(device.DeviceType.ToLower() == "stock")
+                        totaldatasStock[j] += weekdata.datas[j];
+                }
+            }
+            foreach (var pom in totaldatasProducer)
+                Console.WriteLine(pom);
+
+            return new WeekDatasTypesDTO(weekdata.dates, totaldatasConsumer, totaldatasProducer, totaldatasStock);
+        }
+
+        public List<double> GetMonthlyPowerUsageAndProduceOfUser(int userid, int year, int month)
+        {
+            List<Devices> devices = _contextDAL.GetDevicesForUser(userid);
+            List<double> result = new List<double>();
+            double consumed = 0;
+            double produced = 0;
+            double stocked = 0;
+            double sum;
+            foreach (var device in devices)
+            {
+                sum = Calculator.CalculateTotalPowerUsage(_contextDataDAL.GetMonthDataForDevice(device.Id, year, month));
+                if(device.DeviceType.ToLower() == "consumer")
+                    consumed += sum;
+                else if (device.DeviceType.ToLower() == "producer")
+                    produced += sum;
+                else
+                    stocked += sum;
+            }
+            result.Add(consumed);
+            result.Add(produced);
+            result.Add(stocked);
+
+            return result;
         }
     }
 }

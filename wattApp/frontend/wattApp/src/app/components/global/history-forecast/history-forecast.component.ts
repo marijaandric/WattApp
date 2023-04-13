@@ -1,9 +1,11 @@
 import { style } from '@angular/animations';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import {  ApexAxisChartSeries,ApexDataLabels,ApexLegend,ApexMarkers, ApexTooltip, ApexStroke, ApexFill, ApexChart, ApexXAxis, ApexTitleSubtitle,ApexYAxis } from 'ng-apexcharts';
+import {  ApexAxisChartSeries,ApexDataLabels,ApexLegend,ApexMarkers, ApexTooltip, ApexStroke, ApexFill, ApexChart, ApexXAxis, ApexTitleSubtitle,ApexYAxis, ApexNonAxisChartSeries } from 'ng-apexcharts';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { DeviceService } from 'src/app/services/device/device.service';
 import { UserService } from 'src/app/services/user.service';
+import { HistoryLineChartComponent } from '../../Prosumer/history-line-chart/history-line-chart.component';
 
 interface City {
   name: string,
@@ -15,51 +17,87 @@ interface City {
   styleUrls: ['./history-forecast.component.scss'],
   templateUrl: './history-forecast.component.html',
 })
-export class HistoryForecastComponent {
+export class HistoryForecastComponent implements OnInit,OnChanges{
   menageUserForm! : FormGroup;
   cities: City[];
   selectedCity!: City;
+  Title : any = "History & forecast";
 
-  constructor(private userService:UserService, private authService:AuthService) {
+  @Input() array : any[]  = [12.00, 19.00, 33.00, 5.00, 2.00, 6.00, 5.00, null,null,null,null, null, null, null]
+  @Input() array2 : any[] = [null,null, null, null, null, null,5.00,10.00,12.00,23.00,16.00,5.00,10.00,5.00]
+  @Input() array3 : any[] = [null,null, null, null, null, null,null,null, null, null, null, null,null,null]
+  @Input() naziv1 = "History";
+  @Input() naziv2 = "Forecast";
+  @Input() boja1 = '#f5805a';
+  @Input() boja2 = '#f5805a';
+
+
+  constructor(private userService:UserService, private authService:AuthService, private deviceService:DeviceService) {
     this.cities = [
       {name: 'Consumption', code: '1'},
       {name: 'Production', code: '2'},
       {name: 'Stock', code: '3'},
       {name: 'All', code: '4'},
   ];
+ 
   }
+
+  ngOnInit(): void {
+  }
+
+  ngOnChanges(changes: SimpleChanges) {
+    this.series = [
+      {
+        name: this.naziv1,
+        data: this.array,
+        color: this.boja1,
+        
+      },
+      {
+        name: this.naziv2,
+        data: this.array2,
+        color: this.boja2,
+      }
+    ];
+
+     this.xaxis = {
+      title:{
+        text:"date",
+        style :{
+          color:'white',
+          fontFamily: 'Montserrat,sans-serif',
+          fontSize: '16px' 
+        }
+      },
+      categories: this.array3,
+      labels: {
+        style: {
+          colors: ['#FFF','#FFF','#FFF','#FFF', '#FFF','#FFF','#FFF','#FFF','#FFF','#FFF','#FFF','#FFF','#FFF','#FFF','#FFF'],
+          fontSize: '16px',
+          fontWeight: 'bolder',
+          fontFamily: 'Lato, sans-serif'
+        }
+      }
+    };
+
+  }
+
+
+
+
+  // chart podesavanja
   public series: ApexAxisChartSeries = [
     {
       name: 'Consumption history',
-      data: [12, 19, 3, 5, 2, 6, 5, null,null,null,null, null, null, null],
+      data: this.array,
       color: '#7d02d4'
+      
     },
     {
       name: "Consumption forecast",
-      data: [null,null, null, null, null, null,5,10,12,3,16,5,10,5],
-      color: '#ab36ff',
-    },
-    {
-      name: 'Production history',
-      data: [1, 4, 15, 5, 12, 6, 18, null,null,null,null, null, null, null],
-      color:  '#d90372'
-    },
-    {
-      name: "Production forecast",
-      data: [null,null, null, null, null, null,18,1,2,7,6,9,10,5],
-      color: '#ff7bbf'
-    },
-    {
-      name: 'Stock history',
-      data: [12, 1, 3, 15, 12, 6, 9, null,null,null,null, null, null, null],
-      color:'rgb(4, 167, 119)'
-    },
-    {
-      name: "Stock forecast",
-      data: [null,null, null, null, null, null,9,17,12,10,16,5,1,2],
-      color: 'rgb(114, 255, 213)'
-    },
-      
+      data: this.array2,
+      color: '#ab36ff'
+    }
   ];
 
   public marker: ApexMarkers = {
@@ -104,12 +142,27 @@ export class HistoryForecastComponent {
     redrawOnWindowResize: true,
   };
 
+  
+
   public tooltip: ApexTooltip = {
     theme:'dark',
     style : {
       fontSize:'17px'
-    }
+    },
   }
+
+  /*public fill: ApexFill = {
+    type: 'gradient',
+    gradient: {
+      shade: 'dark',
+      gradientToColors: ['#a17abd','','#e1a2c7','','#afecda',''],
+      shadeIntensity: 1,
+      opacityFrom: 1,
+      opacityTo: 1,
+      stops: [0, 30, 70],
+    }
+  }*/
+  
 
   public legend: ApexLegend = {
     showForNullSeries:false,
@@ -119,13 +172,20 @@ export class HistoryForecastComponent {
     fontSize: '16px',
     offsetY:10,
     labels : {
-      colors: ['#7d02d4','#ab36ff', '#d90372', '#ff7bbf','rgb(4, 167, 119)', 'rgb(114, 255, 213)', ],
       useSeriesColors:true
     },
     
   }
 
   public xaxis: ApexXAxis = {
+    title:{
+      text:"date",
+      style :{
+        color:'white',
+        fontFamily: 'Montserrat,sans-serif',
+        fontSize: '16px' 
+      }
+    },
     categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun','Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
     labels: {
       style: {
@@ -138,7 +198,14 @@ export class HistoryForecastComponent {
   };
 
   public yaxis: ApexYAxis = {
-
+    title:{
+      text:"kwh",
+      style :{
+        color:'white',
+        fontFamily: 'Montserrat,sans-serif',
+        fontSize: '16px' 
+      }
+    },
     labels: {
       style: {
         colors: ['#FFF'],
@@ -150,7 +217,7 @@ export class HistoryForecastComponent {
   };
 
   public title: ApexTitleSubtitle = {
-    text: 'History & forecast of all users',
+    text: this.Title,
     style: {
       color: '#FFF',
       fontSize: '19px',
@@ -161,6 +228,7 @@ export class HistoryForecastComponent {
   public stroke: ApexStroke = {
     curve: 'straight',
     width: 3,
+    dashArray:[0,5,0,5,0,5]
   }
 
   public dataLabels: ApexDataLabels = {

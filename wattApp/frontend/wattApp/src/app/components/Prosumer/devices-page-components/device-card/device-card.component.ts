@@ -1,6 +1,9 @@
 import { Component, Input } from '@angular/core';
+import { lastValueFrom } from 'rxjs';
+import { DeviceDTO } from 'src/app/dtos/DeviceDTO';
 import { DeviceDataDTO } from 'src/app/dtos/DeviceDataDTO';
 import { DeviceDataService } from 'src/app/services/device-data/device-data.service';
+import { DeviceService } from 'src/app/services/device/device.service';
 
 @Component({
   selector: 'app-device-card',
@@ -9,18 +12,11 @@ import { DeviceDataService } from 'src/app/services/device-data/device-data.serv
 })
 export class DeviceCardComponent {
   @Input() device: any;
-  deviceData: DeviceDataDTO | undefined;
   isChecked: boolean = true;
 
-  constructor(private deviceDataService: DeviceDataService){ }
+  constructor(private deviceService: DeviceService){ }
 
-  ngOnInit() {
-    this.getDeviceData(this.device.id); 
-  }
-
-  getDeviceData(id: number) {
-    this.deviceDataService.getDeviceData(id).subscribe(data => {
-      this.deviceData = data;
-    });
+  async handleRunningSwitchChange(){
+    await lastValueFrom(this.deviceService.updateDevice(this.device));
   }
 }

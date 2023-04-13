@@ -76,22 +76,28 @@ button{
 }
 
 .cards{
-  margin: 50px 0px;
+  margin:30px 0px;
 }
 
 .card{
   margin:0px 50px;
   background-color: #222222;
   color: white;position: relative;
-  transition: transform 0.2s ease-out;
+  transition:all  1s ease;
   position: relative;
   border-radius: 20px;
+  transform: translateY(150px);
+  opacity: 0;
 }
-
+/*
 .card:hover {
   transform: translateY(-10px);
 }
-
+*/
+.card.active {
+  transform: translateY(0px);
+  opacity:1;
+}
 
 h2{
   color:white;

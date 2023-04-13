@@ -1,13 +1,13 @@
 app-tab-menu-users .boja {
-    color: rgb(4,167,119);
+    color: #885ec0;
   }
 
 app-tab-menu-users .fa-users {
-    color: rgb(4,167,119);
+    color: #885ec0;
   }
 
 app-tab-menu-users .color:hover{
-    color: rgb(4,167,119) !important;
+    color: #885ec0 !important;
   }
 
 .right {
@@ -19,12 +19,11 @@ app-tab-menu-users .color:hover{
 }
 
 .p-dropdown {
-  display: block;
   position:relative;
   margin-bottom: 20px;
   border-radius: 30px;
   border:none;
-  background-color:rgb(4, 167, 119);
+  background: linear-gradient(45deg, #b855a4 40%, #f5805a 100%);
 }
 
 

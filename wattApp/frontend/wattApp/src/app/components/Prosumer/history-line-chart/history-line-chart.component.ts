@@ -1,5 +1,5 @@
 import { style } from '@angular/animations';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import {  ApexAxisChartSeries,ApexDataLabels,ApexLegend,ApexMarkers, ApexTooltip, ApexStroke, ApexFill, ApexChart, ApexXAxis, ApexTitleSubtitle,ApexYAxis } from 'ng-apexcharts';
 import { AuthService } from 'src/app/services/auth/auth.service';
@@ -14,10 +14,17 @@ interface City {
   templateUrl: './history-line-chart.component.html',
   styleUrls: ['./history-line-chart.component.css']
 })
-export class HistoryLineChartComponent {
+export class HistoryLineChartComponent implements OnChanges{
   menageUserForm! : FormGroup;
   cities: City[];
   selectedCity!: City;
+
+  @Input() array : any[]  = [12.00, 19.00, 33.00, 5.00, 2.00, 6.00, 5.00]
+  @Input() array2 : any[] = [null,null, null, null, null, null,5.00,10.00,12.00,23.00,16.00,5.00,10.00,5.00]
+  @Input() array3 : any[] = [null,null, null, null, null, null,null]
+  @Input() boja1 = '#f5805a';
+
+
 
   constructor(private userService:UserService, private authService:AuthService) {
     this.cities = [
@@ -27,22 +34,45 @@ export class HistoryLineChartComponent {
       {name: 'All', code: '4'},
   ];
   }
+
+  ngOnChanges(changes: SimpleChanges)
+  {
+    this.series = [
+      {
+        data: this.array2,
+        color: this.boja1,
+        
+      }
+    ];
+    this.xaxis = {
+      title:{
+        text:"date",
+        style :{
+          color:'white',
+          fontFamily: 'Montserrat,sans-serif',
+          fontSize: '16px' 
+        }
+      },
+      categories: [this.array3[0],this.array3[1],this.array3[2],this.array3[3],this.array3[4],this.array3[5],this.array3[6]],
+      labels: {
+        style: {
+          colors: ['#FFF','#FFF','#FFF','#FFF','#FFF','#FFF','#FFF'],
+          fontSize: '16px',
+          fontWeight: 'bolder',
+          fontFamily: 'Lato, sans-serif'
+        }
+      }
+    };
+  }
+
+
+
   public series: ApexAxisChartSeries = [
     {
-      name: 'Consumption history',
-      data: [12, 19, 3, 5, 2, 6, 5],
+      name: 'History',
+      data: this.array,
       color: '#7d02d4'
-    },
-    {
-      name: 'Production history',
-      data: [1, 4, 15, 5, 12, 6, 18],
-      color:  '#d90372'
-    },
-    {
-      name: 'Stock history',
-      data: [12, 1, 3, 15, 12, 6, 9],
-      color:'rgb(4, 167, 119)'
-    },
+    }
       
   ];
 
@@ -110,6 +140,14 @@ export class HistoryLineChartComponent {
   }
 
   public xaxis: ApexXAxis = {
+    title:{
+      text:"date",
+      style :{
+        color:'white',
+        fontFamily: 'Montserrat,sans-serif',
+        fontSize: '16px' 
+      }
+    },
     categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
     labels: {
       style: {
@@ -122,7 +160,14 @@ export class HistoryLineChartComponent {
   };
 
   public yaxis: ApexYAxis = {
-
+    title:{
+      text:"kwh",
+      style :{
+        color:'white',
+        fontFamily: 'Montserrat,sans-serif',
+        fontSize: '16px' 
+      }
+    },
     labels: {
       style: {
         colors: ['#FFF'],
@@ -132,6 +177,18 @@ export class HistoryLineChartComponent {
       },
     },
   };
+
+  public fill: ApexFill = {
+    type: 'gradient',
+    gradient: {
+      shade: 'dark',
+      gradientToColors: ['#a17abd','#e1a2c7','#afecda'],
+      shadeIntensity: 1,
+      opacityFrom: 1,
+      opacityTo: 1,
+      stops: [0, 100, 200],
+    }
+  }
 
   public title: ApexTitleSubtitle = {
     text: 'History',

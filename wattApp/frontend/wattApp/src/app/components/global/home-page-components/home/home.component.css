@@ -58,12 +58,11 @@
 }
 
 ::ng-deep .p-dropdown {
-  display: block;
   position:relative;
   margin-bottom: 20px;
   border-radius: 30px;
   border:none;
-  background-color:rgb(4, 167, 119);
+  background-color:#885ec0;;
   
 }
 ::ng-deep #pr_id_1_label{
@@ -83,16 +82,16 @@
   margin-left: calc(2.8%);
 }
 .consumption {
-  background-color:#7d02d4;
+  background-color:#f5805a;;
 }
 .production {
-  background-color: #d90372;
+  background-color: #eb4886;
 }
 .stock {
-  background-color: #04a777;
+  background-color: #885ec0;
 }
 .all {
-  background-color: #F75C03;
+  background-color: #46c5f1;
 }
 
 .hist-forecast {

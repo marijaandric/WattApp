@@ -11,7 +11,7 @@
   <app-center-bar>
   <div  class="main-grid"> 
     <app-map [users] = 'users' style="
-      height: 82vh;
+      height: 92vh;
       width:48.5%; display: flex;
       float:left;
       flex-direction: column;
@@ -75,28 +75,28 @@
 
             <ng-template pTemplate="header">
               <tr>
-                <th pSortableColumn="firstName" style="min-width:8rem;  border-top:3px solid #04a777; border-bottom:3px solid #04a777;">
+                <th pSortableColumn="firstName" style="min-width:8rem;  border-top:3px solid #885ec0;; border-bottom:3px solid #885ec0;">
                   <div class="flexRow">
-                      <p style=" font-size: 18px !important;">First name</p>
+                      <p style=" font-size: 18px !important;">Name</p>
                       <p-sortIcon field="firstName"></p-sortIcon>
                       <p-columnFilter class="ml-auto" type="text" field="firstName" display="menu"></p-columnFilter>
                   </div>
                 </th>
-                <th pSortableColumn="lastName" style="min-width:9rem;  border-top:3px solid #04a777; border-bottom:3px solid #04a777;">
+                <th pSortableColumn="lastName" style="min-width:9rem;  border-top:3px solid #885ec0; border-bottom:3px solid #885ec0;">
                   <div class="flexRow">
-                      <p style=" font-size: 18px !important;">Last name</p>
+                      <p style=" font-size: 18px !important;">Address</p>
                       <p-sortIcon field="lastName"></p-sortIcon>
                       <p-columnFilter class="ml-auto" type="text" field="lastName" display="menu"></p-columnFilter>
                   </div>
                 </th>
-                <th pSortableColumn="email" style="min-width:10rem;  border-top:3px solid #04a777; border-bottom:3px solid #04a777;">
+                <th pSortableColumn="email" style="min-width:10rem;  border-top:3px solid #885ec0; border-bottom:3px solid #885ec0;">
                   <div class="flexRow">
                       <p style=" font-size: 18px !important;">Email</p>
                       <p-sortIcon field="email"></p-sortIcon>
                       <p-columnFilter class="ml-auto" type="text" field="email" display="menu"></p-columnFilter>
                   </div>
                 </th>
-                <th pSortableColumn="role" style="min-width:8rem; border-top:3px solid #04a777; border-bottom:3px solid #04a777;">
+                <th pSortableColumn="role" style="min-width:8rem; border-top:3px solid #885ec0; border-bottom:3px solid #885ec0;">
                   <div class="flexRow">
                       <p style=" font-size: 18px !important;">Role</p>
                       <p-sortIcon field="role"></p-sortIcon>
@@ -108,8 +108,8 @@
 
               <ng-template pTemplate="body" let-user>
                 <tr>
-                  <td>{{user.firstName}}</td>
-                  <td>{{user.lastName}}</td>
+                  <td>{{user.firstName}} {{user.lastName}}</td>
+                  <td>{{user.address}}</td>
                   <td>{{user.email}}</td>
                   <td>{{user.role}}</td>
                 </tr>

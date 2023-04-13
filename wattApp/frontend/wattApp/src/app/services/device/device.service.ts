@@ -22,7 +22,9 @@ export class DeviceService {
           device.deviceModel,
           device.room,
           device.deviceType,
-          device.isActive
+          device.isActive,
+          device.allowOperatorControll,
+          device.allowOperatorVisibility
         ));
       })
     );
@@ -38,14 +40,20 @@ export class DeviceService {
           device.deviceModel,
           device.room,
           device.deviceType,
-          device.isActive
+          device.isActive,
+          device.allowOperatorControll,
+          device.allowOperatorVisibility
         ));
       })
     );
   }
 
-  getDeviceById(id: string): Observable<DeviceDTO>{
+  getDeviceById(id: any): Observable<DeviceDTO>{
     return this.http.get<DeviceDTO>(this.baseUrl + "device/" + id);
+  }
+
+  getDevicesByUserId(id: number){
+    return this.http.get<any>(this.baseUrl + id);
   }
 
   AddDevice(deviceObj:any)
@@ -84,6 +92,36 @@ export class DeviceService {
 
   updateDevice(device: DeviceDTO): Observable<DeviceDTO>{
     return this.http.put<DeviceDTO>(this.baseUrl + device.id, device);
-}
+  }
+
+  getHistoryAndForecastByDayForDevice(id :number)
+  {
+    return this.http.get<any>(this.baseUrl+"getHistoryAndForecastByDayForDevice/"+id)
+  }
+
+  GetNumberOfUserDevices(id :number)
+  {
+    return this.http.get<any>(this.baseUrl+"getNumberOfUserDevices"+"/"+id)
+  }
+  GetNumberOfActiveUserDevices(id :number)
+  {
+    return this.http.get<any>(this.baseUrl+"getNumberOfActiveUserDevices"+"/"+id)
+  }
+  GetNumberOfDevicesForUserThatDSOCanSee(id :number)
+  {
+    return this.http.get<any>(this.baseUrl+"GetNumberOfDevicesForUserThatDSOCanSee"+"/"+id)
+  }
+  GetNumberOfDevicesForUserThatDSOCanManage(id :number)
+  {
+    return this.http.get<any>(this.baseUrl+"GetNumberOfDevicesForUserThatDSOCanManage"+"/"+id)
+  }
+  GetHistoryAndForecastByDayForAllUserDevices(id :number)
+  {
+    return this.http.get<any>(this.baseUrl+"getHistoryAndForecastByDayForAllUserDevices"+"/"+id)
+  }
+  GetHistoryAndForecastByDayForAllDevices()
+  {
+    return this.http.get<any>(this.baseUrl+"getHistoryAndForecastByDayForAllDevices")
+  }
 
 }

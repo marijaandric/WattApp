@@ -60,6 +60,21 @@ namespace backend.BAL
             return _contextDAL.getUsers();
         }
 
+        public List<User> GetUsersByType(string type)
+        {
+            return _contextDAL.GetUsersByType(type);
+        }
+
+        public List<User> GetUsersPaginationByRole(string type, int page, int limit)
+        {
+            List<User> users = _contextDAL.GetUsersByType(type);
+            List<User> result = new List<User>();
+
+            for(int i = page * limit; i < (page + 1) * limit && i < users.Count; i++)
+                result.Add(users[i]);
+            return result;
+        }
+
         public TokenApiDto refreshToken(TokenApiDto tokenApiDto)
         {
             string accessToken = tokenApiDto.AccessToken;

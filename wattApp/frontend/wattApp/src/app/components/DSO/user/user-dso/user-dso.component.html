@@ -1,0 +1,30 @@
+<standard-template>
+    <app-title-bar>
+      <h3>User</h3>
+    </app-title-bar>
+  
+    <app-center-bar>
+    <div class="user">
+      <div class ='firstHalf'>
+        <div class="usercard" >
+            <app-card [id] = 'id'></app-card>
+            <app-table [id] = 'id'></app-table>
+        </div>
+        
+      </div>
+      <div class="secondHalf">
+        <h4 style="margin-left: 10%;margin-bottom: 5%;">Top devices</h4>
+        <div class="donuts">
+            <app-circle [id] = 'id' [type] = 'Consumer'></app-circle>
+            <app-circle [id] = 'id' [type] = 'Producer'></app-circle>
+            <app-circle [id] = 'id' [type] = 'Stock'></app-circle>
+        </div>
+        <div class="chart">
+            <app-area-chart style="width:100%"></app-area-chart>
+
+        </div>
+      </div>
+    </div>
+    </app-center-bar>
+    
+  </standard-template>

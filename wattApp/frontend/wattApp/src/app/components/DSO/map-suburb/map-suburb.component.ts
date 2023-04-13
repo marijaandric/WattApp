@@ -16,6 +16,8 @@ export class MapSuburbComponent implements OnInit {
   lowestCoordinates!:any;
   prom!:any;
   data: any;
+  private darkLayer!: L.TileLayer;
+  private lightLayer!: L.TileLayer;
 
   constructor(private areaService:AreasService,private http:HttpClient){}
 
@@ -59,6 +61,12 @@ async ngOnInit(): Promise<void> {
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; OpenStreetMap contributors'
     }).addTo(this.map);
+    this.darkLayer = L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png', { //https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png
+      attribution: '&copy; OpenStreetMap contributors'
+    });
+    this.lightLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    });
 
     await this.getAreas("Max");
 
@@ -67,8 +75,8 @@ async ngOnInit(): Promise<void> {
 
     // Set the style of the suburb layer
     const circle = L.circle([this.highestCoordinates[0],this.highestCoordinates[1]], {
-      color: 'rgb(217, 3, 114)',
-      fillColor: 'rgb(217, 3, 114)',
+      color: '#f5805a',
+      fillColor: '#f5805a',
       fillOpacity: 0.5,
       radius: 550 // in meters
     }).addTo(this.map);
@@ -76,11 +84,30 @@ async ngOnInit(): Promise<void> {
 
     await this.getAreas("Min");
     const circle2 = L.circle([this.lowestCoordinates[0],this.lowestCoordinates[1]], {
-      color: 'rgb(4, 167, 119)',
-      fillColor: 'rgb(4, 167, 119)',
+      color: '#885ec0',
+      fillColor: '#885ec0',
       fillOpacity: 0.5,
       radius: 500 // in meters
     }).addTo(this.map);
+
+    let radius = circle.getRadius();
+    let expanding = true;
+    setInterval(() => {
+      if (expanding) {
+        radius += 40;
+      } else {
+        radius -= 40;
+      }
+      
+      circle.setRadius(radius);
+      circle2.setRadius(radius)
+      
+      if (radius >= 800) {
+        expanding = false;
+      } else if (radius <= 550) {
+        expanding = true;
+      }
+    }, 150);
 
 
     // Bind a popup to the circle
@@ -101,5 +128,17 @@ async ngOnInit(): Promise<void> {
       circle2.closePopup();
     });
     
+  }
+
+  toggleDarkMode(): void {
+    if (this.map.hasLayer(this.darkLayer)) {
+      // if the dark layer is already active, switch to light
+      this.map.removeLayer(this.darkLayer);
+      this.lightLayer.addTo(this.map);
+    } else {
+      // if the light layer is active, switch to dark
+      this.map.removeLayer(this.lightLayer);
+      this.darkLayer.addTo(this.map);
+    }
   }
 }

@@ -4,45 +4,54 @@
   </app-title-bar>
 
   <app-center-bar>
-    <div id="deviceInformation" class="flexColumn device-information">
+    <div class="device" >
+      <div class="circles">
+        <app-device-prototype style="width:100%"></app-device-prototype>
+      </div>
+    <div class="info" >
+    <div id="deviceInformation" class="flexColumn device-information" >
       <div class="flexRow">
-        <h3 style="color:rgb(4, 167, 119);font-weight:bold;">{{ device.deviceName }}</h3>
-        <p-button label="Edit" (click)="showEditDeviceDialog()" class="margin-left__auto" style="border-radius:32px !important;"/>
-        <p-button label="Delete" (onClick)="deleteDevice(device.id)" class="margin-left__8px"/>
+          <div class="colored-text" ><h5>Device description</h5></div>
       </div>
 
       <div class="flexRow margin-top__16px">
-        <span>ID:</span>
-        <span class="margin-left__auto">{{ device.id }}</span>
+        <span class="bold-text">ID:</span>
+        <span class="margin-left__auto">{{ device?.id }}</span>
       </div>
 
       <div class="flexRow margin-top__8px">
-        <span>Model:</span>
-        <span class="margin-left__auto">{{ device.deviceModel }}</span>
+        <span class="bold-text">Model:</span>
+        <span class="margin-left__auto">{{ device?.deviceModel }}</span>
       </div>
 
       <div class="flexRow margin-top__8px">
-        <span>Type:</span>
-        <span class="margin-left__auto">{{ device.deviceType }}</span>
+        <span class="bold-text">Type:</span>
+        <span class="margin-left__auto">{{ device?.deviceType }}</span>
       </div>
 
       <div class="flexRow margin-top__8px">
-        <span>Room:</span>
-        <span class="margin-left__auto">{{ device.room }}</span>
+        <span class="bold-text">Room:</span>
+        <span class="margin-left__auto">{{ device?.room }}</span>
+      </div>
+
+      <div class="flexRow margin-top__16px">
+        <span class="bold-text">Visible to operators:</span>
+        <p-inputSwitch [(ngModel)]="device.allowOperatorVisibility" (onChange)="handleVisibilitySwitchChange()" class="margin-left__auto width__fit-content"/>
       </div>
 
       <div class="flexRow margin-top__8px">
-        <span>Visible to operators:</span>
-        <p-inputSwitch [(ngModel)]="isVisibleToDSO" class="margin-left__auto width__fit-content"/>
+        <span class="bold-text">Managed by operators:</span>
+        <p-inputSwitch [(ngModel)]="device.allowOperatorControll" (onChange)="handleManagementSwitchChange()" class="margin-left__auto width__fit-content"/>
       </div>
     </div>
-
+<!--
     <div class="flexColumn device-information margin-top__16px">
       <div class="flexRow">
         <span *ngIf="!isRunning">Idle</span>
         <span *ngIf="isRunning">Running</span>
-        <p-inputSwitch [(ngModel)]="isRunning" class="margin-left__auto width__fit-content"/>
+        <p-inputSwitch [(ngModel)]="device.isActive" (onChange)="handleRunningSwitchChange()" class="margin-left__auto width__fit-content"/>
       </div>
+    
 
       <div class="flexRow margin-top__8px">
         <span>Current consumption:</span>
@@ -53,11 +62,23 @@
         <span>Totaly ever consumed:</span>
         <span class="margin-left__auto">{{ 'N/A' }}</span>
       </div>
-    </div>
-
+      
+    </div>-->
     <div>
-      <app-device-area-bar-chart clas="bar-plot" class="margin-top__16px"/>
+      
+      <div class="twoCharts">
+        <p-selectButton class="flexRow width__fit-content margin-left__auto margin-bottom__16px" [options]="switchOptions" [(ngModel)]="switchValue" optionLabel="label" optionValue="value"></p-selectButton>
+        <app-history-line-chart #myChart2 class="handf" *ngIf="switchValue == true" [array] = 'array' [array2] = 'array3'></app-history-line-chart>
+        <app-forecast-line-chart #myChart1 class="handf" *ngIf="switchValue == false"  [array]="array2" [array2] = 'array3'></app-forecast-line-chart>
+      </div>
+      <!--<app-device-area-bar-chart clas="bar-plot" class="margin-top__16px"/>-->
+      <app-history-forecast id="oneChart" class="margin-top__16px" style="width: 100%;" [array] = 'array' [array2]="array2" [array3] = 'array3'></app-history-forecast>
     </div>
+    </div>
+  </div>
+  
+
+  
   </app-center-bar>
 </standard-template>
 
@@ -96,4 +117,29 @@
       <button class="margin-left__16px" (click)="cancel()" type="submit">Cancel</button>
     </div>
   </ng-template>
+</p-dialog>
+
+
+<p-dialog [style]="{width:'20%'}" header="Title"  [transitionOptions]="'3ms'" 
+[draggable]="false" [keepInViewport]="true" [resizable]="false" 
+[blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true" 
+[modal]="true" [(visible)]="display3" [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
+[closable]="true" >
+<ng-template pTemplate="header" class="header-dialog">
+  <span>Delete device</span>
+</ng-template>
+
+<ng-template pTemplate="center">
+  <div class="delete-device-content">
+    Are you sure you want to erase the device?
+    All data will be deleted and you will not be able to recover it.
+
+  </div>
+</ng-template>
+
+<ng-template pTemplate="footer" >
+  <button type="button" class="no-button" icon="fa-home" label="No" (click)="showDialog()"><span clas="no-span">No</span></button>
+  <button type="button" class="yes-button" icon="pi pi-info-circle" label="Yes" (click)="deleteDevice(device.id)"><span clas="no-span">Yes</span></button>
+
+</ng-template>
 </p-dialog>

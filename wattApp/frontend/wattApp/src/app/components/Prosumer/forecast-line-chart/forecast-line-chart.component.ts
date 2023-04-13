@@ -1,5 +1,5 @@
 import { style } from '@angular/animations';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import {  ApexAxisChartSeries,ApexDataLabels,ApexLegend,ApexMarkers, ApexTooltip, ApexStroke, ApexFill, ApexChart, ApexXAxis, ApexTitleSubtitle,ApexYAxis } from 'ng-apexcharts';
 import { AuthService } from 'src/app/services/auth/auth.service';
@@ -14,10 +14,16 @@ interface City {
   templateUrl: './forecast-line-chart.component.html',
   styleUrls: ['./forecast-line-chart.component.css']
 })
-export class ForecastLineChartComponent {
+export class ForecastLineChartComponent implements OnChanges{
   menageUserForm! : FormGroup;
   cities: City[];
   selectedCity!: City;
+
+  @Input() array : any[]  = [12.00, 19.00, 33.00, 5.00, 2.00, 6.00, 5.00]
+  @Input() array2 : any[] = [null,null, null, null, null, null,5.00,10.00,12.00,23.00,16.00,5.00,10.00,5.00]
+  @Input() array3 : any[] = [null,null, null, null, null, null,null]
+  @Input() boja1 = '#f5805a';
+
 
   constructor(private userService:UserService, private authService:AuthService) {
     this.cities = [
@@ -27,22 +33,44 @@ export class ForecastLineChartComponent {
       {name: 'All', code: '4'},
   ];
   }
+
+  ngOnChanges(changes: SimpleChanges)
+  {
+    this.series = [
+      {
+        data: this.array2,
+        color: this.boja1,
+        
+      }
+    ];
+    this.xaxis = {
+      title:{
+        text:"date",
+        style :{
+          color:'white',
+          fontFamily: 'Montserrat,sans-serif',
+          fontSize: '16px' 
+        }
+      },
+      categories: [this.array3[0],this.array3[1],this.array3[2],this.array3[3],this.array3[4],this.array3[5],this.array3[6]],
+      labels: {
+        style: {
+          colors: ['#FFF','#FFF','#FFF','#FFF','#FFF','#FFF','#FFF'],
+          fontSize: '16px',
+          fontWeight: 'bolder',
+          fontFamily: 'Lato, sans-serif'
+        }
+      }
+    };
+  }
+
+
   public series: ApexAxisChartSeries = [
     {
-      name: "Consumption forecast",
-      data: [5,10,12,3,16,5,10],
+      name: "Forecast",
+      data: this.array,
       color: '#ab36ff',
-    },
-    {
-      name: "Production forecast",
-      data: [18,1,2,7,6,9,10],
-      color: '#ff7bbf'
-    },
-    {
-      name: "Stock forecast",
-      data: [9,17,12,10,16,5,1],
-      color: 'rgb(114, 255, 213)'
-    },
+    }
       
   ];
 
@@ -109,7 +137,27 @@ export class ForecastLineChartComponent {
     
   }
 
+  public fill: ApexFill = {
+    type: 'gradient',
+    gradient: {
+      shade: 'dark',
+      gradientToColors: ['#7d02d4', '#d90372','rgb(4, 167, 119)'],
+      shadeIntensity: 1,
+      opacityFrom: 1,
+      opacityTo: 1,
+      stops: [0, 100, 200],
+    }
+  }
+
   public xaxis: ApexXAxis = {
+    title:{
+      text:"date",
+      style :{
+        color:'white',
+        fontFamily: 'Montserrat,sans-serif',
+        fontSize: '16px' 
+      }
+    },
     categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
     labels: {
       style: {
@@ -122,7 +170,14 @@ export class ForecastLineChartComponent {
   };
 
   public yaxis: ApexYAxis = {
-
+    title:{
+      text:"kwh",
+      style :{
+        color:'white',
+        fontFamily: 'Montserrat,sans-serif',
+        fontSize: '16px' 
+      }
+    },
     labels: {
       style: {
         colors: ['#FFF'],

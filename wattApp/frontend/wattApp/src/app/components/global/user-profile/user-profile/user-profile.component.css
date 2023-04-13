@@ -52,3 +52,43 @@ body{
     box-shadow: none!important;
 }
 
+
+
+@media only screen and (min-width: 1070px) {
+    .usercard{
+        width: 40%;
+    }
+
+    .mapaISlika{
+        width: 60%;
+        margin-left:2%
+    }
+    .user{
+        display: flex;
+        flex-direction: row;
+    }
+    
+}
+
+
+@media only screen and (max-width: 1070px) {
+    .slika{
+        display: none;
+    }
+
+    .user{
+        display: flex;
+        flex-direction: column;
+    }
+
+    .mapaISlika{
+        margin-top: 20px;
+    }
+
+    .usercard{
+        width: 100%;
+    }
+}
+
+
+

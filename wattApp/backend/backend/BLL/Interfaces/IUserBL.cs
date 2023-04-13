@@ -14,5 +14,7 @@ namespace backend.BAL.Interfaces
         public User authenticateUser(User userObj);
         public IActionResult registerUser(User userObj);
         public TokenApiDto refreshToken(TokenApiDto tokenApiDto);
+        public List<User> GetUsersByType(string type);
+        public List<User> GetUsersPaginationByRole(string type, int page, int limit);
     }
 }

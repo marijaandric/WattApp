@@ -31,6 +31,24 @@ namespace backend.DAL
             return _context.Devices.FirstOrDefault(e => e.Id == deviceId);
         }
 
+        public int GetNumberOfDevicesForUserThatDSOCanSee(int userId)
+        {
+            var res = _context.Devices.Where(e => e.UserID == userId && e.allowOperatorVisibility == true).ToList();
+            return res.Count;
+        }
+
+        public int GetNumberOfDevicesForUserThatDSOCanManage(int userId)
+        {
+            var res = _context.Devices.Where(e => e.UserID == userId && e.allowOperatorControll == true).ToList();
+            return res.Count;
+        }
+
+        public int GetNumberOfActiveUserDevices(int userId)
+        {
+            var res = _context.Devices.Where(e => e.UserID == userId && e.isActive == true).ToList();
+            return res.Count;
+        }
+
         public Devices GetDeviceForUser(int userId, int deviceId)
         {
             return _context.Devices.FirstOrDefault(e => e.UserID == userId && e.Id == deviceId);
@@ -72,5 +90,7 @@ namespace backend.DAL
         {
             _context.SaveChangesAsync();
         }
+
+        
     }
 }

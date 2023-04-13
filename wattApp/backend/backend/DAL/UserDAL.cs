@@ -101,5 +101,15 @@ namespace backend.DAL
         {
             return _context.Users.Where(u => u.Area == area).ToList();
         }
+
+        public List<User> GetUsersByType(string type)
+        {
+            return _context.Users.Where(e => e.Role == type).ToList();
+        }
+
+        public List<User> GetAllUsersPagination( int page, int limit)
+        {
+            return _context.Users.Where(e => e.Id >= page * limit && e.Id < (page + 1) * limit).ToList();
+        }
     }
 }

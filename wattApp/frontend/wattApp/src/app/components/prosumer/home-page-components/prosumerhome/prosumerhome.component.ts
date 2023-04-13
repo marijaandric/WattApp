@@ -183,13 +183,19 @@ export class ProsumerhomeComponent implements OnInit{
   sadrzaj2 : any;
   sadrzaj3 : any;
 
+  datum1 : any;
+  datum2 : any;
+  datum3 : any;
 
+  status1 : any;
+  status2 : any;
+  status3 : any;
   getNews() {
   
     this.dsonew.getnew().subscribe((data: any) => {
       this.news = data;
       this.news.sort((a, b) => b.id - a.id);
-      //console.log(this.news);
+      //console.log(data);
 
 
      this.naslov1 = this.news[0].title;
@@ -200,6 +206,16 @@ export class ProsumerhomeComponent implements OnInit{
      this.sadrzaj2 = this.news[1].content;
      this.sadrzaj3 = this.news[2].content;
 
+     this.datum1 = new Date(this.news[0].created).toLocaleDateString();
+     this.datum2 = new Date(this.news[1].created).toLocaleDateString();
+     this.datum3 = new Date(this.news[2].created).toLocaleDateString();
+
+     this.status1 = this.news[0].priority;
+     this.status2 = this.news[1].priority;
+     this.status3 = this.news[2].priority;
+
+
+     console.log(this.news);
     });
   
   }

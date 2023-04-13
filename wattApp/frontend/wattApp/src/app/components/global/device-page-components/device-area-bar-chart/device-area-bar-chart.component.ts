@@ -43,7 +43,7 @@ export class DeviceAreaBarChartComponent implements OnInit {
       offsetY: 10,
       labels: {
         style: {
-          colors: ['#7d02d4', 'rgb(217, 3, 114)','rgb(4, 167, 119)', ],
+          colors: ['#f5805a', '#46c5f1', '#eb4886','#885ec0'],
           fontSize: '17px',
         }
       }
@@ -60,7 +60,7 @@ export class DeviceAreaBarChartComponent implements OnInit {
     this.fill = {
       type: 'solid',
       opacity: 1,
-      colors: ['#7d02d4','rgb(217, 3, 114)',  'rgb(4, 167, 119)', ],
+      colors: ['#f5805a', '#46c5f1', '#eb4886','#885ec0'],
     }
 
     this.tooltip = {

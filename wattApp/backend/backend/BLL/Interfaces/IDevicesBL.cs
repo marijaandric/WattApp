@@ -13,6 +13,7 @@ namespace backend.BLL.Interfaces
         public void ModifiedDevice(Devices device);
         public void SaveChanges();
         public bool DevicesExists(int id);
+        public int GetNumberOfActiveUserDevices(int userid);
         public void AddDevice(Devices device);
         public Devices GetDevice(int deviceId);
         public void RemoveDevice(Devices device);
@@ -23,5 +24,10 @@ namespace backend.BLL.Interfaces
         public double currentMonthAllUsersDevicesUsage(string deviceType);
         public double getTotalUsageByArea(string area, string type, string timeType);
         public (string?, double?) getExtremeUsageForAreas(string type, string timeType, string minmax);
+        public WeekDatasDTO GetWeekByDayHistoryAndFutureForDevice(int deviceid);
+        public WeekDatasTypesDTO GetWeekByDayHistoryAndFutureForAllUserDevicesOrAllDevices(int userid);
+        public int GetNumberOfDevicesForUserThatDSOCanSee(int userId);
+        public int GetNumberOfDevicesForUserThatDSOCanManage(int userId);
+        public List<double> GetMonthlyPowerUsageAndProduceOfUser(int userid, int year, int month);
     }
 }

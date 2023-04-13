@@ -74,6 +74,16 @@ import { SingleAreaPieComponent } from './components/DSO/single-area-pie/single-
 import { AllAreasDonutComponent } from './components/DSO/all-areas-donut/all-areas-donut.component';
 import { HistoryLineChartComponent } from './components/Prosumer/history-line-chart/history-line-chart.component';
 import { ForecastLineChartComponent } from './components/Prosumer/forecast-line-chart/forecast-line-chart.component';
+import { DevicePrototypeComponent } from './components/global/device-page-components/device-prototype/device-prototype.component';
+import { AreaChartComponent } from './components/global/area-chart/area-chart.component';
+import { UsersProsumersComponent } from './components/DSO/users-page-components/users-prosumers/users-prosumers.component';
+import { UsersOperatorsComponent } from './components/DSO/users-page-components/users-operators/users-operators.component';
+import { CardComponent } from './components/DSO/user/card/card.component';
+import { UserDSOComponent } from './components/DSO/user/user-dso/user-dso.component';
+import { CircleComponent } from './components/DSO/user/circle/circle.component';
+import { MapForAllUsersComponent } from './components/DSO/map-for-all-users/map-for-all-users.component';
+import { TableComponent } from './components/DSO/user/table/table.component';
+
 
 export const url = 'https://localhost:7158';
 export const deviceFakerUrl = "https://localhost:7233";
@@ -129,7 +139,16 @@ export const deviceFakerUrl = "https://localhost:7233";
     SingleAreaPieComponent,
     AllAreasDonutComponent,
     HistoryLineChartComponent,
-    ForecastLineChartComponent
+    ForecastLineChartComponent,
+    DevicePrototypeComponent,
+    AreaChartComponent,
+    UsersProsumersComponent,
+    UsersOperatorsComponent,
+    CardComponent,
+    UserDSOComponent,
+    CircleComponent,
+    MapForAllUsersComponent,
+    TableComponent
   ],
   imports: [
     CommonModule,

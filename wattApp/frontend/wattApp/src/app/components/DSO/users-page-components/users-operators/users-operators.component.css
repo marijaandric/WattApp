@@ -1,0 +1,68 @@
+app-tab-menu-users .boja3 {
+    color: #885ec0;;
+  }
+
+app-tab-menu-users .fa-user-shield {
+    color: #885ec0;;
+  }
+
+app-tab-menu-users .color:hover{
+    color:#885ec0 !important;
+  }
+
+.right {
+ margin-bottom: 10%;
+  width:45%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.p-dropdown {
+  position:relative;
+  margin-bottom: 20px;
+  border-radius: 30px;
+  border:none;
+  background-color:#885ec0;;
+}
+
+
+#pr_id_1_label{
+  border-radius: 30px 30px;
+  font-size: 17px;
+  padding:8px 20px;
+  border:none;
+}
+
+#pr_id_2_label{
+  border-radius: 30px 30px;
+  font-size: 17px;
+  padding:8px 20px;
+  border:none;
+}
+
+
+.promotions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-gap: 20px;
+  width: 48%;
+  margin-right: 3%;
+  min-height: 900px;
+}
+
+.promo {
+  margin: 0px;
+}
+
+.card {
+  min-width: 300px;
+  min-height: 300px;
+  background: none;
+}
+
+.promotion{
+  min-width: 100%;
+  height: 350px;
+}
+

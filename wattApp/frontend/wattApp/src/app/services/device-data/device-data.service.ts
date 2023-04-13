@@ -15,4 +15,9 @@ export class DeviceDataService {
   getDeviceData(id: number): Observable<DeviceDataDTO>{
     return this.http.get<DeviceDataDTO>(this.baseUrl + id);
   }
+
+  getHistoryAndForecastByDayForAllDevices()
+  {
+    return this.http.get<DeviceDataDTO>(this.baseUrl + "getHistoryAndForecastByDayForAllDevices");
+  }
 }

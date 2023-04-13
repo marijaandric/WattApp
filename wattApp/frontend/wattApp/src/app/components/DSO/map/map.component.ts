@@ -4,7 +4,6 @@ import axios from 'axios';
 import * as L from 'leaflet';
 import { UserDTO } from 'src/app/dtos/UserDTO';
 
-
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
@@ -17,6 +16,9 @@ export class MapComponent implements OnInit, OnChanges{
   area! : string;
   map! : any;
 
+  private darkLayer!: L.TileLayer;
+  private lightLayer!: L.TileLayer;
+
   constructor(private http: HttpClient){
     
   }
@@ -26,7 +28,26 @@ export class MapComponent implements OnInit, OnChanges{
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; OpenStreetMap contributors'
     }).addTo(this.map);
+    this.darkLayer = L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png', { //https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png
+      attribution: '&copy; OpenStreetMap contributors'
+    });
+    this.lightLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors'
+    });
+
     this.mapa()
+  }
+
+  toggleDarkMode(): void {
+    if (this.map.hasLayer(this.darkLayer)) {
+      // if the dark layer is already active, switch to light
+      this.map.removeLayer(this.darkLayer);
+      this.lightLayer.addTo(this.map);
+    } else {
+      // if the light layer is active, switch to dark
+      this.map.removeLayer(this.lightLayer);
+      this.darkLayer.addTo(this.map);
+    }
   }
 
   ngOnChanges(changes: SimpleChanges): void {
@@ -40,8 +61,8 @@ export class MapComponent implements OnInit, OnChanges{
   async mapa()
   {
     const markerIcon = L.icon({
-      iconUrl: '/assets/icons/images/marker-green.png',
-      iconRetinaUrl: '/assets/icons/images/marker-green.png',
+      iconUrl: '/assets/icons/images/marker-pink.png',
+      iconRetinaUrl: '/assets/icons/images/marker-pink.png',
       iconSize: [50, 50],
       iconAnchor: [2, 11],
       popupAnchor: [1, -34],
@@ -68,6 +89,10 @@ export class MapComponent implements OnInit, OnChanges{
   
           marker.on('mouseout', function (e) {
             marker.closePopup();
+          });
+
+          marker.on('click', function (e) {
+            window.open('/userDSO');
           });
         }
       }

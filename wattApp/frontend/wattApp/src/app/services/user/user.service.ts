@@ -41,6 +41,10 @@ export class UserService {
     return this.http.get(`${this.baseUrl}/${userId}`, { headers });
   }
 
+  GetUserWithoutToken(userId: number) {
+    return this.http.get(`${this.baseUrl}${userId}`);
+  }
+
   getUserIdFromToken(token: string) {
     const decodedToken = this.jwtHelper.decodeToken(token);
     return decodedToken.nameid;
@@ -57,5 +61,26 @@ export class UserService {
     const url = this.baseUrl+`/${id}`;
     return this.http.put(url,user);
   }
+  
+  getUsersPaginationByRole(type:string, page:number,limit:number): Observable<UserDTO[]> {
+    return this.http.get<UserDTO[]>(this.baseUrl+"getUsersPaginationByRole/"+type+"/"+page+"/"+limit).pipe(
+      map(users => {
+        return users.map(user => new UserDTO(
+          user.id,
+          user.firstName,
+          user.lastName,
+          user.email,
+          user.password,
+          user.token,
+          user.address,
+          user.role,
+          user.x,
+          user.y,
+          user.area
+        ));
+      })
+    );
+  }
+
 
 }

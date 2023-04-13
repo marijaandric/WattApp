@@ -111,5 +111,22 @@ namespace backend.Controllers
             return Ok(token);
         }
 
+        [HttpGet("getUsersByRole/{type}")]
+        public List<User> GetUsersByType(string type)
+        {
+            var users = _context.GetUsersByType(type);
+
+            return users;
+        }
+
+        [HttpGet("getUsersPaginationByRole/{type}/{page}/{limit}")]
+        public List<User> GetUsersPaginationByRole(string type, int page, int limit)
+        {
+            var users = _context.GetUsersPaginationByRole(type, page, limit);
+
+            return users;
+        }
+
+
     }
 }
