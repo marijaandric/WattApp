@@ -20,7 +20,7 @@ Nakon toga, potrebno je pokrenuti Angular server :
 Potrebno je pokrenuti codespark-energy\wattApp\backend\backend.sln i \codespark-energy\services\DeviceFaker.sln
 
 ## MongoDB
-Potrebno je instalirati MongoDb i prema potrebi MongoDB compass, i pokrenuti MongoDB instancu na standardnom portu (27017) ukoliko nije vec pokrenuta.
+Potrebno je instalirati MongoDB i prema potrebi MongoDB compass, i pokrenuti MongoDB instancu na standardnom portu (27017) ukoliko nije vec pokrenuta. Na toj instanci treba napraviti Devices bazu i u njoj DevicesData kolekciju. (Za ovo predlazemo MongoDB compass)
 Nakon toga, treba otici u direktorijum \codespark-energy\services\DeviceFaker i u njemu pronaci fajl load_mongo.py i pokrenuti ga.
 
 ## Portovi
