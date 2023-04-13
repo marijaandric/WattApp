@@ -7,6 +7,22 @@
   color: white;
   background-color: #1b1b1b;
   box-shadow: 5px 5px 15px black;
+  margin-bottom:20px;
+}
+
+.bold-text {
+  font-weight: bold;
+  font-size:16px;
+}
+
+.colored-text {
+  h5 {
+      font-size: 20px;
+      font-weight: bolder;
+      color:  #b855a4 ;
+
+  }
+  
 }
 
 
@@ -19,6 +35,7 @@
   .circles{
     width:50%;
   }
+
 
   .info{
     display: flex;
@@ -40,6 +57,12 @@
   .circles{
     width:100%;
   }
+
+  
+  .device-information {
+    margin-top: 40px;
+  }
+
   .info{
     display: flex;
     flex-direction: column;

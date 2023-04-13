@@ -11,42 +11,40 @@
     <div class="info" >
     <div id="deviceInformation" class="flexColumn device-information" >
       <div class="flexRow">
-        <h3 style="color:rgb(4, 167, 119);font-weight:bold;">{{ device?.deviceName }}</h3>
-        <p-button label="Edit" (click)="showEditDeviceDialog()" class="margin-left__auto" style="border-radius:32px !important;"/>
-        <p-button label="Delete" (click)="showDialog()" class="margin-left__8px"/>
+          <div class="colored-text" ><h5>Device description</h5></div>
       </div>
 
       <div class="flexRow margin-top__16px">
-        <span>ID:</span>
+        <span class="bold-text">ID:</span>
         <span class="margin-left__auto">{{ device?.id }}</span>
       </div>
 
       <div class="flexRow margin-top__8px">
-        <span>Model:</span>
+        <span class="bold-text">Model:</span>
         <span class="margin-left__auto">{{ device?.deviceModel }}</span>
       </div>
 
       <div class="flexRow margin-top__8px">
-        <span>Type:</span>
+        <span class="bold-text">Type:</span>
         <span class="margin-left__auto">{{ device?.deviceType }}</span>
       </div>
 
       <div class="flexRow margin-top__8px">
-        <span>Room:</span>
+        <span class="bold-text">Room:</span>
         <span class="margin-left__auto">{{ device?.room }}</span>
       </div>
 
       <div class="flexRow margin-top__16px">
-        <span>Visible to operators:</span>
+        <span class="bold-text">Visible to operators:</span>
         <p-inputSwitch [(ngModel)]="device.allowOperatorVisibility" (onChange)="handleVisibilitySwitchChange()" class="margin-left__auto width__fit-content"/>
       </div>
 
       <div class="flexRow margin-top__8px">
-        <span>Managed by operators:</span>
+        <span class="bold-text">Managed by operators:</span>
         <p-inputSwitch [(ngModel)]="device.allowOperatorControll" (onChange)="handleManagementSwitchChange()" class="margin-left__auto width__fit-content"/>
       </div>
     </div>
-
+<!--
     <div class="flexColumn device-information margin-top__16px">
       <div class="flexRow">
         <span *ngIf="!isRunning">Idle</span>
@@ -65,7 +63,7 @@
         <span class="margin-left__auto">{{ 'N/A' }}</span>
       </div>
       
-    </div>
+    </div>-->
     <div>
       
       <div class="twoCharts">

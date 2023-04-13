@@ -23,7 +23,7 @@ app-tab-menu-users .color:hover{
   margin-bottom: 20px;
   border-radius: 30px;
   border:none;
-  background-color:#885ec0;;
+  background: linear-gradient(45deg, #b855a4 40%, #f5805a 100%);
 }
 
 
