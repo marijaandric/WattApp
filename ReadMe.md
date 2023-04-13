@@ -7,6 +7,7 @@ Da bi se aplikacija uspešno pokretala, potrebno je imati sledeće:
 > Package Manager : 9.5.0
 > .NET : 7.0.2
 > MongoDB : 1.36.3
+> Python : 3.0>
 
 ## FrontEnd
 Potrebno je otvoriti cmd na putanji codespark-energy\wattApp\frontend\wattApp.
@@ -19,6 +20,8 @@ Nakon toga, potrebno je pokrenuti Angular server :
 Potrebno je pokrenuti codespark-energy\wattApp\backend\backend.sln i \codespark-energy\services\DeviceFaker.sln
 
 ## MongoDB
+Potrebno je instalirati MongoDb i prema potrebi MongoDB compass, i pokrenuti MongoDB instancu na standardnom portu (27017) ukoliko nije vec pokrenuta.
+Nakon toga, treba otici u direktorijum \codespark-energy\services\DeviceFaker i u njemu pronaci fajl load_mongo.py i pokrenuti ga.
 
 ## Portovi
 Pri pokretanju aplikacije, proveriti da li su portovi zauzeti i da li su procesi od projekata već pokrenuti.
