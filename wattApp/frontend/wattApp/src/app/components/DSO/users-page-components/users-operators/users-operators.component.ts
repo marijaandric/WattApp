@@ -1,9 +1,10 @@
-import { Component, OnChanges, OnInit, SimpleChanges, ViewEncapsulation  } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges, ViewChild, ViewEncapsulation  } from '@angular/core';
 import { UserDTO } from '../../../../dtos/UserDTO';
 import { UserService } from '../../../../services/user/user.service';
 import axios from 'axios';
 import { DsonewsService } from 'src/app/services/dsonews/dsonews.service';
 import { DataViewModule, DataViewLayoutOptions } from 'primeng/dataview';
+import { Table } from 'primeng/table';
 
 @Component({
   selector: 'app-users-operators',
@@ -13,14 +14,17 @@ import { DataViewModule, DataViewLayoutOptions } from 'primeng/dataview';
 })
 export class UsersOperatorsComponent implements OnInit {
   users: UserDTO[] = [];
-
+  @ViewChild('dtUsers') dataTable!: Table;
+  totalRecords:number = 0;
+  currentpage:number= 0;
 
   constructor(private userService: UserService,private dsonew:DsonewsService) {
 
  }
 
   ngOnInit() {
-    this.userService.getAllUsers().subscribe((result: UserDTO[]) => (this.users = result));
+    //this.userService.getAllUsers().subscribe((result: UserDTO[]) => (this.users = result));
+    this.userService.getUsersPaginationByRole("operator",this.currentpage,2).subscribe((result: UserDTO[])=>(this.users = result))
     this.getNews();
   }
 

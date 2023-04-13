@@ -18,6 +18,7 @@ export class UsersProsumersComponent implements OnInit {
 
   ngOnInit() {
     this.userService.getAllUsers().subscribe((result: UserDTO[]) => (this.users = result));
+      
   }
 
   clear(dtUsers: any) {

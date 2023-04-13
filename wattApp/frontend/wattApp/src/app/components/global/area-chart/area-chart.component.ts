@@ -8,7 +8,7 @@ import {  ApexAxisChartSeries, ApexChart, ApexXAxis, ApexTitleSubtitle,ApexYAxis
 })
 export class AreaChartComponent implements OnInit  {
   @Input() chartHeight: number = 400;
-  @Input() chartWidth: number = 600;
+  @Input() chartWidth: number = 700;
 
   public series: ApexAxisChartSeries = [
     {

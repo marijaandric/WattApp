@@ -1,8 +1,10 @@
-import { Component, OnChanges, OnInit, SimpleChanges, ViewEncapsulation  } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges, ViewChild, ViewEncapsulation  } from '@angular/core';
 import { UserDTO } from '../../../../dtos/UserDTO';
 import { UserService } from '../../../../services/user/user.service';
 import axios from 'axios';
 import { DeviceService } from 'src/app/services/device/device.service';
+import { Table } from 'primeng/table';
+import { LazyLoadEvent } from 'primeng/api';
 interface City {
   name: string,
   code: string
@@ -18,6 +20,8 @@ export class UsersComponent implements OnInit{
   users: UserDTO[] = [];
   type: City[];
   selectedType!: City;
+  currentPage :any = 0;
+  rowsPerPage :any = 2;
 
   constructor(private userService: UserService, private deviceService : DeviceService) {
     this.type = [
@@ -29,7 +33,9 @@ export class UsersComponent implements OnInit{
  }
 
   ngOnInit() {
-    this.userService.getAllUsers().subscribe((result: UserDTO[]) => (this.users = result));
+    //this.userService.getAllUsers().subscribe((result: UserDTO[]) => (this.users = result));
+    this.userService.getUsersPaginationByRole("prosumer",this.currentPage,this.rowsPerPage).subscribe((result: UserDTO[])=>(this.users = result))
+
   }
 
   clear(dtUsers: any) {
@@ -39,5 +45,6 @@ export class UsersComponent implements OnInit{
   onSearch(value: string, dtUsers: any) {
     dtUsers.filterGlobal(value, 'contains');
   }
+
 
 }

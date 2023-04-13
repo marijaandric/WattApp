@@ -57,5 +57,26 @@ export class UserService {
     const url = this.baseUrl+`/${id}`;
     return this.http.put(url,user);
   }
+  
+  getUsersPaginationByRole(type:string, page:number,limit:number): Observable<UserDTO[]> {
+    return this.http.get<UserDTO[]>(this.baseUrl+"getUsersPaginationByRole/"+type+"/"+page+"/"+limit).pipe(
+      map(users => {
+        return users.map(user => new UserDTO(
+          user.id,
+          user.firstName,
+          user.lastName,
+          user.email,
+          user.password,
+          user.token,
+          user.address,
+          user.role,
+          user.x,
+          user.y,
+          user.area
+        ));
+      })
+    );
+  }
+
 
 }
