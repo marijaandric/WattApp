@@ -22,7 +22,7 @@ Nakon toga, potrebno je pokrenuti Angular server :
 Potrebno je pokrenuti **codespark-energy\wattApp\backend\backend.sln** i **\codespark-energy\services\DeviceFaker.sln**.
 
 Mozete pokrenuti i aplikacije i putem cli-a na sledeci nacin:
-- > Otvorite potrebni direktorijum (_codespark-energy\wattApp\backend\backend\_ i _\codespark-energy\services\DeviceFaker\_) u cmd-u
+- > Otvorite potrebni direktorijum (codespark-energy\wattApp\backend\backend\ i \codespark-energy\services\DeviceFaker\) u cmd-u
 - > Poreknite komandu **dotnet restore**
 - > Pokrenite komandu **dotnet build**
 - > Pokrenite komandu **dotnet run**
