@@ -14,6 +14,7 @@ Da bi se aplikacija uspešno pokretala, potrebno je imati sledeće:
 Potrebno je otvoriti cmd na putanji codespark-energy\wattApp\frontend\wattApp.
 Tamo je potrebno instalirati potrebne biblioteke komandom :
 - > **npm install**
+
 Nakon toga, potrebno je pokrenuti Angular server :
 - > **ng serve --open**
 
