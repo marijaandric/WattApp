@@ -12,12 +12,17 @@ Da bi se aplikacija uspešno pokretala, potrebno je imati sledeće:
 ## FrontEnd
 Potrebno je otvoriti cmd na putanji codespark-energy\wattApp\frontend\wattApp.
 Tamo je potrebno instalirati potrebne biblioteke komandom :
-> npm install
+> **npm install**
 Nakon toga, potrebno je pokrenuti Angular server :
-> ng serve --open
+> **ng serve --open**
 
 ## BackEnd
-Potrebno je pokrenuti codespark-energy\wattApp\backend\backend.sln i \codespark-energy\services\DeviceFaker.sln
+Potrebno je pokrenuti **codespark-energy\wattApp\backend\backend.sln** i **\codespark-energy\services\DeviceFaker.sln**.
+Mozete pokrenuti i aplikacije i putem cli-a na sledeci nacin:
+> Otvorite potrebni direktorijum (_codespark-energy\wattApp\backend\backend\_ i _\codespark-energy\services\DeviceFaker\_) u cmd-u
+> Poreknite komandu **dotnet restore**
+> Pokrenite komandu **dotnet build**
+> Pokrenite komandu **dotnet run**
 
 ## MongoDB
 Potrebno je instalirati MongoDB i prema potrebi MongoDB compass, i pokrenuti MongoDB instancu na standardnom portu (27017) ukoliko nije vec pokrenuta. Na toj instanci treba napraviti Devices bazu i u njoj DevicesData kolekciju. (Za ovo predlazemo MongoDB compass)
