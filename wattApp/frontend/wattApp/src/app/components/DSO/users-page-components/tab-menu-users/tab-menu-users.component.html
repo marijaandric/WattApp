@@ -1,15 +1,15 @@
 <nav>
     <a routerLink="/users" class="color" *ngIf="isAdmin()">
         <i class="fa-solid fa-users"></i>
-     <b  class="boja">All users</b>
+     <b >All users</b>
     </a>
     <a routerLink="/users/prosumers" class="color">
         <i class="fa-solid fa-user-check"></i>
-      <b class="boja2" >Prosumers</b>
+      <b >Prosumers</b>
     </a>
     <a routerLink="/users/operators" class="color" *ngIf="isAdmin()">
         <i class="fa-solid fa-user-shield"></i>
-      <b class="boja3">Operators</b>
+      <b >Operators</b> <!-- class="boja3" -->
     </a>
   </nav>
   

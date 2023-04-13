@@ -1,50 +1,4 @@
-<standard-template>
-  <app-title-bar>
-    <h3>Users</h3>
-  </app-title-bar>
-
-    <!-- optional -->
-  <app-select-one-menu-bar>
-   <app-tab-menu-users></app-tab-menu-users>
-  </app-select-one-menu-bar>
-
-  <app-center-bar>
-  <div  class="main-grid"> 
-    <app-map [users] = 'users' style="
-      height: 92vh;
-      width:48.5%; display: flex;
-      float:left;
-      flex-direction: column;
-      border-radius: 20px;
-      background-color: #1b1b1b;
-      box-shadow: 5px 5px 15px black;">
-    </app-map>
-
-    <div style="display:flex;float:right; flex-direction:column; width:48.5%; height:100%">
-      <div style="display:flex;float:right; flex-direction:row; width:100%; height:100px">
-        <div style="display:flex;float:right; flex-direction:column;  width:47%; height:100%" >
-          
-  <p-dropdown [options]="type" appendTo="body" [(ngModel)]="selectedType" optionLabel="name"  >
-  </p-dropdown>
-        </div>
-        <div style="display:flex;float:right; flex-direction:column; margin-left:calc(6%); width:47%; height:100%" >
-          
-  <p-dropdown [options]="type" appendTo="body" [(ngModel)]="selectedType" optionLabel="name"  >
-  </p-dropdown>
-        </div>
-      </div>
-      <div style="display:flex;float:right; flex-direction:row; width:100%; height:400px">
-        <div style="display:flex;float:right; flex-direction:column;  width:47%; height:100%" >
-          <app-single-area-pie></app-single-area-pie>
-        </div>
-        <div style="display:flex;float:right; flex-direction:column; margin-left:calc(6%); width:47%; height:100%" >
-          <app-all-areas-donut></app-all-areas-donut>
-        </div>
-      </div>
-
-      <div style="display:flex;float:right; flex-direction:row; width:100%; height:100%">
-            
-        <p-table class="d-table" #dtUsers class="ui-table-default" [value]="users" dataKey="id" [scrollable]="true" 
+<p-table class="d-table" #dtUsers class="ui-table-default" dataKey="id" [scrollable]="true" 
           [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]"
           [globalFilterFields]="['id','firstName','lastName','email','role']" [paginator]="true" 
           style="
@@ -77,28 +31,28 @@
               <tr>
                 <th pSortableColumn="firstName" style="min-width:8rem;  border-top:3px solid #04a777; border-bottom:3px solid #04a777;">
                   <div class="flexRow">
-                      <p style=" font-size: 18px !important;">Name</p>
+                      <p style=" font-size: 18px !important;">Device name</p>
                       <p-sortIcon field="firstName"></p-sortIcon>
                       <p-columnFilter class="ml-auto" type="text" field="firstName" display="menu"></p-columnFilter>
                   </div>
                 </th>
                 <th pSortableColumn="lastName" style="min-width:9rem;  border-top:3px solid #04a777; border-bottom:3px solid #04a777;">
                   <div class="flexRow">
-                      <p style=" font-size: 18px !important;">Address</p>
+                      <p style=" font-size: 18px !important;">Model</p>
                       <p-sortIcon field="lastName"></p-sortIcon>
                       <p-columnFilter class="ml-auto" type="text" field="lastName" display="menu"></p-columnFilter>
                   </div>
                 </th>
                 <th pSortableColumn="email" style="min-width:10rem;  border-top:3px solid #04a777; border-bottom:3px solid #04a777;">
                   <div class="flexRow">
-                      <p style=" font-size: 18px !important;">Email</p>
+                      <p style=" font-size: 18px !important;">Type</p>
                       <p-sortIcon field="email"></p-sortIcon>
                       <p-columnFilter class="ml-auto" type="text" field="email" display="menu"></p-columnFilter>
                   </div>
                 </th>
                 <th pSortableColumn="role" style="min-width:8rem; border-top:3px solid #04a777; border-bottom:3px solid #04a777;">
                   <div class="flexRow">
-                      <p style=" font-size: 18px !important;">Role</p>
+                      <p style=" font-size: 18px !important;">Monthly energy</p>
                       <p-sortIcon field="role"></p-sortIcon>
                       <p-columnFilter class="ml-auto" type="text" field="role" display="menu"></p-columnFilter>
                   </div>
@@ -108,11 +62,17 @@
 
               <ng-template pTemplate="body" let-user>
                 <tr>
-                  <td>{{user.firstName}} {{user.lastName}}</td>
-                  <td>{{user.address}}</td>
-                  <td>{{user.email}}</td>
-                  <td>{{user.role}}</td>
+                  <td>Fridge</td>
+                  <td>Frigde 1</td>
+                  <td>Consumer</td>
+                  <td>23kWh</td>
                 </tr>
+                <tr>
+                    <td>Fridge</td>
+                    <td>Frigde 1</td>
+                    <td>Consumer</td>
+                    <td>23kWh</td>
+                  </tr>
               </ng-template>
 
               <ng-template pTemplate="emptymessage">
@@ -122,11 +82,3 @@
             </ng-template>
 
           </p-table>
-        </div>
-      </div>
-    </div>
-  </app-center-bar>
-
-  
-  
-</standard-template>
