@@ -45,7 +45,7 @@ export class BarChartComponent implements OnInit {
   public fill: ApexFill = {
     type: 'solid',
     opacity: 1,
-    colors: ['#7d02d4','rgb(217, 3, 114)',  'rgb(4, 167, 119)', ],
+    colors: ['#f5805a', '#46c5f1', '#eb4886']
     
   }
 

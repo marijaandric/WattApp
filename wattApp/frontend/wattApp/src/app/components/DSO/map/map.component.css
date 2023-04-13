@@ -19,7 +19,7 @@ button {
       border-radius: 32px;
       display: block;
       margin: auto;
-      background:rgb(4, 167, 119) ;
+      background:#885ec0;
       color: #fff;
       font-weight:bolder;
       box-shadow: 5px 5px 15px black;
@@ -28,6 +28,6 @@ button {
   
 button:hover{
       background: none;
-      color: rgb(4, 167, 119);
+      color: #885ec0;
       box-shadow: none;
     }

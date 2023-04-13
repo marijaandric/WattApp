@@ -46,7 +46,7 @@
   }
   
   .color:hover{
-    color: rgb(4,167,119) !important;
+    color: #885ec0 !important;
   }
   :host.boja{
     color: white;

@@ -1,13 +1,13 @@
 app-tab-menu-users .boja2 {
-    color: rgb(4,167,119);
+    color: #885ec0;
   }
 
 app-tab-menu-users .fa-user-check {
-    color: rgb(4,167,119);
+    color: #885ec0;
   }
 
 app-tab-menu-users .color:hover{
-    color: rgb(4,167,119) !important;
+    color: #885ec0 !important;
   }
 
 .right {
@@ -23,7 +23,7 @@ app-tab-menu-users .color:hover{
   margin-bottom: 20px;
   border-radius: 30px;
   border:none;
-  background-color:rgb(4, 167, 119);
+  background-color:#885ec0;;
 }
 
 

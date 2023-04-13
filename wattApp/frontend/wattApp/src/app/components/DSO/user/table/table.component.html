@@ -1,4 +1,4 @@
-<p-table class="d-table" #dtUsers class="ui-table-default" dataKey="id" [scrollable]="true" 
+<p-table class="d-table" [value]="devices" #dtUsers class="ui-table-default" dataKey="id" [scrollable]="true" 
           [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]"
           [globalFilterFields]="['id','firstName','lastName','email','role']" [paginator]="true" 
           style="
@@ -29,30 +29,30 @@
 
             <ng-template pTemplate="header">
               <tr>
-                <th pSortableColumn="firstName" style="min-width:8rem;  border-top:3px solid #04a777; border-bottom:3px solid #04a777;">
+                <th pSortableColumn="firstName" style="min-width:8rem;  border-top:3px solid #885ec0;; border-bottom:3px solid #885ec0;;">
                   <div class="flexRow">
-                      <p style=" font-size: 18px !important;">Device name</p>
+                      <p style=" font-size: 18px !important;">Device model</p>
                       <p-sortIcon field="firstName"></p-sortIcon>
                       <p-columnFilter class="ml-auto" type="text" field="firstName" display="menu"></p-columnFilter>
                   </div>
                 </th>
-                <th pSortableColumn="lastName" style="min-width:9rem;  border-top:3px solid #04a777; border-bottom:3px solid #04a777;">
+                <th pSortableColumn="lastName" style="min-width:9rem;  border-top:3px solid #885ec0;; border-bottom:3px solid #885ec0;">
                   <div class="flexRow">
-                      <p style=" font-size: 18px !important;">Model</p>
+                      <p style=" font-size: 18px !important;">Type</p>
                       <p-sortIcon field="lastName"></p-sortIcon>
                       <p-columnFilter class="ml-auto" type="text" field="lastName" display="menu"></p-columnFilter>
                   </div>
                 </th>
-                <th pSortableColumn="email" style="min-width:10rem;  border-top:3px solid #04a777; border-bottom:3px solid #04a777;">
+                <th pSortableColumn="email" style="min-width:10rem;  border-top:3px solid #885ec0; border-bottom:3px solid #885ec0;">
                   <div class="flexRow">
-                      <p style=" font-size: 18px !important;">Type</p>
+                      <p style=" font-size: 18px !important;">isActive</p>
                       <p-sortIcon field="email"></p-sortIcon>
                       <p-columnFilter class="ml-auto" type="text" field="email" display="menu"></p-columnFilter>
                   </div>
                 </th>
-                <th pSortableColumn="role" style="min-width:8rem; border-top:3px solid #04a777; border-bottom:3px solid #04a777;">
+                <th pSortableColumn="role" style="min-width:8rem; border-top:3px solid #885ec0;; border-bottom:3px solid #885ec0;">
                   <div class="flexRow">
-                      <p style=" font-size: 18px !important;">Monthly energy</p>
+                      <p style=" font-size: 18px !important;">Allow Operator Controll</p>
                       <p-sortIcon field="role"></p-sortIcon>
                       <p-columnFilter class="ml-auto" type="text" field="role" display="menu"></p-columnFilter>
                   </div>
@@ -60,24 +60,19 @@
               </tr>
             </ng-template>
 
-              <ng-template pTemplate="body" let-user>
+              <ng-template pTemplate="body" let-devices>
                 <tr>
-                  <td>Fridge</td>
-                  <td>Frigde 1</td>
-                  <td>Consumer</td>
-                  <td>23kWh</td>
+                  <td>{{devices?.deviceModel}}</td>
+                  <td>{{devices?.deviceType}}</td>
+                  <td>{{devices?.isActive}}</td>
+                  <td>{{devices?.allowOperatorControll}}</td>
                 </tr>
-                <tr>
-                    <td>Fridge</td>
-                    <td>Frigde 1</td>
-                    <td>Consumer</td>
-                    <td>23kWh</td>
-                  </tr>
+                
               </ng-template>
 
               <ng-template pTemplate="emptymessage">
                 <tr>
-                    <td colspan="5">No users found.</td>
+                    <td colspan="5">No devices found.</td>
                 </tr>
             </ng-template>
 

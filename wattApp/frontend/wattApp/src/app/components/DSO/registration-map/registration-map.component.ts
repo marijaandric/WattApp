@@ -24,8 +24,8 @@ export class RegistrationMapComponent implements OnInit{
   all = {address : "", result:""}
 
   markerIcon = L.icon({
-    iconUrl: '/assets/icons/images/marker-green.png',
-    iconRetinaUrl: '/assets/icons/images/marker-green.png',
+    iconUrl: '/assets/icons/images/marker-pink.png',
+    iconRetinaUrl: '/assets/icons/images/marker-pink.png',
     iconSize: [50, 50],
     iconAnchor: [25,55],
     popupAnchor: [1, -34],

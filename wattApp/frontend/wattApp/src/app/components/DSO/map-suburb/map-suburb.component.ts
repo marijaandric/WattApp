@@ -75,8 +75,8 @@ async ngOnInit(): Promise<void> {
 
     // Set the style of the suburb layer
     const circle = L.circle([this.highestCoordinates[0],this.highestCoordinates[1]], {
-      color: 'rgb(217, 3, 114)',
-      fillColor: 'rgb(217, 3, 114)',
+      color: '#f5805a',
+      fillColor: '#f5805a',
       fillOpacity: 0.5,
       radius: 550 // in meters
     }).addTo(this.map);
@@ -84,8 +84,8 @@ async ngOnInit(): Promise<void> {
 
     await this.getAreas("Min");
     const circle2 = L.circle([this.lowestCoordinates[0],this.lowestCoordinates[1]], {
-      color: 'rgb(4, 167, 119)',
-      fillColor: 'rgb(4, 167, 119)',
+      color: '#885ec0',
+      fillColor: '#885ec0',
       fillOpacity: 0.5,
       radius: 500 // in meters
     }).addTo(this.map);

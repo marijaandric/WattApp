@@ -61,8 +61,8 @@ export class MapComponent implements OnInit, OnChanges{
   async mapa()
   {
     const markerIcon = L.icon({
-      iconUrl: '/assets/icons/images/marker-green.png',
-      iconRetinaUrl: '/assets/icons/images/marker-green.png',
+      iconUrl: '/assets/icons/images/marker-pink.png',
+      iconRetinaUrl: '/assets/icons/images/marker-pink.png',
       iconSize: [50, 50],
       iconAnchor: [2, 11],
       popupAnchor: [1, -34],

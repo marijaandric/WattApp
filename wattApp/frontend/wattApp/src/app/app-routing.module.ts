@@ -39,7 +39,7 @@ const routes: Routes = [
   { path: 'statistics', component: StatisticComponent },
   { path: 'users/prosumers', component: UsersComponent},
   { path: 'users/operators', component: UsersOperatorsComponent},
-  { path: 'userDSO', component: UserDSOComponent},
+  { path: 'userDSO/:id', component: UserDSOComponent},
 ];
 
 @NgModule({

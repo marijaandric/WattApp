@@ -48,8 +48,12 @@ export class DeviceService {
     );
   }
 
-  getDeviceById(id: string): Observable<DeviceDTO>{
+  getDeviceById(id: any): Observable<DeviceDTO>{
     return this.http.get<DeviceDTO>(this.baseUrl + "device/" + id);
+  }
+
+  getDevicesByUserId(id: number){
+    return this.http.get<any>(this.baseUrl + id);
   }
 
   AddDevice(deviceObj:any)

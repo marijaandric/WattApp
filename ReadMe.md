@@ -1,7 +1,7 @@
 #WattApp - CodeSpark Energy
 
 ## Potrebni programi
-Da bi se aplikacija uspešno pokretala, potrebno je imati sledeće:
+Da bi se aplikacija uspešno pokrenula, potrebno je imati sledeće:
 > Angular : 15.2.2
 > Node.js : 18.14.2
 > Package Manager : 9.5.0

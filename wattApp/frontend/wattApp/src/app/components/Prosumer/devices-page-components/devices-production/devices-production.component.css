@@ -1,7 +1,7 @@
 :host::ng-deep app-tab-menu .boja3 {
-    color: rgb(4,167,119);
+    color: #885ec0;
   }
   
   :host::ng-deep app-tab-menu .fa-solar-panel {
-    color: rgb(4,167,119);
+    color: #885ec0;
   }

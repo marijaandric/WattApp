@@ -41,6 +41,10 @@ export class UserService {
     return this.http.get(`${this.baseUrl}/${userId}`, { headers });
   }
 
+  GetUserWithoutToken(userId: number) {
+    return this.http.get(`${this.baseUrl}${userId}`);
+  }
+
   getUserIdFromToken(token: string) {
     const decodedToken = this.jwtHelper.decodeToken(token);
     return decodedToken.nameid;

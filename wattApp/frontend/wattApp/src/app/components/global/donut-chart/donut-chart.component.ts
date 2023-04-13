@@ -59,7 +59,7 @@ export class DonutChartComponent implements OnInit {
   }
 
   fill: ApexFill = {
-    colors: ['#7d02d4', '#d90372', 'rgb(4, 167, 119)','#F75C03'],
+    colors: ['#f5805a', '#46c5f1', '#eb4886','#885ec0'],
   }
   plotOptions: ApexPlotOptions = {
     pie :  {
@@ -77,7 +77,7 @@ export class DonutChartComponent implements OnInit {
     
     marker: {
       show:false,
-      fillColors:['#7d02d4', '#d90372', 'rgb(4, 167, 119)', '#F75C03'],
+      fillColors:['#f5805a', '#46c5f1', '#eb4886','#885ec0'],
     }
   }
   chartDataLabels: ApexDataLabels = {
@@ -92,7 +92,7 @@ export class DonutChartComponent implements OnInit {
       colors: '#FFFFFF',
     },
     markers:{
-      fillColors:['#7d02d4', '#d90372', 'rgb(4, 167, 119)', '#F75C03'],
+      fillColors:['#f5805a', '#46c5f1', '#eb4886','#885ec0'],
     }
   };
 
@@ -104,7 +104,7 @@ export class DonutChartComponent implements OnInit {
     dataLabels: this.chartDataLabels,
     legend: this.chartLegend,
     tooltip: this.tooltip,
-    colors: ['#7d02d4', '#d90372', 'rgb(4, 167, 119)', '#F75C03'],
+    colors: ['#f5805a', '#46c5f1', '#eb4886','#885ec0'],
   };
 
   constructor() { }

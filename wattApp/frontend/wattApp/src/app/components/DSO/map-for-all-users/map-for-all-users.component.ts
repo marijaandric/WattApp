@@ -64,8 +64,8 @@ export class MapForAllUsersComponent implements OnInit, OnChanges{
   async mapa()
   {
     const markerIcon = L.icon({
-      iconUrl: '/assets/icons/images/marker-green.png',
-      iconRetinaUrl: '/assets/icons/images/marker-green.png',
+      iconUrl: '/assets/icons/images/marker-pink.png',
+      iconRetinaUrl: '/assets/icons/images/marker-pink.png',
       iconSize: [50, 50],
       iconAnchor: [2, 11],
       popupAnchor: [1, -34],
@@ -82,6 +82,7 @@ export class MapForAllUsersComponent implements OnInit, OnChanges{
         const location = this.users[i].address
         const lan = this.users[i].x;
         const lon = this.users[i].y
+        const id = this.users[i].id
         if (lan != undefined && lon != undefined) {
           const marker = L.marker([lan, lon], {icon : markerIcon}).addTo(this.map);
           marker.bindPopup("<div class='black-popup' style='color:black'>"+this.users[i].firstName+" "+this.users[i].lastName+"<br>"+this.users[i].address+"</div>");
@@ -95,8 +96,9 @@ export class MapForAllUsersComponent implements OnInit, OnChanges{
           });
 
           marker.on('click', function (e) {
-            window.open('/userDSO');
+            window.open(`/userDSO/`+id);
           });
+          
         }
       }
     }
