@@ -15,6 +15,11 @@ export class ProsumerhomeComponent implements OnInit{
   user:any;
   token = localStorage.getItem('token');
   devices: any[] = [];
+  quote:string = "It's great to see you here! Thanks for joining us."
+  quotes :string[] = ["It's great to see you here! Thanks for joining us.","We've been waiting for you! Welcome to our website.",
+"Welcome to our online family! We can't wait to get to know you better.","Thanks for stopping by! We hope you enjoy your time on our page.",
+"Welcome to our virtual home. Feel free to make yourself comfortable.","A warm welcome to you! We hope our page is just what you're looking for.",
+"We're honored to have you as our guest. "];
 
   @Input() device:any={id:1,deviceName: "device", deviceType:"Consumer",power: 10}
   @Input() device1:any={id:1,deviceName: "device", deviceType:"Producer",power: 10}
@@ -22,6 +27,7 @@ export class ProsumerhomeComponent implements OnInit{
 
   constructor(private userService:UserService,private http: HttpClient,private deviceService : DeviceService,private dsonew : DsonewsService)
   {
+    this.quote = this.quotes[Math.floor(Math.random() * this.quotes.length)];
     if(this.token)
     {
       userService.GetUser(userService.getUserIdFromToken(this.token),this.token).subscribe((data) => {

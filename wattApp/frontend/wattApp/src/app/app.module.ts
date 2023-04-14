@@ -83,6 +83,7 @@ import { UserDSOComponent } from './components/DSO/user/user-dso/user-dso.compon
 import { CircleComponent } from './components/DSO/user/circle/circle.component';
 import { MapForAllUsersComponent } from './components/DSO/map-for-all-users/map-for-all-users.component';
 import { TableComponent } from './components/DSO/user/table/table.component';
+import { HomeDSOComponent } from './components/DSO/home-dso/home-dso.component';
 
 
 export const url = 'https://localhost:7158';
@@ -148,7 +149,8 @@ export const deviceFakerUrl = "https://localhost:7233";
     UserDSOComponent,
     CircleComponent,
     MapForAllUsersComponent,
-    TableComponent
+    TableComponent,
+    HomeDSOComponent
   ],
   imports: [
     CommonModule,
