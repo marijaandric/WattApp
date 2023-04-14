@@ -20,6 +20,7 @@ import { DevicePrototypeComponent } from './components/global/device-page-compon
 import { UsersProsumersComponent } from './components/DSO/users-page-components/users-prosumers/users-prosumers.component';
 import { UsersOperatorsComponent } from './components/DSO/users-page-components/users-operators/users-operators.component';
 import { UserDSOComponent } from './components/DSO/user/user-dso/user-dso.component';
+import { PageNotFoundComponent } from './components/global/page-not-found/page-not-found.component';
 
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
@@ -40,6 +41,8 @@ const routes: Routes = [
   { path: 'users/prosumers', component: UsersComponent},
   { path: 'users/operators', component: UsersOperatorsComponent},
   { path: 'userDSO/:id', component: UserDSOComponent},
+  { path : 'PageNotFound', component:PageNotFoundComponent },
+  { path: '**', redirectTo: '/PageNotFound' }
 ];
 
 @NgModule({
