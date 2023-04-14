@@ -38,7 +38,7 @@ export class ForecastLineChartComponent implements OnChanges{
   {
     this.series = [
       {
-        data: this.array2,
+        data: this.array,
         color: this.boja1,
         
       }
@@ -52,7 +52,7 @@ export class ForecastLineChartComponent implements OnChanges{
           fontSize: '16px' 
         }
       },
-      categories: [this.array3[0],this.array3[1],this.array3[2],this.array3[3],this.array3[4],this.array3[5],this.array3[6]],
+      categories: [this.array2[0],this.array2[1],this.array2[2],this.array2[3],this.array2[4],this.array2[5],this.array2[6],this.array2[7]],
       labels: {
         style: {
           colors: ['#FFF','#FFF','#FFF','#FFF','#FFF','#FFF','#FFF'],

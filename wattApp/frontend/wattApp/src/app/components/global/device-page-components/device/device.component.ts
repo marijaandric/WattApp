@@ -60,6 +60,10 @@ export class DeviceComponent implements OnInit{
   array : any[]  = [null,null, null, null, null, null, null,null,null,null, null, null, null]
   array2 : any[] = [null,null, null, null, null, null,null,null, null, null, null, null,null]
   array3 : any[] = []
+  array4 : any[] = [null,null,null,null,null,null,null]
+  array5 : any[] = [null,null,null,null,null,null,null]
+  date1 : any[] = []
+  date2: any[] = []
 
   switchValue: boolean = true;
 
@@ -182,6 +186,8 @@ export class DeviceComponent implements OnInit{
       let a = [];
       let b = [];
       let c = [];
+      let d = [];
+      let x = [];
 
       for(let i = 0;i<7;i++)
       {
@@ -189,15 +195,24 @@ export class DeviceComponent implements OnInit{
         c[i] = data.dates[i]
         b[i] = null
       }
-      
+      this.array4 = a;
+      this.date1 = c;
+
+      let br = 0
       for(let i = 6;i<14;i++)
       {
         b[i] = data.datas[i].toFixed(2)
         c[i] = data.dates[i]
+        d[br] = data.datas[i].toFixed(2)
+        x[br] = data.dates[i]
+        br++;
+
       }
       this.array = a;
       this.array2 =b;
       this.array3 = c;
+      this.array5 = d;
+      this.date2 = x;
     })
   }
 
