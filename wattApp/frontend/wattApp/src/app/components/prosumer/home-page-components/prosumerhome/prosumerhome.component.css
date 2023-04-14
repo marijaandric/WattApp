@@ -75,7 +75,7 @@
     /*max-width: 23%;*/
     min-width: 240px;
     width:20%;
-    box-shadow: 10px 10px 50px black;  
+    box-shadow: 5px 5px 15px black;
 }
 .iframe-div {
     position: relative;
@@ -123,17 +123,21 @@
 }
 
 .vreme{
-  margin: 20px; 
   width: 100%;
 }
 
+h6 {
+  padding:10px;
+}
+
 .divVreme{
-  width: 20%; 
+  margin:20px 0 0 2.2%;
+  width: 19.8%; 
   display: inline;
 }
 
 .prviDeo{
-  width: 80%;
+  width: 78%;
 }
 
 @media only screen and (max-width: 1126px) {
@@ -153,6 +157,13 @@
     .widget {
       -ms-flex-preferred-size: calc(50% - 30px);
       flex-basis: calc(50% - 30px);
+      margin-bottom: 20px;
+    }
+    .widgets {
+      margin-bottom:30px;
+    }
+    .divVreme {
+      margin:20px;
     }
   }
 
@@ -161,9 +172,15 @@
       -ms-flex-preferred-size: 100%;
       flex-basis: 100%;
     }
+    .widgets {
+      margin-bottom:30px;
+    }
 
     .slika{
       display:none;
+    }
+    .divVreme {
+      margin:20px;
     }
   }
   @media only screen and (max-width: 500px) {
@@ -196,6 +213,12 @@
       margin-left: 10px;
       display: inline-block;
       vertical-align: top;
+    }
+    .widgets {
+      margin-bottom:30px;
+    }
+    .divVreme {
+      margin:20px;
     }
 
     /*.widgets::-webkit-scrollbar {
