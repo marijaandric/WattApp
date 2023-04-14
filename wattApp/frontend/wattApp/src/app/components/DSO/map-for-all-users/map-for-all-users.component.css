@@ -15,20 +15,20 @@
 
 button {
     border: none;
-    padding: 10px 50px;
     border-radius: 32px;
     display: block;
     margin: auto;
-    background: linear-gradient(45deg, #b855a4 40%, #f5805a 100%);;
+    padding:8px 20px;
+    background: linear-gradient(45deg, #46c5f1 10%, #5245b7 100%);
     color: #fff;
     font-weight:bolder;
     box-shadow: 5px 5px 15px black;
-    color:white;
+  font-size: 17px;
+  color:white;
 }
 
 button:hover{
-    background: none;
-    color: #885ec0;;
+    background: #1f221f;
     box-shadow: none;
   }
 
