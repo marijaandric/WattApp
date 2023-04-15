@@ -32,6 +32,7 @@ export class PieChartComponent implements OnInit {
       show: true
     },
     width:'100%',
+    height:'300',
     redrawOnParentResize:true,
     redrawOnWindowResize:true,
     dropShadow: {
@@ -61,7 +62,7 @@ export class PieChartComponent implements OnInit {
   }
 
   fill: ApexFill = {
-    colors: ['#7d02d4', '#d90372', 'rgb(4, 167, 119)','#F75C03'],
+    colors: ['#46c5f1', '#885ec0','#eb4886', '#f5805a'],
   }
   plotOptions: ApexPlotOptions = {
     pie :  {
@@ -84,7 +85,7 @@ export class PieChartComponent implements OnInit {
     },
     marker: {
       show:false,
-      fillColors:['#7d02d4', '#d90372', 'rgb(4, 167, 119)', '#F75C03']
+      fillColors:['#46c5f1', '#885ec0','#eb4886', '#f5805a']
     }
     
   }
@@ -94,7 +95,7 @@ export class PieChartComponent implements OnInit {
   };
 
   chartLegend: ApexLegend = {
-    position: 'right',
+    position: 'bottom',
     offsetY: 50,
     offsetX: -40,
     
@@ -105,7 +106,7 @@ export class PieChartComponent implements OnInit {
       colors: '#FFFFFF',
     },
     markers:{
-      fillColors:['#7d02d4', '#d90372', 'rgb(4, 167, 119)', '#F75C03'],
+      fillColors:['#46c5f1', '#885ec0','#eb4886', '#f5805a'],
     }
   };
 
@@ -116,14 +117,14 @@ export class PieChartComponent implements OnInit {
     title: this.chartTitle,
     dataLabels: this.chartDataLabels,
     legend: this.chartLegend,
-    colors: ['#7d02d4', '#d90372', 'rgb(4, 167, 119)', '#F75C03'],
+    colors: ['#46c5f1', '#885ec0','#eb4886', '#f5805a'],
     tooltip: this.tooltip
   };
 
   constructor() { }
 
   ngOnInit(): void {
-    this.chartDetails.height = '175.5%';
+    this.chartDetails.height = '300';
     this.chartTitle.text=this.chartText;
     this.chartSeries=this.Series;
   }

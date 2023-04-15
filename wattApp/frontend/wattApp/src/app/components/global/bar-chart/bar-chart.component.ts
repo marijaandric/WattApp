@@ -28,7 +28,7 @@ export class BarChartComponent implements OnInit {
     offsetY: 10,
     labels: {
       style: {
-        colors: ['#7d02d4', 'rgb(217, 3, 114)','rgb(4, 167, 119)', ],
+        colors: ['#46c5f1', '#885ec0','#eb4886', '#f5805a'],
         fontSize: '17px',
       }
     }
@@ -45,7 +45,7 @@ export class BarChartComponent implements OnInit {
   public fill: ApexFill = {
     type: 'solid',
     opacity: 1,
-    colors: ['#f5805a', '#46c5f1', '#eb4886']
+    colors: ['#46c5f1', '#885ec0','#eb4886', '#f5805a']
     
   }
 

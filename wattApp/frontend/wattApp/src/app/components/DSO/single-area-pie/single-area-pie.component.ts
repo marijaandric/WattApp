@@ -70,7 +70,7 @@ export class SingleAreaPieComponent {
   }
 
   fill: ApexFill = {
-    colors: ['#f5805a', '#46c5f1', '#eb4886','#885ec0'],
+    colors: ['#46c5f1', '#885ec0','#eb4886', '#f5805a'],
   }
   plotOptions: ApexPlotOptions = {
     pie :  {
@@ -91,7 +91,7 @@ export class SingleAreaPieComponent {
     },  
     marker: {
       show:false,
-      fillColors:['#f5805a', '#46c5f1', '#eb4886','#885ec0'],
+      fillColors:['#46c5f1', '#885ec0','#eb4886', '#f5805a'],
     }
   }
   chartDataLabels: ApexDataLabels = {
@@ -110,7 +110,7 @@ export class SingleAreaPieComponent {
       colors: '#FFFFFF',
     },
     markers:{
-      fillColors:['#f5805a', '#46c5f1', '#eb4886','#885ec0'],
+      fillColors:['#46c5f1', '#885ec0','#eb4886', '#f5805a'],
     }
   };
 
@@ -122,7 +122,7 @@ export class SingleAreaPieComponent {
     dataLabels: this.chartDataLabels,
     legend: this.chartLegend,
     tooltip: this.tooltip,
-    colors: ['#f5805a', '#46c5f1', '#eb4886','#885ec0'],
+    colors: ['#46c5f1', '#885ec0','#eb4886', '#f5805a'],
   };
 
   constructor() { }

@@ -111,7 +111,7 @@ export class HistoryForecastComponent implements OnInit,OnChanges{
   };
   public chart: ApexChart = {
     type: 'line',
-    height: 250,
+    height: 350,
     width: '100%',
     offsetX: 0,
     background: '#1b1b1b',

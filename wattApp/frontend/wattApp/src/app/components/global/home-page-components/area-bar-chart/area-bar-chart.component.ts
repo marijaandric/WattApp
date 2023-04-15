@@ -27,7 +27,7 @@ export class AreaBarChartComponent implements OnInit {
     offsetY: 10,
     labels: {
       style: {
-        colors: ['#7d02d4', 'rgb(217, 3, 114)','rgb(4, 167, 119)', ],
+        colors: ['#46c5f1', '#885ec0','#eb4886', '#f5805a'],
         fontSize: '17px',
       }
     }
@@ -44,7 +44,7 @@ export class AreaBarChartComponent implements OnInit {
   public fill: ApexFill = {
     type: 'solid',
     opacity: 1,
-    colors: ['#7d02d4','rgb(217, 3, 114)',  'rgb(4, 167, 119)', ],
+    colors: ['#46c5f1', '#885ec0','#eb4886', '#f5805a'],
     
   }
 
@@ -69,7 +69,7 @@ export class AreaBarChartComponent implements OnInit {
     bar : {
       borderRadius: 10,
       columnWidth: '40%',
-      distributed:false,
+      distributed:true,
       borderRadiusWhenStacked: 'last',
     }
   }
