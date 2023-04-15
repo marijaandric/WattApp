@@ -10,24 +10,14 @@
   
     <app-center-bar>
     <div  class="main-grid"> 
-      <app-map-for-all-users [users] = 'users' style="
-        height: 92vh;
-        width:48.5%; display: flex;
-        float:left;
-        flex-direction: column;
-        border-radius: 20px;
-        background-color: #1b1b1b;
-        box-shadow: 5px 5px 15px black;">
-      </app-map-for-all-users>
   
-      <div style="display:flex;float:right; flex-direction:column; width:48.5%; height:100%">
+      <div style="display:flex;float:left; flex-direction:column; width:80%; height:100%">
         <div style="display:flex;float:right; flex-direction:row; width:100%; height:100%">
               
           <p-table class="d-table" #dtUsers class="ui-table-default" [value]="users" dataKey="id" [scrollable]="true" 
             [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]"
             [globalFilterFields]="['id','firstName','lastName','email','role']" [paginator]="true" 
             style="
-              margin-top:calc(6%);
               display: flex;
               position: relative;
               flex-direction: column;
@@ -43,7 +33,7 @@
               <ng-template pTemplate="caption">
                 <div class="flexRow">
                     <h3 >
-                    Prosumers</h3>
+                    All Users</h3>
                     <span class="p-input-icon-left margin-left__auto margin-right__16px">
                         <i class="pi pi-search"></i>
                         <input pInputText type="text" (input)="dtUsers.filterGlobal($any($event.target).value, 'contains')" placeholder="Search keyword" />
@@ -54,7 +44,7 @@
   
               <ng-template pTemplate="header">
                 <tr>
-                  <th pSortableColumn="firstName" style="min-width:8rem;  border:none; border-top ;  border-bottom:4px solid #46c5f:4px solid #46c5f11;">
+                  <th pSortableColumn="firstName" style="min-width:8rem;  border:none; border-top: 4px solid #46c5f1;  border-bottom:4px solid #46c5f1;">
                     <div class="flexRow">
                         <p style=" font-size: 18px !important;">Name</p>
                         <p-sortIcon field="firstName"></p-sortIcon>
@@ -102,8 +92,20 @@
   
             </p-table>
           </div>
-        </div>
-      </div>
+        </div>      
+        <div class="widgets">
+            
+          <app-widget [subTitle]="'Total number of operators '" [Title]=" '6'" [isBlue]="true" [isBgBlue]="true" class="widget">
+          </app-widget>
+          <app-widget [subTitle]="'Total number of users'" [Title]=" ' 1242'" [isYellow]="true" [isBgYellow]="true" class="widget">
+          </app-widget>
+          <app-widget [subTitle]="'Total number of consumers'" [Title]="' 3'" [isPink]="true" [isBgPink]="true" class="widget">
+          </app-widget>
+          <app-widget  [subTitle]="'Total number of prosumers'" [Title]=" ' 1'" [isOrange]="true" [isBgOrange]="true" class="widget">
+          </app-widget>
+            
+          </div>
+    </div>
     </app-center-bar>
   
     
