@@ -277,7 +277,7 @@ export class HomeDSOComponent {
       for(let i = 0;i<this.History.length;i++)
       {
         this.hif[i].history = this.HistoryStock[i]
-        this.hif[i].forecast = this.ForecastStock[i+7]
+        this.hif[i].forecast =   this.ForecastStock[i+7]
         this.hif[i].date1 = this.arrayData[i]
         this.hif[i].date2 = this.arrayData[i+7]
       }

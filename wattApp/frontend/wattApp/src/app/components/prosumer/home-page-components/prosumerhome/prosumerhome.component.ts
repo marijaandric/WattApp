@@ -42,13 +42,15 @@ export class ProsumerhomeComponent implements OnInit{
   
   getBiggestConsumer() {
     const id = 1 ;
-   // const deviceId = this.user.id ;
+    //const id = this.user.nameid ;
     const currentDate = new Date();
     const day = currentDate.getDate();
     const month = currentDate.getMonth() + 1;
     const year = currentDate.getFullYear();
     const consumer = 'Consumer';
     const max = 'max';
+    
+
 
 
     this.deviceService.getBiggest(id,year,month,day,consumer,max).subscribe((response: any) => {

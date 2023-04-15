@@ -11,6 +11,12 @@ interface SwitchOption {
   label: string;
   value: boolean;
 }
+interface HiF{
+  history: any,
+  forecast: any,
+  date1: any,
+  date2: any
+}
 
 @Component({
   selector: 'app-statistic',
@@ -23,6 +29,13 @@ export class StatisticComponent  implements OnInit {
   @ViewChild('myChart', { static: true }) myChart! : PieChartComponent;
 
   switchValue: boolean = true;
+  hif : HiF[]  = [{history: 0, forecast: 0, date1: [], date2: []},
+  {history: 0, forecast: 0, date1: [], date2: []},
+  {history: 0, forecast: 0, date1: [], date2: []},
+  {history: 0, forecast: 0, date1: [], date2: []},
+  {history: 0, forecast: 0, date1: [], date2: []},
+  {history: 0, forecast: 0, date1: [], date2: []},
+  {history: 0, forecast: 0, date1: [], date2: []}];
 
   switchOptions: SwitchOption[] = [
     {label: 'History', value: true},
@@ -63,6 +76,13 @@ export class StatisticComponent  implements OnInit {
   color1 = '#f5805a';
   color2 = '#f9b59f';
 
+  HistoryCon = [12, 19, 3, 5, 2, 6, 5, null,null,null,null, null, null, null];
+  ForecastCon= [null,null, null, null, null, null,5,10,12,3,16,5,10,5];
+  HistoryPro = [12, 19, 3, 5, 2, 6, 5, null,null,null,null, null, null, null];
+  ForecastPro= [null,null, null, null, null, null,5,10,12,3,16,5,10,5];
+  HistoryStock = [12, 19, 3, 5, 2, 6, 5, null,null,null,null, null, null, null];
+  ForecastStock = [null,null, null, null, null, null,5,10,12,3,16,5,10,5];
+
 
   constructor(private http: HttpClient, private deviceService : DeviceService) {
     this.type = [
@@ -88,96 +108,46 @@ export class StatisticComponent  implements OnInit {
   }
 
   getHistoryAndForecastByDayForAllUserDevices() {
-    const deviceId = 1;
-    // const deviceId = this.user.id ;
-
-    this.deviceService.GetHistoryAndForecastByDayForAllUserDevices(deviceId).subscribe(data => {
-      if (this.selectedType.code == 'Consumer') {
+    const id = 1 ;
+    // const Id = this.user.id ;
+    this.deviceService.GetHistoryAndForecastByDayForAllUserDevices(id).subscribe(data => {
         this.arrayData = data.dates; //.slice(0, 7).concat(data.dates.slice(8));
 
-        this.History = data.totaldatasConsumer.map((val: number) => +val.toFixed(2));
-        this.Forecast = data.totaldatasConsumer.map((val: number) => +val.toFixed(2));
-  
+        this.HistoryCon = data.totaldatasConsumer.map((val: number) => +val.toFixed(2));
+        this.ForecastCon = data.totaldatasConsumer.map((val: number) => +val.toFixed(2));
+        this.HistoryPro = data.totaldatasProducer.map((val: number) => +val.toFixed(2));
+        this.ForecastPro = data.totaldatasProducer.map((val: number) => +val.toFixed(2));
+        this.HistoryStock = data.totaldatasStock.map((val: number) => +val.toFixed(2));
+        this.ForecastStock = data.totaldatasStock.map((val: number) => +val.toFixed(2));
 
         for (let i = 8; i < 14; i++) {
-          this.History[i] = null;
+          this.HistoryCon[i] = null;
+          this.HistoryPro[i] = null;
+          this.HistoryStock[i] = null;
         }
 
         for (let i = 0; i < 7; i++) {
-          this.Forecast[i] = null;
+          this.ForecastCon[i] = null;
+          this.ForecastPro[i] = null;
+          this.ForecastStock[i] = null;
         }
 
+        this.History = this.HistoryCon;
+        this.Forecast = this.ForecastCon;
         this.name1="Consumption history";
         this.name2="Consumption forecast";
 
         this.color1 = '#f5805a';
         this.color2 = '#f9b59f';
 
-        this.miniHistory = data.totaldatasConsumer.slice(0, 7).map((val: number) => +val.toFixed(2));
-        this.miniForecast = data.totaldatasConsumer.slice(8,14).map((val: number) => +val.toFixed(2));
-        this.arrayData1 = data.dates.slice(0, 7);
-        this.arrayData2 = data.dates.slice(8, 14);
-      }
-
-      else if (this.selectedType.code == 'Producer') {
-        this.arrayData = data.dates; //.slice(0, 7).concat(data.dates.slice(8));
-
-        this.History = data.totaldatasProducer.map((val: number) => +val.toFixed(2));
-        this.Forecast = data.totaldatasProducer.map((val: number) => +val.toFixed(2));
-
-        for (let i = 8; i < 14; i++) {
-          this.History[i] = null;
+        for(let i = 0;i<7;i++)
+        {
+          this.hif[i].history = this.HistoryCon[i]
+          this.hif[i].forecast = this.ForecastCon[i+7]
+          this.hif[i].date1 = this.arrayData[i]
+          this.hif[i].date2 = this.arrayData[i+7]
         }
-
-        for (let i = 0; i < 7; i++) {
-          this.Forecast[i] = null;
-        }
-
-        this.name1="Production history";
-        this.name2="Production forecast";
-
-        this.color1 = '#46c5f1';
-        this.color2 = '#71d3f4';
-
-        this.miniHistory = data.totaldatasProducer.slice(0, 7).map((val: number) => +val.toFixed(2));
-        this.miniForecast = data.totaldatasProducer.slice(8,14).map((val: number) => +val.toFixed(2));
-        this.arrayData1 = data.dates.slice(0, 7);
-        this.arrayData2 = data.dates.slice(8, 14);
-      }
-
-      else if (this.selectedType.code == 'Stock') {
-        this.arrayData = data.dates; //.slice(0, 7).concat(data.dates.slice(8));
-
-        this.History = data.totaldatasStock.map((val: number) => +val.toFixed(2));
-        this.Forecast = data.totaldatasStock.map((val: number) => +val.toFixed(2));
-
-        for (let i = 8; i < 14; i++) {
-          this.History[i] = null;
-        }
-
-        for (let i = 0; i < 7; i++) {
-          this.Forecast[i] = null;
-        }
-
-        this.name1="Stock history";
-        this.name2="Stock forecast";
-
-        this.color1 = '#885ec0';
-        this.color2 = '#ae91d4';
-
-        this.miniHistory = data.totaldatasStock.slice(0, 7).map((val: number) => +val.toFixed(2));
-        this.miniForecast = data.totaldatasStock.slice(8,14).map((val: number) => +val.toFixed(2));
-        this.arrayData1 = data.dates.slice(0, 7);
-        this.arrayData2 = data.dates.slice(8, 14);
-      }
-
-      console.log(this.History);
-      console.log(this.Forecast);
-      console.log(this.miniHistory);
-      console.log(this.miniForecast);
-
-      // console.log(this.arrayData);
-    });
+      });
   }
 
   
@@ -188,9 +158,65 @@ export class StatisticComponent  implements OnInit {
 
   dropdownChange()
   {
-    console.log(this.selectedType)
-    this.getDevicePerRoom();
-    this.getHistoryAndForecastByDayForAllUserDevices();
+    console.log(this.selectedType);
+    if(this.selectedType.code == "Consumer")
+    {
+      this.History = this.HistoryCon;
+      this.Forecast = this.ForecastCon;
+
+      this.name1="Consumption history";
+      this.name2="Consumption forecast";
+
+      this.color1 = '#f5805a';
+      this.color2 = '#f9b59f';
+
+      for(let i = 0;i<this.History.length;i++)
+      {
+        this.hif[i].history = this.HistoryCon[i]
+        this.hif[i].forecast = this.ForecastCon[i+7]
+        this.hif[i].date1 = this.arrayData[i]
+        this.hif[i].date2 = this.arrayData[i+7]
+      }
+    }
+    else if(this.selectedType.code == "Producer")
+    {
+      this.History = this.HistoryPro;
+      this.Forecast = this.ForecastPro;
+
+      this.name1="Production history";
+      this.name2="Production forecast";
+
+      this.color1 = '#46c5f1';
+      this.color2 = '#71d3f4';
+
+      for(let i = 0;i<this.History.length;i++)
+      {
+        this.hif[i].history = this.HistoryPro[i]
+        this.hif[i].forecast = this.ForecastPro[i+7]
+        this.hif[i].date1 = this.arrayData[i]
+        this.hif[i].date2 = this.arrayData[i+7]
+      }
+    }
+    else{
+      this.History = this.HistoryStock;
+      this.Forecast = this.ForecastStock;
+
+      this.name1="Stock history";
+      this.name2="Stock forecast";
+
+      this.color1 = '#885ec0';
+      this.color2 = '#ae91d4';
+
+      for(let i = 0;i<this.History.length;i++)
+      {
+        this.hif[i].history = this.HistoryStock[i]
+        this.hif[i].forecast = this.ForecastStock[i+7]
+        this.hif[i].date1 = this.arrayData[i]
+        this.hif[i].date2 = this.arrayData[i+7]
+      }
+    }
+    console.log(this.hif)
+   
   }
 
   
