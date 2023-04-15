@@ -40,7 +40,7 @@ app-tab-menu-users .color:hover{
   padding:8px 20px;
   border:none;
 }
-.widgets {
+.widgets-users {
   display:flex;
   float:right; 
   flex-direction:column;
@@ -52,21 +52,21 @@ app-tab-menu-users .color:hover{
   justify-content: space-evenly;
 }
 
-.widget {
+.widget-users {
   margin-bottom: 30px;
   position: relative;
   width:90%;
   box-shadow: 5px 5px 15px black;
   
 }
-.widget:last-of-type {
+.widget-users:last-of-type {
   margin-bottom: 0;
 }
-.widgets::-webkit-scrollbar {
+.widgets-users::-webkit-scrollbar {
   width: 10px; /* adjust to your desired width */
 }
 
-.widgets::-webkit-scrollbar-thumb {
+.widgets-users::-webkit-scrollbar-thumb {
   background-color: rgba(214, 214, 214, 0.212); /* adjust to your desired color */
   border-radius: 10px; /* adjust to your desired radius */
 }
