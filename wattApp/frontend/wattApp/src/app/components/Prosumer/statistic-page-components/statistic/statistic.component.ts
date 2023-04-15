@@ -70,6 +70,8 @@ export class StatisticComponent  implements OnInit {
   arrayData1 = [1,2,3,4,5,6,7];
   arrayData2 = [8,9,10,11,12,13,14];
 
+  miniarrayData1 = [1,2,3,4,5,6,7];
+
   name1 = "history";
   name2 = "forecast";
 
@@ -82,6 +84,12 @@ export class StatisticComponent  implements OnInit {
   ForecastPro= [null,null, null, null, null, null,5,10,12,3,16,5,10,5];
   HistoryStock = [12, 19, 3, 5, 2, 6, 5, null,null,null,null, null, null, null];
   ForecastStock = [null,null, null, null, null, null,5,10,12,3,16,5,10,5];
+
+  miniHistoryCon = [12, 19, 3, 5, 2, 6, 5];
+  miniForecastCon= [5,10,12,3,16,5,10,5];
+
+  miniHistoryPro = [12, 19, 3, 5, 2, 6, 5];
+  miniHistoryStock = [12, 19, 3, 5, 2, 6, 5];
 
 
   constructor(private http: HttpClient, private deviceService : DeviceService) {
@@ -112,6 +120,7 @@ export class StatisticComponent  implements OnInit {
     // const Id = this.user.id ;
     this.deviceService.GetHistoryAndForecastByDayForAllUserDevices(id).subscribe(data => {
         this.arrayData = data.dates; //.slice(0, 7).concat(data.dates.slice(8));
+        this.miniarrayData1=data.dates.slice(0, 7);
 
         this.HistoryCon = data.totaldatasConsumer.map((val: number) => +val.toFixed(2));
         this.ForecastCon = data.totaldatasConsumer.map((val: number) => +val.toFixed(2));
@@ -119,6 +128,14 @@ export class StatisticComponent  implements OnInit {
         this.ForecastPro = data.totaldatasProducer.map((val: number) => +val.toFixed(2));
         this.HistoryStock = data.totaldatasStock.map((val: number) => +val.toFixed(2));
         this.ForecastStock = data.totaldatasStock.map((val: number) => +val.toFixed(2));
+
+        this.miniHistoryCon = data.totaldatasConsumer.slice(0, 7).map((val: number) => +val.toFixed(2));
+        this.miniForecastCon = data.totaldatasConsumer.slice(8,14).map((val: number) => +val.toFixed(2));
+
+        this.miniHistoryPro = data.totaldatasProducer.slice(0, 7).map((val: number) => +val.toFixed(2));
+
+
+        this.miniHistoryStock = data.totaldatasStock.slice(0, 7).map((val: number) => +val.toFixed(2));
 
         for (let i = 8; i < 14; i++) {
           this.HistoryCon[i] = null;
@@ -134,6 +151,10 @@ export class StatisticComponent  implements OnInit {
 
         this.History = this.HistoryCon;
         this.Forecast = this.ForecastCon;
+
+        this.miniHistory=this.miniHistoryCon;
+        this.miniForecast=this.miniForecastCon;
+
         this.name1="Consumption history";
         this.name2="Consumption forecast";
 
@@ -164,6 +185,10 @@ export class StatisticComponent  implements OnInit {
       this.History = this.HistoryCon;
       this.Forecast = this.ForecastCon;
 
+      this.miniHistory=this.miniHistoryCon;
+      this.miniForecast=this.miniForecastCon;
+      
+
       this.name1="Consumption history";
       this.name2="Consumption forecast";
 
@@ -183,6 +208,8 @@ export class StatisticComponent  implements OnInit {
       this.History = this.HistoryPro;
       this.Forecast = this.ForecastPro;
 
+      this.miniHistory=this.miniHistoryPro;
+
       this.name1="Production history";
       this.name2="Production forecast";
 
@@ -196,10 +223,19 @@ export class StatisticComponent  implements OnInit {
         this.hif[i].date1 = this.arrayData[i]
         this.hif[i].date2 = this.arrayData[i+7]
       }
+      for(let i = 0;i<7;i++)
+      {
+        this.HistoryPro[i]
+        this.hif[i].forecast = this.ForecastPro[i+7]
+        this.arrayData[i]
+        this.arrayData[i+7]
+      }
     }
     else{
       this.History = this.HistoryStock;
       this.Forecast = this.ForecastStock;
+
+      this.miniHistory=this.miniHistoryStock;
 
       this.name1="Stock history";
       this.name2="Stock forecast";
