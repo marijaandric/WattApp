@@ -13,6 +13,14 @@ interface City {
   name: string,
   code: string
 }
+
+interface HiF{
+  history: any,
+  forecast: any,
+  date1: any,
+  date2: any
+}
+
 @Component({
   selector: 'app-home-dso',
   templateUrl: './home-dso.component.html',
@@ -38,6 +46,14 @@ export class HomeDSOComponent {
   isStock: boolean = false;
   isAll: boolean = false;
 
+  hif : HiF[]  = [{history: 0, forecast: 0, date1: [], date2: []},
+  {history: 0, forecast: 0, date1: [], date2: []},
+  {history: 0, forecast: 0, date1: [], date2: []},
+  {history: 0, forecast: 0, date1: [], date2: []},
+  {history: 0, forecast: 0, date1: [], date2: []},
+  {history: 0, forecast: 0, date1: [], date2: []},
+  {history: 0, forecast: 0, date1: [], date2: []}];
+
   constructor(private deviceService : DeviceService,private userService:UserService, private authService:AuthService, private elementRef: ElementRef, private renderer: Renderer2) {
     this.cities = [
       {name: 'New York', code: 'NY'},
@@ -51,6 +67,8 @@ export class HomeDSOComponent {
       {name: 'Production', code: 'Producer'},
       {name: 'Stock', code: 'Stock'},
     ];
+
+    
   }
 
   changeBg(selectedType: City) {
@@ -188,6 +206,19 @@ export class HomeDSOComponent {
 
         this.History = this.HistoryCon;
         this.Forecast = this.ForecastCon;
+        this.name1="Consumption history";
+        this.name2="Consumption forecast";
+
+        this.color1 = '#f5805a';
+        this.color2 = '#f9b59f';
+
+        for(let i = 0;i<7;i++)
+        {
+          this.hif[i].history = this.HistoryCon[i]
+          this.hif[i].forecast = this.ForecastCon[i+7]
+          this.hif[i].date1 = this.arrayData[i]
+          this.hif[i].date2 = this.arrayData[i+7]
+        }
       });
   }
 
@@ -205,6 +236,14 @@ export class HomeDSOComponent {
 
       this.color1 = '#f5805a';
       this.color2 = '#f9b59f';
+
+      for(let i = 0;i<this.History.length;i++)
+      {
+        this.hif[i].history = this.HistoryCon[i]
+        this.hif[i].forecast = this.ForecastCon[i+7]
+        this.hif[i].date1 = this.arrayData[i]
+        this.hif[i].date2 = this.arrayData[i+7]
+      }
     }
     else if(this.selectedType.code == "Producer")
     {
@@ -216,6 +255,14 @@ export class HomeDSOComponent {
 
       this.color1 = '#46c5f1';
       this.color2 = '#71d3f4';
+
+      for(let i = 0;i<this.History.length;i++)
+      {
+        this.hif[i].history = this.HistoryPro[i]
+        this.hif[i].forecast = this.ForecastPro[i+7]
+        this.hif[i].date1 = this.arrayData[i]
+        this.hif[i].date2 = this.arrayData[i+7]
+      }
     }
     else{
       this.History = this.HistoryStock;
@@ -226,7 +273,16 @@ export class HomeDSOComponent {
 
       this.color1 = '#885ec0';
       this.color2 = '#ae91d4';
+
+      for(let i = 0;i<this.History.length;i++)
+      {
+        this.hif[i].history = this.HistoryStock[i]
+        this.hif[i].forecast = this.ForecastStock[i+7]
+        this.hif[i].date1 = this.arrayData[i]
+        this.hif[i].date2 = this.arrayData[i+7]
+      }
     }
+    console.log(this.hif)
    
   }
 

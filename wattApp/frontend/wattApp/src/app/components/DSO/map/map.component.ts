@@ -79,6 +79,7 @@ export class MapComponent implements OnInit, OnChanges{
         const location = this.users[i].address
         const lan = this.users[i].x;
         const lon = this.users[i].y
+        const id = this.users[i].id
         if (lan != undefined && lon != undefined) {
           const marker = L.marker([lan, lon], {icon : markerIcon}).addTo(this.map);
           marker.bindPopup("<div class='black-popup' style='color:black'>"+this.users[i].firstName+" "+this.users[i].lastName+"<br>"+this.users[i].address+"</div>");
@@ -92,7 +93,7 @@ export class MapComponent implements OnInit, OnChanges{
           });
 
           marker.on('click', function (e) {
-            window.open('/userDSO');
+            window.open(`/userDSO/`+id);
           });
         }
       }

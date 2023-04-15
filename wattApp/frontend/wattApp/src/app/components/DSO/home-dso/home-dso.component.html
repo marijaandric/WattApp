@@ -25,9 +25,9 @@
       <app-map-suburb style="width: 22.9%;margin-left:calc(2.6%)"></app-map-suburb>
       
   
-      <p-table class="d-table" #dtUsers class="ui-table-default" [value]="users" dataKey="id" [scrollable]="true" 
-      [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]"
-      [globalFilterFields]="['id','firstName','lastName','email','role']" [paginator]="true" 
+      <p-table class="d-table" #dtUsers class="ui-table-default" [value]="hif" dataKey="id" [scrollable]="true" 
+      [rows]="7"
+      [globalFilterFields]="['date1','history','date2','forecast']"
       style="
       margin-top:calc(2.8%);
       display: flex;
@@ -58,28 +58,28 @@
         <tr>
           <th pSortableColumn="firstName" style="min-width:8rem;  border-top:4px solid #46c5f1; border-bottom:4px solid #46c5f1;">
             <div class="flexRow">
-                <p style=" font-size: 18px !important;">First name</p>
+                <p style=" font-size: 18px !important;">Date</p>
                 <p-sortIcon field="firstName"></p-sortIcon>
                 <p-columnFilter class="ml-auto" type="text" field="firstName" display="menu"></p-columnFilter>
             </div>
           </th>
           <th pSortableColumn="lastName" style="min-width:9rem;  border-top:4px  solid #46c5f1; border-bottom:4px solid #46c5f1;">
             <div class="flexRow">
-                <p style=" font-size: 18px !important;">Last name</p>
+                <p style=" font-size: 18px !important;">{{this.name1}}</p>
                 <p-sortIcon field="lastName"></p-sortIcon>
                 <p-columnFilter class="ml-auto" type="text" field="lastName" display="menu"></p-columnFilter>
             </div>
           </th>
           <th pSortableColumn="email" style="min-width:10rem;  border-top:4px  solid #46c5f1; border-bottom:4px  solid #46c5f1;;">
             <div class="flexRow">
-                <p style=" font-size: 18px !important;">Email</p>
+                <p style=" font-size: 18px !important;">Date</p>
                 <p-sortIcon field="email"></p-sortIcon>
                 <p-columnFilter class="ml-auto" type="text" field="email" display="menu"></p-columnFilter>
             </div>
           </th>
           <th pSortableColumn="role" style="min-width:8rem; border-top:4px  solid #46c5f1;; border-bottom:4px solid #46c5f1;">
             <div class="flexRow">
-                <p style=" font-size: 18px !important;">Role</p>
+                <p style=" font-size: 18px !important;">{{this.name2}}</p>
                 <p-sortIcon field="role"></p-sortIcon>
                 <p-columnFilter class="ml-auto" type="text" field="role" display="menu"></p-columnFilter>
             </div>
@@ -87,18 +87,18 @@
         </tr>
       </ng-template>
   
-      <ng-template pTemplate="body" let-user>
+      <ng-template pTemplate="body" let-hif>
         <tr>
-          <td>{{user.firstName}}</td>
-          <td>{{user.lastName}}</td>
-          <td>{{user.email}}</td>
-          <td>{{user.role}}</td>
+          <td><b>{{hif.date1}}</b></td>
+          <td>{{hif.history}} kwh</td>
+          <td><b>{{hif.date2}}</b></td>
+          <td>{{hif.forecast}} kwh</td>
         </tr>
       </ng-template>
   
       <ng-template pTemplate="emptymessage">
         <tr>
-            <td colspan="5">No users found.</td>
+            <td colspan="5">No info found.</td>
         </tr>
     </ng-template>
   
