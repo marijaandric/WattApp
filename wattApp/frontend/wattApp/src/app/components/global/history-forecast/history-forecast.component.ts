@@ -28,8 +28,8 @@ export class HistoryForecastComponent implements OnInit,OnChanges{
   @Input() array3 : any[] = [null,null, null, null, null, null,null,null, null, null, null, null,null,null]
   @Input() naziv1 = "History";
   @Input() naziv2 = "Forecast";
-  @Input() boja1 = '#f5805a';
-  @Input() boja2 = '#f5805a';
+  @Input() boja1 = '#885ec0';
+  @Input() boja2 = '#ae91d4';
 
 
   constructor(private userService:UserService, private authService:AuthService, private deviceService:DeviceService) {
