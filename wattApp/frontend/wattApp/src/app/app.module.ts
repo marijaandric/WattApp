@@ -86,7 +86,6 @@ import { TableComponent } from './components/DSO/user/table/table.component';
 import { HomeDSOComponent } from './components/DSO/home-dso/home-dso.component';
 import { PageNotFoundComponent } from './components/global/page-not-found/page-not-found.component';
 
-
 export const url = 'https://localhost:7158';
 export const deviceFakerUrl = "https://localhost:7233";
 
@@ -152,7 +151,7 @@ export const deviceFakerUrl = "https://localhost:7233";
     MapForAllUsersComponent,
     TableComponent,
     HomeDSOComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
   ],
   imports: [
     CommonModule,
