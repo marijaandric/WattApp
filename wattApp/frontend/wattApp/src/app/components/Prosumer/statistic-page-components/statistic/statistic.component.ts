@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { DeviceService } from 'src/app/services/device/device.service';
 import { ChartComponent } from 'ng-apexcharts';
 import { PieChartComponent } from 'src/app/components/global/pie-chart/pie-chart.component';
+import { UserService } from 'src/app/services/user.service';
 interface City {
   name: string,
   code: string
@@ -27,6 +28,9 @@ export class StatisticComponent  implements OnInit {
   type: City[];
   selectedType : City ={name: 'Consumption', code: 'Consumer'};
   @ViewChild('myChart', { static: true }) myChart! : PieChartComponent;
+  token = localStorage.getItem('token');
+  user:any;
+  id : any;
 
   switchValue: boolean = true;
   hif : HiF[]  = [{history: 0, forecast: 0, date1: [], date2: []},
@@ -96,21 +100,27 @@ export class StatisticComponent  implements OnInit {
   miniForecastStock= [5,10,12,3,16,5,10,5];
 
 
-  constructor(private http: HttpClient, private deviceService : DeviceService) {
+  constructor(private http: HttpClient, private deviceService : DeviceService,private userService:UserService,) {
     this.type = [
       {name: 'Consumption', code: 'Consumer'},
       {name: 'Production', code: 'Producer'},
       {name: 'Stock', code: 'Stock'},
     ];
+    if(this.token)
+    {
+      this.id = this.userService.getUserIdFromToken(this.token);
+      userService.GetUser(this.id,this.token).subscribe((data) => {
+        this.user = data;
+        this.ngOnInit();
+      });
+    }
   }
 
 
   getDevicePerRoom(){
-    const deviceId = 1 ;
-   // const deviceId = this.user.id ;
     const type = this.selectedType.code;
     const number = 4;
-    this.deviceService.devicesPerRooms(deviceId, type, number).subscribe(data => {
+    this.deviceService.devicesPerRooms(this.id, type, number).subscribe(data => {
       this.rooms = data.rooms;
       this.count = data.count;
      // this.niz1 = data.count;
@@ -120,9 +130,7 @@ export class StatisticComponent  implements OnInit {
   }
 
   getHistoryAndForecastByDayForAllUserDevices() {
-    const id = 1 ;
-    // const Id = this.user.id ;
-    this.deviceService.GetHistoryAndForecastByDayForAllUserDevices(id).subscribe(data => {
+    this.deviceService.GetHistoryAndForecastByDayForAllUserDevices(this.id).subscribe(data => {
         this.arrayData = data.dates; //.slice(0, 7).concat(data.dates.slice(8));
         this.miniarrayData1=data.dates.slice(0, 7);
         this.miniarrayData2=data.dates.slice(8, 14);
@@ -186,6 +194,7 @@ export class StatisticComponent  implements OnInit {
 
   dropdownChange()
   {
+    this.getDevicePerRoom();
     console.log(this.selectedType);
     if(this.selectedType.code == "Consumer")
     {
