@@ -22,7 +22,7 @@
     <div class="main-grid">
       <app-history-forecast [boja1]="color1" [boja2]="color2" [naziv1]="name1" [naziv2]="name2" [array] = "History" [array2]="Forecast" [array3] = "arrayData" class="chart" id="oneChart"  ></app-history-forecast>
       <!-- <app-pie-chart  clas="bar-plot"></app-pie-chart> -->
-      <app-map-suburb style="width: 22.9%;margin-left:calc(2.6%)"></app-map-suburb>
+      <app-map-suburb style="width: 48.5%;margin-left:calc(2.6%)"></app-map-suburb>
       
   
       <p-table class="d-table" #dtUsers class="ui-table-default" [value]="hif" dataKey="id" [scrollable]="true" 
@@ -36,10 +36,11 @@
       height: fit-content;
       width: 48.5%;
       border-radius: 20px;
-      background-color: #1b1b1b;
+      background: linear-gradient(180deg, #181818 30%, #0d0d0d 100%) ;
+      margin-bottom:30px;
       box-shadow: 5px 5px 15px black;
       transition: ease-in-out;
-      padding:10px 20px;
+      padding:10px 20px 30px 20px;
       ">
   
       <ng-template pTemplate="caption">

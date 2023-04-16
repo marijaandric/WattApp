@@ -9,6 +9,7 @@
     box-shadow: 5px 5px 15px black;
     transition: ease-in-out;
     z-index: 1;
+    margin-top:20px;
 }
 .leaflet-popup-content-wrapper {
     background-color: black;

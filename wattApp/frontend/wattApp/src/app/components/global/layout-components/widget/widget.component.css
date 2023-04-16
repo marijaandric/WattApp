@@ -6,7 +6,7 @@
     /*min-width: 340px;*/
     border-radius: 20px;
     padding:  10px 0px 10px 15px;
-    background-color: #1b1b1b;
+    background: linear-gradient(180deg, #1b1b1b 50%, #121212 100%) ;
     flex-basis: calc(33.33333% - 30px);
 }
 

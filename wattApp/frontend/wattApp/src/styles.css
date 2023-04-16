@@ -70,7 +70,7 @@
 .p-datatable .p-datatable-header{
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
-  background-color: #1b1b1b !important;
+  background-color: transparent !important;
   padding:10px 20px 10px 10px !important;
 }
 
@@ -102,26 +102,36 @@
 }
 .p-datatable .p-datatable-thead>tr>th {
   padding: 0.5rem 1rem !important;
+  background-color: transparent !important;
+}
+.p-datatable .sortable-column {
+  background-color: transparent !important;
+}
+.p-datatable .p-datatable-thead>tr>th>td {
+  background-color: transparent !important;
 }
 .p-datatable .p-datatable-thead>tr>p {
   margin: 0rem 0rem !important;
 }
+.p-datatable .p-datatable-thead {
+  background-color: transparent !important;
+}
 .p-datatable .p-datatable-wrapper {
   
-  background-color: #1b1b1b !important;
+  background-color: transparent !important;
 }
 .p-datatable .p-datatable-thead>tr>th {
-  background-color: #1b1b1b !important;
+  background-color: transparent !important;
 
 }
 
 .p-datatable .p-datatable-tbody>tr {
-  background-color: #1b1b1b !important;
+  background-color: transparent !important;
 
 }
 
 .p-datatable .p-paginator {
-  background-color: #1b1b1b !important;
+  background-color: transparent !important;
 
 }
 
@@ -136,11 +146,17 @@
 }
 .p-link {
   border-radius: 20px !important;
+
   
 /*
   height:15px !important;
   width:40px !important;
 */
+}
+
+.p-datatable .p-datatable-tbody>tr>td {
+  border: 1px solid #393939 !important;
+  border-width: 0px 0px 1px 0px !important;
 }
 p,a,li,body, div,span{
   color: white;

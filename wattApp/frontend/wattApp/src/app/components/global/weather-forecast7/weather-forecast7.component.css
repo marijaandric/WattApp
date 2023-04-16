@@ -4,7 +4,7 @@
     height:120%;
     max-height: 380px;
     border-radius: 20px;
-    background: #1b1b1b;
+    background: linear-gradient(180deg, #1b1b1b 50%, #121212 100%) ;
     position: relative;
     overflow: hidden;
     transform: translate3d(0, 0, 0);

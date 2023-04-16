@@ -4,27 +4,67 @@
     </app-title-bar>
   
     <app-center-bar>
+      <div  class="main-grid"> 
+        <div style="display:flex;float:left; flex-direction:column; width:27%; height:88vh; min-width:430px;">
+          <app-card [id] = 'id'></app-card>
+          <app-map-user-dso></app-map-user-dso>
+          <!--
+          <div style="display:flex;float:right; flex-direction:row; width:100%; height:100px">
+            <div style="display:flex;float:right; flex-direction:column;  width:47%; height:100%" >
+    
+            </div> 
+          </div> -->
+        </div> 
+        <div style="display:flex;float:right; flex-direction:column; width:52%; height:400px;padding: 0 2% 30px 2%;">
+          <app-area-chart style="width:100%"></app-area-chart>
+           
+          <app-table [id] = 'id'></app-table>
+          
+          <!--
+          <div style="display:flex;float:right; flex-direction:row; width:100%; height:100px">
+            <div style="display:flex;float:right; flex-direction:column;  width:47%; height:100%" >
+    
+            </div> 
+          </div> -->
+        </div> <div style="display:flex;float:right; flex-direction:column; width:20%; height:100%">
+          <div class="donuts">
+            <h5>Biggest Prosumer</h5>
+            <p>device_name</p>
+            <app-circle [id] = 'id' [type] = 'Consumer'></app-circle>
+            <h5>Biggest Prosumer</h5>
+            <p>device_name</p>
+            <app-circle [id] = 'id' [type] = 'Producer'></app-circle>
+            <h5>Biggest Prosumer</h5>
+            <p>device_name</p>
+            <app-circle [id] = 'id' [type] = 'Stock'></app-circle>
+          </div>
+          
+          <!--
+          <div style="display:flex;float:right; flex-direction:row; width:100%; height:100px">
+            <div style="display:flex;float:right; flex-direction:column;  width:47%; height:100%" >
+    
+            </div> 
+          </div> -->
+        </div> 
+      </div>
+    <!--
     <div class="user">
       <div class ='firstHalf'>
         <div class="usercard" >
             <app-card [id] = 'id'></app-card>
-            <app-table [id] = 'id'></app-table>
-        </div>
-        
-      </div>
-      <div class="secondHalf">
-        <h4 style="margin-left: 10%;margin-bottom: 5%;">Top devices</h4>
-        <div class="donuts">
-            <app-circle [id] = 'id' [type] = 'Consumer'></app-circle>
-            <app-circle [id] = 'id' [type] = 'Producer'></app-circle>
-            <app-circle [id] = 'id' [type] = 'Stock'></app-circle>
-        </div>
-        <div class="chart">
-            <app-area-chart style="width:100%"></app-area-chart>
 
         </div>
+        <div class="chart">
+         
+      
+        
+      </div>
+      </div>
+      <div class="secondHalf">
+      
       </div>
     </div>
+    -->
     </app-center-bar>
     
   </standard-template>

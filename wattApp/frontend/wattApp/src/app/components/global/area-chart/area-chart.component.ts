@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, EventEmitter } from '@angular/core';
-import {  ApexAxisChartSeries, ApexChart, ApexXAxis, ApexTitleSubtitle,ApexYAxis, ApexDataLabels } from 'ng-apexcharts';
+import {  ApexAxisChartSeries, ApexChart, ApexXAxis, ApexTooltip, ApexTitleSubtitle,ApexYAxis, ApexDataLabels } from 'ng-apexcharts';
 
 @Component({
   selector: 'app-area-chart',
@@ -14,14 +14,16 @@ export class AreaChartComponent implements OnInit  {
     {
       name: 'Resorce',
       data: [12, 19, 13, 15, 12, 13,10,12,3,4,5],
-      color: '#b855a4'
+      color: '#46c5f1'
     },
   ];
 
   public chart: ApexChart = {
     type: 'area',
-    width:this.chartWidth,
-    height:this.chartHeight 
+    width:'100%',
+    height:'100%',
+    background:'transparent',
+
   };
 
   public xaxis: ApexXAxis = {
@@ -57,7 +59,14 @@ export class AreaChartComponent implements OnInit  {
     };
    
   ngOnInit(): void {
-    this.chart.height = this.chartHeight;
-    this.chart.width = this.chartWidth;
+    this.chart.height = '350';
+  }
+
+  
+  public tooltip: ApexTooltip = {
+    theme:'dark',
+    style : {
+      fontSize:'17px'
+    },
   }
 }

@@ -1,6 +1,6 @@
 :host {
   /*background-color: #56857e;*/
-  background-color: #0d0d0d;
+  background: linear-gradient(180deg,#0d0d0d 60%, #060606 100% ) ;
   display: flex;
   flex-direction: row;
   width: 100%;

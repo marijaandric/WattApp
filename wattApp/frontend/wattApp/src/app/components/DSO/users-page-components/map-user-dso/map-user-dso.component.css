@@ -1,0 +1,9 @@
+:host {
+    margin-top:30px;
+    height:100%;
+    width:100%;
+    box-shadow: 5px 5px 15px black;
+    border-radius: 20px;
+    
+    background: linear-gradient(180deg, #171717 30%, #121212 100%) ;
+}

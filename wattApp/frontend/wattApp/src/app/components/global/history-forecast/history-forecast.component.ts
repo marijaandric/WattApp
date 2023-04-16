@@ -111,10 +111,10 @@ export class HistoryForecastComponent implements OnInit,OnChanges{
   };
   public chart: ApexChart = {
     type: 'line',
-    height: 350,
+    height: 300,
     width: '100%',
     offsetX: 0,
-    background: '#1b1b1b',
+    background: 'transparent',
     
     animations: {
       enabled: true,
