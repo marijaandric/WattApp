@@ -89,10 +89,17 @@
   
       <ng-template pTemplate="body" let-hif>
         <tr>
-          <td><b>{{hif.date1}}</b></td>
-          <td>{{hif.history}} kwh</td>
-          <td><b>{{hif.date2}}</b></td>
-          <td>{{hif.forecast}} kwh</td>
+          <td>{{hif.date1}}</td>
+          <td>
+            <b>{{hif.history}} kwh</b>
+          </td>
+          <td>{{hif.date2}}</td>
+          <td>
+            <b>{{hif.forecast}} kwh</b> <br>
+            <span [style.color]="(hif.forecast - hif.history > 0) ? '#eb4886' : '#46c5f1'">
+              {{(hif.forecast - hif.history).toFixed(2)}}{{(hif.forecast - hif.history > 0) ? ' kWh more' : ' kWh less'}} 
+            </span> than last week
+          </td>
         </tr>
       </ng-template>
   
