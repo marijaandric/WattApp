@@ -20,7 +20,7 @@
 }
 
 .donuts{
-    background: linear-gradient(180deg, #1e1e1e 50%, #121212 100%) ;
+    background: linear-gradient(180deg, #1f1f1f 50%, #0d0d0d 100%) ;
     box-shadow: 5px 5px 15px black;
     border-radius: 20px;
     align-items: center;
