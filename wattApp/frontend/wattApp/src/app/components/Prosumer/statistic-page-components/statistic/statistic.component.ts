@@ -264,5 +264,10 @@ export class StatisticComponent  implements OnInit {
    
   }
 
+  clear(dtUsers: any) {
+    dtUsers.clear();
+  }
+
+
   
 }
