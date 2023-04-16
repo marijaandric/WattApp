@@ -64,27 +64,38 @@
   transition: all .5s ease;
 }
 
-.blue-color {
+.yellow-color {
   color:#885ec0;
 }
 
-.bg-blue-color {
-  background-color:#1b1b1b;;
-}
-
-.yellow-color {
-  color:#eb4886;
-}
 .bg-yellow-color {
-  background-color:#1b1b1b;;
+  background-color:#885ec0;
+
 }
 
-.pink-color {
+.blue-color {
+  color:#46c5f1;
+}
+.bg-blue-color {
+  background-color: #46c5f1;
+
+}
+
+.orange-color {
   color:#f5805a;
 }
-.bg-pink-color {
-  background-color:#1b1b1b;;
+.bg-orange-color {
+  background: #f5805a;
 }
+
+
+.pink-color {
+  color: #eb4886;
+}
+.bg-pink-color {
+  background: #eb4886;
+}
+
 :host>.datum
 {
   padding-top: 10px;

@@ -21,7 +21,7 @@ export class AreaChartComponent implements OnInit  {
   public chart: ApexChart = {
     type: 'area',
     width:'100%',
-    height:'100%',
+    height:'100vh',
     background:'transparent',
 
   };
