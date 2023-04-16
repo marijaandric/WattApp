@@ -1,15 +1,9 @@
-app-tab-menu-users .boja {
-    color: #885ec0;
-  }
-
-app-tab-menu-users .fa-users {
-    color: #885ec0;
-  }
-
-app-tab-menu-users .color:hover{
+:host::ng-deep app-tab-menu-users .boja2 {
     color: #885ec0 !important;
   }
-
+.detetova-klasa {
+    color: #885ec0 !important;
+  }
 .right {
   margin-bottom: 10%;
   width:45%;
