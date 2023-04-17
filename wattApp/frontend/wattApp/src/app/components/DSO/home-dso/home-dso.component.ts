@@ -72,35 +72,6 @@ export class HomeDSOComponent {
   }
 
   changeBg(selectedType: City) {
-    /*
-    const element =document.getElementById('::ng-deep .pr_id_1_labelt');
-    if(selectedType.code == '1')
-    {
-      this.renderer.addClass(element, 'consumption');
-      this.isConsumption = true;
-      this.isProduction = false;
-      this.isStock = false;
-      this.isAll = false;
-
-    } else if (selectedType.code == '2') {
-      this.renderer.addClass(element, 'production');
-      this.isConsumption = false;
-      this.isProduction = true;
-      this.isStock = false;
-      this.isAll = false;
-    } else if (selectedType.code == '3') {
-      this.renderer.addClass(element, 'stock');
-      this.isConsumption = false;
-      this.isProduction = false;
-      this.isStock = true;
-      this.isAll = false;
-    } else {
-      this.renderer.addClass(element, 'all');
-      this.isConsumption = false;
-      this.isProduction = false;
-      this.isStock = false;
-      this.isAll = true;
-    }*/
   }
 
   users: UserDTO[] = [];

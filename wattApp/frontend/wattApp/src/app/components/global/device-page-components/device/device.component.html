@@ -4,10 +4,239 @@
   </app-title-bar>
 
   <app-center-bar>
-    <div class="device" >
-      <div class="circles">
-        <app-device-prototype style="width:100%"></app-device-prototype>
+
+<div class="device" >
+  <div class="pc-main-card">
+    <div class="pc-circles">
+      <h5>Consumption</h5>
+      <div class=" pc-circle">
+        <div class="pc-inner-circle">
+            <span>today</span> 
+            <div class="main-stat-card">
+                <span>15.24</span> 
+            </div>
+            <div class="kwh-card">
+                <span>kWh</span>
+            </div>
+        </div>
+      </div> 
+      <div class=" pc-circle">
+        <div class="pc-inner-circle">
+            <div class="circle-icon">
+                <i class="fa-solid fa-bolt"></i>
+            </div>
+            <div class="main-stat">
+                <span>15.24</span> 
+            </div>
+            <div class="kwh">
+                <span>kWh</span>
+            </div>
+        </div>
+      </div> 
+      <div class=" pc-circle">
+        <div class="pc-inner-circle">
+            <div class="circle-icon">
+                <i class="fa-solid fa-bolt"></i>
+            </div>
+            <div class="main-stat">
+                <span>15.24</span> 
+            </div>
+            <div class="kwh">
+                <span>kWh</span>
+            </div>
+        </div>
       </div>
+      <div class=" pc-circle">
+        <div class="pc-inner-circle">
+            <div class="circle-icon">
+                <i class="fa-solid fa-bolt"></i>
+            </div>
+            <div class="main-stat">
+                <span>15.24</span> 
+            </div>
+            <div class="kwh">
+                <span>kWh</span>
+            </div>
+        </div>
+      </div>
+      <div class=" pc-circle">
+        <div class="pc-inner-circle">
+            <div class="kwh">
+              <p>Today</p>
+            </div>
+            <div class="main-stat-card">
+                <span>15.24</span> 
+            </div>
+            <div class="kwh-card">
+                <span>kWh</span>
+            </div>
+        </div>
+      </div> 
+    </div>
+    
+    <div class="pc-card-1">
+
+    </div>
+  </div>
+
+  <div class="circles">
+    <div class="main-card">
+      <div class="card-1">
+          <div class="flexRow">
+            <div class="icon-1"><i class="fa-solid fa-tv"></i></div>
+              <div class="colored-text" ><h5>{{ device.deviceName }}</h5></div>
+              <!--
+              <p-button label="Edit" (click)="showEditDeviceDialog()" class="margin-left__auto" style="border-radius:32px !important;"/>
+              <p-button label="Delete" (onClick)="deleteDevice(device.id)" class="margin-left__8px"/>
+              -->
+            <div class="menu">
+              <div class="icon-2"><div class="icon-3"><i class="fa-solid fa-bars"></i></div></div>
+              <div class="menu-container">
+                
+                <div class="float-element "><div class="icon-3"><i class="fa-solid fa-pen-to-square"></i></div></div>
+                <div class="float-element "><div class="icon-3"><i class="fa-solid fa-trash"></i></div></div>
+                <div class="float-element "><div class="icon-3"><i class="fa-solid fa-toggle-on"></i></div></div>
+                <!--<i class="fa-solid fa-toggle-off"></i>-->
+              </div>
+            </div>
+          </div>
+          
+          <div class="title1"><h5>Consumption this hour</h5></div>
+          <div class="subtitle"><h5>5.5% more than last hour</h5></div>
+
+          <div class=" circle circle-1">
+              <div class="circle circle-2">
+                  <div class="circle-icon">
+                      <i class="fa-solid fa-bolt"></i>
+                  </div>
+                  <div class="main-stat">
+                      <span>15.24</span> 
+                  </div>
+                  <div class="kwh">
+                      <span>kWh</span>
+                  </div>
+
+              </div>
+          </div>
+          
+      </div>  
+    
+      <div class="card-2">
+     
+          <div class="card-2-1" >
+            <div class="stats">
+              <div class="inner-card">
+              </div>
+              <div style="width:100%; height:fit-content; position:relative;">
+
+                <div class="icon">
+                  <span><i class="fa-solid fa-arrow-trend-up"></i></span>
+                </div>
+                <div class="subtitle-card">
+                  <span>Consumption today</span>
+                </div>
+              </div>
+              <div style="width:100%; height:fit-content; position:relative;">
+                <div class="main-stat-card">
+                  <span>4.4</span> 
+                </div>
+                <div class="kwh-card">  
+                  <span>kWh</span>
+                </div>
+              </div>
+              <div class="subtitle-2">  
+                <span>6.2% more than yesterday</span>
+              </div>
+            </div>
+          </div>
+          <div  class="card-2-2" >
+            <div class="stats">
+              <div class="inner-card">
+              </div>
+              <div style="width:100%; height:fit-content; position:relative;">
+
+                <div class="icon">
+                  <span><i class="fa-solid fa-arrow-trend-down"></i></span>
+                </div>
+                <div class="subtitle-card">
+                  <span>Consumption this week</span>
+                </div>
+              </div>
+              <div style="width:100%; height:fit-content; position:relative;">
+                <div class="main-stat-card">
+                  <span>15.24</span> 
+                </div>
+                <div class="kwh-card">  
+                  <span>kWh</span>
+                </div>
+              </div>
+              <div class="subtitle-2">  
+                <span>2.4% less than last week</span>
+              </div>
+            </div>
+
+          </div>   
+      </div>
+      
+      <div class="card-2 card-3">
+     
+        <div class="card-2-1" >
+          <div class="stats">
+            <div class="inner-card">
+            </div>
+            <div style="width:100%; height:fit-content; position:relative;">
+
+              <div class="icon">
+                <span><i class="fa-solid fa-arrow-trend-down"></i></span>
+              </div>
+              <div class="subtitle-card">
+                <span>Consumption this month</span>
+              </div>
+            </div>
+            <div style="width:100%;  position:relative;">
+              <div class="main-stat-card">
+                <span>274.24</span> 
+              </div>
+              <div class="kwh-card">  
+                <span>kWh</span>
+              </div>
+            </div>
+            <div class="subtitle-2">  
+              <span>32.4% less than last month</span>
+            </div>
+          </div>
+        </div>
+        <div  class="card-2-2" >
+          <div class="stats">
+            <div class="inner-card">
+            </div>
+            <div style="width:100%; height:fit-content; position:relative;">
+
+              <div class="icon">
+                <span><i class="fa-solid fa-arrow-trend-up"></i></span>
+              </div>
+              <div class="subtitle-card">
+                <span>Consumption this year</span>
+              </div>
+            </div>
+            <div style="width:100%; height:fit-content; position:relative;">
+              <div class="main-stat-card">
+                <span>6745</span> 
+              </div>
+              <div class="kwh-card">  
+                <span>kWh</span>
+              </div>
+            </div>
+            <div class="subtitle-2">  
+              <span>100% more than last year</span>
+            </div>
+          </div>
+
+        </div>   
+      </div>
+    </div>
+  </div>
+
     <div class="info" >
     <div id="deviceInformation" class="flexColumn device-information" >
       <div class="flexRow">
@@ -74,6 +303,94 @@
       <!--<app-device-area-bar-chart clas="bar-plot" class="margin-top__16px"/>-->
       <app-history-forecast id="oneChart" class="margin-top__16px" style="width: 100%;" [array] = 'array' [array2]="array2" [array3] = 'array3'></app-history-forecast>
     </div>
+    
+    <!--
+      <p-table class="d-table" #dtUsers class="ui-table-default" [value]="hif" dataKey="id" [scrollable]="true" 
+      [rows]="7"
+      [globalFilterFields]="['date1','history','date2','forecast']"
+      style="
+      margin-top:calc(2.8%);
+      display: flex;
+      position: relative;
+      flex-direction: column;
+      height: fit-content;
+      width: 48.5%;
+      border-radius: 20px;
+      background: linear-gradient(180deg, #181818 30%, #121212 100%) ;
+      margin-bottom:30px;
+      box-shadow: 5px 5px 15px black;
+      transition: ease-in-out;
+      padding:10px 20px 30px 20px;
+      ">
+
+    <ng-template pTemplate="caption">
+      <div class="flexRow">
+          <h3 >
+          Users</h3>
+          <span class="p-input-icon-left margin-left__auto margin-right__16px">
+              <i class="pi pi-search"></i>
+              <input pInputText type="text" (input)="dtUsers.filterGlobal($any($event.target).value, 'contains')" placeholder="Search keyword" />
+          </span>
+          <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash" (click)="clear(dtUsers)"></button>
+      </div>
+    </ng-template>
+
+    <ng-template pTemplate="header">
+      <tr>
+        <th pSortableColumn="firstName" style="min-width:8rem;  border-top:4px solid #46c5f1; border-bottom:4px solid #46c5f1;">
+          <div class="flexRow">
+              <p style=" font-size: 18px !important;">Date</p>
+              <p-sortIcon field="firstName"></p-sortIcon>
+              <p-columnFilter class="ml-auto" type="text" field="firstName" display="menu"></p-columnFilter>
+          </div>
+        </th>
+        <th pSortableColumn="lastName" style="min-width:9rem;  border-top:4px  solid #46c5f1; border-bottom:4px solid #46c5f1;">
+          <div class="flexRow">
+              <p style=" font-size: 18px !important;">{{this.name1}}</p>
+              <p-sortIcon field="lastName"></p-sortIcon>
+              <p-columnFilter class="ml-auto" type="text" field="lastName" display="menu"></p-columnFilter>
+          </div>
+        </th>
+        <th pSortableColumn="email" style="min-width:10rem;  border-top:4px  solid #46c5f1; border-bottom:4px  solid #46c5f1;;">
+          <div class="flexRow">
+              <p style=" font-size: 18px !important;">Date</p>
+              <p-sortIcon field="email"></p-sortIcon>
+              <p-columnFilter class="ml-auto" type="text" field="email" display="menu"></p-columnFilter>
+          </div>
+        </th>
+        <th pSortableColumn="role" style="min-width:8rem; border-top:4px  solid #46c5f1;; border-bottom:4px solid #46c5f1;">
+          <div class="flexRow">
+              <p style=" font-size: 18px !important;">{{this.name2}}</p>
+              <p-sortIcon field="role"></p-sortIcon>
+              <p-columnFilter class="ml-auto" type="text" field="role" display="menu"></p-columnFilter>
+          </div>
+        </th>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="body" let-hif>
+      <tr>
+        <td>{{hif.date1}}</td>
+        <td>
+          <b>{{hif.history}} kwh</b>
+        </td>
+        <td>{{hif.date2}}</td>
+        <td>
+          <b>{{hif.forecast}} kwh</b> <br>
+          <span [style.color]="(hif.forecast - hif.history > 0) ? '#eb4886' : '#46c5f1'">
+            {{(hif.forecast - hif.history).toFixed(2)}}{{(hif.forecast - hif.history > 0) ? ' kWh more' : ' kWh less'}} 
+          </span> than last week
+        </td>
+      </tr>
+    </ng-template>
+
+    <ng-template pTemplate="emptymessage">
+      <tr>
+          <td colspan="5">No info found.</td>
+      </tr>
+  </ng-template>
+
+  </p-table>-->
     </div>
   </div>
   
