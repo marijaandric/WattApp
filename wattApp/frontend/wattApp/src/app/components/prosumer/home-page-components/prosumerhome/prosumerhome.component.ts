@@ -34,7 +34,7 @@ export class ProsumerhomeComponent implements OnInit{
       this.id = this.userService.getUserIdFromToken(this.token);
       userService.GetUser(this.id,this.token).subscribe((data) => {
         this.user = data;
-        this.ngOnInit();
+        //this.ngOnInit();
       });
     }
     
@@ -235,6 +235,8 @@ export class ProsumerhomeComponent implements OnInit{
     this.getmonthPowerUsageProducer();
     this.getmonthPowerUsageStorage();
     this.getdayPowerPrice();
+
+    console.log(this.devices);
 
     
   }
