@@ -87,6 +87,7 @@ import { HomeDSOComponent } from './components/DSO/home-dso/home-dso.component';
 import { PageNotFoundComponent } from './components/global/page-not-found/page-not-found.component';
 import { MapUserDsoComponent } from './components/DSO/users-page-components/map-user-dso/map-user-dso.component';
 import { MapForDsoUserComponent } from './components/DSO/map-for-dso-user/map-for-dso-user.component';
+import { DeviceDesktopComponent } from './components/global/device-page-components/device-desktop/device-desktop.component';
 
 export const url = 'https://localhost:7158';
 export const deviceFakerUrl = "https://localhost:7233";
@@ -156,6 +157,7 @@ export const deviceFakerUrl = "https://localhost:7233";
     PageNotFoundComponent,
     MapUserDsoComponent,
     MapForDsoUserComponent,
+    DeviceDesktopComponent,
   ],
   imports: [
     CommonModule,

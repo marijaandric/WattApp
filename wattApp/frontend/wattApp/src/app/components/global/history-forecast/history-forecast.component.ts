@@ -110,7 +110,7 @@ export class HistoryForecastComponent implements OnInit,OnChanges{
     }
   };
   public chart: ApexChart = {
-    type: 'line',
+    type: 'area',
     height: 300,
     width: '100%',
     offsetX: 0,
@@ -130,7 +130,7 @@ export class HistoryForecastComponent implements OnInit,OnChanges{
       }
     },
     dropShadow: {
-      enabled: true,
+      enabled: false,
       enabledOnSeries: undefined,
       top: 0,
       left: 3,
@@ -226,47 +226,13 @@ export class HistoryForecastComponent implements OnInit,OnChanges{
   };
 
   public stroke: ApexStroke = {
-    curve: 'straight',
+    curve: 'smooth',
     width: 3,
     dashArray:[0,5,0,5,0,5]
   }
 
   public dataLabels: ApexDataLabels = {
-  textAnchor: 'middle',
-  distributed: true,
-  offsetX: 0,
-  offsetY: 0,
-  style: {
-      fontSize: '20px',
-      fontFamily: 'Helvetica, Arial, sans-serif',
-      fontWeight: 'bold',
-      colors: ['#222222',]
-  },
-  background: {
-    enabled: true,
-    foreColor: '#FFF',
-    padding: 10,
-    borderRadius: 2,
-    borderWidth: 1,
-    borderColor: '#fff',
-    opacity: 0.9,
-    dropShadow: {
-      enabled: true,
-      top: 1,
-      left: 1,
-      blur: 1,
-      color: '#222222',
-      opacity: 1
-    }
-  },
-  dropShadow: {
-      enabled: false,
-      top: 1,
-      left: 1,
-      blur: 1,
-      color: '#000',
-      opacity: 0.45
-  },
+  
   
   }
 }
