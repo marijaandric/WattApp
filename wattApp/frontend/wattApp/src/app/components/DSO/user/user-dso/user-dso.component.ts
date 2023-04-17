@@ -1,6 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { StadardTemplateComponent } from 'src/app/components/global/layout-components/standard-template/stadard-template.component';
-import { UserService } from 'src/app/services/user.service';
 import { HttpClient } from '@angular/common/http';
 import { DeviceDTO } from 'src/app/dtos/DeviceDTO';
 import { DeviceService } from 'src/app/services/device/device.service';
@@ -8,6 +7,8 @@ import { DsonewsService } from 'src/app/services/dsonews/dsonews.service';
 
 import { ActivatedRoute } from '@angular/router';
 import { CarouselModule } from 'primeng/carousel';
+import { UserService } from 'src/app/services/user/user.service';
+import { UserDTO } from 'src/app/dtos/UserDTO';
 @Component({
   selector: 'app-user-dso',
   templateUrl: './user-dso.component.html',
@@ -18,11 +19,13 @@ export class UserDSOComponent implements OnInit{
   Consumer:string='Consumer';
   Producer:string='Producer';
   Stock:string='Stock';
+  user:any;
 
   responsiveOptions: any = null;
 
-  constructor(private route: ActivatedRoute,private dsonew : DsonewsService) {
+  constructor(private route: ActivatedRoute,private dsonew : DsonewsService,private userService:UserService) {
     this.id = this.route.snapshot.paramMap.get('id');
+    this.getUser();
   }
 
   news: any[] = [];
@@ -75,6 +78,16 @@ export class UserDSOComponent implements OnInit{
 
   ngOnInit(): void {
     this.getNews();
+    
+  }
+
+  getUser()
+  {
+    console.log("USLO")
+      this.userService.GetUserWithoutToken(this.id).subscribe(data =>{
+        this.user = data;
+        console.log(data)
+      })
     
   }
 }

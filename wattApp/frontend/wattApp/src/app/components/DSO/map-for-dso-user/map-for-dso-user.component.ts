@@ -10,7 +10,7 @@ import { UserDTO } from 'src/app/dtos/UserDTO';
   styleUrls: ['./map-for-dso-user.component.css']
 })
 export class MapForDsoUserComponent implements OnInit, OnChanges{
-  @Input() users! : UserDTO[];
+  @Input() user : any;
   lan! : number;
   lon! : number;
   area! : string;
@@ -24,18 +24,18 @@ export class MapForDsoUserComponent implements OnInit, OnChanges{
   }
 
   ngOnInit(): void {
-    this.map = L.map('map4').setView([44.007247, 20.904429], 13);
+    this.map = L.map('map4').setView([44.007247, 20.904429], 12.6);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; OpenStreetMap contributors'
+      attribution: ''
     }).addTo(this.map);
     this.darkLayer = L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png', { //https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png
-      attribution: '&copy; OpenStreetMap contributors'
+      attribution: ''
     }).addTo(this.map);
     this.lightLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; OpenStreetMap contributors'
+      attribution: ''
     });
 
-    this.mapa()
+    //this.mapa()
   }
 
   toggleDarkMode(): void {
@@ -51,9 +51,9 @@ export class MapForDsoUserComponent implements OnInit, OnChanges{
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    if(changes['users'])
+    if(changes['user'])
     {
-      this.users = changes['users'].currentValue;
+      this.user = changes['user'].currentValue;
       this.mapa()
     }
   }
@@ -72,17 +72,15 @@ export class MapForDsoUserComponent implements OnInit, OnChanges{
       shadowAnchor: [0, 15]
     });
 
-    if(this.users != null)
+    if(this.user != null)
     {
-      for(let i=0;i<this.users.length;i++)
-      {
-        const location = this.users[i].address
-        const lan = this.users[i].x;
-        const lon = this.users[i].y
-        const id = this.users[i].id
+        const lan = this.user.x;
+        const lon = this.user.y
+        const id = this.user.id
+        this.map.setView([lan, lon], 14);
         if (lan != undefined && lon != undefined) {
           const marker = L.marker([lan, lon], {icon : markerIcon}).addTo(this.map);
-          marker.bindPopup("<div class='black-popup' style='color:black'>"+this.users[i].firstName+" "+this.users[i].lastName+"<br>"+this.users[i].address+"</div>");
+          marker.bindPopup("<div class='black-popup' style='color:black'>"+this.user.firstName+" "+this.user.lastName+"<br>"+this.user.address+"</div>");
   
           marker.on('mouseover', function (e) {
             marker.openPopup();
@@ -101,4 +99,3 @@ export class MapForDsoUserComponent implements OnInit, OnChanges{
     }
     
   }
-}
