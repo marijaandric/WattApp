@@ -22,7 +22,7 @@ export class CircleComponent implements OnInit{
     const month = currentDate.getMonth() + 1;
     const year = currentDate.getFullYear();
     const max = 'max';
-    this.deviceService.getBiggest(this.id,year,month,day,this.type,max).subscribe(data =>{
+    this.deviceService.getmonth(this.id,year,month,this.type).subscribe(data =>{
         this.result = data;
         console.log(data)
     })

@@ -26,16 +26,16 @@
           <app-table [id] = 'id'></app-table>  
         </div>
         <div style="display:flex;float:right; flex-direction:column; width:20%; height:100%">
-        <app-map-user-dso style="height: 30%; min-height:250px;"></app-map-user-dso>
+        <app-map-for-dso-user style="height: 30%; min-height:250px;"></app-map-for-dso-user>
         <div class="donuts" style="margin-top:calc(3vh);">
-          <h5>Biggest Prosumer</h5>
-          <p>device_name</p>
+          <h5>Monthly power usage</h5>
+          <p>in kWh</p>
           <app-circle [id] = 'id' [type] = 'Consumer'></app-circle>
-          <h5>Biggest Prosumer</h5>
-          <p>device_name</p>
+          <h5>Monthly power production</h5>
+          <p>in kWh</p>
           <app-circle [id] = 'id' [type] = 'Producer'></app-circle>
-          <h5>Biggest Prosumer</h5>
-          <p>device_name</p>
+          <h5>Monthly storage capacity</h5>
+          <p>in kWh</p>
           <app-circle [id] = 'id' [type] = 'Stock'></app-circle>
         </div>
         </div> 
