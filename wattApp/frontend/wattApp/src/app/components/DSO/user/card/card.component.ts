@@ -7,23 +7,14 @@ import { UserService } from 'src/app/services/user/user.service';
   styleUrls: ['./card.component.css']
 })
 export class CardComponent implements OnInit{
-  @Input() id : any;
-  user : any;
+  @Input() user : any;
 
   constructor(private userService:UserService){}
 
   ngOnInit(){
-    this.getUser()
-  }
-
-  getUser()
-  {
-    console.log("USLO")
-      this.userService.GetUserWithoutToken(this.id).subscribe(data =>{
-        this.user = data;
-        console.log(data)
-      })
     
   }
+
+  
   
 }
