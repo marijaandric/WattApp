@@ -65,7 +65,7 @@
       <div class="bottom-right-card">
         <p-dropdown  appendTo="body" optionLabel="name"  >
         </p-dropdown>
-        <p-table class="d-table" #dtUsers class="ui-table-default"  dataKey="id" [scrollable]="true" 
+        <p-table class="d-table" [value]="hif" #dtUsers class="ui-table-default"  dataKey="id" [scrollable]="true" 
             [rows]="7"
             [globalFilterFields]="['date1','history','date2','forecast']"
             style="
@@ -128,19 +128,19 @@
             </ng-template>
   
             <ng-template pTemplate="body" let-hif>
-                <tr>
+              <tr>
                 <td>{{hif.date1}}</td>
                 <td>
-                    <b>{{hif.history}} kwh</b>
+                  <b>{{hif.history}} kwh</b>
                 </td>
                 <td>{{hif.date2}}</td>
                 <td>
-                    <b>{{hif.forecast}} kwh</b> <br>
-                    <span [style.color]="(hif.forecast - hif.history > 0) ? '#eb4886' : '#46c5f1'">
+                  <b>{{hif.forecast}} kwh</b> <br>
+                  <span [style.color]="(hif.forecast - hif.history > 0) ? '#eb4886' : '#46c5f1'">
                     {{(hif.forecast - hif.history).toFixed(2)}}{{(hif.forecast - hif.history > 0) ? ' kWh more' : ' kWh less'}} 
-                    </span> than last week
+                  </span> than last week
                 </td>
-                </tr>
+              </tr>
             </ng-template>
   
             <ng-template pTemplate="emptymessage">
