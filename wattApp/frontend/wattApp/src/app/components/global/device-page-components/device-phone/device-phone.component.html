@@ -221,7 +221,7 @@
     </div>
 
     
-    <p-table class="d-table" #dtUsers class="ui-table-default"  dataKey="id" [scrollable]="true" 
+    <p-table class="d-table" [value]="hif"  #dtUsers class="ui-table-default"  dataKey="id" [scrollable]="true" 
               [rows]="7"
               [globalFilterFields]="['date1','history','date2','forecast']"
               style="

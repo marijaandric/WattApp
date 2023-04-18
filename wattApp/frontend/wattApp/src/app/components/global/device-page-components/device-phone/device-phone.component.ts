@@ -35,6 +35,13 @@ interface SwitchOption {
   value: boolean;
 }
 
+interface HiF{
+  history: any,
+  forecast: any,
+  date1: any,
+  date2: any
+}
+
 @Component({
   selector: 'app-device-phone',
   templateUrl: './device-phone.component.html',
@@ -63,6 +70,14 @@ export class DevicePhoneComponent implements OnInit{
   array5 : any[] = [null,null,null,null,null,null,null]
   date1 : any[] = []
   date2: any[] = []
+
+  hif : HiF[]  = [{history: 0, forecast: 0, date1: [], date2: []},
+  {history: 0, forecast: 0, date1: [], date2: []},
+  {history: 0, forecast: 0, date1: [], date2: []},
+  {history: 0, forecast: 0, date1: [], date2: []},
+  {history: 0, forecast: 0, date1: [], date2: []},
+  {history: 0, forecast: 0, date1: [], date2: []},
+  {history: 0, forecast: 0, date1: [], date2: []}];
 
   switchValue: boolean = true;
 
@@ -212,6 +227,14 @@ export class DevicePhoneComponent implements OnInit{
       this.array3 = c;
       this.array5 = d;
       this.date2 = x;
+
+      for(let i = 0;i<7;i++)
+      {
+        this.hif[i].history = this.array[i];
+        this.hif[i].forecast = this.array5[i];
+        this.hif[i].date1 = this.array3[i];
+        this.hif[i].date2 = this.array3[i+7];
+      }
     })
   }
 
