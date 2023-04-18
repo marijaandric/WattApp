@@ -77,20 +77,14 @@ export class HistoryLineChartComponent implements OnChanges{
   ];
 
   public marker: ApexMarkers = {
-    size:6,
-    strokeWidth: 0,
-    fillOpacity: 1,
-    radius: 10,
-    hover: {
-      size:8
-    }
+    
   };
   public chart: ApexChart = {
-    type: 'line',
+    type: 'area',
     height: 250,
     width: '100%',
     offsetX: 0,
-    background: '#1b1b1b',
+    background: 'transparent',
     
     animations: {
       enabled: true,
@@ -104,15 +98,6 @@ export class HistoryLineChartComponent implements OnChanges{
           enabled: true,
           speed: 350
       }
-    },
-    dropShadow: {
-      enabled: true,
-      enabledOnSeries: undefined,
-      top: 0,
-      left: 3,
-      blur: 2,
-      color: '#000',
-      opacity: 1
     },
     redrawOnParentResize: true,
     redrawOnWindowResize: true,

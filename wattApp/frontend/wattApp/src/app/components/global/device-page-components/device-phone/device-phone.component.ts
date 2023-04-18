@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DeviceDTO } from 'src/app/dtos/DeviceDTO';
 import { DeviceService } from 'src/app/services/device/device.service';
@@ -7,6 +7,9 @@ import { RoomTypesService } from 'src/app/services/room-types/room-types.service
 import { ModelTypesService } from 'src/app/services/model-types/model-types.service';
 import { DeviceTypesService } from 'src/app/services/device-types/device-types.service';
 import { lastValueFrom, map, tap } from 'rxjs';
+import { HistoryLineChartComponent } from 'src/app/components/Prosumer/history-line-chart/history-line-chart.component';
+import { HistoryForecastComponent } from '../../history-forecast/history-forecast.component';
+import { ForecastLineChartComponent } from 'src/app/components/Prosumer/forecast-line-chart/forecast-line-chart.component';
 
 interface Models{
   code: string;
@@ -23,12 +26,21 @@ interface Types{
   name: string;
 }
 
+interface City {
+  name: string,
+  code: string
+}
+interface SwitchOption {
+  label: string;
+  value: boolean;
+}
+
 @Component({
-  selector: 'app-device-prototype',
-  templateUrl: './device-prototype.component.html',
-  styleUrls: ['./device-prototype.component.scss']
+  selector: 'app-device-phone',
+  templateUrl: './device-phone.component.html',
+  styleUrls: ['./device-phone.component.scss']
 })
-export class DevicePrototypeComponent implements OnInit{
+export class DevicePhoneComponent implements OnInit{
   device!: DeviceDTO;
 
   displayEditDeviceDialog: boolean = false;
@@ -42,6 +54,22 @@ export class DevicePrototypeComponent implements OnInit{
   typeSelected! : Types;
   roomSelected! : Rooms;
   modelSelected! : Models;
+  display3 : Boolean = false;
+  
+  array : any[]  = [null,null, null, null, null, null, null,null,null,null, null, null, null]
+  array2 : any[] = [null,null, null, null, null, null,null,null, null, null, null, null,null]
+  array3 : any[] = []
+  array4 : any[] = [null,null,null,null,null,null,null]
+  array5 : any[] = [null,null,null,null,null,null,null]
+  date1 : any[] = []
+  date2: any[] = []
+
+  switchValue: boolean = true;
+
+  switchOptions: SwitchOption[] = [
+    {label: 'History', value: true},
+    {label: 'Forecast', value: false}
+  ];
 
 
   constructor(private route: ActivatedRoute, 
@@ -50,10 +78,12 @@ export class DevicePrototypeComponent implements OnInit{
               private fromBuilder: FormBuilder,
               private roomTypesService: RoomTypesService,
               private modelTypesService: ModelTypesService,
-              private deviceTypesService: DeviceTypesService) { }
+              private deviceTypesService: DeviceTypesService) 
+              { }
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
+    this.getHistoryAndForecastByDayForDevice(id)
     if (id){
       this.deviceService.getDeviceById(id)
         .subscribe(device => {
@@ -99,6 +129,10 @@ export class DevicePrototypeComponent implements OnInit{
     this.displayEditDeviceDialog = true;
   }
 
+  showDialog(){
+    this.display3 = !this.display3 ;
+  }
+
   async handleVisibilitySwitchChange(){
     await lastValueFrom(this.deviceService.updateDevice(this.device));
   }
@@ -142,6 +176,43 @@ export class DevicePrototypeComponent implements OnInit{
     this.deviceService.deleteDevice(id).subscribe(() => {
       this.navigateToDevices();
     });
+  }
+
+
+  getHistoryAndForecastByDayForDevice(id:any)
+  {
+    this.deviceService.getHistoryAndForecastByDayForDevice(id).subscribe(data => {
+      let a = [];
+      let b = [];
+      let c = [];
+      let d = [];
+      let x = [];
+
+      for(let i = 0;i<7;i++)
+      {
+        a[i] = data.datas[i].toFixed(2)
+        c[i] = data.dates[i]
+        b[i] = null
+      }
+      this.array4 = a;
+      this.date1 = c;
+
+      let br = 0
+      for(let i = 6;i<14;i++)
+      {
+        b[i] = data.datas[i].toFixed(2)
+        c[i] = data.dates[i]
+        d[br] = data.datas[i].toFixed(2)
+        x[br] = data.dates[i]
+        br++;
+
+      }
+      this.array = a;
+      this.array2 =b;
+      this.array3 = c;
+      this.array5 = d;
+      this.date2 = x;
+    })
   }
 
 }

@@ -1,152 +1,214 @@
-<div class="main-card">
-    <div class="top-card">
-        <div class="info" >
-            <div id="deviceInformation" class="flexColumn device-information" >
-              <div class="flexRow">
-                  <div class="colored-text" ><h5>Device description</h5></div>
-              </div>
-        
-              <div class="flexRow" style="margin-top:16px">
-                <span class="bold-text">ID:</span>
-                <span class="margin-left__auto"><!--{{ device?.id }}--></span>
-              </div>
-        
-              <div class="flexRow" style="margin-top:10px">
-                <span class="bold-text">Model:</span>
-                <span class="margin-left__auto"><!--{{ device?.deviceModel }}--></span>
-              </div>
-        
-              <div class="flexRow"style="margin-top:10px" >
-                <span class="bold-text">Type:</span>
-                <span class="margin-left__auto"><!--{{ device?.deviceType }}--></span>
-              </div>
-        
-              <div class="flexRow"style="margin-top:10px">
-                <span class="bold-text">Room:</span>
-                <span class="margin-left__auto"><!--{{ device?.room }}--></span>
-              </div>
-        
-              <div class="flexRow"style="margin-top:20px">
-                <span class="bold-text">Visible to operators:</span>
-                <!--<p-inputSwitch [(ngModel)]="device.allowOperatorVisibility" (onChange)="handleVisibilitySwitchChange()" class="margin-left__auto width__fit-content"/>-->
-              </div>
-        
-              <div class="flexRow margin-top__8px">
-                <span class="bold-text">Managed by operators:</span>
-                <!--<p-inputSwitch [(ngModel)]="device.allowOperatorControll" (onChange)="handleManagementSwitchChange()" class="margin-left__auto width__fit-content"/>-->
-              </div>
-            </div> 
-       </div>
-       <div class="menage-device-div">
-
-       </div>   
-    </div>
-    <div class="middle-card">
-        <div class="widgets">
-                
-            <app-widget [subTitle]="'Consumption Today'" [Title]="' RSD kW/h'" [isBlue]="true" [isBgBlue]="true" class="widget">
-            </app-widget>
-            <app-widget [subTitle]="'Consumption this week'" [Title]="' kW/h'" [isYellow]="true" [isBgYellow]="true" class="widget">
-            </app-widget>
-            <app-widget [subTitle]="'Consumption this month'" [Title]="' kW/h'" [isPink]="true" [isBgPink]="true" class="widget">
-            </app-widget>
-            <app-widget  [subTitle]="'Consumption this year'" [Title]="' kW/h'" [isOrange]="true" [isBgOrange]="true" class="widget">
-            </app-widget>
-            <app-widget  [subTitle]="'Consumption all time'" [Title]="' kW/h'" [isBlue]="true" [isBgBlue]="true" class="widget">
-            </app-widget>
-        </div>
-    </div>
-
-    <!--hf n table-->
-    <div class="bottom-card">
-    <!--
-        <p-table class="d-table" #dtUsers class="ui-table-default" [value]="hif" dataKey="id" [scrollable]="true" 
-            [rows]="7"
-            [globalFilterFields]="['date1','history','date2','forecast']"
-            style="
-                margin-top:calc(2.8%);
-                display: flex;
-                position: relative;
-                flex-direction: column;
-                height: fit-content;
-                width: 48.5%;
-                border-radius: 20px;
-                background: linear-gradient(180deg, #181818 30%, #121212 100%) ;
-                margin-bottom:30px;
-                box-shadow: 5px 5px 15px black;
-                transition: ease-in-out;
-                padding:10px 20px 30px 20px;">
-  
-            <ng-template pTemplate="caption">
+<div class="device">
+  <div class="main-card">
+      <div class="top-card">
+          <div class="info" >
+              <div id="deviceInformation" class="flexColumn device-information" >
                 <div class="flexRow">
-                    <h3 >
-                    Users</h3>
-                    <span class="p-input-icon-left margin-left__auto margin-right__16px">
-                        <i class="pi pi-search"></i>
-                        <input pInputText type="text" (input)="dtUsers.filterGlobal($any($event.target).value, 'contains')" placeholder="Search keyword" />
-                    </span>
-                    <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash" (click)="clear(dtUsers)"></button>
+                    <div class="colored-text" ><h5>Device description</h5></div>
                 </div>
-            </ng-template>
-  
-            <ng-template pTemplate="header">
-                <tr>
-                <th pSortableColumn="firstName" style="min-width:8rem;  border-top:4px solid #46c5f1; border-bottom:4px solid #46c5f1;">
-                    <div class="flexRow">
-                        <p style=" font-size: 18px !important;">Date</p>
-                        <p-sortIcon field="firstName"></p-sortIcon>
-                        <p-columnFilter class="ml-auto" type="text" field="firstName" display="menu"></p-columnFilter>
-                    </div>
-                </th>
-                <th pSortableColumn="lastName" style="min-width:9rem;  border-top:4px  solid #46c5f1; border-bottom:4px solid #46c5f1;">
-                    <div class="flexRow">
-                        <p style=" font-size: 18px !important;">{{this.name1}}</p>
-                        <p-sortIcon field="lastName"></p-sortIcon>
-                        <p-columnFilter class="ml-auto" type="text" field="lastName" display="menu"></p-columnFilter>
-                    </div>
-                </th>
-                <th pSortableColumn="email" style="min-width:10rem;  border-top:4px  solid #46c5f1; border-bottom:4px  solid #46c5f1;;">
-                    <div class="flexRow">
-                        <p style=" font-size: 18px !important;">Date</p>
-                        <p-sortIcon field="email"></p-sortIcon>
-                        <p-columnFilter class="ml-auto" type="text" field="email" display="menu"></p-columnFilter>
-                    </div>
-                </th>
-                <th pSortableColumn="role" style="min-width:8rem; border-top:4px  solid #46c5f1;; border-bottom:4px solid #46c5f1;">
-                    <div class="flexRow">
-                        <p style=" font-size: 18px !important;">{{this.name2}}</p>
-                        <p-sortIcon field="role"></p-sortIcon>
-                        <p-columnFilter class="ml-auto" type="text" field="role" display="menu"></p-columnFilter>
-                    </div>
-                </th>
-                </tr>
-            </ng-template>
-  
-            <ng-template pTemplate="body" let-hif>
-                <tr>
-                <td>{{hif.date1}}</td>
-                <td>
-                    <b>{{hif.history}} kwh</b>
-                </td>
-                <td>{{hif.date2}}</td>
-                <td>
-                    <b>{{hif.forecast}} kwh</b> <br>
-                    <span [style.color]="(hif.forecast - hif.history > 0) ? '#eb4886' : '#46c5f1'">
-                    {{(hif.forecast - hif.history).toFixed(2)}}{{(hif.forecast - hif.history > 0) ? ' kWh more' : ' kWh less'}} 
-                    </span> than last week
-                </td>
-                </tr>
-            </ng-template>
-  
-            <ng-template pTemplate="emptymessage">
-                <tr>
-                    <td colspan="5">No info found.</td>
-                </tr>
-            </ng-template>
-        </p-table> -->
+          
+                <div class="flexRow" style="margin-top:16px">
+                  <span class="bold-text">ID:</span>
+                  <span class="margin-left__auto"><!--{{ device?.id }}--></span>
+                </div>
+          
+                <div class="flexRow" style="margin-top:10px">
+                  <span class="bold-text">Model:</span>
+                  <span class="margin-left__auto"><!--{{ device?.deviceModel }}--></span>
+                </div>
+          
+                <div class="flexRow"style="margin-top:10px" >
+                  <span class="bold-text">Type:</span>
+                  <span class="margin-left__auto"><!--{{ device?.deviceType }}--></span>
+                </div>
+          
+                <div class="flexRow"style="margin-top:10px">
+                  <span class="bold-text">Room:</span>
+                  <span class="margin-left__auto"><!--{{ device?.room }}--></span>
+                </div>
+          
+                <div class="flexRow"style="margin-top:20px">
+                  <span class="bold-text">Visible to operators:</span>
+                  <!--<p-inputSwitch [(ngModel)]="device.allowOperatorVisibility" (onChange)="handleVisibilitySwitchChange()" class="margin-left__auto width__fit-content"/>-->
+                </div>
+          
+                <div class="flexRow margin-top__8px">
+                  <span class="bold-text">Managed by operators:</span>
+                  <!--<p-inputSwitch [(ngModel)]="device.allowOperatorControll" (onChange)="handleManagementSwitchChange()" class="margin-left__auto width__fit-content"/>-->
+                </div>
+              </div> 
+        </div>
+        <div class="menage-device-div">
+          <app-history-forecast id="oneChart" class="margin-top__16px" style="width: 100%;" [array] = 'array' [array2]="array2" [array3] = 'array3'></app-history-forecast>
+        </div>   
+      </div>
+      <div class="middle-card">
+          <div class="widgets">
+                  
+              <app-widget [subTitle]="'Consumption Today'" [Title]="' RSD kW/h'" [isBlue]="true" [isBgBlue]="true" class="widget">
+              </app-widget>
+              <app-widget [subTitle]="'Consumption this week'" [Title]="' kW/h'" [isYellow]="true" [isBgYellow]="true" class="widget">
+              </app-widget>
+              <app-widget [subTitle]="'Consumption this month'" [Title]="' kW/h'" [isPink]="true" [isBgPink]="true" class="widget">
+              </app-widget>
+              <app-widget  [subTitle]="'Consumption this year'" [Title]="' kW/h'" [isOrange]="true" [isBgOrange]="true" class="widget">
+              </app-widget>
+              <app-widget  [subTitle]="'Consumption all time'" [Title]="' kW/h'" [isBlue]="true" [isBgBlue]="true" class="widget">
+              </app-widget>
+          </div>
+      </div>
 
-        <!--
-            
-        -->
-    </div>
+      <!--hf n table-->
+      <div class="bottom-card">
+          <p-table class="d-table" #dtUsers class="ui-table-default"  dataKey="id" [scrollable]="true" 
+              [rows]="7"
+              [globalFilterFields]="['date1','history','date2','forecast']"
+              style="
+                  margin-top:calc(2.8%);
+                  display: flex;
+                  position: relative;
+                  flex-direction: column;
+                  height: fit-content;
+                  width: 48.5%;
+                  border-radius: 20px;
+                  background: linear-gradient(180deg, #181818 30%, #121212 100%) ;
+                  margin-bottom:30px;
+                  box-shadow: 5px 5px 15px black;
+                  transition: ease-in-out;
+                  padding:10px 20px 30px 20px;">
+    
+              <ng-template pTemplate="caption">
+                  <div class="flexRow">
+                      <h3 >
+                      Users</h3>
+                      <span class="p-input-icon-left margin-left__auto margin-right__16px">
+                          <i class="pi pi-search"></i>
+                          <input pInputText type="text" (input)="dtUsers.filterGlobal($any($event.target).value, 'contains')" placeholder="Search keyword" />
+                      </span>
+                      <!--<button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash" (click)="clear(dtUsers)"></button>
+                      -->
+                      </div>
+              </ng-template>
+    
+              <ng-template pTemplate="header">
+                  <tr>
+                  <th pSortableColumn="firstName" style="min-width:8rem;  border-top:4px solid #46c5f1; border-bottom:4px solid #46c5f1;">
+                      <div class="flexRow">
+                          <p style=" font-size: 18px !important;">Date</p>
+                          <p-sortIcon field="firstName"></p-sortIcon>
+                          <p-columnFilter class="ml-auto" type="text" field="firstName" display="menu"></p-columnFilter>
+                      </div>
+                  </th>
+                  <th pSortableColumn="lastName" style="min-width:9rem;  border-top:4px  solid #46c5f1; border-bottom:4px solid #46c5f1;">
+                      <div class="flexRow">
+                          <p style=" font-size: 18px !important;">name</p>
+                          <p-sortIcon field="lastName"></p-sortIcon>
+                          <p-columnFilter class="ml-auto" type="text" field="lastName" display="menu"></p-columnFilter>
+                      </div>
+                  </th>
+                  <th pSortableColumn="email" style="min-width:10rem;  border-top:4px  solid #46c5f1; border-bottom:4px  solid #46c5f1;;">
+                      <div class="flexRow">
+                          <p style=" font-size: 18px !important;">Date</p>
+                          <p-sortIcon field="email"></p-sortIcon>
+                          <p-columnFilter class="ml-auto" type="text" field="email" display="menu"></p-columnFilter>
+                      </div>
+                  </th>
+                  <th pSortableColumn="role" style="min-width:8rem; border-top:4px  solid #46c5f1;; border-bottom:4px solid #46c5f1;">
+                      <div class="flexRow">
+                          <p style=" font-size: 18px !important;">name2</p>
+                          <p-sortIcon field="role"></p-sortIcon>
+                          <p-columnFilter class="ml-auto" type="text" field="role" display="menu"></p-columnFilter>
+                      </div>
+                  </th>
+                  </tr>
+              </ng-template>
+    
+              <ng-template pTemplate="body" let-hif>
+                  <tr>
+                  <td>{{hif.date1}}</td>
+                  <td>
+                      <b>{{hif.history}} kwh</b>
+                  </td>
+                  <td>{{hif.date2}}</td>
+                  <td>
+                      <b>{{hif.forecast}} kwh</b> <br>
+                      <span [style.color]="(hif.forecast - hif.history > 0) ? '#eb4886' : '#46c5f1'">
+                      {{(hif.forecast - hif.history).toFixed(2)}}{{(hif.forecast - hif.history > 0) ? ' kWh more' : ' kWh less'}} 
+                      </span> than last week
+                  </td>
+                  </tr>
+              </ng-template>
+    
+              <ng-template pTemplate="emptymessage">
+                  <tr>
+                      <td colspan="5">No info found.</td>
+                  </tr>
+              </ng-template>
+          </p-table> 
+
+      </div>
+  </div>
 </div>
+
+
+<p-dialog id="editDeviceDialogId" [style]="{width:'40%'}"
+  [draggable]="false" [keepInViewport]="true" [resizable]="false" 
+  [blockScroll]="true" [closeOnEscape]="true" 
+  [modal]="true" [(visible)]="displayEditDeviceDialog" [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
+  [closable]="true" >
+  <ng-template pTemplate="header" class="header-dialog">
+    <span>Edit device</span>
+  </ng-template>
+  
+  <ng-template pTemplate="content">
+    <form id="editDeviceDialogForm" >  
+      <div class="p-inputgroup p-inputtext-lg p-input-filled">
+        <div class="half">
+          Device type
+          <p-dropdown [options]="types" [(ngModel)]="typeSelected" name="typeSelected" appendTo="body" optionLabel="name" />
+          Device model
+          <p-dropdown [options]="models" [(ngModel)]="modelSelected" name="modelSelected" appendTo="body" optionLabel="name" />
+        </div> 
+        
+        <div class="half">
+            Room
+          <p-dropdown [options]="rooms" [(ngModel)]="roomSelected" name="roomSelected" appendTo="body" optionLabel="name" />
+            Name
+          <input style="margin-top:45px;" [(ngModel)]="nameSelected" name="nameSelected" appendTo="body" type="text" class="p-inputtext-lg" placeholder="DEVICE NAME"> 
+        </div>
+      </div> 
+    </form>
+  </ng-template>
+
+  <ng-template pTemplate="footer" >
+    <div class="flexRow">
+      <button style="margin-right: 0px;" (click)="save()" type="submit">Save</button>
+      <button class="margin-left__16px" (click)="cancel()" type="submit">Cancel</button>
+    </div>
+  </ng-template>
+</p-dialog>
+
+
+<p-dialog [style]="{width:'20%'}" header="Title"  [transitionOptions]="'3ms'" 
+[draggable]="false" [keepInViewport]="true" [resizable]="false" 
+[blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true" 
+[modal]="true" [(visible)]="display3" [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
+[closable]="true" >
+<ng-template pTemplate="header" class="header-dialog">
+  <span>Delete device</span>
+</ng-template>
+
+<ng-template pTemplate="center">
+  <div class="delete-device-content">
+    Are you sure you want to erase the device?
+    All data will be deleted and you will not be able to recover it.
+
+  </div>
+</ng-template>
+
+<ng-template pTemplate="footer" >
+  <button type="button" class="no-button" icon="fa-home" label="No" (click)="showDialog()"><span clas="no-span">No</span></button>
+  <button type="button" class="yes-button" icon="pi pi-info-circle" label="Yes" (click)="deleteDevice(device.id)"><span clas="no-span">Yes</span></button>
+
+</ng-template>
+</p-dialog>

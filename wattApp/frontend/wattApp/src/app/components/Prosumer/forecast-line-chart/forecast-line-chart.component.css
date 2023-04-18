@@ -6,7 +6,7 @@
     margin-bottom:30px;
     min-width: 350px;
     border-radius: 20px;
-    background-color: #1b1b1b;
+    background: linear-gradient(180deg, #1e1e1e 30%, #121212 100%) ;
     box-shadow: 5px 5px 15px black;
     transition: ease-in-out;
     margin-top:30px;
@@ -15,7 +15,7 @@
 
 .div{
     padding: 20px 10px;
-    background-color: #1b1b1b;
+    background: linear-gradient(180deg, #1e1e1e 30%, #121212 100%) ;
     border-radius: 20px;
     min-width: 300px;
     width: 100%;

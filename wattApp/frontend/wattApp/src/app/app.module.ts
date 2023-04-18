@@ -74,7 +74,6 @@ import { SingleAreaPieComponent } from './components/DSO/single-area-pie/single-
 import { AllAreasDonutComponent } from './components/DSO/all-areas-donut/all-areas-donut.component';
 import { HistoryLineChartComponent } from './components/Prosumer/history-line-chart/history-line-chart.component';
 import { ForecastLineChartComponent } from './components/Prosumer/forecast-line-chart/forecast-line-chart.component';
-import { DevicePrototypeComponent } from './components/global/device-page-components/device-prototype/device-prototype.component';
 import { AreaChartComponent } from './components/global/area-chart/area-chart.component';
 import { UsersProsumersComponent } from './components/DSO/users-page-components/users-prosumers/users-prosumers.component';
 import { UsersOperatorsComponent } from './components/DSO/users-page-components/users-operators/users-operators.component';
@@ -88,6 +87,7 @@ import { PageNotFoundComponent } from './components/global/page-not-found/page-n
 import { MapUserDsoComponent } from './components/DSO/users-page-components/map-user-dso/map-user-dso.component';
 import { MapForDsoUserComponent } from './components/DSO/map-for-dso-user/map-for-dso-user.component';
 import { DeviceDesktopComponent } from './components/global/device-page-components/device-desktop/device-desktop.component';
+import { DevicePhoneComponent } from './components/global/device-page-components/device-phone/device-phone.component';
 
 export const url = 'https://localhost:7158';
 export const deviceFakerUrl = "https://localhost:7233";
@@ -144,7 +144,6 @@ export const deviceFakerUrl = "https://localhost:7233";
     AllAreasDonutComponent,
     HistoryLineChartComponent,
     ForecastLineChartComponent,
-    DevicePrototypeComponent,
     AreaChartComponent,
     UsersProsumersComponent,
     UsersOperatorsComponent,
@@ -157,7 +156,8 @@ export const deviceFakerUrl = "https://localhost:7233";
     PageNotFoundComponent,
     MapUserDsoComponent,
     MapForDsoUserComponent,
-    DeviceDesktopComponent,
+    DevicePhoneComponent,
+    DeviceDesktopComponent
   ],
   imports: [
     CommonModule,
