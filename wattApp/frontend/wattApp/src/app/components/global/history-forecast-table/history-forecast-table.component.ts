@@ -1,6 +1,13 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, Input, ViewEncapsulation } from '@angular/core';
 import { UserDTO } from '../../../dtos/UserDTO';
 import { UserService } from '../../../services/user/user.service';
+
+interface HiF{
+  history: any,
+  forecast: any,
+  date1: any,
+  date2: any
+}
 
 
 @Component({
@@ -10,12 +17,21 @@ import { UserService } from '../../../services/user/user.service';
   encapsulation: ViewEncapsulation.None
 })
 export class HistoryForecastTableComponent {
-  users: UserDTO[] = [];
+  @Input() name1 = "history";
+  @Input() name2 = "forecast";
+
+  @Input() hif : HiF[]  = [{history: 0, forecast: 0, date1: [], date2: []},
+  {history: 0, forecast: 0, date1: [], date2: []},
+  {history: 0, forecast: 0, date1: [], date2: []},
+  {history: 0, forecast: 0, date1: [], date2: []},
+  {history: 0, forecast: 0, date1: [], date2: []},
+  {history: 0, forecast: 0, date1: [], date2: []},
+  {history: 0, forecast: 0, date1: [], date2: []}];
 
   constructor(private userService: UserService) { }
 
   ngOnInit() {
-    this.userService.getAllUsers().subscribe((result: UserDTO[]) => (this.users = result));
+    
   }
 
   clear(dtUsers: any) {

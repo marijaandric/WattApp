@@ -79,6 +79,9 @@ export class DeviceDesktopComponent implements OnInit {
   {history: 0, forecast: 0, date1: [], date2: []},
   {history: 0, forecast: 0, date1: [], date2: []}];
 
+  name1="History"
+  name2="Forecast"
+
   switchValue: boolean = true;
 
   switchOptions: SwitchOption[] = [
