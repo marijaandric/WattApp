@@ -11,6 +11,7 @@ namespace backend.Context
         public DbSet<Devices> Devices { get; set; }
         public DbSet<Weather> Weathers { get; set; }
         public DbSet<DsoNews> DsoNews { get; set; }
+        public DbSet<Images> Images { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -18,6 +19,7 @@ namespace backend.Context
             modelBuilder.Entity<Devices>().ToTable("devices");
             modelBuilder.Entity<Weather>().ToTable("weather");
             modelBuilder.Entity<DsoNews>().ToTable("dso_news");
+            modelBuilder.Entity<DsoNews>().ToTable("images");
         }
 
     }
