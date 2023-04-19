@@ -17,6 +17,7 @@ export class WeatherForecast7Component implements OnInit{
   currentDate : Date = new Date;
   time : string = this.currentDate.toLocaleTimeString();
   date : string = this.currentDate.toLocaleDateString();
+  boja = "#f5805a"
 
   constructor() {
     this.getWeatherForecast(44.01860475758608,20.907175572741636).subscribe(data=>{

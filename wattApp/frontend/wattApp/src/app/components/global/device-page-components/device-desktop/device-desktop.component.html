@@ -65,90 +65,20 @@
       <div class="bottom-right-card">
         <p-dropdown  appendTo="body" optionLabel="name"  >
         </p-dropdown>
-        <p-table class="d-table" [value]="hif" #dtUsers class="ui-table-default"  dataKey="id" [scrollable]="true" 
-            [rows]="7"
-            [globalFilterFields]="['date1','history','date2','forecast']"
-            style="
-                display: flex;
-                position: relative;
-                flex-direction: column;
-                height: fit-content;
-                width:100%;
-                border-radius: 20px;
-                background: linear-gradient(180deg, #181818 30%, #121212 100%) ;
-                margin-bottom:30px;
-                box-shadow: 5px 5px 15px black;
-                transition: ease-in-out;
-                padding:10px 20px 30px 20px;">
-  
-            <ng-template pTemplate="caption">
-                <div class="flexRow">
-                    <h3 >
-                    Users</h3>
-                    <span class="p-input-icon-left margin-left__auto margin-right__16px">
-                        <i class="pi pi-search"></i>
-                        <input pInputText type="text" (input)="dtUsers.filterGlobal($any($event.target).value, 'contains')" placeholder="Search keyword" />
-                    </span>
-                    <!--<button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash" (click)="clear(dtUsers)"></button>
-                    -->
-                    </div>
-            </ng-template>
-  
-            <ng-template pTemplate="header">
-                <tr>
-                <th pSortableColumn="firstName" style="min-width:8rem;  border-top:4px solid #46c5f1; border-bottom:4px solid #46c5f1;">
-                    <div class="flexRow">
-                        <p style=" font-size: 18px !important;">Date</p>
-                        <p-sortIcon field="firstName"></p-sortIcon>
-                        <p-columnFilter class="ml-auto" type="text" field="firstName" display="menu"></p-columnFilter>
-                    </div>
-                </th>
-                <th pSortableColumn="lastName" style="min-width:9rem;  border-top:4px  solid #46c5f1; border-bottom:4px solid #46c5f1;">
-                    <div class="flexRow">
-                        <p style=" font-size: 18px !important;">name</p>
-                        <p-sortIcon field="lastName"></p-sortIcon>
-                        <p-columnFilter class="ml-auto" type="text" field="lastName" display="menu"></p-columnFilter>
-                    </div>
-                </th>
-                <th pSortableColumn="email" style="min-width:10rem;  border-top:4px  solid #46c5f1; border-bottom:4px  solid #46c5f1;;">
-                    <div class="flexRow">
-                        <p style=" font-size: 18px !important;">Date</p>
-                        <p-sortIcon field="email"></p-sortIcon>
-                        <p-columnFilter class="ml-auto" type="text" field="email" display="menu"></p-columnFilter>
-                    </div>
-                </th>
-                <th pSortableColumn="role" style="min-width:8rem; border-top:4px  solid #46c5f1;; border-bottom:4px solid #46c5f1;">
-                    <div class="flexRow">
-                        <p style=" font-size: 18px !important;">name2</p>
-                        <p-sortIcon field="role"></p-sortIcon>
-                        <p-columnFilter class="ml-auto" type="text" field="role" display="menu"></p-columnFilter>
-                    </div>
-                </th>
-                </tr>
-            </ng-template>
-  
-            <ng-template pTemplate="body" let-hif>
-              <tr>
-                <td>{{hif.date1}}</td>
-                <td>
-                  <b>{{hif.history}} kwh</b>
-                </td>
-                <td>{{hif.date2}}</td>
-                <td>
-                  <b>{{hif.forecast}} kwh</b> <br>
-                  <span [style.color]="(hif.forecast - hif.history > 0) ? '#eb4886' : '#46c5f1'">
-                    {{(hif.forecast - hif.history).toFixed(2)}}{{(hif.forecast - hif.history > 0) ? ' kWh more' : ' kWh less'}} 
-                  </span> than last week
-                </td>
-              </tr>
-            </ng-template>
-  
-            <ng-template pTemplate="emptymessage">
-                <tr>
-                    <td colspan="5">No info found.</td>
-                </tr>
-            </ng-template>
-        </p-table> 
+        <app-history-forecast-table
+        style="
+        margin-top:calc(2.8%);
+        display: flex;
+        position: relative;
+        flex-direction: column;
+        height: fit-content;
+        width: 48.5%;
+        border-radius: 20px;
+        background-color: #1b1b1b;
+        box-shadow: 5px 5px 15px black;
+        transition: ease-in-out;
+        padding:10px 20px;
+        " [name1]="name1" [name2]="name2" [hif]="hif"></app-history-forecast-table>
       </div>
     </div>
   </div>
