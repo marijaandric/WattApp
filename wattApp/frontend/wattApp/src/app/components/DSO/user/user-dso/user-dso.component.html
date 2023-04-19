@@ -22,8 +22,21 @@
           </div>
         </div> 
         <div style="display:flex;float:right; flex-direction:column; width:52%;padding: 0 2% 30px 2%;">
-          <app-area-chart style="width:100%;"></app-area-chart>
-          <app-table [id] = 'id'></app-table>  
+          <app-history-forecast style="width:100%;" [boja1]="color1" [boja2]="color2" [naziv1]="name1" [naziv2]="name2" [array] = "History" [array2]="Forecast" [array3] = "arrayData"></app-history-forecast>
+          <!--<app-table [id] = 'id'></app-table>  -->
+          <app-history-forecast-table
+          style="
+          margin-top:calc(2.8%);
+          display: flex;
+          position: relative;
+          flex-direction: column;
+          height: fit-content;
+          border-radius: 20px;
+          background-color: #1b1b1b;
+          box-shadow: 5px 5px 15px black;
+          transition: ease-in-out;
+          padding:10px 20px;
+          " [name1]="name1" [name2]="name2" [hif]="hif"></app-history-forecast-table>
         </div>
         <div style="display:flex;float:right; flex-direction:column; width:20%; height:100%">
         <app-map-for-dso-user [user]="user" style="height: 30%; min-height:250px;"></app-map-for-dso-user>

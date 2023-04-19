@@ -23,8 +23,8 @@ export class HistoryForecastComponent implements OnInit,OnChanges{
   selectedCity!: City;
   Title : any = "History & forecast";
 
-  @Input() array : any[]  = [12.00, 19.00, 33.00, 5.00, 2.00, 6.00, 5.00, null,null,null,null, null, null, null]
-  @Input() array2 : any[] = [null,null, null, null, null, null,5.00,10.00,12.00,23.00,16.00,5.00,10.00,5.00]
+  @Input() array : any[]  = [null,null,null,null, null, null, null, null,null,null,null, null, null, null];
+  @Input() array2 : any[] = [null,null,null,null, null, null, null, null,null,null,null, null, null, null];
   @Input() array3 : any[] = [null,null, null, null, null, null,null,null, null, null, null, null,null,null]
   @Input() naziv1 = "History";
   @Input() naziv2 = "Forecast";
