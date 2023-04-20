@@ -398,5 +398,10 @@ namespace backend.BLL
 
             return result;
         }
+
+        public List<Devices> GetUserDevicesVisibleForDSO(int userid)
+        {
+            return _contextDAL.GetUserDevicesVisibleForDSO(userid);
+        }
     }
 }

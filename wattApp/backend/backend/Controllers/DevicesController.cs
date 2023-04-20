@@ -283,6 +283,13 @@ namespace backend.Controllers
                 });
         }
 
+        [HttpGet("getUserDevicesVisibleForDSO/{userid}")]
+        public IActionResult GetUserDevicesVisibleForDSO(int userid)
+        {
+            List<Devices> result = _context.GetUserDevicesVisibleForDSO(userid);
+            return Ok(result);
+        }
+
 
         [HttpGet("price")]
         public double getElectricalPowerPrice()

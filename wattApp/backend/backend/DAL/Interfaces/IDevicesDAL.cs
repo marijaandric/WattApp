@@ -18,5 +18,6 @@ namespace backend.DAL.Interfaces
         public void RemoveDevice(Devices device);
         public List<Devices> GetUserDevicesByType(int userId, string type);
         public int GetNumberOfActiveUserDevices(int userid);
+        public List<Devices> GetUserDevicesVisibleForDSO(int userid);
     }
 }

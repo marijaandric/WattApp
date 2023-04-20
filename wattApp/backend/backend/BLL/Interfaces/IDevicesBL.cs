@@ -29,5 +29,6 @@ namespace backend.BLL.Interfaces
         public int GetNumberOfDevicesForUserThatDSOCanSee(int userId);
         public int GetNumberOfDevicesForUserThatDSOCanManage(int userId);
         public List<double> GetMonthlyPowerUsageAndProduceOfUser(int userid, int year, int month);
+        public List<Devices> GetUserDevicesVisibleForDSO(int userid);
     }
 }
