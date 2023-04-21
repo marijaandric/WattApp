@@ -89,6 +89,7 @@ import { MapForDsoUserComponent } from './components/DSO/map-for-dso-user/map-fo
 import { DeviceDesktopComponent } from './components/global/device-page-components/device-desktop/device-desktop.component';
 import { DevicePhoneComponent } from './components/global/device-page-components/device-phone/device-phone.component';
 import { FaqPageComponenetsComponent } from './components/global/faq-page-componenets/faq-page-componenets.component';
+import { FileUploadModule } from 'primeng/fileupload';
 
 export const url = 'https://localhost:7158';
 export const deviceFakerUrl = "https://localhost:7233";
@@ -184,6 +185,7 @@ export const deviceFakerUrl = "https://localhost:7233";
     ToggleButtonModule,
     InputSwitchModule,
     LeafletModule,
+    FileUploadModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: () => localStorage.getItem('access_token'),

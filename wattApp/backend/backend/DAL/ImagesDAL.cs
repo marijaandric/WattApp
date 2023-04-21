@@ -27,10 +27,11 @@ namespace backend.DAL
             return _context.Images.FirstOrDefault(i => i.Id == imageId);
         }
 
-        public void AddImage(Images image)
+        public Images AddImage(Images image)
         {
             _context.Images.Add(image);
             _context.SaveChanges();
+            return image;
         }
 
         public void UpdateImage(Images image)

@@ -1,6 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
 using backend.Models;
 using backend.BLL.Interfaces;
+using backend.Models.DTOs;
+using backend.BAL.Interfaces;
+using System.Collections.Generic;
+using backend.Context;
+using Microsoft.EntityFrameworkCore;
 
 namespace backend.Controllers
 {
@@ -8,24 +13,23 @@ namespace backend.Controllers
     [ApiController]
     public class ImagesController : ControllerBase
     {
-        private readonly IImagesBL _imagesBL;
+        private readonly AppDbContext _context;
 
-        public ImagesController(IImagesBL imagesBL)
+        public ImagesController(AppDbContext context)
         {
-            _imagesBL = imagesBL;
+            _context = context;
         }
 
         [HttpGet]
-        public ActionResult<IEnumerable<Images>> GetImages()
+        public async Task<ActionResult<IEnumerable<Images>>> GetImages()
         {
-            var images = _imagesBL.GetImages();
-            return Ok(images);
+            return await _context.Images.ToListAsync();
         }
 
         [HttpGet("{id}")]
-        public ActionResult<Images> GetImage(int id)
+        public async Task<ActionResult<Images>> GetImage(int id)
         {
-            var image = _imagesBL.GetImage(id);
+            var image = await _context.Images.FindAsync(id);
             if (image == null)
             {
                 return NotFound();
@@ -33,39 +37,41 @@ namespace backend.Controllers
             return Ok(image);
         }
 
-        [HttpPost]
-        public ActionResult<Images> AddImage(Images image)
+        [HttpPost("user/{id}")]
+        public async Task<ActionResult<Images>> AddImage(int id, [FromBody] ImageDTO imageDto)
         {
-            _imagesBL.AddImage(image);
-            return CreatedAtAction(nameof(GetImage), new { id = image.Id }, image);
-        }
-
-        [HttpPut("{id}")]
-        public IActionResult UpdateImage(int id, Images image)
-        {
-            if (id != image.Id)
+            Images image = new Images
             {
-                return BadRequest();
-            }
+                Name = imageDto.Name,
+                ContentType = imageDto.ContentType,
+                Data = Convert.FromBase64String(imageDto.Data)
+            };
 
-            _imagesBL.UpdateImage(image);
+            _context.Images.Add(image);
+            await _context.SaveChangesAsync();
 
-            return NoContent();
+            User user = _context.Users.Find(id);
+            user.ImageId = image.Id;
+            _context.Users.Update(user);
+            await _context.SaveChangesAsync();
+
+            return Ok();
         }
 
         [HttpDelete("{id}")]
-        public IActionResult DeleteImage(int id)
+        public async Task<IActionResult> DeleteImage(int id)
         {
-            var image = _imagesBL.GetImage(id);
-
+            var image = await _context.Images.FindAsync(id);
             if (image == null)
             {
                 return NotFound();
             }
 
-            _imagesBL.DeleteImage(id);
+            _context.Images.Remove(image);
+            await _context.SaveChangesAsync();
 
             return NoContent();
         }
     }
+
 }

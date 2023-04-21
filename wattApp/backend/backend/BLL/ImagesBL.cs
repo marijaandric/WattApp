@@ -29,9 +29,9 @@ namespace backend.BLL
             return _imagesDAL.GetImage(imageId);
         }
 
-        public void AddImage(Images image)
+        public Images AddImage(Images image)
         {
-            _imagesDAL.AddImage(image);
+            return _imagesDAL.AddImage(image);
         }
 
         public void UpdateImage(Images image)

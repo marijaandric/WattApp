@@ -8,7 +8,7 @@ namespace backend.BLL.Interfaces
     {
         List<Images> GetImages();
         Images GetImage(int imageId);
-        void AddImage(Images image);
+        Images AddImage(Images image);
         void UpdateImage(Images image);
         void DeleteImage(int imageId);
         bool ImageExists(int id);

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ImageDTO } from 'src/app/dtos/ImageDTO';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { FileUploadService } from 'src/app/services/file-upload/file-upload.service';
 import { UserService } from 'src/app/services/user.service';
 
 @Component({
@@ -15,7 +17,10 @@ export class UserCardComponent implements OnInit {
   menageUserForm! : FormGroup;
   
 
-  constructor(private router:Router,private userService: UserService,private fb: FormBuilder) {}
+  constructor(private router:Router,
+    private userService: UserService,
+    private fb: FormBuilder,
+    private fileUploadService: FileUploadService) {}
 
   ngOnInit() {
     const token = localStorage.getItem('token');
@@ -90,4 +95,26 @@ export class UserCardComponent implements OnInit {
       )
     }
   }
+
+  handleUpload(event: any): void {
+    console.log("Starting image upload.");
+    const file = event.files[0];
+    const reader = new FileReader();
+    reader.onload = (e: any) => {
+      const blobContent = e.target.result;
+      const fileName = file.name;
+      const contentType = file.type;
+      const imageDTO = new ImageDTO(null, fileName, contentType, blobContent);
+      this.fileUploadService.uploadUserImageFile(imageDTO, this.userInfo.id).subscribe(
+        (response) => {
+          console.log('File uploaded successfully:', response);
+        },
+        (error) => {
+          console.error('Error uploading file:', error);
+        }
+      );
+    };
+    reader.readAsArrayBuffer(file);
+  }
+  
 }

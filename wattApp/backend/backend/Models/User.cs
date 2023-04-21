@@ -20,5 +20,6 @@ namespace backend.Models
         public double X { get; set; }
         public double Y { get; set; }
         public string Area { get; set; }
+        public int? ImageId { get; set; }
     }
 }

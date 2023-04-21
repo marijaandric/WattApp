@@ -8,6 +8,7 @@ export class DeviceDTO {
     public deviceType: string,
     public isActive: boolean,
     public allowOperatorControll: boolean,
-    public allowOperatorVisibility: boolean
+    public allowOperatorVisibility: boolean,
+    public imageId: number
   ) { }
 }

@@ -9,11 +9,5 @@ namespace backend.Models
         public string Name { get; set; }
         public string ContentType { get; set; }
         public byte[] Data { get; set; }
-
-        public int? DeviceId { get; set; }
-        public Devices Device { get; set; }
-
-        public int? UserId { get; set; }
-        public User User { get; set; }
     }
 }
