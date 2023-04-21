@@ -17,6 +17,11 @@ interface HiF{
   date2: any
 }
 
+interface SwitchOption {
+  label: string;
+  value: boolean;
+}
+
 
 @Component({
   selector: 'app-user-dso',
@@ -58,6 +63,13 @@ export class UserDSOComponent implements OnInit{
   
   History = [null,null,null,null, null, null, null, null,null,null,null, null, null, null];
   Forecast= [null,null,null,null, null, null, null, null,null,null,null, null, null, null];
+
+  switchOptions: SwitchOption[] = [
+    {label: 'Statistics', value: true},
+    {label: 'Devices', value: false}
+  ];
+  switchValue: boolean = true;
+
 
 
   constructor(private route: ActivatedRoute,private dsonew : DsonewsService,private userService:UserService,private deviceService:DeviceService) {

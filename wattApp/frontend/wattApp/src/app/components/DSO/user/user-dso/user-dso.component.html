@@ -23,7 +23,8 @@
         </div> 
         <div style="display:flex;float:right; flex-direction:column; width:52%;padding: 0 2% 30px 2%;">
           <app-history-forecast style="width:100%;" [boja1]="color1" [boja2]="color2" [naziv1]="name1" [naziv2]="name2" [array] = "History" [array2]="Forecast" [array3] = "arrayData"></app-history-forecast>
-          <!--<app-table [id] = 'id'></app-table>  -->
+          <p-selectButton style="margin-top:20px" class="flexRow width__fit-content margin-left__auto margin-bottom__16px" [options]="switchOptions" [(ngModel)]="switchValue" optionLabel="label" optionValue="value"></p-selectButton>
+          <app-table [id] = 'id' *ngIf="switchValue == false"></app-table>
           <app-history-forecast-table
           style="
           margin-top:calc(2.8%);
@@ -36,7 +37,7 @@
           box-shadow: 5px 5px 15px black;
           transition: ease-in-out;
           padding:10px 20px;
-          " [name1]="name1" [name2]="name2" [hif]="hif"></app-history-forecast-table>
+          " [name1]="name1" [name2]="name2" [hif]="hif" *ngIf="switchValue == true"></app-history-forecast-table>
         </div>
         <div style="display:flex;float:right; flex-direction:column; width:20%; height:100%">
         <app-map-for-dso-user [user]="user" style="height: 30%; min-height:250px;"></app-map-for-dso-user>

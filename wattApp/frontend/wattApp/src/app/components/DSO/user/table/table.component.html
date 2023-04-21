@@ -2,7 +2,7 @@
           [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]"
           [globalFilterFields]="['id','firstName','lastName','email','role']" [paginator]="true" 
           style="
-            margin-top:calc(4.6%);
+            margin-top:calc(2.8%);
             display: flex;
             position: relative;
             flex-direction: column;
@@ -52,7 +52,7 @@
                 </th>
                 <th pSortableColumn="role" style="min-width:8rem; border-top:4px solid #46c5f1; border-bottom:4px solid #46c5f1">
                   <div class="flexRow">
-                      <p style=" font-size: 18px !important;">Allow Operator Controll</p>
+                      <p style=" font-size: 18px !important;">Device management</p>
                       <p-sortIcon field="role"></p-sortIcon>
                       <p-columnFilter class="ml-auto" type="text" field="role" display="menu"></p-columnFilter>
                   </div>
@@ -65,7 +65,14 @@
                   <td>{{devices?.deviceModel}}</td>
                   <td>{{devices?.deviceType}}</td>
                   <td>{{devices?.isActive}}</td>
-                  <td>{{devices?.allowOperatorControll}}</td>
+                  <td>
+                    <div *ngIf = "devices.allowOperatorControll">
+                      <p-inputSwitch [(ngModel)]="devices.isActive" (onChange)="handleRunningSwitchChange(devices)" class="margin-left__auto width__fit-content"/>
+                    </div>
+                    <div *ngIf = "devices.allowOperatorControll == false">
+                      You cannot operate the device
+                    </div>
+                  </td>
                 </tr>
                 
               </ng-template>

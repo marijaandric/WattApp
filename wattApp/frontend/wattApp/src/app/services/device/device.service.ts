@@ -94,6 +94,11 @@ export class DeviceService {
     return this.http.put<DeviceDTO>(this.baseUrl + device.id, device);
   }
 
+  updateUserDSODevice(device:any, id:number)
+  {
+    return this.http.put<DeviceDTO>(this.baseUrl + device.id, device);
+  }
+
   getHistoryAndForecastByDayForDevice(id :number)
   {
     return this.http.get<any>(this.baseUrl+"getHistoryAndForecastByDayForDevice/"+id)
@@ -122,6 +127,11 @@ export class DeviceService {
   GetHistoryAndForecastByDayForAllDevices()
   {
     return this.http.get<any>(this.baseUrl+"getHistoryAndForecastByDayForAllDevices")
+  }
+
+  GetUserDevicesVisibleForDSO(id:number)
+  {
+    return this.http.get<any>(this.baseUrl+"getUserDevicesVisibleForDSO/"+id)
   }
 
 }
