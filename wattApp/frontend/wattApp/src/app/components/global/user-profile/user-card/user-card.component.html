@@ -7,13 +7,10 @@
                     <h3 style="margin-bottom: 30px;">{{ userInfo?.firstName }}</h3>
                     <p style="margin-bottom: 30px;">{{userInfo?.address}}</p>
                     <button label="Edit" (click)="showDialog()">Edit</button>
-                    <p-fileUpload 
-                      #fileInput
-                      name="myProfilePicture"
-                      (uploadHandler)="handleUpload($event)"
-                      [customUpload]="true"
-                      accept="image/*"
-                      [maxFileSize]="2000000">
+                    <p-fileUpload name="file"
+                      mode="basic" chooseLabel="Upload"
+                      [url]="imageUploadUrl"
+                      accept="image/*" [auto]="true" [maxFileSize]="2000000">
                     </p-fileUpload>
 
                     <!--Dialog-->

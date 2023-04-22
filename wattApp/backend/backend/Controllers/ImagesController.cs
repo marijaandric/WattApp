@@ -38,15 +38,26 @@ namespace backend.Controllers
         }
 
         [HttpPost("user/{id}")]
-        public async Task<ActionResult<Images>> AddImage(int id, [FromBody] ImageDTO imageDto)
+        public async Task<ActionResult<Images>> AddImage(int id, IFormFile file)
         {
+            if (file == null || file.Length > 2000000)
+            {
+                return BadRequest("Invalid file");
+            }
+
+            byte[] imageData;
+            using (var memoryStream = new MemoryStream())
+            {
+                await file.CopyToAsync(memoryStream);
+                imageData = memoryStream.ToArray();
+            }
+
             Images image = new Images
             {
-                Name = imageDto.Name,
-                ContentType = imageDto.ContentType,
-                Data = Convert.FromBase64String(imageDto.Data)
+                Name = file.FileName,
+                ContentType = file.ContentType,
+                Data = imageData
             };
-
             _context.Images.Add(image);
             await _context.SaveChangesAsync();
 
