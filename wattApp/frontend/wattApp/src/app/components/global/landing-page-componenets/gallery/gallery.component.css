@@ -16,7 +16,7 @@
   width:380px;
   height:220px;
   margin:10px;
-  background-color:#46c5f1;
+  background:linear-gradient(45deg, #46c5f1 10%, #5245b7 100%) ;
   display:inline-block;
   background-size:cover;
   position:relative;
