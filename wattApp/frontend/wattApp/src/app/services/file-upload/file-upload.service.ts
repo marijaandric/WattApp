@@ -1,8 +1,6 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 import { url } from 'src/app/app.module';
-import { ImageDTO } from 'src/app/dtos/ImageDTO';
 
 @Injectable({
   providedIn: 'root'
@@ -12,4 +10,7 @@ export class FileUploadService {
 
   constructor(private http: HttpClient) { }
   
+  deleteUserImage(id: number) {
+    return this.http.delete(this.baseUrl + "user/" + id);
+  }
 }

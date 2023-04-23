@@ -38,7 +38,7 @@ namespace backend.Controllers
         }
 
         [HttpPost("user/{id}")]
-        public async Task<ActionResult<Images>> AddImage(int id, IFormFile file)
+        public async Task<ActionResult<Images>> AddUserImage(int id, IFormFile file)
         {
             if (file == null || file.Length > 2000000)
             {
@@ -69,10 +69,39 @@ namespace backend.Controllers
             return Ok();
         }
 
-        [HttpDelete("{id}")]
+        [HttpGet("user/{id}")]
+        public async Task<IActionResult> GetUserImage(int id)
+        {
+            User user = await _context.Users.FindAsync(id);
+            if (user == null || user.ImageId == null)
+            {
+                return NoContent();
+            }
+
+            Images image = await _context.Images.FindAsync(user.ImageId);
+            if (image == null)
+            {
+                return NoContent();
+            }
+
+            return File(image.Data, image.ContentType);
+        }
+
+        [HttpDelete("user/{id}")]
         public async Task<IActionResult> DeleteImage(int id)
         {
-            var image = await _context.Images.FindAsync(id);
+            User user = await _context.Users.FindAsync(id);
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            var imageId = user.ImageId;
+            user.ImageId = null;
+            _context.Users.Update(user);
+            await _context.SaveChangesAsync();
+
+            Images image = await _context.Images.FindAsync(imageId);
             if (image == null)
             {
                 return NotFound();

@@ -90,6 +90,7 @@ import { DeviceDesktopComponent } from './components/global/device-page-componen
 import { DevicePhoneComponent } from './components/global/device-page-components/device-phone/device-phone.component';
 import { FaqPageComponenetsComponent } from './components/global/faq-page-componenets/faq-page-componenets.component';
 import { FileUploadModule } from 'primeng/fileupload';
+import { ImageModule } from 'primeng/image';
 
 export const url = 'https://localhost:7158';
 export const deviceFakerUrl = "https://localhost:7233";
@@ -186,6 +187,7 @@ export const deviceFakerUrl = "https://localhost:7233";
     InputSwitchModule,
     LeafletModule,
     FileUploadModule,
+    ImageModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: () => localStorage.getItem('access_token'),

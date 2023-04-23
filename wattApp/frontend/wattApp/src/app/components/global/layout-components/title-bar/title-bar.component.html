@@ -138,6 +138,6 @@
     <div *ngIf="!isAdmin()" style="cursor:pointer"><li><a (click)="showDialog2()"><div class="fa fa-plus " ></div><div class="text" [ngClass]="{ 'hidden-xs': !showText }">Add device</div></a></li></div>
     <div *ngIf="isAdmin()" style="cursor:pointer"><li><a (click)="showDialog3()"><div class="fa-solid fa-newspaper " ></div><div class="text" [ngClass]="{ 'hidden-xs': !showText }">Add news</div></a></li></div>
     <li><a href="#"><div class="fa fa-address-book" ></div><div class="text" [ngClass]="{ 'hidden-xs': !showText }">About us</div></a></li>
-    <li><a routerLink="/user"><img src="/assets/images/team-profile-pictures/vanja.png" class="profile-image"><div class="text" [ngClass]="{ 'hidden-xs': !showText }">Profile</div></a></li>
+    <li><a routerLink="/user"><img [src]="userImageUrlEndpoint" alt="/assets/images/application-images/empty-image.png" (error)="setDefaultImage()" class="profile-image"><div class="text" [ngClass]="{ 'hidden-xs': !showText }">Profile</div></a></li>
   </ul>
 </nav>

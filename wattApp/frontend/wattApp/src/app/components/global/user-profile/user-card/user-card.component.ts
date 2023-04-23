@@ -1,10 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { FileUploadService } from 'src/app/services/file-upload/file-upload.service';
 import { UserService } from 'src/app/services/user.service';
 import { url } from 'src/app/app.module';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-user-card',
@@ -12,10 +13,11 @@ import { url } from 'src/app/app.module';
   styleUrls: ['./user-card.component.css']
 })
 export class UserCardComponent implements OnInit {
+  baseUrl = url + "/api/Images/user/";
   userInfo: any;
   display: boolean = false;
   menageUserForm! : FormGroup;
-  imageUploadUrl!: string;
+  userImageUrlEndpoint!: string;
 
   constructor(private router:Router,
     private userService: UserService,
@@ -30,8 +32,7 @@ export class UserCardComponent implements OnInit {
       this.userService.GetUser(userId,token).subscribe((data) => {
         this.userInfo = data;
       });
-      this.imageUploadUrl = url + "/api/Images/user/" + userId;
-      console.log(this.imageUploadUrl);
+      this.userImageUrlEndpoint = this.baseUrl + userId;
     }
     
     this.menageUserForm = this.fb.group({
@@ -96,6 +97,17 @@ export class UserCardComponent implements OnInit {
         }
       )
     }
+  }
+
+  onImageChange(event: any) {
+    const randomNumber = Math.floor(Math.random() * 1000);
+    this.userImageUrlEndpoint += `?random=${randomNumber}`;
+  }
+  
+  deleteImage() {
+    this.fileUploadService.deleteUserImage(this.userInfo.id).subscribe(() => {
+      this.onImageChange(null);
+    });
   }
   
 }
