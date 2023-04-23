@@ -135,7 +135,7 @@
 
 }
 .p-datatable .p-datatable-tbody>tr>td {
-  padding: 1rem 0rem !important;
+  padding: 1rem 0rem 1rem 1rem !important;
 }
 
 .p-datatable .p-paginator-bottom{
