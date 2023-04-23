@@ -116,6 +116,6 @@ wattApp/frontend/wattApp/package-lock.json
 
 # SqLite
 Data Source=sqllite.db;
-sqlite.db
+sqllite.db
 .db
 .db;
