@@ -95,13 +95,13 @@
   background: linear-gradient(45deg, #46c5f1 10%, #5245b7 100%) !important;
 }
 .p-datatable .p-datatable-tbody>tr:hover {
-  background-color: #252525 !important;
+  background-color: #191919 !important;
   transform: scaley(1.01) !important;
   box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.87);
   cursor:pointer !important;
 }
 .p-datatable .p-datatable-thead>tr>th {
-  padding: 0.5rem 1rem !important;
+  padding: 0.6rem 1rem 0rem 1rem !important;
   background-color: transparent !important;
 }
 .p-datatable .sortable-column {
@@ -133,6 +133,9 @@
 .p-datatable .p-paginator {
   background-color: transparent !important;
 
+}
+.p-datatable .p-datatable-tbody>tr>td {
+  padding: 1rem 0rem !important;
 }
 
 .p-datatable .p-paginator-bottom{

@@ -55,6 +55,14 @@
     background-color: #222222;
     border-radius: 32px;
   }
+
+  .bottom-grid {
+    width:100%;
+    height:fit-content;
+    display: flex;
+    flex-direction: row;
+
+  }
   
   ::ng-deep .p-dropdown {
     position:relative;
@@ -94,8 +102,22 @@
     width: 100%;
     display: flex;
     flex-wrap: wrap;
+    margin-bottom:32px;
   }
-  
+
+  .bottom-grid{
+    height:fit-content;
+  }
+.bottom-right{
+  width: 49%;
+  margin-left:calc(2%);
+  margin-top:2%;
+}
+.map{
+  height: calc(100% - 324px);
+  padding-bottom:7%;
+}
+
   .left-margin {
     
     margin-left: calc(2.8%);

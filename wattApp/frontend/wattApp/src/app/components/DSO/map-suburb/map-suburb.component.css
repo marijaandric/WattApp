@@ -3,13 +3,12 @@
     position: relative;
     flex-direction: column;
     width:100%;
-    height:100%;
+    height:100% !important;
     border-radius: 20px;
     background-color: #1b1b1b;
     box-shadow: 5px 5px 15px black;
     transition: ease-in-out;
     z-index: 1;
-    margin-top:20px;
 }
 .leaflet-popup-content-wrapper {
     background-color: black;

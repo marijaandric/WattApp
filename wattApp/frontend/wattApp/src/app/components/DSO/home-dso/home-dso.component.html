@@ -27,29 +27,41 @@
     
   
     <div class="main-grid">
-      <app-history-forecast [boja1]="color1" [boja2]="color2" [naziv1]="name1" [naziv2]="name2" [array] = "History" [array2]="Forecast" [array3] = "arrayData" class="chart" id="oneChart"  ></app-history-forecast>
+      <app-history-forecast style="width:62.5% !important;" [boja1]="color1" [boja2]="color2" [naziv1]="name1" [naziv2]="name2" [array] = "History" [array2]="Forecast" [array3] = "arrayData" class="chart" id="oneChart"  ></app-history-forecast>
       <!-- <app-pie-chart  clas="bar-plot"></app-pie-chart> -->
-      <app-map-suburb style="width: 49%;margin-left:calc(2%)"></app-map-suburb>
       
+      <div class="bottom-grid">
+        <app-history-forecast-table
+          style="
+          margin-top:calc(2%);
+          display: flex;
+          position: relative;
+          flex-direction: column;
+          height: fit-content;
+          width: 49%;
+          border-radius: 20px;
+          background: linear-gradient(180deg, #151515 50%, #121212 100%) ;
+          box-shadow: 5px 5px 15px black;
+          transition: ease-in-out;
+          padding:10px 20px 30px 20px;" 
+          [name1]="name1" [name2]="name2" [hif]="hif">
+        </app-history-forecast-table>
+        <div class="bottom-right">
+          <div class="map">
+            <app-map-suburb ></app-map-suburb>
+           
+          </div>  
+          <div class="wthr-frcst">
+
+            <app-weather-forecast7 style="width: 49%; margin-left:2%"></app-weather-forecast7>
   
-      <app-history-forecast-table
-      style="
-      margin-top:calc(2%);
-      display: flex;
-      position: relative;
-      flex-direction: column;
-      height: fit-content;
-      width: 49%;
-      border-radius: 20px;
-      background: linear-gradient(180deg, #1b1b1b 50%, #121212 100%) ;
-      box-shadow: 5px 5px 15px black;
-      transition: ease-in-out;
-      padding:10px 20px;
-      " [name1]="name1" [name2]="name2" [hif]="hif"></app-history-forecast-table>
-  
-  <!---  VREMENSKA PROGNOZA -->
-  <app-weather-forecast7 style="width: 49%;margin-top:2%; margin-left:2%"></app-weather-forecast7>
-  
+          </div>
+      
+        </div>
+        
+      
+      </div>
+      
   </div>
   
     
