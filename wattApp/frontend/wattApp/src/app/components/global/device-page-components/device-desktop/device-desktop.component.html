@@ -20,37 +20,37 @@
         <div class="bottom-left-top-card">
             <div id="deviceInformation" class="flexColumn device-information" >
               <div class="flexRow">
-                  <div class="colored-text" ><h5>Device name</h5></div>
+                  <div class="colored-text" ><h5>{{device.deviceName}}</h5></div>
               </div>
         
               <div class="flexRow" style="margin-top:16px">
                 <span class="bold-text">ID:</span>
-                <span class="margin-left__auto"><!--{{ device?.id }}--></span>
+                <span class="margin-left__auto">{{ device.id }}</span>
               </div>
         
               <div class="flexRow" style="margin-top:10px">
                 <span class="bold-text">Model:</span>
-                <span class="margin-left__auto"><!--{{ device?.deviceModel }}--></span>
+                <span class="margin-left__auto">{{ device.deviceModel }}</span>
               </div>
         
               <div class="flexRow"style="margin-top:10px" >
                 <span class="bold-text">Type:</span>
-                <span class="margin-left__auto"><!--{{ device?.deviceType }}--></span>
+                <span class="margin-left__auto">{{ device.deviceType }}</span>
               </div>
         
               <div class="flexRow"style="margin-top:10px">
                 <span class="bold-text">Room:</span>
-                <span class="margin-left__auto"><!--{{ device?.room }}--></span>
+                <span class="margin-left__auto">{{ device.room }}</span>
               </div>
         
               <div class="flexRow"style="margin-top:20px">
                 <span class="bold-text">Visible to operators:</span>
-                <!--<p-inputSwitch [(ngModel)]="device.allowOperatorVisibility" (onChange)="handleVisibilitySwitchChange()" class="margin-left__auto width__fit-content"/>-->
+                <p-inputSwitch [(ngModel)]="device.allowOperatorVisibility" (onChange)="handleVisibilitySwitchChange()" class="margin-left__auto width__fit-content"/>
               </div>
         
               <div class="flexRow margin-top__8px">
                 <span class="bold-text">Managed by operators:</span>
-                <!--<p-inputSwitch [(ngModel)]="device.allowOperatorControll" (onChange)="handleManagementSwitchChange()" class="margin-left__auto width__fit-content"/>-->
+                <p-inputSwitch [(ngModel)]="device.allowOperatorControll" (onChange)="handleManagementSwitchChange()" class="margin-left__auto width__fit-content"/>
               </div>
             </div>
 

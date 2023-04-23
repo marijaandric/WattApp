@@ -107,7 +107,7 @@
             </ng-template>
 
               <ng-template pTemplate="body" let-user>
-                <tr>
+                <tr routerLink="/userDSO/{{user.id}}">
                   <td>{{user.firstName}} {{user.lastName}}</td>
                   <td>{{user.address}}</td>
                   <td>633 kWh</td>

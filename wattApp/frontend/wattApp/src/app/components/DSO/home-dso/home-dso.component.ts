@@ -40,6 +40,8 @@ export class HomeDSOComponent {
   cities: City[];
   selectedCity!: City;
   type: City[];
+  type2: City[];
+  type3: City[];
   selectedType!: City;
   isConsumption: boolean = true;
   isProduction: boolean = false;
@@ -66,6 +68,15 @@ export class HomeDSOComponent {
       {name: 'Consumption', code: 'Consumer'},
       {name: 'Production', code: 'Producer'},
       {name: 'Stock', code: 'Stock'},
+    ];
+    this.type2 = [
+      {name: 'History', code: 'History'},
+      {name: 'Forecast', code: 'Forecast'},
+    ];
+    this.type3 = [
+      {name: 'Week', code: 'Week'},
+      {name: 'Month', code: 'Month'},
+      {name: 'Year', code: 'Year'},
     ];
 
     
