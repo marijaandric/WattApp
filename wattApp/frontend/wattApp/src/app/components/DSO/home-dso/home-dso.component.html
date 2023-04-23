@@ -27,9 +27,17 @@
     
   
     <div class="main-grid">
-      <app-history-forecast style="width:62.5% !important;" [boja1]="color1" [boja2]="color2" [naziv1]="name1" [naziv2]="name2" [array] = "History" [array2]="Forecast" [array3] = "arrayData" class="chart" id="oneChart"  ></app-history-forecast>
+      <app-history-forecast style="width: 62.5% !important;" [boja1]="color1" [boja2]="color2" [naziv1]="name1" [naziv2]="name2" [array] = "History" [array2]="Forecast" [array3] = "arrayData" class="chart" id="oneChart"  ></app-history-forecast>
       <!-- <app-pie-chart  clas="bar-plot"></app-pie-chart> -->
-      
+      <div class="stats-cards">
+        <app-stats-card class="stats-card"></app-stats-card>
+        <app-stats-card class="stats-card"></app-stats-card>
+        <app-stats-card class="stats-card"></app-stats-card>
+        <app-stats-card class="stats-card"></app-stats-card>
+        <app-stats-card class="stats-card"></app-stats-card>
+        <app-stats-card class="stats-card"></app-stats-card>
+      </div>
+
       <div class="bottom-grid">
         <app-history-forecast-table
           style="

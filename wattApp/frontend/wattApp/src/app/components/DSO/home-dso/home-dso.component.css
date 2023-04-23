@@ -118,6 +118,33 @@
   padding-bottom:7%;
 }
 
+.stats-cards{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-left:2%;
+  width:35.5%;
+  padding: 0px 0;
+  justify-content:space-between;
+  position:relative;
+}
+
+.stats-card{
+  display:flex;
+  flex-basis: 47.5%;
+}
+
+.stats-card:nth-child(1), .stats-card:nth-child(2) {
+  margin-bottom:6%;
+}
+.stats-card:nth-child(3), .stats-card:nth-child(4) {
+  margin-bottom:6%;
+}
+
+.stats-card:first-child {
+  margin-right: 2%;
+}
+
   .left-margin {
     
     margin-left: calc(2.8%);
