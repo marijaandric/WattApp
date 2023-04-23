@@ -116,3 +116,4 @@ wattApp/frontend/wattApp/package-lock.json
 
 # SqLite
 .db
+.db;
