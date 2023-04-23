@@ -19,7 +19,7 @@ namespace backend.Context
             modelBuilder.Entity<Devices>().ToTable("devices");
             modelBuilder.Entity<Weather>().ToTable("weather");
             modelBuilder.Entity<DsoNews>().ToTable("dso_news");
-            modelBuilder.Entity<DsoNews>().ToTable("images");
+            modelBuilder.Entity<Images>().ToTable("images");
         }
 
     }
