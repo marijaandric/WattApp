@@ -13,3 +13,9 @@
 .roomSizeHeader{
     margin-left: auto;
 }
+
+a{
+    text-decoration: none;
+    color: #885ec0;
+    font-weight: bold;
+}

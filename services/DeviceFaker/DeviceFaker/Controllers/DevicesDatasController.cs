@@ -111,5 +111,13 @@ namespace DeviceFaker.Controllers
             return _devicesDataService.GetWeekByDayHistoryAndFutureForAllDevicesOrDevice(deviceid, year, month, day);
         }
 
+        [HttpPost("proba")]
+        public IActionResult proba([FromBody] List<int> niz)
+        {
+            var result = _devicesDataService.proba(niz);
+            Console.Write(result.Count);
+            return Ok(result);
+        }
+
     }
 }

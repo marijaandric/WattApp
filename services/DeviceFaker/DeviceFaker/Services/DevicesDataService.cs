@@ -280,5 +280,15 @@ namespace DeviceFaker.Services
             return new WeekDatasDTO(dates.Concat(future.dates).ToList(), datas.Concat(future.datas).ToList());
         }
 
+        public List<DevicesData> proba(List<int> niz)
+        {
+            var filter = Builders<DevicesData>.Filter.And(
+                Builders<DevicesData>.Filter.In(x => x.DeviceID, niz),
+                Builders<DevicesData>.Filter.Where(x => x.Year == 2023 && x.Month == 4)
+                );
+            var result = _devicesDataCollection.Find(filter).ToList();
+            return result;
+        }
+
     }
 }

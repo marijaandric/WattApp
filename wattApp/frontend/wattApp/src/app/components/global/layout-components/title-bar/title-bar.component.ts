@@ -14,6 +14,7 @@ import { UserService } from 'src/app/services/user.service';
 import * as L from 'leaflet';
 import axios from 'axios';
 import { DsonewsService } from 'src/app/services/dsonews/dsonews.service';
+import { url } from 'src/app/app.module';
 
 interface Models{
   code: string;
@@ -61,6 +62,8 @@ export class TitleBarComponent implements OnInit{
   value!:string;
   address!:string;
   selectedPriority:string = 'None';
+  baseUrl = url + "/api/Images/user/";
+  userImageUrlEndpoint!: string;
  
   
   constructor(private router: Router,
@@ -74,14 +77,17 @@ export class TitleBarComponent implements OnInit{
               private roleTypesService: RoleTypesService,
               private modelTypesService: ModelTypesService,
               private dsonewsService : DsonewsService) {
-    const token = localStorage.getItem('token');
-    if(token)
-    {
-      this.rola = userService.getUserRoleFromToken(token)
-    }
   }
 
   ngOnInit(): void {
+
+    const token = localStorage.getItem('token');
+    if(token)
+    {
+      this.rola = this.userService.getUserRoleFromToken(token);
+      const userId = this.userService.getUserIdFromToken(token);
+      this.userImageUrlEndpoint = this.baseUrl + userId;
+    }
 
     this.roleTypesService.getAllRoleTypes()
       .pipe(
@@ -336,5 +342,9 @@ export class TitleBarComponent implements OnInit{
     }
     const userRole = this.userService.getUserRoleFromToken(token);
     return userRole === 'operator' || userRole === 'admin' || userRole === 'superadmin';
+  }
+
+  setDefaultImage() {
+    this.userImageUrlEndpoint = '/assets/images/application-images/empty-image.png';
   }
 }
