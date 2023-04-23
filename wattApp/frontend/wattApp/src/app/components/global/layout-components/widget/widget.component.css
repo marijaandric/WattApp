@@ -6,7 +6,7 @@
     /*min-width: 340px;*/
     border-radius: 20px;
     padding:  10px 0px 10px 15px;
-    background: linear-gradient(180deg, #1b1b1b 50%, #121212 100%) ;
+    background: linear-gradient(180deg, #1e1e1e 50%, #121212 100%) ;
     flex-basis: calc(33.33333% - 30px);
 }
 
@@ -36,7 +36,7 @@
 
 :host>.item_date-box {
   margin-right:50px;
-  font-size: 18px;
+  font-size: 14px;
   height:50%;
   min-height:35px;
   z-index: 2;
@@ -54,7 +54,7 @@
 :host>.item_date {
   font-weight: bolder;
   cursor: default;
-  font-size: 20px;
+  font-size: 14px;
   padding-right: 10px;
   -webkit-transition: color .5s ease;
   -o-transition: color .5s ease;

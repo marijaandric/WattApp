@@ -22,12 +22,11 @@
   }
   
   .widget {
-    flex-basis: calc(23%);
+    flex-basis: calc(23.5%);
     margin-bottom: 30px;
     display: inline-block;
     position: relative;
     flex-direction: row;
-    max-width: 23%;
     min-width: 240px;
     width:20%;
     box-shadow: 5px 5px 15px black;
@@ -59,17 +58,37 @@
   
   ::ng-deep .p-dropdown {
     position:relative;
-    margin-bottom: 20px;
-    border-radius: 30px;
+    border-radius: 20px;
     border:none;
+    font-size:16px;
+    margin-right:20px;
     background: linear-gradient(45deg, #46c5f1 10%, #5245b7 100%);
     
   }
+  ::ng-deep .p-dropdown.p-component {
+    width:145.953px;
+  }
+
   ::ng-deep #pr_id_1_label{
-    border-radius: 30px 30px;
-    font-size: 17px;
-    padding:8px 20px;
+    font-size: 14px;
+    padding:8px 0px 8px 16px;
     border:none;
+    font-weight: bold;
+    font-family: 'Lato', sans-serif;
+  }
+  ::ng-deep #pr_id_2_label{
+    font-size: 14px;
+    padding:8px 0px 8px 16px;
+    border:none;
+    font-weight: bold;
+    font-family: 'Lato', sans-serif;
+  }
+  ::ng-deep #pr_id_3_label{
+    font-size: 14px;
+    padding:8px 0px 8px 16px;
+    border:none;
+    font-weight: bold;
+    font-family: 'Lato', sans-serif;
   }
   .main-grid {
     width: 100%;

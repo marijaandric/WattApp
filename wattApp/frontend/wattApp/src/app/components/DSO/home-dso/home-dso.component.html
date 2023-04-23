@@ -15,33 +15,40 @@
       </app-widget>
         
     </div>
-    <p-dropdown [options]="type" appendTo="body" [(ngModel)]="selectedType" optionLabel="name" (onChange)="dropdownChange()" >
-    </p-dropdown>
+    <div style="width:100%; height:fit-content; display:flex; flex-direction:row;margin-bottom:12px;">
+
+      <p-dropdown [options]="type" appendTo="body" [(ngModel)]="selectedType" optionLabel="name" (onChange)="dropdownChange()" >
+      </p-dropdown>
+      <p-dropdown [options]="type" appendTo="body" [(ngModel)]="selectedType" optionLabel="name" (onChange)="dropdownChange()" >
+      </p-dropdown>
+      <p-dropdown [options]="type" appendTo="body" [(ngModel)]="selectedType" optionLabel="name" (onChange)="dropdownChange()" >
+      </p-dropdown>
+    </div>
     
   
     <div class="main-grid">
       <app-history-forecast [boja1]="color1" [boja2]="color2" [naziv1]="name1" [naziv2]="name2" [array] = "History" [array2]="Forecast" [array3] = "arrayData" class="chart" id="oneChart"  ></app-history-forecast>
       <!-- <app-pie-chart  clas="bar-plot"></app-pie-chart> -->
-      <app-map-suburb style="width: 48.5%;margin-left:calc(2.6%)"></app-map-suburb>
+      <app-map-suburb style="width: 49%;margin-left:calc(2%)"></app-map-suburb>
       
   
       <app-history-forecast-table
       style="
-      margin-top:calc(2.8%);
+      margin-top:calc(2%);
       display: flex;
       position: relative;
       flex-direction: column;
       height: fit-content;
-      width: 48.5%;
+      width: 49%;
       border-radius: 20px;
-      background-color: #1b1b1b;
+      background: linear-gradient(180deg, #1b1b1b 50%, #121212 100%) ;
       box-shadow: 5px 5px 15px black;
       transition: ease-in-out;
       padding:10px 20px;
       " [name1]="name1" [name2]="name2" [hif]="hif"></app-history-forecast-table>
   
   <!---  VREMENSKA PROGNOZA -->
-  <app-weather-forecast7 style="width: 49%;"></app-weather-forecast7>
+  <app-weather-forecast7 style="width: 49%;margin-top:2%; margin-left:2%"></app-weather-forecast7>
   
   </div>
   
