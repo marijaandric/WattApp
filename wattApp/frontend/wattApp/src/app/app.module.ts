@@ -91,6 +91,7 @@ import { DevicePhoneComponent } from './components/global/device-page-components
 import { FaqPageComponenetsComponent } from './components/global/faq-page-componenets/faq-page-componenets.component';
 import { FileUploadModule } from 'primeng/fileupload';
 import { ImageModule } from 'primeng/image';
+import { StatsCardComponent } from './components/global/stats-card/stats-card.component';
 
 export const url = 'https://localhost:7158';
 export const deviceFakerUrl = "https://localhost:7233";
@@ -161,7 +162,8 @@ export const deviceFakerUrl = "https://localhost:7233";
     MapForDsoUserComponent,
     DevicePhoneComponent,
     DeviceDesktopComponent,
-    FaqPageComponenetsComponent
+    FaqPageComponenetsComponent,
+    StatsCardComponent
   ],
   imports: [
     CommonModule,

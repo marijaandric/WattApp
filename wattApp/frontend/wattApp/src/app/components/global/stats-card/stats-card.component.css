@@ -1,0 +1,9 @@
+:host {
+    background: linear-gradient(180deg, #1e1e1e 50%, #121212 100%) ;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    border-radius: 20px;
+    padding:  10px 0px 10px 15px;
+    flex-basis:50%;
+}
