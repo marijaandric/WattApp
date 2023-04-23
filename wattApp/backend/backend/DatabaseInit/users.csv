@@ -1,0 +1,3 @@
+Id,"FirstName","LastName","Username","Email","PhoneNumber","Address","Password","Token","Role","RefreshToken","RefreshTokenExpiryTime","X","Y","Area","ImageId"
+1,"Petar","Petrovic","petar","petar@gmail.com","+3816493214342","Crvenog Krsta 23","8DgnkYT07lxkjW3R5uU4bqGqiKFoA+0zXAIzjlu26qe6nwyf","token","prosumer","refreshtoken","2023-04-28T12:08:31.7642631",44.0128,20.9114,"Bubanj",-1
+2,"Mika","Mikic","mika","mika@gmail.com","+3816493214342","Crvenog Krsta 68","8DgnkYT07lxkjW3R5uU4bqGqiKFoA+0zXAIzjlu26qe6nwyf","token","dso_admin","refreshtoken","2023-04-28T12:08:31.7642631",44.0128,20.9114,"Bubanj",-1
