@@ -131,7 +131,8 @@
 
 .stats-card{
   display:flex;
-  flex-basis: 47.5%;
+  flex-basis: 47%;
+  box-shadow: 5px 5px 15px black;
 }
 
 .stats-card:nth-child(1), .stats-card:nth-child(2) {
@@ -142,7 +143,7 @@
 }
 
 .stats-card:first-child {
-  margin-right: 2%;
+  margin-right: 3%;
 }
 
   .left-margin {
