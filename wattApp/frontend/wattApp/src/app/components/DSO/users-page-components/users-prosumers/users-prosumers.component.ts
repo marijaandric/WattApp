@@ -2,6 +2,7 @@ import { Component, OnChanges, OnInit, SimpleChanges, ViewEncapsulation  } from 
 import { UserDTO } from '../../../../dtos/UserDTO';
 import { UserService } from '../../../../services/user/user.service';
 import axios from 'axios';
+import { url } from 'src/app/app.module';
 
 @Component({
   selector: 'app-users-prosumers',
@@ -11,6 +12,7 @@ import axios from 'axios';
 })
 
 export class UsersProsumersComponent implements OnInit {
+  baseUrl = url + "/api/Images/user/";
   users: UserDTO[] = [];
   constructor(private userService: UserService) {
 

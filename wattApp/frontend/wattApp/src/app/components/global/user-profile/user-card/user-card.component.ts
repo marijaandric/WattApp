@@ -23,16 +23,7 @@ export class UserCardComponent implements OnInit {
     private fileUploadService: FileUploadService) {}
 
   ngOnInit() {
-    const token = localStorage.getItem('token');
-    if(token)
-    {
-      const userId = this.userService.getUserIdFromToken(token);
-      this.userService.GetUser(userId,token).subscribe((data) => {
-        this.userInfo = data;
-      });
-      this.userImageUrlEndpoint = this.baseUrl + userId;
-    }
-    
+    this.getUser();
     this.menageUserForm = this.fb.group({
       id: ['', Validators.required],
       firstName: ['', Validators.required],
@@ -47,6 +38,19 @@ export class UserCardComponent implements OnInit {
     });
 
     
+  }
+  getUser()
+  {
+    const token = localStorage.getItem('token');
+    
+    if(token)
+    {
+      const userId = this.userService.getUserIdFromToken(token);
+      this.userService.GetUser(userId,token).subscribe((data) => {
+        this.userInfo = data;
+      });
+      this.userImageUrlEndpoint = this.baseUrl + userId;
+    }
   }
 
   showDialog() {
@@ -86,7 +90,7 @@ export class UserCardComponent implements OnInit {
         {
           next: () => {
             this.display = false;
-            this.router.navigate(['user']);
+            this.getUser();
             },
           error: error => {
             alert("Niste lepo azurirali profil");
@@ -106,10 +110,6 @@ export class UserCardComponent implements OnInit {
     this.fileUploadService.deleteUserImage(this.userInfo.id).subscribe(() => {
       this.onImageChange(null);
     });
-  }
-
-  setDefaultImage() {
-    this.userImageUrlEndpoint = '/assets/images/application-images/empty-image.png';
   }
   
 }

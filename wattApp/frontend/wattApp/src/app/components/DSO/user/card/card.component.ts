@@ -15,11 +15,7 @@ export class CardComponent implements OnInit{
   constructor(private userService:UserService){}
 
   ngOnInit(){
-    this.userImageUrlEndpoint = this.baseUrl + this.user.userId;
-  }
-
-  setDefaultImage() {
-    this.userImageUrlEndpoint = '/assets/images/application-images/empty-image.png';
+    this.userImageUrlEndpoint = this.baseUrl + this.user.id;
   }
   
 }

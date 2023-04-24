@@ -31,6 +31,11 @@ namespace backend.DAL
             return _context.Devices.FirstOrDefault(e => e.Id == deviceId);
         }
 
+        public List<Devices> GetAllDevicesForUserIDs(List<int> userids)
+        {
+            return _context.Devices.Where(d => userids.Contains(d.UserID)).ToList();
+        }
+
         public List<Devices> GetUserDevicesVisibleForDSO(int userid)
         {
             return _context.Devices.Where(e => e.UserID == userid && e.allowOperatorVisibility == true).ToList();
@@ -66,7 +71,7 @@ namespace backend.DAL
 
         public List<Devices> GetDevicesByType(string type)
         {
-            return _context.Devices.Where(e => e.DeviceType == type).ToList();
+            return _context.Devices.Where(e => e.DeviceType.ToLower() == type.ToLower()).ToList();
         }
 
         public List<Devices> GetDevicesForUser(int userId)
@@ -78,7 +83,7 @@ namespace backend.DAL
         {
             if(type == "All")
                 return GetDevicesForUser(userId);
-            return _context.Devices.Where(e => e.UserID == userId && e.DeviceType == type).ToList();
+            return _context.Devices.Where(e => e.UserID == userId && e.DeviceType.ToLower() == type.ToLower()).ToList();
         }
 
         public void ModifiedDevice(Devices device)

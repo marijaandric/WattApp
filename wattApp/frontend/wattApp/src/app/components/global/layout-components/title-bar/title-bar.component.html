@@ -141,11 +141,11 @@
     <li>
       <div class="hero">
         <nav>
-      <a><img [src]="userImageUrlEndpoint" (click)="toggleMenu()" alt="/assets/images/application-images/empty-image.png" (error)="setDefaultImage()" class="profile-image"><div class="text1" [ngClass]="{ 'hidden-xs': !showText }"></div></a> 
+      <a><img [src]="userImageUrlEndpoint" (click)="toggleMenu()" class="profile-image"><div class="text1" [ngClass]="{ 'hidden-xs': !showText }"></div></a> 
           <div class="sub-menu-wrap" id="subMenu" [class.open-menu]="isMenuOpen">
             <div class="sub-menu">
                 <div class="user-info">
-                  <img [src]="userImageUrlEndpoint" alt="/assets/images/application-images/empty-image.png" (error)="setDefaultImage()" class="profile-image"><div class="text" [ngClass]="{ 'hidden-xs': !showText }"></div>
+                  <img [src]="userImageUrlEndpoint" class="profile-image"><div class="text" [ngClass]="{ 'hidden-xs': !showText }"></div>
                     <h5>Vanja Mijatovic</h5>
                 </div>
                 <hr>

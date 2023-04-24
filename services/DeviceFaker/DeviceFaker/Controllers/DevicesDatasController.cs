@@ -9,6 +9,7 @@ using DeviceFaker.Models;
 using DeviceFaker.Services;
 using MongoDB.Driver.Core.Misc;
 using Microsoft.AspNetCore.Http.HttpResults;
+using DeviceFaker.Models.DTOs;
 
 namespace DeviceFaker.Controllers
 {
@@ -77,47 +78,38 @@ namespace DeviceFaker.Controllers
             return devicesData;
         }
 
-        [HttpGet("GetWeekDataForAllDevices/{deviceid}/{year}/{month}/{day}")]
-        public List<DevicesData> GetWeekDataForAllDevices(int deviceid, int year, int month, int day)
+        [HttpPost("GetWeekByDayHistoryAndFutureForDevice/{year}/{month}/{day}")]
+        public WeekDatasDTO GetWeekByDayHistoryAndFutureForDevice([FromBody] List<int> devicesids, int year, int month, int day)
         {
-            var devicesData = _devicesDataService.GetWeekDataForAllDevicesOrDevice(deviceid, year, month, day);
-            return devicesData;
-        }
-
-        [HttpGet("GetWeekDataForAllDevicesInFuture/{deviceid}/{year}/{month}/{day}")]
-        public List<DevicesData> GetWeekDataForAllDevicesInFuture(int deviceid, int year, int month, int day)
-        {
-            var devicesData = _devicesDataService.GetWeekDataForAllDevicesOrDeviceInFuture(deviceid, year, month, day);
-            return devicesData;
-        }
-
-        [HttpGet("GetWeekHistoryAndFutureForAllDevices/{deviceid}/{year}/{month}/{day}")]
-        public List<DevicesData> GetWeekHistoryAndFutureForAllDevices(int deviceid, int year, int month, int day)
-        {
-            var devicesData = _devicesDataService.GetWeekHistoryAndFutureForAllDevices(deviceid, year, month, day);
-            return devicesData;
-        }
-
-
-        [HttpGet("GetWeekByDayHistoryAndFutureForAllDevices/{year}/{month}/{day}")]
-        public WeekDatasDTO GetWeekByDayHistoryAndFutureForAllDevices(int year, int month, int day)
-        {
-            return _devicesDataService.GetWeekByDayHistoryAndFutureForAllDevicesOrDevice(-1, year, month, day);
-        }
-
-        [HttpGet("GetWeekByDayHistoryAndFutureForDevice/{deviceid}/{year}/{month}/{day}")]
-        public WeekDatasDTO GetWeekByDayHistoryAndFutureForDevice(int deviceid, int year, int month, int day)
-        {
-            return _devicesDataService.GetWeekByDayHistoryAndFutureForAllDevicesOrDevice(deviceid, year, month, day);
+            var result =  _devicesDataService.GetWeekByDayHistoryAndFutureForAllDevicesOrDevice(devicesids, year, month, day);
+            Console.WriteLine("Tu saaaam");
+            Console.Write(result);
+            return result;
         }
 
         [HttpPost("proba")]
         public IActionResult proba([FromBody] List<int> niz)
         {
             var result = _devicesDataService.proba(niz);
-            Console.Write(result.Count);
+            //Console.Write(result.Count);
             return Ok(result);
         }
+
+        [HttpPost("getMonthPoweUsageOfDevices/{year}/{month}")]
+        public IActionResult GetMonthPowerUsageOfDevices([FromBody] List<int> ids, int year, int month)
+        {
+            var result = _devicesDataService.GetMonthPowerUsageOfDevices(ids, year, month);
+            //Console.Write(result.Count);
+            return Ok(result);
+        }
+
+        [HttpPost("getDayPoweUsageOfDevices/{year}/{month}/{day}")]
+        public List<UsageDTO> GetDayPowerUsageOfDevices([FromBody] List<int> ids, int year, int month, int day)
+        {
+            var result = _devicesDataService.GetDayPowerUsageOfDevices(ids, year, month, day);
+            return result;
+        }
+
 
     }
 }

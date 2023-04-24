@@ -70,8 +70,9 @@ export class HomeDSOComponent {
       {name: 'Stock', code: 'Stock'},
     ];
     this.type2 = [
+      {name: 'H&F', code: 'H&F'},
       {name: 'History', code: 'History'},
-      {name: 'Forecast', code: 'Forecast'},
+      {name: 'Forecast', code: 'Forecast'}
     ];
     this.type3 = [
       {name: 'Week', code: 'Week'},

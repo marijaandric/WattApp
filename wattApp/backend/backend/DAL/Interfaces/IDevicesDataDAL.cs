@@ -1,4 +1,5 @@
-﻿using backend.Models.DTOs;
+﻿using backend.Models;
+using backend.Models.DTOs;
 
 namespace backend.DAL.Interfaces
 {
@@ -10,10 +11,8 @@ namespace backend.DAL.Interfaces
         public List<DevicesData> GetDayDataForDevice(int id, int year, int month, int day);
         public DevicesData GetHourDataForDevice(int id, int year, int month, int day, int time);
         public List<DevicesData> GetMonthDataForAllDevices(int year, int month);
-        public List<DevicesData> GetWeekDataForAllDevices(int deviceid, int year, int month, int day);
-        public List<DevicesData> GetWeekDataForAllDevicesInFuture(int deviceid, int year, int month, int day);
-        public List<DevicesData> GetWeekHistoryAndFutureForAllDevices(int deviceid, int year, int month, int day);
-        public WeekDatasDTO GetWeekByDayHistoryAndFutureForDevice(int deviceid, int year, int month, int day);
-        public WeekDatasDTO GetWeekByDayHistoryAndFutureForAllDevices(int year, int month, int day);
+        public WeekDatasDTO GetWeekByDayHistoryAndFutureForDevices(List<int> devicesids, int year, int month, int day);
+        List<UsageDTO> GetMonthPowerUsageOfDevices(List<int> consumerDevices, int year, int month);
+        public List<UsageDTO> GetDayPowerUsageOfDevices(List<int> consumerDevices, int year, int month, int day);
     }
 }
