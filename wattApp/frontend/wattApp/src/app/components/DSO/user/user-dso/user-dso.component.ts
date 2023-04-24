@@ -22,6 +22,11 @@ interface SwitchOption {
   value: boolean;
 }
 
+interface City {
+  name: string,
+  code: string
+}
+
 
 @Component({
   selector: 'app-user-dso',
@@ -34,6 +39,8 @@ export class UserDSOComponent implements OnInit{
   Producer:string='Producer';
   Stock:string='Stock';
   user:any;
+  type: City[];
+  selectedType!: City;
 
   responsiveOptions: any = null;
 
@@ -75,6 +82,12 @@ export class UserDSOComponent implements OnInit{
   constructor(private route: ActivatedRoute,private dsonew : DsonewsService,private userService:UserService,private deviceService:DeviceService) {
     this.id = this.route.snapshot.paramMap.get('id');
     this.getUser();
+    this.type = [
+      {name: 'Consumption', code: 'Consumer'},
+      {name: 'Production', code: 'Producer'},
+      {name: 'Stock', code: 'Stock'},
+    ];
+    this.selectedType = {name: 'Consumption', code: 'Consumer'}
   }
 
   news: any[] = [];
@@ -139,6 +152,8 @@ export class UserDSOComponent implements OnInit{
     
   }
 
+  
+
   getHistoryAndForecastByDayForAllUserDevices() {
     this.deviceService.GetHistoryAndForecastByDayForAllUserDevices(this.id).subscribe(data => {
         this.arrayData = data.dates; //.slice(0, 7).concat(data.dates.slice(8));
@@ -181,4 +196,67 @@ export class UserDSOComponent implements OnInit{
         }
       });
   }
+
+  dropdownChange()
+  {
+    console.log(this.selectedType);
+    if(this.selectedType.code == "Consumer")
+    {
+      this.History = this.HistoryCon;
+      this.Forecast = this.ForecastCon;
+
+      this.name1="Consumption history";
+      this.name2="Consumption forecast";
+
+      this.color1 = '#885ec0';
+      this.color2 = '#ae91d4';
+
+      for(let i = 0;i<this.History.length;i++)
+      {
+        this.hif[i].history = this.HistoryCon[i]
+        this.hif[i].forecast = this.ForecastCon[i+7]
+        this.hif[i].date1 = this.arrayData[i]
+        this.hif[i].date2 = this.arrayData[i+7]
+      }
+    }
+    else if(this.selectedType.code == "Producer")
+    {
+      this.History = this.HistoryPro;
+      this.Forecast = this.ForecastPro;
+
+      this.name1="Production history";
+      this.name2="Production forecast";
+
+      this.color1 = '#eb4886';
+      this.color2 = '#f075a4';
+
+      for(let i = 0;i<this.History.length;i++)
+      {
+        this.hif[i].history = this.HistoryPro[i]
+        this.hif[i].forecast = this.ForecastPro[i+7]
+        this.hif[i].date1 = this.arrayData[i]
+        this.hif[i].date2 = this.arrayData[i+7]
+      }
+    }
+    else{
+      this.History = this.HistoryStock;
+      this.Forecast = this.ForecastStock;
+
+      this.name1="Stock history";
+      this.name2="Stock forecast";
+
+      this.color1 = '#f5805a';
+      this.color2 = '#f9b59f';
+
+      for(let i = 0;i<this.History.length;i++)
+      {
+        this.hif[i].history = this.HistoryStock[i]
+        this.hif[i].forecast =   this.ForecastStock[i+7]
+        this.hif[i].date1 = this.arrayData[i]
+        this.hif[i].date2 = this.arrayData[i+7]
+      }
+    }
+    console.log(this.hif)
+  
+}
 }
