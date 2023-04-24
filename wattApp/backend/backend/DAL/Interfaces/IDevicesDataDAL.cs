@@ -17,5 +17,6 @@ namespace backend.DAL.Interfaces
         public WeekDatasDTO GetWeekByDayHistoryAndFutureForDevice(int deviceid, int year, int month, int day);
         public WeekDatasDTO GetWeekByDayHistoryAndFutureForAllDevices(int year, int month, int day);
         List<UsageDTO> GetMonthPowerUsageOfDevices(List<int> consumerDevices, int year, int month);
+        public List<UsageDTO> GetDayPowerUsageOfDevices(List<int> consumerDevices, int year, int month, int day);
     }
 }

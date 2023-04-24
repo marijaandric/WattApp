@@ -80,7 +80,7 @@ namespace backend.BLL
 
         public double getTotalUsageByArea(string area, string type, string timeType)
         {
-            DateTime time = DateTime.Now;
+            DateTime now = DateTime.Now;
             List<User> users = _contextUserDAL.GetUsersByArea(area);
             List<Devices> devices = new List<Devices>();
             List<DevicesData> devicesdata;
@@ -89,27 +89,12 @@ namespace backend.BLL
                 return 0;
 
             double total = 0;
-            foreach (User user in users)
-            {
-
-                //PROBLEM
-
-                devices.AddRange(_contextDAL.GetUserDevicesByType(user.Id, type));
-            }
-
-            foreach (Devices device in devices)
-            {
-
-                //PROBLEM
-
-                if (timeType == "Month")
-                    devicesdata = _contextDataDAL.GetMonthDataForDevice(device.Id, time.Year, time.Month);
-                else
-                    devicesdata = _contextDataDAL.GetDayDataForDevice(device.Id, time.Year, time.Month, time.Day);
-                total += Calculator.CalculateTotalPowerUsage(devicesdata);
-            }
-
-            return total;
+            devices = _contextDAL.GetAllDevicesForUserIDs(users.Select(d => d.Id).ToList());
+            
+            if (timeType == "Month")
+                return Calculator.CalculateTotalPowerUsageDTO(_contextDataDAL.GetMonthPowerUsageOfDevices(devices.Where(d => d.DeviceType == "Consumer").Select(d => d.Id).ToList(), now.Year, now.Month));
+            else
+                return Calculator.CalculateTotalPowerUsageDTO(_contextDataDAL.GetDayPowerUsageOfDevices(devices.Where(d => d.DeviceType == "Consumer").Select(d => d.Id).ToList(), now.Year, now.Month, now.Day));
         }
 
         public double GetMonthlyStatistics(int userId, int year, int month, string type)
@@ -175,8 +160,6 @@ namespace backend.BLL
             }
             return content;
         }
-
-
 
         public AreaExtreme getExtremeUsageForAreas(string type, string timeType, string minmax)
         {

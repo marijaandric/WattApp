@@ -31,6 +31,11 @@ namespace backend.DAL
             return _context.Devices.FirstOrDefault(e => e.Id == deviceId);
         }
 
+        public List<Devices> GetAllDevicesForUserIDs(List<int> userids)
+        {
+            return _context.Devices.Where(d => userids.Contains(d.UserID)).ToList();
+        }
+
         public List<Devices> GetUserDevicesVisibleForDSO(int userid)
         {
             return _context.Devices.Where(e => e.UserID == userid && e.allowOperatorVisibility == true).ToList();

@@ -9,6 +9,7 @@ namespace backend.DAL.Interfaces
         public List<Devices> GetDevicesForUser(int userId);
         public List<Devices> GetUserDevicesByType(int userId, string type);
         public List<Devices> GetUserDevicesVisibleForDSO(int userid);
+        public List<Devices> GetAllDevicesForUserIDs(List<int> userid);
         public Devices GetDeviceForUser(int userId, int deviceId);
         public Devices GetDevice(int deviceId);
         public int GetNumberOfDevicesForUserThatDSOCanSee(int userId);
