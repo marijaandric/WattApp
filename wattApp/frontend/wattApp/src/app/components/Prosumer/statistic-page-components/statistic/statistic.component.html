@@ -4,36 +4,59 @@
   </app-title-bar>
 
   <app-center-bar>
+    <div style="width:100%; height:fit-content; display:flex; flex-direction:row;margin-bottom:32px;margin-top:6px">
 
-  <p-dropdown [options]="type" appendTo="body" [(ngModel)]="selectedType" optionLabel="name"  (onChange)="dropdownChange()">
-  </p-dropdown>
+      <p-dropdown [options]="type" appendTo="body" [(ngModel)]="selectedType" optionLabel="name" (onChange)="dropdownChange()" >
+      </p-dropdown>
+      <p-dropdown [options]="type" appendTo="body"  optionLabel="name" (onChange)="dropdownChange()" >
+      </p-dropdown>
+      <p-dropdown [options]="type" appendTo="body" optionLabel="name" (onChange)="dropdownChange()" >
+      </p-dropdown>
+    </div>
   <div class="main-grid">
     <div class="twoCharts">
       <p-selectButton class="flexRow width__fit-content margin-left__auto margin-bottom__16px" [options]="switchOptions" [(ngModel)]="switchValue" optionLabel="label" optionValue="value"></p-selectButton>
       <app-history-line-chart [boja1]="color1" [array] = "miniHistory" [array2] = "miniarrayData1" class="handf" *ngIf="switchValue == true"></app-history-line-chart>
       <app-forecast-line-chart  [boja1]="color1" [array] = "miniForecast" [array2] = "miniarrayData2" class="handf" *ngIf="switchValue == false"></app-forecast-line-chart>
     </div>
-    <app-history-forecast [boja1]="color1" [boja2]="color2" [naziv1]="name1" [naziv2]="name2" [array] = "History" [array2]="Forecast" [array3] = "arrayData" class="chart" id="oneChart"  ></app-history-forecast>
+    <app-history-forecast [boja1]="color1" [boja2]="color2" [naziv1]="name1" [naziv2]="name2" [array] = "History" [array2]="Forecast" [array3] = "arrayData" class="chart" id="oneChart"  style="width:62.5% !important;"></app-history-forecast>
+ 
+    <div class="stats-cards">
+        
+      <app-stats-card class="stats-card" [isBgBlue]="true" [Title]="'Minimal consumed electricity this week'" [subTitle]="'23kWh (2%)'" [value]="'34 kwh'"></app-stats-card>
+      <app-stats-card class="stats-card" [isBgPurple]="true" [Title]="'Maximum consumed electricity this week'" [subTitle]="'23kWh (2%)'" [value]="'34 kwh'"></app-stats-card>
+      <app-stats-card class="stats-card" [isBgPink]="true" [Title]="'Average consumed electricity this week'" [subTitle]="'23kWh (2%)'" [value]="'34 kwh'"></app-stats-card>
+      <app-stats-card class="stats-card" [isBgOrange]="true" [Title]="'Total consumed electricity this week'" [subTitle]="'23kWh (2%)'" [value]="'34 kwh'"></app-stats-card>
+     
+    </div>
 
-    <app-pie-chart class="chart" [Series]="count" [chartLabels]="rooms" [chartText]="text" [chartHeight]="piechartHeight1"></app-pie-chart>    
+    <div class="bottom-grid">
+      <app-history-forecast-table
+        style="
+        margin-top:calc(2%);
+        display: flex;
+        position: relative;
+        flex-direction: column;
+        height: fit-content;
+        width: 62.5%;
+        border-radius: 20px;
+        background: linear-gradient(180deg, #151515 50%, #121212 100%) ;
+        box-shadow: 5px 5px 15px black;
+        transition: ease-in-out;
+        padding:10px 20px 30px 20px;
+        " [name1]="name1" [name2]="name2" [hif]="hif">
+      </app-history-forecast-table>
+      
+      <div class="bottom-right">
+        <div class="map">
+          <app-pie-chart [Series]="count" [chartLabels]="rooms" [chartText]="text" ></app-pie-chart>    
+      
+        </div>
+        <app-area-bar-chart></app-area-bar-chart>
+
+      </div>
+    </div>
     
-
-    <app-history-forecast-table
-      style="
-      margin-top:calc(2.8%);
-      display: flex;
-      position: relative;
-      flex-direction: column;
-      height: fit-content;
-      width: 48.5%;
-      border-radius: 20px;
-      background-color: #1b1b1b;
-      box-shadow: 5px 5px 15px black;
-      transition: ease-in-out;
-      padding:10px 20px;
-      " [name1]="name1" [name2]="name2" [hif]="hif"></app-history-forecast-table>
-
-<app-area-bar-chart style="margin-top:calc(2.7%);" class="chart"></app-area-bar-chart>
 </div>
   </app-center-bar>
 </standard-template>

@@ -52,9 +52,6 @@ export class StatisticComponent  implements OnInit {
   niz3 : number[] = new Array(4);   //[1,2,3,4]
   niz4 = [15,15,20,30];
   
-  barchartHeight=250;
-
-  piechartHeight1=300;
 
   text='Total devices per room';
   text2='Consumers per room';

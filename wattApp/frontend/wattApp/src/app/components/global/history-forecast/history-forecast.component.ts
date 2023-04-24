@@ -74,7 +74,6 @@ export class HistoryForecastComponent implements OnInit,OnChanges{
         style: {
           colors: ['#FFF','#FFF','#FFF','#FFF', '#FFF','#FFF','#FFF','#FFF','#FFF','#FFF','#FFF','#FFF','#FFF','#FFF','#FFF'],
           fontSize: '16px',
-          fontWeight: 'bolder',
           fontFamily: 'Lato, sans-serif'
         }
       }
@@ -191,7 +190,6 @@ export class HistoryForecastComponent implements OnInit,OnChanges{
       style: {
         colors: ['#FFF','#FFF','#FFF','#FFF', '#FFF','#FFF','#FFF','#FFF','#FFF','#FFF','#FFF','#FFF','#FFF','#FFF','#FFF'],
         fontSize: '16px',
-        fontWeight: 'bolder',
         fontFamily: 'Lato, sans-serif'
       }
     }
@@ -210,7 +208,6 @@ export class HistoryForecastComponent implements OnInit,OnChanges{
       style: {
         colors: ['#FFF'],
         fontSize:'16px',
-        fontWeight:'bold',
         fontFamily: 'Lato, sans-serif'
       },
     },

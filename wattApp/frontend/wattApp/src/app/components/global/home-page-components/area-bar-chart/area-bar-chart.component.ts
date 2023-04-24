@@ -75,10 +75,11 @@ export class AreaBarChartComponent implements OnInit {
   }
 
   public title: ApexTitleSubtitle = {
-    text: 'The ratio of the number of consumers, producers and batteries',
+    text: 'Devices comparison',
     style: {
       color: '#FFFFFF',
-      fontSize: '19px'
+      fontSize: '19px',
+      fontFamily: 'Montserrat',
     }
   };
 

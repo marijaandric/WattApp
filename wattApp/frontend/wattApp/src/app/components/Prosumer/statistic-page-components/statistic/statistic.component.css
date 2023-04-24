@@ -36,7 +36,51 @@
     padding-right: 200px;
 
   }
+
   
+  .bottom-grid{
+    display: flex;
+    flex-direction: row;
+    height:fit-content;
+    width:100%;
+  }
+.bottom-right{
+  width:35.5%;
+  margin-left:calc(2%);
+  margin-top:2%;
+}
+.map{
+  height: calc(100% - 305px);
+  padding-bottom:6%;
+}
+  
+  .main-grid {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom:32px;
+  }
+  .stats-cards{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-left:2%;
+    width:35.5%;
+    padding: 0px 0;
+    justify-content:space-between;
+    position:relative;
+  }
+  
+  .stats-card{
+    display:flex;
+    flex-basis: 47%;
+    box-shadow: 5px 5px 15px black;
+  }
+  
+  .stats-card:nth-child(1), .stats-card:nth-child(2) {
+    margin-bottom:6%;
+  }
+
 ::ng-deep #SvgjsG4317 {
   width:50%
 }
@@ -49,37 +93,43 @@
     display: inline-flex;
   }
   
-  .consumption {
-    background-color:#7d02d4;
-  }
-  .production {
-    background-color: #d90372;
-  }
-  .stock {
-    background-color: #04a777;
-  }
-  .all {
-    background-color: #F75C03;
-  }
-  
-::ng-deep .p-dropdown {
-  position:relative;
-  margin-bottom: 20px;
-  border-radius: 30px;
-  border:none;
-  background: linear-gradient(45deg, #46c5f1 10%, #5245b7 100%);
-}
-::ng-deep #pr_id_1_label{
-  border-radius: 30px 30px;
-  font-size: 17px;
-  padding:6px 15px;
-  border:none;
-  font-family: 'Lato', sans-serif;
-}
 
-p-table{
-  width: 48.5%
-}
+  
+  ::ng-deep .p-dropdown {
+    position:relative;
+    border-radius: 20px;
+    border:none;
+    font-size:16px;
+    margin-right:20px;
+    background: linear-gradient(45deg, #46c5f1 10%, #5245b7 100%);
+    
+  }
+
+  ::ng-deep .p-dropdown.p-component {
+    width:165.953px;
+  }
+
+  ::ng-deep #pr_id_1_label{
+    font-size: 14px;
+    padding:8px 0px 8px 16px;
+    border:none;
+    font-weight: bold;
+    font-family: 'Lato', sans-serif;
+  }
+  ::ng-deep #pr_id_2_label{
+    font-size: 14px;
+    padding:8px 0px 8px 16px;
+    border:none;
+    font-weight: bold;
+    font-family: 'Lato', sans-serif;
+  }
+  ::ng-deep #pr_id_3_label{
+    font-size: 14px;
+    padding:8px 0px 8px 16px;
+    border:none;
+    font-weight: bold;
+    font-family: 'Lato', sans-serif;
+  }
 
 @media only screen and (min-width: 769px) {
   .main-grid {

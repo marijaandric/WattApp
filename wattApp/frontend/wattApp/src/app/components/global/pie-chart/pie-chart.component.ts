@@ -32,7 +32,6 @@ export class PieChartComponent implements OnInit {
       show: true
     },
     width:'100%',
-    height:'300',
     redrawOnParentResize:true,
     redrawOnWindowResize:true,
     dropShadow: {
@@ -48,7 +47,7 @@ export class PieChartComponent implements OnInit {
 
   chartTitle: ApexTitleSubtitle = {
     text:  this.chartText,
-    align: 'center',
+    align: 'left',
     style: {
     color: '#FFFFFF',
     fontSize: '19px',
@@ -95,7 +94,7 @@ export class PieChartComponent implements OnInit {
   };
 
   chartLegend: ApexLegend = {
-    position: 'bottom',
+    position: 'right',
     offsetY: 50,
     offsetX: -40,
     
@@ -124,7 +123,7 @@ export class PieChartComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.chartDetails.height = '300';
+    this.chartDetails.height = '300px';
     this.chartTitle.text=this.chartText;
     this.chartSeries=this.Series;
   }

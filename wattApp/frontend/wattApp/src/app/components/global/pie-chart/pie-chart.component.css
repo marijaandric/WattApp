@@ -1,16 +1,16 @@
 :host{
+    
     display: flex;
     position: relative;
     flex-direction: column;
-    overflow: hidden;
+    width:100%;
+    height:100%;
     border-radius: 20px;
-    padding:  20px 40px 20px 20px;
-    background-color: #1b1b1b;
-    flex-basis: calc(22.8%);
+    background: linear-gradient(180deg, #151515 50%, #121212 100%) ;
     box-shadow: 5px 5px 15px black;
-    margin-left: calc(2.8%);
     transition: ease-in-out;
     
+    padding:  20px 40px 20px 20px;
 }
 /*
 @media only screen and (max-width: 639px) {
