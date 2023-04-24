@@ -5,20 +5,18 @@
         </div>
 
         <div class="subtitle-card">
-            <span>Consumption today</span>
+            <span>{{Title}}</span>
         </div>
     </div>
     <div style="width:100%; height:fit-content; position:relative;">
-        <div class="main-stat-card">
-            <span>4.4</span> 
+        <div class="main-stat-card">  
+            <span>434</span>
         </div>
-
-        <div class="kwh-card">  
-            <span>kWh</span>
+        <div class="kwh-card">
+            <span>kwh</span>
         </div>
     </div>
-
     <div class="subtitle-2">  
-        <span>6.2% more than yesterday</span>
+        <span><span [style.color]="( 0 > 1) ? '#eb4886' : '#46c5f1'">{{subTitle}}  more</span> than last week</span>
     </div>
 </div>

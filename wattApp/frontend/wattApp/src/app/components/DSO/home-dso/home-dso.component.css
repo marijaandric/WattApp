@@ -138,101 +138,98 @@
 .stats-card:nth-child(1), .stats-card:nth-child(2) {
   margin-bottom:6%;
 }
-.stats-card:first-child {
-  margin-right: 3%;
+
+.left-margin {
+  
+  margin-left: calc(2.8%);
+}
+.consumption {
+  background-color:#f5805a;;
+}
+.production {
+  background-color: #eb4886;
+}
+.stock {
+  background-color: #885ec0;
+}
+.all {
+  background-color: #46c5f1;
 }
 
-  .left-margin {
-    
-    margin-left: calc(2.8%);
+.hist-forecast {
+  display: inline-flex;
+}
+
+.bar-plot {
+  display: inline-flex;
+  margin-left:50px;
+}
+
+.p-table {
+  width:50%;
+}
+
+.marginLeft {
+  margin-left:2.8%;
+}
+
+@media only screen and (max-width: 979px) {
+  .widget {
+    -ms-flex-preferred-size: calc(50% - 30px);
+    flex-basis: calc(50% - 30px);
   }
-  .consumption {
-    background-color:#f5805a;;
+}
+
+@media only screen and (max-width: 639px) {
+  .widget {
+    -ms-flex-preferred-size: 100%;
+    flex-basis: 100%;
   }
-  .production {
-    background-color: #eb4886;
+}
+
+
+@media only screen and (max-width: 500px) {
+  .promotions {
+    overflow-x: scroll;
+    white-space: nowrap;
+    display: flex;
+    flex-wrap: nowrap;
   }
-  .stock {
-    background-color: #885ec0;
+
+  .promotion, .promotion1{
+    display: inline-block;
+    vertical-align: top;
   }
-  .all {
-    background-color: #46c5f1;
+
+  .widgets{
+    overflow-x: scroll;
+    white-space: nowrap;
+    display: flex;
+    flex-wrap: nowrap;
   }
-  
-  .hist-forecast {
-    display: inline-flex;
+  .widget{
+    margin-right: 10px;
+    margin-left: 10px;
+    display: inline-block;
+    vertical-align: top;
   }
-  
-  .bar-plot {
-    display: inline-flex;
-    margin-left:50px;
+
+  .widgets::-webkit-scrollbar {
+    width: 10px; /* adjust to your desired width */
   }
-  
-  .p-table {
-    width:50%;
+
+  .widgets::-webkit-scrollbar-thumb {
+    background-color: rgba(214, 214, 214, 0.212); /* adjust to your desired color */
+    border-radius: 10px; /* adjust to your desired radius */
   }
-  
-  .marginLeft {
-    margin-left:2.8%;
-  }
-  
-  @media only screen and (max-width: 979px) {
-    .widget {
-      -ms-flex-preferred-size: calc(50% - 30px);
-      flex-basis: calc(50% - 30px);
-    }
-  }
-  
-  @media only screen and (max-width: 639px) {
-    .widget {
-      -ms-flex-preferred-size: 100%;
-      flex-basis: 100%;
-    }
-  }
-  
-  
-  @media only screen and (max-width: 500px) {
-    .promotions {
-      overflow-x: scroll;
-      white-space: nowrap;
-      display: flex;
-      flex-wrap: nowrap;
-    }
-  
-    .promotion, .promotion1{
-      display: inline-block;
-      vertical-align: top;
-    }
-  
-    .widgets{
-      overflow-x: scroll;
-      white-space: nowrap;
-      display: flex;
-      flex-wrap: nowrap;
-    }
-    .widget{
-      margin-right: 10px;
-      margin-left: 10px;
-      display: inline-block;
-      vertical-align: top;
-    }
-  
-    .widgets::-webkit-scrollbar {
-      width: 10px; /* adjust to your desired width */
-    }
-  
-    .widgets::-webkit-scrollbar-thumb {
-      background-color: rgba(214, 214, 214, 0.212); /* adjust to your desired color */
-      border-radius: 10px; /* adjust to your desired radius */
-    }
-  }
-  .selected-type .ui-dropdown-item.ui-state-highlight {
-    background-color: blue;
-    color: white;
-  }
-  
-  :ng-deep .apexcharts-xaxis-label #SvgjsText2043{
-    font-size: 19px;
-    font-family: 'Lato', sans-serif;
-  }
+}
+.selected-type .ui-dropdown-item.ui-state-highlight {
+  background-color: blue;
+  color: white;
+}
+
+:ng-deep .apexcharts-xaxis-label #SvgjsText2043{
+  font-size: 19px;
+  font-family: 'Lato', sans-serif;
+}
   
