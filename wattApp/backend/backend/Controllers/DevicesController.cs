@@ -175,9 +175,9 @@ namespace backend.Controllers
             return Ok(
                     new
                     {
-                        DeviceId = result.Item1,
-                        DeviceName = result.Item2,
-                        AveragePowerUsage = result.Item3
+                        DeviceId = result.DeviceID,
+                        DeviceName = result.DeviceName,
+                        AveragePowerUsage = result.Usage
                     }); ;
         }
 
@@ -202,8 +202,8 @@ namespace backend.Controllers
             return Ok(
                     new
                     {
-                        Rooms = result.Item1,
-                        Count = result.Item2
+                        Rooms = result.rooms,
+                        Count = result.count
                     }
 
                 );
@@ -244,8 +244,8 @@ namespace backend.Controllers
             return Ok(
                 new
                 {
-                    Area = result.Item1,
-                    Usage = result.Item2
+                    Area = result.Area,
+                    Usage = result.Usage
                 });
         }
 

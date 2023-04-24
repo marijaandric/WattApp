@@ -15,6 +15,7 @@ namespace backend.BLL
         private readonly IDevicesDAL _contextDAL;
         private readonly IDevicesDataDAL _contextDataDAL;
         private readonly IUserDAL _contextUserDAL;
+
         public DevicesBL(IDevicesDAL context, IDevicesDataDAL contextDataDAL, IUserDAL contextUserDAL)
         {
             _contextDataDAL = contextDataDAL;
@@ -22,32 +23,24 @@ namespace backend.BLL
             _contextUserDAL = contextUserDAL;
         }
 
-        public void AddDevice(Devices device)
+        public List<Devices> GetDevices()
         {
-            _contextDAL.AddDevice(device);
+            return _contextDAL.GetDevices();
         }
 
-        public double currentMonthAllUsersDevicesUsage(string deviceType)
+        public List<Devices> GetDevicesByType(String type)
         {
-            DateTime now = DateTime.Now;
-            List<Devices> devices = _contextDAL.GetDevicesByType(deviceType);
-            List<DevicesData> devicesData = _contextDataDAL.GetMonthDataForAllDevices(now.Year, now.Month);
-            List<int> ids = devices.Select(d => d.Id).ToList();
-
-            double total = 0;
-
-            foreach (DevicesData deviceData in devicesData)
-            {
-                if (ids.Contains(deviceData.deviceID))
-                    total += deviceData.powerUsage;
-            }
-
-            return total;
+            return _contextDAL.GetDevicesByType(type);
         }
 
-        public bool DevicesExists(int id)
+        public List<Devices> GetDevicesForUser(int userId)
         {
-            return _contextDAL.DevicesExists(id);
+            return _contextDAL.GetDevicesForUser(userId);
+        }
+
+        public List<Devices> GetUserDevicesVisibleForDSO(int userid)
+        {
+            return _contextDAL.GetUserDevicesVisibleForDSO(userid);
         }
 
         public Devices GetDevice(int deviceId)
@@ -58,6 +51,31 @@ namespace backend.BLL
         public Devices GetDeviceForUser(int userId, int deviceId)
         {
             return _contextDAL.GetDeviceForUser(userId, deviceId);
+        }
+
+        public void AddDevice(Devices device)
+        {
+            _contextDAL.AddDevice(device);
+        }
+
+        public void ModifiedDevice(Devices device)
+        {
+            _contextDAL.ModifiedDevice(device);
+        }
+
+        public void RemoveDevice(Devices device)
+        {
+            _contextDAL.RemoveDevice(device);
+        }
+
+        public void SaveChanges()
+        {
+            _contextDAL?.SaveChanges();
+        }
+
+        public bool DevicesExists(int id)
+        {
+            return _contextDAL.DevicesExists(id);
         }
 
         public int GetNumberOfActiveUserDevices(int userid)
@@ -76,21 +94,11 @@ namespace backend.BLL
             return _contextDAL.GetNumberOfDevicesForUserThatDSOCanManage(userId);
         }
 
-        public List<Devices> GetDevices()
-        {
-            return _contextDAL.GetDevices();
-        }
-
-        public List<Devices> GetDevicesByType(String type)
-        {
-            return _contextDAL.GetDevicesByType(type);
-        }
-
-        public (List<string>?, List<int>?) GetDevicesCountByType(int userId, string type, int limit)
+        public DevicesCountByTypeDTO GetDevicesCountByType(int userId, string type, int limit)
         {
             List<Devices> devices = _contextDAL.GetUserDevicesByType(userId, type);
             if (devices == null)
-                return (null, null);
+                return null;
             var map = new Dictionary<string, int>();
             int counter = 0;
             Console.WriteLine(limit);
@@ -116,23 +124,22 @@ namespace backend.BLL
                     break;
                 }
             }
-
-            return (new List<string>(map.Keys), new List<int>(map.Values));
+            DevicesCountByTypeDTO deviceTypes = new DevicesCountByTypeDTO();
+            deviceTypes.rooms = new List<string>(map.Keys);
+            deviceTypes.count = new List<int>(map.Values);
+            return deviceTypes;
 
         }
 
-        public List<Devices> GetDevicesForUser(int userId)
-        {
-            return _contextDAL.GetDevicesForUser(userId);
-        }
+        //Devices and Datas
 
-        public (int?, string?, double?) GetExtremeDevice(int userId, int year, int month, int day, string type, string size)
+        public ExtremeDeviceDTO GetExtremeDevice(int userId, int year, int month, int day, string type, string size)
         {
             List<Devices> devices = _contextDAL.GetUserDevicesByType(userId, type);
             Dictionary<int, double> devicesMap = new Dictionary<int, double>();
 
             if (devices.Count == 0)
-                return (null, null, null);
+                return null;
 
             int deviceWithValue = -1;
             double value = -1;
@@ -140,6 +147,8 @@ namespace backend.BLL
 
             foreach (var device in devices)
             {
+                //PROBLEM!!!
+
                 List<DevicesData> devicesDatas = _contextDataDAL.GetDayDataForDevice(device.Id, year, month, day);
                 devicesMap.Add(device.Id, Calculator.CalculateAveragePowerUsage(devicesDatas));
             }
@@ -174,8 +183,12 @@ namespace backend.BLL
             }
 
             deviceName = _contextDAL.GetDeviceForUser(userId, deviceWithValue).DeviceName;
-            Console.WriteLine((deviceWithValue, deviceName, value));
-            return (deviceWithValue, deviceName, value);
+            //Console.WriteLine((deviceWithValue, deviceName, value));
+            ExtremeDeviceDTO deviceDTO = new ExtremeDeviceDTO();
+            deviceDTO.DeviceName = deviceName;
+            deviceDTO.DeviceID = deviceWithValue;
+            deviceDTO.Usage = value;
+            return deviceDTO;
         }
 
         public double getTotalUsageByArea(string area, string type, string timeType)
@@ -191,11 +204,17 @@ namespace backend.BLL
             double total = 0;
             foreach (User user in users)
             {
+
+                //PROBLEM
+
                 devices.AddRange(_contextDAL.GetUserDevicesByType(user.Id, type));
             }
 
             foreach (Devices device in devices)
             {
+
+                //PROBLEM
+
                 if(timeType == "Month")
                     devicesdata = _contextDataDAL.GetMonthDataForDevice(device.Id, time.Year, time.Month);
                 else
@@ -270,28 +289,15 @@ namespace backend.BLL
             return content;
         }
 
-        public void ModifiedDevice(Devices device)
-        {
-            _contextDAL.ModifiedDevice(device);
-        }
+        
 
-        public void RemoveDevice(Devices device)
-        {
-            _contextDAL.RemoveDevice(device);
-        }
-
-        public void SaveChanges()
-        {
-            _contextDAL?.SaveChanges();
-        }
-
-        public (string?, double?) getExtremeUsageForAreas(string type, string timeType, string minmax)
+        public AreaExtreme getExtremeUsageForAreas(string type, string timeType, string minmax)
         {
             List<User> users = _contextUserDAL.getUsers();
             List<string> areas = users.Select(d => d.Area).ToList().Distinct().ToList();
 
             if(users == null || areas == null)
-                return (null, null);
+                return null;
 
             string maxArea = "";
             string minArea = "";
@@ -314,12 +320,11 @@ namespace backend.BLL
                 }
             }
             if(max < 0)
-                return (null, null);
-
+                return null;
             if(minmax == "Max")
-                return (maxArea, max);
+                return new AreaExtreme(maxArea, max);
             else
-                return (minArea, min);
+                return new AreaExtreme(minArea, min);
         }
 
         public WeekDatasDTO GetWeekByDayHistoryAndFutureForDevice(int deviceid)
@@ -399,9 +404,24 @@ namespace backend.BLL
             return result;
         }
 
-        public List<Devices> GetUserDevicesVisibleForDSO(int userid)
+        
+
+        public double currentMonthAllUsersDevicesUsage(string deviceType)
         {
-            return _contextDAL.GetUserDevicesVisibleForDSO(userid);
+            DateTime now = DateTime.Now;
+            List<Devices> devices = _contextDAL.GetDevicesByType(deviceType);
+            List<DevicesData> devicesData = _contextDataDAL.GetMonthDataForAllDevices(now.Year, now.Month);
+            List<int> ids = devices.Select(d => d.Id).ToList();
+
+            double total = 0;
+
+            foreach (DevicesData deviceData in devicesData)
+            {
+                if (ids.Contains(deviceData.deviceID))
+                    total += deviceData.powerUsage;
+            }
+
+            return total;
         }
     }
 }

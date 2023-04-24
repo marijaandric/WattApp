@@ -1,10 +1,15 @@
 ﻿using DeviceFaker.Configurations;
 using DeviceFaker.Helpers;
 using DeviceFaker.Models;
+using DeviceFaker.Models.DTOs;
 using Microsoft.Extensions.Options;
+using MongoDB.Bson;
+using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
 using NuGet.Packaging;
 using System.Collections.Generic;
+using System.Linq;
+
 
 namespace DeviceFaker.Services
 {
@@ -280,14 +285,45 @@ namespace DeviceFaker.Services
             return new WeekDatasDTO(dates.Concat(future.dates).ToList(), datas.Concat(future.datas).ToList());
         }
 
-        public List<DevicesData> proba(List<int> niz)
+        public List<UsageDTO> proba(List<int> niz)
         {
             var filter = Builders<DevicesData>.Filter.And(
                 Builders<DevicesData>.Filter.In(x => x.DeviceID, niz),
-                Builders<DevicesData>.Filter.Where(x => x.Year == 2023 && x.Month == 4)
-                );
-            var result = _devicesDataCollection.Find(filter).ToList();
-            return result;
+                Builders<DevicesData>.Filter.Where(x => x.Year == 2023));
+
+            var matchStage = new BsonDocument("$match", filter.Render(BsonSerializer.SerializerRegistry.GetSerializer<DevicesData>(), BsonSerializer.SerializerRegistry));
+
+            var pipeline = new BsonDocument[]
+            {
+                matchStage,
+                new BsonDocument("$group", new BsonDocument
+                {
+                    { "_id", new BsonDocument
+                        {
+                            { "DeviceID", "$DeviceID" },
+                            { "Year", "$Year" }
+                        }
+                    },
+                    { "totalPowerUsage", new BsonDocument("$sum", "$PowerUsage") }
+                })
+            };
+
+            var pipelineString = pipeline.ToJson();
+            Console.WriteLine(pipelineString);
+
+            var result = _devicesDataCollection.Aggregate<BsonDocument>(pipeline).ToList();
+            List<UsageDTO> usage = new List<UsageDTO>();
+            foreach (var doc in result)
+            {
+                UsageDTO usg = new UsageDTO();
+                usg.DeviceID = doc["_id"]["DeviceID"].ToInt32();
+                usg.Year = doc["_id"]["Year"].ToInt32();
+                //usg.Month = doc["_id"]["Month"].ToInt32();
+                usg.Usage = doc["totalPowerUsage"].ToDouble();
+                usage.Add(usg);
+            }
+
+            return usage;
         }
 
     }
