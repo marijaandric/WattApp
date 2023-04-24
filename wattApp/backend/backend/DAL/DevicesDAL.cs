@@ -78,7 +78,7 @@ namespace backend.DAL
         {
             if(type == "All")
                 return GetDevicesForUser(userId);
-            return _context.Devices.Where(e => e.UserID == userId && e.DeviceType == type).ToList();
+            return _context.Devices.Where(e => e.UserID == userId && e.DeviceType.ToLower() == type.ToLower()).ToList();
         }
 
         public void ModifiedDevice(Devices device)

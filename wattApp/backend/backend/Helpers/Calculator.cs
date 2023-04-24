@@ -22,5 +22,15 @@ namespace backend.Helpers
             }
             return pom;
         }
+
+        public static double CalculateTotalPowerUsageDTO(List<UsageDTO> devicesData)
+        {
+            double pom = 0;
+            foreach (var device in devicesData)
+            {
+                pom += device.usage;
+            }
+            return pom;
+        }
     }
 }

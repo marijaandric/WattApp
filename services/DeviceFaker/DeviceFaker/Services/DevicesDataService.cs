@@ -308,8 +308,8 @@ namespace DeviceFaker.Services
                 })
             };
 
-            var pipelineString = pipeline.ToJson();
-            Console.WriteLine(pipelineString);
+            //var pipelineString = pipeline.ToJson();
+            //Console.WriteLine(pipelineString);
 
             var result = _devicesDataCollection.Aggregate<BsonDocument>(pipeline).ToList();
             List<UsageDTO> usage = new List<UsageDTO>();
@@ -319,6 +319,111 @@ namespace DeviceFaker.Services
                 usg.DeviceID = doc["_id"]["DeviceID"].ToInt32();
                 usg.Year = doc["_id"]["Year"].ToInt32();
                 //usg.Month = doc["_id"]["Month"].ToInt32();
+                usg.Usage = doc["totalPowerUsage"].ToDouble();
+                usage.Add(usg);
+            }
+
+            return usage;
+        }
+
+        public List<UsageDTO> GetMonthPowerUsageOfDevices(List<int> ids, int year, int month)
+        {
+            DateTime now = DateTime.Now;
+
+            var filter = Builders<DevicesData>.Filter.And(
+                Builders<DevicesData>.Filter.In(x => x.DeviceID, ids),
+                Builders<DevicesData>.Filter.Where(x => x.Year == year && x.Month == month));
+
+            if (year != now.Year || month != now.Month)
+            {
+                filter = Builders<DevicesData>.Filter.And(
+                Builders<DevicesData>.Filter.In(x => x.DeviceID, ids),
+                Builders<DevicesData>.Filter.Where(x => x.Year == year && x.Month == month && x.Day <= now.Day && x.Time <= now.Hour));
+            }
+
+            var matchStage = new BsonDocument("$match", filter.Render(BsonSerializer.SerializerRegistry.GetSerializer<DevicesData>(), BsonSerializer.SerializerRegistry));
+
+            var pipeline = new BsonDocument[]
+            {
+                matchStage,
+                new BsonDocument("$group", new BsonDocument
+                {
+                    { "_id", new BsonDocument
+                        {
+                            { "DeviceID", "$DeviceID" },
+                            { "Year", "$Year" },
+                            { "Month", "$Month"}
+                        }
+                    },
+                    { "totalPowerUsage", new BsonDocument("$sum", "$PowerUsage") }
+                })
+            };
+
+            var pipelineString = pipeline.ToJson();
+
+            var result = _devicesDataCollection.Aggregate<BsonDocument>(pipeline).ToList();
+
+            List<UsageDTO> usage = new List<UsageDTO>();
+            foreach (var doc in result)
+            {
+                UsageDTO usg = new UsageDTO();
+                usg.DeviceID = doc["_id"]["DeviceID"].ToInt32();
+                usg.Year = doc["_id"]["Year"].ToInt32();
+                usg.Month = doc["_id"]["Month"].ToInt32();
+                usg.Usage = doc["totalPowerUsage"].ToDouble();
+                Console.WriteLine(usg.Usage);
+                usage.Add(usg);
+            }
+
+            return usage;
+        }
+
+        public List<UsageDTO> GetDayPowerUsageOfDevices(List<int> ids, int year, int month, int day)
+        {
+            DateTime now = DateTime.Now;
+
+            var filter = Builders<DevicesData>.Filter.And(
+                Builders<DevicesData>.Filter.In(x => x.DeviceID, ids),
+                Builders<DevicesData>.Filter.Where(x => x.Year == year && x.Month == month && x.Day == day));
+
+            if (year != now.Year || month != now.Month || day != now.Day)
+            {
+                filter = Builders<DevicesData>.Filter.And(
+                Builders<DevicesData>.Filter.In(x => x.DeviceID, ids),
+                Builders<DevicesData>.Filter.Where(x => x.Year == year && x.Month == month && x.Day == day && x.Time <= now.Hour));
+            }
+            var matchStage = new BsonDocument("$match", filter.Render(BsonSerializer.SerializerRegistry.GetSerializer<DevicesData>(), BsonSerializer.SerializerRegistry));
+
+            var pipeline = new BsonDocument[]
+            {
+                matchStage,
+                new BsonDocument("$group", new BsonDocument
+                {
+                    { "_id", new BsonDocument
+                        {
+                            { "DeviceID", "$DeviceID" },
+                            { "Year", "$Year" },
+                            { "Month", "$Month"},
+                            { "Day", "$Day"}
+                        }
+                    },
+                    { "totalPowerUsage", new BsonDocument("$sum", "$PowerUsage") }
+                })
+            };
+
+            var pipelineString = pipeline.ToJson();
+            Console.WriteLine(pipelineString);
+
+            var result = _devicesDataCollection.Aggregate<BsonDocument>(pipeline).ToList();
+
+            List<UsageDTO> usage = new List<UsageDTO>();
+            foreach (var doc in result)
+            {
+                UsageDTO usg = new UsageDTO();
+                usg.DeviceID = doc["_id"]["DeviceID"].ToInt32();
+                usg.Year = doc["_id"]["Year"].ToInt32();
+                usg.Month = doc["_id"]["Month"].ToInt32();
+                usg.Day = doc["_id"]["Day"].ToInt32();
                 usg.Usage = doc["totalPowerUsage"].ToDouble();
                 usage.Add(usg);
             }

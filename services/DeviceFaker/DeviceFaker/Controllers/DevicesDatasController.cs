@@ -9,6 +9,7 @@ using DeviceFaker.Models;
 using DeviceFaker.Services;
 using MongoDB.Driver.Core.Misc;
 using Microsoft.AspNetCore.Http.HttpResults;
+using DeviceFaker.Models.DTOs;
 
 namespace DeviceFaker.Controllers
 {
@@ -118,6 +119,22 @@ namespace DeviceFaker.Controllers
             Console.Write(result.Count);
             return Ok(result);
         }
+
+        [HttpPost("getMonthPoweUsageOfDevices/{year}/{month}")]
+        public IActionResult GetMonthPowerUsageOfDevices([FromBody] List<int> ids, int year, int month)
+        {
+            var result = _devicesDataService.GetMonthPowerUsageOfDevices(ids, year, month);
+            Console.Write(result.Count);
+            return Ok(result);
+        }
+
+        [HttpPost("getDayPoweUsageOfDevices/{year}/{month}/{day}")]
+        public List<UsageDTO> GetDayPowerUsageOfDevices([FromBody] List<int> ids, int year, int month, int day)
+        {
+            var result = _devicesDataService.GetDayPowerUsageOfDevices(ids, year, month, day);
+            return result;
+        }
+
 
     }
 }

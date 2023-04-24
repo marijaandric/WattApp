@@ -1,4 +1,5 @@
-﻿using backend.Models.DTOs;
+﻿using backend.Models;
+using backend.Models.DTOs;
 
 namespace backend.DAL.Interfaces
 {
@@ -15,5 +16,6 @@ namespace backend.DAL.Interfaces
         public List<DevicesData> GetWeekHistoryAndFutureForAllDevices(int deviceid, int year, int month, int day);
         public WeekDatasDTO GetWeekByDayHistoryAndFutureForDevice(int deviceid, int year, int month, int day);
         public WeekDatasDTO GetWeekByDayHistoryAndFutureForAllDevices(int year, int month, int day);
+        List<UsageDTO> GetMonthPowerUsageOfDevices(List<int> consumerDevices, int year, int month);
     }
 }

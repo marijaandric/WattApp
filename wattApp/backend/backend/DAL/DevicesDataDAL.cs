@@ -1,5 +1,6 @@
 ﻿using backend.Context;
 using backend.DAL.Interfaces;
+using backend.Models;
 using backend.Models.DTOs;
 
 namespace backend.DAL
@@ -63,6 +64,11 @@ namespace backend.DAL
         public WeekDatasDTO GetWeekByDayHistoryAndFutureForAllDevices(int year, int month, int day)
         {
             return Helpers.HttpRequest.SendHttpRequestForWeekDatas($"http://{host}:{port}/api/DevicesDatas/GetWeekByDayHistoryAndFutureForAllDevices/{year}/{month}/{day}");
+        }
+
+        public List<UsageDTO> GetMonthPowerUsageOfDevices(List<int> consumerDevices, int year, int month)
+        {
+            return Helpers.HttpRequest.SendPostRequestForUsageDTO($"http://{host}:{port}/api/DevicesDatas/getMonthPoweUsageOfDevices/{year}/{month}/", consumerDevices);
         }
 
     }

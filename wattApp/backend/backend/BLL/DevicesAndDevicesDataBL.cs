@@ -268,25 +268,19 @@ namespace backend.BLL
 
         public List<double> GetMonthlyPowerUsageAndProduceOfUser(int userid, int year, int month)
         {
-            List<Devices> devices = _contextDAL.GetDevicesForUser(userid);
+            List<Devices> consumerDevices = _contextDAL.GetUserDevicesByType(userid, "Consumer");
+            List<Devices> producerDevices = _contextDAL.GetUserDevicesByType(userid, "Producer");
+            List<Devices> stockDevices = _contextDAL.GetUserDevicesByType(userid, "Stock");
+
             List<double> result = new List<double>();
-            double consumed = 0;
-            double produced = 0;
-            double stocked = 0;
-            double sum;
-            foreach (var device in devices)
-            {
-                sum = Calculator.CalculateTotalPowerUsage(_contextDataDAL.GetMonthDataForDevice(device.Id, year, month));
-                if (device.DeviceType.ToLower() == "consumer")
-                    consumed += sum;
-                else if (device.DeviceType.ToLower() == "producer")
-                    produced += sum;
-                else
-                    stocked += sum;
-            }
-            result.Add(consumed);
-            result.Add(produced);
-            result.Add(stocked);
+
+            List<UsageDTO> consumerUsage = _contextDataDAL.GetMonthPowerUsageOfDevices(consumerDevices.Select(d => d.Id).ToList(), year, month);
+            List<UsageDTO> producerUsage = _contextDataDAL.GetMonthPowerUsageOfDevices(producerDevices.Select(d => d.Id).ToList(), year, month);
+            List<UsageDTO> stockUsage = _contextDataDAL.GetMonthPowerUsageOfDevices(stockDevices.Select(d => d.Id).ToList(), year, month);
+
+            result.Add(Calculator.CalculateTotalPowerUsageDTO(consumerUsage));
+            result.Add(Calculator.CalculateTotalPowerUsageDTO(producerUsage));
+            result.Add(Calculator.CalculateTotalPowerUsageDTO(stockUsage));
 
             return result;
         }
