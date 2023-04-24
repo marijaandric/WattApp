@@ -13,14 +13,10 @@ namespace backend.BLL
     public class DevicesBL : IDevicesBL
     {
         private readonly IDevicesDAL _contextDAL;
-        private readonly IDevicesDataDAL _contextDataDAL;
-        private readonly IUserDAL _contextUserDAL;
 
-        public DevicesBL(IDevicesDAL context, IDevicesDataDAL contextDataDAL, IUserDAL contextUserDAL)
+        public DevicesBL(IDevicesDAL context)
         {
-            _contextDataDAL = contextDataDAL;
             _contextDAL = context;
-            _contextUserDAL = contextUserDAL;
         }
 
         public List<Devices> GetDevices()
