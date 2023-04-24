@@ -107,9 +107,5 @@ export class UserCardComponent implements OnInit {
       this.onImageChange(null);
     });
   }
-
-  setDefaultImage() {
-    this.userImageUrlEndpoint = '/assets/images/application-images/empty-image.png';
-  }
   
 }

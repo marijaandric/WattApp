@@ -1,10 +1,9 @@
 import { Component, OnChanges, OnInit, SimpleChanges, ViewChild, ViewEncapsulation  } from '@angular/core';
 import { UserDTO } from '../../../../dtos/UserDTO';
 import { UserService } from '../../../../services/user/user.service';
-import axios from 'axios';
 import { DeviceService } from 'src/app/services/device/device.service';
-import { Table } from 'primeng/table';
-import { LazyLoadEvent } from 'primeng/api';
+import { url } from 'src/app/app.module';
+
 interface City {
   name: string,
   code: string
@@ -17,6 +16,7 @@ interface City {
   encapsulation: ViewEncapsulation.None
 })
 export class UsersComponent implements OnInit{
+  baseUrl = url + "/api/Images/user/";
   users: UserDTO[] = [];
   type: City[];
   selectedType!: City;

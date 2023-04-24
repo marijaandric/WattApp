@@ -1,10 +1,9 @@
 import { Component, OnChanges, OnInit, SimpleChanges, ViewChild, ViewEncapsulation  } from '@angular/core';
 import { UserDTO } from '../../../../dtos/UserDTO';
 import { UserService } from '../../../../services/user/user.service';
-import axios from 'axios';
 import { DsonewsService } from 'src/app/services/dsonews/dsonews.service';
-import { DataViewModule, DataViewLayoutOptions } from 'primeng/dataview';
 import { Table } from 'primeng/table';
+import { url } from 'src/app/app.module';
 
 @Component({
   selector: 'app-users-operators',
@@ -13,6 +12,7 @@ import { Table } from 'primeng/table';
   encapsulation: ViewEncapsulation.None
 })
 export class UsersOperatorsComponent implements OnInit {
+  baseUrl = url + "/api/Images/user/";
   users: UserDTO[] = [];
   @ViewChild('dtUsers') dataTable!: Table;
   totalRecords:number = 0;
