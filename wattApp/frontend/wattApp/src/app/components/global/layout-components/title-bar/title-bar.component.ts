@@ -64,6 +64,12 @@ export class TitleBarComponent implements OnInit{
   selectedPriority:string = 'None';
   baseUrl = url + "/api/Images/user/";
   userImageUrlEndpoint!: string;
+
+  isMenuOpen = false;
+
+  toggleMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
+  }
  
   
   constructor(private router: Router,
@@ -76,7 +82,8 @@ export class TitleBarComponent implements OnInit{
               private roomTypesService: RoomTypesService, 
               private roleTypesService: RoleTypesService,
               private modelTypesService: ModelTypesService,
-              private dsonewsService : DsonewsService) {
+              private dsonewsService : DsonewsService,
+              private auth:AuthService) {
   }
 
   ngOnInit(): void {
@@ -168,7 +175,10 @@ export class TitleBarComponent implements OnInit{
       created: ['', Validators.required],
     })
   }
-
+  logout()
+  {
+    this.auth.logout();
+  }
   // prikaz dijaloga
    showDialog(){
     this.display = true;
@@ -347,4 +357,5 @@ export class TitleBarComponent implements OnInit{
   setDefaultImage() {
     this.userImageUrlEndpoint = '/assets/images/application-images/empty-image.png';
   }
+  
 }

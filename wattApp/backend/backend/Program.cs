@@ -35,6 +35,9 @@ builder.Services.AddScoped<IDevicesDAL, DevicesDAL>();
 builder.Services.AddScoped<IDevicesDataBL, DevicesDataBL>();
 builder.Services.AddScoped<IDevicesDataDAL, DevicesDataDAL>();
 
+//DevicesAndDevicesData
+builder.Services.AddScoped<IDevicesAndDevicesData, DevicesAndDevicesDataBL>();
+
 builder.Services.AddCors( option =>
 {
     option.AddPolicy("MyPolicy", builder =>
