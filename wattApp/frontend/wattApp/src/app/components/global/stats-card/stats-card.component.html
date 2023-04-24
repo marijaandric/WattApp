@@ -1,5 +1,24 @@
-<div class="card" [ngClass]="{'bg-blue-color' : isBgBlue, 'bg-purple-color' : isBgPurple, 'bg-pink-color' : isBgPink, 'bg-orange-color' : isBgOrange}">
-    <div class="item_date-box" >
-        {{Title}} 
+<div class="card">
+    <div style="width:100%; height:fit-content; position:relative;">
+        <div class="icon">
+            <span><i class="fa-solid fa-arrow-trend-up"></i></span>
+        </div>
+
+        <div class="subtitle-card">
+            <span>Consumption today</span>
+        </div>
+    </div>
+    <div style="width:100%; height:fit-content; position:relative;">
+        <div class="main-stat-card">
+            <span>4.4</span> 
+        </div>
+
+        <div class="kwh-card">  
+            <span>kWh</span>
+        </div>
+    </div>
+
+    <div class="subtitle-2">  
+        <span>6.2% more than yesterday</span>
     </div>
 </div>

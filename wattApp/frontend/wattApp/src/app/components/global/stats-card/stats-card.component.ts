@@ -3,7 +3,7 @@ import { Component, HostBinding, Input} from '@angular/core';
 @Component({
   selector: 'app-stats-card',
   templateUrl: './stats-card.component.html',
-  styleUrls: ['./stats-card.component.css']
+  styleUrls: ['./stats-card.component.scss']
 })
 export class StatsCardComponent {
   @Input() Title : String ="9,051 din/kWh";
