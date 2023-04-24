@@ -16,12 +16,15 @@ namespace backend.Controllers
     public class DevicesController : ControllerBase
     {
         private readonly IDevicesBL _context;
+        private readonly IDevicesAndDevicesData _contextDevicesAndData;
 
-        public DevicesController(IDevicesBL context)
+        public DevicesController(IDevicesBL context, IDevicesAndDevicesData contextDevicesAndData)
         {
             _context = context;
+            _contextDevicesAndData = contextDevicesAndData;
         }
 
+        
         // GET: api/Devices
         [HttpGet]
         public List<Devices> GetDevices()
@@ -168,31 +171,14 @@ namespace backend.Controllers
             return Ok();
         }
 
-        [HttpGet("{userId}/{year}/{month}/{day}/{type}/{size}")]
-        public IActionResult GetExrtemeDevice(int userId, int year, int month, int day, string type, string size)
+        
+
+
+        [HttpGet("getUserDevicesVisibleForDSO/{userid}")]
+        public IActionResult GetUserDevicesVisibleForDSO(int userid)
         {
-            var result = _context.GetExtremeDevice(userId, year, month, day, type, size);
-            return Ok(
-                    new
-                    {
-                        DeviceId = result.DeviceID,
-                        DeviceName = result.DeviceName,
-                        AveragePowerUsage = result.Usage
-                    }); ;
-        }
-
-        [HttpGet("{userId}/{year}/{month}/{type}")]
-        public double GetMonthlyStatistics(int userId, int year, int month, string type)
-        {
-            return _context.GetMonthlyStatistics(userId, year, month, type);
-
-        }
-
-        [HttpGet("tableContent/{userId}/{year}/{month}/{day}/{time}/{type}")]
-        public List<BigTableContent> GetTableContent(int userId, int year, int month, int day, int time, string type)
-        {
-            return _context.GetTableContent(userId, year, month, day, time, type);
-
+            List<Devices> result = _context.GetUserDevicesVisibleForDSO(userid);
+            return Ok(result);
         }
 
         [HttpGet("chart/{userId}/{type}/{limit}")]
@@ -210,21 +196,55 @@ namespace backend.Controllers
 
         }
 
-        [HttpGet("currentMonthAllUsersDevicesUsage/{deviceType}")]
-        public IActionResult currentMonthAllUsersDevicesUsage(string deviceType)
+        [HttpGet("price")]
+        public double getElectricalPowerPrice()
         {
-            double result = _context.currentMonthAllUsersDevicesUsage(deviceType);
-            return Ok(new
-            {
-                Usage = result
-            });
+            Random random = new Random();
+            double randomNumber = random.NextDouble();
+            double result = 20 + (randomNumber % 5);
+            return Math.Round(result, 2);
+        }
+
+
+
+        //DEVICES AND DATAS
+
+
+
+        [HttpGet("{userId}/{year}/{month}/{day}/{type}/{size}")]
+        public IActionResult GetExrtemeDevice(int userId, int year, int month, int day, string type, string size)
+        {
+            var result = _contextDevicesAndData.GetExtremeDevice(userId, year, month, day, type, size);
+            return Ok(
+                    new
+                    {
+                        DeviceId = result.DeviceID,
+                        DeviceName = result.DeviceName,
+                        AveragePowerUsage = result.Usage
+                    }); ;
+        }
+
+        [HttpGet("{userId}/{year}/{month}/{type}")]
+        public double GetMonthlyStatistics(int userId, int year, int month, string type)
+        {
+            return _contextDevicesAndData.GetMonthlyStatistics(userId, year, month, type);
+
+        }
+
+        
+
+        [HttpGet("tableContent/{userId}/{year}/{month}/{day}/{time}/{type}")]
+        public List<BigTableContent> GetTableContent(int userId, int year, int month, int day, int time, string type)
+        {
+            return _contextDevicesAndData.GetTableContent(userId, year, month, day, time, type);
+
         }
 
         [HttpGet("getTotalUsageByArea/{area}/{type}/{timeType}")]
         public IActionResult getTotalUsageByArea(string area, string type, string timeType)
         {
 
-            var result = _context.getTotalUsageByArea(area, type, timeType);
+            var result = _contextDevicesAndData.getTotalUsageByArea(area, type, timeType);
 
             return Ok(
                 new
@@ -239,7 +259,7 @@ namespace backend.Controllers
         public IActionResult getExtremeUsageForAreas(string type, string timeType, string minmax)
         {
 
-            var result = _context.getExtremeUsageForAreas(type, timeType, minmax);
+            var result = _contextDevicesAndData.getExtremeUsageForAreas(type, timeType, minmax);
 
             return Ok(
                 new
@@ -252,28 +272,28 @@ namespace backend.Controllers
         [HttpGet("getHistoryAndForecastByDayForDevice/{deviceid}")]
         public IActionResult getHistoryAndForecastByDayForDevice(int deviceid)
         {
-            var result = _context.GetWeekByDayHistoryAndFutureForDevice(deviceid);
+            var result = _contextDevicesAndData.GetWeekByDayHistoryAndFutureForDevice(deviceid);
             return Ok(result);
         }
 
         [HttpGet("getHistoryAndForecastByDayForAllDevices")]
         public IActionResult getHistoryAndForecastByDayForAllDevices()
         {
-            var result = _context.GetWeekByDayHistoryAndFutureForAllUserDevicesOrAllDevices(-1);
+            var result = _contextDevicesAndData.GetWeekByDayHistoryAndFutureForAllUserDevicesOrAllDevices(-1);
             return Ok(result);
         }
 
         [HttpGet("getHistoryAndForecastByDayForAllUserDevices/{userid}")]
         public IActionResult getHistoryAndForecastByDayForAllUserDevices(int userid)
         {
-            var result = _context.GetWeekByDayHistoryAndFutureForAllUserDevicesOrAllDevices(userid);
+            var result = _contextDevicesAndData.GetWeekByDayHistoryAndFutureForAllUserDevicesOrAllDevices(userid);
             return Ok(result);
         }
 
         [HttpGet("getMonthlyPowerUsageAndProduceOfUser/{userid}/{year}/{month}")]
         public IActionResult GetMonthlyPowerUsageAndProduceOfUser(int userid, int year, int month)
         {
-            List<double> result = _context.GetMonthlyPowerUsageAndProduceOfUser(userid, year, month);
+            List<double> result = _contextDevicesAndData.GetMonthlyPowerUsageAndProduceOfUser(userid, year, month);
             return Ok(
                 new
                 {
@@ -283,21 +303,15 @@ namespace backend.Controllers
                 });
         }
 
-        [HttpGet("getUserDevicesVisibleForDSO/{userid}")]
-        public IActionResult GetUserDevicesVisibleForDSO(int userid)
+        [HttpGet("currentMonthAllUsersDevicesUsage/{deviceType}")]
+        public IActionResult currentMonthAllUsersDevicesUsage(string deviceType)
         {
-            List<Devices> result = _context.GetUserDevicesVisibleForDSO(userid);
-            return Ok(result);
+            double result = _contextDevicesAndData.currentMonthAllUsersDevicesUsage(deviceType);
+            return Ok(new
+            {
+                Usage = result
+            });
         }
 
-
-        [HttpGet("price")]
-        public double getElectricalPowerPrice()
-        {
-            Random random = new Random();
-            double randomNumber = random.NextDouble();
-            double result = 20 + (randomNumber % 5);
-            return Math.Round(result, 2);
-        }
     }
 }
