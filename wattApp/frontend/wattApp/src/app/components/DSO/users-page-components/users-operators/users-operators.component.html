@@ -91,7 +91,7 @@
   
                 <ng-template pTemplate="body" let-user>
                   <tr routerLink="/userDSO/{{user.id}}">
-                    <td>{{user.firstName}} {{user.lastName}}</td>
+                    <td class="flexRow"><img src="{{ baseUrl + user.id }}" class="rounded-circle" width="25px" height="25px" style="margin-right: 8px;"> {{user.firstName}} {{user.lastName}}</td>
                     <td>{{user.address}}</td>
                     <td>{{user.email}}</td>
                     <td>{{user.role}}</td>

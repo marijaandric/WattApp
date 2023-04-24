@@ -1,14 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { StadardTemplateComponent } from 'src/app/components/global/layout-components/standard-template/stadard-template.component';
-import { HttpClient } from '@angular/common/http';
-import { DeviceDTO } from 'src/app/dtos/DeviceDTO';
 import { DeviceService } from 'src/app/services/device/device.service';
 import { DsonewsService } from 'src/app/services/dsonews/dsonews.service';
 
 import { ActivatedRoute } from '@angular/router';
-import { CarouselModule } from 'primeng/carousel';
 import { UserService } from 'src/app/services/user/user.service';
-import { UserDTO } from 'src/app/dtos/UserDTO';
+
 
 interface HiF{
   history: any,

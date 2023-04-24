@@ -1,11 +1,9 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/services/auth/auth.service';
 import { FileUploadService } from 'src/app/services/file-upload/file-upload.service';
 import { UserService } from 'src/app/services/user.service';
 import { url } from 'src/app/app.module';
-import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-user-card',

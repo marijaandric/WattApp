@@ -75,13 +75,27 @@ namespace backend.Controllers
             User user = await _context.Users.FindAsync(id);
             if (user == null || user.ImageId == null)
             {
-                return NoContent();
+                string defaultImageFilePath = Path.Combine(AppContext.BaseDirectory, "Resources", "Images", "empty-image.png");
+                if (!System.IO.File.Exists(defaultImageFilePath))
+                {
+                    return NoContent();
+                }
+                var fileContent = System.IO.File.ReadAllBytes(defaultImageFilePath);
+                string contentType = GetContentType(defaultImageFilePath);
+                return File(fileContent, contentType);
             }
 
             Images image = await _context.Images.FindAsync(user.ImageId);
             if (image == null)
             {
-                return NoContent();
+                string defaultImageFilePath = Path.Combine(AppContext.BaseDirectory, "Resources", "Images", "empty-image.png");
+                if (!System.IO.File.Exists(defaultImageFilePath))
+                {
+                    return NoContent();
+                }
+                var fileContent = System.IO.File.ReadAllBytes(defaultImageFilePath);
+                string contentType = GetContentType(defaultImageFilePath);
+                return File(fileContent, contentType);
             }
 
             return File(image.Data, image.ContentType);
@@ -111,6 +125,29 @@ namespace backend.Controllers
             await _context.SaveChangesAsync();
 
             return NoContent();
+        }
+
+        private string GetContentType(string filePath)
+        {
+            string extension = Path.GetExtension(filePath);
+            string contentType;
+            switch (extension.ToLowerInvariant())
+            {
+                case ".jpg":
+                case ".jpeg":
+                    contentType = "image/jpeg";
+                    break;
+                case ".png":
+                    contentType = "image/png";
+                    break;
+                case ".gif":
+                    contentType = "image/gif";
+                    break;
+                default:
+                    contentType = "application/octet-stream";
+                    break;
+            }
+            return contentType;
         }
     }
 

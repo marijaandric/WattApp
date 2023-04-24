@@ -353,9 +353,5 @@ export class TitleBarComponent implements OnInit{
     const userRole = this.userService.getUserRoleFromToken(token);
     return userRole === 'operator' || userRole === 'admin' || userRole === 'superadmin';
   }
-
-  setDefaultImage() {
-    this.userImageUrlEndpoint = '/assets/images/application-images/empty-image.png';
-  }
   
 }
