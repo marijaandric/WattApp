@@ -231,8 +231,6 @@ namespace backend.Controllers
 
         }
 
-        
-
         [HttpGet("tableContent/{userId}/{year}/{month}/{day}/{time}/{type}")]
         public List<BigTableContent> GetTableContent(int userId, int year, int month, int day, int time, string type)
         {

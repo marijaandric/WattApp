@@ -200,7 +200,9 @@ namespace backend.BLL
         public WeekDatasDTO GetWeekByDayHistoryAndFutureForDevice(int deviceid)
         {
             DateTime now = DateTime.Now;
-            WeekDatasDTO devicesDatas = _contextDataDAL.GetWeekByDayHistoryAndFutureForDevice(deviceid, now.Year, now.Month, now.Day);
+            List<int> deviceids = new List<int>();
+            deviceids.Add(deviceid);
+            WeekDatasDTO devicesDatas = _contextDataDAL.GetWeekByDayHistoryAndFutureForDevices(deviceids, now.Year, now.Month, now.Day);
 
             return devicesDatas;
         }
@@ -208,45 +210,34 @@ namespace backend.BLL
         public WeekDatasTypesDTO GetWeekByDayHistoryAndFutureForAllUserDevicesOrAllDevices(int userid)
         {
             DateTime now = DateTime.Now;
-            List<Devices> devices;
+            List<Devices> consumerDevices;
+            List<Devices> producerDevices;
+            List<Devices> stockDevices;
             if (userid != -1)
-                devices = _contextDAL.GetDevicesForUser(userid);
+            {
+                consumerDevices = _contextDAL.GetUserDevicesByType(userid, "Consumer");
+                producerDevices = _contextDAL.GetUserDevicesByType(userid, "Producer");
+                stockDevices = _contextDAL.GetUserDevicesByType(userid, "Stock");
+            }
             else
-                devices = _contextDAL.GetDevices();
-
-            if (devices.Count == 0 || devices == null)
-                return null;
-            WeekDatasDTO weekdata = _contextDataDAL.GetWeekByDayHistoryAndFutureForDevice(devices[0].Id, now.Year, now.Month, now.Day);
-
-            List<double> totaldatasConsumer = new List<double>();
-            List<double> totaldatasProducer = new List<double>();
-            List<double> totaldatasStock = new List<double>();
-
-            for (int i = 0; i < weekdata.datas.Count; i++)
             {
-                totaldatasConsumer.Add(0.0);
-                totaldatasProducer.Add(0.0);
-                totaldatasStock.Add(0.0);
+                consumerDevices = _contextDAL.GetDevicesByType("Consumer");
+                producerDevices = _contextDAL.GetDevicesByType("Producer");
+                stockDevices = _contextDAL.GetDevicesByType("Stock");
+                Console.WriteLine("total consumer: " + consumerDevices.Count);
+                Console.WriteLine(producerDevices.Count);
+                Console.WriteLine(stockDevices.Count);
             }
+            if(userid != -1)
+                if (_contextUserDAL.userExists(userid) == false)
+                    return null;
 
-            foreach (Devices device in devices)
-            {
-                weekdata = _contextDataDAL.GetWeekByDayHistoryAndFutureForDevice(device.Id, now.Year, now.Month, now.Day);
+            WeekDatasDTO consumerData = _contextDataDAL.GetWeekByDayHistoryAndFutureForDevices(consumerDevices.Select(d => d.Id).ToList(), now.Year, now.Month, now.Day);
+            WeekDatasDTO producerData = _contextDataDAL.GetWeekByDayHistoryAndFutureForDevices(producerDevices.Select(d => d.Id).ToList(), now.Year, now.Month, now.Day);
+            WeekDatasDTO stockData = _contextDataDAL.GetWeekByDayHistoryAndFutureForDevices(stockDevices.Select(d => d.Id).ToList(), now.Year, now.Month, now.Day);
 
-                for (int j = 0; j < weekdata.datas.Count; j++)
-                {
-                    if (device.DeviceType.ToLower() == "consumer")
-                        totaldatasConsumer[j] += weekdata.datas[j];
-                    if (device.DeviceType.ToLower() == "producer")
-                        totaldatasProducer[j] += weekdata.datas[j];
-                    if (device.DeviceType.ToLower() == "stock")
-                        totaldatasStock[j] += weekdata.datas[j];
-                }
-            }
-            foreach (var pom in totaldatasProducer)
-                Console.WriteLine(pom);
-
-            return new WeekDatasTypesDTO(weekdata.dates, totaldatasConsumer, totaldatasProducer, totaldatasStock);
+            return new WeekDatasTypesDTO(consumerData.dates, consumerData.datas, producerData.datas, stockData.datas);
+            
         }
 
         public List<double> GetMonthlyPowerUsageAndProduceOfUser(int userid, int year, int month)

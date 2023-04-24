@@ -47,14 +47,17 @@ namespace backend.Helpers
         }
 
 
-        public static WeekDatasDTO SendHttpRequestForWeekDatas(string url)
+        public static WeekDatasDTO SendHttpRequestForWeekDatas(string url, List<int> ids)
         {
             using (var httpClient = new HttpClient())
             {
-                HttpResponseMessage response = httpClient.GetAsync(url).Result;
+                Console.WriteLine("U zahtevuu sam");
+                var content = new StringContent(JsonSerializer.Serialize(ids), Encoding.UTF8, "application/json");
+                HttpResponseMessage response = httpClient.PostAsync(url, content).Result;
                 response.EnsureSuccessStatusCode();
                 string responseBody = response.Content.ReadAsStringAsync().Result;
-                //Console.WriteLine(responseBody);
+                Console.WriteLine(responseBody);
+                //Console.WriteLine(JsonSerializer.Deserialize<List<UsageDTO>>(responseBody));
                 return JsonSerializer.Deserialize<WeekDatasDTO>(responseBody);
 
             }

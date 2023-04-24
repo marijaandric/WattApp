@@ -71,7 +71,7 @@ namespace backend.DAL
 
         public List<Devices> GetDevicesByType(string type)
         {
-            return _context.Devices.Where(e => e.DeviceType == type).ToList();
+            return _context.Devices.Where(e => e.DeviceType.ToLower() == type.ToLower()).ToList();
         }
 
         public List<Devices> GetDevicesForUser(int userId)

@@ -41,30 +41,13 @@ namespace backend.DAL
             return Helpers.HttpRequest.SendHttpRequest($"http://{host}:{port}/api/DevicesDatas/GetMonthDataForAllDevices/{year}/{month}");
         }
 
-        public List<DevicesData> GetWeekDataForAllDevices(int deviceid, int year, int month, int day)
+
+        public WeekDatasDTO GetWeekByDayHistoryAndFutureForDevices(List<int> devicesids, int year, int month, int day)
         {
-            return Helpers.HttpRequest.SendHttpRequest($"http://{host}:{port}/api/DevicesDatas/GetWeekDataForAllDevices/{deviceid}/{year}/{month}/{day}");
+            Console.WriteLine("u dal-u saaaaaaam");
+            return Helpers.HttpRequest.SendHttpRequestForWeekDatas($"http://{host}:{port}/api/DevicesDatas/GetWeekByDayHistoryAndFutureForDevice/{year}/{month}/{day}", devicesids);
         }
 
-        public List<DevicesData> GetWeekDataForAllDevicesInFuture(int deviceid, int year, int month, int day)
-        {
-            return Helpers.HttpRequest.SendHttpRequest($"http://{host}:{port}/api/DevicesDatas/GetWeekDataForAllDevicesInFuture/{deviceid}/{year}/{month}/{day}");
-        }
-
-        public List<DevicesData> GetWeekHistoryAndFutureForAllDevices(int deviceid, int year, int month, int day)
-        {
-            return Helpers.HttpRequest.SendHttpRequest($"http://{host}:{port}/api/DevicesDatas/GetWeekHistoryAndFutureForAllDevices/{deviceid}/{year}/{month}/{day}");
-        }
-
-        public WeekDatasDTO GetWeekByDayHistoryAndFutureForDevice(int deviceid, int year, int month, int day)
-        {
-            return Helpers.HttpRequest.SendHttpRequestForWeekDatas($"http://{host}:{port}/api/DevicesDatas/GetWeekByDayHistoryAndFutureForDevice/{deviceid}/{year}/{month}/{day}");
-        }
-
-        public WeekDatasDTO GetWeekByDayHistoryAndFutureForAllDevices(int year, int month, int day)
-        {
-            return Helpers.HttpRequest.SendHttpRequestForWeekDatas($"http://{host}:{port}/api/DevicesDatas/GetWeekByDayHistoryAndFutureForAllDevices/{year}/{month}/{day}");
-        }
 
         public List<UsageDTO> GetMonthPowerUsageOfDevices(List<int> consumerDevices, int year, int month)
         {
