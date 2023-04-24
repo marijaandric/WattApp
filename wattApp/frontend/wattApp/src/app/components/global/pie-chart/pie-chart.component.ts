@@ -123,7 +123,7 @@ export class PieChartComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.chartDetails.height = '300px';
+    this.chartDetails.height = '250px';
     this.chartTitle.text=this.chartText;
     this.chartSeries=this.Series;
   }
