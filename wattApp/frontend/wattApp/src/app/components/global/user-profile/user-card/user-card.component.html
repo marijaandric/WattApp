@@ -13,6 +13,7 @@
                         [url]="userImageUrlEndpoint" (onUpload)="onImageChange($event)"
                         accept="image/*" [auto]="true" [maxFileSize]="2000000">
                       </p-fileUpload>
+                      <button (click)="deleteImage()" class="margin-left__16px">Remove</button>
                     </div>
 
                     <!--Dialog-->
