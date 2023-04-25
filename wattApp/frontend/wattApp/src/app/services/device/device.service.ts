@@ -58,6 +58,10 @@ export class DeviceService {
     return this.http.get<any>(this.baseUrl + id);
   }
 
+  getDevicesForUserByType(userId: number, deviceType: string){
+    return this.http.get<any>(this.baseUrl + "user/" + userId + "/type/" + deviceType);
+  }
+
   AddDevice(deviceObj:any)
   {
     return this.http.post<any>(`${this.baseUrl}`,deviceObj);

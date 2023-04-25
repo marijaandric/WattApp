@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using backend.Models;
@@ -49,6 +44,14 @@ namespace backend.Controllers
             {
                 return null;
             }
+
+            return devices;
+        }
+
+        [HttpGet("user/{userId}/type/{deviceType}")]
+        public List<Devices> GetDevicesForUserByType(int userId, string deviceType)
+        {
+            var devices = _context.GetDevicesForUserByType(userId, deviceType);
 
             return devices;
         }
