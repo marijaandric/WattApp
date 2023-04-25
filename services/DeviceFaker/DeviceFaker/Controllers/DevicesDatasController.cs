@@ -82,8 +82,6 @@ namespace DeviceFaker.Controllers
         public WeekDatasDTO GetWeekByDayHistoryAndFutureForDevice([FromBody] List<int> devicesids, int year, int month, int day)
         {
             var result =  _devicesDataService.GetWeekByDayHistoryAndFutureForAllDevicesOrDevice(devicesids, year, month, day);
-            Console.WriteLine("Tu saaaam");
-            Console.Write(result);
             return result;
         }
 
@@ -91,7 +89,6 @@ namespace DeviceFaker.Controllers
         public IActionResult proba([FromBody] List<int> niz)
         {
             var result = _devicesDataService.proba(niz);
-            //Console.Write(result.Count);
             return Ok(result);
         }
 
@@ -99,7 +96,6 @@ namespace DeviceFaker.Controllers
         public IActionResult GetMonthPowerUsageOfDevices([FromBody] List<int> ids, int year, int month)
         {
             var result = _devicesDataService.GetMonthPowerUsageOfDevices(ids, year, month);
-            //Console.Write(result.Count);
             return Ok(result);
         }
 
