@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { DeviceDTO } from 'src/app/dtos/DeviceDTO';
 import { DeviceService } from 'src/app/services/device/device.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-devices-stock',
@@ -10,11 +11,18 @@ import { DeviceService } from 'src/app/services/device/device.service';
 export class DevicesStockComponent {
   stockDevices: DeviceDTO[] = [];
 
-  constructor(private deviceService: DeviceService) { }
+  constructor(private deviceService: DeviceService,
+    private userService: UserService) { }
 
   ngOnInit() {
-    this.deviceService.getDevicesByType("Stock").subscribe((result: DeviceDTO[]) => {
-      this.stockDevices = result;
-    });
+    const token = localStorage.getItem('token');
+    if(token)
+    {
+      const userId = this.userService.getUserIdFromToken(token);
+      this.deviceService.getDevicesForUserByType(userId, "Stock").subscribe((result: DeviceDTO[]) => {
+        this.stockDevices = result;
+      });
+    }
   }
+
 }

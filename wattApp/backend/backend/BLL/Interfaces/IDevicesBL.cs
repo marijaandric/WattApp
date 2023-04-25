@@ -10,6 +10,7 @@ namespace backend.BLL.Interfaces
         public List<Devices> GetDevicesByType(String type);
         public List<Devices> GetDevicesForUser(int userId);
         public List<Devices> GetUserDevicesVisibleForDSO(int userid);
+        public List<Devices> GetDevicesForUserByType(int userId, string deviceType);
         public Devices GetDeviceForUser(int userId, int deviceId);
         public Devices GetDevice(int deviceId);
         public void AddDevice(Devices device);
