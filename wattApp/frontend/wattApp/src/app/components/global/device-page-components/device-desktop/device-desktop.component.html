@@ -23,60 +23,76 @@
                   <div class="colored-text" ><h5>{{device.deviceName}}</h5></div>
               </div>
         
-              <div class="flexRow" style="margin-top:16px">
-                <span class="bold-text">ID:</span>
-                <span class="margin-left__auto">{{ device.id }}</span>
-              </div>
-        
-              <div class="flexRow" style="margin-top:10px">
-                <span class="bold-text">Model:</span>
-                <span class="margin-left__auto">{{ device.deviceModel }}</span>
-              </div>
-        
-              <div class="flexRow"style="margin-top:10px" >
-                <span class="bold-text">Type:</span>
-                <span class="margin-left__auto">{{ device.deviceType }}</span>
-              </div>
-        
-              <div class="flexRow"style="margin-top:10px">
-                <span class="bold-text">Room:</span>
-                <span class="margin-left__auto">{{ device.room }}</span>
-              </div>
-        
-              <div class="flexRow"style="margin-top:20px">
-                <span class="bold-text">Visible to operators:</span>
-                <p-inputSwitch [(ngModel)]="device.allowOperatorVisibility" (onChange)="handleVisibilitySwitchChange()" class="margin-left__auto width__fit-content"/>
-              </div>
-        
-              <div class="flexRow margin-top__8px">
-                <span class="bold-text">Managed by operators:</span>
-                <p-inputSwitch [(ngModel)]="device.allowOperatorControll" (onChange)="handleManagementSwitchChange()" class="margin-left__auto width__fit-content"/>
+              <div style="height:100% ;justify-content:center">
+                <div class="flexRow" style="margin-top:16px">
+                  <span>ID:</span>
+                  <span class="margin-left__auto text-secondary">{{ device.id }}</span>
+                </div>
+          
+                <div class="flexRow" style="margin-top:10px">
+                  <span >Model:</span>
+                  <span class="margin-left__auto text-secondary">{{ device.deviceModel }}</span>
+                </div>
+          
+                <div class="flexRow"style="margin-top:10px" >
+                  <span>Type:</span>
+                  <span class="margin-left__auto text-secondary">{{ device.deviceType }}</span>
+                </div>
+          
+                <div class="flexRow"style="margin-top:10px">
+                  <span>Room:</span>
+                  <span class="margin-left__auto text-secondary">{{ device.room }}</span>
+                </div>
+          
+                <div class="flexRow"style="margin-top:20px">
+                  <span>Visible to operators:</span>
+                  <p-inputSwitch [(ngModel)]="device.allowOperatorVisibility " (onChange)="handleVisibilitySwitchChange()" class="margin-left__auto width__fit-content"/>
+                </div>
+          
+                <div class="flexRow margin-top__8px">
+                  <span >Managed by operators:</span>
+                  <p-inputSwitch [(ngModel)]="device.allowOperatorControll" (onChange)="handleManagementSwitchChange()" class="margin-left__auto width__fit-content"/>
+                </div>
               </div>
             </div>
 
-          <div class="menage-device-div">//manage device
-          </div> 
+            <div class="stats-cards">
+        
+              <app-stats-card class="stats-card" [isBgBlue]="true" [Title]="'Minimal consumed electricity this week'" [subTitle]="'23kWh (2%)'" [value]="'34 kwh'"></app-stats-card>
+              <app-stats-card class="stats-card" [isBgPurple]="true" [Title]="'Maximum consumed electricity this week'" [subTitle]="'23kWh (2%)'" [value]="'34 kwh'"></app-stats-card>
+              <app-stats-card class="stats-card" [isBgPink]="true" [Title]="'Average consumed electricity this week'" [subTitle]="'23kWh (2%)'" [value]="'34 kwh'"></app-stats-card>
+              <app-stats-card class="stats-card" [isBgOrange]="true" [Title]="'Total consumed electricity this week'" [subTitle]="'23kWh (2%)'" [value]="'34 kwh'"></app-stats-card>
+             
+            </div>
+
         </div>
 
-        <app-history-forecast id="oneChart" class="margin-top__16px" style="width: 100%;" [array] = 'array' [array2]="array2" [array3] = 'array3'></app-history-forecast>
+        <app-history-forecast id="oneChart"  style="width: 100%;
+        background: linear-gradient(180deg, #151515 50%, #0d0d0d 100%)  !important;" [array] = 'array' [array2]="array2" [array3] = 'array3'></app-history-forecast>
             
       </div>
 
       <div class="bottom-right-card">
-        <p-dropdown  appendTo="body" optionLabel="name"  >
-        </p-dropdown>
+        <div class="display:flex;position:relative; width:100%; height:fit-content;">
+          <p-dropdown  appendTo="body" optionLabel="name"  >
+          </p-dropdown>
+          <p-dropdown  appendTo="body" optionLabel="name"  >
+          </p-dropdown>
+          <p-dropdown  appendTo="body" optionLabel="name"  >
+          </p-dropdown>
+        </div>
         <app-history-forecast-table
         style="
-        margin-top:calc(2.8%);
+        margin-top:4%;
         display: flex;
         position: relative;
         flex-direction: column;
         height: fit-content;
         border-radius: 20px;
-        background-color: #1b1b1b;
+        background: linear-gradient(180deg, #151515 50%, #0d0d0d 100%) ;
         box-shadow: 5px 5px 15px black;
         transition: ease-in-out;
-        padding:10px 20px;
+        padding:10px 20px 30px 20px;
         " [name1]="name1" [name2]="name2" [hif]="hif"></app-history-forecast-table>
       </div>
     </div>

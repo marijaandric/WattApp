@@ -25,32 +25,56 @@
 }
 .bottom-right-card {
     width:50%;
-    margin-left:1.6%;
+    margin-left:2%;
 }
 .bottom-left-top-card {
   height:fit-content;
-  margin-bottom:20px;
+  margin-bottom:4%;
+  width:100%;
+  display:flex;
+  flex-direction: row;
 }
+
 
 ::ng-deep .p-dropdown {
   position:relative;
-  margin-bottom: 20px;
-  border-radius: 30px;
+  border-radius: 20px;
   border:none;
+  font-size:16px;
+  margin-right:20px;
   background: linear-gradient(45deg, #46c5f1 10%, #5245b7 100%);
   
 }
+::ng-deep .p-dropdown.p-component {
+  width:165.953px;
+}
+
 ::ng-deep #pr_id_1_label{
-  border-radius: 30px 30px;
-  font-size: 17px;
-  padding:8px 20px;
+  font-size: 14px;
+  padding:8px 0px 8px 16px;
   border:none;
+  font-weight: bold;
+  font-family: 'Lato', sans-serif;
+}
+::ng-deep #pr_id_2_label{
+  font-size: 14px;
+  padding:8px 0px 8px 16px;
+  border:none;
+  font-weight: bold;
+  font-family: 'Lato', sans-serif;
+}
+::ng-deep #pr_id_3_label{
+  font-size: 14px;
+  padding:8px 0px 8px 16px;
+  border:none;
+  font-weight: bold;
+  font-family: 'Lato', sans-serif;
 }
 
 .menage-device-div {
-  width: 41.5%;
+  width: 35.5%;
   display:flex;
-  float:right;
+  margin-left:2%;
   position: relative;
   padding: 20px;
   border-radius: 20px;
@@ -62,14 +86,37 @@
     position: relative;
     display: flex;
     float:left;
-    width: 55%;
-    min-width: 300px;
+    width: 42.5%;
     padding: 20px;
     border-radius: 20px;
     color: white;
     background: linear-gradient(180deg, #1b1b1b 50%, #121212 100%) ;
     box-shadow: 5px 5px 15px black;
 }
+
+
+.stats-cards{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-left:4%;
+  width:67%;
+  padding: 0px 0;
+  justify-content:space-between;
+  position:relative;
+}
+
+.stats-card{
+  display:flex;
+  flex-basis: 47%;
+  box-shadow: 5px 5px 15px black;
+  min-height:150px;
+}
+
+.stats-card:nth-child(1), .stats-card:nth-child(2) {
+  margin-bottom:6%;
+}
+
 .colored-text {
   h5 {
       font-size: 24px;
@@ -96,7 +143,7 @@
 }
 
 .widget {
-  flex-basis: calc(18.7%);
+  flex-basis: calc(18.4%);
   margin-bottom: 30px;
   display: inline-block;
   position: relative;
