@@ -49,6 +49,8 @@ li :visited{
     background-color: white;
     width: 2em;
     border-radius: 20px;
+    width: 30px;
+    height: 30px;
 }
 
 a{
@@ -97,9 +99,10 @@ nav ul li a{
     font-weight: 500;
 }
 .user-info img{
-    width: 60px;
+    width: 30px;
     border-radius: 50%;
     margin-right: 15px;
+    margin-bottom: 5px;
 }
 
 .sub-menu hr{
@@ -118,6 +121,7 @@ nav ul li a{
     margin: 12px 0;
     width: 100%;
     font-size: 18px;
+    cursor: pointer;
 }
 
 .sub-menu-link i {

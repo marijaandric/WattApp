@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { LoginComponent } from './components/global/login-page-components/login/login.component';
 import { NavbarComponent } from './components/global/landing-page-componenets/navbar/navbar.component';
 import { LandingPageComponent } from './components/global/landing-page-componenets/landing-page/landing-page.component';
@@ -46,7 +46,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes,{ preloadingStrategy: PreloadAllModules })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
