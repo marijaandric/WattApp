@@ -44,7 +44,6 @@ namespace backend.DAL
 
         public WeekDatasDTO GetWeekByDayHistoryAndFutureForDevices(List<int> devicesids, int year, int month, int day)
         {
-            Console.WriteLine("u dal-u saaaaaaam");
             return Helpers.HttpRequest.SendHttpRequestForWeekDatas($"http://{host}:{port}/api/DevicesDatas/GetWeekByDayHistoryAndFutureForDevice/{year}/{month}/{day}", devicesids);
         }
 

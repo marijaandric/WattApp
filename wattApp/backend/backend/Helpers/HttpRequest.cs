@@ -40,7 +40,7 @@ namespace backend.Helpers
                 HttpResponseMessage response = httpClient.PostAsync(url, content).Result;
                 response.EnsureSuccessStatusCode();
                 string responseBody = response.Content.ReadAsStringAsync().Result;
-                Console.WriteLine(responseBody);
+                //Console.WriteLine(responseBody);
                 //Console.WriteLine(JsonSerializer.Deserialize<List<UsageDTO>>(responseBody));
                 return JsonSerializer.Deserialize<List<UsageDTO>>(responseBody);
             }
@@ -51,12 +51,11 @@ namespace backend.Helpers
         {
             using (var httpClient = new HttpClient())
             {
-                Console.WriteLine("U zahtevuu sam");
                 var content = new StringContent(JsonSerializer.Serialize(ids), Encoding.UTF8, "application/json");
                 HttpResponseMessage response = httpClient.PostAsync(url, content).Result;
                 response.EnsureSuccessStatusCode();
                 string responseBody = response.Content.ReadAsStringAsync().Result;
-                Console.WriteLine(responseBody);
+                //Console.WriteLine(responseBody);
                 //Console.WriteLine(JsonSerializer.Deserialize<List<UsageDTO>>(responseBody));
                 return JsonSerializer.Deserialize<WeekDatasDTO>(responseBody);
 

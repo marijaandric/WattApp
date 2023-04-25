@@ -85,18 +85,11 @@ namespace DeviceFaker.Controllers
             return result;
         }
 
-        [HttpPost("proba")]
-        public IActionResult proba([FromBody] List<int> niz)
-        {
-            var result = _devicesDataService.proba(niz);
-            return Ok(result);
-        }
-
         [HttpPost("getMonthPoweUsageOfDevices/{year}/{month}")]
-        public IActionResult GetMonthPowerUsageOfDevices([FromBody] List<int> ids, int year, int month)
+        public List<UsageDTO> GetMonthPowerUsageOfDevices([FromBody] List<int> ids, int year, int month)
         {
             var result = _devicesDataService.GetMonthPowerUsageOfDevices(ids, year, month);
-            return Ok(result);
+            return result;
         }
 
         [HttpPost("getDayPoweUsageOfDevices/{year}/{month}/{day}")]

@@ -224,9 +224,6 @@ namespace backend.BLL
                 consumerDevices = _contextDAL.GetDevicesByType("Consumer");
                 producerDevices = _contextDAL.GetDevicesByType("Producer");
                 stockDevices = _contextDAL.GetDevicesByType("Stock");
-                Console.WriteLine("total consumer: " + consumerDevices.Count);
-                Console.WriteLine(producerDevices.Count);
-                Console.WriteLine(stockDevices.Count);
             }
             if(userid != -1)
                 if (_contextUserDAL.userExists(userid) == false)
