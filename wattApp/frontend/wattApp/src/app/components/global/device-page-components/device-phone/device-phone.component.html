@@ -183,39 +183,57 @@
             </div>
     
             <div class="flexRow margin-top__16px">
-            <span class="bold-text">ID:</span>
-            <span class="margin-left__auto">{{ device.id }}</span>
+            <span>ID:</span>
+            <span class="margin-left__auto text-secondary">{{ device.id }}</span>
             </div>
     
             <div class="flexRow margin-top__8px">
-            <span class="bold-text">Model:</span>
-            <span class="margin-left__auto">{{ device.deviceModel }}</span>
+            <span>Model:</span>
+            <span class="margin-left__auto text-secondary">{{ device.deviceModel }}</span>
             </div>
     
             <div class="flexRow margin-top__8px">
-            <span class="bold-text">Type:</span>
-            <span class="margin-left__auto">{{ device.deviceType }}</span>
+            <span >Type:</span>
+            <span class="margin-left__auto text-secondary">{{ device.deviceType }}</span>
             </div>
     
             <div class="flexRow margin-top__8px">
             <span class="bold-text">Room:</span>
-            <span class="margin-left__auto">{{ device.room }}</span>
+            <span class="margin-left__auto text-secondary">{{ device.room }}</span>
             </div>
     
             <div class="flexRow margin-top__16px">
-            <span class="bold-text">Visible to operators:</span>
+            <span >Visible to operators:</span>
             <p-inputSwitch [(ngModel)]="device.allowOperatorVisibility" (onChange)="handleVisibilitySwitchChange()" class="margin-left__auto width__fit-content"/>
             </div>
     
             <div class="flexRow margin-top__8px">
-            <span class="bold-text">Managed by operators:</span>
+            <span >Managed by operators:</span>
             <p-inputSwitch [(ngModel)]="device.allowOperatorControll" (onChange)="handleManagementSwitchChange()" class="margin-left__auto width__fit-content"/>
             </div>
         </div>
     </div>
+
+    <div class="display:flex;position:relative; width:100%; height:fit-content;flex-direction:row;">
+        <p-dropdown  appendTo="body" optionLabel="name" style="margin-right:5%"  >
+        </p-dropdown>
+        <p-dropdown  appendTo="body" optionLabel="name" style="margin-right:5%" >
+        </p-dropdown>
+        <p-dropdown  appendTo="body" optionLabel="name"  >
+        </p-dropdown>
+    </div>
+
+    <div class="stats-cards">
+        
+        <app-stats-card class="stats-card" [isBgBlue]="true" [Title]="'Minimal consumed electricity this week'" [subTitle]="'23kWh (2%)'" [value]="'34 kwh'" [hasIcon]="false"></app-stats-card>
+        <app-stats-card class="stats-card" [isBgPurple]="true" [Title]="'Maximum consumed electricity this week'" [subTitle]="'23kWh (2%)'" [value]="'34 kwh'" [hasIcon]="false"></app-stats-card>
+        <app-stats-card class="stats-card" [isBgPink]="true" [Title]="'Average consumed electricity this week'" [subTitle]="'23kWh (2%)'" [value]="'34 kwh'" [hasIcon]="false"></app-stats-card>
+        <app-stats-card class="stats-card" [isBgOrange]="true" [Title]="'Total consumed electricity this week'" [subTitle]="'23kWh (2%)'" [value]="'34 kwh'" [hasIcon]="false"></app-stats-card>
+       
+    </div>
     
     <div class="twoCharts">
-        <p-selectButton class="flexRow width__fit-content margin-left__auto margin-bottom__16px;" style="margin-bottom:8%;" [options]="switchOptions" [(ngModel)]="switchValue" optionLabel="label" optionValue="value"></p-selectButton>
+        <p-selectButton class="flexRow width__fit-content margin-left__auto" style="margin-bottom:16px;margin-top:16px;" [options]="switchOptions" [(ngModel)]="switchValue" optionLabel="label" optionValue="value"></p-selectButton>
         <app-history-line-chart #myChart2 class="handf" *ngIf="switchValue == true" [array] = 'array4' [array2] = 'date1'></app-history-line-chart>
         <app-forecast-line-chart #myChart1 class="handf" *ngIf="switchValue == false"  [array]="array5" [array2] = 'date2'></app-forecast-line-chart>
     </div>

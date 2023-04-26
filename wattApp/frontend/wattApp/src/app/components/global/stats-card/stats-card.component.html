@@ -1,10 +1,10 @@
 <div class="card">
     <div style="width:100%; height:fit-content; position:relative;">
-        <div class="icon">
-            <span><i class="fa-solid fa-arrow-trend-up"></i></span>
+        <div [ngClass]="{'icon' : hasIcon}">
+            <span><i [ngClass]="{'fa-solid' : hasIcon, 'fa-arrow-trend-up' : hasIcon}"></i></span>
         </div>
 
-        <div class="subtitle-card">
+        <div [ngClass]="{'subtitle-card': !hasIcon}" [ngClass]="{'subtitle-card-no-icon': hasIcon}" >
             <span>{{Title}}</span>
         </div>
     </div>
