@@ -200,7 +200,8 @@ width: 78%;
     margin-right: 10px;
     margin-left: 10px;
     margin-bottom: 10px;
-    height: 180px;
+    height:fit-content;
+    min-height:  340px;
   }
 
   .widgets{
@@ -218,7 +219,7 @@ width: 78%;
     margin-bottom:30px;
   }
   .divVreme {
-    margin:20px;
+    margin:0px 0px;
   }
 
   /*.widgets::-webkit-scrollbar {
