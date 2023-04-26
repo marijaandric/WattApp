@@ -31,6 +31,11 @@ namespace backend.DAL
             return _context.Devices.FirstOrDefault(e => e.Id == deviceId);
         }
 
+        public List<Devices> GetDevicesForUserByType(int userId, string deviceType)
+        {
+            return _context.Devices.Where(d => d.UserID == userId && d.DeviceType == deviceType).ToList();
+        }
+
         public List<Devices> GetAllDevicesForUserIDs(List<int> userids)
         {
             return _context.Devices.Where(d => userids.Contains(d.UserID)).ToList();
@@ -101,6 +106,5 @@ namespace backend.DAL
             _context.SaveChangesAsync();
         }
 
-        
     }
 }

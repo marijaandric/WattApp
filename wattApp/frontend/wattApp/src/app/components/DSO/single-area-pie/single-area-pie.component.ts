@@ -78,7 +78,7 @@ export class SingleAreaPieComponent {
       endAngle: 270,
       customScale: 1,
       offsetX:-10,
-      offsetY:40,
+      offsetY:20,
     }
   }
 
@@ -128,7 +128,7 @@ export class SingleAreaPieComponent {
   constructor() { }
 
   ngOnInit(): void {
-    this.chartDetails.height = '210px';
+    this.chartDetails.height = '230px';
     this.chartTitle.text=this.chartText;
     this.chartSeries=this.Series;
   }

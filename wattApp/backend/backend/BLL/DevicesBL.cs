@@ -34,6 +34,11 @@ namespace backend.BLL
             return _contextDAL.GetDevicesForUser(userId);
         }
 
+        public List<Devices> GetDevicesForUserByType(int userId, string deviceType)
+        {
+            return _contextDAL.GetDevicesForUserByType(userId, deviceType);
+        }
+
         public List<Devices> GetUserDevicesVisibleForDSO(int userid)
         {
             return _contextDAL.GetUserDevicesVisibleForDSO(userid);

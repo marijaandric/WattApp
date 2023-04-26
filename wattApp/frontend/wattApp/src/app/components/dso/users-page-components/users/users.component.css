@@ -5,32 +5,41 @@
     color: #885ec0 !important;
   }
 .right {
-  margin-bottom: 10%;
-  width:45%;
+  width:48%;
   display: flex;
   flex-direction: column;
   position: relative;
 }
+.main-grid {
+}
 
 .p-dropdown {
   position:relative;
-  margin-bottom: 20px;
-  border-radius: 30px;
+  border-radius: 20px;
   border:none;
+  font-size:16px;
+  margin-right:20px;
+  margin-bottom:32px !important;
   background: linear-gradient(45deg, #46c5f1 10%, #5245b7 100%);
 }
 
 
 #pr_id_1_label{
-  border-radius: 30px 30px;
-  font-size: 17px;
-  padding:6px 15px;
-  border:none;
+  font-size: 14px !important;
+  padding:8px 0px 8px 16px!important;
+  border:none!important;
+  font-weight: bold!important;
+  font-family: 'Lato', sans-serif!important;
 }
 
 #pr_id_2_label{
-  border-radius: 30px 30px;
-  font-size: 17px;
-  padding:6px 15px;
-  border:none;
+  font-size: 14px!important;
+  padding:8px 0px 8px 16px!important;
+  border:none!important;
+  font-weight: bold!important;
+  font-family: 'Lato', sans-serif!important;
+}
+
+.p-dropdown.p-component {
+  width:165.953px;
 }

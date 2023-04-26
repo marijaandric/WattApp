@@ -66,6 +66,7 @@ export class TitleBarComponent implements OnInit{
   userImageUrlEndpoint!: string;
 
   isMenuOpen = false;
+  user : any;
 
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
@@ -94,6 +95,9 @@ export class TitleBarComponent implements OnInit{
       this.rola = this.userService.getUserRoleFromToken(token);
       const userId = this.userService.getUserIdFromToken(token);
       this.userImageUrlEndpoint = this.baseUrl + userId;
+      this.userService.GetUser(userId,token).subscribe(data=>{
+        this.user = data;
+      })
     }
 
     this.roleTypesService.getAllRoleTypes()
@@ -353,5 +357,6 @@ export class TitleBarComponent implements OnInit{
     const userRole = this.userService.getUserRoleFromToken(token);
     return userRole === 'operator' || userRole === 'admin' || userRole === 'superadmin';
   }
+
   
 }
