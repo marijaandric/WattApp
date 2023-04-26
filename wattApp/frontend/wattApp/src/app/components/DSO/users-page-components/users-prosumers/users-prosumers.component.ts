@@ -29,9 +29,9 @@ numberOFOperator: any;
     this.numberOFAllUsers=response.All;
     this.numberOFProsumer=response.Prosumer;
     this.numberOFOperator=response.Other;
-   console.log(this.numberOFAllUsers);
-   console.log(this.numberOFProsumer);
-   console.log(this.numberOFOperator);
+  //  console.log(this.numberOFAllUsers);
+  //  console.log(this.numberOFProsumer);
+  //  console.log(this.numberOFOperator);
   });
 
 }
