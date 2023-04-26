@@ -114,7 +114,7 @@ namespace DeviceFaker.Services
                     if (current != 0)
                     {
                         devicesdata.Add(current);
-                        dates.Add($"{month}.{day}");
+                        dates.Add($"{day}.{month}");
                         count++;
                     }
                     day--;
@@ -154,7 +154,7 @@ namespace DeviceFaker.Services
                     if (current != 0)
                     {
                         devicesdata.Add(current);
-                        dates.Add($"{month}.{day}");
+                        dates.Add($"{day}.{month}");
                         count++;
                     }
                     day++;
