@@ -46,6 +46,10 @@ namespace backend.DAL
             return _context.Devices.Where(e => e.UserID == userid && e.allowOperatorVisibility == true).ToList();
         }
 
+        public int GetNumberOfDevicesByType(string type)
+        {
+            return _context.Devices.Where(x => x.DeviceType.ToLower() == type.ToLower()).Count();
+        }
         public int GetNumberOfDevicesForUserThatDSOCanSee(int userId)
         {
             var res = _context.Devices.Where(e => e.UserID == userId && e.allowOperatorVisibility == true).ToList();

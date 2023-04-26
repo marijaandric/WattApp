@@ -78,6 +78,14 @@ namespace backend.Controllers
             return result;
         }
 
+        [HttpGet("GetNumberOfDevicesByType/{userId}")]
+        public Dictionary<string, int> GetNumberOfDevicesByType(int userId)
+        {
+            var result = _context.GetNumberOfDevicesByType(userId);
+
+            return result;
+        }
+
         [HttpGet("getNumberOfDevicesForUserThatDSOCanSee/{userId}")]
         public int GetNumberOfDevicesForUserThatDSOCanSee(int userId)
         {
