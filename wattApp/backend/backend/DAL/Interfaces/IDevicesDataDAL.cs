@@ -1,5 +1,6 @@
 ﻿using backend.Models;
 using backend.Models.DTOs;
+using Microsoft.AspNetCore.Mvc;
 
 namespace backend.DAL.Interfaces
 {
@@ -14,5 +15,9 @@ namespace backend.DAL.Interfaces
         public WeekDatasDTO GetWeekByDayHistoryAndFutureForDevices(List<int> devicesids, int year, int month, int day);
         List<UsageDTO> GetMonthPowerUsageOfDevices(List<int> consumerDevices, int year, int month);
         public List<UsageDTO> GetDayPowerUsageOfDevices(List<int> consumerDevices, int year, int month, int day);
+        public double GetDayPowerUsageSumOfDevices([FromBody] List<int> ids, int year, int month, int day);
+        public double GetWeekPowerUsageSumOfDevices([FromBody] List<int> ids, int year, int month, int day);
+        public double GetMonthPowerUsageSumOfDevices([FromBody] List<int> ids, int year, int month);
+        public double GetYearPowerUsageSumOfDevices([FromBody] List<int> ids, int year);
     }
 }
