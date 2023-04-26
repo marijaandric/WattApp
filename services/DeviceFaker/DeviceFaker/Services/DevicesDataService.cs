@@ -105,6 +105,7 @@ namespace DeviceFaker.Services
             List<string> dates = new List<string>();
             List<double> devicesdata = new List<double>();
             double current;
+            day = day - 1;
             while (count < 7)
             {
                 if (day >= 1)
@@ -181,8 +182,6 @@ namespace DeviceFaker.Services
         {
             WeekDatasDTO history = GetWeekDataByDayForAllDevicesOrDevice(devicesids, year, month, day);
             WeekDatasDTO future = GetWeekDataByDayForAllDevicesOrDeviceInFuture(devicesids, year, month, day);
-            history.dates.RemoveAt(history.dates.Count - 1);
-            history.datas.RemoveAt(history.datas.Count - 1);
             List<string> dates = history.dates;
             List<double> datas = history.datas;
 
