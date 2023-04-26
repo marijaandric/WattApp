@@ -3,6 +3,7 @@ import { UserDTO } from '../../../../dtos/UserDTO';
 import { UserService } from '../../../../services/user/user.service';
 import axios from 'axios';
 import { url } from 'src/app/app.module';
+import { APIService } from 'src/app/services/api/api.service';
 
 @Component({
   selector: 'app-users-prosumers',
@@ -14,11 +15,29 @@ import { url } from 'src/app/app.module';
 export class UsersProsumersComponent implements OnInit {
   baseUrl = url + "/api/Images/user/";
   users: UserDTO[] = [];
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private aPIService: APIService) {
 
  }
 
+numberOFAllUsers: any;
+numberOFProsumer: any;
+numberOFOperator: any;
+
+ getNumber() {
+
+  this.aPIService.getNumber().subscribe((response: any) => {
+    this.numberOFAllUsers=response.All;
+    this.numberOFProsumer=response.Prosumer;
+    this.numberOFOperator=response.Other;
+   console.log(this.numberOFAllUsers);
+   console.log(this.numberOFProsumer);
+   console.log(this.numberOFOperator);
+  });
+
+}
+
   ngOnInit() {
+    this.getNumber();
     this.userService.getAllUsers().subscribe((result: UserDTO[]) => (this.users = result));
       
   }
