@@ -88,6 +88,9 @@
     nav a div b {
         display: none;
         }
+        span{
+          display:none;
+        }
 }
 
 @media only screen and (max-width: 500px) {
@@ -96,5 +99,9 @@
       }
   nav a {
     width: 50px;
+  }
+
+  span{
+    display:none;
   }
 }
