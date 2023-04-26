@@ -14,5 +14,10 @@ export class APIService {
     return this.http.get<any>(this.baseUrl);
   }
 
+  getNumber()
+  {
+    return this.http.get<any>(this.baseUrl+"/getNumberOfUsersByType");
+  }
+
   
 }
