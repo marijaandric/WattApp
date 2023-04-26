@@ -44,13 +44,13 @@ export class AllAreasDonutComponent {
     redrawOnWindowResize:true,
     
     dropShadow: {
-      enabled: true,
+      enabled: false,
       enabledOnSeries: undefined,
       top: 0,
       left: 0,
-      blur: 3,
+      blur: 1,
       color: '#000',
-      opacity: 0.7
+      opacity: 0.9
   }
   };
 
