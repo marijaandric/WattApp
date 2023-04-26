@@ -4,7 +4,7 @@ import axios from 'axios';
 import * as L from 'leaflet';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { UserDTO } from 'src/app/dtos/UserDTO';
-
+declare var $: any;
 @Component({
   selector: 'app-map',
   templateUrl: './map.component.html',
@@ -40,20 +40,47 @@ export class MapComponent implements OnInit, OnChanges{
 
     new LegendControl().addTo(this.map);
     
-    this.mapa()
+    this.mapa();
+    const rightDiv = document.querySelector('.switch-right');
+    const switchToggle = document.querySelector('.toggle-switch')as HTMLDivElement;;
+    const switchDiv = document.querySelector('.switch-div')as HTMLDivElement;;
+    
+    rightDiv?.addEventListener('click', () => {
+      if (switchToggle) {
+        switchToggle.style.transform = 'translateX(60px)';
+        switchToggle.style.background = 'linear-gradient(45deg, #46c5f1 10%, #5245b7 100%)';
+      }
+      if(switchDiv) {
+
+        switchDiv.style.background = 'linear-gradient(180deg, #1e1e1e 50%, #121212 100%)';
+      }
+    });
+
+    const leftDiv = document.querySelector('.switch-left');
+    
+    leftDiv?.addEventListener('click', () => {
+      if (switchToggle) {
+        switchToggle.style.transform = 'translateX(0px)';
+        switchToggle.style.background = 'linear-gradient(180deg, #1e1e1e 50%, #121212 100%)';
+      }
+      if(switchDiv) {
+
+        switchDiv.style.background = 'linear-gradient(45deg, #46c5f1 10%, #5245b7 100%)';
+      }
+    });
   }
 
+  toggleLightMode(): void {
+    this.map.removeLayer(this.darkLayer);
+    this.lightLayer.addTo(this.map);
+  }
   toggleDarkMode(): void {
-    if (this.map.hasLayer(this.darkLayer)) {
-      // if the dark layer is already active, switch to light
-      this.map.removeLayer(this.darkLayer);
-      this.lightLayer.addTo(this.map);
-    } else {
-      // if the light layer is active, switch to dark
       this.map.removeLayer(this.lightLayer);
       this.darkLayer.addTo(this.map);
-    }
+    
   }
+
+  
 
   ngOnChanges(changes: SimpleChanges): void {
     if(changes['users'])
@@ -115,25 +142,23 @@ const LegendControl = L.Control.extend({
 
   onAdd: function (map: L.Map) {
     const div = L.DomUtil.create('div', 'info legend');
-
     // Add the legend HTML content here
     div.innerHTML = `
-    <div style='background:#1b1b1b; box-shadow: 5px 5px 15px black;border-radius: 20px;padding:10px'>
-      <h4>Legend</h4>
+    <div style='
+    background: #1e1e1e ;; box-shadow: 2px 2px 10px black;border-radius: 20px;padding:10px'>
+      <h5 style=font-weight:bold; font-size:15px;>Legend</h5>
       <div>
-        <span><img style='width:20px;height:auto' src='/assets/icons/images/marker-red.png'>  </span>
+        <span><img style='width:20px;height:auto;padding-top:10px;padding-bottom:10px;' src='/assets/icons/images/marker-red.png'>  </span>
         <span>A prosumer who consumes more than 200kwh per month</span>
       </div>
       <div>
-      <span><img style='width:20px;height:auto' src='/assets/icons/images/marker-pink.png'>  </span>
+      <span><img style='width:20px;height:auto;padding-bottom:10px;' src='/assets/icons/images/marker-pink.png'>  </span>
         <span>Average prosumer</span>
       </div>
       <div>
-      <span><img style='width:20px;height:auto' src='/assets/icons/images/marker-green.png'>  </span>
+      <span><img style='width:20px;height:auto;padding-bottom:10px;' src='/assets/icons/images/marker-green.png'>  </span>
       <span>A prosumer who consumes less than 100kwh per month</span>
       </div>
-      
-<button (click)="toggleDarkMode()">Light/dark mode</button>
       </div>
     `;
     return div;

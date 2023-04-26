@@ -11,33 +11,30 @@
   <app-center-bar>
   <div  class="main-grid"> 
     <app-map [users] = 'users' style="
-      height: 92vh;
-      width:48.5%; display: flex;
+      height: 79.2vh;
+      width:38%; display: flex;
       float:left;
-      flex-direction: column;
-      border-radius: 20px;
-      background-color: #1b1b1b;
-      box-shadow: 5px 5px 15px black;">
+      flex-direction: column;">
     </app-map>
 
-    <div style="display:flex;float:right; flex-direction:column; width:48.5%; height:100%">
-      <div style="display:flex;float:right; flex-direction:row; width:100%; height:100px">
-        <div style="display:flex;float:right; flex-direction:column;  width:47%; height:100%" >
+    <div style="display:flex;float:right; flex-direction:column; width:60%; height:100%">
+      <div style="display:flex;float:right; flex-direction:row; width:100%; height:fit-content">
+        <div style="display:flex;float:right; flex-direction:column;  width:48%; height:100%" >
           
   <p-dropdown [options]="type" appendTo="body" [(ngModel)]="selectedType" optionLabel="name"  >
   </p-dropdown>
         </div>
-        <div style="display:flex;float:right; flex-direction:column; margin-left:calc(6%); width:47%; height:100%" >
+        <div style="display:flex;float:right; flex-direction:column; margin-left:calc(3%); width:48%; height:100%" >
           
   <p-dropdown [options]="type" appendTo="body" [(ngModel)]="selectedType" optionLabel="name"  >
   </p-dropdown>
         </div>
       </div>
       <div style="display:flex;float:right; flex-direction:row; width:100%; height:400px">
-        <div style="display:flex;float:right; flex-direction:column;  width:47%; height:100%" >
+        <div style="display:flex;float:right; flex-direction:column;  width:48%; height:100%" >
           <app-single-area-pie></app-single-area-pie>
         </div>
-        <div style="display:flex;float:right; flex-direction:column; margin-left:calc(6%); width:47%; height:100%" >
+        <div style="display:flex;float:right; flex-direction:column; margin-left:calc(3.5%); width:49%; height:100%" >
           <app-all-areas-donut></app-all-areas-donut>
         </div>
       </div>
@@ -48,14 +45,14 @@
           [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]"
           [globalFilterFields]="['id','firstName','lastName','email','role']" [paginator]="true" 
           style="
-            margin-top:calc(6%);
+            margin-top:calc(3.5%);
             display: flex;
             position: relative;
             flex-direction: column;
             height: fit-content;
             width: 100%;
             border-radius: 20px;
-            background-color: #1b1b1b;
+            background: linear-gradient(180deg, #151515 50%, #121212 100%) ;
             box-shadow: 5px 5px 15px black;
             transition: ease-in-out;
             padding:10px 20px;
