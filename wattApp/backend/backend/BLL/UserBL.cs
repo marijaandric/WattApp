@@ -50,6 +50,16 @@ namespace backend.BAL
             return _contextDAL.deleteUser(id);
         }
 
+        public Dictionary<string, int> GetNumberOfUsersByType()
+        {
+            Dictionary<string, int> users = new Dictionary<string, int>();
+            users.Add("All", _contextDAL.GetNumberOfUsersByType("all"));
+            users.Add("Prosumer", _contextDAL.GetNumberOfUsersByType("prosumer"));
+            users.Add("Other", _contextDAL.GetNumberOfUsersByType("other"));
+
+            return users;
+        }
+
         public User getUser(int id)
         {
             return _contextDAL.getUser(id);

@@ -44,6 +44,15 @@ namespace backend.BLL
             return _contextDAL.GetUserDevicesVisibleForDSO(userid);
         }
 
+        public Dictionary<string, int> GetNumberOfDevicesByType(int userId)
+        {
+            Dictionary<string, int> devices = new Dictionary<string, int>();
+            devices.Add("Consumer", _contextDAL.GetNumberOfDevicesByType("consumer"));
+            devices.Add("Producer", _contextDAL.GetNumberOfDevicesByType("producer"));
+            devices.Add("Stock", _contextDAL.GetNumberOfDevicesByType("stock"));
+            return devices;
+        }
+
         public Devices GetDevice(int deviceId)
         {
             return _contextDAL.GetDevice(deviceId);

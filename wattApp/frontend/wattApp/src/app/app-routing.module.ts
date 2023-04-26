@@ -29,7 +29,6 @@ const routes: Routes = [
   //{ path: 'home', component: HomeComponent, canActivate:[AuthGuard] },
   { path: 'users', component: UsersProsumersComponent },
   { path: 'user', component:UserProfileComponent},
-  { path: 'prosumerhome', component: ProsumerhomeComponent },
   { path: 'contact', component:ContactComponent},
   { path: 'device/:id', component: DeviceComponent },
   { path: 'devices', component: DevicesAllComponent },

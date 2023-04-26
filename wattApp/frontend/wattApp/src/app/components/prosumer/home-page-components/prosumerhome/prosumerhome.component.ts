@@ -127,7 +127,6 @@ export class ProsumerhomeComponent implements OnInit{
     const month = currentDate.getMonth() + 1;
     const year = currentDate.getFullYear();
     const consumer = 'Consumer';
-;
 
   this.deviceService.getmonth(this.id,year,month,consumer).subscribe((response: any) => {
       this.monthPowerUsageConsumer=response.toFixed(2);

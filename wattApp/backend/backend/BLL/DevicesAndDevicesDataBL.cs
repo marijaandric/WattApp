@@ -258,7 +258,7 @@ namespace backend.BLL
 
 
 
-        public double currentMonthAllUsersDevicesUsage(string deviceType)
+        public double CurrentMonthAllUsersDevicesUsage(string deviceType)
         {
             DateTime now = DateTime.Now;
             List<Devices> devices = _contextDAL.GetDevicesByType(deviceType);
@@ -274,6 +274,34 @@ namespace backend.BLL
             }
 
             return total;
+        }
+
+
+        public Dictionary<string, double> GetPowerUsageOfDeviceForGivenTime(int deviceid, string time)
+        {
+            DateTime now = DateTime.Now;
+            Dictionary<string, double> device = new Dictionary<string, double>();
+            string deviceType = _contextDAL.GetDevice(deviceid).DeviceType;
+            double value = 0;
+            List<int> devicesid = new List<int> { deviceid };
+
+            switch(time)
+            {
+                case "day":
+                    value = _contextDataDAL.GetDayPowerUsageSumOfDevices(devicesid, now.Year, now.Month, now.Day);
+                    break;
+                case "week":
+                    value = _contextDataDAL.GetWeekPowerUsageSumOfDevices(devicesid, now.Year, now.Month, now.Day);
+                    break;
+                case "month":
+                    value = _contextDataDAL.GetMonthPowerUsageSumOfDevices(devicesid, now.Year, now.Month);
+                    break;
+                case "year":
+                    value = _contextDataDAL.GetYearPowerUsageSumOfDevices(devicesid, now.Year);
+                    break;
+            }
+            device.Add(deviceType, value);
+            return device;
         }
     }
 }

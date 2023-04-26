@@ -78,6 +78,14 @@ namespace backend.Controllers
             return result;
         }
 
+        [HttpGet("GetNumberOfDevicesByType/{userId}")]
+        public Dictionary<string, int> GetNumberOfDevicesByType(int userId)
+        {
+            var result = _context.GetNumberOfDevicesByType(userId);
+
+            return result;
+        }
+
         [HttpGet("getNumberOfDevicesForUserThatDSOCanSee/{userId}")]
         public int GetNumberOfDevicesForUserThatDSOCanSee(int userId)
         {
@@ -307,12 +315,18 @@ namespace backend.Controllers
         [HttpGet("currentMonthAllUsersDevicesUsage/{deviceType}")]
         public IActionResult currentMonthAllUsersDevicesUsage(string deviceType)
         {
-            double result = _contextDevicesAndData.currentMonthAllUsersDevicesUsage(deviceType);
+            double result = _contextDevicesAndData.CurrentMonthAllUsersDevicesUsage(deviceType);
             return Ok(new
             {
                 Usage = result
             });
         }
 
+        [HttpGet("getPowerUsageOfDeviceForGivenTime/{deviceid}/{time}")]
+        public IActionResult GetPowerUsageOfDeviceForGivenTime(int deviceid, string time)
+        {
+            var result = _contextDevicesAndData.GetPowerUsageOfDeviceForGivenTime(deviceid, time);
+            return Ok(result);
+        }
     }
 }

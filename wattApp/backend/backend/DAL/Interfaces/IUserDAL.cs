@@ -22,5 +22,6 @@ namespace backend.DAL.Interfaces
         public List<User> GetUsersByArea(string area);
         public List<User> GetUsersByType(string type);
         public List<User> GetAllUsersPagination(int page, int limit);
+        public int GetNumberOfUsersByType(string type);
     }
 }

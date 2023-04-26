@@ -2,6 +2,7 @@
 using backend.DAL.Interfaces;
 using backend.Models;
 using backend.Models.DTOs;
+using Microsoft.AspNetCore.Mvc;
 
 namespace backend.DAL
 {
@@ -58,5 +59,24 @@ namespace backend.DAL
             return Helpers.HttpRequest.SendPostRequestForUsageDTO($"http://{host}:{port}/api/DevicesDatas/getDayPoweUsageOfDevices/{year}/{month}/{day}", consumerDevices);
         }
 
+        public double GetDayPowerUsageSumOfDevices([FromBody] List<int> ids, int year, int month, int day)
+        {
+            return Helpers.HttpRequest.SendHttpRequestForDatasDoubles($"http://{host}:{port}/api/DevicesDatas/getDayPowerUsageSumOfDevices/{year}/{month}/{day}", ids);
+        }
+
+        public double GetWeekPowerUsageSumOfDevices([FromBody] List<int> ids, int year, int month, int day)
+        {
+            return Helpers.HttpRequest.SendHttpRequestForDatasDoubles($"http://{host}:{port}/api/DevicesDatas/getWeekPowerUsageSumOfDevices/{year}/{month}/{day}", ids);
+        }
+
+        public double GetMonthPowerUsageSumOfDevices([FromBody] List<int> ids, int year, int month)
+        {
+            return Helpers.HttpRequest.SendHttpRequestForDatasDoubles($"http://{host}:{port}/api/DevicesDatas/getMonthPowerUsageSumOfDevices/{year}/{month}", ids);
+        }
+
+        public double GetYearPowerUsageSumOfDevices([FromBody] List<int> ids, int year)
+        {
+            return Helpers.HttpRequest.SendHttpRequestForDatasDoubles($"http://{host}:{port}/api/DevicesDatas/getYearPowerUsageSumOfDevices/{year}", ids);
+        }
     }
 }
