@@ -321,7 +321,6 @@ namespace DeviceFaker.Services
             };
 
             var pipelineString = pipeline.ToJson();
-            Console.WriteLine(pipelineString);
 
             var result = _devicesDataCollection.Aggregate<BsonDocument>(pipeline).ToList();
             List<UsageDTO> usage = new List<UsageDTO>();
@@ -368,7 +367,6 @@ namespace DeviceFaker.Services
             };
 
             var pipelineString = pipeline.ToJson();
-            Console.WriteLine(pipelineString);
 
             var result = _devicesDataCollection.Aggregate<BsonDocument>(pipeline).ToList();
             List<UsageDTO> usage = new List<UsageDTO>();
@@ -414,7 +412,6 @@ namespace DeviceFaker.Services
             };
 
             var pipelineString = pipeline.ToJson();
-            Console.WriteLine(pipelineString);
 
             var result = _devicesDataCollection.Aggregate<BsonDocument>(pipeline).ToList();
             List<UsageDTO> usage = new List<UsageDTO>();
