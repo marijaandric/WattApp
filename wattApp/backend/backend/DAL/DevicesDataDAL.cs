@@ -7,8 +7,8 @@ namespace backend.DAL
 {
     public class DevicesDataDAL : IDevicesDataDAL
     {
-        private string host = "localhost";
-        private int port = 5137;
+        private string host = "softeng.pmf.kg.ac.rs";
+        private int port = 10013;
 
         public List<DevicesData> GetAllDataForDevice(int id)
         {

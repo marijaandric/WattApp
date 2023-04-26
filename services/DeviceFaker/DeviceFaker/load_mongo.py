@@ -2,7 +2,7 @@ import csv
 from pymongo import MongoClient
 
 # Connect to MongoDB
-client = MongoClient("mongodb://localhost:27017/")
+client = MongoClient("mongodb://softeng.pmf.kg.ac.rs:10015/")
 db = client["Devices"]
 collection = db["DevicesData"]
 

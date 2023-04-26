@@ -94,8 +94,8 @@ import { ImageModule } from 'primeng/image';
 import { GalleryComponent } from './components/global/landing-page-componenets/gallery/gallery.component';
 import { StatsCardComponent } from './components/global/stats-card/stats-card.component';
 
-export const url = 'https://localhost:7158';
-export const deviceFakerUrl = "https://localhost:7233";
+export const url = 'http://softeng.pmf.kg.ac.rs:10012';
+export const deviceFakerUrl = "http://softeng.pmf.kg.ac.rs:10013";
 
 @NgModule({
   declarations: [
