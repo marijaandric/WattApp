@@ -31,7 +31,8 @@
     </div>
 
     <div class="bottom-grid">
-      <app-history-forecast-table
+      <div class="tabela">
+      <app-history-forecast-table 
         style="
         margin-top:calc(2%);
         display: flex;
@@ -46,7 +47,7 @@
         padding:10px 20px 30px 20px;
         " [name1]="name1" [name2]="name2" [hif]="hif">
       </app-history-forecast-table>
-      
+    </div>
       <div class="bottom-right">
         <div class="map">
           <app-pie-chart [Series]="count" [chartLabels]="rooms" [chartText]="text" ></app-pie-chart>    
