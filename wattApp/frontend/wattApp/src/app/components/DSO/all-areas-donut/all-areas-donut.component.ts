@@ -10,6 +10,7 @@ import {
   ApexFill,
   ApexStroke,
   ApexTooltip,
+  ApexResponsive,
 } from 'ng-apexcharts';
 
 @Component({
@@ -41,6 +42,7 @@ export class AllAreasDonutComponent {
     width:'100%',
     redrawOnParentResize:true,
     redrawOnWindowResize:true,
+    
     dropShadow: {
       enabled: true,
       enabledOnSeries: undefined,
@@ -52,7 +54,14 @@ export class AllAreasDonutComponent {
   }
   };
 
-  
+  responsive: ApexResponsive = {
+    breakpoint: 200,
+    options: {
+      legend: {
+        position:"bottom"
+      }
+    }
+  }
 
   chartTitle: ApexTitleSubtitle = {
     text:  this.chartText,
@@ -70,7 +79,7 @@ export class AllAreasDonutComponent {
   }
 
   fill: ApexFill = {
-    colors: ['#46c5f1', '#885ec0','#eb4886', '#f5805a'],
+    colors: ['#46c5f1', '#885ec0','#eb4886'],
   }
   plotOptions: ApexPlotOptions = {
     pie :  {
@@ -78,20 +87,21 @@ export class AllAreasDonutComponent {
       endAngle: -180,
       customScale: 1,
       offsetX:-10,
-      offsetY:40,
+      offsetY:20,
     }
   }
 
   tooltip:ApexTooltip = {
     enabled:true,
     fillSeriesColor: false,
+
     style: {
       fontSize:'16px',
       fontFamily: 'Lato, sans-serif'
     },  
     marker: {
       show:true,
-      fillColors:['#46c5f1', '#885ec0','#eb4886', '#f5805a'],
+      fillColors:['#46c5f1', '#885ec0','#eb4886'],
     }
   }
   chartDataLabels: ApexDataLabels = {
@@ -110,7 +120,8 @@ export class AllAreasDonutComponent {
       colors: '#FFFFFF',
     },
     markers:{
-      fillColors:['#46c5f1', '#885ec0','#eb4886', '#f5805a']
+      fillColors:['#46c5f1', '#885ec0','#eb4886'
+    ]
     }
   };
 
@@ -122,14 +133,15 @@ export class AllAreasDonutComponent {
     dataLabels: this.chartDataLabels,
     legend: this.chartLegend,
     tooltip: this.tooltip,
-    colors: ['#46c5f1', '#885ec0','#eb4886', '#f5805a']
+    colors: ['#46c5f1', '#885ec0','#eb4886']
   };
 
   constructor() { }
 
   ngOnInit(): void {
-    this.chartDetails.height = '210px';
+    this.chartDetails.height = '230px';
     this.chartTitle.text=this.chartText;
     this.chartSeries=this.Series;
+    this.chartLegend=this.chartLegend;
   }
 }
