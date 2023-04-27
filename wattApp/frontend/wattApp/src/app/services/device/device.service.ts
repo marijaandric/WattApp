@@ -140,4 +140,14 @@ export class DeviceService {
     return this.http.get<any>(this.baseUrl+"getUserDevicesVisibleForDSO/"+id)
   }
 
+  getDeviceComparison(id:number)
+  {
+    return this.http.get<any>(this.baseUrl+"GetNumberOfDevicesByType/"+id)
+  }
+
+  getUsageToday(id: number,time: string)
+  {
+    return this.http.get<any>(this.baseUrl+ "getPowerUsageOfDeviceForGivenTime" + "/" + id+ "/" + time);
+  }
+
 }

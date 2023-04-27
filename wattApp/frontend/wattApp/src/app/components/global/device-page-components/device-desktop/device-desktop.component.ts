@@ -132,6 +132,7 @@ export class DeviceDesktopComponent implements OnInit {
           });
           
           this.nameSelected = this.device.deviceName;
+          //this.getUsageToday();
       });
 
     } else{
