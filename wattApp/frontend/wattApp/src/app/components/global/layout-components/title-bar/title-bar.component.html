@@ -28,7 +28,7 @@
       <small class="text-danger" *ngIf="signUpForm.controls['password2'].dirty && signUpForm.hasError('required','password2')">Password is required</small>
       <input formControlName="email" name="email" appendTo="body" type="text"   class="p-inputtext-lg"  placeholder="EMAIL"> 
       <small class="text-danger" *ngIf="signUpForm.controls['email'].dirty && signUpForm.hasError('required','email')">Email is required</small>
-      <p-dropdown  [options]="roles" appendTo="body" optionLabel="name" (onChange)="onRoleChange($event)"></p-dropdown>
+      <div class="dropdown-div"><p-dropdown  [options]="roles" appendTo="body" optionLabel="name" (onChange)="onRoleChange($event)"></p-dropdown></div>
       
     </div>
   
