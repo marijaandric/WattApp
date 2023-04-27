@@ -132,7 +132,10 @@ export class DeviceDesktopComponent implements OnInit {
           });
           
           this.nameSelected = this.device.deviceName;
-          //this.getUsageToday();
+          this.getUsageToday();
+          this.getUsageWeek();
+          this.getUsageMonth();
+          this.getUsageYear();
       });
 
     } else{
@@ -240,6 +243,51 @@ export class DeviceDesktopComponent implements OnInit {
         this.hif[i].date2 = this.array3[i+7];
       }
     })
+  }
+
+  UsageToday: any;
+  
+  getUsageToday() {
+    const time = 'day';
+    const id = this.device.id;
+
+    this.deviceService.getUsage(id,time).subscribe((response: any) => {
+    this.UsageToday=response?.Consumer|| response?.Stock || response?.Producer;
+     console.log(this.UsageToday);
+    });
+  }
+
+  UsageWeek: any;
+  getUsageWeek() {
+    const time = 'week';
+    const id = this.device.id;
+
+    this.deviceService.getUsage(id,time).subscribe((response: any) => {
+    this.UsageWeek=response?.Consumer|| response?.Stock || response?.Producer;
+    console.log(this.UsageWeek);
+    });
+  }
+
+  UsageMonth: any;
+  getUsageMonth() {
+    const time = 'month';
+    const id = this.device.id;
+
+    this.deviceService.getUsage(id,time).subscribe((response: any) => {
+    this.UsageMonth=response?.Consumer|| response?.Stock || response?.Producer;
+     console.log(this.UsageMonth);
+    });
+  }
+
+  UsageYear: any;
+  getUsageYear() {
+    const time = 'year';
+    const id = this.device.id;
+
+    this.deviceService.getUsage(id,time).subscribe((response: any) => {
+    this.UsageYear=response?.Consumer|| response?.Stock || response?.Producer;
+     console.log(this.UsageYear);
+    });
   }
 
 }
