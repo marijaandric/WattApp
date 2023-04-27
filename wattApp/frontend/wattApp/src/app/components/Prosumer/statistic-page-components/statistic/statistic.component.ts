@@ -108,7 +108,6 @@ export class StatisticComponent  implements OnInit {
       this.id = this.userService.getUserIdFromToken(this.token);
       userService.GetUser(this.id,this.token).subscribe((data) => {
         this.user = data;
-        this.ngOnInit();
       });
     }
   }
@@ -183,10 +182,19 @@ export class StatisticComponent  implements OnInit {
       });
   }
 
+  numbersComparison: number[] = [];
+  getDeviceComparison(){
+    this.deviceService.getDeviceComparison(this.id).subscribe(data => {
+    this.numbersComparison.push(data.Consumer, data.Producer, data.Stock);
+    //console.log(this.numbersComparison);
+    });
+  }
+
   
  ngOnInit(): void {
    this.getDevicePerRoom();
    this.getHistoryAndForecastByDayForAllUserDevices();
+   this.getDeviceComparison();
   }
 
   dropdownChange()

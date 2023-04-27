@@ -137,7 +137,7 @@ export class MapComponent implements OnInit, OnChanges{
 }
 const LegendControl = L.Control.extend({
   options: {
-    position: 'topright'
+    position: 'bottomleft'
   },
 
   onAdd: function (map: L.Map) {

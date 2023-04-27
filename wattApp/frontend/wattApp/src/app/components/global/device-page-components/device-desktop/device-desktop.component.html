@@ -2,15 +2,15 @@
   <div class="main-card">
     <div class="top-card">
       <div class="widgets">       
-        <app-widget [subTitle]="'Consumption Today'" [Title]="' RSD kW/h'" [isBlue]="true" [isBgBlue]="true" class="widget">
+        <app-widget [subTitle]="'Consumption Today'" [Title]="Today +' kW/h'" [isBlue]="true" [isBgBlue]="true" class="widget">
         </app-widget>
-        <app-widget [subTitle]="'Consumption this week'" [Title]="' kW/h'" [isYellow]="true" [isBgYellow]="true" class="widget">
+        <app-widget [subTitle]="'Consumption this week'" [Title]="Week+' kW/h'" [isYellow]="true" [isBgYellow]="true" class="widget">
         </app-widget>
-        <app-widget [subTitle]="'Consumption this month'" [Title]="' kW/h'" [isPink]="true" [isBgPink]="true" class="widget">
+        <app-widget [subTitle]="'Consumption this month'" [Title]="Month+' kW/h'" [isPink]="true" [isBgPink]="true" class="widget">
         </app-widget>
-        <app-widget  [subTitle]="'Consumption this year'" [Title]="' kW/h'" [isOrange]="true" [isBgOrange]="true" class="widget">
+        <app-widget  [subTitle]="'Consumption this year'" [Title]="Year+' kW/h'" [isOrange]="true" [isBgOrange]="true" class="widget">
         </app-widget>
-        <app-widget  [subTitle]="'Consumption all time'" [Title]="' kW/h'" [isBlue]="true" [isBgBlue]="true" class="widget">
+        <app-widget  [subTitle]="'Consumption all time'" [Title]="Year+' kW/h'" [isBlue]="true" [isBgBlue]="true" class="widget">
         </app-widget>
       </div>
     </div>  

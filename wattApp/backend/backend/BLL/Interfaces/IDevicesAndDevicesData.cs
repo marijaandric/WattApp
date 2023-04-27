@@ -12,6 +12,7 @@ namespace backend.BLL.Interfaces
         public WeekDatasDTO GetWeekByDayHistoryAndFutureForDevice(int deviceid);
         public WeekDatasTypesDTO GetWeekByDayHistoryAndFutureForAllUserDevicesOrAllDevices(int userid);
         public List<double> GetMonthlyPowerUsageAndProduceOfUser(int userid, int year, int month);
-        public double currentMonthAllUsersDevicesUsage(string deviceType);
+        public double CurrentMonthAllUsersDevicesUsage(string deviceType);
+        public Dictionary<string, double> GetPowerUsageOfDeviceForGivenTime(int deviceid, string time);
     }
 }

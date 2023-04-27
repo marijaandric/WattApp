@@ -315,12 +315,18 @@ namespace backend.Controllers
         [HttpGet("currentMonthAllUsersDevicesUsage/{deviceType}")]
         public IActionResult currentMonthAllUsersDevicesUsage(string deviceType)
         {
-            double result = _contextDevicesAndData.currentMonthAllUsersDevicesUsage(deviceType);
+            double result = _contextDevicesAndData.CurrentMonthAllUsersDevicesUsage(deviceType);
             return Ok(new
             {
                 Usage = result
             });
         }
 
+        [HttpGet("getPowerUsageOfDeviceForGivenTime/{deviceid}/{time}")]
+        public IActionResult GetPowerUsageOfDeviceForGivenTime(int deviceid, string time)
+        {
+            var result = _contextDevicesAndData.GetPowerUsageOfDeviceForGivenTime(deviceid, time);
+            return Ok(result);
+        }
     }
 }

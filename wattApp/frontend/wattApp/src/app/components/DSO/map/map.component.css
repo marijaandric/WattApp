@@ -22,11 +22,11 @@ button:hover{
       width:fit-content;
       background: linear-gradient(45deg, #46c5f1 10%, #5245b7 100%);
       font-weight: bold;
-      border-radius: 20px;
+      border-radius: 30px;
       box-shadow:2px 2px 15px black;
       display:flex;
       width:130px;
-      height:40px;
+      height:45px;
       flex-direction: row;
       text-align: center;
       align-items: center;
@@ -38,7 +38,7 @@ button:hover{
 .switch-left {
       background-color: transparent;
       width:46%;
-      font-size:14px;
+      font-size:15px;
       cursor: pointer;
       position: relative;
       padding-left: 5px;
@@ -47,7 +47,7 @@ button:hover{
 .switch-right {
       width:54%;
       background-color: transparent;
-      font-size:14px;
+      font-size:15px;
       padding-left: 5px;
       cursor: pointer;
       position: relative;
@@ -61,7 +61,7 @@ button:hover{
       width:60px;
       float:left;
       margin-left:5px;
-      height:30px;
+      height:32px;
       transition: 0.5s;
 }
 

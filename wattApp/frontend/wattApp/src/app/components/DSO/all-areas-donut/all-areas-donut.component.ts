@@ -44,7 +44,7 @@ export class AllAreasDonutComponent {
     redrawOnWindowResize:true,
     
     dropShadow: {
-      enabled: false,
+      enabled: true,
       enabledOnSeries: undefined,
       top: 0,
       left: 0,
