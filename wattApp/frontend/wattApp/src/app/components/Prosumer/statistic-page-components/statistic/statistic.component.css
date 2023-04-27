@@ -3,6 +3,17 @@
     flex-wrap: wrap;
     justify-content: center;
   }
+
+  
+  .dropdowns{
+    width:100%; 
+    height:fit-content; 
+    display:flex; 
+    flex-direction:row;
+    margin-bottom:32px;
+    margin-top:6px
+  }
+
   
   .chart-container {
     display: inline-block;
@@ -143,7 +154,10 @@
     display: none;
   }
 
-  
+  .tabela{
+    width: 62.5%;
+  }
+
 }
 
 @media only screen and (max-width:980px) {
@@ -181,22 +195,20 @@
   .bottom-grid{
     display: flex;
     flex-direction: column;
-    margin-left: 20px;
   }
 
   .tabela{
     width: 100%;
-    margin:0px
+    margin:0px;
   }
 
   .bottom-right{
     width: 100%;
-    margin-left: -20px;
-    margin-bottom: 20px;
   }
-
-
-
+  
+  .map{
+    padding-bottom: calc(2%);
+  }
 }
   
 @media only screen and (max-width: 980ppx) {

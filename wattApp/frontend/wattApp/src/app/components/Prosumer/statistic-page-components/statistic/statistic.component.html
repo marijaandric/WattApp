@@ -4,7 +4,7 @@
   </app-title-bar>
 
   <app-center-bar>
-    <div style="width:100%; height:fit-content; display:flex; flex-direction:row;margin-bottom:32px;margin-top:6px">
+    <div class="dropdowns">
 
       <p-dropdown [options]="type" appendTo="body" [(ngModel)]="selectedType" optionLabel="name" (onChange)="dropdownChange()" >
       </p-dropdown>
@@ -39,7 +39,6 @@
         position: relative;
         flex-direction: column;
         height: fit-content;
-        width: 62.5%;
         border-radius: 20px;
         background: linear-gradient(180deg, #151515 50%, #121212 100%) ;
         box-shadow: 5px 5px 15px black;
