@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Output, ElementRef, OnInit } from '@angular/core';
 import { APIService } from 'src/app/services/api/api.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -13,8 +14,9 @@ export class SidebarComponent implements OnInit {
   isSubMenu2Shown: boolean = false;
   hostElement: HTMLElement | undefined;
   @Output() toggleEventEmitter = new EventEmitter<boolean>();
+  rola!:string;
 
-  constructor(private elementRef: ElementRef,private api : APIService, private auth:AuthService) {
+  constructor(private elementRef: ElementRef,private api : APIService, private auth:AuthService,private userService:UserService) {
   }
 
   ngOnInit(): void {
@@ -42,4 +44,15 @@ export class SidebarComponent implements OnInit {
   {
     this.auth.logout();
   }
+
+  isAdmin(): boolean {
+    const token = this.auth.getToken();
+    if (!token) {
+      return false;
+    }
+    const userRole = this.userService.getUserRoleFromToken(token);
+    return userRole === 'operator' || userRole === 'admin' || userRole === 'superadmin';
+  }
+  
+
 }

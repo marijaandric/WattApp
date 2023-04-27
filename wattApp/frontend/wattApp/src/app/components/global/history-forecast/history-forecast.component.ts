@@ -46,6 +46,8 @@ export class HistoryForecastComponent implements OnInit,OnChanges{
   }
 
   ngOnChanges(changes: SimpleChanges) {
+    
+  console.log(this.array)
     this.series = [
       {
         name: this.naziv1,

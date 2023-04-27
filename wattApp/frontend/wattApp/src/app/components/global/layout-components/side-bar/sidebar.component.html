@@ -20,7 +20,7 @@
     </ul>
     </li>
     <li>
-    <div class="iocn-link">
+    <div class="iocn-link" *ngIf="isAdmin()">
         <a routerLink="/users">
         <i class="fa-solid fa-users"></i>
         <span class="link_name">Users</span>
@@ -56,7 +56,7 @@
 
 
 
-    <div class="iocn-link">
+    <div class="iocn-link" *ngIf="!isAdmin()">
         <a routerLink="/devices">
         <i class="fa-solid fa-computer"></i>
         <span class="link_name" >Devices</span>
@@ -102,7 +102,7 @@
     
     
     <li>
-    <a routerLink="/statistics">
+    <a routerLink="/statistics"  *ngIf="!isAdmin()">
         <i class="fa-solid fa-chart-pie"></i>
         <span class="link_name">Statistics</span>
     </a>
