@@ -78,7 +78,7 @@ namespace backend.Controllers
             return result;
         }
 
-        [HttpGet("GetNumberOfDevicesByType/{userId}")]
+        [HttpGet("getNumberOfDevicesByType/{userId}")]
         public Dictionary<string, int> GetNumberOfDevicesByType(int userId)
         {
             var result = _context.GetNumberOfDevicesByType(userId);
