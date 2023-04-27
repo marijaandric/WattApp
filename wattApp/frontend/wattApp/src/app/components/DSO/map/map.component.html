@@ -1,5 +1,13 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/images/marker-icon-2x.png" />
 
-	
+<div class="switch-div" style="margin-bottom:32px;position:relative;">
+    <div class="toggle-switch"></div>
+    <div class="switch-left" (click)="toggleLightMode()">
+        <span>Light</span>
+    </div>
+    <div class="switch-right" (click)="toggleDarkMode()">
+    <span>Dark</span>
+    </div>
+</div>
 <div leaflet id="map" #map ></div>
 <div appLegend></div>

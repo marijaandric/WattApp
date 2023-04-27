@@ -1,4 +1,4 @@
-﻿
+
 using backend.BAL;
 using backend.Context;
 using backend.DAL.Interfaces;
@@ -46,6 +46,10 @@ namespace backend.DAL
             return _context.Devices.Where(e => e.UserID == userid && e.allowOperatorVisibility == true).ToList();
         }
 
+        public int GetNumberOfDevicesByType(int userId, string type)
+        {
+            return _context.Devices.Where(x => x.Id == userId && x.DeviceType.ToLower() == type.ToLower()).Count();
+        }
         public int GetNumberOfDevicesForUserThatDSOCanSee(int userId)
         {
             var res = _context.Devices.Where(e => e.UserID == userId && e.allowOperatorVisibility == true).ToList();

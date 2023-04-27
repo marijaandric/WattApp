@@ -132,6 +132,10 @@ export class DeviceDesktopComponent implements OnInit {
           });
           
           this.nameSelected = this.device.deviceName;
+          this.getUsageToday();
+          this.getUsageWeek();
+          this.getUsageMonth();
+          this.getUsageYear();
       });
 
     } else{
@@ -239,6 +243,60 @@ export class DeviceDesktopComponent implements OnInit {
         this.hif[i].date2 = this.array3[i+7];
       }
     })
+  }
+
+  UsageToday: any;
+  Today: any;
+  
+  getUsageToday() {
+    const time = 'day';
+    const id = this.device.id;
+
+    this.deviceService.getUsage(id,time).subscribe((response: any) => {
+    this.UsageToday=response?.Consumer|| response?.Stock || response?.Producer;
+     //console.log(this.UsageToday);
+     this.Today=this.UsageToday.toFixed(2);
+    });
+  }
+
+  UsageWeek: any;
+  Week: any;
+  getUsageWeek() {
+    const time = 'week';
+    const id = this.device.id;
+
+    this.deviceService.getUsage(id,time).subscribe((response: any) => {
+    this.UsageWeek=response?.Consumer|| response?.Stock || response?.Producer;
+   // console.log(this.UsageWeek);
+    this.Week=this.UsageWeek.toFixed(2);
+    });
+  }
+
+  UsageMonth: any;
+  Month: any;
+  getUsageMonth() {
+    const time = 'month';
+    const id = this.device.id;
+
+    this.deviceService.getUsage(id,time).subscribe((response: any) => {
+    this.UsageMonth=response?.Consumer|| response?.Stock || response?.Producer;
+    // console.log(this.UsageMonth);
+     this.Month=this.UsageMonth.toFixed(2);
+    });
+  }
+
+  UsageYear: any;
+  Year: any
+  getUsageYear() {
+    const time = 'year';
+    const id = this.device.id;
+
+    this.deviceService.getUsage(id,time).subscribe((response: any) => {
+    this.UsageYear=response?.Consumer|| response?.Stock || response?.Producer;
+    this.UsageYear.toFixed(2);
+    //console.log(this.UsageYear);
+    this.Year=this.UsageYear.toFixed(2);
+    });
   }
 
 }

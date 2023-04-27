@@ -10,6 +10,7 @@ import {
   ApexFill,
   ApexStroke,
   ApexTooltip,
+  ApexTheme,
 } from 'ng-apexcharts';
 
 @Component({
@@ -36,7 +37,7 @@ export class SingleAreaPieComponent {
     type: 'pie',
     offsetY:0,
     toolbar: {
-      show: true
+      show: true,
     },
     width:'100%',
     redrawOnParentResize:true,
@@ -46,9 +47,9 @@ export class SingleAreaPieComponent {
       enabledOnSeries: undefined,
       top: 0,
       left: 0,
-      blur: 3,
+      blur: 1,
       color: '#000',
-      opacity: 0.7
+      opacity: 0.9
   }
   };
 
@@ -78,7 +79,7 @@ export class SingleAreaPieComponent {
       endAngle: 270,
       customScale: 1,
       offsetX:-10,
-      offsetY:40,
+      offsetY:20,
     }
   }
 
@@ -87,8 +88,9 @@ export class SingleAreaPieComponent {
     fillSeriesColor: false,
     style: {
       fontSize:'16px',
-      fontFamily: 'Lato, sans-serif'
+      fontFamily: 'Lato, sans-serif',
     },  
+    theme:"dark",
     marker: {
       show:false,
       fillColors:['#46c5f1', '#885ec0','#eb4886', '#f5805a'],
@@ -128,7 +130,7 @@ export class SingleAreaPieComponent {
   constructor() { }
 
   ngOnInit(): void {
-    this.chartDetails.height = '210px';
+    this.chartDetails.height = '230px';
     this.chartTitle.text=this.chartText;
     this.chartSeries=this.Series;
   }

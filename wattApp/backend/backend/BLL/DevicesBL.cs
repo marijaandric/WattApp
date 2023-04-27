@@ -1,4 +1,4 @@
-﻿using backend.BAL;
+using backend.BAL;
 using backend.BLL.Interfaces;
 using backend.DAL;
 using backend.DAL.Interfaces;
@@ -42,6 +42,15 @@ namespace backend.BLL
         public List<Devices> GetUserDevicesVisibleForDSO(int userid)
         {
             return _contextDAL.GetUserDevicesVisibleForDSO(userid);
+        }
+
+        public Dictionary<string, int> GetNumberOfDevicesByType(int userId)
+        {
+            Dictionary<string, int> devices = new Dictionary<string, int>();
+            devices.Add("Consumer", _contextDAL.GetNumberOfDevicesByType(userId, "consumer"));
+            devices.Add("Producer", _contextDAL.GetNumberOfDevicesByType(userId, "producer"));
+            devices.Add("Stock", _contextDAL.GetNumberOfDevicesByType(userId, "stock"));
+            return devices;
         }
 
         public Devices GetDevice(int deviceId)

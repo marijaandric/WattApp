@@ -1,9 +1,14 @@
-:host {
+:host{
   display: block;
   scroll-behavior: smooth;
   box-sizing: border-box;
   background-color: #1b1b1b;
   z-index: 6;
+}
+
+.pozadina{
+  background-color: #1b1b1b;
+  width: 100%;
 }
 
 /*parallax effect*/
@@ -259,4 +264,47 @@ h2{
   animation-delay: 2.4s;
 }
 
+/* Define styles for screens with a width of 600px or less */
+@media screen and (max-width: 600px) {
+  .card-group {
+    margin: 0 50px;
+  }
 
+  .card {
+    margin: 0 25px;
+  }
+
+  #text{
+    position: absolute;
+    color:#f5ffc9;
+    white-space: nowrap;
+    font-size: 7.5vw;
+    z-index: 1;
+    top:100px;
+    right:34%
+  }
+  button{
+    position: absolute;
+    color:#b8dcf1;
+    background-color: #5668ce;
+    border: #adadad;
+    white-space: nowrap;
+    font-size: 5vw;
+    z-index: 1;
+    top:140px;
+    right:38%;
+    border-radius: 20px;
+    padding: 0 30px;
+  }
+
+  .team{
+    display: none;
+  }
+}
+
+/* Define styles for screens with a width of 900px or less */
+@media screen and (max-width: 900px) {
+  .wrap {
+    width: 100%;
+  }
+}

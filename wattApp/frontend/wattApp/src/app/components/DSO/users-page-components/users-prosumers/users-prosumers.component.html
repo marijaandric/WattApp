@@ -24,7 +24,7 @@
               height: fit-content;
               width: 100%;
               border-radius: 20px;
-              background-color: #1b1b1b;
+              background: linear-gradient(180deg, #151515 50%, #121212 100%) ;
               box-shadow: 5px 5px 15px black;
               transition: ease-in-out;
               padding:10px 20px;
@@ -44,28 +44,28 @@
   
               <ng-template pTemplate="header">
                 <tr>
-                  <th pSortableColumn="firstName" style="min-width:8rem;  border:none; border-top: 4px solid #46c5f1;  border-bottom:4px solid #46c5f1;">
+                  <th pSortableColumn="firstName" style="min-width:8rem;  border:none; border-top: 2px solid #46c5f1;  border-bottom:2px solid #46c5f1;">
                     <div class="flexRow">
                         <p style=" font-size: 18px !important;">Name</p>
                         <p-sortIcon field="firstName"></p-sortIcon>
                         <p-columnFilter class="ml-auto" type="text" field="firstName" display="menu"></p-columnFilter>
                     </div>
                   </th>
-                  <th pSortableColumn="lastName" style="min-width:9rem;  border-top:4px solid #46c5f1; border-bottom:4px solid #46c5f1;">
+                  <th pSortableColumn="lastName" style="min-width:9rem;  border-top:2px solid #46c5f1; border-bottom:2px solid #46c5f1;">
                     <div class="flexRow">
                         <p style=" font-size: 18px !important;">Address</p>
                         <p-sortIcon field="lastName"></p-sortIcon>
                         <p-columnFilter class="ml-auto" type="text" field="lastName" display="menu"></p-columnFilter>
                     </div>
                   </th>
-                  <th pSortableColumn="email" style="min-width:10rem;  border-top:4px solid #46c5f1; border-bottom:4px solid #46c5f1;">
+                  <th pSortableColumn="email" style="min-width:10rem;  border-top:2px solid #46c5f1; border-bottom:2px solid #46c5f1;">
                     <div class="flexRow">
                         <p style=" font-size: 18px !important;">Email</p>
                         <p-sortIcon field="email"></p-sortIcon>
                         <p-columnFilter class="ml-auto" type="text" field="email" display="menu"></p-columnFilter>
                     </div>
                   </th>
-                  <th pSortableColumn="role" style="min-width:8rem; border-top:4px solid #46c5f1; border-bottom:4px solid #46c5f1;">
+                  <th pSortableColumn="role" style="min-width:8rem; border-top:2px solid #46c5f1; border-bottom:2px solid #46c5f1;">
                     <div class="flexRow">
                         <p style=" font-size: 18px !important;">Role</p>
                         <p-sortIcon field="role"></p-sortIcon>
@@ -77,7 +77,7 @@
   
                 <ng-template pTemplate="body" let-user>
                   <tr routerLink="/userDSO/{{user.id}}">
-                    <td class="flexRow"><img src="{{ baseUrl + user.id }}" class="rounded-circle" width="25px" height="25px" style="margin-right: 8px;"> {{user.firstName}} {{user.lastName}}</td>
+                    <td ><img src="{{ baseUrl + user.id }}" class="rounded-circle" width="25px" height="25px" style="margin-right: 8px;"> {{user.firstName}} {{user.lastName}}</td>
                     <td>{{user.address}}</td>
                     <td>{{user.email}}</td>
                     <td>{{user.role}}</td>
@@ -94,11 +94,11 @@
           </div>
         </div>      
         <div class="widgets-users">     
-          <app-widget [subTitle]="'Total number of users'" [Title]=" '1242'" [isBlue]="true" [isBgBlue]="true" class="widget-users">
+          <app-widget [subTitle]="'Total number of users'" [Title]="numberOFAllUsers" [isBlue]="true" [isBgBlue]="true" class="widget-users">
           </app-widget>
-          <app-widget [subTitle]="'Total number of prosumers'" [Title]=" ' 6'" [isYellow]="true" [isBgYellow]="true" class="widget-users">
+          <app-widget [subTitle]="'Total number of prosumers'" [Title]="numberOFProsumer" [isYellow]="true" [isBgYellow]="true" class="widget-users">
           </app-widget>
-          <app-widget [subTitle]="'Total number of operators'" [Title]="' 3'" [isPink]="true" [isBgPink]="true" class="widget-users">
+          <app-widget [subTitle]="'Total number of operators'" [Title]="numberOFOperator" [isPink]="true" [isBgPink]="true" class="widget-users">
           </app-widget>
             
           </div>

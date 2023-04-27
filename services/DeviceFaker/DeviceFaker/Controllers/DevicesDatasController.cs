@@ -99,6 +99,33 @@ namespace DeviceFaker.Controllers
             return result;
         }
 
+        [HttpPost("getDayPowerUsageSumOfDevices/{year}/{month}/{day}")]
+        public double GetDayPowerUsageSumOfDevices([FromBody] List<int> ids, int year, int month, int day)
+        {
+            double result = _devicesDataService.GetDayPowerUsageSumOfDevices(ids, year, month, day);
+            return result;
+        }
+
+        [HttpPost("getWeekPowerUsageSumOfDevices/{year}/{month}/{day}")]
+        public double GetWeekPowerUsageSumOfDevices([FromBody] List<int> ids, int year, int month, int day)
+        {
+            double result = _devicesDataService.GetWeekPowerUsageSumOfDevices(ids, year, month, day);
+            return result;
+        }
+
+        [HttpPost("getMonthPowerUsageSumOfDevices/{year}/{month}")]
+        public double GetMonthPowerUsageSumOfDevices([FromBody] List<int> ids, int year, int month)
+        {
+            double result = _devicesDataService.GetMonthPowerUsageSumOfDevices(ids, year, month);
+            return result;
+        }
+
+        [HttpPost("getYearPowerUsageSumOfDevices/{year}")]
+        public double GetYearPowerUsageSumOfDevices([FromBody] List<int> ids, int year)
+        {
+            double result = _devicesDataService.GetYearPowerUsageSumOfDevices(ids, year);
+            return result;
+        }
 
     }
 }

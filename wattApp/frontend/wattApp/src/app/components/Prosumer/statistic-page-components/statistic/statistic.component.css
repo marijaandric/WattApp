@@ -3,6 +3,17 @@
     flex-wrap: wrap;
     justify-content: center;
   }
+
+  
+  .dropdowns{
+    width:100%; 
+    height:fit-content; 
+    display:flex; 
+    flex-direction:row;
+    margin-bottom:32px;
+    margin-top:6px
+  }
+
   
   .chart-container {
     display: inline-block;
@@ -131,19 +142,25 @@
     font-family: 'Lato', sans-serif;
   }
 
-@media only screen and (min-width: 769px) {
+@media only screen and (min-width: 980px) {
   .main-grid {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
+    flex-direction: row;
   }
 
   .twoCharts{
     display: none;
   }
+
+  .tabela{
+    width: 62.5%;
+  }
+
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width:980px) {
   .chart{
     width: 100%;
     margin: 10px 0px;
@@ -164,10 +181,37 @@
   #oneChart
   {
     display: none;
+  }
+
+  .stats-cards{
+    flex-direction: row;
+    width: 100%;
+  }
+
+  .stats-card{
+    width: 100%;
+  }
+
+  .bottom-grid{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .tabela{
+    width: 100%;
+    margin:0px;
+  }
+
+  .bottom-right{
+    width: 100%;
+  }
+  
+  .map{
+    padding-bottom: calc(2%);
   }
 }
   
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 980ppx) {
   .chart{
     width: 100%;
     margin: 10px 0px;
@@ -189,6 +233,8 @@
   {
     display: none;
   }
+
+  
 }
   
   

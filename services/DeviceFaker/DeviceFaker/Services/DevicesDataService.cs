@@ -105,6 +105,7 @@ namespace DeviceFaker.Services
             List<string> dates = new List<string>();
             List<double> devicesdata = new List<double>();
             double current;
+            day = day - 1;
             while (count < 7)
             {
                 if (day >= 1)
@@ -113,7 +114,7 @@ namespace DeviceFaker.Services
                     if (current != 0)
                     {
                         devicesdata.Add(current);
-                        dates.Add($"{month}.{day}");
+                        dates.Add($"{day}.{month}");
                         count++;
                     }
                     day--;
@@ -153,7 +154,7 @@ namespace DeviceFaker.Services
                     if (current != 0)
                     {
                         devicesdata.Add(current);
-                        dates.Add($"{month}.{day}");
+                        dates.Add($"{day}.{month}");
                         count++;
                     }
                     day++;
@@ -181,8 +182,6 @@ namespace DeviceFaker.Services
         {
             WeekDatasDTO history = GetWeekDataByDayForAllDevicesOrDevice(devicesids, year, month, day);
             WeekDatasDTO future = GetWeekDataByDayForAllDevicesOrDeviceInFuture(devicesids, year, month, day);
-            history.dates.RemoveAt(history.dates.Count - 1);
-            history.datas.RemoveAt(history.datas.Count - 1);
             List<string> dates = history.dates;
             List<double> datas = history.datas;
 
@@ -235,7 +234,7 @@ namespace DeviceFaker.Services
                 usg.Year = doc["_id"]["Year"].ToInt32();
                 usg.Month = doc["_id"]["Month"].ToInt32();
                 usg.Usage = doc["totalPowerUsage"].ToDouble();
-                Console.WriteLine(usg.Usage);
+                //Console.WriteLine(usg.Usage);
                 usage.Add(usg);
             }
 
@@ -341,6 +340,98 @@ namespace DeviceFaker.Services
 
             return 0;
         }
+        public double GetMonthPowerUsageSumOfDevices(List<int> ids, int year, int month)
+        {
+            DateTime now = DateTime.Now;
 
+            var filter = Builders<DevicesData>.Filter.And(
+                Builders<DevicesData>.Filter.In(x => x.DeviceID, ids),
+                Builders<DevicesData>.Filter.Where(x => x.Year == year && x.Month == month));
+
+            if (year == now.Year && month == now.Month)
+            {
+                filter = Builders<DevicesData>.Filter.And(
+                Builders<DevicesData>.Filter.In(x => x.DeviceID, ids),
+                Builders<DevicesData>.Filter.Where(x => x.Year == year && x.Month == month && x.Day <= now.Day));
+            }
+            var matchStage = new BsonDocument("$match", filter.Render(BsonSerializer.SerializerRegistry.GetSerializer<DevicesData>(), BsonSerializer.SerializerRegistry));
+
+            var pipeline = new BsonDocument[]
+            {
+                matchStage,
+                new BsonDocument("$group", new BsonDocument
+                {
+                    { "_id", BsonNull.Value},
+                    { "totalPowerUsage", new BsonDocument("$sum", "$PowerUsage") }
+                })
+            };
+
+            var pipelineString = pipeline.ToJson();
+
+            var result = _devicesDataCollection.Aggregate<BsonDocument>(pipeline).ToList();
+            List<UsageDTO> usage = new List<UsageDTO>();
+            foreach (var doc in result)
+            {
+                UsageDTO usg = new UsageDTO();
+                usg.DeviceID = -1;
+                usg.Year = year;
+                usg.Month = month;
+                usg.Usage = doc["totalPowerUsage"].ToDouble();
+                if (usg.Usage > -1)
+                    return usg.Usage;
+
+                usage.Add(usg);
+            }
+
+            return 0;
+        }
+        public double GetYearPowerUsageSumOfDevices(List<int> ids, int year)
+        {
+            DateTime now = DateTime.Now;
+
+            var filter = Builders<DevicesData>.Filter.And(
+                Builders<DevicesData>.Filter.In(x => x.DeviceID, ids),
+                Builders<DevicesData>.Filter.Where(x => x.Year == year));
+
+            if (year == now.Year)
+            {
+                filter = Builders<DevicesData>.Filter.And(
+                Builders<DevicesData>.Filter.In(x => x.DeviceID, ids),
+                Builders<DevicesData>.Filter.Where(x => x.Year == year && x.Month <= now.Month));
+            }
+            var matchStage = new BsonDocument("$match", filter.Render(BsonSerializer.SerializerRegistry.GetSerializer<DevicesData>(), BsonSerializer.SerializerRegistry));
+
+            var pipeline = new BsonDocument[]
+            {
+                matchStage,
+                new BsonDocument("$group", new BsonDocument
+                {
+                    { "_id", BsonNull.Value},
+                    { "totalPowerUsage", new BsonDocument("$sum", "$PowerUsage") }
+                })
+            };
+
+            var pipelineString = pipeline.ToJson();
+
+            var result = _devicesDataCollection.Aggregate<BsonDocument>(pipeline).ToList();
+            List<UsageDTO> usage = new List<UsageDTO>();
+            foreach (var doc in result)
+            {
+                UsageDTO usg = new UsageDTO();
+                usg.DeviceID = -1;
+                usg.Year = year;
+                usg.Usage = doc["totalPowerUsage"].ToDouble();
+                if (usg.Usage > -1)
+                    return usg.Usage;
+
+                usage.Add(usg);
+            }
+
+            return 0;
+        }
+        public double GetWeekPowerUsageSumOfDevices(List<int> ids, int year, int month, int day)
+        {
+            return GetWeekDataByDayForAllDevicesOrDevice(ids, year, month, day).datas.Sum();
+        }
     }
 }

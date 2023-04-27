@@ -16,5 +16,6 @@ namespace backend.BAL.Interfaces
         public TokenApiDto refreshToken(TokenApiDto tokenApiDto);
         public List<User> GetUsersByType(string type);
         public List<User> GetUsersPaginationByRole(string type, int page, int limit);
+        public Dictionary<string, int> GetNumberOfUsersByType();
     }
 }

@@ -8,7 +8,15 @@
         <div style="display:flex;float:left; flex-direction:column; width:28%; height:fit-content;">
           <app-card [user] = 'user'></app-card>
 
-          <div class="carousel"> 
+          <div class="stats-cards">
+        
+            <app-stats-card class="stats-card" [isBgBlue]="true" [Title]="'Minimal consumed electricity this week'" [subTitle]="'23kWh (2%)'" [value]="'34 kwh'"></app-stats-card>
+            <app-stats-card class="stats-card" [isBgPurple]="true" [Title]="'Maximum consumed electricity this week'" [subTitle]="'23kWh (2%)'" [value]="'34 kwh'"></app-stats-card>
+            <app-stats-card class="stats-card" [isBgPink]="true" [Title]="'Average consumed electricity this week'" [subTitle]="'23kWh (2%)'" [value]="'34 kwh'"></app-stats-card>
+            <app-stats-card class="stats-card" [isBgOrange]="true" [Title]="'Total consumed electricity this week'" [subTitle]="'23kWh (2%)'" [value]="'34 kwh'"></app-stats-card>
+           
+          </div>
+          <!--<div class="carousel"> 
             <h3 style="margin:30px 0px 10px 10px;">News</h3> 
             <p-carousel [value] = "news" [circular]="false" [numScroll]="1">
               <ng-template let-news pTemplate="new">
@@ -19,7 +27,7 @@
                 </app-promotion>
               </ng-template>
             </p-carousel>
-          </div>
+          </div> -->
         </div> 
         <div style="display:flex;float:right; flex-direction:column; width:52%;padding: 0 2% 30px 2%;">
           <p-dropdown [options]="type" appendTo="body" [(ngModel)]="selectedType" optionLabel="name" (onChange)="dropdownChange()" >
