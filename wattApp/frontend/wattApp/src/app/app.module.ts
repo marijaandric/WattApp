@@ -74,7 +74,6 @@ import { SingleAreaPieComponent } from './components/DSO/single-area-pie/single-
 import { AllAreasDonutComponent } from './components/DSO/all-areas-donut/all-areas-donut.component';
 import { HistoryLineChartComponent } from './components/Prosumer/history-line-chart/history-line-chart.component';
 import { ForecastLineChartComponent } from './components/Prosumer/forecast-line-chart/forecast-line-chart.component';
-import { DevicePrototypeComponent } from './components/global/device-page-components/device-prototype/device-prototype.component';
 import { AreaChartComponent } from './components/global/area-chart/area-chart.component';
 import { UsersProsumersComponent } from './components/DSO/users-page-components/users-prosumers/users-prosumers.component';
 import { UsersOperatorsComponent } from './components/DSO/users-page-components/users-operators/users-operators.component';
@@ -83,7 +82,17 @@ import { UserDSOComponent } from './components/DSO/user/user-dso/user-dso.compon
 import { CircleComponent } from './components/DSO/user/circle/circle.component';
 import { MapForAllUsersComponent } from './components/DSO/map-for-all-users/map-for-all-users.component';
 import { TableComponent } from './components/DSO/user/table/table.component';
-
+import { HomeDSOComponent } from './components/DSO/home-dso/home-dso.component';
+import { PageNotFoundComponent } from './components/global/page-not-found/page-not-found.component';
+import { MapUserDsoComponent } from './components/DSO/users-page-components/map-user-dso/map-user-dso.component';
+import { MapForDsoUserComponent } from './components/DSO/map-for-dso-user/map-for-dso-user.component';
+import { DeviceDesktopComponent } from './components/global/device-page-components/device-desktop/device-desktop.component';
+import { DevicePhoneComponent } from './components/global/device-page-components/device-phone/device-phone.component';
+import { FaqPageComponenetsComponent } from './components/global/faq-page-componenets/faq-page-componenets.component';
+import { FileUploadModule } from 'primeng/fileupload';
+import { ImageModule } from 'primeng/image';
+import { GalleryComponent } from './components/global/landing-page-componenets/gallery/gallery.component';
+import { StatsCardComponent } from './components/global/stats-card/stats-card.component';
 
 export const url = 'https://localhost:7158';
 export const deviceFakerUrl = "https://localhost:7233";
@@ -140,7 +149,6 @@ export const deviceFakerUrl = "https://localhost:7233";
     AllAreasDonutComponent,
     HistoryLineChartComponent,
     ForecastLineChartComponent,
-    DevicePrototypeComponent,
     AreaChartComponent,
     UsersProsumersComponent,
     UsersOperatorsComponent,
@@ -148,7 +156,16 @@ export const deviceFakerUrl = "https://localhost:7233";
     UserDSOComponent,
     CircleComponent,
     MapForAllUsersComponent,
-    TableComponent
+    TableComponent,
+    HomeDSOComponent,
+    PageNotFoundComponent,
+    MapUserDsoComponent,
+    MapForDsoUserComponent,
+    DevicePhoneComponent,
+    DeviceDesktopComponent,
+    FaqPageComponenetsComponent,
+    GalleryComponent,
+    StatsCardComponent
   ],
   imports: [
     CommonModule,
@@ -173,6 +190,8 @@ export const deviceFakerUrl = "https://localhost:7233";
     ToggleButtonModule,
     InputSwitchModule,
     LeafletModule,
+    FileUploadModule,
+    ImageModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: () => localStorage.getItem('access_token'),

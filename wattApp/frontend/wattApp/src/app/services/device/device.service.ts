@@ -24,7 +24,8 @@ export class DeviceService {
           device.deviceType,
           device.isActive,
           device.allowOperatorControll,
-          device.allowOperatorVisibility
+          device.allowOperatorVisibility,
+          device.imageId
         ));
       })
     );
@@ -42,7 +43,8 @@ export class DeviceService {
           device.deviceType,
           device.isActive,
           device.allowOperatorControll,
-          device.allowOperatorVisibility
+          device.allowOperatorVisibility,
+          device.imageId
         ));
       })
     );
@@ -54,6 +56,10 @@ export class DeviceService {
 
   getDevicesByUserId(id: number){
     return this.http.get<any>(this.baseUrl + id);
+  }
+
+  getDevicesForUserByType(userId: number, deviceType: string){
+    return this.http.get<any>(this.baseUrl + "user/" + userId + "/type/" + deviceType);
   }
 
   AddDevice(deviceObj:any)
@@ -94,6 +100,11 @@ export class DeviceService {
     return this.http.put<DeviceDTO>(this.baseUrl + device.id, device);
   }
 
+  updateUserDSODevice(device:any, id:number)
+  {
+    return this.http.put<DeviceDTO>(this.baseUrl + device.id, device);
+  }
+
   getHistoryAndForecastByDayForDevice(id :number)
   {
     return this.http.get<any>(this.baseUrl+"getHistoryAndForecastByDayForDevice/"+id)
@@ -123,5 +134,22 @@ export class DeviceService {
   {
     return this.http.get<any>(this.baseUrl+"getHistoryAndForecastByDayForAllDevices")
   }
+
+  GetUserDevicesVisibleForDSO(id:number)
+  {
+    return this.http.get<any>(this.baseUrl+"getUserDevicesVisibleForDSO/"+id)
+  }
+
+  getDeviceComparison(id:number)
+  {
+    return this.http.get<any>(this.baseUrl+"GetNumberOfDevicesByType/"+id)
+  }
+
+  getUsage(id: number,time: string)
+  {
+    return this.http.get<any>(this.baseUrl+ "getPowerUsageOfDeviceForGivenTime" + "/" + id+ "/" + time);
+  }
+
+
 
 }

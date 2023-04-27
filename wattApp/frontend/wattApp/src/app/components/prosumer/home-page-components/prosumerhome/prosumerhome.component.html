@@ -5,17 +5,18 @@
   
     <app-center-bar>
     <h3 class="hello">Hello, {{user?.firstName}} {{user?.lastName}}</h3>
+    <h6 style="margin-bottom: -10px;">{{quote}}</h6>
     <div class="prviDeoPrognoza">
     <div class="prviDeo">
     <div class="widgets">
         
-      <app-widget [subTitle]="'Current price of electricity'" [Title]="dayPowerPrice + ' RSD kW/h'" [isBlue]="true" [isBgBlue]="true" class="widget">
+      <app-widget [subTitle]="'Current price of electricity'" [Title]="dayPowerPrice+ ' RSD kWh'" [isBlue]="true" [isBgBlue]="true" class="widget">
       </app-widget>
-      <app-widget [subTitle]="'Total consumed electricity this month'" [Title]="monthPowerUsageConsumer + ' kW/h'" [isYellow]="true" [isBgYellow]="true" class="widget">
+      <app-widget [subTitle]="'Total consumed electricity this month'" [Title]="monthPowerUsageConsumer + ' kWh'" [isYellow]="true" [isBgYellow]="true" class="widget">
       </app-widget>
-      <app-widget [subTitle]="'Total produced electricity this month'" [Title]="monthPowerUsageProducer + ' kW/h'" [isPink]="true" [isBgPink]="true" class="widget">
+      <app-widget [subTitle]="'Total produced electricity this month'" [Title]="monthPowerUsageProducer + ' kWh'" [isPink]="true" [isBgPink]="true" class="widget">
       </app-widget>
-      <app-widget  [subTitle]="'Total stocked  electricity this month'" [Title]="monthPowerUsageStorage+ ' kW/h'" [isOrange]="true" [isBgOrange]="true" class="widget">
+      <app-widget  [subTitle]="'Total stocked  electricity this month'" [Title]="monthPowerUsageStorage+ ' kWh'" [isOrange]="true" [isBgOrange]="true" class="widget">
       </app-widget>
         
     </div>
@@ -27,12 +28,19 @@
         <p-carousel [value] = "devices" [circular]="false" [numScroll]="1">
           <ng-template let-device pTemplate="device">
               <h6 style="text-align: center;">The biggest {{device.deviceType}}</h6>
+              <div *ngIf ="device.deviceName != 'device'">
               <app-device-card [device]="device"></app-device-card>
+              </div>
+              <div *ngIf ="device.deviceName == 'device'">
+                <div style="width:92%;height:170px;margin:auto;background-color: #1b1b1b;border-radius: 20px;box-shadow: 5px 5px 15px black;text-align: center;">
+                <div style="padding: 20px;padding-top:70px"><i class="fa fa-plus" aria-hidden="true"></i>Add {{device.deviceType}} device</div>
+                </div>
+              </div>
           </ng-template>
         </p-carousel>
         </div>
         
-        <div class="slika" style="margin-top:20px;border-radius: 20px;float:right;height: 170px; width: 48%;background-image: url('/assets/images/application-images/blue.jpg');background-size: cover;">
+        <div class="slika" style="margin-left:1.8%; margin-top:50px;border-radius: 20px;float:right;height: 170px; width: 48.2%;background-image: url('/assets/images/application-images/blue.jpg');background-size: cover;">
           
         </div>
     </div>

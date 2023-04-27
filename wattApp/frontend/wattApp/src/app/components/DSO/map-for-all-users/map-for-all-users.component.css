@@ -1,34 +1,35 @@
 #map3{
     display: flex;
-    position: relative;
+    position: absolute;
+    left:0;
+    top:0;
     flex-direction: column;
-    width:95%;
+    width:100%;
     height:100%;
     border-radius: 20px;
-    background-color: #1b1b1b;
-    box-shadow: 5px 5px 15px black;
+    background-color: white;
     transition: ease-in-out;
     z-index: 1;
-    margin-top: 20px;
-    margin-left:2.6%;
 }
 
+
+
 button {
+    position: absolute;
+    z-index: inherit;
     border: none;
-    padding: 10px 50px;
     border-radius: 32px;
     display: block;
-    margin: auto;
-    background: linear-gradient(45deg, #b855a4 40%, #f5805a 100%);;
+    background: linear-gradient(45deg, #46c5f1 10%, #5245b7 100%);
     color: #fff;
     font-weight:bolder;
     box-shadow: 5px 5px 15px black;
-    color:white;
+  font-size: 17px;
+  color:white;
 }
 
 button:hover{
-    background: none;
-    color: #885ec0;;
+    background: #1f221f;
     box-shadow: none;
   }
 

@@ -1,6 +1,8 @@
 ﻿using backend.Context;
 using backend.DAL.Interfaces;
+using backend.Models;
 using backend.Models.DTOs;
+using Microsoft.AspNetCore.Mvc;
 
 namespace backend.DAL
 {
@@ -40,30 +42,41 @@ namespace backend.DAL
             return Helpers.HttpRequest.SendHttpRequest($"http://{host}:{port}/api/DevicesDatas/GetMonthDataForAllDevices/{year}/{month}");
         }
 
-        public List<DevicesData> GetWeekDataForAllDevices(int deviceid, int year, int month, int day)
+
+        public WeekDatasDTO GetWeekByDayHistoryAndFutureForDevices(List<int> devicesids, int year, int month, int day)
         {
-            return Helpers.HttpRequest.SendHttpRequest($"http://{host}:{port}/api/DevicesDatas/GetWeekDataForAllDevices/{deviceid}/{year}/{month}/{day}");
+            return Helpers.HttpRequest.SendHttpRequestForWeekDatas($"http://{host}:{port}/api/DevicesDatas/GetWeekByDayHistoryAndFutureForDevice/{year}/{month}/{day}", devicesids);
         }
 
-        public List<DevicesData> GetWeekDataForAllDevicesInFuture(int deviceid, int year, int month, int day)
+
+        public List<UsageDTO> GetMonthPowerUsageOfDevices(List<int> consumerDevices, int year, int month)
         {
-            return Helpers.HttpRequest.SendHttpRequest($"http://{host}:{port}/api/DevicesDatas/GetWeekDataForAllDevicesInFuture/{deviceid}/{year}/{month}/{day}");
+            return Helpers.HttpRequest.SendPostRequestForUsageDTO($"http://{host}:{port}/api/DevicesDatas/getMonthPoweUsageOfDevices/{year}/{month}/", consumerDevices);
         }
 
-        public List<DevicesData> GetWeekHistoryAndFutureForAllDevices(int deviceid, int year, int month, int day)
+        public List<UsageDTO> GetDayPowerUsageOfDevices(List<int> consumerDevices, int year, int month, int day)
         {
-            return Helpers.HttpRequest.SendHttpRequest($"http://{host}:{port}/api/DevicesDatas/GetWeekHistoryAndFutureForAllDevices/{deviceid}/{year}/{month}/{day}");
+            return Helpers.HttpRequest.SendPostRequestForUsageDTO($"http://{host}:{port}/api/DevicesDatas/getDayPoweUsageOfDevices/{year}/{month}/{day}", consumerDevices);
         }
 
-        public WeekDatasDTO GetWeekByDayHistoryAndFutureForDevice(int deviceid, int year, int month, int day)
+        public double GetDayPowerUsageSumOfDevices([FromBody] List<int> ids, int year, int month, int day)
         {
-            return Helpers.HttpRequest.SendHttpRequestForWeekDatas($"http://{host}:{port}/api/DevicesDatas/GetWeekByDayHistoryAndFutureForDevice/{deviceid}/{year}/{month}/{day}");
+            return Helpers.HttpRequest.SendHttpRequestForDatasDoubles($"http://{host}:{port}/api/DevicesDatas/getDayPowerUsageSumOfDevices/{year}/{month}/{day}", ids);
         }
 
-        public WeekDatasDTO GetWeekByDayHistoryAndFutureForAllDevices(int year, int month, int day)
+        public double GetWeekPowerUsageSumOfDevices([FromBody] List<int> ids, int year, int month, int day)
         {
-            return Helpers.HttpRequest.SendHttpRequestForWeekDatas($"http://{host}:{port}/api/DevicesDatas/GetWeekByDayHistoryAndFutureForAllDevices/{year}/{month}/{day}");
+            return Helpers.HttpRequest.SendHttpRequestForDatasDoubles($"http://{host}:{port}/api/DevicesDatas/getWeekPowerUsageSumOfDevices/{year}/{month}/{day}", ids);
         }
 
+        public double GetMonthPowerUsageSumOfDevices([FromBody] List<int> ids, int year, int month)
+        {
+            return Helpers.HttpRequest.SendHttpRequestForDatasDoubles($"http://{host}:{port}/api/DevicesDatas/getMonthPowerUsageSumOfDevices/{year}/{month}", ids);
+        }
+
+        public double GetYearPowerUsageSumOfDevices([FromBody] List<int> ids, int year)
+        {
+            return Helpers.HttpRequest.SendHttpRequestForDatasDoubles($"http://{host}:{port}/api/DevicesDatas/getYearPowerUsageSumOfDevices/{year}", ids);
+        }
     }
 }

@@ -23,13 +23,13 @@ export class HistoryForecastComponent implements OnInit,OnChanges{
   selectedCity!: City;
   Title : any = "History & forecast";
 
-  @Input() array : any[]  = [12.00, 19.00, 33.00, 5.00, 2.00, 6.00, 5.00, null,null,null,null, null, null, null]
-  @Input() array2 : any[] = [null,null, null, null, null, null,5.00,10.00,12.00,23.00,16.00,5.00,10.00,5.00]
+  @Input() array : any[]  = [null,null,null,null, null, null, null, null,null,null,null, null, null, null];
+  @Input() array2 : any[] = [null,null,null,null, null, null, null, null,null,null,null, null, null, null];
   @Input() array3 : any[] = [null,null, null, null, null, null,null,null, null, null, null, null,null,null]
   @Input() naziv1 = "History";
   @Input() naziv2 = "Forecast";
-  @Input() boja1 = '#f5805a';
-  @Input() boja2 = '#f5805a';
+  @Input() boja1 = '#885ec0';
+  @Input() boja2 = '#ae91d4';
 
 
   constructor(private userService:UserService, private authService:AuthService, private deviceService:DeviceService) {
@@ -74,7 +74,6 @@ export class HistoryForecastComponent implements OnInit,OnChanges{
         style: {
           colors: ['#FFF','#FFF','#FFF','#FFF', '#FFF','#FFF','#FFF','#FFF','#FFF','#FFF','#FFF','#FFF','#FFF','#FFF','#FFF'],
           fontSize: '16px',
-          fontWeight: 'bolder',
           fontFamily: 'Lato, sans-serif'
         }
       }
@@ -110,11 +109,11 @@ export class HistoryForecastComponent implements OnInit,OnChanges{
     }
   };
   public chart: ApexChart = {
-    type: 'line',
-    height: 250,
+    type: 'area',
+    height: 300,
     width: '100%',
     offsetX: 0,
-    background: '#1b1b1b',
+    background: 'transparent',
     
     animations: {
       enabled: true,
@@ -130,7 +129,7 @@ export class HistoryForecastComponent implements OnInit,OnChanges{
       }
     },
     dropShadow: {
-      enabled: true,
+      enabled: false,
       enabledOnSeries: undefined,
       top: 0,
       left: 3,
@@ -191,7 +190,6 @@ export class HistoryForecastComponent implements OnInit,OnChanges{
       style: {
         colors: ['#FFF','#FFF','#FFF','#FFF', '#FFF','#FFF','#FFF','#FFF','#FFF','#FFF','#FFF','#FFF','#FFF','#FFF','#FFF'],
         fontSize: '16px',
-        fontWeight: 'bolder',
         fontFamily: 'Lato, sans-serif'
       }
     }
@@ -210,7 +208,6 @@ export class HistoryForecastComponent implements OnInit,OnChanges{
       style: {
         colors: ['#FFF'],
         fontSize:'16px',
-        fontWeight:'bold',
         fontFamily: 'Lato, sans-serif'
       },
     },
@@ -226,47 +223,13 @@ export class HistoryForecastComponent implements OnInit,OnChanges{
   };
 
   public stroke: ApexStroke = {
-    curve: 'straight',
+    curve: 'smooth',
     width: 3,
     dashArray:[0,5,0,5,0,5]
   }
 
   public dataLabels: ApexDataLabels = {
-  textAnchor: 'middle',
-  distributed: true,
-  offsetX: 0,
-  offsetY: 0,
-  style: {
-      fontSize: '20px',
-      fontFamily: 'Helvetica, Arial, sans-serif',
-      fontWeight: 'bold',
-      colors: ['#222222',]
-  },
-  background: {
-    enabled: true,
-    foreColor: '#FFF',
-    padding: 10,
-    borderRadius: 2,
-    borderWidth: 1,
-    borderColor: '#fff',
-    opacity: 0.9,
-    dropShadow: {
-      enabled: true,
-      top: 1,
-      left: 1,
-      blur: 1,
-      color: '#222222',
-      opacity: 1
-    }
-  },
-  dropShadow: {
-      enabled: false,
-      top: 1,
-      left: 1,
-      blur: 1,
-      color: '#000',
-      opacity: 0.45
-  },
+  
   
   }
 }

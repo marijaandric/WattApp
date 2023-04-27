@@ -27,7 +27,8 @@ export class UserService {
           user.role,
           user.x,
           user.y,
-          user.area
+          user.area,
+          user.imageId
         ));
       })
     );
@@ -76,7 +77,8 @@ export class UserService {
           user.role,
           user.x,
           user.y,
-          user.area
+          user.area,
+          user.imageId
         ));
       })
     );

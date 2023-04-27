@@ -4,6 +4,7 @@
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 
 <body>
+	<a routerLink="" class="back-arrow"><i class="fa fa-arrow-left"></i></a>
 	<section class="login">
 		<div class="login_box">
 			<div class="left">
@@ -11,9 +12,9 @@
 					<form [formGroup]="loginForm" >
 						<h3>SIGN IN</h3>
 						<input formControlName="email" type="text" placeholder="EMAIL" name="email">
-						<small *ngIf="loginForm.controls['email'].dirty && loginForm.hasError('required','email')" class="danger" style="color: rgb(182, 126, 126);">Morate uneti username</small>
+						<small *ngIf="loginForm.controls['email'].dirty && loginForm.hasError('required','email')" class="danger" style="color: rgb(182, 126, 126);">Please enter an email</small>
 						<input formControlName="password" [type]="type" placeholder="PASSWORD" name="password">
-						<small *ngIf="loginForm.controls['password'].dirty && loginForm.hasError('required','password')" class="danger" style="color: rgb(182, 126, 126);">Morate uneti password</small>
+						<small *ngIf="loginForm.controls['password'].dirty && loginForm.hasError('required','password')" class="danger" style="color: rgb(182, 126, 126);">Please enter your password</small>
 						<i (click)="hideShowPass()" class="{{eyeIcon}}" style="color:white"></i>
 						<button (click)="onLogin()" class="submit"><span>LET'S GO</span></button>
 					</form>

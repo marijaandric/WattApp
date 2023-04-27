@@ -1,78 +1,11 @@
-.device-information{
-  width: 100%;
-  min-width: 300px;
-  height: fit-content;
-  padding: 16px;
-  border-radius: 20px;
-  color: white;
-  background-color: #1b1b1b;
-  box-shadow: 5px 5px 15px black;
-  margin-bottom:20px;
-}
-
-.bold-text {
-  font-weight: bold;
-  font-size:16px;
-}
-
-.colored-text {
-  h5 {
-      font-size: 20px;
-      font-weight: bolder;
-      color:  #b855a4 ;
-
-  }
-  
-}
-
-
 @media only screen and (min-width: 1110px) {
-  .device {
-    display: flex;
-    flex-direction: row;
-    width: 100%;
-  }
-  .circles{
-    width:50%;
-  }
-
-
-  .info{
-    display: flex;
-    flex-direction: column;
-    width: 48%;
-    margin-left: 2%;
-  }
-
-  .twoCharts{
-    display: none;
+  .phone {
+    display:none;
   }
 }
 
 @media only screen and (max-width: 1110px) {
-  .device {
-    display: flex;
-    flex-direction: column;
-  }
-  .circles{
-    width:100%;
-  }
-
-  
-  .device-information {
-    margin-top: 40px;
-  }
-
-  .info{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-  }
-
-  #oneChart{
-    display: none;
-  }
-  .twoCharts{
-    margin-top: 2%;
+  .desktop {
+    display:none;
   }
 }

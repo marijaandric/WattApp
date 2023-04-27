@@ -2,14 +2,14 @@
           [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]"
           [globalFilterFields]="['id','firstName','lastName','email','role']" [paginator]="true" 
           style="
-            margin-top:calc(6%);
+            margin-top:calc(2.8%);
             display: flex;
             position: relative;
             flex-direction: column;
             height: fit-content;
             width: 100%;
             border-radius: 20px;
-            background-color: #1b1b1b;
+            background: linear-gradient(180deg, #171717 50%, #0f0f0f 100%) ;
             box-shadow: 5px 5px 15px black;
             transition: ease-in-out;
             padding:10px 20px;
@@ -29,30 +29,30 @@
 
             <ng-template pTemplate="header">
               <tr>
-                <th pSortableColumn="firstName" style="min-width:8rem;  border-top:3px solid #885ec0;; border-bottom:3px solid #885ec0;;">
+                <th pSortableColumn="firstName" style="min-width:8rem;  border-top:4px solid #46c5f1; border-bottom:4px solid #46c5f1;">
                   <div class="flexRow">
                       <p style=" font-size: 18px !important;">Device model</p>
                       <p-sortIcon field="firstName"></p-sortIcon>
                       <p-columnFilter class="ml-auto" type="text" field="firstName" display="menu"></p-columnFilter>
                   </div>
                 </th>
-                <th pSortableColumn="lastName" style="min-width:9rem;  border-top:3px solid #885ec0;; border-bottom:3px solid #885ec0;">
+                <th pSortableColumn="lastName" style="min-width:9rem;  border-top:4px solid #46c5f1; border-bottom:4px solid #46c5f1">
                   <div class="flexRow">
                       <p style=" font-size: 18px !important;">Type</p>
                       <p-sortIcon field="lastName"></p-sortIcon>
                       <p-columnFilter class="ml-auto" type="text" field="lastName" display="menu"></p-columnFilter>
                   </div>
                 </th>
-                <th pSortableColumn="email" style="min-width:10rem;  border-top:3px solid #885ec0; border-bottom:3px solid #885ec0;">
+                <th pSortableColumn="email" style="min-width:10rem;  border-top:4px solid #46c5f1; border-bottom:4px solid #46c5f1">
                   <div class="flexRow">
                       <p style=" font-size: 18px !important;">isActive</p>
                       <p-sortIcon field="email"></p-sortIcon>
                       <p-columnFilter class="ml-auto" type="text" field="email" display="menu"></p-columnFilter>
                   </div>
                 </th>
-                <th pSortableColumn="role" style="min-width:8rem; border-top:3px solid #885ec0;; border-bottom:3px solid #885ec0;">
+                <th pSortableColumn="role" style="min-width:8rem; border-top:4px solid #46c5f1; border-bottom:4px solid #46c5f1">
                   <div class="flexRow">
-                      <p style=" font-size: 18px !important;">Allow Operator Controll</p>
+                      <p style=" font-size: 18px !important;">Device management</p>
                       <p-sortIcon field="role"></p-sortIcon>
                       <p-columnFilter class="ml-auto" type="text" field="role" display="menu"></p-columnFilter>
                   </div>
@@ -65,7 +65,14 @@
                   <td>{{devices?.deviceModel}}</td>
                   <td>{{devices?.deviceType}}</td>
                   <td>{{devices?.isActive}}</td>
-                  <td>{{devices?.allowOperatorControll}}</td>
+                  <td>
+                    <div *ngIf = "devices.allowOperatorControll">
+                      <p-inputSwitch [(ngModel)]="devices.isActive" (onChange)="handleRunningSwitchChange(devices)" class="margin-left__auto width__fit-content"/>
+                    </div>
+                    <div *ngIf = "devices.allowOperatorControll == false">
+                      You cannot operate the device
+                    </div>
+                  </td>
                 </tr>
                 
               </ng-template>

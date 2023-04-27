@@ -1,32 +1,104 @@
-.firstHalf{
-    width: 40%;
-}
-
-.user, .donuts{
+.main-grid {
+    width: 100%;
     display: flex;
-    flex-direction: row;
+    flex-wrap: wrap;
+    flex-direction:row;
 }
 
-.secondHalf{
-    justify-content: center;
-    align-items: center;
+.stats-cards{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top:7%;
+  width:100%;
+  padding: 0px 0;
+  justify-content:space-between;
+  position:relative;
 }
+
+.stats-card{
+  display:flex;
+  flex-basis: 47%;
+  box-shadow: 5px 5px 15px black;
+}
+
+.stats-card:nth-child(1), .stats-card:nth-child(2) {
+  margin-bottom:7%;
+}
+
+
+
+.user{
+    width:100%;
+    display: flex;
+    flex-direction: column;
+}
+
 .donuts{
-    margin: 0% 5%;
-    align-items: center;
+    display: flex;
+    flex-direction: column;
 }
 
-.chart{
-    width: 120%;
-    padding: 10%;
-    background-color: #222222;
-    margin:10% 0px 10% 10%;
+.donuts{
+    background: linear-gradient(180deg, #1b1b1b 50%, #0d0d0d 100%) ;
     box-shadow: 5px 5px 15px black;
     border-radius: 20px;
+    align-items: center;
+    padding:20px 20px 0px 20px;
 }
 
-.usercard{
-    width: 100%;
+h5 {
+    margin-top:10px;
+}
+
+h5:first-child {
+    margin-top:0px;
 }
 
 
+.promotion
+{
+    width:90%;
+    height:87%;
+    margin:5%;
+    background: linear-gradient(180deg, #121212 50%, #0d0d0d 100%) ;
+display: inline-block;
+position: relative;
+flex-direction: row;
+
+}
+
+::ng-deep .p-dropdown {
+    position:relative;
+    border-radius: 20px;
+    border:none;
+    font-size:16px;
+    margin-right:20px;
+    background: linear-gradient(45deg, #46c5f1 10%, #5245b7 100%);
+    
+  }
+  ::ng-deep .p-dropdown.p-component {
+    width:145.953px;
+  }
+
+  ::ng-deep #pr_id_1_label{
+    font-size: 14px;
+    padding:8px 0px 8px 16px;
+    border:none;
+    font-weight: bold;
+    font-family: 'Lato', sans-serif;
+  }
+  ::ng-deep #pr_id_2_label{
+    font-size: 14px;
+    padding:8px 0px 8px 16px;
+    border:none;
+    font-weight: bold;
+    font-family: 'Lato', sans-serif;
+  }
+  ::ng-deep #pr_id_3_label{
+    font-size: 14px;
+    padding:8px 0px 8px 16px;
+    border:none;
+    font-weight: bold;
+    font-family: 'Lato', sans-serif;
+  }

@@ -1,0 +1,235 @@
+:host{
+    width: 100%;
+    height: fit-content;
+    min-height: 100vh;
+  }
+  
+  .hello {
+    position:relative;
+    position: relative;
+    display: inline-block;
+    flex-direction: column;
+    color:white;
+  }
+  
+  .widgets {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 0px 0;
+    justify-content:space-between;
+    position:relative;
+  }
+  
+  .widget {
+    flex-basis: calc(23.5%);
+    margin-bottom: 30px;
+    display: inline-block;
+    position: relative;
+    flex-direction: row;
+    min-width: 240px;
+    width:20%;
+    box-shadow: 5px 5px 15px black;
+    
+  }
+  
+  .iframe-div {
+    position: relative;
+    display:flex;
+    overflow: hidden;
+    flex-direction: row;
+    border-radius: 32px; 
+    z-index:1;  
+    width:100%;
+    height: 90%;
+  }
+  
+  :host>.filter-div {
+    position: absolute;
+    right:30px;
+    top :30px;
+    width:120px;
+    height:50px;
+    font-size: 20px;
+    z-index:2;
+    background-color: #222222;
+    border-radius: 32px;
+  }
+
+  .bottom-grid {
+    width:100%;
+    height:fit-content;
+    display: flex;
+    flex-direction: row;
+
+  }
+  
+  ::ng-deep .p-dropdown {
+    position:relative;
+    border-radius: 20px;
+    border:none;
+    font-size:16px;
+    margin-right:20px;
+    background: linear-gradient(45deg, #46c5f1 10%, #5245b7 100%);
+    
+  }
+  ::ng-deep .p-dropdown.p-component {
+    width:165.953px;
+  }
+
+  ::ng-deep #pr_id_1_label{
+    font-size: 14px;
+    padding:8px 0px 8px 16px;
+    border:none;
+    font-weight: bold;
+    font-family: 'Lato', sans-serif;
+  }
+  ::ng-deep #pr_id_2_label{
+    font-size: 14px;
+    padding:8px 0px 8px 16px;
+    border:none;
+    font-weight: bold;
+    font-family: 'Lato', sans-serif;
+  }
+  ::ng-deep #pr_id_3_label{
+    font-size: 14px;
+    padding:8px 0px 8px 16px;
+    border:none;
+    font-weight: bold;
+    font-family: 'Lato', sans-serif;
+  }
+  .main-grid {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom:32px;
+  }
+
+  .bottom-grid{
+    height:fit-content;
+  }
+.bottom-right{
+  width: 49%;
+  margin-left:calc(2%);
+  margin-top:2%;
+}
+.map{
+  height: calc(100% - 324px);
+  padding-bottom:7%;
+}
+
+.stats-cards{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-left:2%;
+  width:35.5%;
+  padding: 0px 0;
+  justify-content:space-between;
+  position:relative;
+}
+
+.stats-card{
+  display:flex;
+  flex-basis: 47%;
+  box-shadow: 5px 5px 15px black;
+}
+
+.stats-card:nth-child(1), .stats-card:nth-child(2) {
+  margin-bottom:6%;
+}
+
+.left-margin {
+  
+  margin-left: calc(2.8%);
+}
+.consumption {
+  background-color:#f5805a;;
+}
+.production {
+  background-color: #eb4886;
+}
+.stock {
+  background-color: #885ec0;
+}
+.all {
+  background-color: #46c5f1;
+}
+
+.hist-forecast {
+  display: inline-flex;
+}
+
+.bar-plot {
+  display: inline-flex;
+  margin-left:50px;
+}
+
+.p-table {
+  width:50%;
+}
+
+.marginLeft {
+  margin-left:2.8%;
+}
+
+@media only screen and (max-width: 979px) {
+  .widget {
+    -ms-flex-preferred-size: calc(50% - 30px);
+    flex-basis: calc(50% - 30px);
+  }
+}
+
+@media only screen and (max-width: 639px) {
+  .widget {
+    -ms-flex-preferred-size: 100%;
+    flex-basis: 100%;
+  }
+}
+
+
+@media only screen and (max-width: 500px) {
+  .promotions {
+    overflow-x: scroll;
+    white-space: nowrap;
+    display: flex;
+    flex-wrap: nowrap;
+  }
+
+  .promotion, .promotion1{
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  .widgets{
+    overflow-x: scroll;
+    white-space: nowrap;
+    display: flex;
+    flex-wrap: nowrap;
+  }
+  .widget{
+    margin-right: 10px;
+    margin-left: 10px;
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  .widgets::-webkit-scrollbar {
+    width: 10px; /* adjust to your desired width */
+  }
+
+  .widgets::-webkit-scrollbar-thumb {
+    background-color: rgba(214, 214, 214, 0.212); /* adjust to your desired color */
+    border-radius: 10px; /* adjust to your desired radius */
+  }
+}
+.selected-type .ui-dropdown-item.ui-state-highlight {
+  background-color: blue;
+  color: white;
+}
+
+:ng-deep .apexcharts-xaxis-label #SvgjsText2043{
+  font-size: 19px;
+  font-family: 'Lato', sans-serif;
+}
+  

@@ -1,4 +1,4 @@
-import { Component, HostListener, Input } from '@angular/core';
+import { ChangeDetectorRef, Component, HostListener, Input } from '@angular/core';
 import { DeviceDTO } from 'src/app/dtos/DeviceDTO';
 import { DeviceService } from 'src/app/services/device/device.service';
 
@@ -23,7 +23,8 @@ export class DevicesComponent {
     {label: 'Table', value: false}
   ];
 
-  constructor(private deviceService: DeviceService) { }
+  constructor(private deviceService: DeviceService,
+    private cdr: ChangeDetectorRef) { }
 
   ngOnChanges() {
     this.updateNumVisible(window.innerWidth);
@@ -36,6 +37,7 @@ export class DevicesComponent {
   }
 
   private groupDevicesByRoomType() {
+    console.log(this.devices)
     this.devicesByRoomType = this.devices.reduce((acc: {[key: string]: DeviceDTO[]}, device: DeviceDTO)  => {
       if (!acc[device.room]) {
         acc[device.room] = [];
@@ -55,5 +57,9 @@ export class DevicesComponent {
 
   onSearch(value: string, dtAllDevices: any) {
     dtAllDevices.filterGlobal(value, 'contains');
+  }
+
+  updateView() {
+    this.cdr.detectChanges();
   }
 }

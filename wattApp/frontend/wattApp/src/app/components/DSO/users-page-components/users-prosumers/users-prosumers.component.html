@@ -10,31 +10,21 @@
   
     <app-center-bar>
     <div  class="main-grid"> 
-      <app-map-for-all-users [users] = 'users' style="
-        height: 92vh;
-        width:48.5%; display: flex;
-        float:left;
-        flex-direction: column;
-        border-radius: 20px;
-        background-color: #1b1b1b;
-        box-shadow: 5px 5px 15px black;">
-      </app-map-for-all-users>
   
-      <div style="display:flex;float:right; flex-direction:column; width:48.5%; height:100%">
+      <div style="display:flex;float:left; flex-direction:column; width:80%; height:100%">
         <div style="display:flex;float:right; flex-direction:row; width:100%; height:100%">
               
           <p-table class="d-table" #dtUsers class="ui-table-default" [value]="users" dataKey="id" [scrollable]="true" 
             [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]"
             [globalFilterFields]="['id','firstName','lastName','email','role']" [paginator]="true" 
             style="
-              margin-top:calc(6%);
               display: flex;
               position: relative;
               flex-direction: column;
               height: fit-content;
               width: 100%;
               border-radius: 20px;
-              background-color: #1b1b1b;
+              background: linear-gradient(180deg, #151515 50%, #121212 100%) ;
               box-shadow: 5px 5px 15px black;
               transition: ease-in-out;
               padding:10px 20px;
@@ -43,7 +33,7 @@
               <ng-template pTemplate="caption">
                 <div class="flexRow">
                     <h3 >
-                    Prosumers</h3>
+                    All Users</h3>
                     <span class="p-input-icon-left margin-left__auto margin-right__16px">
                         <i class="pi pi-search"></i>
                         <input pInputText type="text" (input)="dtUsers.filterGlobal($any($event.target).value, 'contains')" placeholder="Search keyword" />
@@ -54,30 +44,30 @@
   
               <ng-template pTemplate="header">
                 <tr>
-                  <th pSortableColumn="firstName" style="min-width:8rem;  border-top:3px solid #04a777; border-bottom:3px solid #04a777;">
+                  <th pSortableColumn="firstName" style="min-width:8rem;  border:none; border-top: 2px solid #46c5f1;  border-bottom:2px solid #46c5f1;">
                     <div class="flexRow">
                         <p style=" font-size: 18px !important;">Name</p>
                         <p-sortIcon field="firstName"></p-sortIcon>
                         <p-columnFilter class="ml-auto" type="text" field="firstName" display="menu"></p-columnFilter>
                     </div>
                   </th>
-                  <th pSortableColumn="lastName" style="min-width:9rem;  border-top:3px solid #04a777; border-bottom:3px solid #04a777;">
+                  <th pSortableColumn="lastName" style="min-width:9rem;  border-top:2px solid #46c5f1; border-bottom:2px solid #46c5f1;">
                     <div class="flexRow">
                         <p style=" font-size: 18px !important;">Address</p>
                         <p-sortIcon field="lastName"></p-sortIcon>
                         <p-columnFilter class="ml-auto" type="text" field="lastName" display="menu"></p-columnFilter>
                     </div>
                   </th>
-                  <th pSortableColumn="email" style="min-width:10rem;  border-top:3px solid #04a777; border-bottom:3px solid #04a777;">
+                  <th pSortableColumn="email" style="min-width:10rem;  border-top:2px solid #46c5f1; border-bottom:2px solid #46c5f1;">
                     <div class="flexRow">
-                        <p style=" font-size: 18px !important;">Monthly consumption</p>
+                        <p style=" font-size: 18px !important;">Email</p>
                         <p-sortIcon field="email"></p-sortIcon>
                         <p-columnFilter class="ml-auto" type="text" field="email" display="menu"></p-columnFilter>
                     </div>
                   </th>
-                  <th pSortableColumn="role" style="min-width:8rem; border-top:3px solid #04a777; border-bottom:3px solid #04a777;">
+                  <th pSortableColumn="role" style="min-width:8rem; border-top:2px solid #46c5f1; border-bottom:2px solid #46c5f1;">
                     <div class="flexRow">
-                        <p style=" font-size: 18px !important;">Monthly production</p>
+                        <p style=" font-size: 18px !important;">Role</p>
                         <p-sortIcon field="role"></p-sortIcon>
                         <p-columnFilter class="ml-auto" type="text" field="role" display="menu"></p-columnFilter>
                     </div>
@@ -86,11 +76,11 @@
               </ng-template>
   
                 <ng-template pTemplate="body" let-user>
-                  <tr>
-                    <td>{{user.firstName}} {{user.lastName}}</td>
+                  <tr routerLink="/userDSO/{{user.id}}">
+                    <td ><img src="{{ baseUrl + user.id }}" class="rounded-circle" width="25px" height="25px" style="margin-right: 8px;"> {{user.firstName}} {{user.lastName}}</td>
                     <td>{{user.address}}</td>
-                    <td>636 kWh</td>
-                    <td>236 kWh</td>
+                    <td>{{user.email}}</td>
+                    <td>{{user.role}}</td>
                   </tr>
                 </ng-template>
   
@@ -102,8 +92,17 @@
   
             </p-table>
           </div>
-        </div>
-      </div>
+        </div>      
+        <div class="widgets-users">     
+          <app-widget [subTitle]="'Total number of users'" [Title]="numberOFAllUsers" [isBlue]="true" [isBgBlue]="true" class="widget-users">
+          </app-widget>
+          <app-widget [subTitle]="'Total number of prosumers'" [Title]="numberOFProsumer" [isYellow]="true" [isBgYellow]="true" class="widget-users">
+          </app-widget>
+          <app-widget [subTitle]="'Total number of operators'" [Title]="numberOFOperator" [isPink]="true" [isBgPink]="true" class="widget-users">
+          </app-widget>
+            
+          </div>
+    </div>
     </app-center-bar>
   
     

@@ -1,237 +1,261 @@
 :host{
-    width: 100%;
-    height: fit-content;
-    min-height: 100vh;
+  width: 100%;
+  height: fit-content;
+  min-height: 100vh;
 }
 
 .hello {
-    position:relative;
-    position: relative;
-    display: inline-block;
-    flex-direction: column;
-    color:white;
+  position:relative;
+  position: relative;
+  display: inline-block;
+  flex-direction: column;
+  color:white;
 }
 
 .widgets {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    padding: 20px 0;
-    min-height: 120px;
-    justify-content:space-between;
-    
-}
-.promotions
-{
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  padding-top: 25px;
+  padding: 20px 0;
+  min-height: 120px;
+  justify-content:space-between;
   
+}
+.promotions
+{
+display: flex;
+flex-direction: row;
+flex-wrap: wrap;
+padding-top: 25px;
+
 }
 
 .prviDeoPrognoza{
 
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  padding-top: 25px;
-  
+display: flex;
+flex-direction: row;
+flex-wrap: wrap;
+padding-top: 25px;
+
 }
 .promotion
 {
-  padding-top: 15px;
-  flex-basis: calc(23%);
-  margin-bottom: 30px;
-  display: inline-block;
-  position: relative;
-  flex-direction: row;
-  max-width: 23%;
-  min-width: 32%;
-  width:20%;
-  
+padding-top: 15px;
+flex-basis: calc(23%);
+margin-bottom: 30px;
+display: inline-block;
+position: relative;
+flex-direction: row;
+max-width: 23%;
+min-width: 32%;
+width:20%;
+
 }
 .promotion1
 {
-  padding-top: 15px;
+padding-top: 15px;
+flex-basis: calc(23%);
+margin-bottom: 30px;
+display: inline-block;
+position: relative;
+flex-direction: row;
+max-width: 23%;
+min-width: 32%;
+width:20%;
+margin-left: 2%;
+
+}
+
+.widget {
   flex-basis: calc(23%);
   margin-bottom: 30px;
   display: inline-block;
   position: relative;
   flex-direction: row;
-  max-width: 23%;
-  min-width: 32%;
+  /*max-width: 23%;*/
+  min-width: 240px;
   width:20%;
-  margin-left: 2%;
-  
-}
-
-.widget {
-    flex-basis: calc(23%);
-    margin-bottom: 30px;
-    display: inline-block;
-    position: relative;
-    flex-direction: row;
-    /*max-width: 23%;*/
-    min-width: 240px;
-    width:20%;
-    box-shadow: 10px 10px 50px black;  
+  box-shadow: 5px 5px 15px black;
 }
 .iframe-div {
-    position: relative;
-    display:flex;
-    overflow: hidden;
-    flex-direction: row;
-    border-radius: 32px; 
-    z-index:1;  
-    width:100%;
-    height: 90%;
+  position: relative;
+  display:flex;
+  overflow: hidden;
+  flex-direction: row;
+  border-radius: 32px; 
+  z-index:1;  
+  width:100%;
+  height: 90%;
 }
 
 :host>.filter-div {
-    position: absolute;
-    right:30px;
-    top :30px;
-    width:120px;
-    height:50px;
-    font-size: 20px;
-    z-index:2;
-    background-color: #222222;
-    border-radius: 32px;
+  position: absolute;
+  right:30px;
+  top :30px;
+  width:120px;
+  height:50px;
+  font-size: 20px;
+  z-index:2;
+  background-color: #222222;
+  border-radius: 32px;
 }
 
 .line
 {
-  background-color: #1b1b1b;
-  width: 600px;
-  border-radius: 20px;
-  padding-top: 10px;
+background-color: #1b1b1b;
+width: 600px;
+border-radius: 20px;
+padding-top: 10px;
 }
 
 .line3
 {
-  background-color: #1b1b1b;
-  width: 400px;
-  border-radius: 20px;
-  padding-top: 10px;
-  margin-top: 20px;
-  margin-left: 40px;
+background-color: #1b1b1b;
+width: 400px;
+border-radius: 20px;
+padding-top: 10px;
+margin-top: 20px;
+margin-left: 40px;
 }
 
 .line2{
-  float:left;
+float:left;
 }
 
 .vreme{
-  margin: 20px; 
-  width: 100%;
+width: 100%;
+}
+
+h6 {
+padding:10px;
 }
 
 .divVreme{
-  width: 20%; 
-  display: inline;
+margin:20px 0 0 2.2%;
+width: 19.8%; 
+display: inline;
 }
 
 .prviDeo{
-  width: 80%;
+width: 78%;
 }
 
 @media only screen and (max-width: 1126px) {
-  .prviDeo{
-    width: 100%;
-  }
-  .divVreme{
-    width: 50%;
-  }
+.prviDeo{
+  width: 100%;
+}
+.divVreme{
+  width: 50%;
+}
 
-  .vreme{
-    margin: 0;
-  }
+.vreme{
+  margin: 0;
+}
 }
 
 @media only screen and (max-width: 979px) {
-    .widget {
-      -ms-flex-preferred-size: calc(50% - 30px);
-      flex-basis: calc(50% - 30px);
-    }
+  .widget {
+    -ms-flex-preferred-size: calc(50% - 30px);
+    flex-basis: calc(50% - 30px);
+    margin-bottom: 20px;
+  }
+  .widgets {
+    margin-bottom:30px;
+  }
+  .divVreme {
+    margin:20px;
+  }
+}
+
+@media only screen and (max-width: 796px) {
+  .widget {
+    -ms-flex-preferred-size: 100%;
+    flex-basis: 100%;
+  }
+  .widgets {
+    margin-bottom:30px;
   }
 
-  @media only screen and (max-width: 796px) {
-    .widget {
-      -ms-flex-preferred-size: 100%;
-      flex-basis: 100%;
-    }
-
-    .slika{
-      display:none;
-    }
+  .slika{
+    display:none;
   }
-  @media only screen and (max-width: 500px) {
-    .vreme{
-      margin-left:5px;
-    }
-    .promotions {
-      min-width: 250px;
-      overflow-x: scroll;
-      display: flex;
-      flex-wrap: nowrap;
-    }
-    .promotion, .promotion1{
-      display: inline-block;
-      vertical-align: top;
-      min-width: 240px;
-      margin-right: 10px;
-      margin-left: 10px;
-      margin-bottom: 10px;
-      height: 180px;
-    }
-
-    .widgets{
-      overflow-x: scroll;
-      display: flex;
-      flex-wrap: nowrap;
-    }
-    .widget{
-      margin-right: 10px;
-      margin-left: 10px;
-      display: inline-block;
-      vertical-align: top;
-    }
-
-    /*.widgets::-webkit-scrollbar {
-      width: 10px;
-      margin-bottom: -5px;
-    }
-
-    .widgets::-webkit-scrollbar-thumb {
-      background-color: rgba(214, 214, 214, 0.212); 
-      border-radius: 10px; 
-    }
-
-    .promotions::-webkit-scrollbar {
-      width: 10px;
-    }
-
-    .promotions::-webkit-scrollbar-thumb {
-      background-color: rgba(214, 214, 214, 0.212); 
-      border-radius: 10px; 
-    }*/
+  .divVreme {
+    margin:20px;
+  }
+}
+@media only screen and (max-width: 500px) {
+  .vreme{
+    margin-left:5px;
+  }
+  .promotions {
+    min-width: 250px;
+    overflow-x: scroll;
+    display: flex;
+    flex-wrap: nowrap;
+  }
+  .promotion, .promotion1{
+    display: inline-block;
+    vertical-align: top;
+    min-width: 240px;
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+    height:fit-content;
+    min-height:  340px;
   }
 
-  
-  /* ::ng-deep .apexcharts-series path:nth-child(1) {
-    fill: #F48207;
+  .widgets{
+    overflow-x: scroll;
+    display: flex;
+    flex-wrap: nowrap;
   }
-  
-  ::ng-deep .apexcharts-series path:nth-child(2) {
-    fill: #85E000;
+  .widget{
+    margin-right: 10px;
+    margin-left: 10px;
+    display: inline-block;
+    vertical-align: top;
   }
-  
-  ::ng-deep .apexcharts-series path:nth-child(3) {
-    fill: #D63F74;
-  } */
+  .widgets {
+    margin-bottom:30px;
+  }
+  .divVreme {
+    margin:0px 0px;
+  }
+
+  /*.widgets::-webkit-scrollbar {
+    width: 10px;
+    margin-bottom: -5px;
+  }
+
+  .widgets::-webkit-scrollbar-thumb {
+    background-color: rgba(214, 214, 214, 0.212); 
+    border-radius: 10px; 
+  }
+
+  .promotions::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  .promotions::-webkit-scrollbar-thumb {
+    background-color: rgba(214, 214, 214, 0.212); 
+    border-radius: 10px; 
+  }*/
+}
 
 
-  ::ng-deep #SvgjsPath1012 {
-    fill:red;
-  }
+/* ::ng-deep .apexcharts-series path:nth-child(1) {
+  fill: #F48207;
+}
+
+::ng-deep .apexcharts-series path:nth-child(2) {
+  fill: #85E000;
+}
+
+::ng-deep .apexcharts-series path:nth-child(3) {
+  fill: #D63F74;
+} */
+
+
+::ng-deep #SvgjsPath1012 {
+  fill:red;
+}

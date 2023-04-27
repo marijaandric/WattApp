@@ -11,33 +11,30 @@
   <app-center-bar>
   <div  class="main-grid"> 
     <app-map [users] = 'users' style="
-      height: 92vh;
-      width:48.5%; display: flex;
+      height: 79.2vh;
+      width:38%; display: flex;
       float:left;
-      flex-direction: column;
-      border-radius: 20px;
-      background-color: #1b1b1b;
-      box-shadow: 5px 5px 15px black;">
+      flex-direction: column;">
     </app-map>
 
-    <div style="display:flex;float:right; flex-direction:column; width:48.5%; height:100%">
-      <div style="display:flex;float:right; flex-direction:row; width:100%; height:100px">
-        <div style="display:flex;float:right; flex-direction:column;  width:47%; height:100%" >
+    <div style="display:flex;float:right; flex-direction:column; width:60%; height:100%">
+      <div style="display:flex;float:right; flex-direction:row; width:100%; height:fit-content">
+        <div style="display:flex;float:right; flex-direction:column;  width:48%; height:100%" >
           
   <p-dropdown [options]="type" appendTo="body" [(ngModel)]="selectedType" optionLabel="name"  >
   </p-dropdown>
         </div>
-        <div style="display:flex;float:right; flex-direction:column; margin-left:calc(6%); width:47%; height:100%" >
+        <div style="display:flex;float:right; flex-direction:column; margin-left:calc(3%); width:48%; height:100%" >
           
   <p-dropdown [options]="type" appendTo="body" [(ngModel)]="selectedType" optionLabel="name"  >
   </p-dropdown>
         </div>
       </div>
       <div style="display:flex;float:right; flex-direction:row; width:100%; height:400px">
-        <div style="display:flex;float:right; flex-direction:column;  width:47%; height:100%" >
+        <div style="display:flex;float:right; flex-direction:column;  width:48%; height:100%" >
           <app-single-area-pie></app-single-area-pie>
         </div>
-        <div style="display:flex;float:right; flex-direction:column; margin-left:calc(6%); width:47%; height:100%" >
+        <div style="display:flex;float:right; flex-direction:column; margin-left:calc(3.5%); width:49%; height:100%" >
           <app-all-areas-donut></app-all-areas-donut>
         </div>
       </div>
@@ -48,14 +45,14 @@
           [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]"
           [globalFilterFields]="['id','firstName','lastName','email','role']" [paginator]="true" 
           style="
-            margin-top:calc(6%);
+            margin-top:calc(3.5%);
             display: flex;
             position: relative;
             flex-direction: column;
             height: fit-content;
             width: 100%;
             border-radius: 20px;
-            background-color: #1b1b1b;
+            background: linear-gradient(180deg, #151515 50%, #121212 100%) ;
             box-shadow: 5px 5px 15px black;
             transition: ease-in-out;
             padding:10px 20px;
@@ -75,30 +72,30 @@
 
             <ng-template pTemplate="header">
               <tr>
-                <th pSortableColumn="firstName" style="min-width:8rem;  border-top:3px solid #885ec0;; border-bottom:3px solid #885ec0;">
+                <th pSortableColumn="firstName" style="min-width:8rem;  border-top:2px solid #46c5f1; border-bottom:2px solid #46c5f1;">
                   <div class="flexRow">
                       <p style=" font-size: 18px !important;">Name</p>
                       <p-sortIcon field="firstName"></p-sortIcon>
                       <p-columnFilter class="ml-auto" type="text" field="firstName" display="menu"></p-columnFilter>
                   </div>
                 </th>
-                <th pSortableColumn="lastName" style="min-width:9rem;  border-top:3px solid #885ec0; border-bottom:3px solid #885ec0;">
+                <th pSortableColumn="lastName" style="min-width:9rem;  border-top:2px solid #46c5f1; border-bottom:2px solid #46c5f1;">
                   <div class="flexRow">
                       <p style=" font-size: 18px !important;">Address</p>
                       <p-sortIcon field="lastName"></p-sortIcon>
                       <p-columnFilter class="ml-auto" type="text" field="lastName" display="menu"></p-columnFilter>
                   </div>
                 </th>
-                <th pSortableColumn="email" style="min-width:10rem;  border-top:3px solid #885ec0; border-bottom:3px solid #885ec0;">
+                <th pSortableColumn="email" style="min-width:10rem;  border-top:2px solid #46c5f1; border-bottom:2px solid #46c5f1;">
                   <div class="flexRow">
-                      <p style=" font-size: 18px !important;">Email</p>
+                      <p style=" font-size: 18px !important;">Monthly consumption</p>
                       <p-sortIcon field="email"></p-sortIcon>
                       <p-columnFilter class="ml-auto" type="text" field="email" display="menu"></p-columnFilter>
                   </div>
                 </th>
-                <th pSortableColumn="role" style="min-width:8rem; border-top:3px solid #885ec0; border-bottom:3px solid #885ec0;">
+                <th pSortableColumn="role" style="min-width:8rem; border-top:2px solid #46c5f1; border-bottom:2px solid #46c5f1;">
                   <div class="flexRow">
-                      <p style=" font-size: 18px !important;">Role</p>
+                      <p style=" font-size: 18px !important;">Monthly production</p>
                       <p-sortIcon field="role"></p-sortIcon>
                       <p-columnFilter class="ml-auto" type="text" field="role" display="menu"></p-columnFilter>
                   </div>
@@ -107,11 +104,11 @@
             </ng-template>
 
               <ng-template pTemplate="body" let-user>
-                <tr>
-                  <td>{{user.firstName}} {{user.lastName}}</td>
+                <tr routerLink="/userDSO/{{user.id}}">
+                  <td><div style="width:20%;position:relative;float:left"><img src="{{ baseUrl + user.id }}" class="rounded-circle" width="25px" height="25px" style="margin-right: 10%"></div><div style="width:70%;position:relative;float:right">{{user.firstName}} {{user.lastName}}</div> </td>
                   <td>{{user.address}}</td>
-                  <td>{{user.email}}</td>
-                  <td>{{user.role}}</td>
+                  <td>633 kWh</td>
+                  <td>245 kWh</td>
                 </tr>
               </ng-template>
 

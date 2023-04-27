@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthService } from 'src/app/services/auth/auth.service';
+import { FileUploadService } from 'src/app/services/file-upload/file-upload.service';
 import { UserService } from 'src/app/services/user.service';
+import { url } from 'src/app/app.module';
 
 @Component({
   selector: 'app-user-card',
@@ -10,23 +11,19 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./user-card.component.css']
 })
 export class UserCardComponent implements OnInit {
+  baseUrl = url + "/api/Images/user/";
   userInfo: any;
   display: boolean = false;
   menageUserForm! : FormGroup;
-  
+  userImageUrlEndpoint!: string;
 
-  constructor(private router:Router,private userService: UserService,private fb: FormBuilder) {}
+  constructor(private router:Router,
+    private userService: UserService,
+    private fb: FormBuilder,
+    private fileUploadService: FileUploadService) {}
 
   ngOnInit() {
-    const token = localStorage.getItem('token');
-    if(token)
-    {
-      const userId = this.userService.getUserIdFromToken(token);
-      this.userService.GetUser(userId,token).subscribe((data) => {
-        this.userInfo = data;
-      });
-    }
-    
+    this.getUser();
     this.menageUserForm = this.fb.group({
       id: ['', Validators.required],
       firstName: ['', Validators.required],
@@ -41,6 +38,19 @@ export class UserCardComponent implements OnInit {
     });
 
     
+  }
+  getUser()
+  {
+    const token = localStorage.getItem('token');
+    
+    if(token)
+    {
+      const userId = this.userService.getUserIdFromToken(token);
+      this.userService.GetUser(userId,token).subscribe((data) => {
+        this.userInfo = data;
+      });
+      this.userImageUrlEndpoint = this.baseUrl + userId;
+    }
   }
 
   showDialog() {
@@ -80,7 +90,7 @@ export class UserCardComponent implements OnInit {
         {
           next: () => {
             this.display = false;
-            this.router.navigate(['user']);
+            this.getUser();
             },
           error: error => {
             alert("Niste lepo azurirali profil");
@@ -90,4 +100,16 @@ export class UserCardComponent implements OnInit {
       )
     }
   }
+
+  onImageChange(event: any) {
+    const randomNumber = Math.floor(Math.random() * 1000);
+    this.userImageUrlEndpoint += `?random=${randomNumber}`;
+  }
+  
+  deleteImage() {
+    this.fileUploadService.deleteUserImage(this.userInfo.id).subscribe(() => {
+      this.onImageChange(null);
+    });
+  }
+  
 }

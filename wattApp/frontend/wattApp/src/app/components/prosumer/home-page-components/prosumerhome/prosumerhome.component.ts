@@ -13,8 +13,14 @@ import { DsonewsService } from 'src/app/services/dsonews/dsonews.service';
 })
 export class ProsumerhomeComponent implements OnInit{
   user:any;
+  id: any;
   token = localStorage.getItem('token');
   devices: any[] = [];
+  quote:string = "It's great to see you here! Thanks for joining us."
+  quotes :string[] = ["It's great to see you here! Thanks for joining us.","We've been waiting for you! Welcome to our website.",
+"Welcome to our online family! We can't wait to get to know you better.","Thanks for stopping by! We hope you enjoy your time on our page.",
+"Welcome to our virtual home. Feel free to make yourself comfortable.","A warm welcome to you! We hope our page is just what you're looking for.",
+"We're honored to have you as our guest. "];
 
   @Input() device:any={id:1,deviceName: "device", deviceType:"Consumer",power: 10}
   @Input() device1:any={id:1,deviceName: "device", deviceType:"Producer",power: 10}
@@ -22,10 +28,13 @@ export class ProsumerhomeComponent implements OnInit{
 
   constructor(private userService:UserService,private http: HttpClient,private deviceService : DeviceService,private dsonew : DsonewsService)
   {
+    this.quote = this.quotes[Math.floor(Math.random() * this.quotes.length)];
     if(this.token)
     {
-      userService.GetUser(userService.getUserIdFromToken(this.token),this.token).subscribe((data) => {
+      this.id = this.userService.getUserIdFromToken(this.token);
+      userService.GetUser(this.id,this.token).subscribe((data) => {
         this.user = data;
+        //this.ngOnInit();
       });
     }
     
@@ -35,17 +44,14 @@ export class ProsumerhomeComponent implements OnInit{
   PowerUsageBiggestConsumer : any;
   
   getBiggestConsumer() {
-    const id = 1 ;
-   // const deviceId = this.user.id ;
     const currentDate = new Date();
     const day = currentDate.getDate();
     const month = currentDate.getMonth() + 1;
     const year = currentDate.getFullYear();
     const consumer = 'Consumer';
     const max = 'max';
-
-
-    this.deviceService.getBiggest(id,year,month,day,consumer,max).subscribe((response: any) => {
+    
+    this.deviceService.getBiggest(this.id,year,month,day,consumer,max).subscribe((response: any) => {
        this.IdBiggestConsumer=response.id;
        this.NameBiggestConsumer=response.deviceName;
        this.PowerUsageBiggestConsumer=response.averagePowerUsage.toFixed(2);
@@ -64,7 +70,6 @@ export class ProsumerhomeComponent implements OnInit{
 
 
   getBiggestProducer() {
-    const id = 1 ;
     const currentDate = new Date();
     const day = currentDate.getDate();
     const month = currentDate.getMonth() + 1;
@@ -72,7 +77,7 @@ export class ProsumerhomeComponent implements OnInit{
     const consumer = 'Producer';
     const max = 'max';
 
-    this.deviceService.getBiggest(id,year,month,day,consumer,max).subscribe((response: any) => {
+    this.deviceService.getBiggest(this.id,year,month,day,consumer,max).subscribe((response: any) => {
        this.IdBiggestProducer=response.id;
        this.NameBiggestProducer=response.deviceName;
        this.PowerUsageBiggestProducer=response.averagePowerUsage.toFixed(2);
@@ -91,7 +96,6 @@ export class ProsumerhomeComponent implements OnInit{
 
 
   getBiggestStorage() {
-    const id = 1 ;
     const currentDate = new Date();
     const day = currentDate.getDate();
     const month = currentDate.getMonth() + 1;
@@ -100,7 +104,7 @@ export class ProsumerhomeComponent implements OnInit{
     const max = 'max';
 
 
-    this.deviceService.getBiggest(id,year,month,day,consumer,max).subscribe((response: any) => {
+    this.deviceService.getBiggest(this.id,year,month,day,consumer,max).subscribe((response: any) => {
        this.IdBiggestStorage=response.id;
        this.NameBiggestStorage=response.deviceName;
        this.PowerUsageBiggestStorage=response.averagePowerUsage.toFixed(2);
@@ -119,14 +123,12 @@ export class ProsumerhomeComponent implements OnInit{
   monthPowerUsageConsumer: any;
   
   getmonthPowerUsageConsume() {
-    const id = 1 ;
     const currentDate = new Date();
     const month = currentDate.getMonth() + 1;
     const year = currentDate.getFullYear();
     const consumer = 'Consumer';
-;
 
-  this.deviceService.getmonth(id,year,month,consumer).subscribe((response: any) => {
+  this.deviceService.getmonth(this.id,year,month,consumer).subscribe((response: any) => {
       this.monthPowerUsageConsumer=response.toFixed(2);
     });
   
@@ -135,14 +137,13 @@ export class ProsumerhomeComponent implements OnInit{
   monthPowerUsageProducer: any;
   
   getmonthPowerUsageProducer() {
-    const id = 1 ;
     const currentDate = new Date();
     const month = currentDate.getMonth() + 1;
     const year = currentDate.getFullYear();
     const consumer = 'Producer';
 
 
-    this.deviceService.getmonth(id,year,month,consumer).subscribe((response: any) => {
+    this.deviceService.getmonth(this.id,year,month,consumer).subscribe((response: any) => {
       this.monthPowerUsageProducer=response.toFixed(2);
     });
   
@@ -151,13 +152,12 @@ export class ProsumerhomeComponent implements OnInit{
   monthPowerUsageStorage: any;
   
   getmonthPowerUsageStorage() {
-    const id = 1 ;
     const currentDate = new Date();
     const month = currentDate.getMonth() + 1;
     const year = currentDate.getFullYear();
     const consumer = 'Stock';
 
-    this.deviceService.getmonth(id,year,month,consumer).subscribe((response: any) => {
+    this.deviceService.getmonth(this.id,year,month,consumer).subscribe((response: any) => {
       this.monthPowerUsageStorage=response.toFixed(2);
     });
   
@@ -234,6 +234,8 @@ export class ProsumerhomeComponent implements OnInit{
     this.getmonthPowerUsageProducer();
     this.getmonthPowerUsageStorage();
     this.getdayPowerPrice();
+
+    console.log(this.devices);
 
     
   }

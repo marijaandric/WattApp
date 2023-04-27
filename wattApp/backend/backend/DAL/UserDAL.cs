@@ -3,6 +3,7 @@ using backend.DAL.Interfaces;
 using backend.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
+using backend.BAL;
 
 namespace backend.DAL
 {
@@ -110,6 +111,17 @@ namespace backend.DAL
         public List<User> GetAllUsersPagination( int page, int limit)
         {
             return _context.Users.Where(e => e.Id >= page * limit && e.Id < (page + 1) * limit).ToList();
+        }
+
+        public int GetNumberOfUsersByType(string type)
+        {
+            if(type.ToLower() == "prosumer")
+                return _context.Users.Where(x => x.Role == type).Count();
+            else if(type.ToLower() == "all")
+                return _context.Users.Count();
+            else return _context.Users.Where(x => x.Role.ToLower() != "prosumer").Count();
+
+
         }
     }
 }

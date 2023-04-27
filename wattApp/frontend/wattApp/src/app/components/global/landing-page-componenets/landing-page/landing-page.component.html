@@ -1,19 +1,19 @@
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
+<div class="pozadina">
 <div class="parallaxcon" #parallaxcon>
     <img src = "/assets/images/landing-page-images/citilights.jpg" id="iza">
     <h2 id="text">WattApp</h2>
     <button id="btn" routerLink="/login">Try it</button>
     <img src = "/assets/images/landing-page-images/citilights2.png" id="ispred">
     <img src = "/assets/images/landing-page-images/network.png" id="iza" class="moving-image">
-    <app-navbar></app-navbar>
 </div>
 
 <div class="cards">
   <h2>Find your solution</h2>
   <div class="card-group">
-      <div class="card">
+      <div class="card" >
         <img class="card-img-top" src="/assets/images/landing-page-images/connectedcity.jpg" alt="Card image cap">
         <div class="card-body">
           <h5 class="card-title">Green energy</h5>
@@ -38,7 +38,8 @@
         </div>
       </div>
 </div>
-
+<h2 style="margin-top: 30px;">Tips for saving electricity</h2>
+<app-gallery></app-gallery>
 
 <!--<h2>Gallery</h2>
 <div class="container">
@@ -50,6 +51,7 @@
 </div>-->
 
 
-<app-landing-page-team></app-landing-page-team>
+<app-landing-page-team class="team"></app-landing-page-team>
 <app-landing-page-footer></app-landing-page-footer>
 
+</div>

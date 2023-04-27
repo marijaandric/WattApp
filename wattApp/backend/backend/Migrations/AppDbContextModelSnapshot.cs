@@ -32,6 +32,9 @@ namespace backend.Migrations
                     b.Property<string>("DeviceType")
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("ImageId")
+                        .HasColumnType("INTEGER");
+
                     b.Property<string>("Room")
                         .HasColumnType("TEXT");
 
@@ -75,7 +78,27 @@ namespace backend.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("dso_news", (string)null);
+                    b.ToTable("images", (string)null);
+                });
+
+            modelBuilder.Entity("backend.Models.Images", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("ContentType")
+                        .HasColumnType("TEXT");
+
+                    b.Property<byte[]>("Data")
+                        .HasColumnType("BLOB");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Images");
                 });
 
             modelBuilder.Entity("backend.Models.User", b =>
@@ -95,6 +118,9 @@ namespace backend.Migrations
 
                     b.Property<string>("FirstName")
                         .HasColumnType("TEXT");
+
+                    b.Property<int>("ImageId")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("LastName")
                         .HasColumnType("TEXT");

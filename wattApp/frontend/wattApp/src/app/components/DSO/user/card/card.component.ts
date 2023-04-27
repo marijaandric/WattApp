@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user/user.service';
+import { url } from 'src/app/app.module';
 
 @Component({
   selector: 'app-card',
@@ -7,23 +8,14 @@ import { UserService } from 'src/app/services/user/user.service';
   styleUrls: ['./card.component.css']
 })
 export class CardComponent implements OnInit{
-  @Input() id : any;
-  user : any;
+  baseUrl = url + "/api/Images/user/";
+  @Input() user : any;
+  userImageUrlEndpoint!: string;
 
   constructor(private userService:UserService){}
 
   ngOnInit(){
-    this.getUser()
-  }
-
-  getUser()
-  {
-    console.log("USLO")
-      this.userService.GetUserWithoutToken(this.id).subscribe(data =>{
-        this.user = data;
-        console.log(data)
-      })
-    
+    this.userImageUrlEndpoint = this.baseUrl + this.user.id;
   }
   
 }

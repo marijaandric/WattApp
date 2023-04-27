@@ -23,7 +23,7 @@ app-tab-menu-users .color:hover{
   margin-bottom: 20px;
   border-radius: 30px;
   border:none;
-  background-color:#885ec0;;
+  background: linear-gradient(45deg, #46c5f1 10%, #5245b7 100%);
 }
 
 
@@ -39,4 +39,34 @@ app-tab-menu-users .color:hover{
   font-size: 17px;
   padding:8px 20px;
   border:none;
+}
+.widgets-users {
+  display:flex;
+  float:right; 
+  flex-direction:column;
+   width:20%; 
+  padding: 0px 0;
+  
+  position:relative;
+  align-items: end;
+  justify-content: space-evenly;
+}
+
+.widget-users {
+  margin-bottom: 30px;
+  position: relative;
+  width:90%;
+  box-shadow: 5px 5px 15px black;
+  
+}
+.widget-users:last-of-type {
+  margin-bottom: 0;
+}
+.widgets-users::-webkit-scrollbar {
+  width: 10px; /* adjust to your desired width */
+}
+
+.widgets-users::-webkit-scrollbar-thumb {
+  background-color: rgba(214, 214, 214, 0.212); /* adjust to your desired color */
+  border-radius: 10px; /* adjust to your desired radius */
 }

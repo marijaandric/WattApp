@@ -14,5 +14,6 @@ namespace backend.Models
         public bool isActive { get; set; }
         public bool allowOperatorControll { get; set; } = false;
         public bool allowOperatorVisibility { get; set; } = true;
+        public int? ImageId { get; set; }
     }
 }

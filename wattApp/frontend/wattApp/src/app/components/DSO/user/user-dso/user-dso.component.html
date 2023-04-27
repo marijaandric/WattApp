@@ -4,27 +4,65 @@
     </app-title-bar>
   
     <app-center-bar>
-    <div class="user">
-      <div class ='firstHalf'>
-        <div class="usercard" >
-            <app-card [id] = 'id'></app-card>
-            <app-table [id] = 'id'></app-table>
-        </div>
-        
-      </div>
-      <div class="secondHalf">
-        <h4 style="margin-left: 10%;margin-bottom: 5%;">Top devices</h4>
-        <div class="donuts">
-            <app-circle [id] = 'id' [type] = 'Consumer'></app-circle>
-            <app-circle [id] = 'id' [type] = 'Producer'></app-circle>
-            <app-circle [id] = 'id' [type] = 'Stock'></app-circle>
-        </div>
-        <div class="chart">
-            <app-area-chart style="width:100%"></app-area-chart>
+      <div  class="main-grid"> 
+        <div style="display:flex;float:left; flex-direction:column; width:28%; height:fit-content;">
+          <app-card [user] = 'user'></app-card>
 
+          <div class="stats-cards">
+        
+            <app-stats-card class="stats-card" [isBgBlue]="true" [Title]="'Minimal consumed electricity this week'" [subTitle]="'23kWh (2%)'" [value]="'34 kwh'"></app-stats-card>
+            <app-stats-card class="stats-card" [isBgPurple]="true" [Title]="'Maximum consumed electricity this week'" [subTitle]="'23kWh (2%)'" [value]="'34 kwh'"></app-stats-card>
+            <app-stats-card class="stats-card" [isBgPink]="true" [Title]="'Average consumed electricity this week'" [subTitle]="'23kWh (2%)'" [value]="'34 kwh'"></app-stats-card>
+            <app-stats-card class="stats-card" [isBgOrange]="true" [Title]="'Total consumed electricity this week'" [subTitle]="'23kWh (2%)'" [value]="'34 kwh'"></app-stats-card>
+           
+          </div>
+          <!--<div class="carousel"> 
+            <h3 style="margin:30px 0px 10px 10px;">News</h3> 
+            <p-carousel [value] = "news" [circular]="false" [numScroll]="1">
+              <ng-template let-news pTemplate="new">
+                <app-promotion [subTitle]="news.title"
+                [Title]="news.content" 
+                [Status]="news.priority"
+                [isBlue]="true" [isBgBlue]="true" class="promotion">
+                </app-promotion>
+              </ng-template>
+            </p-carousel>
+          </div> -->
+        </div> 
+        <div style="display:flex;float:right; flex-direction:column; width:52%;padding: 0 2% 30px 2%;">
+          <p-dropdown [options]="type" appendTo="body" [(ngModel)]="selectedType" optionLabel="name" (onChange)="dropdownChange()" >
+          </p-dropdown>
+          <app-history-forecast style="width:100%;margin-top:20px" [boja1]="color1" [boja2]="color2" [naziv1]="name1" [naziv2]="name2" [array] = "History" [array2]="Forecast" [array3] = "arrayData"></app-history-forecast>
+          <p-selectButton style="margin-top:20px" class="flexRow width__fit-content margin-left__auto " [options]="switchOptions" [(ngModel)]="switchValue" optionLabel="label" optionValue="value"></p-selectButton>
+          <app-table [id] = 'id' *ngIf="switchValue == false"></app-table>
+          <app-history-forecast-table
+          style="
+          margin-top:calc(2.8%);
+          display: flex;
+          position: relative;
+          flex-direction: column;
+          height: fit-content;
+          border-radius: 20px;
+          background-color: #1b1b1b;
+          box-shadow: 5px 5px 15px black;
+          transition: ease-in-out;
+          padding:10px 20px;
+          " [name1]="name1" [name2]="name2" [hif]="hif" *ngIf="switchValue == true"></app-history-forecast-table>
         </div>
+        <div style="display:flex;float:right; flex-direction:column; width:20%; height:100%">
+        <app-map-for-dso-user [user]="user" style="height: 30%; min-height:250px;"></app-map-for-dso-user>
+        <div class="donuts" style="margin-top:calc(3vh);">
+          <h5>Monthly power usage</h5>
+          <p>in kWh</p>
+          <app-circle [id] = 'id' [type] = 'Consumer'></app-circle>
+          <h5>Monthly power production</h5>
+          <p>in kWh</p>
+          <app-circle [id] = 'id' [type] = 'Producer'></app-circle>
+          <h5>Monthly storage capacity</h5>
+          <p>in kWh</p>
+          <app-circle [id] = 'id' [type] = 'Stock'></app-circle>
+        </div>
+        </div> 
       </div>
-    </div>
     </app-center-bar>
-    
-  </standard-template>
+</standard-template>

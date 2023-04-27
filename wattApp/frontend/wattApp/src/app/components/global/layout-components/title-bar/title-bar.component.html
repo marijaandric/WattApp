@@ -28,7 +28,7 @@
       <small class="text-danger" *ngIf="signUpForm.controls['password2'].dirty && signUpForm.hasError('required','password2')">Password is required</small>
       <input formControlName="email" name="email" appendTo="body" type="text"   class="p-inputtext-lg"  placeholder="EMAIL"> 
       <small class="text-danger" *ngIf="signUpForm.controls['email'].dirty && signUpForm.hasError('required','email')">Email is required</small>
-      <p-dropdown  [options]="roles" appendTo="body" optionLabel="name" (onChange)="onRoleChange($event)"></p-dropdown>
+      <div class="dropdown-div"><p-dropdown  [options]="roles" appendTo="body" optionLabel="name" (onChange)="onRoleChange($event)"></p-dropdown></div>
       
     </div>
   
@@ -138,6 +138,38 @@
     <div *ngIf="!isAdmin()" style="cursor:pointer"><li><a (click)="showDialog2()"><div class="fa fa-plus " ></div><div class="text" [ngClass]="{ 'hidden-xs': !showText }">Add device</div></a></li></div>
     <div *ngIf="isAdmin()" style="cursor:pointer"><li><a (click)="showDialog3()"><div class="fa-solid fa-newspaper " ></div><div class="text" [ngClass]="{ 'hidden-xs': !showText }">Add news</div></a></li></div>
     <li><a href="#"><div class="fa fa-address-book" ></div><div class="text" [ngClass]="{ 'hidden-xs': !showText }">About us</div></a></li>
-    <li><a routerLink="/user"><img src="/assets/images/team-profile-pictures/vanja.png" class="profile-image"><div class="text" [ngClass]="{ 'hidden-xs': !showText }">Profile</div></a></li>
+    <li>
+      <div class="hero">
+        <nav>
+      <a><img [src]="userImageUrlEndpoint" (click)="toggleMenu()" class="profile-image"><div class="text1" [ngClass]="{ 'hidden-xs': !showText }"></div></a> 
+          <div class="sub-menu-wrap" id="subMenu" [class.open-menu]="isMenuOpen">
+            <div class="sub-menu">
+                <div class="user-info">
+                  <img [src]="userImageUrlEndpoint" class="profile-image"><div class="text" [ngClass]="{ 'hidden-xs': !showText }"></div>
+                    <h5>{{user.firstName}} {{user.lastName}}</h5>
+                </div>
+                <hr>
+                <a class="sub-menu-link">
+                  <i class="fa-solid fa-user"></i>
+                  <p routerLink="/user">Profile</p>
+                </a>
+                <a class="sub-menu-link">
+                  <i class="fa-sharp fa-regular fa-sun"></i>
+                  <p>Light theme</p>
+                </a>
+                <a class="sub-menu-link">
+                  <i class="fa-sharp fa-solid fa-headset"></i>
+                  <p routerLink="/contact">Contact us</p>
+                </a>
+                <a class="sub-menu-link">
+                  <i class="fa-solid fa-right-from-bracket"></i>
+                  <p (click)="logout()">Log out</p>
+                </a>
+              
+            </div>          
+        </div>
+        </nav>
+      </div>
+    </li>
   </ul>
 </nav>

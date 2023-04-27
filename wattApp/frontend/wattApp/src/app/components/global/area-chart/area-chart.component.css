@@ -1,0 +1,12 @@
+:host {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    color: white;
+    background: linear-gradient(180deg, #1e1e1e 30%, #121212 100%) ;
+    border-radius: 20px;
+    width: 100%;
+    padding:20px;
+    box-shadow: 5px 5px 15px black;
+
+}

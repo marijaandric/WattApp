@@ -1,4 +1,5 @@
 ﻿using DeviceFaker.Models;
+using DeviceFaker.Models.DTOs;
 
 namespace DeviceFaker.Helpers
 {
@@ -19,6 +20,16 @@ namespace DeviceFaker.Helpers
             foreach (var device in deviceData)
             {
                 pom += device.PowerUsage;
+            }
+            return pom;
+        }
+
+        public static double CalculateTotalPowerUsageDTO(List<UsageDTO> devicesData)
+        {
+            double pom = 0;
+            foreach (var device in devicesData)
+            {
+                pom += device.Usage;
             }
             return pom;
         }

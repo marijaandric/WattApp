@@ -51,7 +51,7 @@
   }
   
   .color:hover{
-    color: rgb(4,167,119);
+    color: #885ec0;
   }
   :host.boja{
     color: white;
@@ -88,6 +88,9 @@
     nav a div b {
         display: none;
         }
+        span{
+          display:none;
+        }
 }
 
 @media only screen and (max-width: 500px) {
@@ -96,5 +99,9 @@
       }
   nav a {
     width: 50px;
+  }
+
+  span{
+    display:none;
   }
 }

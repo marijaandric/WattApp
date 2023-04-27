@@ -70,7 +70,7 @@
 .p-datatable .p-datatable-header{
   border-top-left-radius: 20px;
   border-top-right-radius: 20px;
-  background-color: #1b1b1b !important;
+  background-color: transparent !important;
   padding:10px 20px 10px 10px !important;
 }
 
@@ -88,33 +88,54 @@
 .p-datatable .p-datatable-header .p-inputtext{
   padding-top: 12px !important;
 }
-
+.p-datatable .p-datatable-header>tr>th {
+  border:none !important;
+  border-top:4px solid red !important;
+  border-bottom: 4px solid red !important;
+  background: linear-gradient(45deg, #46c5f1 10%, #5245b7 100%) !important;
+}
 .p-datatable .p-datatable-tbody>tr:hover {
-  background-color: #363636 !important;
+  background-color: #191919 !important;
   transform: scaley(1.01) !important;
-  box-shadow: 2px 2px 8px 1px black;
+  box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.87);
   cursor:pointer !important;
 }
 .p-datatable .p-datatable-thead>tr>th {
-  padding: 0.5rem 1rem !important;
+  padding: 0.6rem 1rem 0rem 1rem !important;
+  background-color: transparent !important;
+}
+.p-datatable .sortable-column {
+  background-color: transparent !important;
+}
+.p-datatable .p-datatable-thead>tr>th>td {
+  background-color: transparent !important;
+}
+.p-datatable .p-datatable-thead>tr>p {
+  margin: 0rem 0rem !important;
+}
+.p-datatable .p-datatable-thead {
+  background-color: transparent !important;
 }
 .p-datatable .p-datatable-wrapper {
   
-  background-color: #1b1b1b !important;
+  background-color: transparent !important;
 }
 .p-datatable .p-datatable-thead>tr>th {
-  background-color: #1b1b1b !important;
+  background-color: transparent !important;
 
 }
 
 .p-datatable .p-datatable-tbody>tr {
-  background-color: #1b1b1b !important;
+  background-color: transparent !important;
 
 }
 
 .p-datatable .p-paginator {
-  background-color: #1b1b1b !important;
+  background-color: transparent !important;
 
+}
+.p-datatable .p-datatable-tbody>tr>td {
+  padding: 1rem 0rem 1rem 1rem !important;
 }
 
 .p-datatable .p-paginator-bottom{
@@ -128,11 +149,17 @@
 }
 .p-link {
   border-radius: 20px !important;
+
   
 /*
   height:15px !important;
   width:40px !important;
 */
+}
+
+.p-datatable .p-datatable-tbody>tr>td {
+  border: 1px solid #393939 !important;
+  border-width: 0px 0px 1px 0px !important;
 }
 p,a,li,body, div,span{
   color: white;

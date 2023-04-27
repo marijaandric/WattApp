@@ -127,6 +127,13 @@ namespace backend.Controllers
             return users;
         }
 
+        [HttpGet("getNumberOfUsersByType/")]
+        public Dictionary<string, int> GetNumberOfUsersByType()
+        {
+            var users = _context.GetNumberOfUsersByType();
+
+            return users;
+        }
 
     }
 }

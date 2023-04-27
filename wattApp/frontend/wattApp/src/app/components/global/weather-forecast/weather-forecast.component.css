@@ -1,6 +1,6 @@
 
   .box {
-    height: 29vw;
+    height: 500px;
     border-radius: 20px;
     background: #1b1b1b;
     position: relative;
@@ -15,7 +15,7 @@
     position: absolute;
     top: 120%;
     left: 50%;
-    background: #885ec0;
+    background: #46c5f1;
     width: 500px;
     height: 500px;
     margin-left: -250px;

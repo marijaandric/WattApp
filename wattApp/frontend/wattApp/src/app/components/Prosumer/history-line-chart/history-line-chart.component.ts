@@ -39,7 +39,7 @@ export class HistoryLineChartComponent implements OnChanges{
   {
     this.series = [
       {
-        data: this.array2,
+        data: this.array,
         color: this.boja1,
         
       }
@@ -53,7 +53,7 @@ export class HistoryLineChartComponent implements OnChanges{
           fontSize: '16px' 
         }
       },
-      categories: [this.array3[0],this.array3[1],this.array3[2],this.array3[3],this.array3[4],this.array3[5],this.array3[6]],
+      categories: [this.array2[0],this.array2[1],this.array2[2],this.array2[3],this.array2[4],this.array2[5],this.array2[6]],
       labels: {
         style: {
           colors: ['#FFF','#FFF','#FFF','#FFF','#FFF','#FFF','#FFF'],
@@ -77,20 +77,14 @@ export class HistoryLineChartComponent implements OnChanges{
   ];
 
   public marker: ApexMarkers = {
-    size:6,
-    strokeWidth: 0,
-    fillOpacity: 1,
-    radius: 10,
-    hover: {
-      size:8
-    }
+    
   };
   public chart: ApexChart = {
-    type: 'line',
+    type: 'area',
     height: 250,
     width: '100%',
     offsetX: 0,
-    background: '#1b1b1b',
+    background: 'transparent',
     
     animations: {
       enabled: true,
@@ -104,15 +98,6 @@ export class HistoryLineChartComponent implements OnChanges{
           enabled: true,
           speed: 350
       }
-    },
-    dropShadow: {
-      enabled: true,
-      enabledOnSeries: undefined,
-      top: 0,
-      left: 3,
-      blur: 2,
-      color: '#000',
-      opacity: 1
     },
     redrawOnParentResize: true,
     redrawOnWindowResize: true,

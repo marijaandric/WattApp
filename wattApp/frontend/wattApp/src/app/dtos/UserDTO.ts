@@ -10,6 +10,7 @@ export class UserDTO {
     public role: string,
     public x: number,
     public y:number,
-    public area:string
+    public area:string,
+    public imageId: number
   ) { }
 }

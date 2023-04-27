@@ -14,6 +14,7 @@ import { UserService } from 'src/app/services/user.service';
 import * as L from 'leaflet';
 import axios from 'axios';
 import { DsonewsService } from 'src/app/services/dsonews/dsonews.service';
+import { url } from 'src/app/app.module';
 
 interface Models{
   code: string;
@@ -61,6 +62,15 @@ export class TitleBarComponent implements OnInit{
   value!:string;
   address!:string;
   selectedPriority:string = 'None';
+  baseUrl = url + "/api/Images/user/";
+  userImageUrlEndpoint!: string;
+
+  isMenuOpen = false;
+  user : any;
+
+  toggleMenu() {
+    this.isMenuOpen = !this.isMenuOpen;
+  }
  
   
   constructor(private router: Router,
@@ -73,15 +83,22 @@ export class TitleBarComponent implements OnInit{
               private roomTypesService: RoomTypesService, 
               private roleTypesService: RoleTypesService,
               private modelTypesService: ModelTypesService,
-              private dsonewsService : DsonewsService) {
-    const token = localStorage.getItem('token');
-    if(token)
-    {
-      this.rola = userService.getUserRoleFromToken(token)
-    }
+              private dsonewsService : DsonewsService,
+              private auth:AuthService) {
   }
 
   ngOnInit(): void {
+
+    const token = localStorage.getItem('token');
+    if(token)
+    {
+      this.rola = this.userService.getUserRoleFromToken(token);
+      const userId = this.userService.getUserIdFromToken(token);
+      this.userImageUrlEndpoint = this.baseUrl + userId;
+      this.userService.GetUser(userId,token).subscribe(data=>{
+        this.user = data;
+      })
+    }
 
     this.roleTypesService.getAllRoleTypes()
       .pipe(
@@ -162,7 +179,10 @@ export class TitleBarComponent implements OnInit{
       created: ['', Validators.required],
     })
   }
-
+  logout()
+  {
+    this.auth.logout();
+  }
   // prikaz dijaloga
    showDialog(){
     this.display = true;
@@ -337,4 +357,6 @@ export class TitleBarComponent implements OnInit{
     const userRole = this.userService.getUserRoleFromToken(token);
     return userRole === 'operator' || userRole === 'admin' || userRole === 'superadmin';
   }
+
+  
 }

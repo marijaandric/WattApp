@@ -1,5 +1,5 @@
 body{
-  background-color:#121212; 
+  background: linear-gradient(180deg,#121212 60%, #090909 100% ) ;
 }
 .login {
   height: 100vh;
@@ -21,8 +21,8 @@ body{
   border-radius: 20px;
   display: flex;
   overflow: hidden;
-  box-shadow: 5px 5px 10px 1px black;
-  background-color:#1b1b1b; 
+  box-shadow: 5px 5px 15px black;
+  background: linear-gradient(180deg, #1e1e1e 30%, #121212 100%) ;
 }
 
 .login_box .left {
@@ -31,6 +31,21 @@ body{
   padding: 25px 25px;
 
 }
+
+.back-arrow {
+  position: fixed;
+  left: 20px;
+  top:20px;
+  color: white;
+  font-size: 20px;
+  text-decoration: none;
+  z-index: 10;
+}
+
+.back-arrow:hover {
+  color:#5245b7;
+}
+
 
 .login_box .right {
   width: 59%;
@@ -70,7 +85,7 @@ body{
   width: 80%;
   margin: 15px 0px;
   border-bottom: 1px solid #787878;
-  border-image: linear-gradient(45deg,  rgb(4, 167, 119)  -10%,rgb(125, 2, 210) 100%) 1;
+  border-image: linear-gradient(45deg, #46c5f1 10%, #5245b7 100%) 1;
   padding: 7px 9px;
   width: 100%;
   overflow: hidden;
@@ -80,25 +95,25 @@ body{
 }
 
 .left {
-  background: #1b1b1b;
+  background: linear-gradient(180deg, #1e1e1e 30%, #121212 100%) ;
 }
 
 .submit {
   border: none;
-  padding: 10px 50px;
+  padding: 8px 50px;
   border-radius: 32px;
   display: block;
   margin: auto;
   margin-top:150px;
-  background: linear-gradient(45deg, rgb(4, 167, 119) 20%, rgb(125, 2, 210) 100%);
+  background: linear-gradient(45deg, #46c5f1 10%, #5245b7 100%);
   color: #fff;
   font-weight:bolder;
-  box-shadow: 5px 5px 10px 1px black;
+  box-shadow: 2px 2px 10px  black;
 }
 
 .submit:hover{
   span {
-    background: -webkit-linear-gradient(90deg, rgb(4, 167, 119) -15.29%, rgb(125, 2, 210) 100%);
+    background: -webkit-linear-gradient(45deg, #46c5f1 10%, #5245b7 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
@@ -107,7 +122,7 @@ body{
 }
 
 .right {
-  background: linear-gradient(45deg,rgb(4, 167, 119)  -15.29%,rgb(125, 2, 210, 0.5) 100%),
+  background: linear-gradient(45deg, #46c6f185 10%, #5245b78f 100%),
   url('/assets/images/logo-images/loginImage_2.png');
   color: #fff;
   position: relative;
@@ -147,6 +162,7 @@ i{
     max-width: 100%;
   }
 
+
   .left input {
     max-width: 100%;
   }
@@ -166,6 +182,7 @@ i{
     display: flex;
     justify-content: center; /* new CSS */
     align-items: center; 
+    background: -webkit-linear-gradient(45deg, #46c5f1 10%, #5245b7 100%);
   }
 
   .right{
@@ -192,9 +209,14 @@ i{
     padding-right: 0;
   }
 
-
-  button{
-    padding:5px 10px;
-    font-size: 10px;
+  .left input {
+    
+    width:230px;
   }
+
+  .submit {
+    padding: 7px 40px;
+  }
+
+  
 }

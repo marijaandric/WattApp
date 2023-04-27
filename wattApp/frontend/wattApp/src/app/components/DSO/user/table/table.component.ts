@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { DeviceDataService } from 'src/app/services/device-data/device-data.service';
 import { DeviceService } from 'src/app/services/device/device.service';
+import { lastValueFrom } from 'rxjs';
 
 @Component({
   selector: 'app-table',
@@ -10,11 +11,12 @@ import { DeviceService } from 'src/app/services/device/device.service';
 export class TableComponent implements OnInit{
   devices: any;
   @Input() id : any;
+  isChecked: boolean = true;
 
   constructor(private deviceService:DeviceService){}
 
   ngOnInit(): void {
-    this.deviceService.getDevicesByUserId(this.id).subscribe(data=>{
+    this.deviceService.GetUserDevicesVisibleForDSO(this.id).subscribe(data=>{
       this.devices = data;
       console.log(data)
     })
@@ -26,5 +28,9 @@ export class TableComponent implements OnInit{
 
   onSearch(value: string, dtUsers: any) {
     dtUsers.filterGlobal(value, 'contains');
+  }
+
+  async handleRunningSwitchChange(device : any){
+    await lastValueFrom(this.deviceService.updateUserDSODevice(device,this.id));
   }
 }

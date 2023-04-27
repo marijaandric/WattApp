@@ -1,4 +1,4 @@
-﻿
+
 using backend.BAL;
 using backend.Context;
 using backend.DAL.Interfaces;
@@ -31,6 +31,25 @@ namespace backend.DAL
             return _context.Devices.FirstOrDefault(e => e.Id == deviceId);
         }
 
+        public List<Devices> GetDevicesForUserByType(int userId, string deviceType)
+        {
+            return _context.Devices.Where(d => d.UserID == userId && d.DeviceType == deviceType).ToList();
+        }
+
+        public List<Devices> GetAllDevicesForUserIDs(List<int> userids)
+        {
+            return _context.Devices.Where(d => userids.Contains(d.UserID)).ToList();
+        }
+
+        public List<Devices> GetUserDevicesVisibleForDSO(int userid)
+        {
+            return _context.Devices.Where(e => e.UserID == userid && e.allowOperatorVisibility == true).ToList();
+        }
+
+        public int GetNumberOfDevicesByType(int userId, string type)
+        {
+            return _context.Devices.Where(x => x.UserID == userId && x.DeviceType.ToLower() == type.ToLower()).Count();
+        }
         public int GetNumberOfDevicesForUserThatDSOCanSee(int userId)
         {
             var res = _context.Devices.Where(e => e.UserID == userId && e.allowOperatorVisibility == true).ToList();
@@ -61,7 +80,7 @@ namespace backend.DAL
 
         public List<Devices> GetDevicesByType(string type)
         {
-            return _context.Devices.Where(e => e.DeviceType == type).ToList();
+            return _context.Devices.Where(e => e.DeviceType.ToLower() == type.ToLower()).ToList();
         }
 
         public List<Devices> GetDevicesForUser(int userId)
@@ -73,7 +92,7 @@ namespace backend.DAL
         {
             if(type == "All")
                 return GetDevicesForUser(userId);
-            return _context.Devices.Where(e => e.UserID == userId && e.DeviceType == type).ToList();
+            return _context.Devices.Where(e => e.UserID == userId && e.DeviceType.ToLower() == type.ToLower()).ToList();
         }
 
         public void ModifiedDevice(Devices device)
@@ -91,6 +110,5 @@ namespace backend.DAL
             _context.SaveChangesAsync();
         }
 
-        
     }
 }

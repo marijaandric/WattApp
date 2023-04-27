@@ -35,6 +35,13 @@ interface SwitchOption {
   value: boolean;
 }
 
+interface HiF{
+  history: any,
+  forecast: any,
+  date1: any,
+  date2: any
+}
+
 
 @Component({
   selector: 'app-device',
@@ -60,6 +67,18 @@ export class DeviceComponent implements OnInit{
   array : any[]  = [null,null, null, null, null, null, null,null,null,null, null, null, null]
   array2 : any[] = [null,null, null, null, null, null,null,null, null, null, null, null,null]
   array3 : any[] = []
+  array4 : any[] = [null,null,null,null,null,null,null]
+  array5 : any[] = [null,null,null,null,null,null,null]
+  date1 : any[] = []
+  date2: any[] = []
+
+  hif : HiF[]  = [{history: 0, forecast: 0, date1: [], date2: []},
+  {history: 0, forecast: 0, date1: [], date2: []},
+  {history: 0, forecast: 0, date1: [], date2: []},
+  {history: 0, forecast: 0, date1: [], date2: []},
+  {history: 0, forecast: 0, date1: [], date2: []},
+  {history: 0, forecast: 0, date1: [], date2: []},
+  {history: 0, forecast: 0, date1: [], date2: []}];
 
   switchValue: boolean = true;
 
@@ -80,7 +99,7 @@ export class DeviceComponent implements OnInit{
 
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
-    this.getHistoryAndForecastByDayForDevice(id)
+    this.getHistoryAndForecastByDayForDevice(id);
     if (id){
       this.deviceService.getDeviceById(id)
         .subscribe(device => {
@@ -182,6 +201,8 @@ export class DeviceComponent implements OnInit{
       let a = [];
       let b = [];
       let c = [];
+      let d = [];
+      let x = [];
 
       for(let i = 0;i<7;i++)
       {
@@ -189,15 +210,42 @@ export class DeviceComponent implements OnInit{
         c[i] = data.dates[i]
         b[i] = null
       }
-      
+      this.array4 = a;
+      this.date1 = c;
+
+      let br = 0
       for(let i = 6;i<14;i++)
       {
         b[i] = data.datas[i].toFixed(2)
         c[i] = data.dates[i]
+        d[br] = data.datas[i].toFixed(2)
+        x[br] = data.dates[i]
+        br++;
+
       }
       this.array = a;
       this.array2 =b;
       this.array3 = c;
+      this.array5 = d;
+      this.date2 = x;
+
+      // console.log(this.array); // Ovo je za History prosumer
+      // console.log(this.array2);
+      // console.log(this.array3);
+      // console.log(this.array5);// Ovo je za Forecast prosumer
+      // console.log(this.date2);// ovo je datum za Forecast od 7
+      // console.log(this.array4);
+      // console.log(this.date1);
+
+      for(let i = 0;i<7;i++)
+      {
+        this.hif[i].history = this.array[i];
+        this.hif[i].forecast = this.array5[i];
+        this.hif[i].date1 = this.array3[i];
+        this.hif[i].date2 = this.array3[i+7];
+      }
+      console.log(this.hif);
+      
     })
   }
 

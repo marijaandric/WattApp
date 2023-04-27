@@ -1,21 +1,38 @@
-import { Component, OnInit,Input } from '@angular/core';
-import {  ApexAxisChartSeries,ApexFill, ApexTooltip,ApexPlotOptions, ApexStroke,ApexLegend, ApexChart, ApexXAxis, ApexTitleSubtitle,ApexYAxis } from 'ng-apexcharts';
+import { Component, OnInit,Input, SimpleChanges, OnChanges } from '@angular/core';
+import {  ApexAxisChartSeries,ApexFill, ApexTooltip,ApexPlotOptions, ApexStroke,ApexLegend, ApexChart, ApexXAxis, ApexTitleSubtitle,ApexYAxis, ApexNonAxisChartSeries } from 'ng-apexcharts';
 
 @Component({
   selector: 'app-area-bar-chart',
   styleUrls: ['./area-bar-chart.component.css'],
   template: '<apx-chart [series]="series" [tooltip]="tooltip" [plotOptions]="plotOptions" [stroke]="stroke"  [legend]="legend" [fill]="fill" [chart]="chart" [xaxis]="xaxis" [yaxis]="yaxis" [title]="title"></apx-chart>',
 })
-export class AreaBarChartComponent implements OnInit {
+export class AreaBarChartComponent implements OnInit, OnChanges {
+  @Input() seriesData: number[] = [40, 32, 28];
+
+
+  
   public series: ApexAxisChartSeries = [
     {
       name: 'Resorce',
-      data: [120, 39, 32],
+      data: this.seriesData,
     },
   ];
+  ngOnChanges(changes: SimpleChanges): void {
+    if ('seriesData' in changes) {
+      this.ngOnInit();
+      this.series = [
+        {
+          name: 'Resource',
+          data: this.seriesData,
+        },
+      ];
+    }
+  }
+
+
   public chart: ApexChart = {
     type: 'bar',
-    height: 250,
+    height: 295,
     width: '100%',
 
     
@@ -27,7 +44,7 @@ export class AreaBarChartComponent implements OnInit {
     offsetY: 10,
     labels: {
       style: {
-        colors: ['#7d02d4', 'rgb(217, 3, 114)','rgb(4, 167, 119)', ],
+        colors: ['#46c5f1', '#885ec0','#eb4886', '#f5805a'],
         fontSize: '17px',
       }
     }
@@ -44,7 +61,7 @@ export class AreaBarChartComponent implements OnInit {
   public fill: ApexFill = {
     type: 'solid',
     opacity: 1,
-    colors: ['#7d02d4','rgb(217, 3, 114)',  'rgb(4, 167, 119)', ],
+    colors: ['#46c5f1', '#885ec0','#eb4886', '#f5805a'],
     
   }
 
@@ -69,19 +86,27 @@ export class AreaBarChartComponent implements OnInit {
     bar : {
       borderRadius: 10,
       columnWidth: '40%',
-      distributed:false,
+      distributed:true,
       borderRadiusWhenStacked: 'last',
     }
   }
 
   public title: ApexTitleSubtitle = {
-    text: 'The ratio of the number of consumers, producers and batteries',
+    text: 'Devices comparison',
     style: {
       color: '#FFFFFF',
-      fontSize: '19px'
+      fontSize: '19px',
+      fontFamily: 'Montserrat',
     }
   };
 
   ngOnInit(): void {
+    this.series = [
+      {
+        name: 'Resource',
+        data: this.seriesData,
+      },
+    ];
+    console.log(this.seriesData);
   }
 }

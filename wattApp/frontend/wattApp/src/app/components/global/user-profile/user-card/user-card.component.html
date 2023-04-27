@@ -2,12 +2,19 @@
     <div class="card">
         <div class="card-body">
             <div class="d-flex flex-column align-items-center text-center">
-                <img src="/assets/images/team-profile-pictures/vanja.png" class="rounded-circle" width="110" style="background-color: white;">
+              <img [src]="userImageUrlEndpoint" class="rounded-circle" style="background-color: white;" width="110" height="110">
                 <div class="mt-3">
                     <h3 style="margin-bottom: 30px;">{{ userInfo?.firstName }}</h3>
                     <p style="margin-bottom: 30px;">{{userInfo?.address}}</p>
-                    <button label="Edit" (click)="showDialog()">Edit</button>
-
+                    <div class="flexRow">
+                      <button label="Edit" (click)="showDialog()">Edit</button>
+                      <p-fileUpload name="file" styleClass="margin-left__16px"
+                        mode="basic" chooseLabel="Upload"
+                        [url]="userImageUrlEndpoint" (onUpload)="onImageChange($event)"
+                        accept="image/*" [auto]="true" [maxFileSize]="2000000">
+                      </p-fileUpload>
+                      <button (click)="deleteImage()" class="margin-left__16px">Remove</button>
+                    </div>
 
                     <!--Dialog-->
                     <p-dialog header="Title"  [transitionOptions]="'3ms'" 

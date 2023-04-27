@@ -3,6 +3,17 @@
     flex-wrap: wrap;
     justify-content: center;
   }
+
+  
+  .dropdowns{
+    width:100%; 
+    height:fit-content; 
+    display:flex; 
+    flex-direction:row;
+    margin-bottom:32px;
+    margin-top:6px
+  }
+
   
   .chart-container {
     display: inline-block;
@@ -36,7 +47,51 @@
     padding-right: 200px;
 
   }
+
   
+  .bottom-grid{
+    display: flex;
+    flex-direction: row;
+    height:fit-content;
+    width:100%;
+  }
+.bottom-right{
+  width:35.5%;
+  margin-left:calc(2%);
+  margin-top:2%;
+}
+.map{
+  height: calc(100% - 355px);
+  padding-bottom:6%;
+}
+  
+  .main-grid {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom:32px;
+  }
+  .stats-cards{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-left:2%;
+    width:35.5%;
+    padding: 0px 0;
+    justify-content:space-between;
+    position:relative;
+  }
+  
+  .stats-card{
+    display:flex;
+    flex-basis: 47%;
+    box-shadow: 5px 5px 15px black;
+  }
+  
+  .stats-card:nth-child(1), .stats-card:nth-child(2) {
+    margin-bottom:6%;
+  }
+
 ::ng-deep #SvgjsG4317 {
   width:50%
 }
@@ -49,50 +104,63 @@
     display: inline-flex;
   }
   
-  .consumption {
-    background-color:#7d02d4;
-  }
-  .production {
-    background-color: #d90372;
-  }
-  .stock {
-    background-color: #04a777;
-  }
-  .all {
-    background-color: #F75C03;
-  }
+
   
-::ng-deep .p-dropdown {
-  position:relative;
-  margin-bottom: 20px;
-  border-radius: 30px;
-  border:none;
-}
-::ng-deep #pr_id_1_label{
-  border-radius: 30px 30px;
-  background-color:#7d02d4;
-  font-size: 17px;
-  padding:5px 20px;
-  border:none;
-}
+  ::ng-deep .p-dropdown {
+    position:relative;
+    border-radius: 20px;
+    border:none;
+    font-size:16px;
+    margin-right:20px;
+    background: linear-gradient(45deg, #46c5f1 10%, #5245b7 100%);
+    
+  }
 
-p-table{
-  width: 48.5%
-}
+  ::ng-deep .p-dropdown.p-component {
+    width:165.953px;
+  }
 
-@media only screen and (min-width: 769px) {
+  ::ng-deep #pr_id_1_label{
+    font-size: 14px;
+    padding:8px 0px 8px 16px;
+    border:none;
+    font-weight: bold;
+    font-family: 'Lato', sans-serif;
+  }
+  ::ng-deep #pr_id_2_label{
+    font-size: 14px;
+    padding:8px 0px 8px 16px;
+    border:none;
+    font-weight: bold;
+    font-family: 'Lato', sans-serif;
+  }
+  ::ng-deep #pr_id_3_label{
+    font-size: 14px;
+    padding:8px 0px 8px 16px;
+    border:none;
+    font-weight: bold;
+    font-family: 'Lato', sans-serif;
+  }
+
+@media only screen and (min-width: 980px) {
   .main-grid {
     width: 100%;
     display: flex;
     flex-wrap: wrap;
+    flex-direction: row;
   }
 
   .twoCharts{
     display: none;
   }
+
+  .tabela{
+    width: 62.5%;
+  }
+
 }
 
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width:980px) {
   .chart{
     width: 100%;
     margin: 10px 0px;
@@ -113,10 +181,37 @@ p-table{
   #oneChart
   {
     display: none;
+  }
+
+  .stats-cards{
+    flex-direction: row;
+    width: 100%;
+  }
+
+  .stats-card{
+    width: 100%;
+  }
+
+  .bottom-grid{
+    display: flex;
+    flex-direction: column;
+  }
+
+  .tabela{
+    width: 100%;
+    margin:0px;
+  }
+
+  .bottom-right{
+    width: 100%;
+  }
+  
+  .map{
+    padding-bottom: calc(2%);
   }
 }
   
-@media only screen and (max-width: 768px) {
+@media only screen and (max-width: 980ppx) {
   .chart{
     width: 100%;
     margin: 10px 0px;
@@ -138,6 +233,8 @@ p-table{
   {
     display: none;
   }
+
+  
 }
   
   
