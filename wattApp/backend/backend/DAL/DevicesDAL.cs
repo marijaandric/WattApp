@@ -48,7 +48,7 @@ namespace backend.DAL
 
         public int GetNumberOfDevicesByType(int userId, string type)
         {
-            return _context.Devices.Where(x => x.Id == userId && x.DeviceType.ToLower() == type.ToLower()).Count();
+            return _context.Devices.Where(x => x.UserID == userId && x.DeviceType.ToLower() == type.ToLower()).Count();
         }
         public int GetNumberOfDevicesForUserThatDSOCanSee(int userId)
         {
