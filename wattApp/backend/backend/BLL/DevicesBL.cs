@@ -1,4 +1,4 @@
-﻿using backend.BAL;
+using backend.BAL;
 using backend.BLL.Interfaces;
 using backend.DAL;
 using backend.DAL.Interfaces;
@@ -47,9 +47,9 @@ namespace backend.BLL
         public Dictionary<string, int> GetNumberOfDevicesByType(int userId)
         {
             Dictionary<string, int> devices = new Dictionary<string, int>();
-            devices.Add("Consumer", _contextDAL.GetNumberOfDevicesByType("consumer"));
-            devices.Add("Producer", _contextDAL.GetNumberOfDevicesByType("producer"));
-            devices.Add("Stock", _contextDAL.GetNumberOfDevicesByType("stock"));
+            devices.Add("Consumer", _contextDAL.GetNumberOfDevicesByType(userId, "consumer"));
+            devices.Add("Producer", _contextDAL.GetNumberOfDevicesByType(userId, "producer"));
+            devices.Add("Stock", _contextDAL.GetNumberOfDevicesByType(userId, "stock"));
             return devices;
         }
 
