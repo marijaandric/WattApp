@@ -1,4 +1,4 @@
-import { Component, OnInit,Input, SimpleChanges } from '@angular/core';
+import { Component, OnInit,Input, SimpleChanges, OnChanges } from '@angular/core';
 import {  ApexAxisChartSeries,ApexFill, ApexTooltip,ApexPlotOptions, ApexStroke,ApexLegend, ApexChart, ApexXAxis, ApexTitleSubtitle,ApexYAxis, ApexNonAxisChartSeries } from 'ng-apexcharts';
 
 @Component({
@@ -6,7 +6,7 @@ import {  ApexAxisChartSeries,ApexFill, ApexTooltip,ApexPlotOptions, ApexStroke,
   styleUrls: ['./area-bar-chart.component.css'],
   template: '<apx-chart [series]="series" [tooltip]="tooltip" [plotOptions]="plotOptions" [stroke]="stroke"  [legend]="legend" [fill]="fill" [chart]="chart" [xaxis]="xaxis" [yaxis]="yaxis" [title]="title"></apx-chart>',
 })
-export class AreaBarChartComponent implements OnInit {
+export class AreaBarChartComponent implements OnInit, OnChanges {
   @Input() seriesData: number[] = [40, 32, 28];
 
 
@@ -19,22 +19,20 @@ export class AreaBarChartComponent implements OnInit {
   ];
   ngOnChanges(changes: SimpleChanges): void {
     if ('seriesData' in changes) {
-      this.updateSeries();
+      this.ngOnInit();
+      this.series = [
+        {
+          name: 'Resource',
+          data: this.seriesData,
+        },
+      ];
     }
   }
 
-  private updateSeries(): void {
-    this.series = [
-      {
-        name: 'Resource',
-        data: this.seriesData,
-      },
-    ];
-  }
 
   public chart: ApexChart = {
     type: 'bar',
-    height: 300,
+    height: 295,
     width: '100%',
 
     
@@ -103,6 +101,12 @@ export class AreaBarChartComponent implements OnInit {
   };
 
   ngOnInit(): void {
-    this.updateSeries();
+    this.series = [
+      {
+        name: 'Resource',
+        data: this.seriesData,
+      },
+    ];
+    console.log(this.seriesData);
   }
 }
