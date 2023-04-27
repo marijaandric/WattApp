@@ -142,8 +142,8 @@
           font-size: 14px;
           position: relative;
           display:flex;
-          margin:25px auto;
-          border-image: linear-gradient(45deg, #b855a4 40%, #f5805a);
+          border-image: linear-gradient(45deg, #46c5f1 10%, #5245b7 100%);
+    
         
           .p-element .p-dropdown-label .p-inputtext .ng-star-inserted{
             background: none;
@@ -160,8 +160,8 @@
       border-radius: 32px;
       display: block;
       margin: auto;
-      background: -webkit-linear-gradient(45deg, #b855a4 40%, #f5805a);
-      color: #fff;
+      background: linear-gradient(45deg, #46c5f1 10%, #5245b7 100%);
+       color: #fff;
       font-weight: bold;
     }
 
@@ -171,17 +171,20 @@
       border-radius: 32px;
       display: block;
       margin: auto;
-      background: -webkit-linear-gradient(45deg, #b855a4 40%, #f5805a);
+      background: -webkit-linear-gradient(45deg, #46c5f1 10%, #5245b7 100%);
+    
+      box-shadow: 2px 2px 10px black;
       color: #fff;
       font-weight: bold;
     }
     button.footer-button:hover{
-      span {
-        background: -webkit-linear-gradient(45deg, #b855a4 40%, #f5805a);
+      span {background: -webkit-linear-gradient(45deg, #46c5f1 10%, #5245b7 100%);
+    
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
       }
       background: none;
+      box-shadow: none;
     }
 
     button.yes-button {
@@ -190,7 +193,8 @@
       border-radius: 32px;
       display: block;
       float:right;
-      background: linear-gradient(45deg, #b855a4 40%, #f5805a) ;
+      background: linear-gradient(45deg, #46c5f1 10%, #5245b7 100%);
+    box-shadow: 2px 2px 10px black;
       color: #fff;
       font-weight: bold;
     }
@@ -203,6 +207,8 @@
       float:right;
       background: transparent;
       font-weight: bold;
+      
+    box-shadow: 2px 2px 10px black;
       span {
         background: white;
         -webkit-background-clip: text;
@@ -212,18 +218,19 @@
     }
 
     button.no-button:hover{
-      span {
-        background: -webkit-linear-gradient(45deg, #b855a4 40%, #f5805a );
+      span {background: -webkit-linear-gradient(45deg, #46c5f1 10%, #5245b7 100%);
+    
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
       }
+      box-shadow: none;
      
     }
 
     button.yes-button:hover{
       background:none;
-      span {
-        background: -webkit-linear-gradient(45deg, #b855a4 40%, #f5805a);
+      span {background: -webkit-linear-gradient(45deg, #46c5f1 10%, #5245b7 100%);
+    
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
       }
