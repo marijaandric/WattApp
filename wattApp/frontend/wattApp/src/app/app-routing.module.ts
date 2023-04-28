@@ -21,7 +21,7 @@ import { UsersOperatorsComponent } from './components/DSO/users-page-components/
 import { UserDSOComponent } from './components/DSO/user/user-dso/user-dso.component';
 import { PageNotFoundComponent } from './components/global/page-not-found/page-not-found.component';
 import { FaqPageComponenetsComponent } from './components/global/faq-page-componenets/faq-page-componenets.component';
-
+import { SidebarNewComponent } from './components/global/layout-components/sidebar-new/sidebar-new.component';
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
   { path: 'login', component: LoginComponent, pathMatch:'full' },
@@ -39,8 +39,9 @@ const routes: Routes = [
   { path: 'users/prosumers', component: UsersComponent},
   { path: 'users/operators', component: UsersOperatorsComponent},
   { path: 'userDSO/:id', component: UserDSOComponent},
-  { path : 'PageNotFound', component:PageNotFoundComponent },
-  { path : 'faq', component:FaqPageComponenetsComponent },
+  { path: 'PageNotFound', component:PageNotFoundComponent },
+  { path: 'faq', component:FaqPageComponenetsComponent },
+  { path: 'sidebar-new', component: SidebarNewComponent},
   { path: '**', redirectTo: '/PageNotFound' },
 ];
 

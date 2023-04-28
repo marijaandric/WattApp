@@ -93,6 +93,7 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { ImageModule } from 'primeng/image';
 import { GalleryComponent } from './components/global/landing-page-componenets/gallery/gallery.component';
 import { StatsCardComponent } from './components/global/stats-card/stats-card.component';
+import { SidebarNewComponent } from './components/global/layout-components/sidebar-new/sidebar-new.component';
 
 export const url = 'https://localhost:7158';
 export const deviceFakerUrl = "https://localhost:7233";
@@ -165,7 +166,8 @@ export const deviceFakerUrl = "https://localhost:7233";
     DeviceDesktopComponent,
     FaqPageComponenetsComponent,
     GalleryComponent,
-    StatsCardComponent
+    StatsCardComponent,
+    SidebarNewComponent
   ],
   imports: [
     CommonModule,

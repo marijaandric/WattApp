@@ -1,0 +1,177 @@
+<div class="logo">
+    <div class="left">
+
+    </div>
+    <div class="right">
+
+    </div>
+</div>
+
+<div class="sidebar-arrow">
+    <i class="fa-solid fa-circle-right" (click)="expandSidebar()"></i>
+</div>
+
+<div class="nav-div">
+    <ul class="nav-link">
+        <li>
+            <div class="left">
+                <i class='fa fa-home' ></i>
+
+            </div>
+            <div class="right">
+        
+            </div>
+        </li>
+        <li>
+            <div class="left">
+                <i class='fa fa-home' ></i>
+
+            </div>
+            <div class="right">
+        
+            </div>
+        </li>
+    </ul>
+</div>
+
+
+
+<!--
+    
+<div class="logo-details">
+    <i><img class="img1" src="../../../../../assets/images/logo-images/logo1.png"></i> 
+    <span class="logo_name" ><img class="img2" src="../../../../../assets/images/logo-images/logo2.png"></span>
+            
+        
+    </div>
+    <div >
+        <div class="bars"><i class="fa-solid fa-circle-right" [ngClass]="isSidebarShown? 'arrow2' : 'arrow3'" (click)="showSidebar()"></i></div>
+    </div>
+<ul class="nav-links">
+    
+    <li>
+    <a routerLink="/home">
+        <i class='fa fa-home' ></i>
+        <span class="link_name">Home</span>
+    </a>
+    <ul class="sub-menu nopadding">
+        <li><a class="link_name" routerLink="/home">Home</a></li>
+    </ul>
+    </li>
+    <li>
+    <div class="iocn-link">
+        <a routerLink="/users">
+        <i class="fa-solid fa-users"></i>
+        <span class="link_name">Users</span>
+        </a>
+        <div class="round"><i class="fa-solid fa-caret-down arrow" [ngClass]="{'arrow2' : !isSubMenuShown}" id="UsersDrpId" (click)="showSubMenus()"></i></div>
+    </div>
+    <ul  class="sub-menu nopadding">
+        <li><a class="link_name" routerLink="/users">Users</a></li>
+        <li *ngIf="!isSubMenuShown"><a routerLink="/users/prosumers">Prosumers</a></li>
+        <li *ngIf="!isSubMenuShown"><a routerLink="/users/operators">Operators</a></li>
+    </ul>
+    </li>
+    <li *ngIf="isSubMenuShown" class="submenus" [ngClass]="{'marginLeft' : !isSidebarShown}">
+        <a routerLink="#">
+            <i class="fa-solid fa-user-group"></i>
+            <span class="link_name">Prosumers</span>
+        </a>
+        <ul class="sub-menu nopadding">
+            <li><a class="link_name" routerLink="#">Prosumers</a></li>
+        </ul>
+        </li>
+    <li>
+    <li *ngIf="isSubMenuShown" class="submenus" [ngClass]="{'marginLeft' : !isSidebarShown}">
+        <a routerLink="#">
+            <i class="fa-solid fa-users-gear"></i>
+            <span class="link_name">Operators</span>
+        </a>
+        <ul class="sub-menu nopadding">
+            <li><a class="link_name" routerLink="#">Operators</a></li>
+        </ul>
+        </li>
+    <li>
+
+
+
+    <div class="iocn-link">
+        <a routerLink="/devices">
+        <i class="fa-solid fa-computer"></i>
+        <span class="link_name" >Devices</span>
+        </a>
+        <i class="fa-solid fa-caret-down arrow" [ngClass]="{'arrow2' : !isSubMenu2Shown}" id="UsersDrpId" (click)="showSubMenus2()"></i>
+    </div>
+    <ul  class="sub-menu nopadding">
+        <li><a class="link_name" routerLink="/devices">Devices</a></li>
+        <li *ngIf="!isSubMenu2Shown"><a routerLink="/devices/consumption">Consumption</a></li>
+        <li *ngIf="!isSubMenu2Shown"><a routerLink="/devices/production">Production</a></li>
+        <li *ngIf="!isSubMenu2Shown"><a routerLink="/devices/stock">Stock</a></li>
+    </ul>
+    </li>
+    <li *ngIf="isSubMenu2Shown" [ngClass]="{'marginLeft' : !isSidebarShown}">
+        <a routerLink="/devices/consumption">
+            <i class="fa-solid fa-bolt"></i>
+            <span class="link_name">Consumption</span>
+        </a>
+        <ul class="sub-menu nopadding">
+            <li><a class="link_name" routerLink="#">Consumption</a></li>
+        </ul>
+        </li>
+    <li>
+    <li *ngIf="isSubMenu2Shown" [ngClass]="{'marginLeft' : !isSidebarShown}">
+        <a routerLink="/devices/production">
+            <i class="fa-solid fa-solar-panel"></i>
+            <span class="link_name">Production</span>
+        </a>
+        <ul class="sub-menu nopadding">
+            <li><a class="link_name" routerLink="#">Production</a></li>
+        </ul>
+        </li>
+    <li>
+    <li *ngIf="isSubMenu2Shown" [ngClass]="{'marginLeft' : !isSidebarShown}">
+        <a routerLink="/devices/stock">
+            <i class="fa-solid fa-database"></i>
+            <span class="link_name">Stock</span>
+        </a>
+        <ul class="sub-menu nopadding">
+            <li><a class="link_name" routerLink="#">Stock</a></li>
+        </ul>
+    </li>
+    
+    
+    <li>
+    <a routerLink="/statistics">
+        <i class="fa-solid fa-chart-pie"></i>
+        <span class="link_name">Statistics</span>
+    </a>
+    <ul class="sub-menu nopadding">
+        <li><a class="link_name" routerLink="/statistics">Statistics</a></li>
+    </ul>
+    </li>
+    <li>
+    <a routerLink="/faq">
+        <i class="fa-sharp fa-solid fa-question fa-xl"></i>
+        <span class="link_name">FAQ</span>
+    </a>
+    <ul class="sub-menu nopadding">
+        <li><a class="link_name" routerLink="/faq">FAQ</a></li>
+    </ul>
+    </li>
+    <div class="logdiv">
+            <li>
+            <a>
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <span (click)="logout()" class="link_name">Log out</span>
+            </a>
+            <ul class="sub-menu nopadding">
+                <li><a  class="link_name" >Log out</a></li>
+            </ul>
+            </li>
+        </div>
+    
+</ul>
+
+</div>
+
+-->

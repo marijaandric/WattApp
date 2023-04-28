@@ -1,0 +1,138 @@
+:host {
+    display:flex;
+    flex-direction: column;
+    position:absolute;
+    left:0px;
+    width:82px;
+    height:100vh;
+    background: linear-gradient(180deg, #1b1b1b 30%, #121212 100%) ;
+    box-sizing: border-box;
+    z-index: 2;
+    transition: all 0.5s ease;
+}
+
+:host.open {
+    width:250px;
+
+    .right {
+        margin-left:16px;
+        display:flex;
+        background-color: blue;
+        width:calc(100% - 80px);
+        height:50px;
+    }
+}
+
+.logo {
+    display:flex;
+    flex-direction: row;
+    padding:16px;
+}
+
+.left {
+    display: flex;
+    background: white;
+    border:none;
+    border-left:10px;
+
+    width:50px;
+    height:50px;
+    border-radius: 10px;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+
+    i {
+        width:30px;
+        font-size:20px;
+
+        background: -webkit-linear-gradient(45deg, #46c5f1 10%, #5245b7 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+}
+
+.middle{
+    display:none
+}
+
+.right {
+    transition: all 0.5s ease-in-out;
+}
+
+li {
+    display: flex;
+    flex-direction: row;
+    padding:8px 16px;
+    border-left:4px solid 
+}
+
+
+
+.logo-details{
+    height: 70px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+  
+  .logo-details i {
+    font-size: 20px;
+    color: #fff;
+    height: 50px;
+    min-width: 78px;
+    text-align: center;
+    line-height: 50px;
+  }
+  
+  .img1 {
+      width:4em;
+      height:4em;
+      text-align: center;
+      line-height: 50px;
+      margin-left: 3px;
+  }
+  
+  .img2 {
+      width:7em;
+      height:5em;
+      min-width: 78px;
+      line-height: 50px;
+      margin-top:30px;
+      margin-left:-10px;
+  }
+  
+  .bars {
+    position: absolute;
+    right:-15px;
+    padding-top: 3px;
+    cursor: pointer;
+  }
+  .bars i {
+    background-color: #363636;
+    color:white;
+    font-size: 30px;
+    border-radius: 20px;
+  }
+  
+  .arrow2 {
+    transform: rotate(0deg);
+    transition-duration: 1s;
+  }
+  .arrow3 {
+    transform: rotate(180deg);
+    transition-duration: 1s;
+  }
+
+  
+  .logo-details .logo_name{
+    transition: 0.3s ease;
+    transition-delay: 0.1s;
+    width:95%;
+  }
+  :host.close .logo-details .logo_name{
+    transition-delay: 0s;
+    opacity: 0;
+    pointer-events: none;
+    display:none;
+  }
