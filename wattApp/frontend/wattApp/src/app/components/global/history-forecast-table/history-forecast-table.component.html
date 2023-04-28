@@ -6,7 +6,7 @@
       <ng-template pTemplate="caption">
         <div class="flexRow">
             <h3 >
-            Users</h3>
+            History & forecast table</h3>
             <span class="p-input-icon-left margin-left__auto margin-right__16px">
                 <i class="pi pi-search"></i>
                 <input pInputText type="text" (input)="dtUsers.filterGlobal($any($event.target).value, 'contains')" placeholder="Search keyword" />
@@ -17,30 +17,30 @@
   
       <ng-template pTemplate="header">
         <tr>
-          <th pSortableColumn="firstName" style="min-width:5rem;  border-top:2px solid #46c5f1; border-bottom:2px solid #46c5f1;">
+          <th pSortableColumn="firstName" style="width:3rem;  border-top:2px solid #46c5f1; border-bottom:2px solid #46c5f1;">
             <div class="flexRow">
-                <p style=" font-size: 18px !important;">Date</p>
+                <p style=" font-size: 15px !important;">Date</p>
                 <p-sortIcon field="firstName"></p-sortIcon>
                 <p-columnFilter class="ml-auto" type="text" field="firstName" display="menu"></p-columnFilter>
             </div>
           </th>
-          <th pSortableColumn="lastName" style="min-width:6rem;  border-top:2px  solid #46c5f1; border-bottom:2px solid #46c5f1;">
+          <th pSortableColumn="lastName" style="min-width:14rem;  border-top:2px  solid #46c5f1; border-bottom:2px solid #46c5f1;">
             <div class="flexRow">
-                <p style=" font-size: 18px !important;">{{this.name1}}</p>
+                <p style=" font-size: 15px !important;">{{this.name1}}</p>
                 <p-sortIcon field="lastName"></p-sortIcon>
                 <p-columnFilter class="ml-auto" type="text" field="lastName" display="menu"></p-columnFilter>
             </div>
           </th>
-          <th pSortableColumn="email" style="min-width:5rem;  border-top:2px  solid #46c5f1; border-bottom:2px  solid #46c5f1;;">
+          <th pSortableColumn="email" style="min-width:3rem;  border-top:2px  solid #46c5f1; border-bottom:2px  solid #46c5f1;;">
             <div class="flexRow">
-                <p style=" font-size: 18px !important;">Date</p>
+                <p style=" font-size: 15px !important;">Date</p>
                 <p-sortIcon field="email"></p-sortIcon>
                 <p-columnFilter class="ml-auto" type="text" field="email" display="menu"></p-columnFilter>
             </div>
           </th>
           <th pSortableColumn="role" style="min-width:16rem; border-top:2px  solid #46c5f1;; border-bottom:2px solid #46c5f1;">
             <div class="flexRow">
-                <p style=" font-size: 18px !important;">{{this.name2}}</p>
+                <p style=" font-size: 15px !important;">{{this.name2}}</p>
                 <p-sortIcon field="role"></p-sortIcon>
                 <p-columnFilter class="ml-auto" type="text" field="role" display="menu"></p-columnFilter>
             </div>
