@@ -2,16 +2,15 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    margin: 32px 32px 16px 32px;
+    margin: 36px 36px 16px 36px;
     flex: 1;
     min-width: 500px;
     border-radius: 32px;
-    /*background-color: #222222;*/
 }
 
 @media only screen and (max-width: 500px) {
     :host {
-        margin: 32px 32px 16px 32px;
+        margin: 20px 20px 16px 20px;
         min-width: 50px;
     }
 }

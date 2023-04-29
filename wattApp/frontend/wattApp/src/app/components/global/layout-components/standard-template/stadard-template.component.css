@@ -49,3 +49,29 @@
   
 
 }
+
+/* NOV SIDEBAR VERZIJA 
+:host {
+  background: linear-gradient(180deg,rgb(251, 251, 251) 60%, rgb(229, 229, 229) 100% ) ;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  z-index: 0;
+
+
+}
+
+.sidebar{
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  box-shadow: 5px 5px 15px rgb(196, 196, 196);
+  
+}
+
+.content{
+  height: 100vh;
+  min-height: 600px;
+  width: calc(100% - 80px);
+
+
+*/
