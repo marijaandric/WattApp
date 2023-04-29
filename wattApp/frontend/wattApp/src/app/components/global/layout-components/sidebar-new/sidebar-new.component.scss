@@ -5,7 +5,6 @@
     left:0px;
     width:82px;
     height:100vh;
-    background:white ;
     box-sizing: border-box;
     z-index: 2;
     transition: all 0.5s ease;
@@ -46,11 +45,6 @@
         font-size:20px;
     }
 }
-
-.left:hover {
-    background: #363636;
-}
-
 li:nth-child(1) .left{
     background:#46c5f1;
 }

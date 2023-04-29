@@ -149,35 +149,35 @@
 }
 .p-link {
   border-radius: 20px !important;
-
+}
+  p,a,li,body, div,span{
+    color: white;
+    font-family: 'Lato', sans-serif;
+    
+  }
+  h1,h2,h3,h4,h5,h6 {
+    font-family: 'Montserrat', sans-serif;
+    color:white;
+  
+  }
+  
+  .abbreviate-text{
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+  }
   
 /*
   height:15px !important;
   width:40px !important;
 */
-}
+
 
 /*    LIGHT VERZIJA - NE BRISATI 
 
 .p-datatable .p-datatable-tbody>tr>td {
   border: 1px solid #393939 !important;
   border-width: 0px 0px 1px 0px !important;
-}
-p,a,li,body, div,span{
-  color: white;
-  font-family: 'Lato', sans-serif;
-  
-}
-h1,h2,h3,h4,h5,h6 {
-  font-family: 'Montserrat', sans-serif;
-  color:white;
-
-}
-
-.abbreviate-text{
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
 }
 
 .p-datatable .p-datatable-header{
@@ -234,6 +234,10 @@ h1,h2,h3,h4,h5,h6 {
   background: linear-gradient(180deg, #1b1b1b 30%, #121212 100%) ;
 }
 
+.dark-theme-background-gray-gradient-3 {
+  background: linear-gradient(180deg, #1b1b1b 30%, #0d0d0d 100%) ;
+}
+
 .dark-theme-application-background {
   background: linear-gradient(180deg, #0d0d0d 60%, #060606 100% ) ;
 }
@@ -266,10 +270,16 @@ h1,h2,h3,h4,h5,h6 {
   border:none;
 }
 
-.dark-theme-text-color-blac {
+.dark-theme-text-color-black {
   color:black;
 }
 
 .dark-theme-text-color-gray {
   color: #4e4e4e;
+}
+.dark-theme-color-gray {
+  background:red;
+}
+.dark-theme-color-gray:hover {
+  background: #313131;
 }
