@@ -7,20 +7,14 @@ namespace backend.Controllers
     [ApiController]
     public class RoomTypesController : ControllerBase
     {
-        /// <summary>
-        /// Get list of all supported room types.
-        /// </summary>
-        /// <returns>
-        /// A list of the display names of all supported room types.
-        /// </returns>
         [HttpGet]
-        public List<string> GetRoomTypes()
+        public Dictionary<RoomTypes, string> GetRoomTypes()
         {
-            List<string> roomTypes = Enum.GetValues(typeof(RoomTypes))
+            Dictionary<RoomTypes, string> roomTypes = Enum.GetValues(typeof(RoomTypes))
                 .Cast<RoomTypes>()
-                .Select(dt => dt.GetRoomTypesDisplayName())
-                .ToList();
+                .ToDictionary(rt => rt, rt => rt.GetRoomTypesDisplayName());
             return roomTypes;
         }
+
     }
 }

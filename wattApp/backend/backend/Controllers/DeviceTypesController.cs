@@ -9,19 +9,12 @@ namespace backend.Controllers
     [ApiController]
     public class DeviceTypesController : ControllerBase
     {
-        /// <summary>
-        /// Get list of all supported device types.
-        /// </summary>
-        /// <returns>
-        /// A list of the display names of all supported device types.
-        /// </returns>
         [HttpGet]
-        public List<string> GetDeviceTypes()
+        public Dictionary<DeviceTypes, string> GetDeviceTypes()
         {
-            List<string> deviceTypes = Enum.GetValues(typeof(DeviceTypes))
+            Dictionary<DeviceTypes, string> deviceTypes = Enum.GetValues(typeof(DeviceTypes))
                 .Cast<DeviceTypes>()
-                .Select(dt => dt.GetDeviceTypesDisplayName())
-                .ToList();
+                .ToDictionary(dt => dt, dt => dt.GetDeviceTypesDisplayName());
             return deviceTypes;
         }
 

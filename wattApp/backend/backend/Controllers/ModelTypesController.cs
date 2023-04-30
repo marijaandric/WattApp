@@ -7,20 +7,24 @@ namespace backend.Controllers
     [ApiController]
     public class ModelTypesController : ControllerBase
     {
-        /// <summary>
-        /// Get list of all supported device types.
-        /// </summary>
-        /// <returns>
-        /// A list of the display names of all supported device types.
-        /// </returns>
         [HttpGet]
-        public List<string> GetModelTypes()
+        public Dictionary<ModelTypes, string> GetModelTypes()
         {
-            List<string> modelTypes = Enum.GetValues(typeof(ModelTypes))
+            Dictionary<ModelTypes, string> modelTypes = Enum.GetValues(typeof(ModelTypes))
                 .Cast<ModelTypes>()
-                .Select(dt => dt.GetModelTypesDisplayName())
-                .ToList();
+                .ToDictionary(mt => mt, mt => mt.GetModelTypesDisplayName());
+            return modelTypes;
+        }
+
+        [HttpGet("{deviceType}")]
+        public Dictionary<ModelTypes, string> GetDeviceModelTypes(DeviceTypes deviceType)
+        {
+            Dictionary<ModelTypes, string> modelTypes = Enum.GetValues(typeof(ModelTypes))
+                .Cast<ModelTypes>()
+                .Where(mt => mt.GetDeviceType() == deviceType)
+                .ToDictionary(mt => mt, mt => mt.GetModelTypesDisplayName());
             return modelTypes;
         }
     }
+
 }
