@@ -51,8 +51,8 @@ export class UserDSOComponent implements OnInit{
   name1 = "history";
   name2 = "forecast";
 
-  color1 = '#885ec0';
-  color2 = '#ae91d4';
+  color1 = '#46c5f1';
+  color2 = '#88dbf6';
 
   HistoryCon = [null,null,null,null, null, null, null, null,null,null,null, null, null, null];
   ForecastCon= [null,null, null, null, null, null,null,null,null,null, null, null, null];
@@ -180,8 +180,8 @@ export class UserDSOComponent implements OnInit{
         this.name1="Consumption history";
         this.name2="Consumption forecast";
 
-        this.color1 = '#885ec0';
-        this.color2 = '#ae91d4';
+        this.color1 = '#46c5f1';
+        this.color2 = '#88dbf6';
 
         for(let i = 0;i<7;i++)
         {
@@ -204,8 +204,8 @@ export class UserDSOComponent implements OnInit{
       this.name1="Consumption history";
       this.name2="Consumption forecast";
 
-      this.color1 = '#885ec0';
-      this.color2 = '#ae91d4';
+      this.color1 = '#46c5f1';
+      this.color2 = '#88dbf6';
 
       for(let i = 0;i<this.History.length;i++)
       {
@@ -223,8 +223,8 @@ export class UserDSOComponent implements OnInit{
       this.name1="Production history";
       this.name2="Production forecast";
 
-      this.color1 = '#eb4886';
-      this.color2 = '#f075a4';
+      this.color1 = '#885ec0';
+      this.color2 = '#ae91d4';
 
       for(let i = 0;i<this.History.length;i++)
       {
@@ -241,8 +241,8 @@ export class UserDSOComponent implements OnInit{
       this.name1="Stock history";
       this.name2="Stock forecast";
 
-      this.color1 = '#f5805a';
-      this.color2 = '#f9b59f';
+      this.color1 = '#eb4886';
+      this.color2 = '#f075a4';
 
       for(let i = 0;i<this.History.length;i++)
       {
