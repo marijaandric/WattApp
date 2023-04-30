@@ -4,14 +4,14 @@
     </app-title-bar>
     <app-center-bar>
     <div class="widgets">
-        
-      <app-widget [subTitle]="'Current price of electricity'" [Title]="dayPowerPrice + ' RSD kW/h'" [isBlue]="true" [isBgBlue]="true" class="widget">
+    
+      <app-widget [subTitle]="'Total consumed electricity this month'" [Title]="monthPowerUsageConsumer + ' kWh'" [isBlue]="true" [isBgBlue]="true" class="widget">
       </app-widget>
-      <app-widget [subTitle]="'Total consumed electricity this month'" [Title]="monthPowerUsageConsumer + ' kW/h'" [isYellow]="true" [isBgYellow]="true" class="widget">
+      <app-widget [subTitle]="'Total produced electricity this month'" [Title]="monthPowerUsageProducer + ' kWh'" [isYellow]="true" [isBgYellow]="true" class="widget">
       </app-widget>
-      <app-widget [subTitle]="'Total produced electricity this month'" [Title]="monthPowerUsageProducer + ' kW/h'" [isPink]="true" [isBgPink]="true" class="widget">
+      <app-widget  [subTitle]="'Total stocked  electricity this month'" [Title]="monthPowerUsageStorage+ ' kWh'" [isPink]="true" [isBgPink]="true" class="widget">
       </app-widget>
-      <app-widget  [subTitle]="'Total stocked  electricity this month'" [Title]="monthPowerUsageStorage+ ' kW/h'" [isOrange]="true" [isBgOrange]="true" class="widget">
+      <app-widget  [subTitle]="'Current price of electricity'" [Title]="dayPowerPrice + ' RSD kWh'"  [isOrange]="true" [isBgOrange]="true" class="widget">
       </app-widget>
         
     </div>
