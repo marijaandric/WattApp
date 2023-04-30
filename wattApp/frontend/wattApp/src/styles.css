@@ -277,9 +277,7 @@
 .dark-theme-text-color-gray {
   color: #4e4e4e;
 }
-.dark-theme-color-gray {
-  background:red;
-}
+
 .dark-theme-color-gray:hover {
-  background: #313131;
+  background: #323232;
 }
