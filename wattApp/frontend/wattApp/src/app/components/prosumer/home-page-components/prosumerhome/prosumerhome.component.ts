@@ -214,8 +214,6 @@ export class ProsumerhomeComponent implements OnInit{
      this.status2 = this.news[1].priority;
      this.status3 = this.news[2].priority;
 
-
-     console.log(this.news);
     });
   
   }
@@ -234,10 +232,6 @@ export class ProsumerhomeComponent implements OnInit{
     this.getmonthPowerUsageProducer();
     this.getmonthPowerUsageStorage();
     this.getdayPowerPrice();
-
-    console.log(this.devices);
-
-    
   }
 
   
