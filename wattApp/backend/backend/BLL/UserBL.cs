@@ -21,6 +21,7 @@ using SendGrid;
 using Org.BouncyCastle.Utilities.Net;
 using Microsoft.AspNetCore.Http.HttpResults;
 using NuGet.Protocol;
+using Microsoft.AspNetCore.Identity;
 
 namespace backend.BAL
 {
@@ -302,6 +303,17 @@ namespace backend.BAL
             return _contextDAL.ResetPassword(user);
 
 
+        }
+
+        public IActionResult UpdateUserTheme(int userId)
+        {
+            User user = _contextDAL.getUser(userId);
+            if (user == null)
+            {
+                return new StatusCodeResult(404);
+            }
+            user.isDarkTheme = !user.isDarkTheme;
+            return _contextDAL.updateUser(user.Id,user);
         }
 
     }

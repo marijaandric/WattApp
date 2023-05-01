@@ -11,6 +11,7 @@ using backend.BAL.Interfaces;
 using backend.Helpers;
 using backend.Models.DTOs;
 using backend.BAL;
+using Microsoft.AspNetCore.Identity;
 
 namespace backend.Controllers
 {
@@ -150,6 +151,12 @@ namespace backend.Controllers
         public async Task<IActionResult> ResetPassword(ResetPasswordDTO resetPasswordDTO)
         {
             return _context.ResetPassword(resetPasswordDTO);
+        }
+
+        [HttpPut("updateUserTheme/{id}")]
+        public async Task<IActionResult> UpdateUserTheme(int id)
+        {
+            return _context.UpdateUserTheme(id);
         }
 
     }

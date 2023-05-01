@@ -19,5 +19,6 @@ namespace backend.BAL.Interfaces
         public Dictionary<string, int> GetNumberOfUsersByType();
         public IActionResult ResetPasswordEmail(string email);
         public IActionResult ResetPassword(ResetPasswordDTO resetPasswordDTO);
+        public IActionResult UpdateUserTheme(int userId);
     }
 }
