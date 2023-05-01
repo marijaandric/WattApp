@@ -4,6 +4,7 @@ using backend.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using backend.BAL;
+using backend.Models.DTOs;
 
 namespace backend.DAL
 {
@@ -122,6 +123,51 @@ namespace backend.DAL
             else return _context.Users.Where(x => x.Role.ToLower() != "prosumer").Count();
 
 
+        }
+
+        public IActionResult ResetPasswordEmail(User user)
+        {
+           _context.Entry(user).State = EntityState.Modified;
+            try
+            {
+                _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!userExists(user.Id))
+                {
+                    return new StatusCodeResult(404);
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return new StatusCodeResult(204);
+
+        }
+
+        public IActionResult ResetPassword(User user)
+        {
+            _context.Entry(user).State = EntityState.Modified;
+            try
+            {
+                _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!userExists(user.Id))
+                {
+                    return new StatusCodeResult(404);
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return new StatusCodeResult(204);
         }
     }
 }

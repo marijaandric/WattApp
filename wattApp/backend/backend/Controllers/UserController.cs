@@ -10,6 +10,7 @@ using backend.Models;
 using backend.BAL.Interfaces;
 using backend.Helpers;
 using backend.Models.DTOs;
+using backend.BAL;
 
 namespace backend.Controllers
 {
@@ -133,6 +134,22 @@ namespace backend.Controllers
             var users = _context.GetNumberOfUsersByType();
 
             return users;
+        }
+
+        [HttpPost("send-reset-email/{email}")]
+        public async Task<IActionResult> ResetPasswordEmail(string email)
+        { 
+            if(string.IsNullOrEmpty(email))
+            {
+                return BadRequest();
+            }
+            return _context.ResetPasswordEmail(email);
+        }
+
+        [HttpPost("reset-email")]
+        public async Task<IActionResult> ResetPassword(ResetPasswordDTO resetPasswordDTO)
+        {
+            return _context.ResetPassword(resetPasswordDTO);
         }
 
     }

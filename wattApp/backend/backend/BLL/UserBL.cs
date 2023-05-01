@@ -19,6 +19,8 @@ using SendGrid.Helpers.Mail;
 using System.Diagnostics;
 using SendGrid;
 using Org.BouncyCastle.Utilities.Net;
+using Microsoft.AspNetCore.Http.HttpResults;
+using NuGet.Protocol;
 
 namespace backend.BAL
 {
@@ -258,6 +260,46 @@ namespace backend.BAL
                 throw new SecurityTokenException("This is invalid token");
 
             return principal;
+        }
+
+        public IActionResult ResetPasswordEmail(string email)
+        {
+            var user = _contextDAL.getUserByEmail(email);
+
+            if(user is null)
+            {
+                return new StatusCodeResult(404);
+            }
+
+            var tokenBytes = RandomNumberGenerator.GetBytes(64);
+            var emailToken = Convert.ToBase64String(tokenBytes);
+            user.ResetPasswordExpiryTime = DateTime.Now.AddMinutes(15);
+            user.ResetPasswordToken = emailToken;
+            SendEmailAsync(email, "ResetPassword", EmailBody.EmailBodyForResetPassword(email, emailToken));
+            return _contextDAL.ResetPasswordEmail(user);
+
+        }
+
+        public IActionResult ResetPassword(ResetPasswordDTO resetPasswordDTO)
+        {
+            var newToken = resetPasswordDTO.EmailToken.Replace(" ", "+");
+            var user = _contextDAL.getUserByEmail(resetPasswordDTO.Email);
+            if (user is null)
+            {
+                return new StatusCodeResult(404);
+            }
+            var tokenCode = user.ResetPasswordToken;
+            DateTime emailTokenExpiry = user.ResetPasswordExpiryTime;
+
+            if(tokenCode != resetPasswordDTO.EmailToken || emailTokenExpiry < DateTime.Now)
+            {
+                return new StatusCodeResult(404);
+            }
+
+            user.Password = PasswordHasher.HashPassword(resetPasswordDTO.NewPassword);
+            return _contextDAL.ResetPassword(user);
+
+
         }
 
     }
