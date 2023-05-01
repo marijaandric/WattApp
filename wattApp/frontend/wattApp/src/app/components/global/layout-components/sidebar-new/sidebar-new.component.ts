@@ -20,6 +20,7 @@ export class SidebarNewComponent {
 
   ngOnInit(): void {
     this.hostElement = this.elementRef.nativeElement as HTMLElement;
+    this.hostElement?.classList.toggle('close', !this.isSideBarExpanded);
     const innerElements = this.hostElement?.querySelectorAll('.main');
     innerElements.forEach((innerElement) => {
       this.renderer.addClass(innerElement, 'dark-theme-color-gray');
@@ -31,6 +32,7 @@ export class SidebarNewComponent {
   expandSidebar() {
     this.isSideBarExpanded = !this.isSideBarExpanded;
     this.hostElement?.classList.toggle('open', this.isSideBarExpanded);
+    this.hostElement?.classList.toggle('close', !this.isSideBarExpanded);
     this.toggleEventEmitter.emit(this.isSideBarExpanded);
   }
 

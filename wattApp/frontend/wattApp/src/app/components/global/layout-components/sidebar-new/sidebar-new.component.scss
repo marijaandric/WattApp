@@ -8,7 +8,7 @@
     width:70px;
     height:100vh;
     box-sizing: border-box;
-    z-index: 2;
+    z-index: 1;
     transition: all 0.5s ease;
 }
 
@@ -49,7 +49,7 @@
         clear: both;
 
         .title {
-          transition:all 0.5s ease;
+          transition:opc 0.5s ease;
           display: flex;
           width:102px;
           
@@ -87,6 +87,7 @@
   margin:10px 10px 0px 10px;
   border-radius: 10px;
   cursor: pointer;
+  z-index: 1;
 }
 
 .submain {
@@ -102,7 +103,7 @@
     align-items: center;
     text-align: center;
     justify-content: center;
-
+    z-index:1;
     .icon {
       width:100%;
     }
@@ -131,15 +132,9 @@
 
 @keyframes opc {
   0% {
-    transform: translateX(0px);
     opacity: 0;
   }
-  50% {
-    transform: translateX(20px);
-    opacity: 0.5;
-  }
   100% {
-    transform: translateX(40px);
     opacity: 1;
   }
 
@@ -151,7 +146,7 @@
     align-items: center;
 
     .title {
-      transition: 0.5s ease;
+      transition:opc 0.5s ease;
       display: none;
     }
     
@@ -172,7 +167,7 @@
   z-index: 3;
   position:absolute;
   right:-12px;
-  top:50px;
+  top:60px;
   cursor: pointer;
 }
 
@@ -186,7 +181,9 @@
 }
 
 
+
 .logo {
+  margin-top:10px;
   display:flex;
   flex-direction: row;
   padding:10px 10px 0px 10px;
@@ -213,15 +210,21 @@
 
   img {
     cursor: pointer;
-    width:49px;
-    height:50px;
+    width:46px;
+    height:46px;
   }
 
 }
 
+.submain-title {
+  display:none;
+}
+
 .logo-icon:hover {
-  transform: rotate(360deg);
-  transition-duration: 1s;
+  img{
+    transform: rotate(360deg);
+    transition-duration: 1s;
+  }
 }
 
 .logo-title {
@@ -233,77 +236,60 @@
   img {
     opacity: 0;
     height:50px;
+    width:auto;
     cursor: pointer;
   }
 }
 
-/*
-.logo-details{
-    height: 70px;
-    width: 100%;
-    display: flex;
-    align-items: center;
+:host.close {
+  .right {
+    transform: translateX(0px);
   }
-  
-  .logo-details i {
-    font-size: 20px;
-    color: #fff;
-    height: 50px;
-    min-width: 78px;
-    text-align: center;
-    line-height: 50px;
-  }
-  
-  .img1 {
-      width:4em;
-      height:4em;
-      text-align: center;
-      line-height: 50px;
-      margin-left: 3px;
-  }
-  
-  .img2 {
-      width:7em;
-      height:5em;
-      min-width: 78px;
-      line-height: 50px;
-      margin-top:30px;
-      margin-left:-10px;
-  }
-  
-  .bars {
-    position: absolute;
-    right:-15px;
-    padding-top: 3px;
-    cursor: pointer;
-  }
-  .bars i {
-    background-color: #363636;
-    color:white;
-    font-size: 30px;
-    border-radius: 20px;
-  }
-  
-  .arrow2 {
-    transform: rotate(0deg);
-    transition-duration: 1s;
-  }
-  .arrow3 {
-    transform: rotate(180deg);
-    transition-duration: 1s;
+}
+:host.close .margin-100:hover {
+  margin-bottom: -100px;
+}
+:host.close .main:hover{
+ 
+  width:fit-content;
+  background:transparent !important;
+  overflow: hidden;
+  z-index: 4;
+  .left {
+    background-color: #222222;
   }
 
-  
-  .logo-details .logo_name{
-    transition: 0.3s ease;
-    transition-delay: 0.1s;
-    width:95%;
-  }
-  :host.close .logo-details .logo_name{
-    transition-delay: 0s;
-    opacity: 0;
-    pointer-events: none;
-    display:none;
-  }
+  .right {
+    pointer-events:none;
+    transform: translateX(30px);
+    background-color: #222222;
+    left:70px;
+    display:flex;
+    z-index:3;
+    flex-direction: column;
+    width:132px;
+    border-radius: 10px;
 
-*/
+    .title {
+      display: flex;
+      width:102px;
+      height:50px;
+
+      a {
+        display: flex;
+        align-self: center;
+      }
+    }
+
+    .submain-title {
+      display: flex;
+      height:50px;
+      width:102px;
+      
+      a {
+        display: flex;
+        align-self: center;
+      }
+    }
+  }
+}
