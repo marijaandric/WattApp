@@ -51,11 +51,10 @@ export class TitleBarComponent implements OnInit{
   types!: Types[];
   rooms!: Rooms[];
   models! : Models[];
-  modelsRez! : Models[];
   roleSelected! : string;
-  typeSelected! : string;
-  modelSelected! : string;
-  roomSelected! : string;
+  typeSelected! : Types;
+  modelSelected! : Models;
+  roomSelected! : Rooms;
   showText = false;
   rola:any;
   value!:string;
@@ -113,34 +112,34 @@ export class TitleBarComponent implements OnInit{
           this.roles = this.roles.filter(roleType => roleType.name === 'prosumer' || roleType.name === 'operator');
         }
     });
-
+    
     this.deviceTypesService.getAllDeviceTypes()
       .pipe(
-        map(deviceTypes => deviceTypes.map(deviceType => ({ code: deviceType, name: deviceType })))
+        map(deviceTypes => {
+          return Object.entries(deviceTypes).map(([code, name]) => ({ code, name }));
+        })
       )
       .subscribe(mappedDeviceTypes => {
         this.types = mappedDeviceTypes;
-        this.typeSelected = this.types[0].name;
-        
+        this.typeSelected = this.types[0];
     });
 
     this.roomTypesService.getAllRoomTypes()
       .pipe(
-        map(roomTypes => roomTypes.map(roomType => ({ code: roomType, name: roomType })))
+        map(roomTypes => Object.entries(roomTypes).map(([code, name]) => ({ code, name })))
       )
       .subscribe(mappedRoomTypes => {
         this.rooms = mappedRoomTypes;
-        this.roomSelected = this.rooms[0].name;
+        this.roomSelected = this.rooms[0];
     });
-
-    this.modelTypesService.getAllModelTypes()
+  
+    this.modelTypesService.getAllModelTypes("STOCK")
       .pipe(
-        map(modelTypes => modelTypes.map(modelType => ({ code: modelType, name: modelType })))
+        map(modelTypes => Object.entries(modelTypes).map(([code, name]) => ({ code, name })))
       )
       .subscribe(mappedModelTypes => {
         this.models = mappedModelTypes;
-        this.modelsRez = this.models;
-        this.modelSelected = this.models[0].name;
+        this.modelSelected = this.models[0];
     });
 
     this.isAdmin();
@@ -227,18 +226,16 @@ export class TitleBarComponent implements OnInit{
   }
 
   onTypeChange(event:any){
-    this.typeSelected = event.value.type;
-    this.models = this.modelsRez;
-    const filteredModels = this.models.filter(models => models.code === this.typeSelected);
-    this.models = filteredModels;
-    this.modelSelected = filteredModels[0].name;
+    this.typeSelected = event.value;
   }
+
   onModelChange(event:any){
     this.modelSelected = event.value.name;
   }
+  
   onRoomChange(event:any)
   {
-    this.roomSelected = event.value.name;
+    this.roomSelected = event.value;
   }
 
   //registracija

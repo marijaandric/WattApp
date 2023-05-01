@@ -17,12 +17,18 @@ namespace backend.Controllers
         }
 
         [HttpGet("{deviceType}")]
-        public Dictionary<ModelTypes, string> GetDeviceModelTypes(DeviceTypes deviceType)
+        public Dictionary<ModelTypes, string> GetDeviceModelTypes(string deviceType)
         {
+            if (!Enum.TryParse<DeviceTypes>(deviceType, out var deviceTypeEnum))
+            {
+                throw new ArgumentException("Invalid device type");
+            }
+
             Dictionary<ModelTypes, string> modelTypes = Enum.GetValues(typeof(ModelTypes))
                 .Cast<ModelTypes>()
-                .Where(mt => mt.GetDeviceType() == deviceType)
+                .Where(mt => mt.GetDeviceType() == deviceTypeEnum)
                 .ToDictionary(mt => mt, mt => mt.GetModelTypesDisplayName());
+
             return modelTypes;
         }
     }
