@@ -157,6 +157,7 @@ namespace backend.DAL
             }
             catch (DbUpdateConcurrencyException)
             {
+                Console.WriteLine("USLO");
                 if (!userExists(user.Id))
                 {
                     return new StatusCodeResult(404);

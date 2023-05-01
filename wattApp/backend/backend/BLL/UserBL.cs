@@ -275,7 +275,7 @@ namespace backend.BAL
             var emailToken = Convert.ToBase64String(tokenBytes);
             user.ResetPasswordExpiryTime = DateTime.Now.AddMinutes(15);
             user.ResetPasswordToken = emailToken;
-            SendEmailAsync(email, "ResetPassword", EmailBody.EmailBodyForResetPassword(email, emailToken));
+            SendEmailAsync(email, "ResetPassword", "You are receiving this email because you requested a password reset for your  WattApp account.\nBy clicking the button below, you will be able to reset your password\nhttp://localhost:4200/reset?email=" + email+"&code="+emailToken+ "\n\nKind Regards,\n\nCodeSpark Energy") ;
             return _contextDAL.ResetPasswordEmail(user);
 
         }
@@ -286,6 +286,7 @@ namespace backend.BAL
             var user = _contextDAL.getUserByEmail(resetPasswordDTO.Email);
             if (user is null)
             {
+                Console.WriteLine("USLO3");
                 return new StatusCodeResult(404);
             }
             var tokenCode = user.ResetPasswordToken;
@@ -293,6 +294,7 @@ namespace backend.BAL
 
             if(tokenCode != resetPasswordDTO.EmailToken || emailTokenExpiry < DateTime.Now)
             {
+                Console.WriteLine("USLO2");
                 return new StatusCodeResult(404);
             }
 

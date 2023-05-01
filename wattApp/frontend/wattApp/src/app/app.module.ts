@@ -95,6 +95,7 @@ import { GalleryComponent } from './components/global/landing-page-componenets/g
 import { StatsCardComponent } from './components/global/stats-card/stats-card.component';
 import { SidebarNewComponent } from './components/global/layout-components/sidebar-new/sidebar-new.component';
 import { ForgotPasswordComponent } from './components/global/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './components/global/reset-password/reset-password.component';
 
 export const url = 'https://localhost:7158';
 export const deviceFakerUrl = "https://localhost:7233";
@@ -169,7 +170,8 @@ export const deviceFakerUrl = "https://localhost:7233";
     GalleryComponent,
     StatsCardComponent,
     SidebarNewComponent,
-    ForgotPasswordComponent
+    ForgotPasswordComponent,
+    ResetPasswordComponent
   ],
   imports: [
     CommonModule,

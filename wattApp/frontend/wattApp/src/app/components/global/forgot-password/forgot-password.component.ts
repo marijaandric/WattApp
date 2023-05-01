@@ -36,7 +36,7 @@ export class ForgotPasswordComponent implements OnInit{
           this.resetPasswordEmail = "";
           this.toast.success({
             detail:"Success",
-            summary:"Reset Success!",
+            summary:"Check your mail!",
             duration:3000,
           })
         },

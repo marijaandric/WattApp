@@ -11,8 +11,8 @@ using backend.Context;
 namespace backend.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230501161113_ressetPassword")]
-    partial class ressetPassword
+    [Migration("20230501192034_ResetPassword")]
+    partial class ResetPassword
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
