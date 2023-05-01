@@ -1,59 +1,58 @@
 <div class="my-host-element">
-
 <div class="logo">
-    <div class="left">
+    <div class="logo-icon">
+        <img src="../../../../../assets/icons/images/cse.pn1.png">
 
+    </div>
+    <div class="logo-title">
+        <img src="../../../../../assets/icons/images/cse.pn2.png">
+
+    </div>
+</div>
+<div class="sidebar-arrow">
+    <i class="fa-solid fa-circle-right"  [ngClass]="isSideBarExpanded? 'arrow-right' : 'arrow-left'" (click)="expandSidebar()"></i>
+</div>
+<div class="main" style="margin-top:10px;">
+    <div class="left">
         <i class='fa fa-home' ></i>
     </div>
     <div class="right">
-
+        <div class="title"><a>Home</a></div>
+        <div class="arrow"  [ngClass]="{'passive': isSubMenuShown}"  (click)="showSubMenu()">
+            <i id="submenu-1" class="fa-solid fa-caret-right"></i>
+        </div>
     </div>
+</div>
+
+<div [ngClass]="{'hidden': isSubMenuShown, 'submenu': !isSubMenuShown}">
+
+<div class="main">
+    <div class="left">
+    </div>
+    <div class="right">
+        <div class="subtitle"><a>SubHome</a></div>
+    </div>
+</div>   
+<div class="main">
+    <div class="left">
+    </div>
+    <div class="right">
+        <div class="subtitle"><a>SubHome</a></div>
+    </div>
+</div>      
+
+</div>
+<div class="main">
     <div class="left">
         <i class='fa fa-home' ></i>
-
+    </div>
+    <div class="right">
+        <div class="title"><a>Home</a></div>
+        <div class="arrow"  [ngClass]="{'passive': isSubMenuShown}"  (click)="showSubMenu()">
+            <i id="submenu-1" class="fa-solid fa-caret-right"></i>
+        </div>
     </div>
 </div>
-
-<div class="sidebar-arrow">
-    <i class="fa-solid fa-circle-right" (click)="expandSidebar()"></i>
-</div>
-
-<div class="nav-div">
-   
-    <ul class="nav-link">
-           
-            <div class="right">
-        
-            </div>
-        <li>
-            <div class="left">
-                <i class='fa fa-home' ></i>
-
-            </div>
-            <div class="right">
-        
-            </div>
-        </li> <li>
-            <div class="left">
-
-            </div>
-            <div class="right">
-        
-            </div>
-        </li> <li>
-            <div class="left">
-                <i class='fa fa-home' ></i>
-
-            </div>
-            <div class="right">
-        
-            </div>
-        </li>
-    </ul>
-</div>
-</div>
-
-
 
 <!--
     

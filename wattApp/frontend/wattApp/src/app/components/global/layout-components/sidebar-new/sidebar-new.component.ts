@@ -20,7 +20,7 @@ export class SidebarNewComponent {
 
   ngOnInit(): void {
     this.hostElement = this.elementRef.nativeElement as HTMLElement;
-    const innerElements = this.hostElement?.querySelectorAll('.left');
+    const innerElements = this.hostElement?.querySelectorAll('.main');
     innerElements.forEach((innerElement) => {
       this.renderer.addClass(innerElement, 'dark-theme-color-gray');
     });
@@ -47,5 +47,10 @@ export class SidebarNewComponent {
   logout()
   {
     this.auth.logout();
+  }
+
+  showSubMenu() {
+    this.isSubMenuShown = !this.isSubMenuShown;
+    
   }
 }

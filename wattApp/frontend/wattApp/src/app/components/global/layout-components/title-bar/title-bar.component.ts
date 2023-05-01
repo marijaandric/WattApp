@@ -11,7 +11,6 @@ import { ModelTypesService } from 'src/app/services/model-types/model-types.serv
 import { RoleTypesService } from 'src/app/services/role-types/role-types.service';
 import { RoomTypesService } from 'src/app/services/room-types/room-types.service';
 import { UserService } from 'src/app/services/user.service';
-import * as L from 'leaflet';
 import axios from 'axios';
 import { DsonewsService } from 'src/app/services/dsonews/dsonews.service';
 import { url } from 'src/app/app.module';
