@@ -22,19 +22,15 @@
       <small class="text-danger" *ngIf="signUpForm.controls['lastName'].dirty && signUpForm.hasError('required','lastName')">Last name is required</small>
       <input formControlName="username" name="username"  appendTo="body" type="text"   class="p-inputtext-lg"  placeholder="USERNAME"> 
       <small class="text-danger" *ngIf="signUpForm.controls['username'].dirty && signUpForm.hasError('required','username')">Username is required</small>
-      <input formControlName="password" name="password" appendTo="body" type="text"  class="p-inputtext-lg"  placeholder="PASSWORD"> 
-      <small class="text-danger" *ngIf="signUpForm.controls['password'].dirty && signUpForm.hasError('required','password')">Password is required</small>
-      <input formControlName="password2" name="password2" appendTo="body" type="text"  class="p-inputtext-lg"  placeholder="REPEAT PASSWORD"> 
-      <small class="text-danger" *ngIf="signUpForm.controls['password2'].dirty && signUpForm.hasError('required','password2')">Password is required</small>
       <input formControlName="email" name="email" appendTo="body" type="text"   class="p-inputtext-lg"  placeholder="EMAIL"> 
       <small class="text-danger" *ngIf="signUpForm.controls['email'].dirty && signUpForm.hasError('required','email')">Email is required</small>
       <div class="dropdown-div"><p-dropdown  [options]="roles" appendTo="body" optionLabel="name" (onChange)="onRoleChange($event)"></p-dropdown></div>
+      <input formControlName="phoneNumber" name="phone" appendTo="body" type="text"   class="p-inputtext-lg"  placeholder="PHONE NUMBER"> 
+      <small class="text-danger" *ngIf="signUpForm.controls['phoneNumber'].dirty && signUpForm.hasError('required','phoneNumber')">Phone number is required</small>
       
     </div>
   
     <div class="half">
-      <input formControlName="phoneNumber" name="phone" appendTo="body" type="text"   class="p-inputtext-lg"  placeholder="PHONE NUMBER"> 
-      <small class="text-danger" *ngIf="signUpForm.controls['phoneNumber'].dirty && signUpForm.hasError('required','phoneNumber')">Phone number is required</small>
       <input formControlName="address" name="address" appendTo="body" type="text"   class="p-inputtext-lg"  placeholder="ADDRESS" (change)="onAddressChange($event)">     
       <small class="text-danger" *ngIf="signUpForm.controls['address'].dirty && signUpForm.hasError('required','address')">Address is required</small>
 

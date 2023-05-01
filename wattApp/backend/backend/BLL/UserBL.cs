@@ -11,16 +11,26 @@ using System.Text;
 using System.Security.Cryptography;
 using SQLitePCL;
 using backend.Models.DTOs;
+using System.Net.Mail;
+using System.Net;
+using MimeKit;
+using Org.BouncyCastle.Crypto.Macs;
+using SendGrid.Helpers.Mail;
+using System.Diagnostics;
+using SendGrid;
+using Org.BouncyCastle.Utilities.Net;
 
 namespace backend.BAL
 {
     public class UserBL : IUserBL
     {
         private readonly IUserDAL _contextDAL;
+        private readonly IConfiguration _configuration;
 
-        public UserBL(IUserDAL context)
+        public UserBL(IUserDAL context,IConfiguration _configuration)
         {
             _contextDAL = context;
+            this._configuration = _configuration;
         }
 
         public User authenticateUser(User userObj)
@@ -109,6 +119,7 @@ namespace backend.BAL
 
         public IActionResult registerUser(User userObj)
         {
+            userObj.Password = GenerateRandomPassword();
             //check email
             if (_contextDAL.emailExists(userObj.Email))
                 return new StatusCodeResult(404);
@@ -117,9 +128,66 @@ namespace backend.BAL
             if (!string.IsNullOrEmpty(pass))
                 return new StatusCodeResult(404);
 
+            string psw = userObj.Password;
             userObj.Password = PasswordHasher.HashPassword(userObj.Password);
             userObj.Token = "";
+            SendEmailAsync(userObj.Email, "CodeSpark Energy", "Hi, "+ userObj.FirstName + "\nThis is your password: "+ psw + "\nYou can change your password in our application at any time. Your password is unique and only you can know it.\r\nThank you for your trust! Enjoy using the application!\r\n\r\nSincerely, Your Distribution");
             return _contextDAL.addUser(userObj);
+        }
+
+        public void SendEmailAsync(string toemail, string subject, string message)
+        {
+            using SmtpClient email = new SmtpClient
+            {
+                DeliveryMethod = SmtpDeliveryMethod.Network,
+                UseDefaultCredentials = false,
+                EnableSsl = true,
+                Host = "smtp.gmail.com",
+                Port = 587,
+                Credentials = new NetworkCredential("dsosikg@gmail.com", "zlxrnjbacpibdhgu")
+            };
+
+            try
+            {
+                email.Send("marijaandric2001@gmail.com", toemail, subject, message);
+            }
+            catch(Exception e)
+            {
+                Console.WriteLine("Greska : " + e);
+            }
+
+        }
+
+
+
+
+        public string GenerateRandomPassword()
+        {
+            const string uppercaseLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+            const string lowercaseLetters = "abcdefghijklmnopqrstuvwxyz";
+            const string numbers = "0123456789"; 
+            const string specialCharacters = "!@#$%^&*()_+-=[]{}|;':\",./<>?";
+            const string allChars = uppercaseLetters + lowercaseLetters + numbers;
+
+            var random = new Random();
+            var passwordBuilder = new StringBuilder();
+
+            passwordBuilder.Append(uppercaseLetters[random.Next(uppercaseLetters.Length)]);
+
+            passwordBuilder.Append(lowercaseLetters[random.Next(lowercaseLetters.Length)]);
+
+            passwordBuilder.Append(numbers[random.Next(numbers.Length)]);
+
+            passwordBuilder.Append(specialCharacters[random.Next(specialCharacters.Length)]);
+
+            // Add remaining characters
+            for (int i = 0; i < 7; i++) 
+            {
+                passwordBuilder.Append(allChars[random.Next(allChars.Length)]);
+            }
+
+            Console.WriteLine(passwordBuilder.ToString());
+            return passwordBuilder.ToString();
         }
 
         public IActionResult updateUser(int id, User user)
