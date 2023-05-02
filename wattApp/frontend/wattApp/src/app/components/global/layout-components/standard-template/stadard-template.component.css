@@ -39,12 +39,14 @@
 }
 
 
+
 @media only screen and (max-width: 639px) {
   :host(.sidebar-opened) .content{
     width: 100% !important;
   }
-  :host {
-    flex-direction: column;
+
+  :host .content{
+    width:100%;
   }
   
 

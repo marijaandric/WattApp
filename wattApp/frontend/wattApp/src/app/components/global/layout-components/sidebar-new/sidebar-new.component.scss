@@ -338,3 +338,19 @@ a {
   position: absolute !important;
   bottom:10px;
 }
+
+
+@media (max-width: 640px) {
+  
+  :host.close {
+      width:0;
+
+      .sidebar-arrow {
+        right:-18px;
+      }
+      
+      .main, .logo {
+        display: none;
+      }
+  }
+}
