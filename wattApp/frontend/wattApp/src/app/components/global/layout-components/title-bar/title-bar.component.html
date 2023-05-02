@@ -126,6 +126,37 @@
   </p-dialog>
 
 
+  
+<p-dialog [style]="{width:'40%'}" header="Title"  [transitionOptions]="'3ms'" 
+[draggable]="true" [keepInViewport]="true" [resizable]="false" 
+[blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true" 
+[modal]="true" [(visible)]="display4" [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
+[closable]="true" >
+<ng-template pTemplate="header" class="header-dialog">
+  <span>Change password</span>
+</ng-template>
+
+<ng-template pTemplate="content">
+  <form [formGroup]="newsForm" > 
+  
+  <div class="p-inputgroup p-inputtext-lg p-input-filled">
+    <div class="half">
+      <input formControlName="title" name="name" appendTo="body" type="text" class="p-inputtext-lg" placeholder="CURRENT EMAIL"> 
+      <input formControlName="title" name="name" appendTo="body" type="text" class="p-inputtext-lg" placeholder="NEW EMAIL"> 
+      <input formControlName="title" name="name" appendTo="body" type="text" class="p-inputtext-lg" placeholder="CONFIRM EMAIL">
+    </div>
+  </div> 
+  </form>
+  
+</ng-template>
+
+<ng-template pTemplate="footer" style="min-height:100px;" >
+  <button type="button" class="footer-button" icon="pi pi-info-circle" label="Show">Save</button>
+
+</ng-template>
+</p-dialog>
+
+
 
 
 <nav>
@@ -152,6 +183,10 @@
                 <a class="sub-menu-link">
                   <i class="fa-sharp fa-regular fa-sun"></i>
                   <p>Light theme</p>
+                </a>
+                <a class="sub-menu-link">
+                  <i class="fa-sharp fa-solid fa-headset"></i>
+                  <p (click)="showDialog4()">Change password</p>
                 </a>
                 <a class="sub-menu-link">
                   <i class="fa-sharp fa-solid fa-headset"></i>

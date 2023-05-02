@@ -44,6 +44,7 @@ export class TitleBarComponent implements OnInit{
   display : boolean = false;
   display2 : boolean = false;
   display3 : boolean = false;
+  display4 : boolean = false;
   signUpForm! : FormGroup;
   addDeviceForm! : FormGroup;
   newsForm! :FormGroup;
@@ -194,6 +195,10 @@ export class TitleBarComponent implements OnInit{
 
   showDialog3(){
     this.display3 = true;
+  }
+
+  showDialog4(){
+    this.display4 = true;
   }
 
   //od mape
