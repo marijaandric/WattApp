@@ -56,13 +56,12 @@
     width:100%;
   }
 .bottom-right{
-  width:35.5%;
-  margin-left:calc(2%);
-  margin-top:2%;
+  width:calc(100% - 62.5% - 32px);
+  margin-left:32px;
+  margin-top:32px;
 }
 .map{
-  height: calc(100% - 355px);
-  padding-bottom:6%;
+  padding-bottom:32px;
 }
   
   .main-grid {
@@ -75,21 +74,21 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    margin-left:2%;
-    width:35.5%;
+    margin-left:32px;
+    width:calc(100% - 62.5% - 32px);
     padding: 0px 0;
     justify-content:space-between;
     position:relative;
   }
   
   .stats-card{
+    flex-basis:calc(50% - 16px) !important;
     display:flex;
-    flex-basis: 47%;
     box-shadow: 5px 5px 15px black;
   }
   
   .stats-card:nth-child(1), .stats-card:nth-child(2) {
-    margin-bottom:6%;
+    margin-bottom:32px;
   }
 
 ::ng-deep #SvgjsG4317 {
