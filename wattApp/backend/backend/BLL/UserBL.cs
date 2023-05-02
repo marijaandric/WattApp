@@ -316,5 +316,27 @@ namespace backend.BAL
             return _contextDAL.updateUser(user.Id,user);
         }
 
+        public IActionResult ChangePassword(int id,string currentPassword, string newPassword)
+        {
+            var user = _contextDAL.getUser(id);
+
+            if(user == null)
+            {
+                return new StatusCodeResult(404);
+            }
+
+            if(PasswordHasher.VerifyPassword(currentPassword,user.Password))
+            {
+                user.Password = PasswordHasher.HashPassword(newPassword);
+                return _contextDAL.updateUser(id,user);
+            }
+            else
+            {
+                Console.WriteLine(user.Password);
+                Console.WriteLine(currentPassword);
+                return new StatusCodeResult(404);
+            }
+        }
+
     }
 }

@@ -20,5 +20,6 @@ namespace backend.BAL.Interfaces
         public IActionResult ResetPasswordEmail(string email);
         public IActionResult ResetPassword(ResetPasswordDTO resetPasswordDTO);
         public IActionResult UpdateUserTheme(int userId);
+        public IActionResult ChangePassword(int id, string currentPassword, string newPassword);
     }
 }
