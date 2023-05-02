@@ -12,12 +12,12 @@ import { HttpClient } from '@angular/common/http';
 export class WeatherForecast7Component implements OnInit{
   private apiKey = '1702d844857d1ce89239d1c1a641dd84';
   weatherData: any;
-  WeatherData:any;
+  WeatherData: any;
   filterWeatherData :any= [];
   currentDate : Date = new Date;
   time : string = this.currentDate.toLocaleTimeString();
   date : string = this.currentDate.toLocaleDateString();
-  boja = "#f5805a"
+  boja = "#f5805a";
 
   constructor() {
     this.getWeatherForecast(44.01860475758608,20.907175572741636).subscribe(data=>{
@@ -25,6 +25,7 @@ export class WeatherForecast7Component implements OnInit{
       this.weatherData = this.filterWeatherData;
     })
   }
+
   ngOnInit(): void {
     
     this.getWeatherData();
@@ -51,7 +52,6 @@ export class WeatherForecast7Component implements OnInit{
 
   futureForecast(data:any)
   {
-    console.log(data)
     let brojac = 0;
     for(let i = 0; i< 40; i= i+8)
     {
@@ -87,7 +87,6 @@ export class WeatherForecast7Component implements OnInit{
     this.WeatherData.temp_min = (this.WeatherData.main.temp_min - 273.15).toFixed(0);
     this.WeatherData.temp_max = (this.WeatherData.main.temp_max - 273.15).toFixed(0);
     this.WeatherData.temp_feels_like = (this.WeatherData.main.feels_like - 273.15).toFixed(0);
-
   }
   
 }

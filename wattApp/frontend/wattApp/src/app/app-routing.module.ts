@@ -22,10 +22,15 @@ import { UserDSOComponent } from './components/DSO/user/user-dso/user-dso.compon
 import { PageNotFoundComponent } from './components/global/page-not-found/page-not-found.component';
 import { FaqPageComponenetsComponent } from './components/global/faq-page-componenets/faq-page-componenets.component';
 import { SidebarNewComponent } from './components/global/layout-components/sidebar-new/sidebar-new.component';
+import { ForgotPasswordComponent } from './components/global/forgot-password/forgot-password.component';
+import { ResetPassword } from './models/reset-password.model';
+import { ResetPasswordComponent } from './components/global/reset-password/reset-password.component';
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
   { path: 'login', component: LoginComponent, pathMatch:'full' },
+  { path: 'forgotPassword', component: ForgotPasswordComponent },
   { path: 'home', component: HomeComponent },
+  { path: 'reset', component: ResetPasswordComponent},
   //{ path: 'home', component: HomeComponent, canActivate:[AuthGuard] },
   { path: 'users', component: UsersProsumersComponent },
   { path: 'user', component:UserProfileComponent},

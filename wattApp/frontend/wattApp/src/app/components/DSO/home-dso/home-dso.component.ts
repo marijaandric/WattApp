@@ -42,7 +42,7 @@ export class HomeDSOComponent {
   type: City[];
   type2: City[];
   type3: City[];
-  selectedType!: City;
+  selectedType: City= {name: 'Consumption', code: 'Consumer'};
   isConsumption: boolean = true;
   isProduction: boolean = false;
   isStock: boolean = false;
@@ -88,7 +88,7 @@ export class HomeDSOComponent {
 
   users: UserDTO[] = [];
 
-  monthPowerUsageProducer: any;
+  monthPowerUsageProducer: any = 0;
   
   getmonthPowerUsageProducer() {
     const type = 'Producer';
@@ -99,7 +99,7 @@ export class HomeDSOComponent {
     });
   }
 
-  monthPowerUsageConsumer: any;
+  monthPowerUsageConsumer: any = 0;
   
   getmonthPowerUsageConsumer() {
     const type = 'Consumer';
@@ -109,7 +109,7 @@ export class HomeDSOComponent {
     });
   }
 
-  monthPowerUsageStorage: any;
+  monthPowerUsageStorage: any = 0;
 
   getmonthPowerUsageStorage() {
     const type = 'Stock';
@@ -119,7 +119,7 @@ export class HomeDSOComponent {
     });
   }
 
-  dayPowerPrice: any;
+  dayPowerPrice: any = 0;
 
   getdayPowerPrice() {
   

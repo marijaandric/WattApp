@@ -17,5 +17,9 @@ namespace backend.BAL.Interfaces
         public List<User> GetUsersByType(string type);
         public List<User> GetUsersPaginationByRole(string type, int page, int limit);
         public Dictionary<string, int> GetNumberOfUsersByType();
+        public IActionResult ResetPasswordEmail(string email);
+        public IActionResult ResetPassword(ResetPasswordDTO resetPasswordDTO);
+        public IActionResult UpdateUserTheme(int userId);
+        public IActionResult ChangePassword(int id, string currentPassword, string newPassword);
     }
 }

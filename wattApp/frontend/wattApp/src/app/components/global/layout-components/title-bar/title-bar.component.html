@@ -126,6 +126,38 @@
   </p-dialog>
 
 
+  
+<p-dialog [style]="{width:'40%'}" header="Title"  [transitionOptions]="'3ms'" 
+[draggable]="true" [keepInViewport]="true" [resizable]="false" 
+[blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true" 
+[modal]="true" [(visible)]="display4" [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
+[closable]="true" >
+<ng-template pTemplate="header" class="header-dialog">
+  <span>Change password</span>
+</ng-template>
+
+<ng-template pTemplate="content">
+  <form [formGroup]="changePassForm" > 
+  
+  <div class="p-inputgroup p-inputtext-lg p-input-filled">
+    <div class="half">
+      <input formControlName="currentPassword" name="name" appendTo="body" type="text" class="p-inputtext-lg" placeholder="CURRENT PASSWORD"> 
+      <input formControlName="newPassword" name="name" appendTo="body" type="text" class="p-inputtext-lg" placeholder="NEW PASSWORD"> 
+      <input formControlName="confirmPassword" name="name" appendTo="body" type="text" class="p-inputtext-lg" placeholder="CONFIRM PASSWORD">
+      <p><b>Note</b>: Password must have at least one uppercase letter, lowercase letter, number and special character</p>
+    </div>
+  </div> 
+  </form>
+  
+</ng-template>
+
+<ng-template pTemplate="footer" style="min-height:100px;" >
+  <button type="button" class="footer-button" icon="pi pi-info-circle" label="Show" (click)="savePass()">Save</button>
+
+</ng-template>
+</p-dialog>
+
+
 
 
 <nav>
@@ -138,11 +170,11 @@
       <div class="hero">
         <nav>
       <a><img [src]="userImageUrlEndpoint" (click)="toggleMenu()" class="profile-image"><div class="text1" [ngClass]="{ 'hidden-xs': !showText }"></div></a> 
-          <div class="sub-menu-wrap" id="subMenu" [class.open-menu]="isMenuOpen">
+          <div class="sub-menu-wrap" #subMenu [class.open-menu]="isMenuOpen" id="subMenu" [class.open-menu]="isMenuOpen">
             <div class="sub-menu">
                 <div class="user-info">
                   <img [src]="userImageUrlEndpoint" class="profile-image"><div class="text" [ngClass]="{ 'hidden-xs': !showText }"></div>
-                    <h5>{{user.firstName}} {{user.lastName}}</h5>
+                    <h5>{{user?.firstName}} {{user?.lastName}}</h5>
                 </div>
                 <hr>
                 <a class="sub-menu-link">
@@ -152,6 +184,10 @@
                 <a class="sub-menu-link">
                   <i class="fa-sharp fa-regular fa-sun"></i>
                   <p>Light theme</p>
+                </a>
+                <a class="sub-menu-link">
+                  <i class="fa-sharp fa-solid fa fa-key"></i>
+                  <p (click)="showDialog4()" (click)="setMenuClose()">Change password</p>
                 </a>
                 <a class="sub-menu-link">
                   <i class="fa-sharp fa-solid fa-headset"></i>

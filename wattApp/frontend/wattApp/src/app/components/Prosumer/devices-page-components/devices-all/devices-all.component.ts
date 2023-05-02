@@ -34,7 +34,6 @@ export class DevicesAllComponent implements OnInit {
   GetNumberOfUserDevices() {
     this.deviceService.GetNumberOfUserDevices(this.id).subscribe((response: any) => {
       this.NumberOfUserDevices=response;
-      console.log(response);
     });
   }
 
@@ -43,7 +42,6 @@ export class DevicesAllComponent implements OnInit {
   GetNumberOfActiveUserDevices() {
     this.deviceService.GetNumberOfActiveUserDevices(this.id).subscribe((response: any) => {
       this.NumberOfActiveUserDevices=response;
-      console.log(response);
     });
   }
 
@@ -52,7 +50,6 @@ export class DevicesAllComponent implements OnInit {
   GetNumberOfDevicesForUserThatDSOCanSee() {
     this.deviceService.GetNumberOfDevicesForUserThatDSOCanSee(this.id).subscribe((response: any) => {
       this.NumberOfDevicesForUserThatDSOCanSee=response;
-      console.log(response);
     });
   }
 
@@ -61,7 +58,6 @@ export class DevicesAllComponent implements OnInit {
   GetNumberOfDevicesForUserThatDSOCanManage() {
     this.deviceService.GetNumberOfDevicesForUserThatDSOCanManage(this.id).subscribe((response: any) => {
       this.NumberOfDevicesForUserThatDSOCanManage=response;
-      console.log(response);
     });
   }
 

@@ -19,6 +19,9 @@ using SendGrid.Helpers.Mail;
 using System.Diagnostics;
 using SendGrid;
 using Org.BouncyCastle.Utilities.Net;
+using Microsoft.AspNetCore.Http.HttpResults;
+using NuGet.Protocol;
+using Microsoft.AspNetCore.Identity;
 
 namespace backend.BAL
 {
@@ -258,6 +261,84 @@ namespace backend.BAL
                 throw new SecurityTokenException("This is invalid token");
 
             return principal;
+        }
+
+        public IActionResult ResetPasswordEmail(string email)
+        {
+            var user = _contextDAL.getUserByEmail(email);
+
+            if(user is null)
+            {
+                return new StatusCodeResult(404);
+            }
+
+            var tokenBytes = RandomNumberGenerator.GetBytes(64);
+            var emailToken = Convert.ToBase64String(tokenBytes);
+            user.ResetPasswordExpiryTime = DateTime.Now.AddMinutes(15);
+            user.ResetPasswordToken = emailToken;
+            SendEmailAsync(email, "ResetPassword", "You are receiving this email because you requested a password reset for your  WattApp account.\nBy clicking the button below, you will be able to reset your password\nhttp://localhost:4200/reset?email=" + email+"&code="+emailToken+ "\n\nKind Regards,\n\nCodeSpark Energy") ;
+            return _contextDAL.ResetPasswordEmail(user);
+
+        }
+
+        public IActionResult ResetPassword(ResetPasswordDTO resetPasswordDTO)
+        {
+            var newToken = resetPasswordDTO.EmailToken.Replace(" ", "+");
+            var user = _contextDAL.getUserByEmail(resetPasswordDTO.Email);
+            if (user is null)
+            {
+                Console.WriteLine("USLO3");
+                return new StatusCodeResult(404);
+            }
+            var tokenCode = user.ResetPasswordToken;
+            DateTime emailTokenExpiry = user.ResetPasswordExpiryTime;
+
+            if(tokenCode != resetPasswordDTO.EmailToken || emailTokenExpiry < DateTime.Now)
+            {
+                Console.WriteLine("USLO2");
+                return new StatusCodeResult(404);
+            }
+
+            user.Password = PasswordHasher.HashPassword(resetPasswordDTO.NewPassword);
+            return _contextDAL.ResetPassword(user);
+
+
+        }
+
+        public IActionResult UpdateUserTheme(int userId)
+        {
+            User user = _contextDAL.getUser(userId);
+            if (user == null)
+            {
+                return new StatusCodeResult(404);
+            }
+            user.isDarkTheme = !user.isDarkTheme;
+            return _contextDAL.updateUser(user.Id,user);
+        }
+
+        public IActionResult ChangePassword(int id,string currentPassword, string newPassword)
+        {
+            var user = _contextDAL.getUser(id);
+
+            if(user == null)
+            {
+                return new StatusCodeResult(404);
+            }
+            var pass = Check.CheckPasswordStrength(newPassword);
+            if (!string.IsNullOrEmpty(pass))
+                return new StatusCodeResult(404);
+
+            if(PasswordHasher.VerifyPassword(currentPassword,user.Password))
+            {
+                user.Password = PasswordHasher.HashPassword(newPassword);
+                return _contextDAL.updateUser(id,user);
+            }
+            else
+            {
+                Console.WriteLine(user.Password);
+                Console.WriteLine(currentPassword);
+                return new StatusCodeResult(404);
+            }
         }
 
     }
