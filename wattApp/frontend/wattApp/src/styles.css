@@ -145,8 +145,12 @@
 }
 
 .p-carousel-items-content {
-  min-height: 220px !important;
+  min-height: 240px !important;
 }
+.p-carousel-container {
+  width:100% !important;
+}
+
 .p-link {
   border-radius: 20px !important;
 }

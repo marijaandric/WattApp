@@ -1,13 +1,12 @@
 
 .device-card{
     min-width: 200px;
-    width: 92%;    background: linear-gradient(180deg, #1e1e1e 50%, #121212 100%) ;
+    width: 92%;    background: linear-gradient(180deg, #1b1b1b 50%, #121212 100%) ;
     border-radius: 20px;
     padding: 16px;
     margin: auto;
     box-shadow: 5px 5px 15px black;
-    height: fit-content;
-    height:170px;
+    min-height:170px;
     margin-top: 2%;
 }
 
