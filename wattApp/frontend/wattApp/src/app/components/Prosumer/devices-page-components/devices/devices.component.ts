@@ -37,7 +37,6 @@ export class DevicesComponent {
   }
 
   private groupDevicesByRoomType() {
-    console.log(this.devices)
     this.devicesByRoomType = this.devices.reduce((acc: {[key: string]: DeviceDTO[]}, device: DeviceDTO)  => {
       if (!acc[device.room]) {
         acc[device.room] = [];

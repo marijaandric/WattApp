@@ -44,9 +44,11 @@ export class TitleBarComponent implements OnInit{
   display : boolean = false;
   display2 : boolean = false;
   display3 : boolean = false;
+  display4 : boolean = false;
   signUpForm! : FormGroup;
   addDeviceForm! : FormGroup;
   newsForm! :FormGroup;
+  changePassForm!:FormGroup;
   roles!: Roles[];
   types!: Types[];
   rooms!: Rooms[];
@@ -62,6 +64,7 @@ export class TitleBarComponent implements OnInit{
   selectedPriority:string = 'None';
   baseUrl = url + "/api/Images/user/";
   userImageUrlEndpoint!: string;
+  id:number = 0;
 
   isMenuOpen = false;
   user : any;
@@ -92,6 +95,12 @@ export class TitleBarComponent implements OnInit{
               private modelTypesService: ModelTypesService,
               private dsonewsService : DsonewsService,
               private auth:AuthService) {
+
+    const token = localStorage.getItem('token');
+    if(token)
+    {
+      this.id = this.userService.getUserIdFromToken(token)
+    }
   }
 
   ngOnInit(): void {
@@ -185,6 +194,15 @@ export class TitleBarComponent implements OnInit{
       priority: ['Regular', Validators.required],
       created: ['', Validators.required],
     })
+
+    this.changePassForm = this.fb.group({
+      id: [0, Validators.required],
+      currentPassword :['', Validators.required],
+      newPassword: ['', Validators.required],
+      confirmPassword: ['', Validators.required]
+    })
+
+
   }
   logout()
   {
@@ -202,6 +220,10 @@ export class TitleBarComponent implements OnInit{
 
   showDialog3(){
     this.display3 = true;
+  }
+
+  showDialog4(){
+    this.display4 = true;
   }
 
   //od mape
@@ -285,18 +307,12 @@ export class TitleBarComponent implements OnInit{
 
   addDevice()
   {
-    const token = localStorage.getItem('token');
-    let id = 0;
-    if(token)
-    {
-      id = this.userService.getUserIdFromToken(token)
-    }
     
     this.addDeviceForm.patchValue({
       deviceType : this.typeSelected.name
     })
     this.addDeviceForm.patchValue({
-      userID : id
+      userID : this.id
     })
     this.addDeviceForm.patchValue({
       deviceModel : this.modelSelected.name
@@ -319,16 +335,9 @@ export class TitleBarComponent implements OnInit{
   
   addNews()
   {
-
-    const token = localStorage.getItem('token');
-    let id = 0;
-    if(token)
-    {
-      id = this.userService.getUserIdFromToken(token)
-    }
     
     this.newsForm.patchValue({
-      userID : id
+      userID : this.id
     })
     this.newsForm.patchValue({
       created: new Date()
@@ -370,6 +379,34 @@ export class TitleBarComponent implements OnInit{
     }
     const userRole = this.userService.getUserRoleFromToken(token);
     return userRole === 'operator' || userRole === 'admin' || userRole === 'superadmin';
+  }
+
+  setMenuClose()
+  {
+    this.isMenuOpen = false;
+  }
+
+  savePass()
+  {
+    this.changePassForm.patchValue({
+      id: this.id
+    });
+    if(this.changePassForm.value.confirmPassword != this.changePassForm.value.newPassword)
+    {
+      this.toast.error({detail:"ERROR",summary:"Error, u must enter the same password twice",duration:4000});
+      return;
+    }
+
+    this.authService.changePassword(this.changePassForm.value).subscribe({
+      next:(res => {
+        this.changePassForm.reset()
+        this.toast.success({detail:"SUCCESS",summary:"You have successfully changed password",duration:4000});
+        this.display4 = false;
+      }),
+      error:(err => {
+        this.toast.error({detail:"ERROR",summary:"Error",duration:4000});
+      })
+    }) 
   }
 
   
