@@ -117,6 +117,15 @@ export class DeviceDesktopComponent implements OnInit {
             tap(() => this.typeSelected = { code: this.device.deviceType, name: this.device.deviceType }),
             ).subscribe(mappedDeviceTypes => {
               this.types = mappedDeviceTypes;
+
+              this.modelTypesService.getAllModelTypes(this.typeSelected.code).pipe(
+                map(modelTypes => {
+                  return Object.entries(modelTypes).map(([code, name]) => ({ code, name }));
+                }),
+                tap(() => this.modelSelected = { code: this.device.deviceModel, name: this.device.deviceModel }),
+              ).subscribe(mappedModelTypes => {
+                this.models = mappedModelTypes;
+              });
           });
           
           this.roomTypesService.getAllRoomTypes().pipe(
@@ -126,15 +135,6 @@ export class DeviceDesktopComponent implements OnInit {
             tap(() => this.roomSelected = { code: this.device.room, name: this.device.room }),
           ).subscribe(mappedRoomTypes => {
             this.rooms = mappedRoomTypes;
-          });
-          
-          this.modelTypesService.getAllModelTypes(this.typeSelected.code).pipe(
-            map(modelTypes => {
-              return Object.entries(modelTypes).map(([code, name]) => ({ code, name }));
-            }),
-            tap(() => this.modelSelected = { code: this.device.deviceModel, name: this.device.deviceModel }),
-          ).subscribe(mappedModelTypes => {
-            this.models = mappedModelTypes;
           });
           
           this.nameSelected = this.device.deviceName;

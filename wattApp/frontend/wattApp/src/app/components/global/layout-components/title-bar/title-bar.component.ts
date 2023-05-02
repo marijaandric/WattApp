@@ -122,6 +122,15 @@ export class TitleBarComponent implements OnInit{
       .subscribe(mappedDeviceTypes => {
         this.types = mappedDeviceTypes;
         this.typeSelected = this.types[0];
+
+        this.modelTypesService.getAllModelTypes(this.typeSelected.code)
+          .pipe(
+            map(modelTypes => Object.entries(modelTypes).map(([code, name]) => ({ code, name })))
+          )
+          .subscribe(mappedModelTypes => {
+            this.models = mappedModelTypes;
+            this.modelSelected = this.models[0];
+        });
     });
 
     this.roomTypesService.getAllRoomTypes()
@@ -131,15 +140,6 @@ export class TitleBarComponent implements OnInit{
       .subscribe(mappedRoomTypes => {
         this.rooms = mappedRoomTypes;
         this.roomSelected = this.rooms[0];
-    });
-  
-    this.modelTypesService.getAllModelTypes("STOCK")
-      .pipe(
-        map(modelTypes => Object.entries(modelTypes).map(([code, name]) => ({ code, name })))
-      )
-      .subscribe(mappedModelTypes => {
-        this.models = mappedModelTypes;
-        this.modelSelected = this.models[0];
     });
 
     this.isAdmin();
@@ -227,10 +227,19 @@ export class TitleBarComponent implements OnInit{
 
   onTypeChange(event:any){
     this.typeSelected = event.value;
+
+    this.modelTypesService.getAllModelTypes(this.typeSelected.code)
+      .pipe(
+        map(modelTypes => Object.entries(modelTypes).map(([code, name]) => ({ code, name })))
+      )
+      .subscribe(mappedModelTypes => {
+        this.models = mappedModelTypes;
+        this.modelSelected = this.models[0];
+    });
   }
 
   onModelChange(event:any){
-    this.modelSelected = event.value.name;
+    this.modelSelected = event.value;
   }
   
   onRoomChange(event:any)
@@ -275,16 +284,16 @@ export class TitleBarComponent implements OnInit{
     }
     
     this.addDeviceForm.patchValue({
-      deviceType : this.typeSelected
+      deviceType : this.typeSelected.name
     })
     this.addDeviceForm.patchValue({
       userID : id
     })
     this.addDeviceForm.patchValue({
-      deviceModel : this.modelSelected
+      deviceModel : this.modelSelected.name
     })
     this.addDeviceForm.patchValue({
-      room : this.roomSelected
+      room : this.roomSelected.name
     })
     console.log(this.addDeviceForm.value)
     this.deviceService.AddDevice(this.addDeviceForm.value).subscribe({
