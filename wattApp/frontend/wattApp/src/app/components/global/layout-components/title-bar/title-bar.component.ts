@@ -1,5 +1,5 @@
 import { Token } from '@angular/compiler';
-import { Component, ElementRef, OnInit, ViewChild, ɵɵqueryRefresh } from '@angular/core';
+import { Component, ElementRef, OnInit, HostListener ,ViewChild, ɵɵqueryRefresh } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
@@ -65,9 +65,18 @@ export class TitleBarComponent implements OnInit{
 
   isMenuOpen = false;
   user : any;
+  @ViewChild('subMenu') subMenu: ElementRef | undefined;
 
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
+  }
+  @HostListener('document:click', ['$event'])
+ 
+  onDocumentClick(event: MouseEvent) {
+    const isClickInside = this.subMenu?.nativeElement.contains(event.target as HTMLElement) || (event.target as HTMLElement).classList.contains('profile-image');
+    if (!isClickInside) {
+      this.isMenuOpen = false;
+    }
   }
  
   
