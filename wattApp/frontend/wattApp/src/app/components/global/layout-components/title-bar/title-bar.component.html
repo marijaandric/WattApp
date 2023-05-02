@@ -137,13 +137,14 @@
 </ng-template>
 
 <ng-template pTemplate="content">
-  <form [formGroup]="newsForm" > 
+  <form [formGroup]="changePassForm" > 
   
   <div class="p-inputgroup p-inputtext-lg p-input-filled">
     <div class="half">
-      <input formControlName="title" name="name" appendTo="body" type="text" class="p-inputtext-lg" placeholder="CURRENT EMAIL"> 
-      <input formControlName="title" name="name" appendTo="body" type="text" class="p-inputtext-lg" placeholder="NEW EMAIL"> 
-      <input formControlName="title" name="name" appendTo="body" type="text" class="p-inputtext-lg" placeholder="CONFIRM EMAIL">
+      <input formControlName="currentPassword" name="name" appendTo="body" type="text" class="p-inputtext-lg" placeholder="CURRENT PASSWORD"> 
+      <input formControlName="newPassword" name="name" appendTo="body" type="text" class="p-inputtext-lg" placeholder="NEW PASSWORD"> 
+      <input formControlName="confirmPassword" name="name" appendTo="body" type="text" class="p-inputtext-lg" placeholder="CONFIRM PASSWORD">
+      <p><b>Note</b>: Password must have at least one uppercase letter, lowercase letter, number and special character</p>
     </div>
   </div> 
   </form>
@@ -151,7 +152,7 @@
 </ng-template>
 
 <ng-template pTemplate="footer" style="min-height:100px;" >
-  <button type="button" class="footer-button" icon="pi pi-info-circle" label="Show">Save</button>
+  <button type="button" class="footer-button" icon="pi pi-info-circle" label="Show" (click)="savePass()">Save</button>
 
 </ng-template>
 </p-dialog>
@@ -185,8 +186,8 @@
                   <p>Light theme</p>
                 </a>
                 <a class="sub-menu-link">
-                  <i class="fa-sharp fa-solid fa-headset"></i>
-                  <p (click)="showDialog4()">Change password</p>
+                  <i class="fa-sharp fa-solid fa fa-key"></i>
+                  <p (click)="showDialog4()" (click)="setMenuClose()">Change password</p>
                 </a>
                 <a class="sub-menu-link">
                   <i class="fa-sharp fa-solid fa-headset"></i>

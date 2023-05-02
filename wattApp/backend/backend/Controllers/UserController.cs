@@ -159,10 +159,10 @@ namespace backend.Controllers
             return _context.UpdateUserTheme(id);
         }
 
-        [HttpPut("changePassword/{id}/{currentPassword}/{newPassword}")]
-        public async Task<IActionResult> ChangePassword(int id, string currentPassword, string newPassword)
+        [HttpPut("changePassword")]
+        public async Task<IActionResult> ChangePassword(ChangePasswordDTO cp)
         {
-            return _context.ChangePassword(id,currentPassword,newPassword);
+            return _context.ChangePassword(cp.Id,cp.CurrentPassword,cp.NewPassword);
         }
 
     }

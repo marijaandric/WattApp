@@ -70,4 +70,9 @@ export class AuthService {
     return this.http.post<any>(`${this.baseUrl}reset-email`,ressetPasswordObj);
   }
 
+  changePassword(changePassForm : any)
+  {
+    return this.http.put<any>(`${this.baseUrl}changePassword`, changePassForm);
+  }
+
 }

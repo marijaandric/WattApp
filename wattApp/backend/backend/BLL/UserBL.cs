@@ -324,6 +324,9 @@ namespace backend.BAL
             {
                 return new StatusCodeResult(404);
             }
+            var pass = Check.CheckPasswordStrength(newPassword);
+            if (!string.IsNullOrEmpty(pass))
+                return new StatusCodeResult(404);
 
             if(PasswordHasher.VerifyPassword(currentPassword,user.Password))
             {
