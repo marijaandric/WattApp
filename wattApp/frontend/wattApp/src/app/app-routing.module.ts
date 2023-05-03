@@ -27,29 +27,32 @@ import { ResetPassword } from './models/reset-password.model';
 import { ResetPasswordComponent } from './components/global/reset-password/reset-password.component';
 import { AboutUsComponent } from './components/global/about-us/about-us.component';
 import { NewsComponent } from './components/global/news/news.component';
+import { LoginGuard } from './guards/login.guard';
+
+
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
   { path: 'aboutus', component: AboutUsComponent },
-  { path: 'news', component: NewsComponent },
-  { path: 'login', component: LoginComponent, pathMatch:'full' },
+  { path: 'news', component: NewsComponent, canActivate:[AuthGuard] },
+  { path: 'login', component: LoginComponent, pathMatch:'full', canActivate:[LoginGuard] },
   { path: 'forgotPassword', component: ForgotPasswordComponent },
-  { path: 'home', component: HomeComponent },
+  { path: 'home', component: HomeComponent, canActivate:[AuthGuard] },
   { path: 'reset', component: ResetPasswordComponent},
   //{ path: 'home', component: HomeComponent, canActivate:[AuthGuard] },
-  { path: 'users', component: UsersProsumersComponent },
-  { path: 'user', component:UserProfileComponent},
+  { path: 'users', component: UsersProsumersComponent, canActivate:[AuthGuard] },
+  { path: 'user', component:UserProfileComponent, canActivate:[AuthGuard]},
   { path: 'contact', component:ContactComponent},
-  { path: 'device/:id', component: DeviceComponent },
-  { path: 'devices', component: DevicesAllComponent },
-  { path: 'devices/production', component: DevicesProductionComponent },
-  { path: 'devices/consumption', component: DevicesConsumptionComponent },
-  { path: 'devices/stock', component: DevicesStockComponent },
-  { path: 'statistics', component: StatisticComponent },
-  { path: 'users/prosumers', component: UsersComponent},
-  { path: 'users/operators', component: UsersOperatorsComponent},
-  { path: 'userDSO/:id', component: UserDSOComponent},
+  { path: 'device/:id', component: DeviceComponent , canActivate:[AuthGuard]},
+  { path: 'devices', component: DevicesAllComponent , canActivate:[AuthGuard]},
+  { path: 'devices/production', component: DevicesProductionComponent , canActivate:[AuthGuard]},
+  { path: 'devices/consumption', component: DevicesConsumptionComponent, canActivate:[AuthGuard] },
+  { path: 'devices/stock', component: DevicesStockComponent, canActivate:[AuthGuard] },
+  { path: 'statistics', component: StatisticComponent , canActivate:[AuthGuard]},
+  { path: 'users/prosumers', component: UsersComponent, canActivate:[AuthGuard]},
+  { path: 'users/operators', component: UsersOperatorsComponent, canActivate:[AuthGuard]},
+  { path: 'userDSO/:id', component: UserDSOComponent, canActivate:[AuthGuard]},
   { path: 'PageNotFound', component:PageNotFoundComponent },
-  { path: 'faq', component:FaqPageComponenetsComponent },
+  { path: 'faq', component:FaqPageComponenetsComponent , canActivate:[AuthGuard]},
   { path: 'sidebar-new', component: SidebarNewComponent},
   { path: '**', redirectTo: '/PageNotFound' },
 ];
