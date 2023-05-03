@@ -127,7 +127,7 @@
 
 
   
-<p-dialog [style]="{width:'40%'}" header="Title"  [transitionOptions]="'3ms'" 
+<p-dialog [style]="{width:'30%'}" header="Title"  [transitionOptions]="'3ms'" 
 [draggable]="true" [keepInViewport]="true" [resizable]="false" 
 [blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true" 
 [modal]="true" [(visible)]="display4" [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
@@ -141,10 +141,10 @@
   
   <div class="p-inputgroup p-inputtext-lg p-input-filled">
     <div class="half">
-      <input formControlName="currentPassword" name="name" appendTo="body" type="text" class="p-inputtext-lg" placeholder="CURRENT PASSWORD"> 
-      <input formControlName="newPassword" name="name" appendTo="body" type="text" class="p-inputtext-lg" placeholder="NEW PASSWORD"> 
-      <input formControlName="confirmPassword" name="name" appendTo="body" type="text" class="p-inputtext-lg" placeholder="CONFIRM PASSWORD">
-      <p><b>Note</b>: Password must have at least one uppercase letter, lowercase letter, number and special character</p>
+      <input formControlName="currentPassword" name="name" appendTo="body" type="password" class="p-inputtext-lg" placeholder="CURRENT PASSWORD"> 
+      <input formControlName="newPassword" name="name" appendTo="body" type="password" class="p-inputtext-lg" placeholder="NEW PASSWORD"> 
+      <input formControlName="confirmPassword" name="name" appendTo="body" type="password" class="p-inputtext-lg" placeholder="CONFIRM PASSWORD">
+      <p style="font-size:14px"><b>Note</b>: Password must have at least one uppercase letter, lowercase letter, number and special character</p>
     </div>
   </div> 
   </form>
@@ -165,7 +165,7 @@
     <div *ngIf="isAdmin()" style="cursor:pointer"><li><a (click)="showDialog()"><div class="fa fa-user-plus " ></div><div class="text" [ngClass]="{ 'hidden-xs': !showText }">Add user</div></a></li></div>
     <div *ngIf="!isAdmin()" style="cursor:pointer"><li><a (click)="showDialog2()"><div class="fa fa-plus " ></div><div class="text" [ngClass]="{ 'hidden-xs': !showText }">Add device</div></a></li></div>
     <div *ngIf="isAdmin()" style="cursor:pointer"><li><a (click)="showDialog3()"><div class="fa-solid fa-newspaper " ></div><div class="text" [ngClass]="{ 'hidden-xs': !showText }">Add news</div></a></li></div>
-    <li><a href="#"><div class="fa fa-address-book" ></div><div class="text" [ngClass]="{ 'hidden-xs': !showText }">About us</div></a></li>
+    <li><a routerLink="/aboutus"><div class="fa fa-address-book" ></div><div class="text" [ngClass]="{ 'hidden-xs': !showText }">About us</div></a></li>
     <li>
       <div class="hero">
         <nav>

@@ -8,8 +8,8 @@ import { AuthService } from 'src/app/services/auth/auth.service';
   styleUrls: ['./forgot-password.component.scss']
 })
 export class ForgotPasswordComponent implements OnInit{
-  resetPasswordEmail!: string;
-  isValidEmail!: boolean;
+  resetPasswordEmail: string="";
+  isValidEmail: boolean = true;
 
   constructor(private authService:AuthService,
     private toast:NgToastService){}

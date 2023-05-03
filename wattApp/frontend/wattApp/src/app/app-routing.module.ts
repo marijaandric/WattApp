@@ -25,8 +25,12 @@ import { SidebarNewComponent } from './components/global/layout-components/sideb
 import { ForgotPasswordComponent } from './components/global/forgot-password/forgot-password.component';
 import { ResetPassword } from './models/reset-password.model';
 import { ResetPasswordComponent } from './components/global/reset-password/reset-password.component';
+import { AboutUsComponent } from './components/global/about-us/about-us.component';
+import { NewsComponent } from './components/global/news/news.component';
 const routes: Routes = [
   { path: '', component: LandingPageComponent },
+  { path: 'aboutus', component: AboutUsComponent },
+  { path: 'news', component: NewsComponent },
   { path: 'login', component: LoginComponent, pathMatch:'full' },
   { path: 'forgotPassword', component: ForgotPasswordComponent },
   { path: 'home', component: HomeComponent },
