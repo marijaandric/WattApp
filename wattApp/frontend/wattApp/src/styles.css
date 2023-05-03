@@ -151,12 +151,24 @@
   width:100% !important;
 }
 
+.p-column-filter-overlay {
+  background: linear-gradient(180deg, #1e1e1e 50%, #121212 100%) !important;
+  border:none !important;
+  box-shadow: 5px 5px 15px black !important;
+
+}
+
+.p-column-filter-overlay .p-dropdown{
+  background: #46c5f1;
+    box-shadow: none !important;
+}
+
 .p-link {
   border-radius: 20px !important;
 }
   p,a,li,body, div,span{
     color: white;
-    font-family: 'Lato', sans-serif;
+    font-family: 'Mandali', sans-serif;
     
   }
   h1,h2,h3,h4,h5,h6 {

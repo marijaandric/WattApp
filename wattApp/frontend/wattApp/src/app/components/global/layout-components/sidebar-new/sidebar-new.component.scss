@@ -139,6 +139,11 @@
       transform: translateX(0px);
       transition-duration: 1s;
     }
+    
+    img {
+      width:24px;
+      height:24px;
+    }
 }
 
 @keyframes opc {
@@ -305,6 +310,7 @@ a {
         display: flex;
         align-self: center;
         padding-top:16px;
+
       }
     }
     .title:hover, .submain-title:hover{
