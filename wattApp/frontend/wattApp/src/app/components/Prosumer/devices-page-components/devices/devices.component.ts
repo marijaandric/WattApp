@@ -19,7 +19,7 @@ export class DevicesComponent {
   switchValue: boolean = true;
 
   switchOptions: SwitchOption[] = [
-    {label: 'Grid', value: true},
+    {label: 'List', value: true},
     {label: 'Table', value: false}
   ];
 
