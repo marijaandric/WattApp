@@ -9,6 +9,8 @@ interface City {
   name: string,
   code: string
 }
+
+
 @Component({
   selector: 'app-history-line-chart',
   templateUrl: './history-line-chart.component.html',
@@ -22,7 +24,7 @@ export class HistoryLineChartComponent implements OnChanges{
   @Input() array : any[]  = [12.00, 19.00, 33.00, 5.00, 2.00, 6.00, 5.00]
   @Input() array2 : any[] = [null,null, null, null, null, null,5.00,10.00,12.00,23.00,16.00,5.00,10.00,5.00]
   @Input() array3 : any[] = [null,null, null, null, null, null,null]
-  @Input() boja1 = '#f5805a';
+  @Input() boja1 = '#46c5f1';
 
 
 
@@ -37,6 +39,7 @@ export class HistoryLineChartComponent implements OnChanges{
 
   ngOnChanges(changes: SimpleChanges)
   {
+
     this.series = [
       {
         data: this.array,
@@ -164,15 +167,6 @@ export class HistoryLineChartComponent implements OnChanges{
   };
 
   public fill: ApexFill = {
-    type: 'gradient',
-    gradient: {
-      shade: 'dark',
-      gradientToColors: ['#a17abd','#e1a2c7','#afecda'],
-      shadeIntensity: 1,
-      opacityFrom: 1,
-      opacityTo: 1,
-      stops: [0, 100, 200],
-    }
   }
 
   public title: ApexTitleSubtitle = {
@@ -190,41 +184,41 @@ export class HistoryLineChartComponent implements OnChanges{
   }
 
   public dataLabels: ApexDataLabels = {
-  textAnchor: 'middle',
-  distributed: true,
-  offsetX: 0,
-  offsetY: 0,
-  style: {
-      fontSize: '20px',
-      fontFamily: 'Helvetica, Arial, sans-serif',
-      fontWeight: 'bold',
-      colors: ['#222222',]
-  },
-  background: {
-    enabled: true,
-    foreColor: '#FFF',
-    padding: 10,
-    borderRadius: 2,
-    borderWidth: 1,
-    borderColor: '#fff',
-    opacity: 0.9,
-    dropShadow: {
-      enabled: true,
-      top: 1,
-      left: 1,
-      blur: 1,
-      color: '#222222',
-      opacity: 1
-    }
-  },
-  dropShadow: {
-      enabled: false,
-      top: 1,
-      left: 1,
-      blur: 1,
-      color: '#000',
-      opacity: 0.45
-  },
+  // textAnchor: 'middle',
+  // distributed: true,
+  // offsetX: 0,
+  // offsetY: 0,
+  // style: {
+  //     fontSize: '20px',
+  //     fontFamily: 'Helvetica, Arial, sans-serif',
+  //     fontWeight: 'bold',
+  //     colors: ['#222222',]
+  // },
+  // background: {
+  //   enabled: true,
+  //   foreColor: '#FFF',
+  //   padding: 10,
+  //   borderRadius: 2,
+  //   borderWidth: 1,
+  //   borderColor: '#fff',
+  //   opacity: 0.9,
+  //   dropShadow: {
+  //     enabled: true,
+  //     top: 1,
+  //     left: 1,
+  //     blur: 1,
+  //     color: '#222222',
+  //     opacity: 1
+  //   }
+  // },
+  // dropShadow: {
+  //     enabled: false,
+  //     top: 1,
+  //     left: 1,
+  //     blur: 1,
+  //     color: '#000',
+  //     opacity: 0.45
+  // },
   
-  }
+   }
 }

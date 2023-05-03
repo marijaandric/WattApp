@@ -22,7 +22,7 @@ export class ForecastLineChartComponent implements OnChanges{
   @Input() array : any[]  = [12.00, 19.00, 33.00, 5.00, 2.00, 6.00, 5.00]
   @Input() array2 : any[] = [null,null, null, null, null, null,5.00,10.00,12.00,23.00,16.00,5.00,10.00,5.00]
   @Input() array3 : any[] = [null,null, null, null, null, null,null]
-  @Input() boja1 = '#f5805a';
+  @Input() boja1 = '#88dbf6';
 
 
   constructor(private userService:UserService, private authService:AuthService) {
@@ -123,15 +123,15 @@ export class ForecastLineChartComponent implements OnChanges{
   }
 
   public fill: ApexFill = {
-    type: 'gradient',
-    gradient: {
-      shade: 'dark',
-      gradientToColors: ['#7d02d4', '#d90372','rgb(4, 167, 119)'],
-      shadeIntensity: 1,
-      opacityFrom: 1,
-      opacityTo: 1,
-      stops: [0, 100, 200],
-    }
+    // type: 'gradient',
+    // gradient: {
+    //   shade: 'dark',
+    //   gradientToColors: ['#7d02d4', '#d90372','rgb(4, 167, 119)'],
+    //   shadeIntensity: 1,
+    //   opacityFrom: 1,
+    //   opacityTo: 1,
+    //   stops: [0, 100, 200],
+    // }
   }
 
   public xaxis: ApexXAxis = {
@@ -188,41 +188,41 @@ export class ForecastLineChartComponent implements OnChanges{
   }
 
   public dataLabels: ApexDataLabels = {
-  textAnchor: 'middle',
-  distributed: true,
-  offsetX: 0,
-  offsetY: 0,
-  style: {
-      fontSize: '20px',
-      fontFamily: 'Helvetica, Arial, sans-serif',
-      fontWeight: 'bold',
-      colors: ['#222222',]
-  },
-  background: {
-    enabled: true,
-    foreColor: '#FFF',
-    padding: 10,
-    borderRadius: 2,
-    borderWidth: 1,
-    borderColor: '#fff',
-    opacity: 0.9,
-    dropShadow: {
-      enabled: true,
-      top: 1,
-      left: 1,
-      blur: 1,
-      color: '#222222',
-      opacity: 1
-    }
-  },
-  dropShadow: {
-      enabled: false,
-      top: 1,
-      left: 1,
-      blur: 1,
-      color: '#000',
-      opacity: 0.45
-  },
+  // textAnchor: 'middle',
+  // distributed: true,
+  // offsetX: 0,
+  // offsetY: 0,
+  // style: {
+  //     fontSize: '20px',
+  //     fontFamily: 'Helvetica, Arial, sans-serif',
+  //     fontWeight: 'bold',
+  //     colors: ['#222222',]
+  // },
+  // background: {
+  //   enabled: true,
+  //   foreColor: '#FFF',
+  //   padding: 10,
+  //   borderRadius: 2,
+  //   borderWidth: 1,
+  //   borderColor: '#fff',
+  //   opacity: 0.9,
+  //   dropShadow: {
+  //     enabled: true,
+  //     top: 1,
+  //     left: 1,
+  //     blur: 1,
+  //     color: '#222222',
+  //     opacity: 1
+  //   }
+  // },
+  // dropShadow: {
+  //     enabled: false,
+  //     top: 1,
+  //     left: 1,
+  //     blur: 1,
+  //     color: '#000',
+  //     opacity: 0.45
+  // },
   
   }
 }
