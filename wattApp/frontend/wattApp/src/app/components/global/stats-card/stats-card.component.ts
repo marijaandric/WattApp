@@ -9,8 +9,8 @@ export class StatsCardComponent {
   @Input() Title : String ="9,051 din/kWh";
   @Input() subTitle : String ="9,051 din/kWh";
   @Input() value : String ="9,051 din/kWh";
-  @Input() hasIcon : Boolean=true;
   
+  @Input() @HostBinding("icon") public hasIcon = true;
   @Input() @HostBinding("bg-blue-color") public isBgBlue = false;
   @Input() @HostBinding("bg-purple-color") public isBgPurple = false;
   @Input() @HostBinding("bg-pink-color") public isBgPink = false;

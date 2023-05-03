@@ -5,8 +5,9 @@
   
       <ng-template pTemplate="caption">
         <div class="flexRow">
-            <h3 >
+            <h3 class="for-pc">
             History & forecast table</h3>
+            <h3 class="for-phone">Table</h3>
             <span class="p-input-icon-left margin-left__auto margin-right__16px">
                 <i class="pi pi-search"></i>
                 <input pInputText type="text" (input)="dtUsers.filterGlobal($any($event.target).value, 'contains')" placeholder="Search keyword" />

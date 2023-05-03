@@ -4,7 +4,8 @@
             <span><i [ngClass]="{'fa-solid' : hasIcon, 'fa-arrow-trend-up' : hasIcon}"></i></span>
         </div>
 
-        <div [ngClass]="{'subtitle-card':hasIcon }" >
+        <div class="subtitle-card" [ngClass]="{'sub-width' : !hasIcon}">
+
             <span>{{Title}}</span>
         </div>
     </div>
