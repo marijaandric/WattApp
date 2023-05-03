@@ -1,4 +1,6 @@
-<div class="device">
+<div *ngIf="loader"></div>
+
+<div *ngIf="!loader" class="device">
   <div class="main-card">
     <div class="top-card">
       <div class="widgets">       

@@ -49,6 +49,7 @@ interface HiF{
 })
 export class DeviceDesktopComponent implements OnInit {
   device!: DeviceDTO;
+  loader=true;
 
   displayEditDeviceDialog: boolean = false;
   isRunning: boolean = true;
@@ -210,6 +211,7 @@ export class DeviceDesktopComponent implements OnInit {
   getHistoryAndForecastByDayForDevice(id:any)
   {
     this.deviceService.getHistoryAndForecastByDayForDevice(id).subscribe(data => {
+      this.loader = false;
       let a = [];
       let b = [];
       let c = [];

@@ -3,7 +3,8 @@
     <h3>Statistics</h3>
   </app-title-bar>
 
-  <app-center-bar>
+  <app-center-bar *ngIf="loader"><app-loader></app-loader></app-center-bar>
+    <app-center-bar *ngIf="!loader">
     <div class="dropdowns">
 
       <p-dropdown [options]="type" appendTo="body" [(ngModel)]="selectedType" optionLabel="name" (onChange)="dropdownChange()" >

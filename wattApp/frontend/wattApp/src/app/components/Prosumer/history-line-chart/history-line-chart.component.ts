@@ -39,6 +39,7 @@ export class HistoryLineChartComponent implements OnChanges{
   {
     this.series = [
       {
+        name: 'History',
         data: this.array,
         color: this.boja1,
         
@@ -91,7 +92,7 @@ export class HistoryLineChartComponent implements OnChanges{
       easing: 'easeinout',
       speed: 800,
       animateGradually: {
-          enabled: true,
+          enabled: false,
           delay: 150
       },
       dynamicAnimation: {
@@ -118,7 +119,6 @@ export class HistoryLineChartComponent implements OnChanges{
     fontSize: '16px',
     offsetY:10,
     labels : {
-      colors: ['#7d02d4', '#d90372','rgb(4, 167, 119)'],
       useSeriesColors:true
     },
     
@@ -164,15 +164,15 @@ export class HistoryLineChartComponent implements OnChanges{
   };
 
   public fill: ApexFill = {
-    type: 'gradient',
-    gradient: {
-      shade: 'dark',
-      gradientToColors: ['#a17abd','#e1a2c7','#afecda'],
-      shadeIntensity: 1,
-      opacityFrom: 1,
-      opacityTo: 1,
-      stops: [0, 100, 200],
-    }
+    // type: 'gradient',
+    // gradient: {
+    //   shade: 'dark',
+    //   gradientToColors: ['#a17abd','#e1a2c7','#afecda'],
+    //   shadeIntensity: 1,
+    //   opacityFrom: 1,
+    //   opacityTo: 1,
+    //   stops: [0, 100, 200],
+    // }
   }
 
   public title: ApexTitleSubtitle = {
@@ -185,7 +185,7 @@ export class HistoryLineChartComponent implements OnChanges{
   };
 
   public stroke: ApexStroke = {
-    curve: 'straight',
+    curve: 'smooth',
     width: 3,
   }
 

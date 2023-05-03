@@ -98,6 +98,7 @@ import { ForgotPasswordComponent } from './components/global/forgot-password/for
 import { ResetPasswordComponent } from './components/global/reset-password/reset-password.component';
 import { AboutUsComponent } from './components/global/about-us/about-us.component';
 import { NewsComponent } from './components/global/news/news.component';
+import { LoaderComponent } from './components/global/loader/loader.component';
 
 export const url = 'https://localhost:7158';
 export const deviceFakerUrl = "https://localhost:7233";
@@ -175,7 +176,8 @@ export const deviceFakerUrl = "https://localhost:7233";
     ForgotPasswordComponent,
     ResetPasswordComponent,
     AboutUsComponent,
-    NewsComponent
+    NewsComponent,
+    LoaderComponent
   ],
   imports: [
     CommonModule,

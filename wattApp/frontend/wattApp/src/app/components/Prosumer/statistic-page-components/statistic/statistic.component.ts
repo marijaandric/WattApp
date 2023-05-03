@@ -31,6 +31,7 @@ export class StatisticComponent  implements OnInit {
   token = localStorage.getItem('token');
   user:any;
   id : any;
+  loader = true;
 
   switchValue: boolean = true;
   hif : HiF[]  = [{history: 0, forecast: 0, date1: [], date2: []},
@@ -127,6 +128,7 @@ export class StatisticComponent  implements OnInit {
 
   getHistoryAndForecastByDayForAllUserDevices() {
     this.deviceService.GetHistoryAndForecastByDayForAllUserDevices(this.id).subscribe(data => {
+      this.loader = false;
         this.arrayData = data.dates; //.slice(0, 7).concat(data.dates.slice(8));
         this.miniarrayData1=data.dates.slice(0, 7);
         this.miniarrayData2=data.dates.slice(8, 14);

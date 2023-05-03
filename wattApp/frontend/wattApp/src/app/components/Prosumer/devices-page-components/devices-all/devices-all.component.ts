@@ -14,6 +14,7 @@ export class DevicesAllComponent implements OnInit {
   token = localStorage.getItem('token');
   id : any;
   user:any;
+  loader=true;
 
   constructor(private userService:UserService,
               private deviceService: DeviceService,
@@ -68,6 +69,7 @@ export class DevicesAllComponent implements OnInit {
   this.GetNumberOfDevicesForUserThatDSOCanManage();
 
     this.deviceService.getDevicesByUserId(this.id).subscribe((result: DeviceDTO[]) => {
+      this.loader = false;
       this.allDevices = result;
     });
   }

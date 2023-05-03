@@ -35,6 +35,7 @@ export class HomeDSOComponent {
   display4: boolean = false;
   display5: boolean = false;
   display6: boolean = true;
+  loader=true;
 
   menageUserForm! : FormGroup;
   cities: City[];
@@ -167,7 +168,7 @@ export class HomeDSOComponent {
   getHistoryAndForecastByDayForAllDevices() {
     this.deviceService.GetHistoryAndForecastByDayForAllDevices().subscribe(data => {
         this.arrayData = data.dates; //.slice(0, 7).concat(data.dates.slice(8));
-
+        this.loader = false;
         this.HistoryCon = data.totaldatasConsumer.map((val: number) => +val.toFixed(2));
         this.ForecastCon = data.totaldatasConsumer.map((val: number) => +val.toFixed(2));
         this.HistoryPro = data.totaldatasProducer.map((val: number) => +val.toFixed(2));

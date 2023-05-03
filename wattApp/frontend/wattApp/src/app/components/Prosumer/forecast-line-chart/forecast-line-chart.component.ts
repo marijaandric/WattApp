@@ -38,6 +38,7 @@ export class ForecastLineChartComponent implements OnChanges{
   {
     this.series = [
       {
+        name: 'Forecast',
         data: this.array,
         color: this.boja1,
         
@@ -89,7 +90,7 @@ export class ForecastLineChartComponent implements OnChanges{
       easing: 'easeinout',
       speed: 800,
       animateGradually: {
-          enabled: true,
+          enabled: false,
           delay: 150
       },
       dynamicAnimation: {
@@ -123,15 +124,15 @@ export class ForecastLineChartComponent implements OnChanges{
   }
 
   public fill: ApexFill = {
-    type: 'gradient',
-    gradient: {
-      shade: 'dark',
-      gradientToColors: ['#7d02d4', '#d90372','rgb(4, 167, 119)'],
-      shadeIntensity: 1,
-      opacityFrom: 1,
-      opacityTo: 1,
-      stops: [0, 100, 200],
-    }
+    // type: 'gradient',
+    // gradient: {
+    //   shade: 'dark',
+    //   gradientToColors: ['#7d02d4', '#d90372','rgb(4, 167, 119)'],
+    //   shadeIntensity: 1,
+    //   opacityFrom: 1,
+    //   opacityTo: 1,
+    //   stops: [0, 100, 200],
+    // }
   }
 
   public xaxis: ApexXAxis = {
@@ -183,7 +184,7 @@ export class ForecastLineChartComponent implements OnChanges{
   };
 
   public stroke: ApexStroke = {
-    curve: 'straight',
+    curve: 'smooth',
     width: 3,
   }
 
