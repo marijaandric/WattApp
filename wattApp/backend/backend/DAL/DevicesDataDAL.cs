@@ -1,4 +1,4 @@
-﻿using backend.Context;
+using backend.Context;
 using backend.DAL.Interfaces;
 using backend.Models;
 using backend.Models.DTOs;
@@ -8,7 +8,7 @@ namespace backend.DAL
 {
     public class DevicesDataDAL : IDevicesDataDAL
     {
-        private string host = "softeng.pmf.kg.ac.rs";
+        private string host = "localhost";
         private int port = 10013;
 
         public List<DevicesData> GetAllDataForDevice(int id)
