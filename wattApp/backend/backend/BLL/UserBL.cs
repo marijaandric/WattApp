@@ -276,7 +276,7 @@ namespace backend.BAL
             var emailToken = Convert.ToBase64String(tokenBytes);
             user.ResetPasswordExpiryTime = DateTime.Now.AddMinutes(15);
             user.ResetPasswordToken = emailToken;
-            SendEmailAsync(email, "ResetPassword", "You are receiving this email because you requested a password reset for your  WattApp account.\nBy clicking the button below, you will be able to reset your password\nhttp://localhost:4200/reset?email=" + email+"&code="+emailToken+ "\n\nKind Regards,\n\nCodeSpark Energy") ;
+            SendEmailAsync(email, "ResetPassword", "You are receiving this email because you requested a password reset for your  WattApp account.\nBy clicking the button below, you will be able to reset your password\nhttp://softeng.pmf.kg.ac.rs:10012/reset?email=" + email+"&code="+emailToken+ "\n\nKind Regards,\n\nCodeSpark Energy") ;
             return _contextDAL.ResetPasswordEmail(user);
 
         }
