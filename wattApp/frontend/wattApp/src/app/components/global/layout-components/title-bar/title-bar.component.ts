@@ -320,7 +320,7 @@ export class TitleBarComponent implements OnInit{
     this.addDeviceForm.patchValue({
       room : this.roomSelected.name
     })
-    console.log(this.addDeviceForm.value)
+    
     this.deviceService.AddDevice(this.addDeviceForm.value).subscribe({
       next:(res => {
         this.addDeviceForm.reset()
@@ -344,7 +344,7 @@ export class TitleBarComponent implements OnInit{
     });
 
   
-    console.log(this.newsForm.value);
+    
     this.dsonewsService.AddNews(this.newsForm.value).subscribe({
       next:(res => {
         this.newsForm.reset()

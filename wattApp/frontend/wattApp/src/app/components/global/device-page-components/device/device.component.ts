@@ -251,7 +251,7 @@ export class DeviceComponent implements OnInit{
         this.hif[i].date1 = this.array3[i];
         this.hif[i].date2 = this.array3[i+7];
       }
-      console.log(this.hif);
+      
       
     })
   }

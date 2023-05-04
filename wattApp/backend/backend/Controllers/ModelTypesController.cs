@@ -19,6 +19,7 @@ namespace backend.Controllers
         [HttpGet("{deviceType}")]
         public Dictionary<ModelTypes, string> GetDeviceModelTypes(string deviceType)
         {
+            deviceType = deviceType.ToUpper();
             if (!Enum.TryParse<DeviceTypes>(deviceType, out var deviceTypeEnum))
             {
                 throw new ArgumentException("Invalid device type");
