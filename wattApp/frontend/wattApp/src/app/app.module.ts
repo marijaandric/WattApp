@@ -99,6 +99,7 @@ import { ResetPasswordComponent } from './components/global/reset-password/reset
 import { AboutUsComponent } from './components/global/about-us/about-us.component';
 import { NewsComponent } from './components/global/news/news.component';
 import { LoaderComponent } from './components/global/loader/loader.component';
+import { MyPaginatedTableComponent } from './components/global/paginated-table-componenet/my-paginated-table/my-paginated-table.component';
 
 export const url = 'https://localhost:7158';
 export const deviceFakerUrl = "https://localhost:7233";
@@ -177,7 +178,8 @@ export const deviceFakerUrl = "https://localhost:7233";
     ResetPasswordComponent,
     AboutUsComponent,
     NewsComponent,
-    LoaderComponent
+    LoaderComponent,
+    MyPaginatedTableComponent
   ],
   imports: [
     CommonModule,
