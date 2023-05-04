@@ -62,7 +62,7 @@
 </div>
 
 <div  [ngClass]="{'hidden': isSubMenuShown, 'submenu': !isSubMenuShown}">
-    <div class="main submain" routerLinkActive="active">
+    <div class="main submain" routerLinkActive="active" *ngIf="isAdmin()">
         <a routerLink="/users/prosumers">      
             <div class="left">
                 <div [ngClass]="{'icon-hidden': isSideBarExpanded, 'icon-displayed': !isSideBarExpanded}">
@@ -78,7 +78,7 @@
 
     </div> 
 
-    <div class="main submain" routerLinkActive="active">
+    <div class="main submain" routerLinkActive="active" *ngIf="isAdmin()">
         <a routerLink="/users/operators">
             <div class="left">
                 <div [ngClass]="{'icon-hidden': isSideBarExpanded, 'icon-displayed': !isSideBarExpanded}">

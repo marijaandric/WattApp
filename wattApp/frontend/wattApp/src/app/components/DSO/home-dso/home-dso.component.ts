@@ -96,7 +96,6 @@ export class HomeDSOComponent {
 
     this.deviceService.getmonthDSO(type).subscribe((response: any) => {
       this.monthPowerUsageProducer=response.usage.toFixed(2);
-      console.log(response.usage);
     });
   }
 
@@ -209,7 +208,6 @@ export class HomeDSOComponent {
 
   dropdownChange()
   {
-    console.log(this.selectedType);
     if(this.selectedType.code == "Consumer")
     {
       this.History = this.HistoryCon;
@@ -266,7 +264,7 @@ export class HomeDSOComponent {
         this.hif[i].date2 = this.arrayData[i+7]
       }
     }
-    console.log(this.hif)
+
    
   }
 
