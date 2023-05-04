@@ -162,9 +162,15 @@ width: 78%;
   .widgets {
     margin-bottom:30px;
   }
+
   .divVreme {
-    margin:20px;
+    width:100%;
   }
+  .vreme {
+    width:90%;
+    margin:auto;
+  }
+
 }
 
 @media only screen and (max-width: 796px) {
@@ -173,31 +179,27 @@ width: 78%;
     flex-basis: 100%;
   }
   .widgets {
-    margin-bottom:30px;
+    margin-bottom:20px;
   }
 
   .slika{
     display:none;
   }
-  .divVreme {
-    margin:20px;
-  }
 }
 @media only screen and (max-width: 500px) {
-  .vreme{
-    margin-left:5px;
-  }
+  
   .promotions {
     min-width: 250px;
     overflow-x: scroll;
     display: flex;
     flex-wrap: nowrap;
+    margin-bottom:12px;
   }
   .promotion, .promotion1{
     display: inline-block;
     vertical-align: top;
     min-width: 240px;
-    margin-right: 10px;
+    margin-right: 20px;
     margin-left: 10px;
     margin-bottom: 10px;
     height:fit-content;
@@ -216,12 +218,15 @@ width: 78%;
     vertical-align: top;
   }
   .widgets {
-    margin-bottom:30px;
+    margin-bottom:20px;
   }
   .divVreme {
     margin:0px 0px;
   }
 
+  .crsl {
+    width:100% !important;
+  }
   /*.widgets::-webkit-scrollbar {
     width: 10px;
     margin-bottom: -5px;

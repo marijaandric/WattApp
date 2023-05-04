@@ -48,7 +48,7 @@ export class MapComponent implements OnInit, OnChanges{
     rightDiv?.addEventListener('click', () => {
       if (switchToggle) {
         switchToggle.style.transform = 'translateX(60px)';
-        switchToggle.style.background = 'linear-gradient(45deg, #46c5f1 10%, #5245b7 100%)';
+        switchToggle.style.background = '#46c5f1';
       }
       if(switchDiv) {
 
@@ -65,7 +65,7 @@ export class MapComponent implements OnInit, OnChanges{
       }
       if(switchDiv) {
 
-        switchDiv.style.background = 'linear-gradient(45deg, #46c5f1 10%, #5245b7 100%)';
+        switchDiv.style.background = '#46c5f1';
       }
     });
   }
@@ -149,7 +149,7 @@ const LegendControl = L.Control.extend({
       <h5 style=font-weight:bold; font-size:15px;>Legend</h5>
       <div>
         <span><img style='width:20px;height:auto;padding-top:10px;padding-bottom:10px;' src='/assets/icons/images/marker-red.png'>  </span>
-        <span>A prosumer who consumes more than 200kwh per month</span>
+        <span>More than 200kwh per month</span>
       </div>
       <div>
       <span><img style='width:20px;height:auto;padding-bottom:10px;' src='/assets/icons/images/marker-pink.png'>  </span>
@@ -157,7 +157,7 @@ const LegendControl = L.Control.extend({
       </div>
       <div>
       <span><img style='width:20px;height:auto;padding-bottom:10px;' src='/assets/icons/images/marker-green.png'>  </span>
-      <span>A prosumer who consumes less than 100kwh per month</span>
+      <span>Less than 100kwh per month</span>
       </div>
       </div>
     `;

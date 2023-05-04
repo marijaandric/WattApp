@@ -1,0 +1,21 @@
+
+@media only screen and (max-width:980px) {
+    .for-pc {
+        display:none;
+    }
+
+    .for-phone {
+        display: flex;
+    }
+}
+
+
+@media only screen and (min-width:980px) {
+    .for-pc {
+        display:flex;
+    }
+
+    .for-phone {
+        display: none;
+    }
+}

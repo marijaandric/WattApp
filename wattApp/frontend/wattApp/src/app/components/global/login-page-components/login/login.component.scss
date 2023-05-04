@@ -162,6 +162,7 @@ i{
     max-width: 100%;
   }
 
+
   .left input {
     max-width: 100%;
   }
@@ -208,9 +209,14 @@ i{
     padding-right: 0;
   }
 
-
-  button{
-    padding:5px 10px;
-    font-size: 10px;
+  .left input {
+    
+    width:230px;
   }
+
+  .submit {
+    padding: 7px 40px;
+  }
+
+  
 }

@@ -30,7 +30,7 @@
     width:40px;
     text-align: center;
     height:40px;
-    background: linear-gradient(45deg, #46c5f1 0%, #5245b7 100%);
+    background: #46c5f1;
     margin-left: 10px;
     border-radius: 10px;
     position: relative;
@@ -52,6 +52,10 @@
     margin: 7px;
 }
 
+.sub-width {
+    width:calc(100% - 20px) !important;
+}
+
 .subtitle-card {
     width:calc(100% - 60px);
     display: inline-block;
@@ -59,7 +63,7 @@
     padding:8px 5px 0px 10px;
 
     span {
-        color: #6592d9;
+        color: #46c5f1;
         font-weight:bold;
     }
 }
@@ -71,7 +75,7 @@
     padding-bottom:10px;
     font-size:14px;
     span {
-        color:rgb(140, 140, 140);
+        color:#c7c7c7;
     }
     padding-left:10px;
     font-weight:bold;
@@ -79,16 +83,19 @@
 
 .main-stat-card {
     position: relative;
-    font-size: 34px;
-    font-weight: bolder;
+    font-size: 40px;
     padding-left:10px;
-    color:white;
+
+    span {
+        color:white;
+        font-family: 'Mandali', sans-serif;
+    }
     float:left;
-    padding-top:16px;
+    padding-top:8px;
 }
 
 .kwh-card {
-    padding:32px 0px 10px 10px;
+    padding:28px 0px 10px 10px;
     display:inline-block;
     span {
         font-family: 'Lato',sans-serif !important;
@@ -108,4 +115,20 @@
 }
 .bg-orange-color{
     background: linear-gradient(135deg,#f5805a,#f9b59f);
+}
+
+
+
+@media only screen and (max-width:980px) {
+
+.main-stat-card {
+    padding-top:6px !important;
+  }
+  .kwh-card {
+    padding-top:22px;
+  }
+
+  .subtitle-2 {
+    margin-top:0px;
+  }
 }

@@ -35,6 +35,7 @@ export class HomeDSOComponent {
   display4: boolean = false;
   display5: boolean = false;
   display6: boolean = true;
+  loader=true;
 
   menageUserForm! : FormGroup;
   cities: City[];
@@ -42,7 +43,7 @@ export class HomeDSOComponent {
   type: City[];
   type2: City[];
   type3: City[];
-  selectedType!: City;
+  selectedType: City= {name: 'Consumption', code: 'Consumer'};
   isConsumption: boolean = true;
   isProduction: boolean = false;
   isStock: boolean = false;
@@ -88,7 +89,7 @@ export class HomeDSOComponent {
 
   users: UserDTO[] = [];
 
-  monthPowerUsageProducer: any;
+  monthPowerUsageProducer: any = 0;
   
   getmonthPowerUsageProducer() {
     const type = 'Producer';
@@ -99,7 +100,7 @@ export class HomeDSOComponent {
     });
   }
 
-  monthPowerUsageConsumer: any;
+  monthPowerUsageConsumer: any = 0;
   
   getmonthPowerUsageConsumer() {
     const type = 'Consumer';
@@ -109,7 +110,7 @@ export class HomeDSOComponent {
     });
   }
 
-  monthPowerUsageStorage: any;
+  monthPowerUsageStorage: any = 0;
 
   getmonthPowerUsageStorage() {
     const type = 'Stock';
@@ -119,7 +120,7 @@ export class HomeDSOComponent {
     });
   }
 
-  dayPowerPrice: any;
+  dayPowerPrice: any = 0;
 
   getdayPowerPrice() {
   
@@ -161,13 +162,13 @@ export class HomeDSOComponent {
   name1 = "history";
   name2 = "forecast";
 
-  color1 = '#885ec0';
-  color2 = '#ae91d4';
+  color1 = '#46c5f1';
+  color2 = '#88dbf6';
 
   getHistoryAndForecastByDayForAllDevices() {
     this.deviceService.GetHistoryAndForecastByDayForAllDevices().subscribe(data => {
         this.arrayData = data.dates; //.slice(0, 7).concat(data.dates.slice(8));
-
+        this.loader = false;
         this.HistoryCon = data.totaldatasConsumer.map((val: number) => +val.toFixed(2));
         this.ForecastCon = data.totaldatasConsumer.map((val: number) => +val.toFixed(2));
         this.HistoryPro = data.totaldatasProducer.map((val: number) => +val.toFixed(2));
@@ -192,8 +193,8 @@ export class HomeDSOComponent {
         this.name1="Consumption history";
         this.name2="Consumption forecast";
 
-        this.color1 = '#885ec0';
-        this.color2 = '#ae91d4';
+        this.color1 = '#46c5f1';
+        this.color2 = '#88dbf6';
 
         for(let i = 0;i<7;i++)
         {
@@ -217,8 +218,8 @@ export class HomeDSOComponent {
       this.name1="Consumption history";
       this.name2="Consumption forecast";
 
-      this.color1 = '#885ec0';
-      this.color2 = '#ae91d4';
+      this.color1 = '#46c5f1';
+      this.color2 = '#88dbf6';
 
       for(let i = 0;i<this.History.length;i++)
       {
@@ -236,8 +237,8 @@ export class HomeDSOComponent {
       this.name1="Production history";
       this.name2="Production forecast";
 
-      this.color1 = '#eb4886';
-      this.color2 = '#f075a4';
+      this.color1 = '#885ec0';
+      this.color2 = '#ae91d4';
 
       for(let i = 0;i<this.History.length;i++)
       {
@@ -254,8 +255,8 @@ export class HomeDSOComponent {
       this.name1="Stock history";
       this.name2="Stock forecast";
 
-      this.color1 = '#f5805a';
-      this.color2 = '#f9b59f';
+      this.color1 = '#eb4886';
+      this.color2 = '#f075a4';
 
       for(let i = 0;i<this.History.length;i++)
       {

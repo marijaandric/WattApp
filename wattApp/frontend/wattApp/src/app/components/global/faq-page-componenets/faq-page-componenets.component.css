@@ -116,7 +116,6 @@ background: linear-gradient(135deg,#885ec0,#ae91d4);
     position:relative;
     font-weight: 500;
     color: #fff;
-    z-index: 10;
     font-size: 19px;
 }
 .container .tab input:checked ~ label h3
@@ -144,7 +143,6 @@ background: linear-gradient(135deg,#885ec0,#ae91d4);
     position: relative;
     padding: 10px 0;
     color: #333;
-    z-index: 10;
     font-size: 20px;
 }
 

@@ -21,5 +21,8 @@ namespace backend.Models
         public double Y { get; set; }
         public string Area { get; set; }
         public int? ImageId { get; set; }
+        public string? ResetPasswordToken { get; set; }
+        public DateTime ResetPasswordExpiryTime { get; set; }
+        public Boolean isDarkTheme { get; set; }
     }
 }

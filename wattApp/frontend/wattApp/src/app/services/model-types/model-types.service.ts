@@ -11,7 +11,8 @@ export class ModelTypesService {
 
   constructor(private http: HttpClient) { } 
 
-  getAllModelTypes(): Observable<string[]> {
-    return this.http.get<string[]>(this.baseUrl);
+  getAllModelTypes(deviceType: string): Observable<{ [key: number]: string }> {
+    return this.http.get<{ [key: number]: string }>(`${this.baseUrl}${deviceType}`);
   }
+  
 }

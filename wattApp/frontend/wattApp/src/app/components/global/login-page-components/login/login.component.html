@@ -16,6 +16,7 @@
 						<input formControlName="password" [type]="type" placeholder="PASSWORD" name="password">
 						<small *ngIf="loginForm.controls['password'].dirty && loginForm.hasError('required','password')" class="danger" style="color: rgb(182, 126, 126);">Please enter your password</small>
 						<i (click)="hideShowPass()" class="{{eyeIcon}}" style="color:white"></i>
+						<p routerLink="/forgotPassword" style="margin-top: 20px;font-size:12px;cursor:pointer">Forgot password?</p>
 						<button (click)="onLogin()" class="submit"><span>LET'S GO</span></button>
 					</form>
 				</div>

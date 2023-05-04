@@ -1,21 +1,22 @@
 <div id="device-card" class="device-card">
     <div class="flexRow">
-        <a [routerLink]="['/device', device.id]" class="device-name abbreviate-text">{{ device.deviceName }}</a>
+        <a [routerLink]="['/device', device.id]"  style="display:flex;width:30px;padding-top:5px;"><i class="fa-solid fa-house"></i></a>
+        <a [routerLink]="['/device', device.id]" class="device-name abbreviate-text" style="padding-top:2px">{{ device.deviceName }}</a>
         <p-inputSwitch [(ngModel)]="device.isActive" (onChange)="handleRunningSwitchChange()" class="margin-left__auto width__fit-content"/>
     </div>
     <div class="flexRow" style="margin-top: 16px;">
-        <span class="bold-text">Status:</span>
-        <span *ngIf="!isChecked" class="margin-left__auto">Idle</span>
-        <span *ngIf="isChecked" class="margin-left__auto">Running</span>
+        <span >Status:</span>
+        <span *ngIf="!isChecked" class="margin-left__auto" style="color:#eb4886;">Idle</span>
+        <span *ngIf="isChecked" class="margin-left__auto color-gray" style="color:#46c5f1;">Running</span>
     </div>
     <div class="flexRow" style="margin-top: 6px;">
-        <span  class="bold-text">Type:</span>
-        <span class="margin-left__auto">{{ device.deviceType }}</span>
+        <span>Type:</span>
+        <span class="margin-left__auto color-gray">{{ device.deviceType }}</span>
     </div>
     <div class="flexRow" style="margin-top: 6px;">
-        <span *ngIf="device.deviceType === 'Consumer'"  class="bold-text">Power consumed:</span>
-        <span *ngIf="device.deviceType === 'Producer'"  class="bold-text">Power produced:</span>
+        <span *ngIf="device.deviceType === 'Consumer'"  >Power consumed:</span>
+        <span *ngIf="device.deviceType === 'Producer'"  >Power produced:</span>
         <span *ngIf="device.deviceType !== 'Consumer' && device.deviceType !== 'Producer'"  class="bold-text">Power stored:</span>
-        <span class="margin-left__auto">{{ device.power }} kW/h</span>
+        <span class="margin-left__auto color-gray">{{ device.power }} kW/h</span>
     </div>
 </div>

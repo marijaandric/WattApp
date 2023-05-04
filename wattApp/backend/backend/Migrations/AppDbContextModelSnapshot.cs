@@ -32,7 +32,7 @@ namespace backend.Migrations
                     b.Property<string>("DeviceType")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("ImageId")
+                    b.Property<int?>("ImageId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Room")
@@ -78,7 +78,7 @@ namespace backend.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("images", (string)null);
+                    b.ToTable("dso_news", (string)null);
                 });
 
             modelBuilder.Entity("backend.Models.Images", b =>
@@ -98,7 +98,7 @@ namespace backend.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Images");
+                    b.ToTable("images", (string)null);
                 });
 
             modelBuilder.Entity("backend.Models.User", b =>
@@ -119,7 +119,7 @@ namespace backend.Migrations
                     b.Property<string>("FirstName")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("ImageId")
+                    b.Property<int?>("ImageId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("LastName")
@@ -137,6 +137,12 @@ namespace backend.Migrations
                     b.Property<DateTime>("RefreshTokenExpiryTime")
                         .HasColumnType("TEXT");
 
+                    b.Property<DateTime>("ResetPasswordExpiryTime")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ResetPasswordToken")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Role")
                         .HasColumnType("TEXT");
 
@@ -151,6 +157,9 @@ namespace backend.Migrations
 
                     b.Property<double>("Y")
                         .HasColumnType("REAL");
+
+                    b.Property<bool>("isDarkTheme")
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 

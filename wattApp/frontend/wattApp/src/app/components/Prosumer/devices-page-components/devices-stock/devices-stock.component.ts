@@ -10,6 +10,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class DevicesStockComponent {
   stockDevices: DeviceDTO[] = [];
+  loader = true;
 
   constructor(private deviceService: DeviceService,
     private userService: UserService) { }
@@ -20,6 +21,7 @@ export class DevicesStockComponent {
     {
       const userId = this.userService.getUserIdFromToken(token);
       this.deviceService.getDevicesForUserByType(userId, "Stock").subscribe((result: DeviceDTO[]) => {
+        this.loader = false;
         this.stockDevices = result;
       });
     }

@@ -23,5 +23,7 @@ namespace backend.DAL.Interfaces
         public List<User> GetUsersByType(string type);
         public List<User> GetAllUsersPagination(int page, int limit);
         public int GetNumberOfUsersByType(string type);
+        public IActionResult ResetPasswordEmail(User user);
+        public IActionResult ResetPassword(User user);
     }
 }

@@ -7,6 +7,9 @@
     border-radius: 20px;
     padding:  10px 0px 10px 15px;
     background: linear-gradient(180deg, #1e1e1e 50%, #121212 100%) ;
+    
+    /* LIGHT VERZIJA - BG WHITE */
+
     flex-basis: calc(33.33333% - 30px);
 }
 
@@ -27,6 +30,9 @@
   font-weight: bolder;
   font-size: 22px;
   color: #FFF;
+  
+  /* LIGHT VERZIJA - color: #4e4e4e; */
+
   align-items: end;
   cursor: default;
   z-index: 2;

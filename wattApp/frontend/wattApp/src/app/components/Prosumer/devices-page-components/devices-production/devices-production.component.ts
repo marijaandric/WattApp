@@ -10,6 +10,7 @@ import { UserService } from 'src/app/services/user.service';
 })
 export class DevicesProductionComponent {
   productionDevices: DeviceDTO[] = [];
+  loader = true;
 
   constructor(private deviceService: DeviceService,
     private userService: UserService) { }
@@ -21,6 +22,7 @@ export class DevicesProductionComponent {
     {
       const userId = this.userService.getUserIdFromToken(token);
       this.deviceService.getDevicesForUserByType(userId, "Producer").subscribe((result: DeviceDTO[]) => {
+        this.loader = false;
         this.productionDevices = result;
       });
     }

@@ -49,6 +49,7 @@ interface HiF{
 })
 export class DeviceDesktopComponent implements OnInit {
   device!: DeviceDTO;
+  loader=true;
 
   displayEditDeviceDialog: boolean = false;
   isRunning: boolean = true;
@@ -111,24 +112,30 @@ export class DeviceDesktopComponent implements OnInit {
           }
 
           this.deviceTypesService.getAllDeviceTypes().pipe(
-            map(deviceTypes => deviceTypes.map(deviceType => ({ code: deviceType, name: deviceType }))),
+            map(deviceTypes => {
+              return Object.entries(deviceTypes).map(([code, name]) => ({ code, name }));
+            }),
             tap(() => this.typeSelected = { code: this.device.deviceType, name: this.device.deviceType }),
-          ).subscribe(mappedDeviceTypes => {
-            this.types = mappedDeviceTypes;
+            ).subscribe(mappedDeviceTypes => {
+              this.types = mappedDeviceTypes;
+
+              this.modelTypesService.getAllModelTypes(this.typeSelected.code).pipe(
+                map(modelTypes => {
+                  return Object.entries(modelTypes).map(([code, name]) => ({ code, name }));
+                }),
+                tap(() => this.modelSelected = { code: this.device.deviceModel, name: this.device.deviceModel }),
+              ).subscribe(mappedModelTypes => {
+                this.models = mappedModelTypes;
+              });
           });
           
           this.roomTypesService.getAllRoomTypes().pipe(
-            map(roomTypes => roomTypes.map(roomType => ({ code: roomType, name: roomType }))),
+            map(roomTypes => {
+              return Object.entries(roomTypes).map(([code, name]) => ({ code, name }));
+            }),
             tap(() => this.roomSelected = { code: this.device.room, name: this.device.room }),
           ).subscribe(mappedRoomTypes => {
             this.rooms = mappedRoomTypes;
-          });
-          
-          this.modelTypesService.getAllModelTypes().pipe(
-            map(modelTypes => modelTypes.map(modelType => ({ code: modelType, name: modelType }))),
-            tap(() => this.modelSelected = { code: this.device.deviceModel, name: this.device.deviceModel }),
-          ).subscribe(mappedModelTypes => {
-            this.models = mappedModelTypes;
           });
           
           this.nameSelected = this.device.deviceName;
@@ -204,6 +211,7 @@ export class DeviceDesktopComponent implements OnInit {
   getHistoryAndForecastByDayForDevice(id:any)
   {
     this.deviceService.getHistoryAndForecastByDayForDevice(id).subscribe(data => {
+      this.loader = false;
       let a = [];
       let b = [];
       let c = [];

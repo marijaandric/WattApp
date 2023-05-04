@@ -1,0 +1,174 @@
+
+.container {
+    display: flex;
+    margin:0px;
+    background: linear-gradient(180deg, #1e1e1e 10%, #121212 100%) ;
+    box-shadow: 5px 5px 15px black;
+    padding: 0;
+     border-radius: 20px;
+     margin-top:100px;
+     height: 400px;
+
+}
+  
+.image {
+  position:absolute;
+   background-image: url("/assets/images/landing-page-images/citilights2.png");
+   background-size: cover;
+   background-position: center;
+   background-repeat: no-repeat;
+   height: 650px;
+   width: 98.8%;
+   margin:0;
+   padding: 0;
+    margin-top: -250px;
+    z-index: 1;
+}
+ 
+.quotes {
+   width: 50%;
+   padding: 20px;
+   text-align: center;
+   margin: auto;
+}
+
+
+//Colors
+$black: #34435E;
+$white: #ffffff;
+
+main {
+  min-width: 300px;
+  max-width: 500px;
+  margin: auto;
+  //background-color: ;
+  padding: 40px;
+  background: linear-gradient(180deg, #1e1e1e 10%, #121212 100%) ;
+  box-shadow: 5px 5px 15px black;
+   border-radius: 20px;
+}
+
+.fensi {
+  font-size: 1em;
+  line-height: 1.75em;
+  border-top: 3px solid;
+  border-image: linear-gradient(45deg, #46c5f1 10%, #5245b7 100%);
+  border-image-slice: 1;
+  border-width: 3px;
+  margin: 0;
+  padding: 40px;
+  counter-increment: section;
+  position: relative;
+  color: white;
+  
+  //numbers
+  &:before {
+    content: counter(section);
+    position: absolute;
+    border-radius: 50%;
+    padding: 10px;
+    height: 2.25em;
+    width: 2.25em;
+    background-color: $black;
+    text-align: center;
+    line-height: 1.25em;
+    color: $white;
+    font-size: 1em;
+  }
+}
+//odd number borders
+.fensi:nth-child(odd) {
+  border-right: 3px solid;
+  padding-left: 0;
+  
+  &:before {
+    left: 100%; 
+    margin-left: -20px;
+  }
+}
+//even number borders
+.fensi:nth-child(even) {
+  border-left: 3px solid;
+  padding-right: 0;
+  
+  &:before {
+    right: 100%; 
+    margin-right: -20px;
+  }
+}
+//handle first and last
+.fensi:first-child {
+  border-top: 0;
+  border-top-right-radius:0;
+  border-top-left-radius:0;
+}
+.fensi:last-child {
+  border-bottom-right-radius:0;
+  border-bottom-left-radius:0;
+}
+
+
+
+
+
+.cont {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  margin: 40px 20px;
+}
+
+.card {
+  background-color: #fff;
+  box-shadow: 5px 5px 15px black;
+  border-radius: 20px;
+  background: linear-gradient(180deg, #1e1e1e 10%, #121212 100%) ;
+  height: 124%;
+}
+
+.card img {
+  width: 100%;
+  height: 155px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.desc{
+  text-align: center;
+  padding: 10px;
+}
+
+@media screen and (min-width: 1456px) {
+  .reasons{
+    display: none;
+  }
+  main {
+    margin-left:-40px;
+  }
+}
+
+@media screen and (max-width: 1456px) {
+  .info{
+    width: 90%;
+    display:none;
+    margin:auto 20px;
+  }
+  .card{
+    height: 100%;
+  }
+  .klasa{
+    display: flex;
+    flex-direction: row;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .klasa{
+    display: flex;
+    flex-direction: column;
+  }
+  .cont{
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+}

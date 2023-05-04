@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Route, Router } from '@angular/router';
 import { TokenApi } from 'src/app/models/token-api.model';
 import { url } from '../../app.module';
+import { ResetPassword } from 'src/app/models/reset-password.model';
 
 @Injectable({
   providedIn: 'root'
@@ -57,6 +58,21 @@ export class AuthService {
   renewTooken(tokenApi:TokenApi)
   {
     return this.http.post<any>(`${this.baseUrl}refresh`,tokenApi)
+  }
+
+  sendResetPasswordLink(email:string)
+  {
+    return this.http.post<any>(`${this.baseUrl}send-reset-email/${email}`,{});
+  }
+
+  resetPassword(ressetPasswordObj:ResetPassword)
+  {
+    return this.http.post<any>(`${this.baseUrl}reset-email`,ressetPasswordObj);
+  }
+
+  changePassword(changePassForm : any)
+  {
+    return this.http.put<any>(`${this.baseUrl}changePassword`, changePassForm);
   }
 
 }
