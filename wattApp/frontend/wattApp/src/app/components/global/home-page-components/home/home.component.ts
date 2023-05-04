@@ -22,6 +22,7 @@ export class HomeComponent {
     if(token)
     {
       const role = this.userService.getUserRoleFromToken(token);
+      console.log(role)
       if(role == "prosumer")
       {
         return false;

@@ -21,7 +21,7 @@ export class DevicesProductionComponent {
     if(token)
     {
       const userId = this.userService.getUserIdFromToken(token);
-      this.deviceService.getDevicesForUserByType(userId, "Production").subscribe((result: DeviceDTO[]) => {
+      this.deviceService.getDevicesForUserByType(userId, "Producer").subscribe((result: DeviceDTO[]) => {
         this.loader = false;
         this.productionDevices = result;
       });
