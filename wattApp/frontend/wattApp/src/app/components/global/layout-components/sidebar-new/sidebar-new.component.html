@@ -35,7 +35,7 @@
 
 <!--        USERS       -->
 
-<div class="main" [ngClass]="{'margin-100': !isSubMenuShown}" routerLinkActive="active">
+<div class="main" [ngClass]="{'margin-100': !isSubMenuShown}" routerLinkActive="active" *ngIf="isAdmin()">
     <div class="left">
         <a routerLink="/users">
             <i class="fa-solid fa-users"></i>
@@ -98,7 +98,7 @@
 
 <!--        DEVICES       -->
 
-<div class="main" [ngClass]="{'margin-150': !isSubMenuShown}" routerLinkActive="active">
+<div class="main" [ngClass]="{'margin-150': !isSubMenuShown}" routerLinkActive="active" *ngIf="!isAdmin()">
     <div class="left">
         <a routerLink="/devices">
             <i class='fa-solid fa-computer'></i>
@@ -176,7 +176,7 @@
 </div>
 
 
-<div class="main" routerLinkActive="active">
+<div class="main" routerLinkActive="active" *ngIf="!isAdmin()">
     <a routerLink="/statistics" >
         <div class="left ">
             <i class='fa-solid fa-chart-pie' ></i>
