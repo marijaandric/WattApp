@@ -108,6 +108,7 @@ namespace DeviceFaker.Services
             day = day - 1;
             while (count < 7)
             {
+                Console.WriteLine("while loop GetWeekDataByDayForAllDevicesOrDevice");
                 if (day >= 1)
                 {
                     current = GetDayPowerUsageSumOfDevices(devicesids, year, month, day);
@@ -148,6 +149,7 @@ namespace DeviceFaker.Services
             double current;
             while (count < 7)
             {
+                Console.WriteLine("while loop GetWeekDataByDayForAllDevicesOrDeviceInFuture");
                 if (day <= 31)
                 {
                     current = GetDayPowerUsageSumOfDevices(devicesids, year, month, day);
@@ -201,7 +203,7 @@ namespace DeviceFaker.Services
             {
                 filter = Builders<DevicesData>.Filter.And(
                 Builders<DevicesData>.Filter.In(x => x.DeviceID, ids),
-                Builders<DevicesData>.Filter.Where(x => x.Year == year && x.Month == month && x.Day <= now.Day && x.Time <= now.Hour));
+                Builders<DevicesData>.Filter.Where(x => x.Year == year && x.Month == month && x.Day <= now.Day));
             }
 
             var matchStage = new BsonDocument("$match", filter.Render(BsonSerializer.SerializerRegistry.GetSerializer<DevicesData>(), BsonSerializer.SerializerRegistry));
@@ -223,18 +225,18 @@ namespace DeviceFaker.Services
             };
 
             var pipelineString = pipeline.ToJson();
-
+            Console.WriteLine(pipelineString);
             var result = _devicesDataCollection.Aggregate<BsonDocument>(pipeline).ToList();
 
             List<UsageDTO> usage = new List<UsageDTO>();
             foreach (var doc in result)
             {
+                Console.WriteLine("for loop GetMonthPowerUsageOfDevices");
                 UsageDTO usg = new UsageDTO();
                 usg.DeviceID = doc["_id"]["DeviceID"].ToInt32();
                 usg.Year = doc["_id"]["Year"].ToInt32();
                 usg.Month = doc["_id"]["Month"].ToInt32();
                 usg.Usage = doc["totalPowerUsage"].ToDouble();
-                //Console.WriteLine(usg.Usage);
                 usage.Add(usg);
             }
 
@@ -275,13 +277,14 @@ namespace DeviceFaker.Services
             };
 
             var pipelineString = pipeline.ToJson();
-            //Console.WriteLine(pipelineString);
+            Console.WriteLine(pipelineString);
 
             var result = _devicesDataCollection.Aggregate<BsonDocument>(pipeline).ToList();
 
             List<UsageDTO> usage = new List<UsageDTO>();
             foreach (var doc in result)
             {
+                Console.WriteLine("for loop GetDayPowerUsageOfDevices");
                 UsageDTO usg = new UsageDTO();
                 usg.DeviceID = doc["_id"]["DeviceID"].ToInt32();
                 usg.Year = doc["_id"]["Year"].ToInt32();
@@ -321,11 +324,13 @@ namespace DeviceFaker.Services
             };
 
             var pipelineString = pipeline.ToJson();
+            Console.WriteLine(pipelineString);
 
             var result = _devicesDataCollection.Aggregate<BsonDocument>(pipeline).ToList();
             List<UsageDTO> usage = new List<UsageDTO>();
             foreach (var doc in result)
             {
+                Console.WriteLine("for loop GetDayPowerUsageSumOfDevices");
                 UsageDTO usg = new UsageDTO();
                 usg.DeviceID = -1;
                 usg.Year = year;
@@ -367,11 +372,13 @@ namespace DeviceFaker.Services
             };
 
             var pipelineString = pipeline.ToJson();
+            Console.WriteLine(pipelineString);
 
             var result = _devicesDataCollection.Aggregate<BsonDocument>(pipeline).ToList();
             List<UsageDTO> usage = new List<UsageDTO>();
             foreach (var doc in result)
             {
+                Console.WriteLine("for loop GetMonthPowerUsageSumOfDevices");
                 UsageDTO usg = new UsageDTO();
                 usg.DeviceID = -1;
                 usg.Year = year;
@@ -412,11 +419,13 @@ namespace DeviceFaker.Services
             };
 
             var pipelineString = pipeline.ToJson();
+            Console.WriteLine(pipelineString);
 
             var result = _devicesDataCollection.Aggregate<BsonDocument>(pipeline).ToList();
             List<UsageDTO> usage = new List<UsageDTO>();
             foreach (var doc in result)
             {
+                Console.WriteLine("for loop GetYearPowerUsageSumOfDevices");
                 UsageDTO usg = new UsageDTO();
                 usg.DeviceID = -1;
                 usg.Year = year;

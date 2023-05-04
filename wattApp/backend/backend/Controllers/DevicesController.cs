@@ -225,7 +225,11 @@ namespace backend.Controllers
         [HttpGet("{userId}/{year}/{month}/{day}/{type}/{size}")]
         public IActionResult GetExrtemeDevice(int userId, int year, int month, int day, string type, string size)
         {
-            var result = _contextDevicesAndData.GetExtremeDevice(userId, year, month, day, type, size);
+            ExtremeDeviceDTO result = _contextDevicesAndData.GetExtremeDevice(userId, year, month, day, type, size);
+            if (result == null || result.DeviceName == "")
+            {
+                return BadRequest();
+            }
             return Ok(
                     new
                     {
