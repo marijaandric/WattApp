@@ -169,14 +169,17 @@ export class TitleBarComponent implements OnInit{
       email: ['', Validators.required],
       phoneNumber: ['', Validators.required],
       address: ['', Validators.required],
-      password: ['', Validators.required],
-      password2: ['', Validators.required],
+      password: ['string', Validators.required],
+      token:['string', Validators.required],
       role: ['', Validators.required],
-      token:['', Validators.required],
-      refreshToken:['', Validators.required],
+      refreshToken:['string', Validators.required],
+      refreshTokenExpiryTime: ['2023-05-04T11:25:23.308Z', Validators.required],
       x: ['', Validators.required],
       y: ['', Validators.required],
-      oblast :['', Validators.required],
+      area :['', Validators.required],
+      resetPasswordToken: ['string', Validators.required],
+      resetPasswordExpiryTime: ['2023-05-04T11:25:23.308Z', Validators.required],
+      isDarkTheme: true
     });
 
     this.addDeviceForm = this.fb.group({
@@ -243,7 +246,7 @@ export class TitleBarComponent implements OnInit{
       address : this.address
     })
     this.signUpForm.patchValue({
-      oblast : message.district
+      area : message.district
     })
   }
 
@@ -285,9 +288,8 @@ export class TitleBarComponent implements OnInit{
       role : this.roleSelected
     })
 
-    if(this.signUpForm && this.signUpForm.value.password === this.signUpForm.value.password2)
-    {
-      this.authService.signUp(this.signUpForm.value).subscribe({
+    console.log(this.signUpForm.value)
+    this.authService.signUp(this.signUpForm.value).subscribe({
         next:(res => {
           this.signUpForm.reset()
           this.toast.success({detail:"SUCCESS",summary:"You have successfully registered",duration:4000});
@@ -298,11 +300,6 @@ export class TitleBarComponent implements OnInit{
         })
         
       })
-    }
-    else{
-      this.toast.error({detail:"ERROR",summary:"Error",duration:4000});
-      this.validateAllFormFields(this.signUpForm)
-    }
   }
 
   addDevice()

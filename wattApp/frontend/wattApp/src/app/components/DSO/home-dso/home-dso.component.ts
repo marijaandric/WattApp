@@ -1,6 +1,5 @@
 import { Component, ElementRef, Renderer2 } from '@angular/core';
 import { StadardTemplateComponent } from '../../global/layout-components/standard-template/stadard-template.component';
-
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { ConfirmationService } from 'primeng/api';
@@ -44,6 +43,7 @@ export class HomeDSOComponent {
   type2: City[];
   type3: City[];
   selectedType: City= {name: 'Consumption', code: 'Consumer'};
+  selectedDate: City= {name: 'Week', code: 'Week'};
   isConsumption: boolean = true;
   isProduction: boolean = false;
   isStock: boolean = false;
@@ -209,7 +209,7 @@ export class HomeDSOComponent {
 
   dropdownChange()
   {
-    console.log(this.selectedType);
+    console.log(this.selectedDate.code)
     if(this.selectedType.code == "Consumer")
     {
       this.History = this.HistoryCon;
