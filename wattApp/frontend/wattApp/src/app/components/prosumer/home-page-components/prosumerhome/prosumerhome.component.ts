@@ -12,6 +12,7 @@ import { DsonewsService } from 'src/app/services/dsonews/dsonews.service';
   styleUrls: ['./prosumerhome.component.css']
 })
 export class ProsumerhomeComponent implements OnInit{
+  loader = true;
   user:any;
   id: any;
   token = localStorage.getItem('token');
@@ -52,6 +53,7 @@ export class ProsumerhomeComponent implements OnInit{
     const max = 'max';
     
     this.deviceService.getBiggest(this.id,year,month,day,consumer,max).subscribe((response: any) => {
+      this.loader = false;
        this.IdBiggestConsumer=response.id;
        this.NameBiggestConsumer=response.deviceName;
        this.PowerUsageBiggestConsumer=response.averagePowerUsage.toFixed(2);
@@ -214,8 +216,6 @@ export class ProsumerhomeComponent implements OnInit{
      this.status2 = this.news[1].priority;
      this.status3 = this.news[2].priority;
 
-
-     console.log(this.news);
     });
   
   }
@@ -234,10 +234,6 @@ export class ProsumerhomeComponent implements OnInit{
     this.getmonthPowerUsageProducer();
     this.getmonthPowerUsageStorage();
     this.getdayPowerPrice();
-
-    console.log(this.devices);
-
-    
   }
 
   

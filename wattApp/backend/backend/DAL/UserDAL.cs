@@ -4,6 +4,8 @@ using backend.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc;
 using backend.BAL;
+using backend.Models.DTOs;
+using Microsoft.AspNetCore.Identity;
 
 namespace backend.DAL
 {
@@ -123,5 +125,52 @@ namespace backend.DAL
 
 
         }
+
+        public IActionResult ResetPasswordEmail(User user)
+        {
+           _context.Entry(user).State = EntityState.Modified;
+            try
+            {
+                _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!userExists(user.Id))
+                {
+                    return new StatusCodeResult(404);
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return new StatusCodeResult(204);
+
+        }
+
+        public IActionResult ResetPassword(User user)
+        {
+            _context.Entry(user).State = EntityState.Modified;
+            try
+            {
+                _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                Console.WriteLine("USLO");
+                if (!userExists(user.Id))
+                {
+                    return new StatusCodeResult(404);
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return new StatusCodeResult(204);
+        }
+
     }
 }

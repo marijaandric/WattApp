@@ -1,0 +1,221 @@
+<!--        LOGO DIV        -->
+
+<div class="logo">
+    <div class="logo-icon">
+        <img src="../../../../../assets/icons/images/cse.pn1.png">
+    </div>
+
+    <div class="logo-title">
+        <img src="../../../../../assets/icons/images/cse.pn2.png">
+    </div>
+</div>
+
+<!--        SIDEBAR ARROW       -->
+
+<div class="sidebar-arrow">
+    <i class="fa-solid fa-angle-right"  [ngClass]="isSideBarExpanded? 'arrow-right' : 'arrow-left'" (click)="expandSidebar()"></i>
+</div>
+
+<!--        HOME        -->
+
+<div class="main"  style="margin-top:20px;" routerLinkActive="active">
+    <div class="left ">
+        <a routerLink="/home">
+            <i class="fa-solid fa-house"></i>
+        </a>
+    </div>
+    
+    <div class="right">
+        <div class="title">
+            <a routerLink="/home">Home</a>
+        </div>
+
+    </div>
+</div>
+
+<!--        USERS       -->
+
+<div class="main" [ngClass]="{'margin-100': !isSubMenuShown}" routerLinkActive="active" *ngIf="isAdmin()">
+    <div class="left">
+        <a routerLink="/users">
+            <i class="fa-solid fa-users"></i>
+        </a>
+    </div>
+    
+    <div class="right">
+        <div class="title">
+            <a routerLink="/users">Users</a>
+        </div>
+        
+        <div *ngIf="!isSubMenuShown" class="submain-title" routerLinkActive="active">
+            <a routerLink="/users/prosumers">Prosumers</a>
+        </div>
+
+        <div *ngIf="!isSubMenuShown" class="submain-title" routerLinkActive="active">
+            <a routerLink="/users/operators">Operators</a>
+        </div>
+
+        <div class="arrow"  [ngClass]="{'passive': isSubMenuShown}"  (click)="showSubMenu()">
+            <i class="fa-solid fa-angle-right"></i>
+        </div>
+    </div>
+</div>
+
+<div  [ngClass]="{'hidden': isSubMenuShown, 'submenu': !isSubMenuShown}">
+    <div class="main submain" routerLinkActive="active">
+        <a routerLink="/users/prosumers">      
+            <div class="left">
+                <div [ngClass]="{'icon-hidden': isSideBarExpanded, 'icon-displayed': !isSideBarExpanded}">
+                        <i class="fa-solid fa-user-group"></i>            
+                </div>
+            </div>
+        </a>
+        <div class="right">
+            <div class="title">
+                <a routerLink="/users/prosumers">Prosumers</a>
+            </div>
+        </div>
+
+    </div> 
+
+    <div class="main submain" routerLinkActive="active">
+        <a routerLink="/users/operators">
+            <div class="left">
+                <div [ngClass]="{'icon-hidden': isSideBarExpanded, 'icon-displayed': !isSideBarExpanded}">
+                        <i class="fa-solid fa-users-gear"></i>
+                    
+                </div>
+            </div>
+        </a>
+        <div class="right" routerLinkActive="active">
+            <div class="title">
+                <a routerLink="/users/operators">Operators</a>
+            </div>
+        </div>
+    </div> 
+</div>
+
+
+<!--        DEVICES       -->
+
+<div class="main" [ngClass]="{'margin-150': !isSubMenuShown}" routerLinkActive="active" *ngIf="!isAdmin()">
+    <div class="left">
+        <a routerLink="/devices">
+            <i class='fa-solid fa-computer'></i>
+        </a>
+    </div>
+    
+    <div class="right">
+        <div class="title">
+            <a routerLink="/devices">Devices</a>
+        </div>
+        
+        <div *ngIf="!isSubMenuShown" class="submain-title" routerLinkActive="active">
+            <a routerLink="/devices/consumption">Consumption</a>
+        </div>
+
+        <div *ngIf="!isSubMenuShown" class="submain-title" routerLinkActive="active">
+            <a routerLink="/devices/production">Production</a>
+        </div>
+
+        <div *ngIf="!isSubMenuShown" class="submain-title" routerLinkActive="active">
+            <a routerLink="/devices/stock">Stock</a>
+        </div>
+
+        <div class="arrow"  [ngClass]="{'passive': isSubMenuShown}"  (click)="showSubMenu()">
+            <i class="fa-solid fa-angle-right"></i>
+        </div>
+    </div>
+</div>
+
+<div  [ngClass]="{'hidden': isSubMenuShown, 'submenu': !isSubMenuShown}">
+    <div class="main submain" routerLinkActive="active">
+        <a routerLink="/devices/consumption">
+            <div class="left">
+                <div [ngClass]="{'icon-hidden': isSideBarExpanded, 'icon-displayed': !isSideBarExpanded}">
+                    <i class="fa-solid fa-bolt"></i>
+                </div>
+            </div>
+        </a>
+        <div class="right">
+            <div class="title">
+                <a routerLink="/devices/consumption">Consumption</a>
+            </div>
+        </div>
+    </div> 
+
+    <div class="main submain" routerLinkActive="active">
+        <a routerLink="/devices/production">
+            <div class="left">
+                <div [ngClass]="{'icon-hidden': isSideBarExpanded, 'icon-displayed': !isSideBarExpanded}">
+                    <i class="fa-solid  fa-solar-panel"></i>
+                </div>
+            </div>
+        </a>
+        <div class="right">
+            <div class="title">
+                <a routerLink="/devices/production">Production</a>
+            </div>
+        </div>
+    </div> 
+
+    <div class="main submain" routerLinkActive="active">
+        <a routerLink="/devices/stock">
+            <div class="left">
+                <div [ngClass]="{'icon-hidden': isSideBarExpanded, 'icon-displayed': !isSideBarExpanded}">
+                    <i class="fa-solid fa-car-battery"></i>
+                </div>
+            </div>
+        </a>
+        <div class="right" >
+            <div class="title">
+                <a routerLink="/devices/stock">Stock</a>
+            </div>
+        </div>
+    </div> 
+</div>
+
+
+<div class="main" routerLinkActive="active" *ngIf="!isAdmin()">
+    <a routerLink="/statistics" >
+        <div class="left ">
+            <i class='fa-solid fa-chart-pie' ></i>
+        </div>
+    </a>
+    <div class="right">
+        <div class="title">
+            <a routerLink="/statistics">
+                Statistics
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="main" routerLinkActive="active">
+    <div class="left ">
+        <a routerLink="/faq">
+            <i class=' fa-solid fa-question' ></i>
+        </a>
+    </div>
+    
+    <div class="right">
+        <div class="title">
+            <a routerLink="/faq">FAQ</a>
+        </div>
+
+    </div>
+</div>
+
+<div class="main last-main" routerLinkActive="active">
+    <div class="left " (click)="logout()">
+        <a >
+            <i class='fa-solid fa-right-from-bracket' ></i>
+        </a>
+    </div>
+    
+    <div class="right" (click)="logout()">
+        <div class="title">
+            <a routerLink="/faq">Log out</a>
+        </div>
+    </div>
+</div>

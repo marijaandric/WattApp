@@ -17,15 +17,15 @@
 .content{
   height: 100vh;
   min-height: 600px;
-  width: calc(100% - 280px);
+  width: calc(100% - 70px);
   overflow-y: auto;
   position: relative;
   margin-left: auto;
   transition: width 0.4s ease-out;
 }
 
-:host(.sidebar-closed) .content{
-  width: calc(100% - 78px) !important;
+:host(.sidebar-opened) .content{
+  width: calc(100% - 232px) !important;
 }
 
 .centerContent{
@@ -39,13 +39,41 @@
 }
 
 
+
 @media only screen and (max-width: 639px) {
-  :host(.sidebar-closed) .content{
+  :host(.sidebar-opened) .content{
     width: 100% !important;
   }
-  :host {
-    flex-direction: column;
+
+  :host .content{
+    width:100%;
   }
   
 
 }
+
+/* NOV SIDEBAR VERZIJA 
+:host {
+  background: linear-gradient(180deg,rgb(251, 251, 251) 60%, rgb(229, 229, 229) 100% ) ;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  z-index: 0;
+
+
+}
+
+.sidebar{
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  box-shadow: 5px 5px 15px rgb(196, 196, 196);
+  
+}
+
+.content{
+  height: 100vh;
+  min-height: 600px;
+  width: calc(100% - 80px);
+
+
+*/

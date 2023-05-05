@@ -7,7 +7,8 @@
         <app-tab-menu></app-tab-menu>
     </app-select-one-menu-bar>
   
-    <app-center-bar>
+    <app-center-bar *ngIf="loader"><app-loader></app-loader></app-center-bar>
+    <app-center-bar *ngIf="!loader">
       <div class="widgets">
       <app-widget [subTitle]="'Total number of all devices'" [Title]="NumberOfUserDevices" [isBlue]="true" [isBgBlue]="true" class="widget">
       </app-widget>

@@ -16,6 +16,6 @@ export class StadardTemplateComponent {
   }
 
   showSidebar(isShown: boolean): void {
-    this.hostElement?.classList.toggle('sidebar-closed', isShown);
+    this.hostElement?.classList.toggle('sidebar-opened', isShown);
   }
 }

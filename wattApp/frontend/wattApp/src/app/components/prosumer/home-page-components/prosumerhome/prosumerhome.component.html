@@ -3,20 +3,21 @@
       <h3>Home</h3>
     </app-title-bar>
   
-    <app-center-bar>
+    <app-center-bar *ngIf="loader"><app-loader></app-loader></app-center-bar>
+    <app-center-bar *ngIf="!loader">
     <h3 class="hello">Hello, {{user?.firstName}} {{user?.lastName}}</h3>
-    <h6 style="margin-bottom: -10px;">{{quote}}</h6>
+    <h6 style="margin-bottom: -10px;font-size:14px !important;">{{quote}}</h6>
     <div class="prviDeoPrognoza">
     <div class="prviDeo">
     <div class="widgets">
-        
-      <app-widget [subTitle]="'Current price of electricity'" [Title]="dayPowerPrice+ ' RSD kWh'" [isBlue]="true" [isBgBlue]="true" class="widget">
+
+      <app-widget [subTitle]="'Total consumed electricity this month'" [Title]="monthPowerUsageConsumer + ' kWh'" [isBlue]="true" [isBgBlue]="true" class="widget">
       </app-widget>
-      <app-widget [subTitle]="'Total consumed electricity this month'" [Title]="monthPowerUsageConsumer + ' kWh'" [isYellow]="true" [isBgYellow]="true" class="widget">
+      <app-widget [subTitle]="'Total produced electricity this month'" [Title]="monthPowerUsageProducer + ' kWh'"[isYellow]="true" [isBgYellow]="true" class="widget">
       </app-widget>
-      <app-widget [subTitle]="'Total produced electricity this month'" [Title]="monthPowerUsageProducer + ' kWh'" [isPink]="true" [isBgPink]="true" class="widget">
+      <app-widget [subTitle]="'Total stocked  electricity this month'" [Title]="monthPowerUsageStorage+ ' kWh'" [isPink]="true" [isBgPink]="true" class="widget">
       </app-widget>
-      <app-widget  [subTitle]="'Total stocked  electricity this month'" [Title]="monthPowerUsageStorage+ ' kWh'" [isOrange]="true" [isBgOrange]="true" class="widget">
+      <app-widget  [subTitle]="'Current price of electricity'" [Title]="dayPowerPrice+ ' RSD kWh'" [isOrange]="true" [isBgOrange]="true" class="widget">
       </app-widget>
         
     </div>
@@ -24,7 +25,7 @@
     <div style="display: flex;
     flex-direction: row;
     flex-wrap: wrap;">
-    <div class="" style="width: 50%;">
+    <div class="crsl" style="width: 50%;">
         <p-carousel [value] = "devices" [circular]="false" [numScroll]="1">
           <ng-template let-device pTemplate="device">
               <h6 style="text-align: center;">The biggest {{device.deviceType}}</h6>

@@ -17,6 +17,7 @@ export class UsersOperatorsComponent implements OnInit {
   @ViewChild('dtUsers') dataTable!: Table;
   totalRecords:number = 0;
   currentpage:number= 0;
+  loader=true;
 
   constructor(private userService: UserService,private dsonew:DsonewsService) {
 
@@ -24,7 +25,7 @@ export class UsersOperatorsComponent implements OnInit {
 
   ngOnInit() {
     //this.userService.getAllUsers().subscribe((result: UserDTO[]) => (this.users = result));
-    this.userService.getUsersPaginationByRole("operator",this.currentpage,2).subscribe((result: UserDTO[])=>(this.users = result))
+    this.userService.getUsersPaginationByRole("operator",this.currentpage,2).subscribe((result: UserDTO[])=>(this.loader=false,this.users = result))
     this.getNews();
   }
 

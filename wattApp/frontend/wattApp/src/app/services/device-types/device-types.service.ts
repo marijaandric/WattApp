@@ -11,7 +11,8 @@ export class DeviceTypesService {
 
   constructor(private http: HttpClient) { } 
 
-  getAllDeviceTypes(): Observable<string[]> {
-    return this.http.get<string[]>(this.baseUrl);
+  getAllDeviceTypes(): Observable<{ [key: string]: string }> {
+    return this.http.get<{ [key: string]: string }>(this.baseUrl);
   }
+
 }

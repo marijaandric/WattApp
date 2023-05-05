@@ -2,16 +2,17 @@
     <app-title-bar>
       <h3>Home</h3>
     </app-title-bar>
-    <app-center-bar>
+    <app-center-bar *ngIf="loader"><app-loader></app-loader></app-center-bar>
+    <app-center-bar *ngIf="!loader">
     <div class="widgets">
-        
-      <app-widget [subTitle]="'Current price of electricity'" [Title]="dayPowerPrice + ' RSD kW/h'" [isBlue]="true" [isBgBlue]="true" class="widget">
+    
+      <app-widget [subTitle]="'Total consumed electricity this month'" [Title]="monthPowerUsageConsumer + ' kWh'" [isBlue]="true" [isBgBlue]="true" class="widget">
       </app-widget>
-      <app-widget [subTitle]="'Total consumed electricity this month'" [Title]="monthPowerUsageConsumer + ' kW/h'" [isYellow]="true" [isBgYellow]="true" class="widget">
+      <app-widget [subTitle]="'Total produced electricity this month'" [Title]="monthPowerUsageProducer + ' kWh'" [isYellow]="true" [isBgYellow]="true" class="widget">
       </app-widget>
-      <app-widget [subTitle]="'Total produced electricity this month'" [Title]="monthPowerUsageProducer + ' kW/h'" [isPink]="true" [isBgPink]="true" class="widget">
+      <app-widget  [subTitle]="'Total stocked  electricity this month'" [Title]="monthPowerUsageStorage+ ' kWh'" [isPink]="true" [isBgPink]="true" class="widget">
       </app-widget>
-      <app-widget  [subTitle]="'Total stocked  electricity this month'" [Title]="monthPowerUsageStorage+ ' kW/h'" [isOrange]="true" [isBgOrange]="true" class="widget">
+      <app-widget  [subTitle]="'Current price of electricity'" [Title]="dayPowerPrice + ' RSD kWh'"  [isOrange]="true" [isBgOrange]="true" class="widget">
       </app-widget>
         
     </div>
@@ -21,7 +22,7 @@
       </p-dropdown>
       <p-dropdown [options]="type2" appendTo="body"  optionLabel="name" (onChange)="dropdownChange()" >
       </p-dropdown>
-      <p-dropdown [options]="type3" appendTo="body" optionLabel="name" (onChange)="dropdownChange()" >
+      <p-dropdown [options]="type3" appendTo="body" [(ngModel)]="selectedDate" optionLabel="name" (onChange)="dropdownChange()" >
       </p-dropdown>
     </div>
     
@@ -37,6 +38,13 @@
         <app-stats-card class="stats-card" [isBgOrange]="true" [Title]="'Total consumed electricity this week'" [subTitle]="'23kWh (2%)'" [value]="'34 kwh'"></app-stats-card>
        
       </div>
+
+<!-- TABELA - LIGT VERZIJA - ne brisati
+  color: #4e4e4e !important;
+  border-radius: 20px;
+  background: white ;
+  box-shadow: 5px 5px 10px rgb(198, 198, 198);
+-->
 
       <div class="bottom-grid">
         <app-history-forecast-table
@@ -56,8 +64,7 @@
         </app-history-forecast-table>
         <div class="bottom-right">
           <div class="map">
-            <app-map-suburb ></app-map-suburb>
-           
+            <app-map-suburb [type]="selectedType" [date]="selectedDate"></app-map-suburb>
           </div>  
           <div class="wthr-frcst">
 

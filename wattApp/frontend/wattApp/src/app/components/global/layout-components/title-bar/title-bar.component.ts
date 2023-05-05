@@ -1,5 +1,5 @@
 import { Token } from '@angular/compiler';
-import { Component, ElementRef, OnInit, ViewChild, ɵɵqueryRefresh } from '@angular/core';
+import { Component, ElementRef, OnInit, HostListener ,ViewChild, ɵɵqueryRefresh } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
@@ -11,7 +11,6 @@ import { ModelTypesService } from 'src/app/services/model-types/model-types.serv
 import { RoleTypesService } from 'src/app/services/role-types/role-types.service';
 import { RoomTypesService } from 'src/app/services/room-types/room-types.service';
 import { UserService } from 'src/app/services/user.service';
-import * as L from 'leaflet';
 import axios from 'axios';
 import { DsonewsService } from 'src/app/services/dsonews/dsonews.service';
 import { url } from 'src/app/app.module';
@@ -45,18 +44,19 @@ export class TitleBarComponent implements OnInit{
   display : boolean = false;
   display2 : boolean = false;
   display3 : boolean = false;
+  display4 : boolean = false;
   signUpForm! : FormGroup;
   addDeviceForm! : FormGroup;
   newsForm! :FormGroup;
+  changePassForm!:FormGroup;
   roles!: Roles[];
   types!: Types[];
   rooms!: Rooms[];
   models! : Models[];
-  modelsRez! : Models[];
   roleSelected! : string;
-  typeSelected! : string;
-  modelSelected! : string;
-  roomSelected! : string;
+  typeSelected! : Types;
+  modelSelected! : Models;
+  roomSelected! : Rooms;
   showText = false;
   rola:any;
   value!:string;
@@ -64,12 +64,22 @@ export class TitleBarComponent implements OnInit{
   selectedPriority:string = 'None';
   baseUrl = url + "/api/Images/user/";
   userImageUrlEndpoint!: string;
+  id:number = 0;
 
   isMenuOpen = false;
   user : any;
+  @ViewChild('subMenu') subMenu: ElementRef | undefined;
 
   toggleMenu() {
     this.isMenuOpen = !this.isMenuOpen;
+  }
+  @HostListener('document:click', ['$event'])
+ 
+  onDocumentClick(event: MouseEvent) {
+    const isClickInside = this.subMenu?.nativeElement.contains(event.target as HTMLElement) || (event.target as HTMLElement).classList.contains('profile-image');
+    if (!isClickInside) {
+      this.isMenuOpen = false;
+    }
   }
  
   
@@ -85,6 +95,12 @@ export class TitleBarComponent implements OnInit{
               private modelTypesService: ModelTypesService,
               private dsonewsService : DsonewsService,
               private auth:AuthService) {
+
+    const token = localStorage.getItem('token');
+    if(token)
+    {
+      this.id = this.userService.getUserIdFromToken(token)
+    }
   }
 
   ngOnInit(): void {
@@ -114,34 +130,34 @@ export class TitleBarComponent implements OnInit{
           this.roles = this.roles.filter(roleType => roleType.name === 'prosumer' || roleType.name === 'operator');
         }
     });
-
+    
     this.deviceTypesService.getAllDeviceTypes()
       .pipe(
-        map(deviceTypes => deviceTypes.map(deviceType => ({ code: deviceType, name: deviceType })))
+        map(deviceTypes => {
+          return Object.entries(deviceTypes).map(([code, name]) => ({ code, name }));
+        })
       )
       .subscribe(mappedDeviceTypes => {
         this.types = mappedDeviceTypes;
-        this.typeSelected = this.types[0].name;
-        
+        this.typeSelected = this.types[0];
+
+        this.modelTypesService.getAllModelTypes(this.typeSelected.code)
+          .pipe(
+            map(modelTypes => Object.entries(modelTypes).map(([code, name]) => ({ code, name })))
+          )
+          .subscribe(mappedModelTypes => {
+            this.models = mappedModelTypes;
+            this.modelSelected = this.models[0];
+        });
     });
 
     this.roomTypesService.getAllRoomTypes()
       .pipe(
-        map(roomTypes => roomTypes.map(roomType => ({ code: roomType, name: roomType })))
+        map(roomTypes => Object.entries(roomTypes).map(([code, name]) => ({ code, name })))
       )
       .subscribe(mappedRoomTypes => {
         this.rooms = mappedRoomTypes;
-        this.roomSelected = this.rooms[0].name;
-    });
-
-    this.modelTypesService.getAllModelTypes()
-      .pipe(
-        map(modelTypes => modelTypes.map(modelType => ({ code: modelType, name: modelType })))
-      )
-      .subscribe(mappedModelTypes => {
-        this.models = mappedModelTypes;
-        this.modelsRez = this.models;
-        this.modelSelected = this.models[0].name;
+        this.roomSelected = this.rooms[0];
     });
 
     this.isAdmin();
@@ -153,14 +169,17 @@ export class TitleBarComponent implements OnInit{
       email: ['', Validators.required],
       phoneNumber: ['', Validators.required],
       address: ['', Validators.required],
-      password: ['', Validators.required],
-      password2: ['', Validators.required],
+      password: ['string', Validators.required],
+      token:['string', Validators.required],
       role: ['', Validators.required],
-      token:['', Validators.required],
-      refreshToken:['', Validators.required],
+      refreshToken:['string', Validators.required],
+      refreshTokenExpiryTime: ['2023-05-04T11:25:23.308Z', Validators.required],
       x: ['', Validators.required],
       y: ['', Validators.required],
-      oblast :['', Validators.required],
+      area :['', Validators.required],
+      resetPasswordToken: ['string', Validators.required],
+      resetPasswordExpiryTime: ['2023-05-04T11:25:23.308Z', Validators.required],
+      isDarkTheme: true
     });
 
     this.addDeviceForm = this.fb.group({
@@ -178,6 +197,15 @@ export class TitleBarComponent implements OnInit{
       priority: ['Regular', Validators.required],
       created: ['', Validators.required],
     })
+
+    this.changePassForm = this.fb.group({
+      id: [0, Validators.required],
+      currentPassword :['', Validators.required],
+      newPassword: ['', Validators.required],
+      confirmPassword: ['', Validators.required]
+    })
+
+
   }
   logout()
   {
@@ -197,6 +225,10 @@ export class TitleBarComponent implements OnInit{
     this.display3 = true;
   }
 
+  showDialog4(){
+    this.display4 = true;
+  }
+
   //od mape
   receiveMessage(message : any) {
     this.address = message.address
@@ -214,7 +246,7 @@ export class TitleBarComponent implements OnInit{
       address : this.address
     })
     this.signUpForm.patchValue({
-      oblast : message.district
+      area : message.district
     })
   }
 
@@ -228,18 +260,25 @@ export class TitleBarComponent implements OnInit{
   }
 
   onTypeChange(event:any){
-    this.typeSelected = event.value.type;
-    this.models = this.modelsRez;
-    const filteredModels = this.models.filter(models => models.code === this.typeSelected);
-    this.models = filteredModels;
-    this.modelSelected = filteredModels[0].name;
+    this.typeSelected = event.value;
+
+    this.modelTypesService.getAllModelTypes(this.typeSelected.code)
+      .pipe(
+        map(modelTypes => Object.entries(modelTypes).map(([code, name]) => ({ code, name })))
+      )
+      .subscribe(mappedModelTypes => {
+        this.models = mappedModelTypes;
+        this.modelSelected = this.models[0];
+    });
   }
+
   onModelChange(event:any){
-    this.modelSelected = event.value.name;
+    this.modelSelected = event.value;
   }
+  
   onRoomChange(event:any)
   {
-    this.roomSelected = event.value.name;
+    this.roomSelected = event.value;
   }
 
   //registracija
@@ -249,9 +288,8 @@ export class TitleBarComponent implements OnInit{
       role : this.roleSelected
     })
 
-    if(this.signUpForm && this.signUpForm.value.password === this.signUpForm.value.password2)
-    {
-      this.authService.signUp(this.signUpForm.value).subscribe({
+    console.log(this.signUpForm.value)
+    this.authService.signUp(this.signUpForm.value).subscribe({
         next:(res => {
           this.signUpForm.reset()
           this.toast.success({detail:"SUCCESS",summary:"You have successfully registered",duration:4000});
@@ -262,35 +300,24 @@ export class TitleBarComponent implements OnInit{
         })
         
       })
-    }
-    else{
-      this.toast.error({detail:"ERROR",summary:"Error",duration:4000});
-      this.validateAllFormFields(this.signUpForm)
-    }
   }
 
   addDevice()
   {
-    const token = localStorage.getItem('token');
-    let id = 0;
-    if(token)
-    {
-      id = this.userService.getUserIdFromToken(token)
-    }
     
     this.addDeviceForm.patchValue({
-      deviceType : this.typeSelected
+      deviceType : this.typeSelected.name
     })
     this.addDeviceForm.patchValue({
-      userID : id
+      userID : this.id
     })
     this.addDeviceForm.patchValue({
-      deviceModel : this.modelSelected
+      deviceModel : this.modelSelected.name
     })
     this.addDeviceForm.patchValue({
-      room : this.roomSelected
+      room : this.roomSelected.name
     })
-    console.log(this.addDeviceForm.value)
+    
     this.deviceService.AddDevice(this.addDeviceForm.value).subscribe({
       next:(res => {
         this.addDeviceForm.reset()
@@ -305,23 +332,16 @@ export class TitleBarComponent implements OnInit{
   
   addNews()
   {
-
-    const token = localStorage.getItem('token');
-    let id = 0;
-    if(token)
-    {
-      id = this.userService.getUserIdFromToken(token)
-    }
     
     this.newsForm.patchValue({
-      userID : id
+      userID : this.id
     })
     this.newsForm.patchValue({
       created: new Date()
     });
 
   
-    console.log(this.newsForm.value);
+    
     this.dsonewsService.AddNews(this.newsForm.value).subscribe({
       next:(res => {
         this.newsForm.reset()
@@ -356,6 +376,34 @@ export class TitleBarComponent implements OnInit{
     }
     const userRole = this.userService.getUserRoleFromToken(token);
     return userRole === 'operator' || userRole === 'admin' || userRole === 'superadmin';
+  }
+
+  setMenuClose()
+  {
+    this.isMenuOpen = false;
+  }
+
+  savePass()
+  {
+    this.changePassForm.patchValue({
+      id: this.id
+    });
+    if(this.changePassForm.value.confirmPassword != this.changePassForm.value.newPassword)
+    {
+      this.toast.error({detail:"ERROR",summary:"Error, u must enter the same password twice",duration:4000});
+      return;
+    }
+
+    this.authService.changePassword(this.changePassForm.value).subscribe({
+      next:(res => {
+        this.changePassForm.reset()
+        this.toast.success({detail:"SUCCESS",summary:"You have successfully changed password",duration:4000});
+        this.display4 = false;
+      }),
+      error:(err => {
+        this.toast.error({detail:"ERROR",summary:"Error",duration:4000});
+      })
+    }) 
   }
 
   

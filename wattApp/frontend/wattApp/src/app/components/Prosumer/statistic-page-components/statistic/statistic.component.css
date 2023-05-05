@@ -56,13 +56,12 @@
     width:100%;
   }
 .bottom-right{
-  width:35.5%;
-  margin-left:calc(2%);
-  margin-top:2%;
+  width:calc(100% - 62.5% - 32px);
+  margin-left:32px;
+  margin-top:32px;
 }
 .map{
-  height: calc(100% - 355px);
-  padding-bottom:6%;
+  padding-bottom:32px;
 }
   
   .main-grid {
@@ -75,21 +74,21 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    margin-left:2%;
-    width:35.5%;
+    margin-left:32px;
+    width:calc(100% - 62.5% - 32px);
     padding: 0px 0;
     justify-content:space-between;
     position:relative;
   }
   
   .stats-card{
+    flex-basis:calc(50% - 16px) !important;
     display:flex;
-    flex-basis: 47%;
     box-shadow: 5px 5px 15px black;
   }
   
   .stats-card:nth-child(1), .stats-card:nth-child(2) {
-    margin-bottom:6%;
+    margin-bottom:32px;
   }
 
 ::ng-deep #SvgjsG4317 {
@@ -112,12 +111,13 @@
     border:none;
     font-size:16px;
     margin-right:20px;
-    background: linear-gradient(45deg, #46c5f1 10%, #5245b7 100%);
+    background:  #1b1b1b;
     
   }
 
   ::ng-deep .p-dropdown.p-component {
     width:165.953px;
+    box-shadow: 5px 5px 15px black;
   }
 
   ::ng-deep #pr_id_1_label{
@@ -142,6 +142,14 @@
     font-family: 'Lato', sans-serif;
   }
 
+  .for-phone {
+    display:none;
+  }
+
+  .for-pc {
+    display: flex;
+  }
+
 @media only screen and (min-width: 980px) {
   .main-grid {
     width: 100%;
@@ -161,6 +169,14 @@
 }
 
 @media only screen and (max-width:980px) {
+  .for-phone {
+    display:flex;
+  }
+
+  .for-pc {
+    display: none;
+  }
+
   .chart{
     width: 100%;
     margin: 10px 0px;
@@ -183,15 +199,12 @@
     display: none;
   }
 
-  .stats-cards{
+  .stats-cards {
     flex-direction: row;
-    width: 100%;
+    width:100%;
+    margin-top:32px;
+    margin-left:0px !important;
   }
-
-  .stats-card{
-    width: 100%;
-  }
-
   .bottom-grid{
     display: flex;
     flex-direction: column;
@@ -204,11 +217,25 @@
 
   .bottom-right{
     width: 100%;
+    margin-top:20px !important;
   }
   
   .map{
-    padding-bottom: calc(2%);
+    padding-bottom: 20px;
   }
+
+  .bottom-right {
+    margin-left:0px;
+  }
+
+  .stats-card {
+    flex-basis:calc(50% - 10px) !important;
+  }
+
+  .stats-card:nth-child(1), .stats-card:nth-child(2) {
+    margin-bottom:20px;
+  }
+
 }
   
 @media only screen and (max-width: 980ppx) {

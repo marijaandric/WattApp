@@ -22,6 +22,7 @@ export class UsersComponent implements OnInit{
   selectedType!: City;
   currentPage :any = 0;
   rowsPerPage :any = 2;
+  loader=true;
 
   constructor(private userService: UserService, private deviceService : DeviceService) {
     this.type = [
@@ -34,7 +35,7 @@ export class UsersComponent implements OnInit{
 
   ngOnInit() {
     //this.userService.getAllUsers().subscribe((result: UserDTO[]) => (this.users = result));
-    this.userService.getUsersPaginationByRole("prosumer",this.currentPage,this.rowsPerPage).subscribe((result: UserDTO[])=>(this.users = result))
+    this.userService.getUsersPaginationByRole("prosumer",this.currentPage,this.rowsPerPage).subscribe((result: UserDTO[])=>(this.loader=false,this.users = result))
 
   }
 

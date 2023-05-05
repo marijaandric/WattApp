@@ -15,6 +15,7 @@ import { APIService } from 'src/app/services/api/api.service';
 export class UsersProsumersComponent implements OnInit {
   baseUrl = url + "/api/Images/user/";
   users: UserDTO[] = [];
+  loader=true;
   constructor(private userService: UserService, private aPIService: APIService) {
 
  }
@@ -38,7 +39,7 @@ numberOFOperator: any;
 
   ngOnInit() {
     this.getNumber();
-    this.userService.getAllUsers().subscribe((result: UserDTO[]) => (this.users = result));
+    this.userService.getAllUsers().subscribe((result: UserDTO[]) => (this.loader = false,this.users = result));
       
   }
 

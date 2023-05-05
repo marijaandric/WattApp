@@ -93,6 +93,13 @@ import { FileUploadModule } from 'primeng/fileupload';
 import { ImageModule } from 'primeng/image';
 import { GalleryComponent } from './components/global/landing-page-componenets/gallery/gallery.component';
 import { StatsCardComponent } from './components/global/stats-card/stats-card.component';
+import { SidebarNewComponent } from './components/global/layout-components/sidebar-new/sidebar-new.component';
+import { ForgotPasswordComponent } from './components/global/forgot-password/forgot-password.component';
+import { ResetPasswordComponent } from './components/global/reset-password/reset-password.component';
+import { AboutUsComponent } from './components/global/about-us/about-us.component';
+import { NewsComponent } from './components/global/news/news.component';
+import { LoaderComponent } from './components/global/loader/loader.component';
+import { MyPaginatedTableComponent } from './components/global/paginated-table-componenet/my-paginated-table/my-paginated-table.component';
 
 export const url = 'https://localhost:7158';
 export const deviceFakerUrl = "https://localhost:7233";
@@ -165,7 +172,14 @@ export const deviceFakerUrl = "https://localhost:7233";
     DeviceDesktopComponent,
     FaqPageComponenetsComponent,
     GalleryComponent,
-    StatsCardComponent
+    StatsCardComponent,
+    SidebarNewComponent,
+    ForgotPasswordComponent,
+    ResetPasswordComponent,
+    AboutUsComponent,
+    NewsComponent,
+    LoaderComponent,
+    MyPaginatedTableComponent
   ],
   imports: [
     CommonModule,
