@@ -80,41 +80,8 @@ namespace backend.BLL
             return deviceDTO;
         }
 
-        public double getTotalUsageByArea(string area, string type, string timeType)
-        {
-            DateTime now = DateTime.Now;
-            List<User> users = _contextUserDAL.GetUsersByArea(area);
-            List<Devices> devices = new List<Devices>();
-
-            if (users == null || users.Count == 0)
-                return 0;
-
-            devices = _contextDAL.GetAllDevicesForUserIDs(users.Select(d => d.Id).ToList());
-
-            if (devices == null || devices.Count == 0)
-                return 0;
-
-            if (timeType.ToLower() == "month")
-                return _contextDataDAL.GetMonthPowerUsageSumOfDevices(devices.Where(d => d.DeviceType == "Consumer").Select(d => d.Id).ToList(), now.Year, now.Month);
-            else if(timeType.ToLower() == "week")
-                return _contextDataDAL.GetWeekPowerUsageSumOfDevices(devices.Where(d => d.DeviceType == "Consumer").Select(d => d.Id).ToList(), now.Year, now.Month, now.Day);
-            else
-                return _contextDataDAL.GetDayPowerUsageSumOfDevices(devices.Where(d => d.DeviceType == "Consumer").Select(d => d.Id).ToList(), now.Year, now.Month, now.Day);
-        }
         
-        public double GetMonthlyStatistics(int userId, int year, int month, string type)
-        {
-            List<Devices> devices = _contextDAL.GetUserDevicesByType(userId, type);
-            if (devices.Count == 0)
-                return 0;
-            double total = 0;
-            foreach (var device in devices)
-            {
-                List<DevicesData> devicesDatas = _contextDataDAL.GetMonthDataForDevice(device.Id, year, month);
-                total += Calculator.CalculateTotalPowerUsage(devicesDatas);
-            }
-            return total;
-        }
+        
 
         public List<BigTableContent> GetTableContent(int userId, int year, int month, int day, int time, string type)
         {
@@ -202,6 +169,41 @@ namespace backend.BLL
                 return new AreaExtreme(minArea, min);
         }
 
+
+        //optimizovano
+        public double GetMonthlyStatistics(int userId, int year, int month, string type)
+        {
+            List<Devices> devices = _contextDAL.GetUserDevicesByType(userId, type);
+            if (devices == null || devices.Count == 0)
+                return 0;
+
+            return _contextDataDAL.GetMonthPowerUsageSumOfDevices(devices.Select(d => d.Id).ToList(), year, month);
+
+        }
+
+        //optimizovano
+        public double getTotalUsageByArea(string area, string type, string timeType)
+        {
+            DateTime now = DateTime.Now;
+            List<User> users = _contextUserDAL.GetUsersByArea(area);
+            List<Devices> devices = new List<Devices>();
+
+            if (users == null || users.Count == 0)
+                return 0;
+
+            devices = _contextDAL.GetAllDevicesForUserIDs(users.Select(d => d.Id).ToList());
+
+            if (devices == null || devices.Count == 0)
+                return 0;
+
+            if (timeType.ToLower() == "month")
+                return _contextDataDAL.GetMonthPowerUsageSumOfDevices(devices.Where(d => d.DeviceType == "Consumer").Select(d => d.Id).ToList(), now.Year, now.Month);
+            else if (timeType.ToLower() == "week")
+                return _contextDataDAL.GetWeekPowerUsageSumOfDevices(devices.Where(d => d.DeviceType == "Consumer").Select(d => d.Id).ToList(), now.Year, now.Month, now.Day);
+            else
+                return _contextDataDAL.GetDayPowerUsageSumOfDevices(devices.Where(d => d.DeviceType == "Consumer").Select(d => d.Id).ToList(), now.Year, now.Month, now.Day);
+        }
+
         //optimizovano
         public HAFDatasDTO GetWeekByDayHistoryAndFutureForDevice(int deviceid, string type)
         {
@@ -223,6 +225,10 @@ namespace backend.BLL
             List<Devices> stockDevices;
             if (userid != -1)
             {
+                if (_contextUserDAL.userExists(userid) == false)
+                    return null;
+                if (_contextDAL.GetDevicesForUser(userid) == null || _contextDAL.GetDevicesForUser(userid).Count == 0)
+                    return null;
                 consumerDevices = _contextDAL.GetUserDevicesByType(userid, "Consumer");
                 producerDevices = _contextDAL.GetUserDevicesByType(userid, "Producer");
                 stockDevices = _contextDAL.GetUserDevicesByType(userid, "Stock");
@@ -233,14 +239,21 @@ namespace backend.BLL
                 producerDevices = _contextDAL.GetDevicesByType("Producer");
                 stockDevices = _contextDAL.GetDevicesByType("Stock");
             }
-            if(userid != -1)
-                if (_contextUserDAL.userExists(userid) == false)
-                    return null;
+                
 
             List<List<int>> devicesids = new List<List<int>>();
-            devicesids.Add(consumerDevices.Select(d => d.Id).ToList());
-            devicesids.Add(producerDevices.Select(d => d.Id).ToList());
-            devicesids.Add(stockDevices.Select(d => d.Id).ToList());
+
+            if(consumerDevices != null || consumerDevices.Count != 0)
+                devicesids.Add(consumerDevices.Select(d => d.Id).ToList());
+
+            if (producerDevices != null || producerDevices.Count != 0)
+                devicesids.Add(producerDevices.Select(d => d.Id).ToList());
+
+            if (stockDevices != null || stockDevices.Count != 0)
+                devicesids.Add(stockDevices.Select(d => d.Id).ToList());
+
+            if(devicesids.Count == 0)
+                return null;
 
             List<HAFDatasDTO> result = _contextDataDAL.GetByDayHistoryAndForecastForDevices(devicesids, now.Year, now.Month, now.Day, type);
 

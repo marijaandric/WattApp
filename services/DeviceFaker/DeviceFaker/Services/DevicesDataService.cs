@@ -372,7 +372,6 @@ namespace DeviceFaker.Services
         }
 
 
-        
         public double GetDayPowerUsageSumOfDevices(List<int> ids, int year, int month, int day)
         {
             DateTime now = DateTime.Now;
@@ -404,7 +403,12 @@ namespace DeviceFaker.Services
 
             var result = _devicesDataCollection.Aggregate<BsonDocument>(pipeline).ToList();
 
-            return result[0]["totalPowerUsage"].ToDouble();
+            Console.WriteLine(result.Count);
+            if (result.Count != 0)
+                return result[0]["totalPowerUsage"].ToDouble();
+            else return 0;
+
+            
         }
         public double GetMonthPowerUsageSumOfDevices(List<int> ids, int year, int month)
         {
@@ -436,9 +440,8 @@ namespace DeviceFaker.Services
             Console.WriteLine(pipelineString);
 
             var result = _devicesDataCollection.Aggregate<BsonDocument>(pipeline).ToList();
-
+            Console.WriteLine(result.Count);
             return result[0]["totalPowerUsage"].ToDouble();
-
         }
         public double GetYearPowerUsageSumOfDevices(List<int> ids, int year)
         {
@@ -490,6 +493,7 @@ namespace DeviceFaker.Services
                 Console.WriteLine("while loop GetWeekDataByDayForAllDevicesOrDevice");
                 if (day >= 1)
                 {
+                    Console.WriteLine("year: " + year + ", month: " + month + ", day: " + day);
                     current = GetDayPowerUsageSumOfDevices(devicesids, year, month, day);
                     if (current != 0)
                     {
