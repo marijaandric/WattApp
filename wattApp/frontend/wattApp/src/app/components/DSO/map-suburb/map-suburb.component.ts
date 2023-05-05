@@ -1,15 +1,22 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import * as L from 'leaflet';
 import { Observable } from 'rxjs';
 import { AreasService } from 'src/app/services/areas/areas.service';
+
+interface City {
+  name: string,
+  code: string
+}
 
 @Component({
   selector: 'app-map-suburb',
   templateUrl: './map-suburb.component.html',
   styleUrls: ['./map-suburb.component.css']
 })
-export class MapSuburbComponent implements OnInit {
+export class MapSuburbComponent implements OnInit,OnChanges {
+  @Input() type : City = {name: 'Consumption', code: 'Consumer'};
+  @Input() date : City= {name: 'Week', code: 'Week'};
   map: any;
   suburbLayer: any;
   highestCoordinates!:any;
@@ -18,8 +25,23 @@ export class MapSuburbComponent implements OnInit {
   data: any;
   private darkLayer!: L.TileLayer;
   private lightLayer!: L.TileLayer;
+  circle!: L.Circle;
+  circle2!: L.Circle;
+  usageMin:any;
+  usageMax:any;
 
   constructor(private areaService:AreasService,private http:HttpClient){}
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if ('type' in changes) {
+      this.type = this.type;
+      this.create();
+    }
+    if ('date' in changes) {
+      this.date = this.date;
+      this.create();
+    }
+  }
 
   async getCoordinates(district: string): Promise<[number, number,string] | undefined> {
     const params = {
@@ -43,12 +65,15 @@ export class MapSuburbComponent implements OnInit {
   
   async getAreas(maxmin:string): Promise<void> {
     return new Promise<void>((resolve, reject) => {
-      this.prom = this.areaService.getExtremeUsageForAreas("Consumer", "Month", maxmin).subscribe(async (data) => {
+      this.prom = this.areaService.getExtremeUsageForAreas(this.type.code, this.date.code, maxmin).subscribe(async (data) => {
+        console.log(data)
         if(maxmin=="Max")
         {
+          this.usageMax = data.usage;
           this.highestCoordinates = await this.getCoordinates(data.area);
         }
         else{
+          this.usageMin = data.usage;
           this.lowestCoordinates = await this.getCoordinates(data.area);
         }
         resolve();
@@ -56,11 +81,16 @@ export class MapSuburbComponent implements OnInit {
     });
   }
 
-async ngOnInit(): Promise<void> {
-  this.map = L.map('map1').setView([44.01761719631536, 20.900995763392213], 12);
+  async ngOnInit(): Promise<void> {
+    this.map = L.map('map1').setView([44.01761719631536, 20.900995763392213], 12);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; OpenStreetMap contributors'
-    }).addTo(this.map);
+        attribution: '&copy; OpenStreetMap contributors'
+      }).addTo(this.map);
+    this.create();
+  }
+
+  async create()
+  {
     this.darkLayer = L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png', { //https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png
       attribution: '&copy; OpenStreetMap contributors'
     });
@@ -70,63 +100,71 @@ async ngOnInit(): Promise<void> {
 
     await this.getAreas("Max");
 
-    // Create a layer for the suburb and add it to the map
     this.suburbLayer = L.geoJSON().addTo(this.map);
 
-    // Set the style of the suburb layer
-    const circle = L.circle([this.highestCoordinates[0],this.highestCoordinates[1]], {
-      color: '#f5805a',
-      fillColor: '#f5805a',
-      fillOpacity: 0.5,
-      radius: 550 // in meters
-    }).addTo(this.map);
-
-
-    await this.getAreas("Min");
-    const circle2 = L.circle([this.lowestCoordinates[0],this.lowestCoordinates[1]], {
-      color: '#885ec0',
-      fillColor: '#885ec0',
-      fillOpacity: 0.5,
-      radius: 500 // in meters
-    }).addTo(this.map);
-
-    let radius = circle.getRadius();
-    let expanding = true;
-    setInterval(() => {
-      if (expanding) {
-        radius += 40;
-      } else {
-        radius -= 40;
-      }
-      
-      circle.setRadius(radius);
-      circle2.setRadius(radius)
-      
-      if (radius >= 800) {
-        expanding = false;
-      } else if (radius <= 550) {
-        expanding = true;
-      }
-    }, 150);
-
-
-    // Bind a popup to the circle
-    circle.bindPopup("<div class='popup'><p style='color:black'>The highest consumption - "+this.highestCoordinates[2]+"</p></div>");
-    circle2.bindPopup("<div class='popup'><p style='color:black'>The largest production - "+this.lowestCoordinates[2]+"</p></div>");
-
-    // Show and hide the popups on hover
-    circle.on('mouseover', (e: L.LeafletMouseEvent) => {
-      circle.openPopup();
-    });
-    circle.on('mouseout', (e: L.LeafletMouseEvent) => {
-      circle.closePopup();
-    });
-    circle2.on('mouseover', (e: L.LeafletMouseEvent) => {
-      circle2.openPopup();
-    });
-    circle2.on('mouseout', (e: L.LeafletMouseEvent) => {
-      circle2.closePopup();
-    });
+    if(this.circle == null || this.circle == undefined)
+    {
+      this.circle = L.circle([this.highestCoordinates[0],this.highestCoordinates[1]], {
+        color: '#eb4886',
+        fillColor: '#eb4886',
+        fillOpacity: 0.5,
+        radius: 550 // in meters
+      }).addTo(this.map);
+  
+  
+      await this.getAreas("Min");
+      this.circle2 = L.circle([this.lowestCoordinates[0],this.lowestCoordinates[1]], {
+        color: '#46c5f1',
+        fillColor: '#46c5f1',
+        fillOpacity: 0.5,
+        radius: 500 // in meters
+      }).addTo(this.map);
+  
+      let radius = this.circle.getRadius();
+      let expanding = true;
+      setInterval(() => {
+        if (expanding) {
+          radius += 40;
+        } else {
+          radius -= 40;
+        }
+        
+        this.circle.setRadius(radius);
+        this.circle2.setRadius(radius)
+        
+        if (radius >= 800) {
+          expanding = false;
+        } else if (radius <= 550) {
+          expanding = true;
+        }
+      }, 150);
+  
+  
+      // Bind a popup to the circle
+      this.circle.bindPopup("<div class='popup'><p style='color:black'>The highest "+this.type.name+" - "+this.highestCoordinates[2]+"</p><br><h4 style='color:black'>Usage : "+this.usageMax+" kWh</h4></div>");
+      this.circle2.bindPopup("<div class='popup'><p style='color:black'>The lowest "+this.type.name+" - "+this.lowestCoordinates[2]+"</p><br><h4 style='color:black'>Usage : "+this.usageMin+" kWh</h4></div>");
+  
+      // Show and hide the popups on hover
+      this.circle.on('mouseover', (e: L.LeafletMouseEvent) => {
+        this.circle.openPopup();
+      });
+      this.circle.on('mouseout', (e: L.LeafletMouseEvent) => {
+        this.circle.closePopup();
+      });
+      this.circle2.on('mouseover', (e: L.LeafletMouseEvent) => {
+        this.circle2.openPopup();
+      });
+      this.circle2.on('mouseout', (e: L.LeafletMouseEvent) => {
+        this.circle2.closePopup();
+      });
+    }
+    else{
+      this.circle.setLatLng([this.highestCoordinates[0],this.highestCoordinates[1]]);
+      this.circle.bindPopup("<div class='popup'><p style='color:black'>The highest "+this.type.name+" - "+this.highestCoordinates[2]+"</p><br><h4 style='color:black'>Usage : "+this.usageMax+" kWh</h4></div>");
+      this.circle2.setLatLng([this.lowestCoordinates[0],this.lowestCoordinates[1]]);
+      this.circle2.bindPopup("<div class='popup'><p style='color:black'>The lowest "+this.type.name+" - "+this.lowestCoordinates[2]+"</p><br><h4 style='color:black'>Usage : "+this.usageMin+" kWh</h4></div>");
+    }
+    
     
   }
 
