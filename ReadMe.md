@@ -75,7 +75,7 @@ Potrebno je instalirati RemoteSSH ekstenziju za lakšu konfiguraciju aplikacije,
 - > Na remote-u kreirati folder "front" i u njega smestiti prethodno pomenut folder sa folderom "dist" u njemu.
 - > Na putanji na kojoj se nalazi folder "front", izvršiti komandu "nohup node index.js &".
 
-## Trenutni nal
+## Trenutni nalozi
 - > Nalog za DSO korisnika: marijaandric2001@gmail.com
 - > Nalog za prosumera: dugicboris@gmail.com
 Šifra za oba naloga je Proba@123
