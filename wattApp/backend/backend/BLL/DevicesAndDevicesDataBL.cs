@@ -3,6 +3,8 @@ using backend.Helpers;
 using backend.Models.DTOs;
 using backend.Models;
 using backend.DAL.Interfaces;
+using NuGet.Packaging;
+using System.Collections.Generic;
 
 namespace backend.BLL
 {
@@ -201,18 +203,19 @@ namespace backend.BLL
         }
 
         //optimizovano
-        public WeekDatasDTO GetWeekByDayHistoryAndFutureForDevice(int deviceid)
+        public HAFDatasDTO GetWeekByDayHistoryAndFutureForDevice(int deviceid, string type)
         {
             DateTime now = DateTime.Now;
-            List<int> deviceids = new List<int>();
-            deviceids.Add(deviceid);
-            WeekDatasDTO devicesDatas = _contextDataDAL.GetWeekByDayHistoryAndFutureForDevices(deviceids, now.Year, now.Month, now.Day);
+            List<List<int>> deviceids = new List<List<int>>();
+            deviceids.Add(new List<int>());
+            deviceids[0].Add(deviceid);
+            List<HAFDatasDTO> devicesDatas = _contextDataDAL.GetByDayHistoryAndForecastForDevices(deviceids, now.Year, now.Month, now.Day, type);
 
-            return devicesDatas;
+            return devicesDatas[0];
         }
 
         //optimizovano
-        public WeekDatasTypesDTO GetWeekByDayHistoryAndFutureForAllUserDevicesOrAllDevices(int userid)
+        public HAFDatasTypesDTO GetWeekByDayHistoryAndFutureForAllUserDevicesOrAllDevices(int userid, string type)
         {
             DateTime now = DateTime.Now;
             List<Devices> consumerDevices;
@@ -234,11 +237,14 @@ namespace backend.BLL
                 if (_contextUserDAL.userExists(userid) == false)
                     return null;
 
-            WeekDatasDTO consumerData = _contextDataDAL.GetWeekByDayHistoryAndFutureForDevices(consumerDevices.Select(d => d.Id).ToList(), now.Year, now.Month, now.Day);
-            WeekDatasDTO producerData = _contextDataDAL.GetWeekByDayHistoryAndFutureForDevices(producerDevices.Select(d => d.Id).ToList(), now.Year, now.Month, now.Day);
-            WeekDatasDTO stockData = _contextDataDAL.GetWeekByDayHistoryAndFutureForDevices(stockDevices.Select(d => d.Id).ToList(), now.Year, now.Month, now.Day);
+            List<List<int>> devicesids = new List<List<int>>();
+            devicesids.Add(consumerDevices.Select(d => d.Id).ToList());
+            devicesids.Add(producerDevices.Select(d => d.Id).ToList());
+            devicesids.Add(stockDevices.Select(d => d.Id).ToList());
 
-            return new WeekDatasTypesDTO(consumerData.dates, consumerData.datas, producerData.datas, stockData.datas);
+            List<HAFDatasDTO> result = _contextDataDAL.GetByDayHistoryAndForecastForDevices(devicesids, now.Year, now.Month, now.Day, type);
+
+            return new HAFDatasTypesDTO(result[0].dates, result[0].datas, result[1].datas, result[2].datas);
             
         }
 

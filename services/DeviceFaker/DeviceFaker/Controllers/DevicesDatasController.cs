@@ -78,12 +78,19 @@ namespace DeviceFaker.Controllers
             return devicesData;
         }
 
-        [HttpPost("GetWeekByDayHistoryAndFutureForDevice/{year}/{month}/{day}")]
-        public WeekDatasDTO GetWeekByDayHistoryAndFutureForDevice([FromBody] List<int> devicesids, int year, int month, int day)
+
+        // #### HISTORY AND FORECAST ####
+        // #### TYPES: WEEK, MONTH, YEAR       
+        [HttpPost("getByDayHistoryAndForecastForDevices/{year}/{month}/{day}/{type}")]
+        public List<HAFDatasDTO> GetByDayHistoryAndForecastForDevices([FromBody] List<List<int>> devicesids, int year, int month, int day, string type)
         {
-            var result =  _devicesDataService.GetWeekByDayHistoryAndFutureForAllDevicesOrDevice(devicesids, year, month, day);
+            var result = _devicesDataService.GetByDayHistoryAndForecastForDevices(devicesids, year, month, day, type);
             return result;
         }
+
+
+
+        // #### LISTA MESECNE SUMIRANE POTROSNJE UREDJAJA PO ID-u ####
 
         [HttpPost("getMonthPoweUsageOfDevices/{year}/{month}")]
         public List<UsageDTO> GetMonthPowerUsageOfDevices([FromBody] List<int> ids, int year, int month)
@@ -92,12 +99,16 @@ namespace DeviceFaker.Controllers
             return result;
         }
 
+        // #### LISTA DNEVNE SUMIRANE POTROSNJE UREDJAJA PO ID-u ####
+
         [HttpPost("getDayPoweUsageOfDevices/{year}/{month}/{day}")]
         public List<UsageDTO> GetDayPowerUsageOfDevices([FromBody] List<int> ids, int year, int month, int day)
         {
             var result = _devicesDataService.GetDayPowerUsageOfDevices(ids, year, month, day);
             return result;
         }
+
+        // #### LISTA MESECNE SUMIRANE POTROSNJE UREDJAJA PO ID-u ####
 
         [HttpPost("getDayPowerUsageSumOfDevices/{year}/{month}/{day}")]
         public double GetDayPowerUsageSumOfDevices([FromBody] List<int> ids, int year, int month, int day)
@@ -106,12 +117,16 @@ namespace DeviceFaker.Controllers
             return result;
         }
 
+        // #### SUMA PO NEDELJI UKUPNA ZA SVE DEVICE-ove ####
+
         [HttpPost("getWeekPowerUsageSumOfDevices/{year}/{month}/{day}")]
         public double GetWeekPowerUsageSumOfDevices([FromBody] List<int> ids, int year, int month, int day)
         {
             double result = _devicesDataService.GetWeekPowerUsageSumOfDevices(ids, year, month, day);
             return result;
         }
+
+        // #### SUMA PO MESECU UKUPNA ZA SVE DEVICE-ove ####
 
         [HttpPost("getMonthPowerUsageSumOfDevices/{year}/{month}")]
         public double GetMonthPowerUsageSumOfDevices([FromBody] List<int> ids, int year, int month)
@@ -120,12 +135,24 @@ namespace DeviceFaker.Controllers
             return result;
         }
 
+        // #### SUMA PO GODINI UKUPNA ZA SVE DEVICE-ove ####
+
         [HttpPost("getYearPowerUsageSumOfDevices/{year}")]
         public double GetYearPowerUsageSumOfDevices([FromBody] List<int> ids, int year)
         {
             double result = _devicesDataService.GetYearPowerUsageSumOfDevices(ids, year);
             return result;
         }
+
+        // #### SUMA ZA PERIOD OD MESEC DANA, GRUPISANA PO DANU UKUPNA ZA SVE DEVICE-ove ####
+
+        [HttpPost("getMonthUsageForDevicesByDay/{year}/{month}")]
+        public List<UsageDTO> GetMonthUsageForDevicesByDay([FromBody] List<int> ids, int year, int month)
+        {
+            var result = _devicesDataService.GetMonthUsageForDevicesByDay(ids, year, month);
+            return result;
+        }
+
 
     }
 }

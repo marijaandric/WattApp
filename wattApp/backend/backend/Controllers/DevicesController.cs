@@ -282,24 +282,24 @@ namespace backend.Controllers
                 });
         }
 
-        [HttpGet("getHistoryAndForecastByDayForDevice/{deviceid}")]
-        public IActionResult getHistoryAndForecastByDayForDevice(int deviceid)
+        [HttpGet("getHistoryAndForecastByDayForDevice/{deviceid}/{type}")]
+        public IActionResult getHistoryAndForecastByDayForDevice(int deviceid, string type)
         {
-            var result = _contextDevicesAndData.GetWeekByDayHistoryAndFutureForDevice(deviceid);
+            var result = _contextDevicesAndData.GetWeekByDayHistoryAndFutureForDevice(deviceid, type);
             return Ok(result);
         }
 
-        [HttpGet("getHistoryAndForecastByDayForAllDevices")]
-        public IActionResult getHistoryAndForecastByDayForAllDevices()
+        [HttpGet("getHistoryAndForecastByDayForAllDevices/{type}")]
+        public IActionResult getHistoryAndForecastByDayForAllDevices(string type)
         {
-            var result = _contextDevicesAndData.GetWeekByDayHistoryAndFutureForAllUserDevicesOrAllDevices(-1);
+            var result = _contextDevicesAndData.GetWeekByDayHistoryAndFutureForAllUserDevicesOrAllDevices(-1, type);
             return Ok(result);
         }
 
-        [HttpGet("getHistoryAndForecastByDayForAllUserDevices/{userid}")]
-        public IActionResult getHistoryAndForecastByDayForAllUserDevices(int userid)
+        [HttpGet("getHistoryAndForecastByDayForAllUserDevices/{userid}/{type}")]
+        public IActionResult getHistoryAndForecastByDayForAllUserDevices(int userid, string type)
         {
-            var result = _contextDevicesAndData.GetWeekByDayHistoryAndFutureForAllUserDevicesOrAllDevices(userid);
+            var result = _contextDevicesAndData.GetWeekByDayHistoryAndFutureForAllUserDevicesOrAllDevices(userid, type);
             return Ok(result);
         }
 
