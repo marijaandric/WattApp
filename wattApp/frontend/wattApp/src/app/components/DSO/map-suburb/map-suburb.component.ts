@@ -69,11 +69,11 @@ export class MapSuburbComponent implements OnInit,OnChanges {
         console.log(data)
         if(maxmin=="Max")
         {
-          this.usageMax = data.usage;
+          this.usageMax = data.usage.toFixed(2);
           this.highestCoordinates = await this.getCoordinates(data.area);
         }
         else{
-          this.usageMin = data.usage;
+          this.usageMin = data.usage.toFixed(2);
           this.lowestCoordinates = await this.getCoordinates(data.area);
         }
         resolve();
