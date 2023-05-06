@@ -5,6 +5,7 @@ using backend.Models;
 using backend.DAL.Interfaces;
 using NuGet.Packaging;
 using System.Collections.Generic;
+using Microsoft.AspNetCore.Mvc.ViewComponents;
 
 namespace backend.BLL
 {
@@ -22,67 +23,7 @@ namespace backend.BLL
             _contextUserDAL = contextUserDAL;
         }
 
-        public ExtremeDeviceDTO GetExtremeDevice(int userId, int year, int month, int day, string type, string size)
-        {
-            List<Devices> devices = _contextDAL.GetUserDevicesByType(userId, type);
-            Dictionary<int, double> devicesMap = new Dictionary<int, double>();
-
-            if (devices == null || devices.Count == 0)
-                return null;
-
-            int deviceWithValue = -1;
-            double value = -1;
-            string deviceName = "";
-
-            foreach (var device in devices)
-            {
-                //PROBLEM!!!
-
-                List<DevicesData> devicesDatas = _contextDataDAL.GetDayDataForDevice(device.Id, year, month, day);
-                devicesMap.Add(device.Id, Calculator.CalculateAveragePowerUsage(devicesDatas));
-            }
-
-            if (size == "max")
-            {
-                double maxValue = double.MinValue;
-
-                foreach (var pair in devicesMap)
-                {
-                    if (pair.Value > maxValue)
-                    {
-                        deviceWithValue = pair.Key;
-                        maxValue = pair.Value;
-                    }
-                }
-                value = maxValue;
-            }
-            else
-            {
-                double minValue = double.MaxValue;
-
-                foreach (var pair in devicesMap)
-                {
-                    if (pair.Value < minValue)
-                    {
-                        deviceWithValue = pair.Key;
-                        minValue = pair.Value;
-                    }
-                }
-                value = minValue;
-            }
-
-            deviceName = _contextDAL.GetDeviceForUser(userId, deviceWithValue).DeviceName;
-            //Console.WriteLine((deviceWithValue, deviceName, value));
-            ExtremeDeviceDTO deviceDTO = new ExtremeDeviceDTO();
-            deviceDTO.DeviceName = deviceName;
-            deviceDTO.DeviceID = deviceWithValue;
-            deviceDTO.Usage = value;
-            return deviceDTO;
-        }
-
         
-        
-
         public List<BigTableContent> GetTableContent(int userId, int year, int month, int day, int time, string type)
         {
             User userObj = _contextUserDAL.getUser(userId);
@@ -169,6 +110,62 @@ namespace backend.BLL
                 return new AreaExtreme(minArea, min);
         }
 
+
+        //optimizovano
+        public ExtremeDeviceDTO GetExtremeDevice(int userId, int year, int month, int day, string type, string size)
+        {
+            List<Devices> devices = _contextDAL.GetUserDevicesByType(userId, type);
+            Dictionary<int, double> devicesMap = new Dictionary<int, double>();
+
+            if (devices == null || devices.Count == 0)
+                return null;
+
+            int deviceWithValue = -1;
+            double value = -1;
+            string deviceName = "";
+
+
+            List<UsageDTO> devicesDatas = _contextDataDAL.GetDayPowerUsageOfDevices(devices.Select(d => d.Id).ToList(), year, month, day);
+
+            foreach (var dvcs in devicesDatas)
+                devicesMap.Add(dvcs.deviceID, dvcs.usage);
+
+            if (size == "max")
+            {
+                double maxValue = double.MinValue;
+
+                foreach (var pair in devicesMap)
+                {
+                    if (pair.Value > maxValue)
+                    {
+                        deviceWithValue = pair.Key;
+                        maxValue = pair.Value;
+                    }
+                }
+                value = maxValue;
+            }
+            else
+            {
+                double minValue = double.MaxValue;
+
+                foreach (var pair in devicesMap)
+                {
+                    if (pair.Value < minValue)
+                    {
+                        deviceWithValue = pair.Key;
+                        minValue = pair.Value;
+                    }
+                }
+                value = minValue;
+            }
+
+            deviceName = _contextDAL.GetDeviceForUser(userId, deviceWithValue).DeviceName;
+            ExtremeDeviceDTO deviceDTO = new ExtremeDeviceDTO();
+            deviceDTO.DeviceName = deviceName;
+            deviceDTO.DeviceID = deviceWithValue;
+            deviceDTO.Usage = value;
+            return deviceDTO;
+        }
 
         //optimizovano
         public double GetMonthlyStatistics(int userId, int year, int month, string type)
@@ -319,6 +316,52 @@ namespace backend.BLL
             }
             device.Add(deviceType, value);
             return device;
+        }
+
+        public Dictionary<string, double> GetMaxMinAvgTotalPowerUsageByTimeForDevicesByType(int userid, string deviceType, string timeType)
+        {
+            DateTime now = DateTime.Now;
+            List<Devices> devices;
+
+            if (userid == -1)
+                devices = _contextDAL.GetDevicesByType(deviceType);
+            else
+                devices = _contextDAL.GetDevicesForUserByType(userid, deviceType);
+
+            if(devices.Count == 0 || devices == null)
+                return null;
+
+            List<UsageDTO> usages;
+
+            if (timeType.ToLower() == "week")
+                usages = _contextDataDAL.GetWeekUsageForDevicesByDay(devices.Select(d => d.Id).ToList(), now.Year, now.Month, now.Day);
+            else if (timeType.ToLower() == "month")
+                usages = _contextDataDAL.GetMonthUsageForDevicesByDay(devices.Select(d => d.Id).ToList(), now.Year, now.Month);
+            else
+                usages = _contextDataDAL.GetYearUsageForDevicesByMonth(devices.Select(d => d.Id).ToList(), now.Year);
+
+            Dictionary<string, double> result = new Dictionary<string, double>();
+            UsageDTO max, min;
+
+            max = usages.OrderByDescending(item => item.usage).First();
+            min = usages.OrderBy(item => item.usage).First();
+            double total = usages.Sum(item => item.usage);
+            double avg = total / usages.Count;
+
+            if (timeType.ToLower() != "year")
+            {
+                result.Add(max.day + "." + max.month, max.usage);
+                result.Add(min.day + "." + min.month, min.usage);
+            }
+            else
+            {
+                result.Add(max.month.ToString(), max.usage);
+                result.Add(min.month.ToString(), min.usage);
+            }
+            result.Add("total", total);
+            result.Add("average", avg);
+
+            return result;
         }
     }
 }

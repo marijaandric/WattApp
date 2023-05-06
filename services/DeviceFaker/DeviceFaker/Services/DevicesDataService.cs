@@ -7,8 +7,10 @@ using MongoDB.Bson;
 using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
 using NuGet.Packaging;
+using NuGet.Packaging.Signing;
 using System.Collections.Generic;
 using System.Linq;
+using static MongoDB.Driver.WriteConcern;
 
 
 namespace DeviceFaker.Services
@@ -265,6 +267,7 @@ namespace DeviceFaker.Services
             return haf;
         }
 
+        // #### LISTA MESECNE SUMIRANE POTROSNJE UREDJAJA PO ID-u ####
         public List<UsageDTO> GetMonthPowerUsageOfDevices(List<int> ids, int year, int month)
         {
             DateTime now = DateTime.Now;
@@ -307,16 +310,17 @@ namespace DeviceFaker.Services
             {
                 Console.WriteLine("for loop GetMonthPowerUsageOfDevices");
                 UsageDTO usg = new UsageDTO();
-                usg.DeviceID = doc["_id"]["DeviceID"].ToInt32();
-                usg.Year = doc["_id"]["Year"].ToInt32();
-                usg.Month = doc["_id"]["Month"].ToInt32();
-                usg.Usage = doc["totalPowerUsage"].ToDouble();
+                usg.deviceID = doc["_id"]["DeviceID"].ToInt32();
+                usg.year = doc["_id"]["Year"].ToInt32();
+                usg.month = doc["_id"]["Month"].ToInt32();
+                usg.usage = doc["totalPowerUsage"].ToDouble();
                 usage.Add(usg);
             }
 
             return usage;
         }
 
+        // #### LISTA DNEVNE SUMIRANE POTROSNJE UREDJAJA PO ID-u ####
         public List<UsageDTO> GetDayPowerUsageOfDevices(List<int> ids, int year, int month, int day)
         {
             DateTime now = DateTime.Now;
@@ -360,11 +364,11 @@ namespace DeviceFaker.Services
             {
                 Console.WriteLine("for loop GetDayPowerUsageOfDevices");
                 UsageDTO usg = new UsageDTO();
-                usg.DeviceID = doc["_id"]["DeviceID"].ToInt32();
-                usg.Year = doc["_id"]["Year"].ToInt32();
-                usg.Month = doc["_id"]["Month"].ToInt32();
-                usg.Day = doc["_id"]["Day"].ToInt32();
-                usg.Usage = doc["totalPowerUsage"].ToDouble();
+                usg.deviceID = doc["_id"]["DeviceID"].ToInt32();
+                usg.year = doc["_id"]["Year"].ToInt32();
+                usg.month = doc["_id"]["Month"].ToInt32();
+                usg.day = doc["_id"]["Day"].ToInt32();
+                usg.usage = doc["totalPowerUsage"].ToDouble();
                 usage.Add(usg);
             }
 
@@ -372,6 +376,7 @@ namespace DeviceFaker.Services
         }
 
 
+        // #### SUMA PO DANU UKUPNA ZA SVE DEVICE-ove ####
         public double GetDayPowerUsageSumOfDevices(List<int> ids, int year, int month, int day)
         {
             DateTime now = DateTime.Now;
@@ -410,6 +415,8 @@ namespace DeviceFaker.Services
 
             
         }
+
+        // #### SUMA PO MESECU UKUPNA ZA SVE DEVICE-ove ####
         public double GetMonthPowerUsageSumOfDevices(List<int> ids, int year, int month)
         {
             DateTime now = DateTime.Now;
@@ -443,6 +450,8 @@ namespace DeviceFaker.Services
             Console.WriteLine(result.Count);
             return result[0]["totalPowerUsage"].ToDouble();
         }
+
+        // #### SUMA PO GODINI UKUPNA ZA SVE DEVICE-ove ####
         public double GetYearPowerUsageSumOfDevices(List<int> ids, int year)
         {
             DateTime now = DateTime.Now;
@@ -476,54 +485,46 @@ namespace DeviceFaker.Services
 
             return result[0]["totalPowerUsage"].ToDouble();
         }
+
+        // #### SUMA PO NEDELJI UKUPNA ZA SVE DEVICE-ove ####
         public double GetWeekPowerUsageSumOfDevices(List<int> ids, int year, int month, int day)
         {
-            return GetWeekDataByDayForAllDevicesOrDevice(ids, year, month, day).datas.Sum();
+            return GetWeekUsageForDevicesByDay(ids, year, month, day).Sum(item => item.usage);
         }
 
-        public HAFDatasDTO GetWeekDataByDayForAllDevicesOrDevice(List<int> devicesids, int year, int month, int day)
+        // #### SUMA ZA PERIOD OD NEDELJU DANA, GRUPISANA PO DANU UKUPNA ZA SVE DEVICE-ove ####
+        public List<UsageDTO> GetWeekUsageForDevicesByDay(List<int> devicesids, int year, int month, int day)
         {
-            int count = 0;
-            List<string> dates = new List<string>();
-            List<double> devicesdata = new List<double>();
-            double current;
-            day = day - 1;
-            while (count < 7)
+            List<UsageDTO> currentMonth = GetMonthUsageForDevicesByDay(devicesids, year, month);
+            List<UsageDTO> result = new List<UsageDTO>();
+            if (day <= 6)
             {
-                Console.WriteLine("while loop GetWeekDataByDayForAllDevicesOrDevice");
-                if (day >= 1)
-                {
-                    Console.WriteLine("year: " + year + ", month: " + month + ", day: " + day);
-                    current = GetDayPowerUsageSumOfDevices(devicesids, year, month, day);
-                    if (current != 0)
-                    {
-                        devicesdata.Add(current);
-                        dates.Add($"{day}.{month}");
-                        count++;
-                    }
-                    day--;
+                // u slucaju da moram da idem u prethodni mesec
 
-                }
-                else
+                List<UsageDTO> previousMonth = GetMonthUsageForDevicesByDay(devicesids, year, month - 1);
+                int mCount = previousMonth.Count;
+
+                //for previous month
+                Console.WriteLine(mCount);
+                Console.WriteLine(day);
+                for (int i = (mCount - 6 + day - 1); i < mCount; i++)
                 {
-                    if (month > 1)
-                    {
-                        month--;
-                        day = 31;
-                    }
-                    else
-                    {
-                        year--;
-                        month = 12;
-                        day = 31;
-                    }
+                    result.Add(previousMonth[i]);
                 }
+                //for curent month
+                result.AddRange(currentMonth.GetRange(0, day));
             }
-            devicesdata.Reverse();
-            dates.Reverse();
-            return new HAFDatasDTO(dates, devicesdata);
+            else
+            {
+                //dovoljan mi je samo ovaj mesec
+                result.AddRange(currentMonth.GetRange((day - 6 - 1), 7));
+
+            }
+
+            return result;
         }
 
+        // #### SUMA ZA PERIOD OD MESEC DANA, GRUPISANA PO DANU UKUPNA ZA SVE DEVICE-ove ####
         public List<UsageDTO> GetMonthUsageForDevicesByDay(List<int> ids, int year, int month)
         {
             DateTime now = DateTime.Now;
@@ -558,6 +559,56 @@ namespace DeviceFaker.Services
             };
 
             var pipelineString = pipeline.ToJson();
+
+            var result = _devicesDataCollection.Aggregate<BsonDocument>(pipeline).ToList();
+            List<UsageDTO> usage = new List<UsageDTO>();
+            foreach (var doc in result)
+            {
+                UsageDTO usg = new UsageDTO();
+                usg.year = doc["_id"]["Year"].ToInt32();
+                usg.month = doc["_id"]["Month"].ToInt32();
+                usg.day = doc["_id"]["Day"].ToInt32();
+                usg.usage = doc["totalPowerUsage"].ToDouble();
+                usage.Add(usg);
+            }
+            return usage;
+
+        }
+
+        // #### SUMA ZA PERIOD OD GODINU DANA, GRUPISANA PO MESECU UKUPNA ZA SVE DEVICE-ove ####
+        public List<UsageDTO> GetYearUsageForDevicesByMonth(List<int> ids, int year)
+        {
+            DateTime now = DateTime.Now;
+
+            var filter = Builders<DevicesData>.Filter.And(
+                Builders<DevicesData>.Filter.In(x => x.DeviceID, ids),
+                Builders<DevicesData>.Filter.Where(x => x.Year == year));
+
+            if (year == now.Year)
+            {
+                filter = Builders<DevicesData>.Filter.And(
+                Builders<DevicesData>.Filter.In(x => x.DeviceID, ids),
+                Builders<DevicesData>.Filter.Where(x => x.Year == year && x.Month <= now.Month));
+            }
+            var matchStage = new BsonDocument("$match", filter.Render(BsonSerializer.SerializerRegistry.GetSerializer<DevicesData>(), BsonSerializer.SerializerRegistry));
+            var sortStage = new BsonDocument("$sort", new BsonDocument { { "_id.Month", 1 } });
+            var pipeline = new BsonDocument[]
+            {
+                matchStage,
+                new BsonDocument("$group", new BsonDocument
+                {
+                    { "_id", new BsonDocument
+                        {
+                            { "Year", "$Year" },
+                            { "Month", "$Month"}
+                        }
+                    },
+                    { "totalPowerUsage", new BsonDocument("$sum", "$PowerUsage") }
+                }),
+                sortStage
+            };
+
+            var pipelineString = pipeline.ToJson();
             Console.WriteLine(pipelineString);
 
             var result = _devicesDataCollection.Aggregate<BsonDocument>(pipeline).ToList();
@@ -566,14 +617,15 @@ namespace DeviceFaker.Services
             foreach (var doc in result)
             {
                 UsageDTO usg = new UsageDTO();
-                usg.Year = doc["_id"]["Year"].ToInt32();
-                usg.Month = doc["_id"]["Month"].ToInt32();
-                usg.Day = doc["_id"]["Day"].ToInt32();
-                usg.Usage = doc["totalPowerUsage"].ToDouble();
+                usg.year = doc["_id"]["Year"].ToInt32();
+                usg.month = doc["_id"]["Month"].ToInt32();
+                usg.usage = doc["totalPowerUsage"].ToDouble();
                 usage.Add(usg);
             }
             return usage;
 
         }
+
+
     }
 }

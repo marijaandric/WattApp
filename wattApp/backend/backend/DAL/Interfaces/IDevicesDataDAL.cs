@@ -19,5 +19,8 @@ namespace backend.DAL.Interfaces
         public double GetWeekPowerUsageSumOfDevices([FromBody] List<int> ids, int year, int month, int day);
         public double GetMonthPowerUsageSumOfDevices([FromBody] List<int> ids, int year, int month);
         public double GetYearPowerUsageSumOfDevices([FromBody] List<int> ids, int year);
+        public List<UsageDTO> GetWeekUsageForDevicesByDay(List<int> devicesids, int year, int month, int day);
+        public List<UsageDTO> GetMonthUsageForDevicesByDay(List<int> devicesids, int year, int month);
+        public List<UsageDTO> GetYearUsageForDevicesByMonth(List<int> devicesids, int year);
     }
 }

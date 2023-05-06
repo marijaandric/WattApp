@@ -144,6 +144,16 @@ namespace DeviceFaker.Controllers
             return result;
         }
 
+
+        // #### SUMA ZA PERIOD OD NEDELJU DANA, GRUPISANA PO DANU UKUPNA ZA SVE DEVICE-ove ####
+
+        [HttpPost("getWeekUsageForDevicesByDay/{year}/{month}/{day}")]
+        public List<UsageDTO> GetWeekUsageForDevicesByDay([FromBody] List<int> ids, int year, int month, int day)
+        {
+            var result = _devicesDataService.GetWeekUsageForDevicesByDay(ids, year, month, day);
+            return result;
+        }
+
         // #### SUMA ZA PERIOD OD MESEC DANA, GRUPISANA PO DANU UKUPNA ZA SVE DEVICE-ove ####
 
         [HttpPost("getMonthUsageForDevicesByDay/{year}/{month}")]
@@ -153,6 +163,15 @@ namespace DeviceFaker.Controllers
             return result;
         }
 
+
+        // #### SUMA ZA PERIOD OD GODINU DANA, GRUPISANA PO MESECU UKUPNA ZA SVE DEVICE-ove ####
+
+        [HttpPost("getYearUsageForDevicesByDay/{year}")]
+        public List<UsageDTO> GetYearUsageForDevicesByMonth([FromBody] List<int> ids, int year)
+        {
+            var result = _devicesDataService.GetYearUsageForDevicesByMonth(ids, year);
+            return result;
+        }
 
     }
 }

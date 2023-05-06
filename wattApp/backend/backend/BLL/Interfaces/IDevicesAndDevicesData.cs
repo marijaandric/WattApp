@@ -1,4 +1,5 @@
 ﻿using backend.Models.DTOs;
+using Microsoft.AspNetCore.Mvc;
 
 namespace backend.BLL.Interfaces
 {
@@ -14,5 +15,6 @@ namespace backend.BLL.Interfaces
         public List<double> GetMonthlyPowerUsageAndProduceOfUser(int userid, int year, int month);
         public double CurrentMonthAllUsersDevicesUsage(string deviceType);
         public Dictionary<string, double> GetPowerUsageOfDeviceForGivenTime(int deviceid, string time);
+        public Dictionary<string, double> GetMaxMinAvgTotalPowerUsageByTimeForDevicesByType(int userid, string deviceType, string timeType);
     }
 }

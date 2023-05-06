@@ -53,24 +53,17 @@ namespace backend.DAL
         }
 
 
-
-
-
         // #### LISTA MESECNE SUMIRANE POTROSNJE UREDJAJA PO ID-u ####
-        public List<UsageDTO> GetMonthPowerUsageOfDevices(List<int> consumerDevices, int year, int month)
+        public List<UsageDTO> GetMonthPowerUsageOfDevices(List<int> devicesids, int year, int month)
         {
-            return Helpers.HttpRequest.SendPostRequestForUsageDTO($"http://{host}:{port}/api/DevicesDatas/getMonthPoweUsageOfDevices/{year}/{month}/", consumerDevices);
+            return Helpers.HttpRequest.SendPostRequestForUsageDTO($"http://{host}:{port}/api/DevicesDatas/getMonthPoweUsageOfDevices/{year}/{month}/", devicesids);
         }
 
         // #### LISTA DNEVNE SUMIRANE POTROSNJE UREDJAJA PO ID-u ####
-        public List<UsageDTO> GetDayPowerUsageOfDevices(List<int> consumerDevices, int year, int month, int day)
+        public List<UsageDTO> GetDayPowerUsageOfDevices(List<int> devicesids, int year, int month, int day)
         {
-            return Helpers.HttpRequest.SendPostRequestForUsageDTO($"http://{host}:{port}/api/DevicesDatas/getDayPoweUsageOfDevices/{year}/{month}/{day}", consumerDevices);
+            return Helpers.HttpRequest.SendPostRequestForUsageDTO($"http://{host}:{port}/api/DevicesDatas/getDayPoweUsageOfDevices/{year}/{month}/{day}", devicesids);
         }
-
-        
-
-
 
 
         // #### SUMA PO DANU UKUPNA ZA SVE DEVICE-ove ####
@@ -97,6 +90,21 @@ namespace backend.DAL
             return Helpers.HttpRequest.SendHttpRequestForDatasDoubles($"http://{host}:{port}/api/DevicesDatas/getYearPowerUsageSumOfDevices/{year}", ids);
         }
 
+
+        public List<UsageDTO> GetWeekUsageForDevicesByDay(List<int> devicesids, int year, int month, int day)
+        {
+            return Helpers.HttpRequest.SendPostRequestForUsageDTO($"http://{host}:{port}/api/DevicesDatas/getWeekUsageForDevicesByDay/{year}/{month}/{day}", devicesids);
+        }
+
+        public List<UsageDTO> GetMonthUsageForDevicesByDay(List<int> devicesids, int year, int month)
+        {
+            return Helpers.HttpRequest.SendPostRequestForUsageDTO($"http://{host}:{port}/api/DevicesDatas/getMonthUsageForDevicesByDay/{year}/{month}", devicesids);
+        }
+
+        public List<UsageDTO> GetYearUsageForDevicesByMonth(List<int> devicesids, int year)
+        {
+            return Helpers.HttpRequest.SendPostRequestForUsageDTO($"http://{host}:{port}/api/DevicesDatas/getYearUsageForDevicesByDay/{year}", devicesids);
+        }
 
     }
 }
