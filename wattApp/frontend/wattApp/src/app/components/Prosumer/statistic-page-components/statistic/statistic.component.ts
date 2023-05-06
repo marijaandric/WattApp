@@ -127,7 +127,8 @@ export class StatisticComponent  implements OnInit {
   }
 
   getHistoryAndForecastByDayForAllUserDevices() {
-    this.deviceService.GetHistoryAndForecastByDayForAllUserDevices(this.id).subscribe(data => {
+    const type = 'week';
+    this.deviceService.GetHistoryAndForecastByDayForAllUserDevices(this.id,type).subscribe(data => {
       this.loader = false;
         this.arrayData = data.dates; //.slice(0, 7).concat(data.dates.slice(8));
         this.miniarrayData1=data.dates.slice(0, 7);

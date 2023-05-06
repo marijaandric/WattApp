@@ -166,7 +166,9 @@ export class HomeDSOComponent {
   color2 = '#88dbf6';
 
   getHistoryAndForecastByDayForAllDevices() {
-    this.deviceService.GetHistoryAndForecastByDayForAllDevices().subscribe(data => {
+    const type = 'week';
+
+    this.deviceService.GetHistoryAndForecastByDayForAllDevices(type).subscribe(data => {
         this.arrayData = data.dates; //.slice(0, 7).concat(data.dates.slice(8));
         this.loader = false;
         this.HistoryCon = data.totaldatasConsumer.map((val: number) => +val.toFixed(2));

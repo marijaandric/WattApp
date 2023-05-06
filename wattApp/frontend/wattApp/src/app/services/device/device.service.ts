@@ -126,13 +126,13 @@ export class DeviceService {
   {
     return this.http.get<any>(this.baseUrl+"GetNumberOfDevicesForUserThatDSOCanManage"+"/"+id)
   }
-  GetHistoryAndForecastByDayForAllUserDevices(id :number)
+  GetHistoryAndForecastByDayForAllUserDevices(id :number,type: string)
   {
-    return this.http.get<any>(this.baseUrl+"getHistoryAndForecastByDayForAllUserDevices"+"/"+id)
+    return this.http.get<any>(this.baseUrl+"getHistoryAndForecastByDayForAllUserDevices"+"/"+id+"/"+type)
   }
-  GetHistoryAndForecastByDayForAllDevices()
+  GetHistoryAndForecastByDayForAllDevices(type: string)
   {
-    return this.http.get<any>(this.baseUrl+"getHistoryAndForecastByDayForAllDevices")
+    return this.http.get<any>(this.baseUrl+"getHistoryAndForecastByDayForAllDevices"+"/"+type)
   }
 
   GetUserDevicesVisibleForDSO(id:number)
@@ -148,6 +148,10 @@ export class DeviceService {
   getUsage(id: number,time: string)
   {
     return this.http.get<any>(this.baseUrl+ "getPowerUsageOfDeviceForGivenTime" + "/" + id+ "/" + time);
+  }
+  getMaxMinAvgTotalPowerUsageByTimeForAllDevicesByType(deviceType: string, timeType:string)
+  {
+    return this.http.get<any>(this.baseUrl+ "getMaxMinAvgTotalPowerUsageByTimeForAllDevicesByType" + "/" + deviceType+ "/" + timeType);
   }
 
 
