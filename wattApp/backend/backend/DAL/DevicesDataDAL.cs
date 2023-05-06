@@ -43,40 +43,68 @@ namespace backend.DAL
         }
 
 
-        public WeekDatasDTO GetWeekByDayHistoryAndFutureForDevices(List<int> devicesids, int year, int month, int day)
+
+
+        // #### HISTORY AND FORECAST ZA JEDAN UREDJAJ ####
+
+        public List<HAFDatasDTO> GetByDayHistoryAndForecastForDevices(List<List<int>> devicesids, int year, int month, int day, string type)
         {
-            return Helpers.HttpRequest.SendHttpRequestForWeekDatas($"http://{host}:{port}/api/DevicesDatas/GetWeekByDayHistoryAndFutureForDevice/{year}/{month}/{day}", devicesids);
+            return Helpers.HttpRequest.SendHttpRequestForWeekDatas($"http://{host}:{port}/api/DevicesDatas/GetByDayHistoryAndForecastForDevices/{year}/{month}/{day}/{type}", devicesids);
         }
 
 
-        public List<UsageDTO> GetMonthPowerUsageOfDevices(List<int> consumerDevices, int year, int month)
+        // #### LISTA MESECNE SUMIRANE POTROSNJE UREDJAJA PO ID-u ####
+        public List<UsageDTO> GetMonthPowerUsageOfDevices(List<int> devicesids, int year, int month)
         {
-            return Helpers.HttpRequest.SendPostRequestForUsageDTO($"http://{host}:{port}/api/DevicesDatas/getMonthPoweUsageOfDevices/{year}/{month}/", consumerDevices);
+            return Helpers.HttpRequest.SendPostRequestForUsageDTO($"http://{host}:{port}/api/DevicesDatas/getMonthPoweUsageOfDevices/{year}/{month}/", devicesids);
         }
 
-        public List<UsageDTO> GetDayPowerUsageOfDevices(List<int> consumerDevices, int year, int month, int day)
+        // #### LISTA DNEVNE SUMIRANE POTROSNJE UREDJAJA PO ID-u ####
+        public List<UsageDTO> GetDayPowerUsageOfDevices(List<int> devicesids, int year, int month, int day)
         {
-            return Helpers.HttpRequest.SendPostRequestForUsageDTO($"http://{host}:{port}/api/DevicesDatas/getDayPoweUsageOfDevices/{year}/{month}/{day}", consumerDevices);
+            return Helpers.HttpRequest.SendPostRequestForUsageDTO($"http://{host}:{port}/api/DevicesDatas/getDayPoweUsageOfDevices/{year}/{month}/{day}", devicesids);
         }
 
+
+        // #### SUMA PO DANU UKUPNA ZA SVE DEVICE-ove ####
         public double GetDayPowerUsageSumOfDevices([FromBody] List<int> ids, int year, int month, int day)
         {
             return Helpers.HttpRequest.SendHttpRequestForDatasDoubles($"http://{host}:{port}/api/DevicesDatas/getDayPowerUsageSumOfDevices/{year}/{month}/{day}", ids);
         }
 
+        // #### SUMA PO NEDELJI UKUPNA ZA SVE DEVICE-ove ####
         public double GetWeekPowerUsageSumOfDevices([FromBody] List<int> ids, int year, int month, int day)
         {
             return Helpers.HttpRequest.SendHttpRequestForDatasDoubles($"http://{host}:{port}/api/DevicesDatas/getWeekPowerUsageSumOfDevices/{year}/{month}/{day}", ids);
         }
 
+        // #### SUMA PO MESECU UKUPNA ZA SVE DEVICE-ove ####
         public double GetMonthPowerUsageSumOfDevices([FromBody] List<int> ids, int year, int month)
         {
             return Helpers.HttpRequest.SendHttpRequestForDatasDoubles($"http://{host}:{port}/api/DevicesDatas/getMonthPowerUsageSumOfDevices/{year}/{month}", ids);
         }
 
+        // #### SUMA PO GODINI UKUPNA ZA SVE DEVICE-ove ####
         public double GetYearPowerUsageSumOfDevices([FromBody] List<int> ids, int year)
         {
             return Helpers.HttpRequest.SendHttpRequestForDatasDoubles($"http://{host}:{port}/api/DevicesDatas/getYearPowerUsageSumOfDevices/{year}", ids);
         }
+
+
+        public List<UsageDTO> GetWeekUsageForDevicesByDay(List<int> devicesids, int year, int month, int day)
+        {
+            return Helpers.HttpRequest.SendPostRequestForUsageDTO($"http://{host}:{port}/api/DevicesDatas/getWeekUsageForDevicesByDay/{year}/{month}/{day}", devicesids);
+        }
+
+        public List<UsageDTO> GetMonthUsageForDevicesByDay(List<int> devicesids, int year, int month)
+        {
+            return Helpers.HttpRequest.SendPostRequestForUsageDTO($"http://{host}:{port}/api/DevicesDatas/getMonthUsageForDevicesByDay/{year}/{month}", devicesids);
+        }
+
+        public List<UsageDTO> GetYearUsageForDevicesByMonth(List<int> devicesids, int year)
+        {
+            return Helpers.HttpRequest.SendPostRequestForUsageDTO($"http://{host}:{port}/api/DevicesDatas/getYearUsageForDevicesByDay/{year}", devicesids);
+        }
+
     }
 }
