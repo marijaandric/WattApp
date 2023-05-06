@@ -74,7 +74,7 @@ namespace backend.BLL
             return content;
         }
 
-        public AreaExtreme getExtremeUsageForAreas(string type, string timeType, string minmax)
+        public AreaExtreme getExtremeUsageForAreas(string devicetype, string timeType, string minmax)
         {
             List<User> users = _contextUserDAL.getUsers();
             List<string> areas = users.Select(d => d.Area).ToList().Distinct().ToList();
@@ -90,7 +90,7 @@ namespace backend.BLL
             double areaTotalUsage;
             foreach (string area in areas)
             {
-                areaTotalUsage = getTotalUsageByArea(area, type, timeType);
+                areaTotalUsage = getTotalUsageByArea(area, devicetype, timeType);
                 if (areaTotalUsage > max)
                 {
                     max = areaTotalUsage;
@@ -110,6 +110,30 @@ namespace backend.BLL
                 return new AreaExtreme(minArea, min);
         }
 
+        //optimizovano
+        public double getTotalUsageByArea(string area, string devicetype, string timeType)
+        {
+            DateTime now = DateTime.Now;
+            List<User> users = _contextUserDAL.GetUsersByArea(area);
+            List<Devices> devices = new List<Devices>();
+
+            if (users == null || users.Count == 0)
+                return 0;
+
+            devices = _contextDAL.GetAllDevicesForUserIDs(users.Select(d => d.Id).ToList());
+
+            if (devices == null || devices.Count == 0)
+                return 0;
+
+            if(timeType.ToLower() == "year")
+                return _contextDataDAL.GetYearPowerUsageSumOfDevices(devices.Where(d => d.DeviceType.ToLower() == devicetype.ToLower()).Select(d => d.Id).ToList(), now.Year);
+            else if (timeType.ToLower() == "month")
+                return _contextDataDAL.GetMonthPowerUsageSumOfDevices(devices.Where(d => d.DeviceType.ToLower() == devicetype.ToLower()).Select(d => d.Id).ToList(), now.Year, now.Month);
+            else if (timeType.ToLower() == "week")
+                return _contextDataDAL.GetWeekPowerUsageSumOfDevices(devices.Where(d => d.DeviceType.ToLower() == devicetype.ToLower()).Select(d => d.Id).ToList(), now.Year, now.Month, now.Day);
+            else
+                return _contextDataDAL.GetDayPowerUsageSumOfDevices(devices.Where(d => d.DeviceType.ToLower() == devicetype.ToLower()).Select(d => d.Id).ToList(), now.Year, now.Month, now.Day);
+        }
 
         //optimizovano
         public ExtremeDeviceDTO GetExtremeDevice(int userId, int year, int month, int day, string type, string size)
@@ -176,29 +200,6 @@ namespace backend.BLL
 
             return _contextDataDAL.GetMonthPowerUsageSumOfDevices(devices.Select(d => d.Id).ToList(), year, month);
 
-        }
-
-        //optimizovano
-        public double getTotalUsageByArea(string area, string type, string timeType)
-        {
-            DateTime now = DateTime.Now;
-            List<User> users = _contextUserDAL.GetUsersByArea(area);
-            List<Devices> devices = new List<Devices>();
-
-            if (users == null || users.Count == 0)
-                return 0;
-
-            devices = _contextDAL.GetAllDevicesForUserIDs(users.Select(d => d.Id).ToList());
-
-            if (devices == null || devices.Count == 0)
-                return 0;
-
-            if (timeType.ToLower() == "month")
-                return _contextDataDAL.GetMonthPowerUsageSumOfDevices(devices.Where(d => d.DeviceType == "Consumer").Select(d => d.Id).ToList(), now.Year, now.Month);
-            else if (timeType.ToLower() == "week")
-                return _contextDataDAL.GetWeekPowerUsageSumOfDevices(devices.Where(d => d.DeviceType == "Consumer").Select(d => d.Id).ToList(), now.Year, now.Month, now.Day);
-            else
-                return _contextDataDAL.GetDayPowerUsageSumOfDevices(devices.Where(d => d.DeviceType == "Consumer").Select(d => d.Id).ToList(), now.Year, now.Month, now.Day);
         }
 
         //optimizovano

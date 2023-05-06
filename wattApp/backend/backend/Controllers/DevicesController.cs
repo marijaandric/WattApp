@@ -253,26 +253,26 @@ namespace backend.Controllers
 
         }
 
-        [HttpGet("getTotalUsageByArea/{area}/{type}/{timeType}")]
-        public IActionResult getTotalUsageByArea(string area, string type, string timeType)
+        [HttpGet("getTotalUsageByArea/{area}/{devicetype}/{timeType}")]
+        public IActionResult getTotalUsageByArea(string area, string devicetype, string timeType)
         {
 
-            var result = _contextDevicesAndData.getTotalUsageByArea(area, type, timeType);
+            var result = _contextDevicesAndData.getTotalUsageByArea(area, devicetype, timeType);
 
             return Ok(
                 new
                 {
                     Area = area,
-                    Type = type,
+                    Type = devicetype,
                     Usage = result
                 });
         }
 
-        [HttpGet("getExtremeUsageForAreas/{type}/{timeType}/{minmax}")]
-        public IActionResult getExtremeUsageForAreas(string type, string timeType, string minmax)
+        [HttpGet("getExtremeUsageForAreas/{devicetype}/{timeType}/{minmax}")]
+        public IActionResult getExtremeUsageForAreas(string devicetype, string timeType, string minmax)
         {
 
-            var result = _contextDevicesAndData.getExtremeUsageForAreas(type, timeType, minmax);
+            var result = _contextDevicesAndData.getExtremeUsageForAreas(devicetype, timeType, minmax);
 
             return Ok(
                 new
