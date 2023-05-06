@@ -136,6 +136,7 @@ export class HomeDSOComponent {
     this.getmonthPowerUsageStorage();
     this.getHistoryAndForecastByDayForAllDevices();
     this.getdayPowerPrice();
+    this.getConsumergetMaxMinAvgTotalPowerUsageByTimeForAllDevicesByType();
   }
 
   clear(dtUsers: any) {
@@ -208,12 +209,52 @@ export class HomeDSOComponent {
       });
   }
 
+  total: any;
+  average: any;
+  min: any;
+  max: any;
+
+  Consumertotal: any;
+  Consumeraverage: any;
+  Consumermin: any;
+  Consumermax: any;
+
+  getConsumergetMaxMinAvgTotalPowerUsageByTimeForAllDevicesByType() {
+    const deviceType = 'Consumer';
+    const timeType = 'week';
+
+    this.deviceService.getMaxMinAvgTotalPowerUsageByTimeForAllDevicesByType(deviceType,timeType).subscribe(data => {
+      const keys = Object.keys(data);
+      this.Consumermax = data[keys[0]].toFixed(2);
+      this.Consumermin = data[keys[1]].toFixed(2);
+      this.Consumertotal=data.total.toFixed(2);
+      this.Consumeraverage=data.average.toFixed(2);
+
+      this.max=this.Consumermax;
+      this.min= this.Consumermin;
+      this.average=this.Consumeraverage;
+      this.total=this.Consumertotal;
+      
+      // console.log(this.max);
+      // console.log(this.min);
+      // console.log(this.total);
+      // console.log(this.average);
+
+  });
+}
+
 
   dropdownChange()
   {
     console.log(this.selectedDate.code)
     if(this.selectedType.code == "Consumer")
     {
+      this.max=this.Consumermax;
+      this.min= this.Consumermin;
+      this.average=this.Consumeraverage;
+      this.total=this.Consumertotal;
+
+    
       this.History = this.HistoryCon;
       this.Forecast = this.ForecastCon;
 
