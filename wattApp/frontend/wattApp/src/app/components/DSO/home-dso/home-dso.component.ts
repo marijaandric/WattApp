@@ -1,6 +1,5 @@
 import { Component, ElementRef, Renderer2 } from '@angular/core';
 import { StadardTemplateComponent } from '../../global/layout-components/standard-template/stadard-template.component';
-
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { ConfirmationService } from 'primeng/api';
@@ -44,6 +43,7 @@ export class HomeDSOComponent {
   type2: City[];
   type3: City[];
   selectedType: City= {name: 'Consumption', code: 'Consumer'};
+  selectedDate: City= {name: 'Week', code: 'Week'};
   isConsumption: boolean = true;
   isProduction: boolean = false;
   isStock: boolean = false;
@@ -135,6 +135,9 @@ export class HomeDSOComponent {
     this.getmonthPowerUsageStorage();
     this.getHistoryAndForecastByDayForAllDevices();
     this.getdayPowerPrice();
+    this.getConsumergetMaxMinAvgTotalPowerUsageByTimeForAllDevicesByType();
+    this.getProducergetMaxMinAvgTotalPowerUsageByTimeForAllDevicesByType();
+    this.getStockgetMaxMinAvgTotalPowerUsageByTimeForAllDevicesByType();
   }
 
   clear(dtUsers: any) {
@@ -165,7 +168,9 @@ export class HomeDSOComponent {
   color2 = '#88dbf6';
 
   getHistoryAndForecastByDayForAllDevices() {
-    this.deviceService.GetHistoryAndForecastByDayForAllDevices().subscribe(data => {
+    const type = 'week';
+
+    this.deviceService.GetHistoryAndForecastByDayForAllDevices(type).subscribe(data => {
         this.arrayData = data.dates; //.slice(0, 7).concat(data.dates.slice(8));
         this.loader = false;
         this.HistoryCon = data.totaldatasConsumer.map((val: number) => +val.toFixed(2));
@@ -205,11 +210,99 @@ export class HomeDSOComponent {
       });
   }
 
+  total: any;
+  average: any;
+  min: any;
+  max: any;
+
+  Consumertotal: any;
+  Consumeraverage: any;
+  Consumermin: any;
+  Consumermax: any;
+
+  getConsumergetMaxMinAvgTotalPowerUsageByTimeForAllDevicesByType() {
+    const deviceType = 'Consumer';
+    const timeType = 'week';
+
+    this.deviceService.getMaxMinAvgTotalPowerUsageByTimeForAllDevicesByType(deviceType,timeType).subscribe(data => {
+      const keys = Object.keys(data);
+      this.Consumermax = data[keys[0]].toFixed(2);
+      this.Consumermin = data[keys[1]].toFixed(2);
+      this.Consumertotal=data.total.toFixed(2);
+      this.Consumeraverage=data.average.toFixed(2);
+
+      this.max=this.Consumermax;
+      this.min= this.Consumermin;
+      this.average=this.Consumeraverage;
+      this.total=this.Consumertotal;
+
+      // console.log(this.max);
+      // console.log(this.min);
+      // console.log(this.total);
+      // console.log(this.average);
+
+  });
+}
+
+Producertotal: any;
+Produceraverage: any;
+Producermin: any;
+Producermax: any;
+
+getProducergetMaxMinAvgTotalPowerUsageByTimeForAllDevicesByType() {
+  const deviceType = 'Producer';
+  const timeType = 'week';
+
+  this.deviceService.getMaxMinAvgTotalPowerUsageByTimeForAllDevicesByType(deviceType,timeType).subscribe(data => {
+    const keys = Object.keys(data);
+    this.Producermax = data[keys[0]].toFixed(2);
+    this.Producermin = data[keys[1]].toFixed(2);
+    this.Producertotal=data.total.toFixed(2);
+    this.Produceraverage=data.average.toFixed(2);
+ 
+    // console.log(this.max);
+    // console.log(this.min);
+    // console.log(this.total);
+    // console.log(this.average);
+
+});
+}
+
+Stocktotal: any;
+Stockaverage: any;
+Stockmin: any;
+Stockmax: any;
+
+getStockgetMaxMinAvgTotalPowerUsageByTimeForAllDevicesByType() {
+  const deviceType = 'Stock';
+  const timeType = 'week';
+
+  this.deviceService.getMaxMinAvgTotalPowerUsageByTimeForAllDevicesByType(deviceType,timeType).subscribe(data => {
+    const keys = Object.keys(data);
+    this.Stockmax = data[keys[0]].toFixed(2);
+    this.Stockmin = data[keys[1]].toFixed(2);
+    this.Stocktotal=data.total.toFixed(2);
+    this.Stockaverage=data.average.toFixed(2);
+ 
+    // console.log(this.max);
+    // console.log(this.min);
+    // console.log(this.total);
+    // console.log(this.average);
+
+});
+}
+
 
   dropdownChange()
   {
     if(this.selectedType.code == "Consumer")
     {
+      this.max=this.Consumermax;
+      this.min= this.Consumermin;
+      this.average=this.Consumeraverage;
+      this.total=this.Consumertotal;
+
+    
       this.History = this.HistoryCon;
       this.Forecast = this.ForecastCon;
 
@@ -229,6 +322,11 @@ export class HomeDSOComponent {
     }
     else if(this.selectedType.code == "Producer")
     {
+      this.max=this.Producermax;
+      this.min= this.Producermin;
+      this.average=this.Produceraverage;
+      this.total=this.Producertotal;
+
       this.History = this.HistoryPro;
       this.Forecast = this.ForecastPro;
 
@@ -247,6 +345,11 @@ export class HomeDSOComponent {
       }
     }
     else{
+      this.max=this.Stockmax;
+      this.min= this.Stockmin;
+      this.average=this.Stockaverage;
+      this.total=this.Stocktotal;
+
       this.History = this.HistoryStock;
       this.Forecast = this.ForecastStock;
 

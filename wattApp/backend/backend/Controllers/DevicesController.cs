@@ -225,7 +225,11 @@ namespace backend.Controllers
         [HttpGet("{userId}/{year}/{month}/{day}/{type}/{size}")]
         public IActionResult GetExrtemeDevice(int userId, int year, int month, int day, string type, string size)
         {
-            var result = _contextDevicesAndData.GetExtremeDevice(userId, year, month, day, type, size);
+            ExtremeDeviceDTO result = _contextDevicesAndData.GetExtremeDevice(userId, year, month, day, type, size);
+            if (result == null || result.DeviceName == "")
+            {
+                return BadRequest();
+            }
             return Ok(
                     new
                     {
@@ -278,24 +282,24 @@ namespace backend.Controllers
                 });
         }
 
-        [HttpGet("getHistoryAndForecastByDayForDevice/{deviceid}")]
-        public IActionResult getHistoryAndForecastByDayForDevice(int deviceid)
+        [HttpGet("getHistoryAndForecastByDayForDevice/{deviceid}/{type}")]
+        public IActionResult getHistoryAndForecastByDayForDevice(int deviceid, string type)
         {
-            var result = _contextDevicesAndData.GetWeekByDayHistoryAndFutureForDevice(deviceid);
+            var result = _contextDevicesAndData.GetWeekByDayHistoryAndFutureForDevice(deviceid, type);
             return Ok(result);
         }
 
-        [HttpGet("getHistoryAndForecastByDayForAllDevices")]
-        public IActionResult getHistoryAndForecastByDayForAllDevices()
+        [HttpGet("getHistoryAndForecastByDayForAllDevices/{type}")]
+        public IActionResult getHistoryAndForecastByDayForAllDevices(string type)
         {
-            var result = _contextDevicesAndData.GetWeekByDayHistoryAndFutureForAllUserDevicesOrAllDevices(-1);
+            var result = _contextDevicesAndData.GetWeekByDayHistoryAndFutureForAllUserDevicesOrAllDevices(-1, type);
             return Ok(result);
         }
 
-        [HttpGet("getHistoryAndForecastByDayForAllUserDevices/{userid}")]
-        public IActionResult getHistoryAndForecastByDayForAllUserDevices(int userid)
+        [HttpGet("getHistoryAndForecastByDayForAllUserDevices/{userid}/{type}")]
+        public IActionResult getHistoryAndForecastByDayForAllUserDevices(int userid, string type)
         {
-            var result = _contextDevicesAndData.GetWeekByDayHistoryAndFutureForAllUserDevicesOrAllDevices(userid);
+            var result = _contextDevicesAndData.GetWeekByDayHistoryAndFutureForAllUserDevicesOrAllDevices(userid, type);
             return Ok(result);
         }
 
@@ -326,6 +330,20 @@ namespace backend.Controllers
         public IActionResult GetPowerUsageOfDeviceForGivenTime(int deviceid, string time)
         {
             var result = _contextDevicesAndData.GetPowerUsageOfDeviceForGivenTime(deviceid, time);
+            return Ok(result);
+        }
+
+        [HttpGet("getMaxMinAvgTotalPowerUsageByTimeForAllDevicesByType/{deviceType}/{timeType}")]
+        public IActionResult GetMaxMinAvgTotalPowerUsageByTimeForAllDevicesByType(string deviceType, string timeType)
+        {
+            var result = _contextDevicesAndData.GetMaxMinAvgTotalPowerUsageByTimeForDevicesByType(-1, deviceType, timeType);
+            return Ok(result);
+        }
+
+        [HttpGet("getMaxMinAvgTotalPowerUsageByTimeForUserDevicesByType/{userid}/{deviceType}/{timeType}")]
+        public IActionResult GetMaxMinAvgTotalPowerUsageByTimeForUserDevicesByType(int userid, string deviceType, string timeType)
+        {
+            var result = _contextDevicesAndData.GetMaxMinAvgTotalPowerUsageByTimeForDevicesByType(userid, deviceType, timeType);
             return Ok(result);
         }
     }

@@ -210,7 +210,8 @@ export class DeviceDesktopComponent implements OnInit {
 
   getHistoryAndForecastByDayForDevice(id:any)
   {
-    this.deviceService.getHistoryAndForecastByDayForDevice(id).subscribe(data => {
+    const type='week';
+    this.deviceService.getHistoryAndForecastByDayForDevice(id,type).subscribe(data => {
       this.loader = false;
       let a = [];
       let b = [];

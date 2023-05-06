@@ -52,7 +52,7 @@
     display:flex;
   }
   .p-dialog {
-    background-color: #222222;
+    background: linear-gradient(180deg, #1e1e1e 50%, #121212 100%) ;
     height:fit-content;
     border-radius: 20px;
     margin-bottom: 30px;
@@ -61,9 +61,7 @@
     margin-top:50px;
     font-size:20px;
     overflow: hidden;
-    min-height: 300px; 
     border:none;
-
     .p-dialog-small{
       width:25%;
     }
@@ -95,7 +93,6 @@
       width:100%;
       max-height:10%;
       position: relative;
-      font-weight: bold;
       padding:20px 20px 20px 20px;
       font-size:24px;
     
@@ -178,15 +175,15 @@
       }    
     }
 
-    button{
+    .p-button{
       border: none;
-      padding: 5px 40px;
+      padding: 8px 20px;
+      min-width: 120px;
       border-radius: 32px;
       display: block;
       margin: auto;
       background: linear-gradient(45deg, #46c5f1 10%, #5245b7 100%);
        color: #fff;
-      font-weight: bold;
     }
 
     button.footer-button {

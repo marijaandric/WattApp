@@ -151,7 +151,8 @@ export class UserDSOComponent implements OnInit{
   
 
   getHistoryAndForecastByDayForAllUserDevices() {
-    this.deviceService.GetHistoryAndForecastByDayForAllUserDevices(this.id).subscribe(data => {
+    const type = 'week';
+    this.deviceService.GetHistoryAndForecastByDayForAllUserDevices(this.id,type).subscribe(data => {
         this.arrayData = data.dates; //.slice(0, 7).concat(data.dates.slice(8));
         
         this.HistoryCon = data.totaldatasConsumer.map((val: number) => +val.toFixed(2));

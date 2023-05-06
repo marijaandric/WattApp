@@ -29,8 +29,8 @@
 .icon {
     width:40px;
     text-align: center;
-    height:40px;
-    background: #46c5f1;
+    height:40px; background: linear-gradient(45deg, #46c5f1 10%, #5245b7 100%);
+    
     margin-left: 10px;
     border-radius: 10px;
     position: relative;
@@ -60,10 +60,10 @@
     width:calc(100% - 60px);
     display: inline-block;
     font-size: 14px;
-    padding:8px 5px 0px 10px;
+    padding:9px 5px 0px 10px;
 
     span {
-        color: #46c5f1;
+        color: #587fb8;
         font-weight:bold;
     }
 }

@@ -289,7 +289,6 @@ export class TitleBarComponent implements OnInit{
     })
 
     console.log(this.signUpForm.value)
-
     this.authService.signUp(this.signUpForm.value).subscribe({
         next:(res => {
           this.signUpForm.reset()

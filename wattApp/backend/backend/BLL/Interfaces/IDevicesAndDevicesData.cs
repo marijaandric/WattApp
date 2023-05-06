@@ -1,4 +1,5 @@
 ﻿using backend.Models.DTOs;
+using Microsoft.AspNetCore.Mvc;
 
 namespace backend.BLL.Interfaces
 {
@@ -9,10 +10,11 @@ namespace backend.BLL.Interfaces
         public List<BigTableContent> GetTableContent(int userId, int year, int month, int day, int time, string type);
         public double getTotalUsageByArea(string area, string type, string timeType);
         public AreaExtreme getExtremeUsageForAreas(string type, string timeType, string minmax);
-        public WeekDatasDTO GetWeekByDayHistoryAndFutureForDevice(int deviceid);
-        public WeekDatasTypesDTO GetWeekByDayHistoryAndFutureForAllUserDevicesOrAllDevices(int userid);
+        public HAFDatasDTO GetWeekByDayHistoryAndFutureForDevice(int deviceid, string type);
+        public HAFDatasTypesDTO GetWeekByDayHistoryAndFutureForAllUserDevicesOrAllDevices(int userid, string type);
         public List<double> GetMonthlyPowerUsageAndProduceOfUser(int userid, int year, int month);
         public double CurrentMonthAllUsersDevicesUsage(string deviceType);
         public Dictionary<string, double> GetPowerUsageOfDeviceForGivenTime(int deviceid, string time);
+        public Dictionary<string, double> GetMaxMinAvgTotalPowerUsageByTimeForDevicesByType(int userid, string deviceType, string timeType);
     }
 }
