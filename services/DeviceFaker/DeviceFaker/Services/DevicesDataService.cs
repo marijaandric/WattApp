@@ -67,7 +67,6 @@ namespace DeviceFaker.Services
                 return _devicesDataCollection.Find(e => e.DeviceID == id && e.Year == year && e.Month == month && e.Day == day && e.Time >= now.Hour).ToList();
         }
 
-
         public List<DevicesData> GetDevicesDataByIdYearMonth(int id, int year, int month)
         {
             DateTime now = DateTime.Now;
@@ -99,7 +98,6 @@ namespace DeviceFaker.Services
         {
             return _devicesDataCollection.Find(e => e.DeviceID == id).ToList();
         }
-
 
         // #### HISTORY AND FORECAST ####
         public List<HAFDatasDTO> GetByDayHistoryAndForecastForDevices(List<List<int>> devicesids, int year, int month, int day, string type)
@@ -375,7 +373,6 @@ namespace DeviceFaker.Services
             return usage;
         }
 
-
         // #### SUMA PO DANU UKUPNA ZA SVE DEVICE-ove ####
         public double GetDayPowerUsageSumOfDevices(List<int> ids, int year, int month, int day)
         {
@@ -625,7 +622,6 @@ namespace DeviceFaker.Services
             return usage;
 
         }
-
 
     }
 }

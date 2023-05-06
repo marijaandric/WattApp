@@ -363,5 +363,47 @@ namespace backend.BLL
 
             return result;
         }
+
+        public Dictionary<string, double> GetMaxMinAvgTotalPowerUsageByTimeForDevice(int deviceid, string timeType)
+        {
+            DateTime now = DateTime.Now;
+
+            List<int> device = new List<int>();
+            device.Add(deviceid);
+
+            List<UsageDTO> usages;
+
+            if (timeType.ToLower() == "week")
+                usages = _contextDataDAL.GetWeekUsageForDevicesByDay(device, now.Year, now.Month, now.Day);
+            else if (timeType.ToLower() == "month")
+                usages = _contextDataDAL.GetMonthUsageForDevicesByDay(device.ToList(), now.Year, now.Month);
+            else
+                usages = _contextDataDAL.GetYearUsageForDevicesByMonth(device.ToList(), now.Year);
+
+            Dictionary<string, double> result = new Dictionary<string, double>();
+            UsageDTO max, min;
+
+            max = usages.OrderByDescending(item => item.usage).First();
+            min = usages.OrderBy(item => item.usage).First();
+            double total = usages.Sum(item => item.usage);
+            double avg = total / usages.Count;
+
+            if (timeType.ToLower() != "year")
+            {
+                result.Add(max.day + "." + max.month, max.usage);
+                result.Add(min.day + "." + min.month, min.usage);
+            }
+            else
+            {
+                result.Add(max.month.ToString(), max.usage);
+                result.Add(min.month.ToString(), min.usage);
+            }
+            result.Add("total", total);
+            result.Add("average", avg);
+
+            return result;
+
+
+        }
     }
 }

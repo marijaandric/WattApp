@@ -346,5 +346,13 @@ namespace backend.Controllers
             var result = _contextDevicesAndData.GetMaxMinAvgTotalPowerUsageByTimeForDevicesByType(userid, deviceType, timeType);
             return Ok(result);
         }
+
+        [HttpGet("getMaxMinAvgTotalPowerUsageByTimeForDevice/{deviceid}/{timeType}")]
+        public IActionResult GetMaxMinAvgTotalPowerUsageByTimeForDevice(int deviceid, string timeType)
+        {
+            var result = _contextDevicesAndData.GetMaxMinAvgTotalPowerUsageByTimeForDevice(deviceid, timeType);
+            return Ok(result);
+        }
+
     }
 }
