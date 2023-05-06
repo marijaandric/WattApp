@@ -137,6 +137,8 @@ export class HomeDSOComponent {
     this.getHistoryAndForecastByDayForAllDevices();
     this.getdayPowerPrice();
     this.getConsumergetMaxMinAvgTotalPowerUsageByTimeForAllDevicesByType();
+    this.getProducergetMaxMinAvgTotalPowerUsageByTimeForAllDevicesByType();
+    this.getStockgetMaxMinAvgTotalPowerUsageByTimeForAllDevicesByType();
   }
 
   clear(dtUsers: any) {
@@ -234,13 +236,61 @@ export class HomeDSOComponent {
       this.min= this.Consumermin;
       this.average=this.Consumeraverage;
       this.total=this.Consumertotal;
-      
+
       // console.log(this.max);
       // console.log(this.min);
       // console.log(this.total);
       // console.log(this.average);
 
   });
+}
+
+Producertotal: any;
+Produceraverage: any;
+Producermin: any;
+Producermax: any;
+
+getProducergetMaxMinAvgTotalPowerUsageByTimeForAllDevicesByType() {
+  const deviceType = 'Producer';
+  const timeType = 'week';
+
+  this.deviceService.getMaxMinAvgTotalPowerUsageByTimeForAllDevicesByType(deviceType,timeType).subscribe(data => {
+    const keys = Object.keys(data);
+    this.Producermax = data[keys[0]].toFixed(2);
+    this.Producermin = data[keys[1]].toFixed(2);
+    this.Producertotal=data.total.toFixed(2);
+    this.Produceraverage=data.average.toFixed(2);
+ 
+    // console.log(this.max);
+    // console.log(this.min);
+    // console.log(this.total);
+    // console.log(this.average);
+
+});
+}
+
+Stocktotal: any;
+Stockaverage: any;
+Stockmin: any;
+Stockmax: any;
+
+getStockgetMaxMinAvgTotalPowerUsageByTimeForAllDevicesByType() {
+  const deviceType = 'Stock';
+  const timeType = 'week';
+
+  this.deviceService.getMaxMinAvgTotalPowerUsageByTimeForAllDevicesByType(deviceType,timeType).subscribe(data => {
+    const keys = Object.keys(data);
+    this.Stockmax = data[keys[0]].toFixed(2);
+    this.Stockmin = data[keys[1]].toFixed(2);
+    this.Stocktotal=data.total.toFixed(2);
+    this.Stockaverage=data.average.toFixed(2);
+ 
+    // console.log(this.max);
+    // console.log(this.min);
+    // console.log(this.total);
+    // console.log(this.average);
+
+});
 }
 
 
@@ -274,6 +324,11 @@ export class HomeDSOComponent {
     }
     else if(this.selectedType.code == "Producer")
     {
+      this.max=this.Producermax;
+      this.min= this.Producermin;
+      this.average=this.Produceraverage;
+      this.total=this.Producertotal;
+
       this.History = this.HistoryPro;
       this.Forecast = this.ForecastPro;
 
@@ -292,6 +347,11 @@ export class HomeDSOComponent {
       }
     }
     else{
+      this.max=this.Stockmax;
+      this.min= this.Stockmin;
+      this.average=this.Stockaverage;
+      this.total=this.Stocktotal;
+
       this.History = this.HistoryStock;
       this.Forecast = this.ForecastStock;
 
