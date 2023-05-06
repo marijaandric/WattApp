@@ -257,7 +257,7 @@ namespace backend.Controllers
         public IActionResult getTotalUsageByArea(string area, string devicetype, string timeType)
         {
 
-            var result = _contextDevicesAndData.getTotalUsageByArea(area, devicetype, timeType);
+            var result = _contextDevicesAndData.GetTotalUsageByArea(area, devicetype, timeType);
 
             return Ok(
                 new
@@ -272,7 +272,7 @@ namespace backend.Controllers
         public IActionResult getExtremeUsageForAreas(string devicetype, string timeType, string minmax)
         {
 
-            var result = _contextDevicesAndData.getExtremeUsageForAreas(devicetype, timeType, minmax);
+            var result = _contextDevicesAndData.GetExtremeUsageForAreas(devicetype, timeType, minmax);
 
             return Ok(
                 new
@@ -351,6 +351,13 @@ namespace backend.Controllers
         public IActionResult GetMaxMinAvgTotalPowerUsageByTimeForDevice(int deviceid, string timeType)
         {
             var result = _contextDevicesAndData.GetMaxMinAvgTotalPowerUsageByTimeForDevice(deviceid, timeType);
+            return Ok(result);
+        }
+
+        [HttpGet("getPowerUsageForAllTypesForArea/{area}/{timetype}")]
+        public IActionResult GetPowerUsageForAllTypesForArea(string area, string timetype)
+        {
+            var result = _contextDevicesAndData.GetPowerUsageForAllTypesForArea(area, timetype);
             return Ok(result);
         }
 

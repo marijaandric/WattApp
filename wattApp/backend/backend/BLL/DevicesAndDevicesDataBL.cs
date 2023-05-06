@@ -74,7 +74,9 @@ namespace backend.BLL
             return content;
         }
 
-        public AreaExtreme getExtremeUsageForAreas(string devicetype, string timeType, string minmax)
+
+        //optimizovano kao, ali moze bolje ako zatreba (da se odjednom salju sva naselja)
+        public AreaExtreme GetExtremeUsageForAreas(string devicetype, string timeType, string minmax)
         {
             List<User> users = _contextUserDAL.getUsers();
             List<string> areas = users.Select(d => d.Area).ToList().Distinct().ToList();
@@ -90,7 +92,7 @@ namespace backend.BLL
             double areaTotalUsage;
             foreach (string area in areas)
             {
-                areaTotalUsage = getTotalUsageByArea(area, devicetype, timeType);
+                areaTotalUsage = GetTotalUsageByArea(area, devicetype, timeType);
                 if (areaTotalUsage > max)
                 {
                     max = areaTotalUsage;
@@ -111,7 +113,7 @@ namespace backend.BLL
         }
 
         //optimizovano
-        public double getTotalUsageByArea(string area, string devicetype, string timeType)
+        public double GetTotalUsageByArea(string area, string devicetype, string timeType)
         {
             DateTime now = DateTime.Now;
             List<User> users = _contextUserDAL.GetUsersByArea(area);
@@ -405,6 +407,18 @@ namespace backend.BLL
             return result;
 
 
+        }
+
+        public Dictionary<string, double> GetPowerUsageForAllTypesForArea(string area, string timetype)
+        {
+
+            Dictionary<string, double> result = new Dictionary<string, double>();
+
+            result.Add("Consumer", GetTotalUsageByArea(area, "Consumer", timetype));
+            result.Add("Producer", GetTotalUsageByArea(area, "Producer", timetype));
+            result.Add("Stock", GetTotalUsageByArea(area, "Stock", timetype));
+
+            return result;
         }
     }
 }

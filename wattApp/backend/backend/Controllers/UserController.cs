@@ -137,6 +137,22 @@ namespace backend.Controllers
             return users;
         }
 
+        [HttpGet("getAreas/")]
+        public List<string> GetAreas()
+        {
+            var areas = _context.GetAreas();
+
+            return areas;
+        }
+
+        [HttpGet("getNumberOfUsersByArea/")]
+        public Dictionary<string, int> GetNumberOfUsersByArea()
+        {
+            var areas = _context.GetNumberOfUsersByArea();
+
+            return areas;
+        }
+
         [HttpPost("send-reset-email/{email}")]
         public async Task<IActionResult> ResetPasswordEmail(string email)
         { 
