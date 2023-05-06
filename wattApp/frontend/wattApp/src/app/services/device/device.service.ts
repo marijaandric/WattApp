@@ -105,9 +105,9 @@ export class DeviceService {
     return this.http.put<DeviceDTO>(this.baseUrl + device.id, device);
   }
 
-  getHistoryAndForecastByDayForDevice(id :number)
+  getHistoryAndForecastByDayForDevice(id :number, type:string)
   {
-    return this.http.get<any>(this.baseUrl+"getHistoryAndForecastByDayForDevice/"+id)
+    return this.http.get<any>(this.baseUrl+"getHistoryAndForecastByDayForDevice/"+id+"/"+type)
   }
 
   GetNumberOfUserDevices(id :number)
