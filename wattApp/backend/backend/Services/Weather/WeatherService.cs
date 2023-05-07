@@ -22,16 +22,24 @@ namespace backend.Services.Weather
             Console.WriteLine(responseBody);
             JObject jsonObject = JObject.Parse(responseBody);
 
+            string cloudcoverapi = "https://api.open-meteo.com/v1/forecast?latitude=44.02&longitude=20.92&hourly=cloudcover";
+            string cloudResponseBody = Helpers.HttpRequest.SendHttpRequestForWeather(cloudcoverapi);
+            Console.WriteLine("--------------------");
+            Console.WriteLine(cloudResponseBody);
+            JObject cloundJsonObject = JObject.Parse(cloudResponseBody);
+
             // Extracting the values for the time and temperature_2m keys
             JArray timeArray = (JArray)jsonObject["hourly"]["time"];
             JArray temperatureArray = (JArray)jsonObject["hourly"]["temperature_2m"];
+            JArray cloudCoverArray = (JArray)cloundJsonObject["hourly"]["cloudcover"];
 
             // Converting the values to lists of strings and floats respectively
             List<string> timeList = timeArray.Select(t => (string)t).ToList();
             List<float> temperatureList = temperatureArray.Select(t => (float)t).ToList();
-            
-            var weatherTable = _context.Weathers.ToList();
-            _context.Weathers.RemoveRange(weatherTable);
+            List<int> cloudCoverList = cloudCoverArray.Select(t => (int)t).ToList();
+
+            var weatherTable = _context.Weather.ToList();
+            _context.Weather.RemoveRange(weatherTable);
             _context.SaveChanges();
 
             for(int i = 0; i < timeList.Count; i++)
@@ -48,9 +56,11 @@ namespace backend.Services.Weather
                 weather.Year = year;
                 weather.Month = month;
                 weather.Day = day;
-                weather.Time = $"{hour}:{minute}";
+                weather.Time = hour;
                 weather.Temperature = temperatureList[i];
-                _context.Weathers.AddAsync(weather);
+                weather.CloudCover = cloudCoverList[i];
+
+                _context.Weather.AddAsync(weather);
                 _context.SaveChangesAsync();
             }
 

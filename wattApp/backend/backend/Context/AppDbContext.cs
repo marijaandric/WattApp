@@ -9,7 +9,7 @@ namespace backend.Context
 
         public DbSet<User> Users { get; set; }
         public DbSet<Devices> Devices { get; set; }
-        public DbSet<Weather> Weathers { get; set; }
+        public DbSet<Weather> Weather { get; set; }
         public DbSet<DsoNews> DsoNews { get; set; }
         public DbSet<Images> Images { get; set; }
 
