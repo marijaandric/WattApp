@@ -25,11 +25,15 @@ button {
     color: #fff;
     font-weight:bolder;
     box-shadow: 2px 2px 10px black;
-  font-size: 17px;
+    font-size: 16px;
   color:white;
-  padding:7px 40px;
+  padding:8px 20px;
   }
 
+  h6 {
+    padding-left:10px;
+    padding-right:10px;
+}
 
 button:hover{
     background: #1f221f;
@@ -39,6 +43,7 @@ button:hover{
 
 
 li{
+    padding-left: 0rem !important;
     padding:10px 10px;
     color: white;
     background-color: transparent;
