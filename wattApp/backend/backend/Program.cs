@@ -28,6 +28,7 @@ builder.Services.AddSwaggerGen();
 //User
 builder.Services.AddScoped<IUserBL, UserBL>();
 builder.Services.AddScoped<IUserDAL, UserDAL>();
+builder.Services.AddScoped<UsersPaginationProvider, UsersPaginationProviderImpl>();
 
 //Devices
 builder.Services.AddScoped<IDevicesBL, DevicesBL>();
