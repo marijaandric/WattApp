@@ -110,5 +110,11 @@ namespace backend.DAL
             _context.SaveChangesAsync();
         }
 
+        public List<int> GetListOfFakeIDsForUserDevices(int userid)
+        {
+            var devices = _context.Devices.Where(d => d.UserID == userid).ToList();
+            return devices.Select(d => d.FakeID).ToList();
+        }
+
     }
 }
