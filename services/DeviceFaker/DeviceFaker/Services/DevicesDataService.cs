@@ -111,6 +111,8 @@ namespace DeviceFaker.Services
                     datas.Add(GetWeekHistoryAndForecastPowerUsageOfDevices(devicesids[i], year, month, day));
                 else if (type.ToLower() == "year")
                     datas.Add(GetYearHistoryAndForecastPowerUsageOfDevices(devicesids[i], year));
+                else if(type.ToLower() == "monthhistory")
+                    datas.Add(GetMonthHistory2MonthsPowerUsageOfDevices(devicesids[i], year, month));
             }
             return datas;
         }
@@ -118,7 +120,7 @@ namespace DeviceFaker.Services
         // #### WEEK HISTORY AND FORECAST ####
         public HAFDatasDTO GetWeekHistoryAndForecastPowerUsageOfDevices(List<int> ids, int year, int month, int day)
         {
-            HAFDatasDTO currentMonth = GetMonthHistoryAndForecastPowerUsageOfDevicesUseForWeek(ids, year, month);
+            HAFDatasDTO currentMonth = GetMonthHistoryAndForecastPowerUsageOfDevices(ids, year, month);
             HAFDatasDTO result = new HAFDatasDTO();
             result.dates = new List<string>();
             result.datas = new List<double>();
@@ -126,7 +128,7 @@ namespace DeviceFaker.Services
             {
                 // u slucaju da moram da idem u prethodni mesec
 
-                HAFDatasDTO previousMonth = GetMonthHistoryAndForecastPowerUsageOfDevicesUseForWeek(ids, year, month - 1);
+                HAFDatasDTO previousMonth = GetMonthHistoryAndForecastPowerUsageOfDevices(ids, year, month - 1);
                 int mCount = previousMonth.dates.Count;
 
                 //for previous month
@@ -143,7 +145,7 @@ namespace DeviceFaker.Services
             else if(day + 7 > currentMonth.datas.Count)
             {
                 // u slucaju da moram da idem u sledeci mesec
-                HAFDatasDTO nextMonth = GetMonthHistoryAndForecastPowerUsageOfDevicesUseForWeek(ids, year, month + 1);
+                HAFDatasDTO nextMonth = GetMonthHistoryAndForecastPowerUsageOfDevices(ids, year, month + 1);
                 int mCount = currentMonth.dates.Count;
 
                 int start = day - 6 - 1;
@@ -172,7 +174,7 @@ namespace DeviceFaker.Services
         }
 
         // #### MONTH HISTORY AND FORECAST ####
-        public HAFDatasDTO GetMonthHistoryAndForecastPowerUsageOfDevices(List<int> ids, int year, int month)
+        public HAFDatasDTO GetMonthHistory2MonthsPowerUsageOfDevices(List<int> ids, int year, int month)
         {
             DateTime now = DateTime.Now;
 
@@ -184,7 +186,7 @@ namespace DeviceFaker.Services
             {
                 filter = Builders<DevicesData>.Filter.And(
                 Builders<DevicesData>.Filter.In(x => x.DeviceID, ids),
-                Builders<DevicesData>.Filter.Where(x => x.Year == year && (x.Month == month || x.Month == month - 1) ));
+                Builders<DevicesData>.Filter.Where(x => x.Year == year && ((x.Month == month && x.Day <= now.Day) || ( x.Month == month - 1 && x.Day >= now.Day )) ));
             }
 
             var matchStage = new BsonDocument("$match", filter.Render(BsonSerializer.SerializerRegistry.GetSerializer<DevicesData>(), BsonSerializer.SerializerRegistry));
@@ -223,7 +225,7 @@ namespace DeviceFaker.Services
         }
 
 
-        public HAFDatasDTO GetMonthHistoryAndForecastPowerUsageOfDevicesUseForWeek(List<int> ids, int year, int month)
+        public HAFDatasDTO GetMonthHistoryAndForecastPowerUsageOfDevices(List<int> ids, int year, int month)
         {
             DateTime now = DateTime.Now;
 
