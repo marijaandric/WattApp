@@ -137,6 +137,9 @@ export class UserDSOComponent implements OnInit{
   ngOnInit(): void {
     this.getNews();
     this.getHistoryAndForecastByDayForAllUserDevices();
+    this.getConsumergetMaxMinAvgTotalPowerUsageByTimeForAllDevicesByType();
+   this.getProducergetMaxMinAvgTotalPowerUsageByTimeForAllDevicesByType();
+   this.getStockgetMaxMinAvgTotalPowerUsageByTimeForAllDevicesByType();
   }
 
   getUser()
@@ -193,12 +196,108 @@ export class UserDSOComponent implements OnInit{
         }
       });
   }
+  total: any;
+  average: any;
+  min: any;
+  max: any;
+
+  TitleMin='Minimal consumed electricity this week';
+  TittleMax='Maximum consumed electricity this week';
+  TitleAverage='Average consumed electricity this week';
+  TitleTotal='Total consumed electricity this week';
+
+  Consumertotal: any;
+  Consumeraverage: any;
+  Consumermin: any;
+  Consumermax: any;
+
+  getConsumergetMaxMinAvgTotalPowerUsageByTimeForAllDevicesByType() {
+    const deviceType = 'Consumer';
+    const timeType = 'week';
+
+    this.deviceService.getMaxMinAvgTotalPowerUsageByTimeForUserDevicesByType(this.id,deviceType,timeType).subscribe(data => {
+      const keys = Object.keys(data);
+      this.Consumermax = data[keys[0]].toFixed(2);
+      this.Consumermin = data[keys[1]].toFixed(2);
+      this.Consumertotal=data.total.toFixed(2);
+      this.Consumeraverage=data.average.toFixed(2);
+
+      this.max=this.Consumermax;
+      this.min= this.Consumermin;
+      this.average=this.Consumeraverage;
+      this.total=this.Consumertotal;
+
+      // console.log(this.max);
+      // console.log(this.min);
+      // console.log(this.total);
+      // console.log(this.average);
+
+  });
+}
+
+Producertotal: any;
+Produceraverage: any;
+Producermin: any;
+Producermax: any;
+
+getProducergetMaxMinAvgTotalPowerUsageByTimeForAllDevicesByType() {
+  const deviceType = 'Producer';
+  const timeType = 'week';
+
+  this.deviceService.getMaxMinAvgTotalPowerUsageByTimeForUserDevicesByType(this.id,deviceType,timeType).subscribe(data => {
+    const keys = Object.keys(data);
+    this.Producermax = data[keys[0]].toFixed(2);
+    this.Producermin = data[keys[1]].toFixed(2);
+    this.Producertotal=data.total.toFixed(2);
+    this.Produceraverage=data.average.toFixed(2);
+ 
+    // console.log(this.max);
+    // console.log(this.min);
+    // console.log(this.total);
+    // console.log(this.average);
+
+});
+}
+
+Stocktotal: any;
+Stockaverage: any;
+Stockmin: any;
+Stockmax: any;
+
+getStockgetMaxMinAvgTotalPowerUsageByTimeForAllDevicesByType() {
+  const deviceType = 'Stock';
+  const timeType = 'week';
+
+  this.deviceService.getMaxMinAvgTotalPowerUsageByTimeForUserDevicesByType(this.id,deviceType,timeType).subscribe(data => {
+    const keys = Object.keys(data);
+    this.Stockmax = data[keys[0]].toFixed(2);
+    this.Stockmin = data[keys[1]].toFixed(2);
+    this.Stocktotal=data.total.toFixed(2);
+    this.Stockaverage=data.average.toFixed(2);
+ 
+    // console.log(this.max);
+    // console.log(this.min);
+    // console.log(this.total);
+    // console.log(this.average);
+
+});
+}
 
   dropdownChange()
   {
     console.log(this.selectedType);
     if(this.selectedType.code == "Consumer")
     {
+      this.TitleMin='Minimal consumed electricity this week';
+      this.TittleMax='Maximum consumed electricity this week';
+      this.TitleAverage='Average consumed electricity this week';
+      this.TitleTotal='Total consumed electricity this week';
+
+      this.max=this.Consumermax;
+      this.min= this.Consumermin;
+      this.average=this.Consumeraverage;
+      this.total=this.Consumertotal;
+
       this.History = this.HistoryCon;
       this.Forecast = this.ForecastCon;
 
@@ -218,6 +317,16 @@ export class UserDSOComponent implements OnInit{
     }
     else if(this.selectedType.code == "Producer")
     {
+      this.TitleMin='Minimal produced electricity this week';
+      this.TittleMax='Maximum produced electricity this week';
+      this.TitleAverage='Average produced electricity this week';
+      this.TitleTotal='Total produced electricity this week';
+
+      this.max=this.Producermax;
+      this.min= this.Producermin;
+      this.average=this.Produceraverage;
+      this.total=this.Producertotal;
+
       this.History = this.HistoryPro;
       this.Forecast = this.ForecastPro;
 
@@ -236,6 +345,16 @@ export class UserDSOComponent implements OnInit{
       }
     }
     else{
+      this.TitleMin='Minimal stocked electricity this week';
+      this.TittleMax='Maximum stocked electricity this week';
+      this.TitleAverage='Average stocked electricity this week';
+      this.TitleTotal='Total stocked electricity this week';
+      
+      this.max=this.Stockmax;
+      this.min= this.Stockmin;
+      this.average=this.Stockaverage;
+      this.total=this.Stocktotal;
+      
       this.History = this.HistoryStock;
       this.Forecast = this.ForecastStock;
 
