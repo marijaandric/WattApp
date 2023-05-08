@@ -21,28 +21,23 @@
     display: inline-block;
     position:relative;
     flex-direction: row;
+    height:87%;
 }
 
 .carousel {
     width:100% !important;
 }
-
-@media only screen and (max-width: 979px) {
-    .carousel-pc {
-        display: none;
-    }
-    .promotion {
-        position: absolute;
-    }
+.carousels {
+    margin-top:32px;
 }
-
-@media only screen and (min-width: 979px) {
-    .promotion {
-
-        height:87%;
+.switch {
+    margin-bottom: 32px;
+}
+@media only screen and (max-width: 979px) {
+    .carousels {
+        margin-top:20px;
     }
-
-    .carousel {
-        display: none;
+    .switch {
+        margin-bottom: 20px;
     }
 }

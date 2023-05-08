@@ -2,6 +2,13 @@ import { Component, Input, OnInit } from '@angular/core';
 import { DsonewsService } from 'src/app/services/dsonews/dsonews.service';
 import { CarouselModule } from 'primeng/carousel';
 import { DeviceDTO } from 'src/app/dtos/DeviceDTO';
+
+
+interface SwitchOption {
+  label: string;
+  value: boolean;
+}
+
 @Component({
   selector: 'app-news',
   templateUrl: './news.component.html',
@@ -12,6 +19,14 @@ export class NewsComponent implements OnInit{
   news: any[] = [];
   newsImportant: any[] = [];
   newsRegular: any[] = [];
+
+  responsiveOptions: any[] = [];
+  switchValue: boolean = true;
+
+  switchOptions: SwitchOption[] = [
+    {label: 'My news', value: true},
+    {label: 'All news', value: false}
+  ];
 
   constructor(private dsonew : DsonewsService) {
   }
@@ -53,6 +68,23 @@ export class NewsComponent implements OnInit{
   ngOnInit(): void {
     this.getNews();
     
+    this.responsiveOptions = [
+      {
+          breakpoint: '1400px',
+          numVisible: 3,
+          numScroll: 3
+      },
+      {
+          breakpoint: '1220px',
+          numVisible: 2,
+          numScroll: 2
+      },
+      {
+          breakpoint: '900px',
+          numVisible: 1,
+          numScroll: 1
+      }
+  ];
   }
 
 }

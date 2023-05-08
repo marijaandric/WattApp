@@ -8,36 +8,14 @@
       <div class="image-div">
       </div>
 
-      <div class="carousels">
-        <div class="carousel-pc">
-          <h3 style="margin:0px 0px 10px 10px;">News</h3> 
-          <p-carousel [value] = "newsImportant" [circular]="false" [numVisible]="4" [autoplayInterval]="4000" [numScroll]="4">
-            <ng-template let-news pTemplate="new" (*ngIf="news.title == 'Important'")>
-              <app-promotion [subTitle]="news.title"
-              [Title]="news.content" 
-              [Status]="news.priority"
-              [isBlue]="true" [isBgBlue]="true" class="promotion">
-              </app-promotion>
-            </ng-template>
-          </p-carousel>
-        </div>
+      <div class="carousels" >
+        <div class="switch">
+          <p-selectButton class="flexRow width__fit-content margin-left__auto" [options]="switchOptions" [(ngModel)]="switchValue" optionLabel="label" optionValue="value"></p-selectButton>
 
-        <div class="carousel-pc">
-          <h3 style="margin:0px 0px 10px 10px;">News</h3> 
-          <p-carousel [value] = "newsRegular" [circular]="false" [numVisible]="4" [autoplayInterval]="4000" [numScroll]="4">
-            <ng-template let-news pTemplate="new">
-              <app-promotion [subTitle]="news.title"
-              [Title]="news.content" 
-              [Status]="news.priority"
-              [isBlue]="true" [isBgBlue]="true" class="promotion">
-              </app-promotion>
-            </ng-template>
-          </p-carousel>
         </div>
-        
-        <div class="carousel"> 
-          <h3 style="margin:0px 0px 10px 10px;">News</h3> 
-          <p-carousel [value] = "newsRegular" [circular]="false" [numVisible]="1" [autoplayInterval]="4000" [numScroll]="1">
+        <div class="carousel-pc">
+          <h4 style="margin:0px 0px 10px 10px;">Important news</h4> 
+          <p-carousel [value] = "newsImportant" [circular]="false" [numVisible]="4" [autoplayInterval]="4000" [numScroll]="4" [responsiveOptions]="responsiveOptions">
             <ng-template let-news pTemplate="new">
               <app-promotion [subTitle]="news.title"
               [Title]="news.content" 
@@ -48,10 +26,9 @@
           </p-carousel>
         </div>
 
-        
-        <div class="carousel"> 
-          <h3 style="margin:0px 0px 10px 10px;">News</h3> 
-          <p-carousel [value] = "newsRegular" [circular]="false" [numVisible]="1" [autoplayInterval]="4000" [numScroll]="1">
+        <div class="carousel-pc">
+          <h4 style="margin:0px 0px 10px 10px;">Regular news</h4> 
+          <p-carousel [value] = "newsRegular" [circular]="false" [numVisible]="4" [autoplayInterval]="4000" [numScroll]="4" [responsiveOptions]="responsiveOptions">
             <ng-template let-news pTemplate="new">
               <app-promotion [subTitle]="news.title"
               [Title]="news.content" 
