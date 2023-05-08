@@ -283,23 +283,23 @@ namespace backend.Controllers
         }
 
         [HttpGet("getHistoryAndForecastByDayForDevice/{deviceid}/{type}")]
-        public IActionResult getHistoryAndForecastByDayForDevice(int deviceid, string type)
+        public IActionResult GetHistoryAndForecastByDayForDevice(int deviceid, string type)
         {
-            var result = _contextDevicesAndData.GetWeekByDayHistoryAndFutureForDevice(deviceid, type);
+            var result = _contextDevicesAndData.GetHistoryAndForecastByDayForDevice(deviceid, type);
             return Ok(result);
         }
 
         [HttpGet("getHistoryAndForecastByDayForAllDevices/{type}")]
-        public IActionResult getHistoryAndForecastByDayForAllDevices(string type)
+        public IActionResult GetHistoryAndForecastByDayForAllDevices(string type)
         {
-            var result = _contextDevicesAndData.GetWeekByDayHistoryAndFutureForAllUserDevicesOrAllDevices(-1, type);
+            var result = _contextDevicesAndData.GetHistoryAndForecastByDayForAllDevices(-1, type);
             return Ok(result);
         }
 
         [HttpGet("getHistoryAndForecastByDayForAllUserDevices/{userid}/{type}")]
-        public IActionResult getHistoryAndForecastByDayForAllUserDevices(int userid, string type)
+        public IActionResult GetHistoryAndForecastByDayForAllUserDevices(int userid, string type)
         {
-            var result = _contextDevicesAndData.GetWeekByDayHistoryAndFutureForAllUserDevicesOrAllDevices(userid, type);
+            var result = _contextDevicesAndData.GetHistoryAndForecastByDayForAllDevices(userid, type);
             return Ok(result);
         }
 
