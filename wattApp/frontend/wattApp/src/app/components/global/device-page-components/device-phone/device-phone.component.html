@@ -11,7 +11,7 @@
           </app-widget>
           <app-widget  [subTitle]="SubTitleYear" [Title]="Year+' kW/h'" [isOrange]="true" [isBgOrange]="true" class="widget">
           </app-widget>
-          <app-widget  [subTitle]="SubTitleAll" [Title]="Year+' kW/h'" [isBlue]="true" [isBgBlue]="true" class="widget">
+          <app-widget  [subTitle]="SubTitleAll" [Title]="Year+' kW/h'" [isBlue]="true" [isBgBlue]="true" class="widget" >
           </app-widget>
         </div>
       </div> 
@@ -126,15 +126,12 @@
     </div>
 
 
-    <div class="circles">    
+    <div class="circles" >    
         <div class="card-2">
             <div class="card-2-1" >
                 <div class="stats">
                     <div style="width:100%; height:fit-content; position:relative;">
-                        <div class="icon">
-                            <span><i class="fa-solid fa-arrow-trend-up"></i></span>
-                        </div>
-
+                        
                         <div class="subtitle-card">
                             <span>{{TitleMin}}</span>
                         </div>
@@ -157,10 +154,7 @@
             <div class="card-2-2" >
                 <div class="stats">
                     <div style="width:100%; height:fit-content; position:relative;">
-                        <div class="icon">
-                            <span><i class="fa-solid fa-arrow-trend-down"></i></span>
-                        </div>
-
+                        
                         <div class="subtitle-card">
                             <span>{{TittleMax}}</span>
                         </div>
@@ -187,10 +181,7 @@
             <div class="card-2-1" >
                 <div class="stats">
                     <div style="width:100%; height:fit-content; position:relative;">
-                        <div class="icon">
-                            <span><i class="fa-solid fa-arrow-trend-down"></i></span>
-                        </div>
-
+                       
                         <div class="subtitle-card">
                             <span>{{TitleAverage}}</span>
                         </div>
@@ -213,9 +204,7 @@
             <div  class="card-2-2" >
                 <div class="stats">
                     <div style="width:100%; height:fit-content; position:relative;">
-                        <div class="icon">
-                            <span><i class="fa-solid fa-arrow-trend-up"></i></span>
-                        </div>
+                      
 
                         <div class="subtitle-card">
                             <span>{{TitleTotal}}</span>
@@ -238,8 +227,8 @@
         </div>
     </div>
     
-    <div class="twoCharts" *ngIf="tableHiFWeek">
-        <p-selectButton class="flexRow width__fit-content margin-left__auto" style="margin-bottom:16px;margin-top:16px;" [options]="switchOptions" [(ngModel)]="switchValue" optionLabel="label" optionValue="value"></p-selectButton>
+    <div class="twoCharts" *ngIf="tableHiFWeek" style="margin-top:20px !important;position:relative">
+        <p-selectButton class="flexRow width__fit-content margin-left__auto" style="margin-bottom:16px;margin-top:20px !important;position:relative" [options]="switchOptions" [(ngModel)]="switchValue" optionLabel="label" optionValue="value"></p-selectButton>
         <app-history-line-chart #myChart2 class="handf" *ngIf="switchValue == true" [array] = 'miniHistory' [array2] = 'miniarrayData1'></app-history-line-chart>
         <app-forecast-line-chart #myChart1 class="handf" *ngIf="switchValue == false"  [array]="miniForecast" [array2] = 'miniarrayData2'></app-forecast-line-chart>
     </div>

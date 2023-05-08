@@ -144,7 +144,7 @@
     font-weight:bold;
   }
   .subtitle-card {
-    width:60%;
+    width:100%;
     display: inline-block;
     font-size: 14px;
     padding:8px 5px 0px 10px;
@@ -508,6 +508,22 @@
       display:none;
     }
     
+
+    .widgets{
+      overflow-x: scroll;
+      display: flex;
+      flex-wrap: nowrap;
+    }
+    .widget{
+      margin-right: 10px;
+      margin-left: 10px;
+      display: inline-block;
+      vertical-align: top;
+    }
+    .widgets {
+      margin-bottom:20px;
+    }
+
     .device-information {
       margin-top: 40px;
     }

@@ -87,6 +87,7 @@
     padding-left:10px;
 
     span {
+        font-weight: bolder;
         color:white;
         font-family: 'Mandali', sans-serif;
     }
@@ -130,5 +131,13 @@
 
   .subtitle-2 {
     margin-top:0px;
+  }
+
+  .icon {
+    display: none;
+  }
+
+  .subtitle-card {
+    width:100%;
   }
 }
