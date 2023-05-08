@@ -322,8 +322,6 @@ export class DeviceDesktopComponent implements OnInit {
 
         this.History = this.HistoryCon;
         this.Forecast = this.ForecastCon;
-        this.name1="Consumption history";
-        this.name2="Consumption forecast";
 
         this.color1 = '#46c5f1';
         this.color2 = '#88dbf6';
@@ -476,9 +474,6 @@ isForecastTrue = true;
         this.History = this.HistoryCon;
         this.Forecast = this.ForecastCon;
 
-        this.name1="Consumption history";
-        this.name2="Consumption forecast";
-
         this.color1 = '#46c5f1';
         this.color2 = '#88dbf6';
 
@@ -492,9 +487,6 @@ isForecastTrue = true;
         
           this.History = this.HistoryCon;
           this.Forecast = this.ForecastCon;
-    
-          this.name1="Consumption history";
-          this.name2="Consumption forecast";
     
           this.dates = this.arrayData;
           
@@ -516,9 +508,7 @@ isForecastTrue = true;
 
         this.dates = this.arrayData3;
   
-        this.name1="Consumption history";
-        this.name2="Consumption forecast";
-
+        
         this.hif = Array.from({length: 3}, () => ({history: 0, forecast: 0, date1: [], date2: []}));
         for(let i = 0;i<this.History.length;i++)
         {
