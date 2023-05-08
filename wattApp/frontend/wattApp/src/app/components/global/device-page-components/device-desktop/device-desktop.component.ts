@@ -645,12 +645,20 @@ isForecastTrue = true;
   SubTitleYear!:String;
   SubTitleAll!:String;
 
+  dataMin: any;
+dataMax: any;
+
+
   getMaxMinAvgTotalPowerUsageByTimeForDevice() {
     const id = this.device.id;
     const timeType = this.selectedDate.code;
 
+
+
     this.deviceService.getMaxMinAvgTotalPowerUsageByTimeForDevice(id,timeType).subscribe(data => {
       const keys = Object.keys(data);
+      this.dataMin = keys[1];
+      this.dataMax = keys[0];
 
       this.Consumermax = data[keys[0]].toFixed(2);
       this.Consumermin = data[keys[1]].toFixed(2);

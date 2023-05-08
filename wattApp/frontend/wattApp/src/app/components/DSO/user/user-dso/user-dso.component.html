@@ -10,10 +10,10 @@
 
           <div class="stats-cards">
         
-            <app-stats-card class="stats-card" [isBgBlue]="true" [Title]="TitleMin" [subTitle]="'23kWh (2%)'" [value]="min"></app-stats-card>
-            <app-stats-card class="stats-card" [isBgPurple]="true" [Title]="TittleMax" [subTitle]="'23kWh (2%)'" [value]="max"></app-stats-card>
-            <app-stats-card class="stats-card" [isBgPink]="true" [Title]="TitleAverage" [subTitle]="'23kWh (2%)'" [value]="average"></app-stats-card>
-            <app-stats-card class="stats-card" [isBgOrange]="true" [Title]="TitleTotal" [subTitle]="'23kWh (2%)'" [value]="total"></app-stats-card>
+            <app-stats-card class="stats-card" [isBgBlue]="true" [Title]="TitleMin" [subTitle]="'Of the day: ' + dataMin"[value]="min"></app-stats-card>
+            <app-stats-card class="stats-card" [isBgPurple]="true" [Title]="TittleMax" [subTitle]="'Of the day: ' + dataMax" [value]="max"></app-stats-card>
+            <app-stats-card class="stats-card" [isBgPink]="true" [Title]="TitleAverage"  [value]="average"></app-stats-card>
+            <app-stats-card class="stats-card" [isBgOrange]="true" [Title]="TitleTotal"  [value]="total"></app-stats-card>
            
           </div>
           <!--<div class="carousel"> 

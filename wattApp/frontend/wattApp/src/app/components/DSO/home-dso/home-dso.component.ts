@@ -319,12 +319,19 @@ export class HomeDSOComponent {
 
   timeType:any;
 
+  dataMin: any;
+dataMax: any;
+
   getConsumergetMaxMinAvgTotalPowerUsageByTimeForAllDevicesByType() {
     const deviceType = this.selectedType.code;
     console.log(this.selectedDate.code);
 
     this.deviceService.getMaxMinAvgTotalPowerUsageByTimeForAllDevicesByType(deviceType,this.selectedDate.code).subscribe(data => {
       const keys = Object.keys(data);
+      this.dataMin = keys[1];
+      this.dataMax = keys[0];
+
+
       this.Consumermax = data[keys[0]].toFixed(2);
       this.Consumermin = data[keys[1]].toFixed(2);
       this.Consumertotal=data.total.toFixed(2);
