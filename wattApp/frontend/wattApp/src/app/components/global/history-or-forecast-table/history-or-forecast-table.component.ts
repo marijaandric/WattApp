@@ -45,7 +45,7 @@ export class HistoryOrForecastTableComponent implements OnChanges {
     dtUsers.clear();
   }
 
-  onSearch(value: string, dtUsers: any) {
-    dtUsers.filterGlobal(value, 'contains');
+  onSearch(value: string, hif: any) {
+    hif.filterGlobal(value, 'contains');
   }
 }
