@@ -1,4 +1,4 @@
-import { Component, Input, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, SimpleChanges, ViewEncapsulation } from '@angular/core';
 import { UserDTO } from '../../../dtos/UserDTO';
 import { UserService } from '../../../services/user/user.service';
 
@@ -23,14 +23,15 @@ export class HistoryForecastTableComponent {
   @Input() hif : HiF[]  = [{history: 0, forecast: 0, date1: [], date2: []},
   {history: 0, forecast: 0, date1: [], date2: []},
   {history: 0, forecast: 0, date1: [], date2: []},
-  {history: 0, forecast: 0, date1: [], date2: []},
-  {history: 0, forecast: 0, date1: [], date2: []},
-  {history: 0, forecast: 0, date1: [], date2: []},
   {history: 0, forecast: 0, date1: [], date2: []}];
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService,private cd: ChangeDetectorRef) { }
 
   ngOnInit() {
+    
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
     
   }
 

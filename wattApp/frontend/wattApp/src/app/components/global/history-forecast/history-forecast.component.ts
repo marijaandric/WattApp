@@ -46,19 +46,44 @@ export class HistoryForecastComponent implements OnInit,OnChanges{
   }
 
   ngOnChanges(changes: SimpleChanges) {
-    this.series = [
-      {
-        name: this.naziv1,
-        data: this.array,
-        color: this.boja1,
-        
-      },
-      {
-        name: this.naziv2,
-        data: this.array2,
-        color: this.boja2,
-      }
-    ];
+    if(this.array[0] === null)
+    {
+      this.series = [
+        {
+          name: this.naziv2,
+          data: this.array2,
+          color: this.boja2,
+          
+        }
+      ]
+    }
+    else if(this.array2[0] === null)
+    {
+      this.series = [
+        {
+          name: this.naziv1,
+          data: this.array,
+          color: this.boja1,
+          
+        }
+      ]
+    }
+    else{
+      this.series = [
+        {
+          name: this.naziv1,
+          data: this.array,
+          color: this.boja1,
+          
+        },
+        {
+          name: this.naziv2,
+          data: this.array2,
+          color: this.boja2,
+        }
+      ];
+    }
+    
 
      this.xaxis = {
       title:{

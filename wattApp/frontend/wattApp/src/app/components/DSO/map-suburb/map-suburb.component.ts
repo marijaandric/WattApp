@@ -66,7 +66,7 @@ export class MapSuburbComponent implements OnInit,OnChanges {
   async getAreas(maxmin:string): Promise<void> {
     return new Promise<void>((resolve, reject) => {
       this.prom = this.areaService.getExtremeUsageForAreas(this.type.code, this.date.code, maxmin).subscribe(async (data) => {
-        console.log(data)
+        
         if(maxmin=="Max")
         {
           this.usageMax = data.usage.toFixed(2);
@@ -159,8 +159,10 @@ export class MapSuburbComponent implements OnInit,OnChanges {
       });
     }
     else{
+      await this.getAreas("Max");
       this.circle.setLatLng([this.highestCoordinates[0],this.highestCoordinates[1]]);
       this.circle.bindPopup("<div class='popup'><p style='color:black'>The highest "+this.type.name+" - "+this.highestCoordinates[2]+"</p><br><h4 style='color:black'>Usage : "+this.usageMax+" kWh</h4></div>");
+      await this.getAreas("Min");
       this.circle2.setLatLng([this.lowestCoordinates[0],this.lowestCoordinates[1]]);
       this.circle2.bindPopup("<div class='popup'><p style='color:black'>The lowest "+this.type.name+" - "+this.lowestCoordinates[2]+"</p><br><h4 style='color:black'>Usage : "+this.usageMin+" kWh</h4></div>");
     }

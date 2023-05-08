@@ -100,6 +100,7 @@ import { AboutUsComponent } from './components/global/about-us/about-us.componen
 import { NewsComponent } from './components/global/news/news.component';
 import { LoaderComponent } from './components/global/loader/loader.component';
 import { MyPaginatedTableComponent } from './components/global/paginated-table-componenet/my-paginated-table/my-paginated-table.component';
+import { HistoryOrForecastTableComponent } from './components/global/history-or-forecast-table/history-or-forecast-table.component';
 
 export const url = 'https://localhost:7158';
 export const deviceFakerUrl = "https://localhost:7233";
@@ -179,7 +180,8 @@ export const deviceFakerUrl = "https://localhost:7233";
     AboutUsComponent,
     NewsComponent,
     LoaderComponent,
-    MyPaginatedTableComponent
+    MyPaginatedTableComponent,
+    HistoryOrForecastTableComponent
   ],
   imports: [
     CommonModule,

@@ -20,7 +20,6 @@ export class LoginGuard implements CanActivate {
       return true;
     }
     else{
-      this.toast.error({detail:"Error",summary:"Please Logout First!"})
       this.router.navigate(['home']);
       return false;
     }
