@@ -449,6 +449,7 @@ isForecastTrue = true;
 
   dropdownChange()
   {
+    this.getMaxMinAvgTotalPowerUsageByTimeForDevice();
     this.isForecastTrue = true;
     this.tableHiFWeek = false;
     this.table = false;
@@ -460,10 +461,6 @@ isForecastTrue = true;
         this.miniHistory=this.miniHistoryCon;
         this.miniForecast=this.miniForecastCon;
 
-        this.TitleMin='Minimal consumed electricity this week';
-        this.TittleMax='Maximum consumed electricity this week';
-        this.TitleAverage='Average consumed electricity this week';
-        this.TitleTotal='Total consumed electricity this week';
 
         this.max=this.Consumermax;
         this.min= this.Consumermin;
@@ -650,7 +647,7 @@ isForecastTrue = true;
 
   getMaxMinAvgTotalPowerUsageByTimeForDevice() {
     const id = this.device.id;
-    const timeType = 'week';
+    const timeType = this.selectedDate.code;
 
     this.deviceService.getMaxMinAvgTotalPowerUsageByTimeForDevice(id,timeType).subscribe(data => {
       const keys = Object.keys(data);
@@ -668,10 +665,35 @@ isForecastTrue = true;
       console.log(this.device.deviceType);
       if(this.device.deviceType=="Stock")
       {
-        this.TitleMin='Minimal stocked electricity this week';
-        this.TittleMax='Maximum stocked electricity this week';
-        this.TitleAverage='Average stocked electricity this week';
-        this.TitleTotal='Total stocked electricity this week';
+        if(this.selectedDate.code == "week")
+        {
+          this.TitleMin='Minimal stocked electricity this week';
+          this.TittleMax='Maximum stocked electricity this week';
+          this.TitleAverage='Average stocked electricity this week';
+          this.TitleTotal='Total stocked electricity this week';
+        }
+        else if(this.selectedDate.code == "3 days")
+        {
+          this.TitleMin='Minimal stocked electricity by 3 days';
+          this.TittleMax='Maximum stocked electricity by 3 days';
+          this.TitleAverage='Average stocked electricity by 3 days';
+          this.TitleTotal='Total stocked electricity by 3 days';
+        }
+        else if(this.selectedDate.code == "month")
+        {
+          this.TitleMin='Minimal stocked electricity this month';
+          this.TittleMax='Maximum stocked electricity this month';
+          this.TitleAverage='Average stocked electricity this month';
+          this.TitleTotal='Total stocked electricity this month';
+        }
+        else
+        {
+          this.TitleMin='Minimal stocked electricity this year';
+         this.TittleMax='Maximum stocked electricity this year';
+          this.TitleAverage='Average stocked electricity this year';
+         this.TitleTotal='Total stocked electricity this year';
+        }
+        
 
         this.SubTitleToday='Stock Today';
         this.SubTitleWeek='Stock this week';
@@ -681,10 +703,34 @@ isForecastTrue = true;
       }
       else if(this.device.deviceType=="Consumer")
       {
-        this.TitleMin='Minimal consumed electricity this week';
+        if(this.selectedDate.code == "week")
+        {
+          this.TitleMin='Minimal consumed electricity this week';
         this.TittleMax='Maximum consumed electricity this week';
         this.TitleAverage='Average consumed electricity this week';
         this.TitleTotal='Total consumed electricity this week';
+        }
+        else if(this.selectedDate.code == "3 days")
+        {
+          this.TitleMin='Minimal consumed electricity by 3 days';
+          this.TittleMax='Maximum consumed electricity by 3 days';
+          this.TitleAverage='Average consumed electricity by 3 days';
+          this.TitleTotal='Total consumed electricity by 3 days';
+        }
+        else if(this.selectedDate.code == "month")
+        {
+          this.TitleMin='Minimal consumed electricity this month';
+        this.TittleMax='Maximum consumed electricity this month';
+        this.TitleAverage='Average consumed electricity this month';
+        this.TitleTotal='Total consumed electricity this month';
+        }
+        else
+        {
+          this.TitleMin='Minimal consumed electricity this year';
+          this.TittleMax='Maximum consumed electricity this year';
+          this.TitleAverage='Average consumed electricity this year';
+          this.TitleTotal='Total consumed electricity this year';
+        }
 
         this.SubTitleToday='Consumption Today';
         this.SubTitleWeek='Consumption this week';
@@ -694,10 +740,34 @@ isForecastTrue = true;
       }
       else
       {
-        this.TitleMin='Minimal produced electricity this week';
-        this.TittleMax='Maximum produced electricity this week';
-        this.TitleAverage='Average produced electricity this week';
-        this.TitleTotal='Total produced electricity this week';
+        if(this.selectedDate.code == "week")
+        {
+          this.TitleMin='Minimal produced electricity this week';
+      this.TittleMax='Maximum produced electricity this week';
+      this.TitleAverage='Average produced electricity this week';
+      this.TitleTotal='Total produced electricity this week';
+        }
+        else if(this.selectedDate.code == "3 days")
+        {
+          this.TitleMin='Minimal produced electricity by 3 days';
+        this.TittleMax='Maximum produced electricity by 3 days';
+        this.TitleAverage='Average produced electricity by 3 days';
+        this.TitleTotal='Total produced electricity by 3 days';
+        }
+        else if(this.selectedDate.code == "month")
+        {
+          this.TitleMin='Minimal produced electricity this month';
+        this.TittleMax='Maximum produced electricity this month';
+        this.TitleAverage='Average produced electricity this month';
+        this.TitleTotal='Total produced electricity this month';
+        }
+        else
+        {
+          this.TitleMin='Minimal produced electricity this year';
+        this.TittleMax='Maximum produced electricity this year';
+        this.TitleAverage='Average produced electricity this year';
+        this.TitleTotal='Total produced electricity this year';
+        }
 
         this.SubTitleToday='Production Today';
         this.SubTitleWeek='Production this week';

@@ -645,10 +645,10 @@ isForecastTrue = true;
         this.dates = this.arrayDataM;
       }
       else{
-        this.TitleMin='Minimal produced electricity this month';
-        this.TittleMax='Maximum produced electricity this month';
-        this.TitleAverage='Average produced electricity this month';
-        this.TitleTotal='Total produced electricity this month';
+        this.TitleMin='Minimal produced electricity this year';
+        this.TittleMax='Maximum produced electricity this year';
+        this.TitleAverage='Average produced electricity this year';
+        this.TitleTotal='Total produced electricity this year';
 
         this.name = "Production history"
         this.History = this.HistoryProY;

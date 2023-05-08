@@ -1,6 +1,20 @@
 <div *ngIf="loader"><app-loader></app-loader></div>
 
 <div *ngIf="!loader" class="device" >
+    <div class="top-card">
+        <div class="widgets">       
+          <app-widget [subTitle]="SubTitleToday" [Title]="Today +' kW/h'" [isBlue]="true" [isBgBlue]="true" class="widget">
+          </app-widget>
+          <app-widget [subTitle]="SubTitleWeek" [Title]="Week+' kW/h'" [isYellow]="true" [isBgYellow]="true" class="widget">
+          </app-widget>
+          <app-widget [subTitle]="SubTitleMonth" [Title]="Month+' kW/h'" [isPink]="true" [isBgPink]="true" class="widget">
+          </app-widget>
+          <app-widget  [subTitle]="SubTitleYear" [Title]="Year+' kW/h'" [isOrange]="true" [isBgOrange]="true" class="widget">
+          </app-widget>
+          <app-widget  [subTitle]="SubTitleAll" [Title]="Year+' kW/h'" [isBlue]="true" [isBgBlue]="true" class="widget">
+          </app-widget>
+        </div>
+      </div> 
     <div class="circles">
         <div class="main-card">
             <div class="card-1">
@@ -58,120 +72,7 @@
             
         </div>  
         
-        <div class="card-2">
-            <div class="card-2-1" >
-                <div class="stats">
-                    <div style="width:100%; height:fit-content; position:relative;">
-                        <div class="icon">
-                            <span><i class="fa-solid fa-arrow-trend-up"></i></span>
-                        </div>
 
-                        <div class="subtitle-card">
-                            <span>{{SubTitleToday}}</span>
-                        </div>
-                    </div>
-                    <div style="width:100%; height:fit-content; position:relative;">
-                        <div class="main-stat-card">
-                            <span>{{Today}}</span> 
-                        </div>
-
-                        <div class="kwh-card">  
-                            <span>kWh</span>
-                        </div>
-                    </div>
-
-                    <div class="subtitle-2">  
-                        <span>6.2% more than yesterday</span>
-                    </div>
-                </div>
-            </div>
-            <div class="card-2-2" >
-                <div class="stats">
-                    <div style="width:100%; height:fit-content; position:relative;">
-                        <div class="icon">
-                            <span><i class="fa-solid fa-arrow-trend-down"></i></span>
-                        </div>
-
-                        <div class="subtitle-card">
-                            <span>{{SubTitleWeek}}</span>
-                        </div>
-                    </div>
-
-                    <div style="width:100%; height:fit-content; position:relative;">
-                        <div class="main-stat-card">
-                            <span>{{Week}}</span> 
-                        </div>
-
-                        <div class="kwh-card">  
-                            <span>kWh</span>
-                        </div>
-                    </div>
-
-                    <div class="subtitle-2">  
-                        <span>2.4% less than last week</span>
-                    </div>
-                </div>
-            </div>   
-        </div>
-        
-        <div class="card-2 card-3">
-            <div class="card-2-1" >
-                <div class="stats">
-                    <div style="width:100%; height:fit-content; position:relative;">
-                        <div class="icon">
-                            <span><i class="fa-solid fa-arrow-trend-down"></i></span>
-                        </div>
-
-                        <div class="subtitle-card">
-                            <span>{{SubTitleMonth}}</span>
-                        </div>
-                    </div>
-
-                    <div style="width:100%;  position:relative;">
-                        <div class="main-stat-card">
-                            <span>{{Month}}</span> 
-                        </div>
-
-                        <div class="kwh-card">  
-                            <span>kWh</span>
-                        </div>
-                    </div>
-
-                    <div class="subtitle-2">  
-                        <span>32.4% less than last month</span>
-                    </div>
-                </div>
-            </div>
-                
-            <div  class="card-2-2" >
-                <div class="stats">
-                    <div style="width:100%; height:fit-content; position:relative;">
-                        <div class="icon">
-                            <span><i class="fa-solid fa-arrow-trend-up"></i></span>
-                        </div>
-
-                        <div class="subtitle-card">
-                            <span>{{SubTitleYear}}</span>
-                        </div>
-                    </div>
-
-                    <div style="width:100%; height:fit-content; position:relative;">
-                        <div class="main-stat-card">
-                            <span>{{Year}}</span> 
-                        </div>
-
-                        <div class="kwh-card">  
-                            <span>kWh</span>
-                        </div>
-                    </div>
-
-                    <div class="subtitle-2">  
-                        <span>100% more than last year</span>
-                    </div>
-                </div>
-            </div>   
-        </div>
-    </div>
     
     <div class="manage-device">
     
@@ -224,13 +125,121 @@
           </div>
     </div>
 
-    <div class="stats-cards">
+
+    <div class="circles">    
+        <div class="card-2">
+            <div class="card-2-1" >
+                <div class="stats">
+                    <div style="width:100%; height:fit-content; position:relative;">
+                        <div class="icon">
+                            <span><i class="fa-solid fa-arrow-trend-up"></i></span>
+                        </div>
+
+                        <div class="subtitle-card">
+                            <span>{{TitleMin}}</span>
+                        </div>
+                    </div>
+                    <div style="width:100%; height:fit-content; position:relative;">
+                        <div class="main-stat-card">
+                            <span>{{min}}</span> 
+                        </div>
+
+                        <div class="kwh-card">  
+                            <span>kWh</span>
+                        </div>
+                    </div>
+
+                    <div class="subtitle-2">  
+                        <span>6.2% more than yesterday</span>
+                    </div>
+                </div>
+            </div>
+            <div class="card-2-2" >
+                <div class="stats">
+                    <div style="width:100%; height:fit-content; position:relative;">
+                        <div class="icon">
+                            <span><i class="fa-solid fa-arrow-trend-down"></i></span>
+                        </div>
+
+                        <div class="subtitle-card">
+                            <span>{{TittleMax}}</span>
+                        </div>
+                    </div>
+
+                    <div style="width:100%; height:fit-content; position:relative;">
+                        <div class="main-stat-card">
+                            <span>{{max}}</span> 
+                        </div>
+
+                        <div class="kwh-card">  
+                            <span>kWh</span>
+                        </div>
+                    </div>
+
+                    <div class="subtitle-2">  
+                        <span>2.4% less than last week</span>
+                    </div>
+                </div>
+            </div>   
+        </div>
         
-        <app-stats-card class="stats-card" [isBgBlue]="true" [Title]="TitleMin" [subTitle]="'23kWh (2%)'" [value]="min" [hasIcon]="false"></app-stats-card>
-        <app-stats-card class="stats-card" [isBgPurple]="true" [Title]="TittleMax" [subTitle]="'23kWh (2%)'" [value]="max" [hasIcon]="false"></app-stats-card>
-        <app-stats-card class="stats-card" [isBgPink]="true" [Title]="TitleAverage" [subTitle]="'23kWh (2%)'" [value]="average" [hasIcon]="false"></app-stats-card>
-        <app-stats-card class="stats-card" [isBgOrange]="true" [Title]="TitleTotal" [subTitle]="'23kWh (2%)'" [value]="total" [hasIcon]="false"></app-stats-card>
-       
+        <div class="card-2 card-3">
+            <div class="card-2-1" >
+                <div class="stats">
+                    <div style="width:100%; height:fit-content; position:relative;">
+                        <div class="icon">
+                            <span><i class="fa-solid fa-arrow-trend-down"></i></span>
+                        </div>
+
+                        <div class="subtitle-card">
+                            <span>{{TitleAverage}}</span>
+                        </div>
+                    </div>
+
+                    <div style="width:100%;  position:relative;">
+                        <div class="main-stat-card">
+                            <span>{{average}}</span> 
+                        </div>
+
+                        <div class="kwh-card">  
+                            <span>kWh</span>
+                        </div>
+                    </div>
+
+                    <div class="subtitle-2">  
+                        <span>32.4% less than last month</span>
+                    </div>
+                </div>
+            </div>
+                
+            <div  class="card-2-2" >
+                <div class="stats">
+                    <div style="width:100%; height:fit-content; position:relative;">
+                        <div class="icon">
+                            <span><i class="fa-solid fa-arrow-trend-up"></i></span>
+                        </div>
+
+                        <div class="subtitle-card">
+                            <span>{{TitleTotal}}</span>
+                        </div>
+                    </div>
+
+                    <div style="width:100%; height:fit-content; position:relative;">
+                        <div class="main-stat-card">
+                            <span>{{total}}</span> 
+                        </div>
+
+                        <div class="kwh-card">  
+                            <span>kWh</span>
+                        </div>
+                    </div>
+
+                    <div class="subtitle-2">  
+                        <span>100% more than last year</span>
+                    </div>
+                </div>
+            </div>   
+        </div>
     </div>
     
     <div class="twoCharts" *ngIf="tableHiFWeek">

@@ -9,6 +9,10 @@
     box-shadow: 5px 5px 15px black;
     margin-bottom:32px;
   }
+  .top-card {
+    width:100%;
+    height:fit-content;
+}
   
   .bold-text {
     font-weight: bold;
@@ -49,6 +53,28 @@
     height:fit-content;
     border-radius: 20px;
     padding:10px 10px 0px 0px;
+  }
+  .widgets {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width:100%;
+    padding: 0px 0;
+    justify-content:space-between;
+    position:relative;
+    float:left;
+  }
+  
+  .widget {
+    flex-basis: calc(18.4%);
+    margin-bottom: 30px;
+    display: inline-block;
+    position: relative;
+    flex-direction: row;
+    max-width: 23%;
+    min-width: 240px;
+    width:20%;
+    box-shadow: 5px 5px 15px black;
   }
   .card-2-2{
     position: relative;
