@@ -207,6 +207,11 @@ export class StatisticComponent  implements OnInit {
   min: any;
   max: any;
 
+  TitleMin='Minimal consumed electricity this week';
+  TittleMax='Maximum consumed electricity this week';
+  TitleAverage='Average consumed electricity this week';
+  TitleTotal='Total consumed electricity this week';
+
   Consumertotal: any;
   Consumeraverage: any;
   Consumermin: any;
@@ -290,6 +295,11 @@ getStockgetMaxMinAvgTotalPowerUsageByTimeForAllDevicesByType() {
     console.log(this.selectedType);
     if(this.selectedType.code == "Consumer")
     {
+      this.TitleMin='Minimal consumed electricity this week';
+      this.TittleMax='Maximum consumed electricity this week';
+      this.TitleAverage='Average consumed electricity this week';
+      this.TitleTotal='Total consumed electricity this week';
+
       this.max=this.Consumermax;
       this.min= this.Consumermin;
       this.average=this.Consumeraverage;
@@ -318,6 +328,11 @@ getStockgetMaxMinAvgTotalPowerUsageByTimeForAllDevicesByType() {
     }
     else if(this.selectedType.code == "Producer")
     {
+      this.TitleMin='Minimal produced electricity this week';
+      this.TittleMax='Maximum produced electricity this week';
+      this.TitleAverage='Average produced electricity this week';
+      this.TitleTotal='Total produced electricity this week';
+
       this.max=this.Producermax;
       this.min= this.Producermin;
       this.average=this.Produceraverage;
@@ -351,6 +366,11 @@ getStockgetMaxMinAvgTotalPowerUsageByTimeForAllDevicesByType() {
       }
     }
     else{
+      this.TitleMin='Minimal stocked electricity this week';
+      this.TittleMax='Maximum stocked electricity this week';
+      this.TitleAverage='Average stocked electricity this week';
+      this.TitleTotal='Total stocked electricity this week';
+      
       this.max=this.Stockmax;
       this.min= this.Stockmin;
       this.average=this.Stockaverage;
