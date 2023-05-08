@@ -118,7 +118,7 @@ namespace DeviceFaker.Services
         // #### WEEK HISTORY AND FORECAST ####
         public HAFDatasDTO GetWeekHistoryAndForecastPowerUsageOfDevices(List<int> ids, int year, int month, int day)
         {
-            HAFDatasDTO currentMonth = GetMonthHistoryAndForecastPowerUsageOfDevices(ids, year, month);
+            HAFDatasDTO currentMonth = GetMonthHistoryAndForecastPowerUsageOfDevicesUseForWeek(ids, year, month);
             HAFDatasDTO result = new HAFDatasDTO();
             result.dates = new List<string>();
             result.datas = new List<double>();
@@ -126,7 +126,7 @@ namespace DeviceFaker.Services
             {
                 // u slucaju da moram da idem u prethodni mesec
 
-                HAFDatasDTO previousMonth = GetMonthHistoryAndForecastPowerUsageOfDevices(ids, year, month - 1);
+                HAFDatasDTO previousMonth = GetMonthHistoryAndForecastPowerUsageOfDevicesUseForWeek(ids, year, month - 1);
                 int mCount = previousMonth.dates.Count;
 
                 //for previous month
@@ -143,7 +143,7 @@ namespace DeviceFaker.Services
             else if(day + 7 > currentMonth.datas.Count)
             {
                 // u slucaju da moram da idem u sledeci mesec
-                HAFDatasDTO nextMonth = GetMonthHistoryAndForecastPowerUsageOfDevices(ids, year, month + 1);
+                HAFDatasDTO nextMonth = GetMonthHistoryAndForecastPowerUsageOfDevicesUseForWeek(ids, year, month + 1);
                 int mCount = currentMonth.dates.Count;
 
                 int start = day - 6 - 1;
@@ -178,17 +178,17 @@ namespace DeviceFaker.Services
 
             var filter = Builders<DevicesData>.Filter.And(
                 Builders<DevicesData>.Filter.In(x => x.DeviceID, ids),
-                Builders<DevicesData>.Filter.Where(x => x.Year == year && x.Month == month));
+                Builders<DevicesData>.Filter.Where(x => x.Year == year && (x.Month == month || x.Month == month - 1) ));
 
             if (year == now.Year && month == now.Month)
             {
                 filter = Builders<DevicesData>.Filter.And(
                 Builders<DevicesData>.Filter.In(x => x.DeviceID, ids),
-                Builders<DevicesData>.Filter.Where(x => x.Year == year && x.Month == month));
+                Builders<DevicesData>.Filter.Where(x => x.Year == year && (x.Month == month || x.Month == month - 1) ));
             }
 
             var matchStage = new BsonDocument("$match", filter.Render(BsonSerializer.SerializerRegistry.GetSerializer<DevicesData>(), BsonSerializer.SerializerRegistry));
-            var sortStage = new BsonDocument("$sort", new BsonDocument { { "_id.Day", 1 } });
+            var sortStage = new BsonDocument("$sort", new BsonDocument { { "_id.Month", 1 }, { "_id.Day", 1 } });
             var pipeline = new BsonDocument[]
             {
                 matchStage,
@@ -221,6 +221,58 @@ namespace DeviceFaker.Services
 
             return haf;
         }
+
+
+        public HAFDatasDTO GetMonthHistoryAndForecastPowerUsageOfDevicesUseForWeek(List<int> ids, int year, int month)
+        {
+            DateTime now = DateTime.Now;
+
+            var filter = Builders<DevicesData>.Filter.And(
+                Builders<DevicesData>.Filter.In(x => x.DeviceID, ids),
+                Builders<DevicesData>.Filter.Where(x => x.Year == year && x.Month == month ));
+
+            if (year == now.Year && month == now.Month)
+            {
+                filter = Builders<DevicesData>.Filter.And(
+                Builders<DevicesData>.Filter.In(x => x.DeviceID, ids),
+                Builders<DevicesData>.Filter.Where(x => x.Year == year && x.Month == month ));
+            }
+
+            var matchStage = new BsonDocument("$match", filter.Render(BsonSerializer.SerializerRegistry.GetSerializer<DevicesData>(), BsonSerializer.SerializerRegistry));
+            var sortStage = new BsonDocument("$sort", new BsonDocument { { "_id.Day", 1 } });
+            var pipeline = new BsonDocument[]
+            {
+                matchStage,
+                new BsonDocument("$group", new BsonDocument
+                {
+                    { "_id", new BsonDocument
+                        {
+                            { "Year", "$Year" },
+                            { "Month", "$Month"},
+                            { "Day", "$Day"}
+                        }
+                    },
+                    { "totalPowerUsage", new BsonDocument("$sum", "$PowerUsage") }
+                }),
+                sortStage
+            };
+
+            var pipelineString = pipeline.ToJson();
+            var result = _devicesDataCollection.Aggregate<BsonDocument>(pipeline).ToList();
+
+            List<string> dates = new List<string>();
+            List<double> datas = new List<double>();
+            foreach (var doc in result)
+            {
+                dates.Add(doc["_id"]["Day"].ToInt32() + "." + doc["_id"]["Month"].ToInt32());
+                datas.Add(doc["totalPowerUsage"].ToDouble());
+            }
+
+            HAFDatasDTO haf = new HAFDatasDTO(dates, datas);
+
+            return haf;
+        }
+
 
         // #### YEAR HISTORY AND FORECAST ####
         public HAFDatasDTO GetYearHistoryAndForecastPowerUsageOfDevices(List<int> ids, int year)
