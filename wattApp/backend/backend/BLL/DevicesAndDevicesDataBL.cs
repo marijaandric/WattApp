@@ -209,7 +209,7 @@ namespace backend.BLL
         }
 
         //optimizovano
-        public HAFDatasDTO GetWeekByDayHistoryAndFutureForDevice(int deviceid, string type)
+        public HAFDatasDTO GetHistoryAndForecastByDayForDevice(int deviceid, string type)
         {
             DateTime now = DateTime.Now;
             List<List<int>> deviceids = new List<List<int>>();
@@ -224,7 +224,7 @@ namespace backend.BLL
         }
 
         //optimizovano
-        public HAFDatasTypesDTO GetWeekByDayHistoryAndFutureForAllUserDevicesOrAllDevices(int userid, string type)
+        public HAFDatasTypesDTO GetHistoryAndForecastByDayForAllDevices(int userid, string type)
         {
             DateTime now = DateTime.Now;
             List<Devices> consumerDevices;
