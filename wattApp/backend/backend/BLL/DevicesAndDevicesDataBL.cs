@@ -348,8 +348,18 @@ namespace backend.BLL
                 usages = _contextDataDAL.GetWeekUsageForDevicesByDay(devices.Select(d => d.FakeID).ToList(), now.Year, now.Month, now.Day);
             else if (timeType.ToLower() == "month")
                 usages = _contextDataDAL.GetMonthUsageForDevicesByDay(devices.Select(d => d.FakeID).ToList(), now.Year, now.Month);
-            else
+            else if(timeType.ToLower() == "year")
                 usages = _contextDataDAL.GetYearUsageForDevicesByMonth(devices.Select(d => d.FakeID).ToList(), now.Year);
+            else
+                usages = _contextDataDAL.GetWeekUsageForDevicesByDay(devices.Select(d => d.FakeID).ToList(), now.Year, now.Month, now.Day).Select(u => new UsageDTO
+                {
+                    deviceID = u.deviceID,
+                    day = u.day,
+                    month = u.month,
+                    year = u.year,
+                    time = u.time,
+                    usage = u.usage / 3
+                }).ToList();
 
             Dictionary<string, double> result = new Dictionary<string, double>();
             UsageDTO max, min;
@@ -390,8 +400,18 @@ namespace backend.BLL
                 usages = _contextDataDAL.GetWeekUsageForDevicesByDay(device, now.Year, now.Month, now.Day);
             else if (timeType.ToLower() == "month")
                 usages = _contextDataDAL.GetMonthUsageForDevicesByDay(device, now.Year, now.Month);
-            else
+            else if(timeType.ToLower() == "year")
                 usages = _contextDataDAL.GetYearUsageForDevicesByMonth(device, now.Year);
+            else
+                usages = _contextDataDAL.GetWeekUsageForDevicesByDay(device, now.Year, now.Month, now.Day).Select(u => new UsageDTO
+                {
+                    deviceID = u.deviceID,
+                    day = u.day,
+                    month = u.month,
+                    year = u.year,
+                    time = u.time,
+                    usage = u.usage / 3
+                }).ToList();
 
             Dictionary<string, double> result = new Dictionary<string, double>();
             UsageDTO max, min;
