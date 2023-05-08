@@ -136,6 +136,11 @@ export class DevicePhoneComponent implements OnInit{
           });
           
           this.nameSelected = this.device.deviceName;
+          this.getUsageToday();
+          this.getUsageWeek();
+          this.getUsageMonth();
+          this.getUsageYear();
+          this.getMaxMinAvgTotalPowerUsageByTimeForDevice();
       });
 
     } else{
@@ -246,5 +251,92 @@ export class DevicePhoneComponent implements OnInit{
       }
     })
   }
+  UsageToday: any;
+  Today: any;
+  
+  getUsageToday() {
+    const time = 'day';
+    const id = this.device.id;
+
+    this.deviceService.getUsage(id,time).subscribe((response: any) => {
+    this.UsageToday=response?.Consumer|| response?.Stock || response?.Producer;
+     //console.log(this.UsageToday);
+     this.Today=this.UsageToday.toFixed(2);
+    });
+  }
+
+  UsageWeek: any;
+  Week: any;
+  getUsageWeek() {
+    const time = 'week';
+    const id = this.device.id;
+
+    this.deviceService.getUsage(id,time).subscribe((response: any) => {
+    this.UsageWeek=response?.Consumer|| response?.Stock || response?.Producer;
+   // console.log(this.UsageWeek);
+    this.Week=this.UsageWeek.toFixed(2);
+    });
+  }
+
+  UsageMonth: any;
+  Month: any;
+  getUsageMonth() {
+    const time = 'month';
+    const id = this.device.id;
+
+    this.deviceService.getUsage(id,time).subscribe((response: any) => {
+    this.UsageMonth=response?.Consumer|| response?.Stock || response?.Producer;
+    // console.log(this.UsageMonth);
+     this.Month=this.UsageMonth.toFixed(2);
+    });
+  }
+
+  UsageYear: any;
+  Year: any
+  getUsageYear() {
+    const time = 'year';
+    const id = this.device.id;
+
+    this.deviceService.getUsage(id,time).subscribe((response: any) => {
+    this.UsageYear=response?.Consumer|| response?.Stock || response?.Producer;
+    this.UsageYear.toFixed(2);
+    //console.log(this.UsageYear);
+    this.Year=this.UsageYear.toFixed(2);
+    });
+  }
+
+  total: any;
+  average: any;
+  min: any;
+  max: any;
+
+  Consumertotal: any;
+  Consumeraverage: any;
+  Consumermin: any;
+  Consumermax: any;
+
+  getMaxMinAvgTotalPowerUsageByTimeForDevice() {
+    const id = this.device.id;
+    const timeType = 'week';
+
+    this.deviceService.getMaxMinAvgTotalPowerUsageByTimeForDevice(id,timeType).subscribe(data => {
+      const keys = Object.keys(data);
+      this.Consumermax = data[keys[0]].toFixed(2);
+      this.Consumermin = data[keys[1]].toFixed(2);
+      this.Consumertotal=data.total.toFixed(2);
+      this.Consumeraverage=data.average.toFixed(2);
+
+      this.max=this.Consumermax;
+      this.min= this.Consumermin;
+      this.average=this.Consumeraverage;
+      this.total=this.Consumertotal;
+
+      // console.log(this.max);
+      // console.log(this.min);
+      // console.log(this.total);
+      // console.log(this.average);
+
+  });
+}
 
 }

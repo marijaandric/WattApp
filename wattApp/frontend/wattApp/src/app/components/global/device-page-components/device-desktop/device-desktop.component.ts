@@ -143,6 +143,7 @@ export class DeviceDesktopComponent implements OnInit {
           this.getUsageWeek();
           this.getUsageMonth();
           this.getUsageYear();
+          this.getMaxMinAvgTotalPowerUsageByTimeForDevice();
       });
 
     } else{
@@ -307,5 +308,39 @@ export class DeviceDesktopComponent implements OnInit {
     this.Year=this.UsageYear.toFixed(2);
     });
   }
+
+  total: any;
+  average: any;
+  min: any;
+  max: any;
+
+  Consumertotal: any;
+  Consumeraverage: any;
+  Consumermin: any;
+  Consumermax: any;
+
+  getMaxMinAvgTotalPowerUsageByTimeForDevice() {
+    const id = this.device.id;
+    const timeType = 'week';
+
+    this.deviceService.getMaxMinAvgTotalPowerUsageByTimeForDevice(id,timeType).subscribe(data => {
+      const keys = Object.keys(data);
+      this.Consumermax = data[keys[0]].toFixed(2);
+      this.Consumermin = data[keys[1]].toFixed(2);
+      this.Consumertotal=data.total.toFixed(2);
+      this.Consumeraverage=data.average.toFixed(2);
+
+      this.max=this.Consumermax;
+      this.min= this.Consumermin;
+      this.average=this.Consumeraverage;
+      this.total=this.Consumertotal;
+
+      // console.log(this.max);
+      // console.log(this.min);
+      // console.log(this.total);
+      // console.log(this.average);
+
+  });
+}
 
 }
