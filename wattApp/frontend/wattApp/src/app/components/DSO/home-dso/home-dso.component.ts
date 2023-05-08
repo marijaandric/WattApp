@@ -194,9 +194,9 @@ export class HomeDSOComponent {
           // this.HistoryCon[i] = null;
           // this.HistoryPro[i] = null;
           // this.HistoryStock[i] = null;
-          this.HistoryCon[i] = undefined;
-          this.HistoryPro[i] = undefined;
-          this.HistoryStock[i] = undefined;
+          this.HistoryCon[i] = null;
+          this.HistoryPro[i] = null;
+          this.HistoryStock[i] = null;
         }
 
         const arr = [10.20,20.30,-10.00,0.00,-12.00,37.20,12.00,0.23];
@@ -235,9 +235,9 @@ export class HomeDSOComponent {
           br++;
         }
         for (let i = 6; i < 9; i++) {
-          this.HistoryCon3[br] = undefined;
-          this.HistoryPro3[br]= undefined;
-          this.HistoryStock3[br] = undefined;
+          this.HistoryCon3[br] = null;
+          this.HistoryPro3[br]= null;
+          this.HistoryStock3[br] = null;
           this.ForecastCon3[br] = this.ForecastCon[i];
           this.ForecastPro3[br]= this.ForecastPro[i];
           this.ForecastStock3[br] = this.ForecastStock[i];
