@@ -39,6 +39,7 @@ export class StatisticComponent  implements OnInit {
   Stock:string='Stock';
   selectedDate: City= {name: 'Week', code: 'week'};
   selectedHF: City = {name: 'Both', code: 'both'};
+  isHistoryOrForecast = false;
 
   switchValue: boolean = true;
   hif : HiF[]  = [{history: 0, forecast: 0, date1: [], date2: []},
@@ -159,6 +160,9 @@ export class StatisticComponent  implements OnInit {
   getHistoryAndForecastByDayForAllDevices() {
     this.deviceService.GetHistoryAndForecastByDayForAllUserDevices(this.id,"week").subscribe(data => {
         this.arrayData = data.dates; //.slice(0, 7).concat(data.dates.slice(8));
+        this.miniarrayData1=data.dates.slice(0, 7);
+        this.miniarrayData2=data.dates.slice(8, 14);
+
         this.dates = this.arrayData;
         this.loader = false;
         this.HistoryCon = data.totaldatasConsumer.map((val: number) => +val.toFixed(2));
@@ -176,6 +180,20 @@ export class StatisticComponent  implements OnInit {
           this.HistoryPro[i] = null;
           this.HistoryStock[i] = null;
         }
+
+        this.miniHistoryCon = data.totaldatasConsumer.slice(0, 7).map((val: number) => +val.toFixed(2));
+        this.miniForecastCon = data.totaldatasConsumer.slice(8,14).map((val: number) => +val.toFixed(2));
+
+        this.miniHistoryPro = data.totaldatasProducer.slice(0, 7).map((val: number) => +val.toFixed(2));
+        this.miniForecastPro = data.totaldatasProducer.slice(8,14).map((val: number) => +val.toFixed(2));
+
+
+        this.miniHistoryStock = data.totaldatasStock.slice(0, 7).map((val: number) => +val.toFixed(2));
+        this.miniForecastStock = data.totaldatasStock.slice(8,14).map((val: number) => +val.toFixed(2));
+
+        this.miniHistory = this.miniHistoryCon;
+        this.miniForecast  = this.miniForecastCon;
+
 
         const arr = [10.20,20.30,-10.00,0.00,-12.00,37.20,12.00,0.23];
         const arr2 = [12.20,-10.30,0.00,-13.30,20.70,10.20,30.00,-14.23];
@@ -381,12 +399,14 @@ getStockgetMaxMinAvgTotalPowerUsageByTimeForAllDevicesByType() {
 
  
 table = true;
+tableHiFWeek = true;
 name:string="Consumption history"
 isForecastTrue = true;
 
   dropdownChange()
   {
     this.isForecastTrue = true;
+    this.tableHiFWeek = false;
     this.table = false;
     if(this.selectedType.code == "Consumer")
     {
@@ -394,6 +414,10 @@ isForecastTrue = true;
       this.color2 = '#88dbf6';
       if(this.selectedDate.code == "week" && this.selectedHF.code == "both")
       {
+        this.tableHiFWeek = true;
+        this.miniHistory=this.miniHistoryCon;
+        this.miniForecast=this.miniForecastCon;
+
         this.TitleMin='Minimal consumed electricity this week';
         this.TittleMax='Maximum consumed electricity this week';
         this.TitleAverage='Average consumed electricity this week';
@@ -531,6 +555,9 @@ isForecastTrue = true;
 
       if(this.selectedDate.code == "week" && this.selectedHF.code == "both")
       {
+        this.tableHiFWeek = true;
+        this.miniHistory=this.miniHistoryPro;
+        this.miniForecast=this.miniForecastPro;
         this.table = true;
         this.max=this.Producermax;
         this.min= this.Producermin;
@@ -632,6 +659,9 @@ isForecastTrue = true;
 
       if(this.selectedDate.code == "week" && this.selectedHF.code == "both")
       {
+        this.tableHiFWeek = true;
+        this.miniHistory=this.miniHistoryStock;
+        this.miniForecast=this.miniForecastStock;
         this.table = true;
         this.History = this.HistoryStock;
         this.Forecast = this.ForecastStock;
