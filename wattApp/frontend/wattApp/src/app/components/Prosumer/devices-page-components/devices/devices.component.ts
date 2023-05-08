@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, HostListener, Input } from '@angular/core';
+import { ChangeDetectorRef, Component, HostListener, Input, OnInit } from '@angular/core';
 import { DeviceDTO } from 'src/app/dtos/DeviceDTO';
 import { DeviceService } from 'src/app/services/device/device.service';
 
@@ -12,16 +12,43 @@ interface SwitchOption {
   templateUrl: './devices.component.html',
   styleUrls: ['./devices.component.css']
 })
-export class DevicesComponent {
+export class DevicesComponent implements OnInit{
   @Input() devices: any;
   numVisible: number = 5;
   devicesByRoomType: {[key: string]: DeviceDTO[]} = {};
   switchValue: boolean = true;
 
+  responsiveOptions: any[] = [];
+
   switchOptions: SwitchOption[] = [
     {label: 'List', value: true},
     {label: 'Table', value: false}
   ];
+
+  ngOnInit():void {
+    this.responsiveOptions = [
+      {
+          breakpoint: '1400px',
+          numVisible: 4,
+          numScroll: 1
+      },
+      {
+          breakpoint: '1220px',
+          numVisible: 3,
+          numScroll: 1
+      },
+      {
+          breakpoint: '900px',
+          numVisible: 2,
+          numScroll: 1
+      },
+      {
+          breakpoint: '500px',
+          numVisible: 1,
+          numScroll: 1
+      }
+  ];
+  }
 
   constructor(private deviceService: DeviceService,
     private cdr: ChangeDetectorRef) { }
@@ -61,4 +88,5 @@ export class DevicesComponent {
   updateView() {
     this.cdr.detectChanges();
   }
+  
 }

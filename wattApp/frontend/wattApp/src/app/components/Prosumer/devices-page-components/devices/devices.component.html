@@ -2,7 +2,7 @@
 
 <div *ngIf="switchValue == true">
   <div *ngFor="let devices of devicesByRoomType | keyvalue">
-    <p-carousel [value]="devices.value" [numVisible]="numVisible" [circular]="false" [numScroll]="1">
+    <p-carousel [value]="devices.value" [numVisible]="5" [circular]="false" [numScroll]="1" [responsiveOptions]="responsiveOptions">
       <ng-template pTemplate="header">
         <div class="hederContainer">
           <p style="color:white" class="roomNameHeader">{{ devices.key }}</p>
@@ -21,16 +21,16 @@
     [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]"
     [globalFilterFields]="['userId','deviceName','room', 'deviceType']" [paginator]="true"
     style="
-      margin-top:calc(2.8%);
-      display: flex;
-      position: relative;
-      flex-direction: column;
-      height: fit-content;
-      border-radius: 20px;
-      background: linear-gradient(180deg, #1b1b1b 50%, #121212 100%) ;
-      box-shadow: 5px 5px 15px black;
-      transition: ease-in-out;
-      padding:10px 20px;
+    margin-top:calc(2.8%);
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    height: fit-content;
+    border-radius: 20px;
+    background-color: #1b1b1b;
+    box-shadow: 5px 5px 15px black;
+    transition: ease-in-out;
+    padding:10px 20px;
       ">
 
     <ng-template pTemplate="caption">
@@ -46,21 +46,21 @@
 
     <ng-template pTemplate="header">
       <tr>
-        <th pSortableColumn="deviceName" style="min-width:15rem;  border-top:3px solid #04a777; border-bottom:3px solid #04a777;">
+        <th pSortableColumn="deviceName" style="min-width:15rem;   border-top:2px solid #46c5f1; border-bottom:2px solid #46c5f1;">
           <div class="flexRow">
               <p>Device name</p>
               <p-sortIcon field="deviceName"></p-sortIcon>
               <p-columnFilter class="ml-auto" type="text" field="deviceName" display="menu"></p-columnFilter>
           </div>
         </th>
-        <th pSortableColumn="room" style="min-width:15rem;  border-top:3px solid #04a777; border-bottom:3px solid #04a777;">
+        <th pSortableColumn="room" style="min-width:15rem;  border-top:2px solid #46c5f1; border-bottom:2px solid #46c5f1;">
           <div class="flexRow">
               <p>Room</p>
               <p-sortIcon field="room"></p-sortIcon>
               <p-columnFilter class="ml-auto" type="text" field="room" display="menu"></p-columnFilter>
           </div>
         </th>
-        <th pSortableColumn="deviceType" style="min-width:10rem;  border-top:3px solid #04a777; border-bottom:3px solid #04a777;">
+        <th pSortableColumn="deviceType" style="min-width:10rem; border-top:2px solid #46c5f1; border-bottom:2px solid #46c5f1;">
           <div class="flexRow">
               <p>Type</p>
               <p-sortIcon field="deviceType"></p-sortIcon>
@@ -73,8 +73,8 @@
     <ng-template pTemplate="body" let-device>
       <tr>
         <td><a [routerLink]="['/device', device.id]">{{ device.deviceName }}</a></td>
-        <td>{{device.room}}</td>
-        <td>{{device.deviceType}}</td>
+        <td><a [routerLink]="['/device', device.id]">{{device.room}}</a></td>
+        <td><a [routerLink]="['/device', device.id]">{{device.deviceType}}</a></td>
       </tr>
     </ng-template>
 
