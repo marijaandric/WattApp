@@ -67,12 +67,12 @@
                         </div>
 
                         <div class="subtitle-card">
-                            <span>Consumption today</span>
+                            <span>{{SubTitleToday}}</span>
                         </div>
                     </div>
                     <div style="width:100%; height:fit-content; position:relative;">
                         <div class="main-stat-card">
-                            <span>4.4</span> 
+                            <span>{{Today}}</span> 
                         </div>
 
                         <div class="kwh-card">  
@@ -93,13 +93,13 @@
                         </div>
 
                         <div class="subtitle-card">
-                            <span>Consumption this week</span>
+                            <span>{{SubTitleWeek}}</span>
                         </div>
                     </div>
 
                     <div style="width:100%; height:fit-content; position:relative;">
                         <div class="main-stat-card">
-                            <span>15.24</span> 
+                            <span>{{Week}}</span> 
                         </div>
 
                         <div class="kwh-card">  
@@ -123,13 +123,13 @@
                         </div>
 
                         <div class="subtitle-card">
-                            <span>Consumption this month</span>
+                            <span>{{SubTitleMonth}}</span>
                         </div>
                     </div>
 
                     <div style="width:100%;  position:relative;">
                         <div class="main-stat-card">
-                            <span>274.24</span> 
+                            <span>{{Month}}</span> 
                         </div>
 
                         <div class="kwh-card">  
@@ -151,13 +151,13 @@
                         </div>
 
                         <div class="subtitle-card">
-                            <span>Consumption this year</span>
+                            <span>{{SubTitleYear}}</span>
                         </div>
                     </div>
 
                     <div style="width:100%; height:fit-content; position:relative;">
                         <div class="main-stat-card">
-                            <span>6745</span> 
+                            <span>{{Year}}</span> 
                         </div>
 
                         <div class="kwh-card">  
@@ -226,10 +226,10 @@
 
     <div class="stats-cards">
         
-        <app-stats-card class="stats-card" [isBgBlue]="true" [Title]="'Minimal consumed electricity this week'" [subTitle]="'23kWh (2%)'" [value]="'34 kwh'" [hasIcon]="false"></app-stats-card>
-        <app-stats-card class="stats-card" [isBgPurple]="true" [Title]="'Maximum consumed electricity this week'" [subTitle]="'23kWh (2%)'" [value]="'34 kwh'" [hasIcon]="false"></app-stats-card>
-        <app-stats-card class="stats-card" [isBgPink]="true" [Title]="'Average consumed electricity this week'" [subTitle]="'23kWh (2%)'" [value]="'34 kwh'" [hasIcon]="false"></app-stats-card>
-        <app-stats-card class="stats-card" [isBgOrange]="true" [Title]="'Total consumed electricity this week'" [subTitle]="'23kWh (2%)'" [value]="'34 kwh'" [hasIcon]="false"></app-stats-card>
+        <app-stats-card class="stats-card" [isBgBlue]="true" [Title]="TitleMin" [subTitle]="'23kWh (2%)'" [value]="min" [hasIcon]="false"></app-stats-card>
+        <app-stats-card class="stats-card" [isBgPurple]="true" [Title]="TittleMax" [subTitle]="'23kWh (2%)'" [value]="max" [hasIcon]="false"></app-stats-card>
+        <app-stats-card class="stats-card" [isBgPink]="true" [Title]="TitleAverage" [subTitle]="'23kWh (2%)'" [value]="average" [hasIcon]="false"></app-stats-card>
+        <app-stats-card class="stats-card" [isBgOrange]="true" [Title]="TitleTotal" [subTitle]="'23kWh (2%)'" [value]="total" [hasIcon]="false"></app-stats-card>
        
     </div>
     

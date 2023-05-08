@@ -309,6 +309,11 @@ export class HomeDSOComponent {
   min: any;
   max: any;
 
+  TitleMin='Minimal consumed electricity this week';
+  TittleMax='Maximum consumed electricity this week';
+  TitleAverage='Average consumed electricity this week';
+  TitleTotal='Total consumed electricity this week';
+
   Consumertotal: any;
   Consumeraverage: any;
   Consumermin: any;
@@ -396,31 +401,54 @@ name:string="Consumption history"
     this.table = false;
     if(this.selectedType.code == "Consumer")
     {
-        this.color1 = '#46c5f1';
-        this.color2 = '#88dbf6';
+      this.color1 = '#46c5f1';
+      this.color2 = '#88dbf6';
       if(this.selectedDate.code == "week" && this.selectedHF.code == "both")
       {
-        this.table = true;
+        this.TitleMin='Minimal consumed electricity this week';
+        this.TittleMax='Maximum consumed electricity this week';
+        this.TitleAverage='Average consumed electricity this week';
+        this.TitleTotal='Total consumed electricity this week';
+
         this.max=this.Consumermax;
         this.min= this.Consumermin;
         this.average=this.Consumeraverage;
         this.total=this.Consumertotal;
+
       
         this.History = this.HistoryCon;
         this.Forecast = this.ForecastCon;
-  
+
         this.name1="Consumption history";
         this.name2="Consumption forecast";
-  
-        this.dates = this.arrayData;
-        
-        this.hif = Array.from({length: 7}, () => ({history: 0, forecast: 0, date1: [], date2: []}));
+
+        this.color1 = '#46c5f1';
+        this.color2 = '#88dbf6';
+
         for(let i = 0;i<this.History.length;i++)
         {
-          this.hif[i].history = this.HistoryCon[i]
-          this.hif[i].forecast = this.ForecastCon[i+7]
-          this.hif[i].date1 = this.arrayData[i]
-          this.hif[i].date2 = this.arrayData[i+7]
+          this.table = true;
+          this.max=this.Consumermax;
+          this.min= this.Consumermin;
+          this.average=this.Consumeraverage;
+          this.total=this.Consumertotal;
+        
+          this.History = this.HistoryCon;
+          this.Forecast = this.ForecastCon;
+    
+          this.name1="Consumption history";
+          this.name2="Consumption forecast";
+    
+          this.dates = this.arrayData;
+          
+          this.hif = Array.from({length: 7}, () => ({history: 0, forecast: 0, date1: [], date2: []}));
+          for(let i = 0;i<this.History.length;i++)
+          {
+            this.hif[i].history = this.HistoryCon[i]
+            this.hif[i].forecast = this.ForecastCon[i+7]
+            this.hif[i].date1 = this.arrayData[i]
+            this.hif[i].date2 = this.arrayData[i+7]
+          }
         }
       }
       else if( this.selectedDate.code == "3 days" && this.selectedHF.code == "both")
@@ -493,6 +521,22 @@ name:string="Consumption history"
     }
     else if(this.selectedType.code == "Producer")
     {
+      this.TitleMin='Minimal produced electricity this week';
+      this.TittleMax='Maximum produced electricity this week';
+      this.TitleAverage='Average produced electricity this week';
+      this.TitleTotal='Total produced electricity this week';
+
+      this.max=this.Producermax;
+      this.min= this.Producermin;
+      this.average=this.Produceraverage;
+      this.total=this.Producertotal;
+
+      this.History = this.HistoryPro;
+      this.Forecast = this.ForecastPro;
+
+      this.name1="Production history";
+      this.name2="Production forecast";
+
       this.color1 = '#885ec0';
       this.color2 = '#ae91d4';
 
@@ -587,6 +631,10 @@ name:string="Consumption history"
       
       this.color1 = '#eb4886';
       this.color2 = '#f075a4';
+      this.TitleMin='Minimal stocked electricity this week';
+      this.TittleMax='Maximum stocked electricity this week';
+      this.TitleAverage='Average stocked electricity this week';
+      this.TitleTotal='Total stocked electricity this week';
 
       this.max=this.Stockmax;
       this.min= this.Stockmin;

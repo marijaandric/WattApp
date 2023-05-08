@@ -5,19 +5,13 @@
 
   <app-center-bar>
     <div  class="main-grid"> 
-      <div style="display:flex;float:left; flex-direction:column; width:28%; height:fit-content;">
-        <app-user-card></app-user-card>
-  
-      </div>
-    </div>
-    <div class="user">
-      <div class="usercard" >
-        <app-user-card></app-user-card>
-      </div>
-      <div class="mapaISlika" >
-        <app-user-profile-component></app-user-profile-component>
-        <div class="slika" style="margin-top:20px;border-radius: 20px;float:right;height: 48%; width: 100%;background-image: url('/assets/images/application-images/blue.jpg');background-size: cover;">     
+      <div style="display:flex; flex-direction:column; height:fit-content;float:left;">
+        <app-user-card></app-user-card> 
+        <div class="slika" style="margin-top:32px;border-radius: 20px; height:calc(100vh - 650px - 8.6vh); width: 100%;background-image: url('/assets/images/application-images/blue.jpg');background-size: cover;">     
         </div>
+      </div>
+      <div class="map">
+        <app-user-profile-component></app-user-profile-component>
       </div>
     </div>
   </app-center-bar>

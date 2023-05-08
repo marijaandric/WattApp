@@ -2,11 +2,45 @@
     <app-title-bar>
       <h3>About us</h3>
     </app-title-bar>
-  
 
-    <app-center-bar>
-          
+  <app-center-bar>
+    <div class="main-grid">
+      <div class="image-div">
+      </div>
+
+      <div class="carousels" >
+        <div class="switch">
+          <p-selectButton class="flexRow width__fit-content margin-left__auto" [options]="switchOptions" [(ngModel)]="switchValue" optionLabel="label" optionValue="value"></p-selectButton>
+
+        </div>
+        <div class="carousel-pc">
+          <h4 style="margin:0px 0px 10px 10px;">Important news</h4> 
+          <p-carousel [value] = "newsImportant" [circular]="false" [numVisible]="4" [autoplayInterval]="4000" [numScroll]="4" [responsiveOptions]="responsiveOptions">
+            <ng-template let-news pTemplate="new">
+              <app-promotion [subTitle]="news.title"
+              [Title]="news.content" 
+              [Status]="news.priority"
+              [isBlue]="true" [isBgBlue]="true" class="promotion">
+              </app-promotion>
+            </ng-template>
+          </p-carousel>
+        </div>
+
+        <div class="carousel-pc">
+          <h4 style="margin:0px 0px 10px 10px;">Regular news</h4> 
+          <p-carousel [value] = "newsRegular" [circular]="false" [numVisible]="4" [autoplayInterval]="4000" [numScroll]="4" [responsiveOptions]="responsiveOptions">
+            <ng-template let-news pTemplate="new">
+              <app-promotion [subTitle]="news.title"
+              [Title]="news.content" 
+              [Status]="news.priority"
+              [isBlue]="true" [isBgBlue]="true" class="promotion">
+              </app-promotion>
+            </ng-template>
+          </p-carousel>
+        </div>
+      </div>
+    </div>          
   </app-center-bar>
 
-  </standard-template>
+</standard-template>
   
