@@ -319,12 +319,24 @@ export class DeviceDesktopComponent implements OnInit {
   Consumermin: any;
   Consumermax: any;
 
+  TitleMin!: String;
+  TittleMax!: String;
+  TitleAverage!: String;
+  TitleTotal!:String;
+
+  SubTitleToday!:String;
+  SubTitleWeek!:String;
+  SubTitleMonth!:String;
+  SubTitleYear!:String;
+  SubTitleAll!:String;
+
   getMaxMinAvgTotalPowerUsageByTimeForDevice() {
     const id = this.device.id;
     const timeType = 'week';
 
     this.deviceService.getMaxMinAvgTotalPowerUsageByTimeForDevice(id,timeType).subscribe(data => {
       const keys = Object.keys(data);
+
       this.Consumermax = data[keys[0]].toFixed(2);
       this.Consumermin = data[keys[1]].toFixed(2);
       this.Consumertotal=data.total.toFixed(2);
@@ -334,6 +346,47 @@ export class DeviceDesktopComponent implements OnInit {
       this.min= this.Consumermin;
       this.average=this.Consumeraverage;
       this.total=this.Consumertotal;
+
+      console.log(this.device.deviceType);
+      if(this.device.deviceType=="Stock")
+      {
+        this.TitleMin='Minimal stocked electricity this week';
+        this.TittleMax='Maximum stocked electricity this week';
+        this.TitleAverage='Average stocked electricity this week';
+        this.TitleTotal='Total stocked electricity this week';
+
+        this.SubTitleToday='Stock Today';
+        this.SubTitleWeek='Stock this week';
+        this.SubTitleMonth='Stock this month';
+        this.SubTitleYear='Stock this year';
+        this.SubTitleAll='Stock all time';
+      }
+      else if(this.device.deviceType=="Consumer")
+      {
+        this.TitleMin='Minimal consumed electricity this week';
+        this.TittleMax='Maximum consumed electricity this week';
+        this.TitleAverage='Average consumed electricity this week';
+        this.TitleTotal='Total consumed electricity this week';
+
+        this.SubTitleToday='Consumption Today';
+        this.SubTitleWeek='Consumption this week';
+        this.SubTitleMonth='Consumption this month';
+        this.SubTitleYear='Consumption this year';
+        this.SubTitleAll='Consumption all time';
+      }
+      else
+      {
+        this.TitleMin='Minimal produced electricity this week';
+        this.TittleMax='Maximum produced electricity this week';
+        this.TitleAverage='Average produced electricity this week';
+        this.TitleTotal='Total produced electricity this week';
+
+        this.SubTitleToday='Production Today';
+        this.SubTitleWeek='Production this week';
+        this.SubTitleMonth='Production this month';
+        this.SubTitleYear='Production this year';
+        this.SubTitleAll='Production all time';
+      }
 
       // console.log(this.max);
       // console.log(this.min);
