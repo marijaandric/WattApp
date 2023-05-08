@@ -10,22 +10,8 @@
   
     <app-center-bar *ngIf="loader"><app-loader></app-loader></app-center-bar>
     <app-center-bar *ngIf="!loader">
-    <div  class="main-grid">
-      <div style="display:flex;flex-direction:row">
-        <div class="promotions">
-          <div class="promo" *ngFor="let n of news">
-            <div class="card">
-              <app-promotion [subTitle]="n.title"
-              [Title]="n.content" 
-              [Status]="n.status"
-              [Datum]="n.date"
-              [isBlue]="true" [isBgBlue]="true" class="promotion">
-              </app-promotion>
-            </div>
-          </div>
-        </div>
-      
-      <div style="display:flex;float:right; flex-direction:column; width:48.5%; height:100%">
+    
+      <div style="display:flex;float:right; flex-direction:column; width:100%; height:100%">
         <div style="display:flex;float:right; flex-direction:row; width:100%; height:100%">
               
           <p-table class="d-table" #dtUsers class="ui-table-default" [value]="users" dataKey="id" [scrollable]="true" 
@@ -108,8 +94,6 @@
             </p-table>
           </div>
         </div>
-      </div>
-    </div>
     </app-center-bar>
   
     

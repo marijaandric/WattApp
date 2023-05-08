@@ -9,7 +9,6 @@ interface HiF{
   date2: any
 }
 
-
 @Component({
   selector: 'app-history-forecast-table',
   templateUrl: './history-forecast-table.component.html',
