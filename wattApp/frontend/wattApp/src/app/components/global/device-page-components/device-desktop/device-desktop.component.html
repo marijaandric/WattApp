@@ -70,18 +70,18 @@
         </div>
 
         <app-history-forecast id="oneChart"  style="width: 100%;
-        background: linear-gradient(180deg, #151515 50%, #0d0d0d 100%)  !important;" [array] = 'array' [array2]="array2" [array3] = 'array3'></app-history-forecast>
-            
+        background: linear-gradient(180deg, #151515 50%, #0d0d0d 100%)  !important;" [boja1]="color1" [boja2]="color2" [naziv1]="name1" [naziv2]="name2" [array] = "History" [array2]="Forecast" [array3] = "dates" class="chart" id="oneChart"></app-history-forecast>
+
       </div>
 
       <div class="bottom-right-card">
         <div class="display:flex;position:relative; width:100%; height:fit-content;">
-          <p-dropdown  appendTo="body" optionLabel="name"  >
-          </p-dropdown>
-          <p-dropdown  appendTo="body" optionLabel="name"  >
-          </p-dropdown>
-          <p-dropdown  appendTo="body" optionLabel="name"  >
-          </p-dropdown>
+          <div style="width:100%; height:fit-content; display:flex; flex-direction:row;margin-bottom:12px;">
+            <p-dropdown [options]="type2" appendTo="body" [(ngModel)]="selectedHF"  optionLabel="name" (onChange)="updateType3()" >
+            </p-dropdown>
+            <p-dropdown [options]="type3" appendTo="body" [(ngModel)]="selectedDate" optionLabel="name" (onChange)="dropdownChange()" >
+            </p-dropdown>
+          </div>
         </div>
         <app-history-forecast-table
         style="
