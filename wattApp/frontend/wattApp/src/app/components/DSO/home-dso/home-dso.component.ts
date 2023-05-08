@@ -172,6 +172,9 @@ export class HomeDSOComponent {
   arrayData = [1,2,3,4,5,6,7,8,9,10,11,12,13,14];
   arrayData3 = [1,2,3,4,5,6];
 
+  HistoryTable:any  = [12, 19, 3, 5, 2, 6];
+  ForecastTable:any  = [12, 19, 3, 5, 2, 6];
+
   name1 = "history";
   name2 = "forecast";
 
@@ -252,26 +255,30 @@ export class HomeDSOComponent {
   HistoryConM:any  = [12, 19, 3, 5, 2, 6, 5, 0,0,0,0, 0, 0, 0];
   HistoryProM:any  = [12, 19, 3, 5, 2, 6, 5, 0,0,0,0, 0, 0, 0];
   HistoryStockM:any  = [12, 19, 3, 5, 2, 6, 5, 0,0,0,0, 0, 0, 0];
+  HistoryConMAll:any  = [12, 19, 3, 5, 2, 6, 5, 0,0,0,0, 0, 0, 0];
+  HistoryProMAll:any  = [12, 19, 3, 5, 2, 6, 5, 0,0,0,0, 0, 0, 0];
+  HistoryStockMAll:any  = [12, 19, 3, 5, 2, 6, 5, 0,0,0,0, 0, 0, 0];
 
   arrayDataM = [];
+  arrayDataMAll = [];
 
   getHistoryAndForecastByDayForAllDevicesByMonth() {
     this.deviceService.GetHistoryAndForecastByDayForAllDevices("month").subscribe(data => {
-      this.arrayDataM = data.dates; //.slice(0, 7).concat(data.dates.slice(8));
-      this.HistoryConM = data.totaldatasConsumer.map((val: number) => +val.toFixed(2));
-      this.HistoryProM = data.totaldatasProducer.map((val: number) => +val.toFixed(2));
-      this.HistoryStockM = data.totaldatasStock.map((val: number) => +val.toFixed(2));
+      this.arrayDataMAll = data.dates; //.slice(0, 7).concat(data.dates.slice(8));
+      this.HistoryConMAll = data.totaldatasConsumer.map((val: number) => +val.toFixed(2));
+      this.HistoryProMAll = data.totaldatasProducer.map((val: number) => +val.toFixed(2));
+      this.HistoryStockMAll = data.totaldatasStock.map((val: number) => +val.toFixed(2));
 
-      this.HistoryConM = this.HistoryConM.filter((_:number, index:number) => {
+      this.HistoryConM = this.HistoryConMAll.filter((_:number, index:number) => {
         return index % 3 === 0;
       });
-      this.HistoryProM = this.HistoryProM.filter((_:number, index:number) => {
+      this.HistoryProM = this.HistoryProMAll.filter((_:number, index:number) => {
         return index % 3 === 0;
       });
-      this.HistoryStockM = this.HistoryStockM.filter((_:number, index:number) => {
+      this.HistoryStockM = this.HistoryStockMAll.filter((_:number, index:number) => {
         return index % 3 === 0;
       });
-      this.arrayDataM= this.arrayDataM.filter((_:number, index:number) => {
+      this.arrayDataM= this.arrayDataMAll.filter((_:number, index:number) => {
         return index % 3 === 0;
       });
     });
@@ -296,14 +303,7 @@ export class HomeDSOComponent {
 
 
 
-
-
-
-
-
-
-
-
+  
   total: any;
   average: any;
   min: any;
@@ -478,6 +478,8 @@ name:string="Consumption history"
         this.Forecast = [this.ForecastCon3[3],this.ForecastCon3[4],this.ForecastCon3[5]]
 
         this.dates = [this.arrayData3[3],this.arrayData3[4],this.arrayData3[5]];
+        this.HistoryTable = this.History;
+        this.ForecastTable = this.Forecast;
         
       }
       else if( this.selectedDate.code == "week" && this.selectedHF.code == "forecast")
@@ -487,7 +489,8 @@ name:string="Consumption history"
         this.Forecast = [this.ForecastCon[6],this.ForecastCon[7],this.ForecastCon[8],this.ForecastCon[9],this.ForecastCon[10],this.ForecastCon[11],this.ForecastCon[12],this.ForecastCon[13]]
 
         this.dates = [this.arrayData[6],this.arrayData[7],this.arrayData[8],this.arrayData[9],this.arrayData[10],this.arrayData[11],this.arrayData[12],this.arrayData[13]];
-        
+        this.HistoryTable = this.History;
+        this.ForecastTable = this.Forecast;
       }
       else if( this.selectedDate.code == "week" && this.selectedHF.code == "history")
       {
@@ -496,7 +499,8 @@ name:string="Consumption history"
         this.Forecast = [null];
 
         this.dates = [this.arrayData[0],this.arrayData[1],this.arrayData[2],this.arrayData[3],this.arrayData[4],this.arrayData[5],this.arrayData[6]];
-        
+        this.HistoryTable = this.History;
+        this.ForecastTable = this.Forecast;
       }
       else if( this.selectedDate.code == "month")
       {
@@ -505,6 +509,8 @@ name:string="Consumption history"
         this.Forecast = [null]
 
         this.dates = this.arrayDataM;
+        this.HistoryTable = this.HistoryConMAll;
+        this.ForecastTable = [null];
         //this.dates = [this.arrayData[6],this.arrayData[7],this.arrayData[8],this.arrayData[9],this.arrayData[10],this.arrayData[11],this.arrayData[12],this.arrayData[13]];
         
       }
