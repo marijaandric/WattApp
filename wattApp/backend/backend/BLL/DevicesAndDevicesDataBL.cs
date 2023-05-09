@@ -136,7 +136,7 @@ namespace backend.BLL
             }
             if (max < 0)
                 return null;
-            if (minmax == "Max")
+            if (minmax.ToLower() == "max")
                 return new AreaExtreme(maxArea, max);
             else
                 return new AreaExtreme(minArea, min);
