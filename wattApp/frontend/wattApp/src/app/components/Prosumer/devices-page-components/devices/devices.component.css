@@ -18,3 +18,25 @@ a{
     text-decoration: none;
     color:white;
 }
+
+.hidden {
+    display: none;
+  }
+
+.arrow {
+    padding-left:40px;
+    font-size: 20px;
+    cursor: pointer;
+    transition-duration: 0.3s;
+}
+
+.arrow-right {
+    transform: rotate(0deg);
+    transition-duration: 0.3s;
+}
+
+
+.arrow-down {
+    transform:rotate(-90deg);
+    transition-duration: 0.3s;
+}

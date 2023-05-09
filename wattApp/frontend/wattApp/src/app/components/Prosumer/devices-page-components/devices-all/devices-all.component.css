@@ -26,24 +26,13 @@
   box-shadow: 5px 5px 15px black;  
 }
 
-@media only screen and (max-width: 979px) {
-  .widget {
-    -ms-flex-preferred-size: calc(50% - 30px);
-    flex-basis: calc(50% - 30px);
-  }
-}
 
 @media only screen and (max-width: 796px) {
-  .widget {
-    -ms-flex-preferred-size: 100%;
-    flex-basis: 100%;
-  }
-
   .slika{
     display:none;
   }
 }
-@media only screen and (max-width: 500px) {
+@media only screen and (max-width: 1200px) {
 
   .widgets{
     overflow-x: scroll;

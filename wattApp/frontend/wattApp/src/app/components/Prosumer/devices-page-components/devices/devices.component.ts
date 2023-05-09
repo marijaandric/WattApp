@@ -19,31 +19,32 @@ export class DevicesComponent implements OnInit{
   switchValue: boolean = true;
 
   responsiveOptions: any[] = [];
+  carousel: boolean[] = [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false];
 
   switchOptions: SwitchOption[] = [
-    {label: 'List', value: true},
+    {label: 'Grid', value: true},
     {label: 'Table', value: false}
   ];
 
   ngOnInit():void {
     this.responsiveOptions = [
       {
-          breakpoint: '1600px',
+          breakpoint: '1400px',
           numVisible: 4,
           numScroll: 1
       },
       {
-          breakpoint: '1420px',
+          breakpoint: '1220px',
           numVisible: 3,
           numScroll: 1
       },
       {
-          breakpoint: '1100px',
+          breakpoint: '900px',
           numVisible: 2,
           numScroll: 1
       },
       {
-          breakpoint: '900px',
+          breakpoint: '500px',
           numVisible: 1,
           numScroll: 1
       }
@@ -89,4 +90,7 @@ export class DevicesComponent implements OnInit{
     this.cdr.detectChanges();
   }
   
+  collapseDevices(index: number): void {
+    this.carousel[index] = !this.carousel[index];
+}
 }
