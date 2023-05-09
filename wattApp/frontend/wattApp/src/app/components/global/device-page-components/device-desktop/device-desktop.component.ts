@@ -647,6 +647,7 @@ isForecastTrue = true;
 
   dataMin: any;
 dataMax: any;
+theDay = "On the day: ";
 
 
   getMaxMinAvgTotalPowerUsageByTimeForDevice() {
@@ -679,6 +680,7 @@ dataMax: any;
           this.TittleMax='Maximum stocked electricity this week';
           this.TitleAverage='Average stocked electricity this week';
           this.TitleTotal='Total stocked electricity this week';
+          this.theDay = "On the day: ";
         }
         else if(this.selectedDate.code == "3 days")
         {
@@ -686,6 +688,7 @@ dataMax: any;
           this.TittleMax='Maximum stocked electricity by 3 days';
           this.TitleAverage='Average stocked electricity by 3 days';
           this.TitleTotal='Total stocked electricity by 3 days';
+          this.theDay = "On the day: ";
         }
         else if(this.selectedDate.code == "month")
         {
@@ -693,6 +696,7 @@ dataMax: any;
           this.TittleMax='Maximum stocked electricity this month';
           this.TitleAverage='Average stocked electricity this month';
           this.TitleTotal='Total stocked electricity this month';
+          this.theDay = "On the day: ";
         }
         else
         {
@@ -700,6 +704,7 @@ dataMax: any;
          this.TittleMax='Maximum stocked electricity this year';
           this.TitleAverage='Average stocked electricity this year';
          this.TitleTotal='Total stocked electricity this year';
+         this.theDay = "On the month: ";
         }
         
 
@@ -717,6 +722,7 @@ dataMax: any;
         this.TittleMax='Maximum consumed electricity this week';
         this.TitleAverage='Average consumed electricity this week';
         this.TitleTotal='Total consumed electricity this week';
+        this.theDay = "On the day: ";
         }
         else if(this.selectedDate.code == "3 days")
         {
@@ -724,6 +730,7 @@ dataMax: any;
           this.TittleMax='Maximum consumed electricity by 3 days';
           this.TitleAverage='Average consumed electricity by 3 days';
           this.TitleTotal='Total consumed electricity by 3 days';
+          this.theDay = "On the day: ";
         }
         else if(this.selectedDate.code == "month")
         {
@@ -731,6 +738,7 @@ dataMax: any;
         this.TittleMax='Maximum consumed electricity this month';
         this.TitleAverage='Average consumed electricity this month';
         this.TitleTotal='Total consumed electricity this month';
+        this.theDay = "On the day: ";
         }
         else
         {
@@ -738,6 +746,7 @@ dataMax: any;
           this.TittleMax='Maximum consumed electricity this year';
           this.TitleAverage='Average consumed electricity this year';
           this.TitleTotal='Total consumed electricity this year';
+          this.theDay = "On the month: ";
         }
 
         this.SubTitleToday='Consumption Today';
@@ -754,6 +763,7 @@ dataMax: any;
       this.TittleMax='Maximum produced electricity this week';
       this.TitleAverage='Average produced electricity this week';
       this.TitleTotal='Total produced electricity this week';
+      this.theDay = "On the day: ";
         }
         else if(this.selectedDate.code == "3 days")
         {
@@ -761,6 +771,7 @@ dataMax: any;
         this.TittleMax='Maximum produced electricity by 3 days';
         this.TitleAverage='Average produced electricity by 3 days';
         this.TitleTotal='Total produced electricity by 3 days';
+        this.theDay = "On the day: ";
         }
         else if(this.selectedDate.code == "month")
         {
@@ -768,6 +779,7 @@ dataMax: any;
         this.TittleMax='Maximum produced electricity this month';
         this.TitleAverage='Average produced electricity this month';
         this.TitleTotal='Total produced electricity this month';
+        this.theDay = "On the day: ";
         }
         else
         {
@@ -775,6 +787,7 @@ dataMax: any;
         this.TittleMax='Maximum produced electricity this year';
         this.TitleAverage='Average produced electricity this year';
         this.TitleTotal='Total produced electricity this year';
+        this.theDay = "On the month: ";
         }
 
         this.SubTitleToday='Production Today';

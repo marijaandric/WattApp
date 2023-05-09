@@ -387,6 +387,7 @@ dataMax: any;
 
 table = true;
 name:string="Consumption history"
+theDay = "On the day: ";
 
   dropdownChange()
   {
@@ -403,6 +404,7 @@ name:string="Consumption history"
         this.TittleMax='Maximum consumed electricity this week';
         this.TitleAverage='Average consumed electricity this week';
         this.TitleTotal='Total consumed electricity this week';
+        this.theDay = "On the day: ";
 
         this.max=this.Consumermax;
         this.min= this.Consumermin;
@@ -451,6 +453,7 @@ name:string="Consumption history"
         this.TittleMax='Maximum consumed electricity by 3 days';
         this.TitleAverage='Average consumed electricity by 3 days';
         this.TitleTotal='Total consumed electricity by 3 days';
+        this.theDay = "On the day: ";
 
         this.table = true;
         this.History = this.HistoryCon3;
@@ -476,6 +479,7 @@ name:string="Consumption history"
         this.TittleMax='Maximum consumed electricity by 3 days';
         this.TitleAverage='Average consumed electricity by 3 days';
         this.TitleTotal='Total consumed electricity by 3 days';
+        this.theDay = "On the day: ";
 
         this.name = "Consumption forecast"
         this.History = [null];
@@ -490,6 +494,7 @@ name:string="Consumption history"
         this.TittleMax='Maximum consumed electricity this week';
         this.TitleAverage='Average consumed electricity this week';
         this.TitleTotal='Total consumed electricity this week';
+        this.theDay = "On the day: ";
 
         this.name = "Consumption forecast"
         this.History = [null];
@@ -504,6 +509,7 @@ name:string="Consumption history"
         this.TittleMax='Maximum consumed electricity this week';
         this.TitleAverage='Average consumed electricity this week';
         this.TitleTotal='Total consumed electricity this week';
+        this.theDay = "On the day: ";
 
         this.name = "Consumption history"
         this.History = [this.HistoryCon[0],this.HistoryCon[1],this.HistoryCon[2],this.HistoryCon[3],this.HistoryCon[4],this.HistoryCon[5],this.HistoryCon[6]]
@@ -518,6 +524,7 @@ name:string="Consumption history"
         this.TittleMax='Maximum consumed electricity this month';
         this.TitleAverage='Average consumed electricity this month';
         this.TitleTotal='Total consumed electricity this month';
+        this.theDay = "On the day: ";
 
         this.name = "Consumption history"
         this.History = this.HistoryConM;
@@ -532,6 +539,7 @@ name:string="Consumption history"
         this.TittleMax='Maximum consumed electricity this year';
         this.TitleAverage='Average consumed electricity this year';
         this.TitleTotal='Total consumed electricity this year';
+        this.theDay = "On the month: ";
 
         this.name = "Consumption history"
         this.History = this.HistoryConY;
@@ -549,6 +557,7 @@ name:string="Consumption history"
       this.TittleMax='Maximum produced electricity this week';
       this.TitleAverage='Average produced electricity this week';
       this.TitleTotal='Total produced electricity this week';
+      this.theDay = "On the day: ";
 
    
 
@@ -567,6 +576,7 @@ name:string="Consumption history"
         this.TittleMax='Maximum produced electricity this week';
         this.TitleAverage='Average produced electricity this week';
         this.TitleTotal='Total produced electricity this week';
+        this.theDay = "On the day: ";
 
         this.table = true;
      
@@ -594,6 +604,7 @@ name:string="Consumption history"
         this.TittleMax='Maximum produced electricity by 3 days';
         this.TitleAverage='Average produced electricity by 3 days';
         this.TitleTotal='Total produced electricity by 3 days';
+        this.theDay = "On the day: ";
 
         this.table = true;
         this.History = this.HistoryPro3;
@@ -619,6 +630,7 @@ name:string="Consumption history"
         this.TittleMax='Maximum produced electricity by 3 days';
         this.TitleAverage='Average produced electricity by 3 days';
         this.TitleTotal='Total produced electricity by 3 days';
+        this.theDay = "On the day: ";
 
         this.name = "Production forecast"
         this.History = [null]
@@ -633,6 +645,7 @@ name:string="Consumption history"
         this.TittleMax='Maximum produced electricity this week';
         this.TitleAverage='Average produced electricity this week';
         this.TitleTotal='Total produced electricity this week';
+        this.theDay = "On the day: ";
 
         this.name = "Production forecast"
         this.History = [null]
@@ -647,6 +660,7 @@ name:string="Consumption history"
         this.TittleMax='Maximum produced electricity this week';
         this.TitleAverage='Average produced electricity this week';
         this.TitleTotal='Total produced electricity this week';
+        this.theDay = "On the day: ";
 
         this.name = "Production history"
         this.History = [this.HistoryPro[0],this.HistoryPro[1],this.HistoryPro[2],this.HistoryPro[3],this.HistoryPro[4],this.HistoryPro[5],this.HistoryPro[6]]
@@ -660,6 +674,7 @@ name:string="Consumption history"
         this.TittleMax='Maximum produced electricity this month';
         this.TitleAverage='Average produced electricity this month';
         this.TitleTotal='Total produced electricity this month';
+        this.theDay = "On the day: ";
 
         this.name = "Production history"
         this.History = this.HistoryProM;
@@ -672,6 +687,8 @@ name:string="Consumption history"
         this.TittleMax='Maximum produced electricity this year';
         this.TitleAverage='Average produced electricity this year';
         this.TitleTotal='Total produced electricity this year';
+
+        this.theDay = "On the month: ";
 
         this.name = "Production history"
         this.History = this.HistoryProY;
@@ -689,6 +706,7 @@ name:string="Consumption history"
       this.TittleMax='Maximum stocked electricity this week';
       this.TitleAverage='Average stocked electricity this week';
       this.TitleTotal='Total stocked electricity this week';
+      this.theDay = "On the day: ";
 
 
 
@@ -698,6 +716,7 @@ name:string="Consumption history"
       this.TittleMax='Maximum stocked electricity this week';
       this.TitleAverage='Average stocked electricity this week';
       this.TitleTotal='Total stocked electricity this week';
+      this.theDay = "On the day: ";
 
         this.table = true;
         this.History = this.HistoryStock;
@@ -723,6 +742,7 @@ name:string="Consumption history"
         this.TittleMax='Maximum stocked electricity by 3 days';
         this.TitleAverage='Average stocked electricity by 3 days';
         this.TitleTotal='Total stocked electricity by 3 days';
+        this.theDay = "On the day: ";
 
         this.table = true;
         this.History = this.HistoryStock3;
@@ -748,6 +768,7 @@ name:string="Consumption history"
         this.TittleMax='Maximum stocked electricity by 3 days';
         this.TitleAverage='Average stocked electricity by 3 days';
         this.TitleTotal='Total stocked electricity by 3 days';
+        this.theDay = "On the day: ";
 
         this.name1="Stock forecast";
         this.History = [null]
@@ -762,6 +783,7 @@ name:string="Consumption history"
       this.TittleMax='Maximum stocked electricity this week';
       this.TitleAverage='Average stocked electricity this week';
       this.TitleTotal='Total stocked electricity this week';
+      this.theDay = "On the day: ";
 
         this.name1="Stock forecast";
         this.History = [null]
@@ -776,6 +798,7 @@ name:string="Consumption history"
       this.TittleMax='Maximum stocked electricity this week';
       this.TitleAverage='Average stocked electricity this week';
       this.TitleTotal='Total stocked electricity this week';
+      this.theDay = "On the day: ";
 
         this.name1="Stock history";
         this.History = [this.HistoryStock[0],this.HistoryStock[1],this.HistoryStock[2],this.HistoryStock[3],this.HistoryStock[4],this.HistoryStock[5],this.HistoryStock[6]]
@@ -790,6 +813,7 @@ name:string="Consumption history"
       this.TittleMax='Maximum stocked electricity this month';
       this.TitleAverage='Average stocked electricity this month';
       this.TitleTotal='Total stocked electricity this month';
+      this.theDay = "On the day: ";
 
         this.name1="Stock history";
         this.History = this.HistoryStockM;
@@ -802,6 +826,7 @@ name:string="Consumption history"
       this.TittleMax='Maximum stocked electricity this year';
       this.TitleAverage='Average stocked electricity this year';
       this.TitleTotal='Total stocked electricity this year';
+      this.theDay = "On the month: ";
       
         this.name1="Stock history";
         this.History = this.HistoryStockY;
