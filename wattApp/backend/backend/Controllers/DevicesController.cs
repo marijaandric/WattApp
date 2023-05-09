@@ -193,7 +193,7 @@ namespace backend.Controllers
         }
 
         [HttpGet("chart/{userId}/{type}/{limit}")]
-        public IActionResult GetTableContent(int userId, string type, int limit)
+        public IActionResult GetChartContent(int userId, string type, int limit)
         {
             var result = _context.GetDevicesCountByType(userId, type, limit);
             return Ok(
@@ -204,6 +204,14 @@ namespace backend.Controllers
                     }
 
                 );
+
+        }
+
+        [HttpGet("getChartArea/{deviceType}/{limit}")]
+        public IActionResult GetChartAreaContent(string deviceType, int limit)
+        {
+            var result = _contextDevicesAndData.GetChartAreaContent(deviceType, limit);
+            return Ok(result);
 
         }
 

@@ -23,5 +23,6 @@ namespace backend.DAL.Interfaces
         public bool DevicesExists(int id);
         public int GetNumberOfDevicesByType(int userId, string type);
         public List<int> GetListOfFakeIDsForUserDevices(int userid);
+        public List<Devices> GetListOfDevicesByAreaAndType(string area, string deviceType);
     }
 }

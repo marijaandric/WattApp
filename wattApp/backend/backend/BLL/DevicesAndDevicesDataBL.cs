@@ -23,7 +23,37 @@ namespace backend.BLL
             _contextUserDAL = contextUserDAL;
         }
 
-        
+
+        public Dictionary<string, int> GetChartAreaContent(string type, int limit)
+        {
+            Dictionary<string, int> result = new Dictionary<string, int>();
+            List<string> areas = _contextUserDAL.GetAreas();
+
+            foreach (string area in areas)
+            {
+                result.Add(area, _contextDAL.GetListOfDevicesByAreaAndType(area, type).Count);
+            }
+            var sortedResult = from entry in result orderby entry.Value descending select entry;
+
+            Dictionary<string, int> final = new Dictionary<string, int>();
+            int count = 0;
+            int other = 0;
+            foreach(KeyValuePair<string, int> kvp in sortedResult)
+            {
+                if (count < limit)
+                    final.Add(kvp.Key, kvp.Value);
+                else
+                    other += kvp.Value;
+                count++;
+            }
+
+            if(count >= limit)
+                final.Add("Other", other);
+
+            return final;
+        }
+
+
         public List<BigTableContent> GetTableContent(int userId, int year, int month, int day, int time, string type)
         {
             User userObj = _contextUserDAL.getUser(userId);

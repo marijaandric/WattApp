@@ -19,5 +19,6 @@ namespace backend.BLL.Interfaces
         public Dictionary<string, double> GetMaxMinAvgTotalPowerUsageByTimeForDevicesByType(int userid, string deviceType, string timeType);
         public Dictionary<string, double>  GetMaxMinAvgTotalPowerUsageByTimeForDevice(int deviceid, string timeType);
         public Dictionary<string, double> GetPowerUsageForAllTypesForArea(string area, string timetype);
+        public Dictionary<string, int> GetChartAreaContent(string type, int limit);
     }
 }

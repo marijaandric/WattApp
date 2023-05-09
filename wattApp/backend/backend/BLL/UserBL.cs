@@ -341,12 +341,7 @@ namespace backend.BAL
 
         public List<string> GetAreas()
         {
-            List<User> users = _contextDAL.getUsers();
-
-            if(users != null && users.Count != 0)
-                return users.Select(d => d.Area).ToList().Distinct().ToList();
-
-            return null;
+           return _contextDAL.GetAreas();
         }
 
         public Dictionary<string, int> GetNumberOfUsersByArea()

@@ -116,5 +116,12 @@ namespace backend.DAL
             return devices.Select(d => d.FakeID).ToList();
         }
 
+        public List<Devices> GetListOfDevicesByAreaAndType(string area, string deviceType)
+        {
+            List<int> usersIDs = _context.Users.Where(u => u.Area == area).Select(u => u.Id).ToList();
+            List<Devices> devices = _context.Devices.Where(d => usersIDs.Contains(d.UserID) && d.DeviceType == deviceType).ToList();
+
+            return devices;
+        }
     }
 }
