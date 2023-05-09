@@ -143,7 +143,9 @@
   border-bottom-right-radius: 20px !important;
   border:none;
 }
-
+.p-carousel-items-container {
+  display: -webkit-box !important;
+}
 .p-carousel-items-content {
   min-height: 240px !important;
 }

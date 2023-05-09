@@ -1,13 +1,14 @@
 
 .device-card{
-    min-width: 200px;
+    min-width: 250px;
     width: 92%;    background: linear-gradient(180deg, #1b1b1b 50%, #121212 100%) ;
     border-radius: 20px;
     padding: 16px;
     margin: auto;
     box-shadow: 5px 5px 15px black;
     min-height:170px;
-    margin-top: 2%;
+    margin-top: 40px;
+    max-width:300px;
 }
 
 .device-card:hover{

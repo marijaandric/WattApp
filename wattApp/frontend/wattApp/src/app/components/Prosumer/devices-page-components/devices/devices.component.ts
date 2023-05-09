@@ -28,22 +28,22 @@ export class DevicesComponent implements OnInit{
   ngOnInit():void {
     this.responsiveOptions = [
       {
-          breakpoint: '1400px',
+          breakpoint: '1600px',
           numVisible: 4,
           numScroll: 1
       },
       {
-          breakpoint: '1220px',
+          breakpoint: '1420px',
           numVisible: 3,
           numScroll: 1
       },
       {
-          breakpoint: '900px',
+          breakpoint: '1100px',
           numVisible: 2,
           numScroll: 1
       },
       {
-          breakpoint: '500px',
+          breakpoint: '900px',
           numVisible: 1,
           numScroll: 1
       }
