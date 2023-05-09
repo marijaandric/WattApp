@@ -28,7 +28,7 @@
         </div>
         <div style="display:flex;float:right; flex-direction:column; margin-left:calc(3%); width:48%; height:100%" >
           
-          <p-dropdown [options]="options" appendTo="body" [(ngModel)]="selectedOption" optionLabel="name"  >
+          <p-dropdown [options]="options" (onChange)="onDropdownChange()" appendTo="body" [(ngModel)]="selectedOption" optionLabel="name"  >
           </p-dropdown>
         </div>
       </div>
@@ -37,7 +37,7 @@
           <app-single-area-pie></app-single-area-pie>
         </div>
         <div style="display:flex;float:right; flex-direction:column; margin-left:calc(3.5%); width:49%; height:100%" >
-          <app-all-areas-donut></app-all-areas-donut>
+          <app-all-areas-donut [Series]="count" [chartText]="naziv" [chartHeight]="100"></app-all-areas-donut>
         </div>
       </div>
 

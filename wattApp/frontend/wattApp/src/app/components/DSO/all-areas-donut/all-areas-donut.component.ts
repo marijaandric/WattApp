@@ -26,9 +26,19 @@ export class AllAreasDonutComponent {
 
   chartSeries: ApexNonAxisChartSeries = this.Series;
 
+
   ngOnChanges(changes: SimpleChanges) {
     if ('Series' in changes) {
       this.chartSeries = this.Series;
+    }
+    if ('chartText' in changes) {
+      this.chartTitle = { text: this.chartText,
+        style: {
+          color: '#FFFFFF',
+          fontSize: '19px',
+          fontFamily:'Montserrat',
+          fontWeight:'bold'  
+        }, };
     }
   }
 
