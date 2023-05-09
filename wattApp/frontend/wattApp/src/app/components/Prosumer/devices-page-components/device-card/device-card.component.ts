@@ -5,6 +5,7 @@ import { DeviceDataDTO } from 'src/app/dtos/DeviceDataDTO';
 import { DeviceDataService } from 'src/app/services/device-data/device-data.service';
 import { DeviceService } from 'src/app/services/device/device.service';
 
+
 @Component({
   selector: 'app-device-card',
   templateUrl: './device-card.component.html',
@@ -24,5 +25,30 @@ export class DeviceCardComponent {
   showDialog() {
     this.display = !this.display;
   }
+
+  // ngOnChanges() {
+  //   // Update the switch button state when the device.isActive property changes
+  //   const switchButton = document.querySelector('#mySwitch');
+  //   if (switchButton) {
+  //     switchButton['checked'] = this.device.isActive;
+  //   }
+  // }
+
+  onSwitchChange(newVal: boolean) {
+    //this.showDialog();
+    const confirmed = confirm('Do you want to change the device activity?');
+    if (confirmed) {
+      this.device.isActive = newVal;
+      this.handleRunningSwitchChange();
+    }
+
+    // const confirmed = this.showDialog();
+    // if (confirmed) {
+    //   this.device.isActive = newVal;
+    // }
+
+    
+  }
+
 
 }
