@@ -2,7 +2,7 @@
     <div class="flexRow">
         <a [routerLink]="['/device', device.id]"  style="display:flex;width:30px;padding-top:5px;"><i class="fa-solid fa-house"></i></a>
         <a [routerLink]="['/device', device.id]" class="device-name abbreviate-text" style="padding-top:2px">{{ device.deviceName }}</a>
-        <p-inputSwitch [(ngModel)]="device.isActive" (onChange)="handleRunningSwitchChange()" class="margin-left__auto width__fit-content"/>
+        <p-inputSwitch [(ngModel)]="device.isActive" (onChange)="showDialog()" (onChange)="handleRunningSwitchChange()" class="margin-left__auto width__fit-content"/>
     </div>
     <div class="flexRow" style="margin-top: 16px;">
         <span >Status:</span>
@@ -20,3 +20,22 @@
         <span class="margin-left__auto color-gray">{{ device.power }} kW/h</span>
     </div>
 </div>
+
+
+<p-dialog [style]="{width:'300px',height:'200px'}" header="Title"  [transitionOptions]="'3ms'" 
+[draggable]="true" [keepInViewport]="true" [resizable]="false" 
+[blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true" 
+[modal]="true" [(visible)]="display" [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
+[closable]="true" >
+<ng-template pTemplate="header" class="header-dialog">
+  <span >Are you sure you want to do that?</span>
+</ng-template>
+
+<ng-template pTemplate="center">
+  <div class="flexRow">
+    <button class="margin-left__16px edit-btn" > Yes</button>
+    <button class="margin-left__16px remove-btn" > No</button>
+  </div>
+</ng-template>
+
+</p-dialog>

@@ -13,10 +13,16 @@ import { DeviceService } from 'src/app/services/device/device.service';
 export class DeviceCardComponent {
   @Input() device: any;
   isChecked: boolean = true;
+  display: boolean = false;
 
   constructor(private deviceService: DeviceService){ }
 
   async handleRunningSwitchChange(){
     await lastValueFrom(this.deviceService.updateDevice(this.device));
   }
+
+  showDialog() {
+    this.display = !this.display;
+  }
+
 }
