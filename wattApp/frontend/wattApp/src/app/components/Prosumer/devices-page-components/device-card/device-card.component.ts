@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, SimpleChange } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
 import { DeviceDTO } from 'src/app/dtos/DeviceDTO';
 import { DeviceDataDTO } from 'src/app/dtos/DeviceDataDTO';
@@ -11,7 +11,7 @@ import { DeviceService } from 'src/app/services/device/device.service';
   templateUrl: './device-card.component.html',
   styleUrls: ['./device-card.component.css']
 })
-export class DeviceCardComponent {
+export class DeviceCardComponent{
   @Input() device: any;
   isChecked: boolean = true;
   display: boolean = false;
@@ -20,6 +20,11 @@ export class DeviceCardComponent {
 
   async handleRunningSwitchChange(){
     await lastValueFrom(this.deviceService.updateDevice(this.device));
+  }
+
+  ngOnChange(changes:SimpleChange)
+  {
+    this.device = this.device;
   }
 
   showDialog() {

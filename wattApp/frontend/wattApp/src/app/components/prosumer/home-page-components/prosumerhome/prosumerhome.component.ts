@@ -54,7 +54,7 @@ export class ProsumerhomeComponent implements OnInit{
     
     this.deviceService.getBiggest(this.id,year,month,day,consumer,max).subscribe((response: any) => {
       this.loader = false;
-       this.IdBiggestConsumer=response.id;
+       this.IdBiggestConsumer=response.deviceId;
        this.NameBiggestConsumer=response.deviceName;
        this.PowerUsageBiggestConsumer=response.averagePowerUsage.toFixed(2);
        this.device.deviceName = this.NameBiggestConsumer;
@@ -80,7 +80,7 @@ export class ProsumerhomeComponent implements OnInit{
     const max = 'max';
 
     this.deviceService.getBiggest(this.id,year,month,day,consumer,max).subscribe((response: any) => {
-       this.IdBiggestProducer=response.id;
+       this.IdBiggestProducer=response.deviceId;
        this.NameBiggestProducer=response.deviceName;
        this.PowerUsageBiggestProducer=response.averagePowerUsage.toFixed(2);
        this.device1.deviceName = this.NameBiggestProducer;
@@ -107,14 +107,14 @@ export class ProsumerhomeComponent implements OnInit{
 
 
     this.deviceService.getBiggest(this.id,year,month,day,consumer,max).subscribe((response: any) => {
-       this.IdBiggestStorage=response.id;
+       this.IdBiggestStorage=response.deviceId;
        this.NameBiggestStorage=response.deviceName;
        this.PowerUsageBiggestStorage=response.averagePowerUsage.toFixed(2);
        this.device2.deviceName = this.NameBiggestStorage;
        this.device2.id=this.IdBiggestStorage;
        this.device2.power=this.PowerUsageBiggestStorage;
        this.device2.deviceType="Stock";
-     //console.log(response);
+       console.log(response);
     });
   
   }
