@@ -40,14 +40,14 @@ namespace backend.BLL
             int other = 0;
             foreach(KeyValuePair<string, int> kvp in sortedResult)
             {
-                if (count < limit)
+                if (count < limit - 1)
                     final.Add(kvp.Key, kvp.Value);
                 else
                     other += kvp.Value;
                 count++;
             }
 
-            if(count >= limit)
+            if(count >= limit - 1)
                 final.Add("Other", other);
 
             return final;
