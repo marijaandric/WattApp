@@ -22,13 +22,14 @@
       <div style="display:flex;float:right; flex-direction:row; width:100%; height:fit-content">
         <div style="display:flex;float:right; flex-direction:column;  width:48%; height:100%" >
           
+  
   <p-dropdown [options]="type" appendTo="body" [(ngModel)]="selectedType" optionLabel="name"  >
   </p-dropdown>
         </div>
         <div style="display:flex;float:right; flex-direction:column; margin-left:calc(3%); width:48%; height:100%" >
           
-  <p-dropdown [options]="type" appendTo="body" [(ngModel)]="selectedType" optionLabel="name"  >
-  </p-dropdown>
+          <p-dropdown [options]="options" appendTo="body" [(ngModel)]="selectedOption" optionLabel="name"  >
+          </p-dropdown>
         </div>
       </div>
       <div style="display:flex;float:right; flex-direction:row; width:100%; height:400px">

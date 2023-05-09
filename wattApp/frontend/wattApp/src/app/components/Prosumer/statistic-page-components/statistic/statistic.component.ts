@@ -365,6 +365,7 @@ theDay = "On the day: ";
 
   dropdownChange()
   {
+    this.getDevicePerRoom();
     this.getConsumergetMaxMinAvgTotalPowerUsageByTimeForAllDevicesByType();
 
     this.isForecastTrue = true;

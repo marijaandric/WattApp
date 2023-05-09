@@ -161,6 +161,10 @@ export class DeviceService {
   {
     return this.http.get<any>(this.baseUrl+ "getMaxMinAvgTotalPowerUsageByTimeForDevice" + "/" + id +"/"+ timeType);
   }
+  getPowerUsageForAllTypesForArea(area:string,timeType:string)
+  {
+    return this.http.get<any>(this.baseUrl+ "getPowerUsageForAllTypesForArea" + "/" + area +"/"+ timeType);
+  }
 
 
 
