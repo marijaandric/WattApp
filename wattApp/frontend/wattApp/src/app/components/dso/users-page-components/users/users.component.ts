@@ -32,9 +32,7 @@ export class UsersComponent implements OnInit{
       {name: 'Stock', code: '3'}
   ];
   this.options = [
-    {name: 'Consumption', code: '1'},
-    {name: 'Production', code: '2'},
-    {name: 'Stock', code: '3'}
+
 ];
 
  }
@@ -55,7 +53,7 @@ export class UsersComponent implements OnInit{
   }
 
   options : City [];
-  selectedOption!: City;
+  selectedOption: City={name: "", code: ""};
 
   getAreas() {
     this.aPIService.getAreas().subscribe((response: any) => {
@@ -65,25 +63,41 @@ export class UsersComponent implements OnInit{
           code: option
         };
       });
-      console.log(this.options);
-      console.log(this.type);
+      this.selectedOption=this.options[0];
+      console.log(this.selectedOption);
+    //  console.log(this.type);
+    this.getPowerUsageForAllTypesForArea();
     });
+
+  }
+  onDropdownChange() {
+    //console.log(this.selectedOption);
+    this.getPowerUsageForAllTypesForArea();
 
   }
 
   count: number[]=[];
+  boris=[1,2,3];
+  naziv: string = "";
 
+  c: any;
+  p: any;
+  s: any;
   getPowerUsageForAllTypesForArea() {
     const deviceType = this.selectedOption.code;
-    console.log(this.selectedType.code);
+    console.log(this.selectedOption.code);
+    this.naziv=this.selectedOption.code;
     const timeType = "week"; 
+    this.count.splice(0, this.count.length);
     this.deviceService.getPowerUsageForAllTypesForArea(deviceType,timeType).subscribe((data: any) => {
+      this.count.splice(0, this.count.length);
      this.count.push(data.Consumer);
      this.count.push(data.Producer);
      this.count.push(data.Stock);
     });
 
     console.log(this.count);
+    console.log(this.boris);
   }
 
 
