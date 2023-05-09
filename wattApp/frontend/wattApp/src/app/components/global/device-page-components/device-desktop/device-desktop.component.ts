@@ -367,7 +367,7 @@ export class DeviceDesktopComponent implements OnInit {
   arrayDataM = [];
 
   getHistoryAndForecastByDayForAllDevicesByMonth(id:any) {
-    this.deviceService.getHistoryAndForecastByDayForDevice(id,"month").subscribe(data => {
+    this.deviceService.getHistoryAndForecastByDayForDevice(id,"monthhistory").subscribe(data => {
       this.arrayDataM = data.dates; //.slice(0, 7).concat(data.dates.slice(8));
       this.HistoryConM = data.datas.map((val: number) => +val.toFixed(2));
       this.HistoryProM = data.datas.map((val: number) => +val.toFixed(2));

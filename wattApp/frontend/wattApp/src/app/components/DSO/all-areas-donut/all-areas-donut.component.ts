@@ -40,6 +40,9 @@ export class AllAreasDonutComponent {
           fontWeight:'bold'  
         }, };
     }
+    if ('chartHeight' in changes) {
+      this.chartDetails.height = this.chartHeight;
+    }
   }
 
 
@@ -149,7 +152,7 @@ export class AllAreasDonutComponent {
   constructor() { }
 
   ngOnInit(): void {
-    this.chartDetails.height = '230px';
+    this.chartDetails.height = '220px';
     this.chartTitle.text=this.chartText;
     this.chartSeries=this.Series;
     this.chartLegend=this.chartLegend;

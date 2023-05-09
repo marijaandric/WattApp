@@ -2,7 +2,7 @@
     <div class="flexRow">
         <a [routerLink]="['/device', device.id]"  style="display:flex;width:30px;padding-top:5px;"><i class="fa-solid fa-house"></i></a>
         <a [routerLink]="['/device', device.id]" class="device-name abbreviate-text" style="padding-top:2px">{{ device.deviceName }}</a>
-        <p-inputSwitch [(ngModel)]="device.isActive" (onChange)="showDialog()" (onChange)="handleRunningSwitchChange()" class="margin-left__auto width__fit-content"/>
+        <p-inputSwitch [ngModel]="device.isActive" (ngModelChange)="onSwitchChange($event)" class="margin-left__auto width__fit-content"/>
     </div>
     <div class="flexRow" style="margin-top: 16px;">
         <span >Status:</span>
@@ -33,8 +33,8 @@
 
 <ng-template pTemplate="center">
   <div class="flexRow">
-    <button class="margin-left__16px edit-btn" > Yes</button>
-    <button class="margin-left__16px remove-btn" > No</button>
+    <button class="margin-left__16px edit-btn"  (click)="handleRunningSwitchChange()"> Yes</button>
+    <button class="margin-left__16px remove-btn"  (click)="showDialog()"> No</button>
   </div>
 </ng-template>
 

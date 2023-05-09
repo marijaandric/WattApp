@@ -8,16 +8,20 @@ import { DeviceDataDTO } from 'src/app/dtos/DeviceDataDTO';
   providedIn: 'root'
 })
 export class DeviceDataService {
-  private baseUrl: string = url + "/api/Devices/";
+  private baseUrl: string = url + "/api/DevicesDatas/";
 
   constructor(private http: HttpClient) { }
 
-  getDeviceData(id: number): Observable<DeviceDataDTO>{
-    return this.http.get<DeviceDataDTO>(this.baseUrl + id);
-  }
+  // getDeviceData(id: number): Observable<DeviceDataDTO>{
+  //   return this.http.get<DeviceDataDTO>(this.baseUrl + id);
+  // }
 
-  getHistoryAndForecastByDayForAllDevices()
-  {
-    return this.http.get<DeviceDataDTO>(this.baseUrl + "getHistoryAndForecastByDayForAllDevices");
-  }
+  // getHistoryAndForecastByDayForAllDevices()
+  // {
+  //   return this.http.get<DeviceDataDTO>(this.baseUrl + "getHistoryAndForecastByDayForAllDevices");
+  // }
+  powerUsage(id: number,year:number,month:number,day:number,time:number)
+   {
+    return this.http.get<DeviceDataDTO>(this.baseUrl + id +"/"+year +"/"+month +"/"+day +"/"+time);
+   }
 }

@@ -10,6 +10,7 @@ import { lastValueFrom, map, tap } from 'rxjs';
 import { HistoryLineChartComponent } from 'src/app/components/Prosumer/history-line-chart/history-line-chart.component';
 import { HistoryForecastComponent } from '../../history-forecast/history-forecast.component';
 import { ForecastLineChartComponent } from 'src/app/components/Prosumer/forecast-line-chart/forecast-line-chart.component';
+import { DeviceDataService } from 'src/app/services/device-data/device-data.service';
 
 interface Models{
   code: string;
@@ -99,6 +100,7 @@ export class DevicePhoneComponent implements OnInit{
 
 
   constructor(private route: ActivatedRoute, 
+              private deviceDataService: DeviceDataService,
               private deviceService: DeviceService, 
               private router: Router,
               private fromBuilder: FormBuilder,
@@ -168,6 +170,7 @@ export class DevicePhoneComponent implements OnInit{
           this.getUsageMonth();
           this.getUsageYear();
           this.getMaxMinAvgTotalPowerUsageByTimeForDevice();
+          this.powerUsage(id);
       });
 
     } else{
@@ -366,7 +369,7 @@ export class DevicePhoneComponent implements OnInit{
   arrayDataM = [];
 
   getHistoryAndForecastByDayForAllDevicesByMonth(id:any) {
-    this.deviceService.getHistoryAndForecastByDayForDevice(id,"month").subscribe(data => {
+    this.deviceService.getHistoryAndForecastByDayForDevice(id,"monthhistory").subscribe(data => {
       this.arrayDataM = data.dates; //.slice(0, 7).concat(data.dates.slice(8));
       this.HistoryConM = data.datas.map((val: number) => +val.toFixed(2));
       this.HistoryProM = data.datas.map((val: number) => +val.toFixed(2));
@@ -400,6 +403,22 @@ export class DevicePhoneComponent implements OnInit{
       this.HistoryStockY = data.datas.map((val: number) => +val.toFixed(2));
 
       this.arrayDataY = this.getShortMonthNamesFromNowToNextYear();
+
+    });
+  }
+
+  power: any;
+
+  powerUsage(id:any) {
+    const now = new Date();
+    const year = now.getFullYear();
+    const month = now.getMonth() + 1;
+    const day =now.getDate();
+    const time=now.getHours();
+
+    this.deviceDataService.powerUsage(id,year,month,day,time).subscribe(data => { 
+      this.power=data.powerUsage.toFixed(2);
+    console.log(this.power);
 
     });
   }

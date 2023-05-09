@@ -27,10 +27,11 @@ export class UsersComponent implements OnInit{
 
   constructor(private aPIService: APIService, private userService: UserService, private deviceService : DeviceService) {
     this.type = [
-      {name: 'Consumption', code: '1'},
-      {name: 'Production', code: '2'},
-      {name: 'Stock', code: '3'}
+      {name: 'Consumption', code: 'Consumer'},
+      {name: 'Production', code: 'Producer'},
+      {name: 'Stock', code: 'Stock'}
   ];
+  this.selectedType = {name: 'Consumption', code: 'Consumer'};
   this.options = [
 
 ];
@@ -42,6 +43,7 @@ export class UsersComponent implements OnInit{
     this.userService.getUsersPaginationByRole("prosumer",this.currentPage,this.rowsPerPage).subscribe((result: UserDTO[])=>(this.loader=false,this.users = result))
     this.getAreas();
     this.getPowerUsageForAllTypesForArea();
+    this.getChartArea();
   }
 
   clear(dtUsers: any) {
@@ -73,6 +75,7 @@ export class UsersComponent implements OnInit{
   onDropdownChange() {
     //console.log(this.selectedOption);
     this.getPowerUsageForAllTypesForArea();
+    this.getChartArea();
 
   }
 
@@ -98,6 +101,29 @@ export class UsersComponent implements OnInit{
 
     console.log(this.count);
     console.log(this.boris);
+  }
+  keys: string[] = [];
+  values: number[] = [];
+
+  getChartArea() {
+    const deviceType = this.selectedType.code;
+    console.log(this.selectedType.code);
+
+    const number = 4;
+    this.keys.splice(0, this.keys.length);
+    this.values.splice(0, this.values.length);
+    this.deviceService.getChartArea(deviceType,number).subscribe((data: any) => {
+    this.keys.splice(0, this.keys.length);
+    this.values.splice(0, this.values.length);
+      console.log(data);
+      for (const key in data) {
+        this.keys.push(key);
+        this.values.push(data[key]);
+      }
+    });
+
+  console.log(this.keys);
+  console.log(this.values);
   }
 
 
