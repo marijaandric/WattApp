@@ -4,6 +4,7 @@ import { DeviceService } from 'src/app/services/device/device.service';
 import { ChartComponent } from 'ng-apexcharts';
 import { PieChartComponent } from 'src/app/components/global/pie-chart/pie-chart.component';
 import { UserService } from 'src/app/services/user.service';
+import { LoaderService } from 'src/app/services/loader/loader.service';
 interface City {
   name: string,
   code: string
@@ -71,17 +72,17 @@ export class StatisticComponent  implements OnInit {
   rooms: string[] =[];
   count: number[]=[];
   
-  History = [12, 19, 3, 5, 2, 6, 5, null,null,null,null, null, null, null];
-  Forecast= [null,null, null, null, null, null,5,10,12,3,16,5,10,5];
-  miniHistory = [12, 19, 3, 5, 2, 6, 5];
-  miniForecast= [5,10,12,3,16,5,10];
+  History = [0,0,0,0,0,0, null,null,null,null, null, null, null];
+  Forecast= [null,null, null, null, null, null,0,0,0,0,0,0];
+  miniHistory = [0,0,0,0,0,0];
+  miniForecast= [0,0,0,0,0,0];
 
-  arrayData = [1,2,3,4,5,6,7,8,9,10,11,12,13,14];
-  arrayData1 = [1,2,3,4,5,6,7];
-  arrayData2 = [8,9,10,11,12,13,14];
+  arrayData = [0,0,0,0,0,0,0,0,0,0,0,0];
+  arrayData1 = [0,0,0,0,0,0,];
+  arrayData2 = [0,0,0,0,0,0,];
 
-  miniarrayData1 = [1,2,3,4,5,6,7];
-  miniarrayData2 = [8,9,10,11,12,13,14];
+  miniarrayData1 = [0,0,0,0,0,0,];
+  miniarrayData2 = [0,0,0,0,0,0,];
 
   name1 = "history";
   name2 = "forecast";
@@ -89,12 +90,12 @@ export class StatisticComponent  implements OnInit {
   color1 = '#46c5f1';
   color2 = '#88dbf6';
 
-  HistoryCon:any = [12, 19, 3, 5, 2, 6, 5,];
-  ForecastCon:any= [5,10,12,3,16,5,10,5];
-  HistoryPro :any= [12, 19, 3, 5, 2, 6, 5];
-  ForecastPro:any= [5,10,12,3,16,5,10,5];
-  HistoryStock:any = [12, 19, 3, 5, 2, 6, 5];
-  ForecastStock:any = [5,10,12,3,16,5,10,5];
+  HistoryCon:any = [10,0,0,0,0,0];
+  ForecastCon:any= [0,0,0,0,0,0,];
+  HistoryPro :any= [0,0,0,0,0,0,];
+  ForecastPro:any= [0,0,0,0,0,0,];
+  HistoryStock:any = [0,0,0,0,0,0,];
+  ForecastStock:any = [0,0,0,0,0,0,];
 
   miniHistoryCon:any = [12, 19, 3, 5, 2, 6, 5];
   miniForecastCon:any= [5,10,12,3,16,5,10,5];
@@ -106,7 +107,7 @@ export class StatisticComponent  implements OnInit {
   miniForecastStock:any= [5,10,12,3,16,5,10,5];
 
 
-  constructor(private http: HttpClient, private deviceService : DeviceService,private userService:UserService,) {
+  constructor(private http: HttpClient, private deviceService : DeviceService,private userService:UserService,public loaderService:LoaderService) {
     this.type = [
       {name: 'Consumption', code: 'Consumer'},
       {name: 'Production', code: 'Producer'},
@@ -159,12 +160,12 @@ export class StatisticComponent  implements OnInit {
 
   getHistoryAndForecastByDayForAllDevices() {
     this.deviceService.GetHistoryAndForecastByDayForAllUserDevices(this.id,"week").subscribe(data => {
+      this.loader = false;
         this.arrayData = data.dates; //.slice(0, 7).concat(data.dates.slice(8));
         this.miniarrayData1=data.dates.slice(0, 7);
         this.miniarrayData2=data.dates.slice(8, 14);
 
         this.dates = this.arrayData;
-        this.loader = false;
         this.HistoryCon = data.totaldatasConsumer.map((val: number) => +val.toFixed(2));
         this.ForecastCon = data.totaldatasConsumer.map((val: number) => +val.toFixed(2));
         this.HistoryPro = data.totaldatasProducer.map((val: number) => +val.toFixed(2));
@@ -252,7 +253,7 @@ export class StatisticComponent  implements OnInit {
   arrayDataM = [];
 
   getHistoryAndForecastByDayForAllDevicesByMonth() {
-    this.deviceService.GetHistoryAndForecastByDayForAllDevices("month").subscribe(data => {
+    this.deviceService.GetHistoryAndForecastByDayForAllDevices("monthhistory").subscribe(data => {
       this.arrayDataM = data.dates; //.slice(0, 7).concat(data.dates.slice(8));
       this.HistoryConM = data.totaldatasConsumer.map((val: number) => +val.toFixed(2));
       this.HistoryProM = data.totaldatasProducer.map((val: number) => +val.toFixed(2));

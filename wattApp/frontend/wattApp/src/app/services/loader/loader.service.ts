@@ -6,17 +6,17 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class LoaderService {
 
-  private count = new BehaviorSubject<boolean>(false);
+  private count = new BehaviorSubject<number>(0);
 
   get count$() {
     return this.count.asObservable();
   }
 
   show() {
-    this.count.next(true);
+    this.count.next(this.count.value + 1);
   }
 
   hide() {
-    this.count.next(false);
+    this.count.next(this.count.value - 1);
   }
 }

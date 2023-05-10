@@ -23,8 +23,8 @@ export class UsersComponent implements OnInit{
   type: City[];
   selectedType!: City;
   currentPage :any = 0;
-  rowsPerPage :any = 2;
-  loader=true;
+  rowsPerPage :any = 10;
+  loader=false;
 
   constructor(private aPIService: APIService, private userService: UserService, private deviceService : DeviceService,public loaderService: LoaderService) {
     this.type = [
@@ -46,9 +46,7 @@ export class UsersComponent implements OnInit{
     //this.getPowerUsageForAllTypesForArea();
     this.getChartArea();
     //this.loader = false;
-    this.loaderService.count$.subscribe(count => {
-      this.loader = count;
-    });
+    
   }
 
   clear(dtUsers: any) {
