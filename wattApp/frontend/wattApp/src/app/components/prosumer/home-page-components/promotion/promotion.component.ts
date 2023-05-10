@@ -1,4 +1,8 @@
 import { Component, OnInit, HostBinding, Input } from '@angular/core';
+import { NgToastService } from 'ng-angular-popup';
+import { AuthService } from 'src/app/services/auth/auth.service';
+import { DsonewsService } from 'src/app/services/dsonews/dsonews.service';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-promotion',
@@ -10,7 +14,9 @@ export class PromotionComponent implements OnInit{
   @Input() Title : String ="Show us all your device, get a 10% discount! For more information, contact our operators! Dear consumers, we inform you that the price of electricity will decrease by 5% in the coming period.";
   @Input() Datum : String ="01.01.2023.";
   @Input() Status : String ="Nista";
+  @Input() ID : number =0;
 
+  
 
   @Input() @HostBinding("blue-color") public isBlue = false;
   @Input() @HostBinding("bg-blue-color") public isBgBlue = false;
@@ -21,6 +27,34 @@ export class PromotionComponent implements OnInit{
   @Input() @HostBinding("pink-color") public isPink = false;
   @Input() @HostBinding("bg-pink-color") public isBgPink = false;
 
+  constructor(
+    private authService: AuthService,
+    private userService: UserService,
+    private dsonewsService: DsonewsService,
+    private toast: NgToastService,
+    ) {
+  }
+
+  isAdmin(): boolean {
+    const token = this.authService.getToken();
+    if (!token) {
+      return false;
+    }
+    const userRole = this.userService.getUserRoleFromToken(token);
+    return userRole === 'operator' || userRole === 'admin' || userRole === 'superadmin';
+  }
+
+  DeleteNews(newsId: number) {
+    this.dsonewsService.deleteNews(newsId).subscribe(() => {
+      this.toast.success({detail:"SUCCESS",summary:"You have successfully DELETE news",duration:5000});
+      setTimeout(() => {
+        location.reload();
+      }, 1500);
+
+    },
+    error => console.error(error)
+    );
+  }
 
   ngOnInit(): void {
     console.log(this.isBlue);
