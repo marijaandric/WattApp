@@ -309,15 +309,26 @@ namespace backend.BLL
 
             HAFDatasTypesDTO final = new HAFDatasTypesDTO();
 
+
+            List<double> zeros = new List<double>();
+            for(int i = 0; i < result[0].dates.Count; i++)
+                zeros.Add(0);
+
             int counter = 0;
 
             final.dates = result[0].dates;
             if (consumed)
                 final.totaldatasConsumer = result[counter++].datas;
+            else
+                final.totaldatasConsumer = zeros;
             if (produced)
                 final.totaldatasProducer = result[counter++].datas;
+            else
+                final.totaldatasProducer = zeros;
             if (stock)
                 final.totaldatasStock = result[counter].datas;
+            else
+                final.totaldatasStock = zeros;
 
             return final;
 
