@@ -190,7 +190,7 @@ namespace backend.BLL
                 devicesMap.Add(_contextDAL.GetDevice(dvcs.deviceID).Id, dvcs.usage);
             }
 
-            if (size == "max")
+            if (size.ToLower() == "max")
             {
                 double maxValue = double.MinValue;
 
@@ -280,13 +280,13 @@ namespace backend.BLL
 
             List<List<int>> devicesids = new List<List<int>>();
 
-            if(consumerDevices != null || consumerDevices.Count != 0)
+            if(consumerDevices != null && consumerDevices.Count != 0)
                 devicesids.Add(consumerDevices.Select(d => d.FakeID).ToList());
 
-            if (producerDevices != null || producerDevices.Count != 0)
+            if (producerDevices != null && producerDevices.Count != 0)
                 devicesids.Add(producerDevices.Select(d => d.FakeID).ToList());
 
-            if (stockDevices != null || stockDevices.Count != 0)
+            if (stockDevices != null && stockDevices.Count != 0)
                 devicesids.Add(stockDevices.Select(d => d.FakeID).ToList());
 
             if(devicesids.Count == 0)
