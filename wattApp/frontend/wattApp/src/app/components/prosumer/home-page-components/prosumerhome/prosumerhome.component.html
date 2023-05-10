@@ -33,8 +33,10 @@
               <app-device-card [device]="device"></app-device-card>
               </div>
               <div *ngIf ="device.deviceName == 'device'">
+                <div style="cursor: pointer;margin-top:40px" (click)="showDisplay()">
                 <div style="width:92%;height:170px;margin:auto;background-color: #1b1b1b;border-radius: 20px;box-shadow: 5px 5px 15px black;text-align: center;">
                 <div style="padding: 20px;padding-top:70px"><i class="fa fa-plus" aria-hidden="true"></i>Add {{device.deviceType}} device</div>
+                </div>
                 </div>
               </div>
           </ng-template>
@@ -84,3 +86,39 @@
 
   </standard-template>
   
+
+  
+<p-dialog [style]="{width:'40%'}" header="Title"  [transitionOptions]="'3ms'" 
+[draggable]="true" [keepInViewport]="true" [resizable]="false" 
+[blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true" 
+[modal]="true" [(visible)]="display" [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
+[closable]="true" >
+<ng-template pTemplate="header" class="header-dialog">
+  <span>Add Device</span>
+</ng-template>
+
+<ng-template pTemplate="content">
+  <form [formGroup]="addDeviceForm" >  
+  <div class="p-inputgroup p-inputtext-lg p-input-filled">
+    <div class="half">  
+      Device type 
+      <p-dropdown [options]="types" appendTo="body" optionLabel="name" (onChange)="onTypeChange($event)"/>
+      Device model 
+      <p-dropdown [options]="models" appendTo="body" optionLabel="name" (onChange)="onModelChange($event)"/>
+    </div>
+    
+    <div class="half">       
+       Room
+      <p-dropdown [options]="rooms" appendTo="body" optionLabel="name" (onChange)="onRoomChange($event)"/>
+      <input style="margin-top:45px;" formControlName="deviceName" name="name"  appendTo="body" type="text"   class="p-inputtext-lg"  placeholder="DEVICE NAME"> 
+    </div>
+  </div> 
+  </form>
+</ng-template>
+
+<ng-template pTemplate="footer" style="min-height:100px;" >
+  <button type="button" class="footer-button" icon="pi pi-info-circle" label="Show" (click)="addDevice()"><span>Save</span></button>
+
+</ng-template>
+</p-dialog>
+

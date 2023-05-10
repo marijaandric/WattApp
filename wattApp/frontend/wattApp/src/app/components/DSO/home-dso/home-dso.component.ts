@@ -253,6 +253,8 @@ export class HomeDSOComponent {
         }
 
 
+      },(error: any) => {
+        this.loader = false;
       });
   }
 
