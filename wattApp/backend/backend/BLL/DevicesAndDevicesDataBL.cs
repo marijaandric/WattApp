@@ -187,7 +187,7 @@ namespace backend.BLL
             {
                 Console.WriteLine("Fake: " + dvcs.deviceID);
                 Console.WriteLine("True: +" + _contextDAL.GetDevice(dvcs.deviceID).Id);
-                devicesMap.Add(_contextDAL.GetDevice(dvcs.deviceID).Id, dvcs.usage);
+                devicesMap.Add(_contextDAL.GetDeviceIDForUserByFakeID(userId, dvcs.deviceID), dvcs.usage);
             }
 
             if (size.ToLower() == "max")
