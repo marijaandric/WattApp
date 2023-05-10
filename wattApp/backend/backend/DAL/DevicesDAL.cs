@@ -123,5 +123,11 @@ namespace backend.DAL
 
             return devices;
         }
+
+        public int GetDeviceIDForUserByFakeID(int userId, int fakeid)
+        {
+            return _context.Devices.FirstOrDefault(e => e.UserID == userId && e.FakeID == fakeid).Id;
+        }
+
     }
 }

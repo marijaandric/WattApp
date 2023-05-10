@@ -15,6 +15,9 @@
             this.totaldatasStock = totaldatasStock;
         }
 
-        
+        public HAFDatasTypesDTO()
+        {
+        }
+
     }
 }

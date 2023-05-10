@@ -24,29 +24,25 @@ export class UsersComponent implements OnInit{
   selectedType!: City;
   currentPage :any = 0;
   rowsPerPage :any = 10;
-  loader=false;
+  allUsersCount!: number;
+  loader=true;
 
-  constructor(private aPIService: APIService, private userService: UserService, private deviceService : DeviceService,public loaderService: LoaderService) {
+  constructor(private aPIService: APIService, 
+              private userService: UserService, 
+              private deviceService : DeviceService) {
     this.type = [
       {name: 'Consumption', code: 'Consumer'},
       {name: 'Production', code: 'Producer'},
       {name: 'Stock', code: 'Stock'}
     ];
+
     this.selectedType = {name: 'Consumption', code: 'Consumer'};
-    this.options = [
-
-    ];
-
+    this.options = [];
   }
 
   ngOnInit() {
-    //this.userService.getAllUsers().subscribe((result: UserDTO[]) => (this.users = result));
-    this.userService.getUsersPaginationByRole("prosumer",this.currentPage,this.rowsPerPage).subscribe((result: UserDTO[])=>(this.users = result))
-    this.getAreas();
-    //this.getPowerUsageForAllTypesForArea();
-    this.getChartArea();
-    //this.loader = false;
-    
+    this.userService.getCountDataByType("prosumer").subscribe(result => this.allUsersCount = result);
+    this.refreshAllUsers();
   }
 
   clear(dtUsers: any) {
@@ -55,6 +51,19 @@ export class UsersComponent implements OnInit{
 
   onSearch(value: string, dtUsers: any) {
     dtUsers.filterGlobal(value, 'contains');
+  }
+
+  onPageChange(event: any) {
+    this.rowsPerPage = this.rowsPerPage; // implement changing of page size
+    this.currentPage = event.first/this.rowsPerPage;
+    this.refreshAllUsers();
+  }
+
+  private refreshAllUsers(){
+    this.userService.getUsersPaginationByRole("prosumer",this.currentPage,this.rowsPerPage).subscribe((result: UserDTO[])=>(this.loader=false,this.users = result));
+    this.getAreas();
+    //this.getPowerUsageForAllTypesForArea();
+    this.getChartArea();
   }
 
   options : City [];

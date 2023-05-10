@@ -187,7 +187,7 @@ namespace backend.BLL
             {
                 Console.WriteLine("Fake: " + dvcs.deviceID);
                 Console.WriteLine("True: +" + _contextDAL.GetDevice(dvcs.deviceID).Id);
-                devicesMap.Add(_contextDAL.GetDevice(dvcs.deviceID).Id, dvcs.usage);
+                devicesMap.Add(_contextDAL.GetDeviceIDForUserByFakeID(userId, dvcs.deviceID), dvcs.usage);
             }
 
             if (size.ToLower() == "max")
@@ -279,23 +279,59 @@ namespace backend.BLL
                 
 
             List<List<int>> devicesids = new List<List<int>>();
+            bool consumed = false;
+            bool produced = false;
+            bool stock = false;
 
-            if(consumerDevices != null && consumerDevices.Count != 0)
+
+            if (consumerDevices != null && consumerDevices.Count != 0)
+            {
                 devicesids.Add(consumerDevices.Select(d => d.FakeID).ToList());
+                consumed = true;
+            }
 
             if (producerDevices != null && producerDevices.Count != 0)
+            {
                 devicesids.Add(producerDevices.Select(d => d.FakeID).ToList());
+                produced = true;
+            }
 
             if (stockDevices != null && stockDevices.Count != 0)
+            {
                 devicesids.Add(stockDevices.Select(d => d.FakeID).ToList());
+                stock = true;
+            }
 
             if(devicesids.Count == 0)
                 return null;
 
             List<HAFDatasDTO> result = _contextDataDAL.GetByDayHistoryAndForecastForDevices(devicesids, now.Year, now.Month, now.Day, type);
 
-            return new HAFDatasTypesDTO(result[0].dates, result[0].datas, result[1].datas, result[2].datas);
-            
+            HAFDatasTypesDTO final = new HAFDatasTypesDTO();
+
+
+            List<double> zeros = new List<double>();
+            for(int i = 0; i < result[0].dates.Count; i++)
+                zeros.Add(0);
+
+            int counter = 0;
+
+            final.dates = result[0].dates;
+            if (consumed)
+                final.totaldatasConsumer = result[counter++].datas;
+            else
+                final.totaldatasConsumer = zeros;
+            if (produced)
+                final.totaldatasProducer = result[counter++].datas;
+            else
+                final.totaldatasProducer = zeros;
+            if (stock)
+                final.totaldatasStock = result[counter].datas;
+            else
+                final.totaldatasStock = zeros;
+
+            return final;
+
         }
 
 

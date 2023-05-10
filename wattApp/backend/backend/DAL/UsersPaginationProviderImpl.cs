@@ -24,5 +24,11 @@ namespace backend.DAL
         {
             return _context.Users.Count();
         }
+
+        public int GetAllUsersByTypeCount(String type) {
+            return _context.Users
+                .Where(u => u.Role == type)
+                .Count();
+        }
     }
 }
