@@ -6,6 +6,7 @@ import { ConfirmationService } from 'primeng/api';
 import { DeviceService } from 'src/app/services/device/device.service';
 import { UserDTO } from 'src/app/dtos/UserDTO';
 import { UserService } from 'src/app/services/user/user.service';
+import { LoaderService } from 'src/app/services/loader/loader.service';
 
 
 interface City {
@@ -59,7 +60,7 @@ export class HomeDSOComponent {
   hif :HiF[] = Array.from({length: 7}, () => ({history: 0, forecast: 0, date1: [], date2: []}));
   hif2 : HiF2[] = Array.from({length: 7}, () => ({date: 0, values: 0}));
 
-  constructor(private deviceService : DeviceService,private userService:UserService, private authService:AuthService, private elementRef: ElementRef, private renderer: Renderer2) {
+  constructor(public loaderService: LoaderService,private deviceService : DeviceService,private userService:UserService, private authService:AuthService, private elementRef: ElementRef, private renderer: Renderer2) {
     this.cities = [
       {name: 'New York', code: 'NY'},
       {name: 'Rome', code: 'RM'},
@@ -139,6 +140,10 @@ export class HomeDSOComponent {
     this.getHistoryAndForecastByDayForAllDevicesByYear();
     this.getdayPowerPrice();
     this.getConsumergetMaxMinAvgTotalPowerUsageByTimeForAllDevicesByType();
+    // this.loaderService.count$.subscribe(count => {
+    //   console.log(count)
+    //   this.loader = count;
+    // });
   }
 
   clear(dtUsers: any) {
@@ -181,6 +186,7 @@ export class HomeDSOComponent {
 
   getHistoryAndForecastByDayForAllDevices() {
     this.deviceService.GetHistoryAndForecastByDayForAllDevices("week").subscribe(data => {
+      this.loader = false;
         this.arrayData = data.dates; //.slice(0, 7).concat(data.dates.slice(8));
         this.dates = this.arrayData;
         this.loader = false;
@@ -261,7 +267,7 @@ export class HomeDSOComponent {
   arrayDataMAll = [];
 
   getHistoryAndForecastByDayForAllDevicesByMonth() {
-    this.deviceService.GetHistoryAndForecastByDayForAllDevices("month").subscribe(data => {
+    this.deviceService.GetHistoryAndForecastByDayForAllDevices("monthhistory").subscribe(data => {
       this.arrayDataMAll = data.dates; //.slice(0, 7).concat(data.dates.slice(8));
       this.HistoryConMAll = data.totaldatasConsumer.map((val: number) => +val.toFixed(2));
       this.HistoryProMAll = data.totaldatasProducer.map((val: number) => +val.toFixed(2));

@@ -11,6 +11,7 @@ import {
   ApexStroke,
   ApexTooltip,
   ApexTheme,
+  ApexNoData,
 } from 'ng-apexcharts';
 
 @Component({
@@ -28,8 +29,16 @@ export class SingleAreaPieComponent implements OnChanges{
 
   ngOnChanges(changes: SimpleChanges) {
     if ('Series' in changes) {
-      this.chartSeries = this.Series;
+      const hasData = this.Series.some((val) => val !== 0);
+      if (!hasData) {
+        this.chartSeries = [];
+        this.noData.text = "There are no devices yet!";
+      }
+      else{
+        this.chartSeries = this.Series;
+      }
     }
+    
     this.cdr.detectChanges();
   }
 
@@ -117,6 +126,18 @@ export class SingleAreaPieComponent implements OnChanges{
     }
   };
 
+  noData: ApexNoData = {
+    text: 'No data available',
+    align: 'left',
+    verticalAlign: 'middle',
+    offsetX: 0,
+    offsetY: 0,
+    style: {
+      fontSize: '12px',
+      color: '#fff'
+    }
+  }
+
   chartOptions: ApexOptions = {
     series: this.chartSeries,
     chart: this.chartDetails,
@@ -126,6 +147,7 @@ export class SingleAreaPieComponent implements OnChanges{
     legend: this.chartLegend,
     tooltip: this.tooltip,
     colors: ['#46c5f1', '#885ec0','#eb4886', '#f5805a'],
+    noData: this.noData
   };
 
   constructor(private cdr: ChangeDetectorRef) {}

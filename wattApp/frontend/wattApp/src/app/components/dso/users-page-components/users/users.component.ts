@@ -4,6 +4,7 @@ import { UserService } from '../../../../services/user/user.service';
 import { DeviceService } from 'src/app/services/device/device.service';
 import { url } from 'src/app/app.module';
 import { APIService } from 'src/app/services/api/api.service';
+import { LoaderService } from 'src/app/services/loader/loader.service';
 
 interface City {
   name: string,
@@ -25,7 +26,7 @@ export class UsersComponent implements OnInit{
   rowsPerPage :any = 2;
   loader=true;
 
-  constructor(private aPIService: APIService, private userService: UserService, private deviceService : DeviceService) {
+  constructor(private aPIService: APIService, private userService: UserService, private deviceService : DeviceService,public loaderService: LoaderService) {
     this.type = [
       {name: 'Consumption', code: 'Consumer'},
       {name: 'Production', code: 'Producer'},
@@ -40,10 +41,14 @@ export class UsersComponent implements OnInit{
 
   ngOnInit() {
     //this.userService.getAllUsers().subscribe((result: UserDTO[]) => (this.users = result));
-    this.userService.getUsersPaginationByRole("prosumer",this.currentPage,this.rowsPerPage).subscribe((result: UserDTO[])=>(this.loader=false,this.users = result))
+    this.userService.getUsersPaginationByRole("prosumer",this.currentPage,this.rowsPerPage).subscribe((result: UserDTO[])=>(this.users = result))
     this.getAreas();
     //this.getPowerUsageForAllTypesForArea();
     this.getChartArea();
+    //this.loader = false;
+    this.loaderService.count$.subscribe(count => {
+      this.loader = count;
+    });
   }
 
   clear(dtUsers: any) {
@@ -103,6 +108,7 @@ export class UsersComponent implements OnInit{
     //  this.count[1] = data.Producer;
     //  this.count[2] = data.Stock;
      this.count = [data.Consumer,data.Producer,data.Stock];
+     
     });
 
   }

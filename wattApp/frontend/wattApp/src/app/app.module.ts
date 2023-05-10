@@ -101,6 +101,8 @@ import { NewsComponent } from './components/global/news/news.component';
 import { LoaderComponent } from './components/global/loader/loader.component';
 import { MyPaginatedTableComponent } from './components/global/paginated-table-componenet/my-paginated-table/my-paginated-table.component';
 import { HistoryOrForecastTableComponent } from './components/global/history-or-forecast-table/history-or-forecast-table.component';
+import { LoaderService } from './services/loader/loader.service';
+import { LoaderInterceptor } from './interceptors/loader.interceptor';
 
 export const url = 'https://localhost:7158';
 export const deviceFakerUrl = "https://localhost:7233";
@@ -222,7 +224,11 @@ export const deviceFakerUrl = "https://localhost:7233";
     useClass: TokenInterceptor,
     multi:true,
     
-  }],
+    },
+    LoaderService,
+      { provide: HTTP_INTERCEPTORS, useClass: LoaderInterceptor, multi: true }
+  ],
+  
   bootstrap: [AppComponent]
 })
 export class AppModule { }

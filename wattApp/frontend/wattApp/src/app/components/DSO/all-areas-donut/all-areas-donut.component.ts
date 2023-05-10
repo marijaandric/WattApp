@@ -29,6 +29,7 @@ export class AllAreasDonutComponent implements OnChanges{
 
 
   ngOnChanges(changes: SimpleChanges) {
+    
     if('Series' in changes)
     {
       this.chartSeries = this.Series;
@@ -39,6 +40,7 @@ export class AllAreasDonutComponent implements OnChanges{
         this.chartLabels = [];
       }
       else{
+        this.chartSeries = this.Series;
         this.chartLabels = ["Consumption", "Prodaction", "Stock"];
       }
       //changes['Series'].currentValue
