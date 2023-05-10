@@ -84,5 +84,9 @@ export class UserService {
     );
   }
 
+  getCountDataByType(type: string){
+    return this.http.get<number>(this.baseUrl + "getUsersPaginationByRole/" + type);
+  }
+
 
 }

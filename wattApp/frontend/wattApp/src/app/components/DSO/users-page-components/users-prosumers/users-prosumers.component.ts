@@ -1,9 +1,9 @@
-import { Component, OnChanges, OnInit, SimpleChanges, ViewEncapsulation  } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges, ViewChild, ViewEncapsulation  } from '@angular/core';
 import { UserDTO } from '../../../../dtos/UserDTO';
 import { UserService } from '../../../../services/user/user.service';
-import axios from 'axios';
 import { url } from 'src/app/app.module';
 import { APIService } from 'src/app/services/api/api.service';
+import { PaginationService } from 'src/app/services/pagination/pagination.service';
 
 @Component({
   selector: 'app-users-prosumers',
@@ -15,32 +15,32 @@ import { APIService } from 'src/app/services/api/api.service';
 export class UsersProsumersComponent implements OnInit {
   baseUrl = url + "/api/Images/user/";
   users: UserDTO[] = [];
+  allUsersCount!: number;
   loader=true;
-  constructor(private userService: UserService, private aPIService: APIService) {
+  pageSize: number = 10; // default page size
+  currentPage: number = 1; // default current page
+  numberOFAllUsers: any;
+  numberOFProsumer: any;
+  numberOFOperator: any;
 
- }
-
-numberOFAllUsers: any;
-numberOFProsumer: any;
-numberOFOperator: any;
-
- getNumber() {
-
-  this.aPIService.getNumber().subscribe((response: any) => {
-    this.numberOFAllUsers=response.All;
-    this.numberOFProsumer=response.Prosumer;
-    this.numberOFOperator=response.Other;
-  //  console.log(this.numberOFAllUsers);
-  //  console.log(this.numberOFProsumer);
-  //  console.log(this.numberOFOperator);
-  });
-
-}
+  constructor(private userService: UserService, 
+              private aPIService: APIService,
+              private paginationService: PaginationService) { }
 
   ngOnInit() {
     this.getNumber();
-    this.userService.getAllUsers().subscribe((result: UserDTO[]) => (this.loader = false,this.users = result));
-      
+    this.paginationService.getCountData("/api/UserPagination/users/pagination/count").subscribe(result => (this.loader = false, this.allUsersCount = result));
+    this.refreshAllUsers();
+  }
+
+  onPageChange(event: any) {
+    this.pageSize = this.pageSize; // implement changing of page size
+    this.currentPage = event.first/this.pageSize + 1; // PrimeNG uses zero-based indexing, so we add 1 to get the current page number
+    this.refreshAllUsers();
+  }
+
+  private refreshAllUsers(){
+    this.paginationService.getData("/api/UserPagination/users/pagination/pageNo="+ this.currentPage + "&pageSize=" + this.pageSize + "&sortOrder=Username").subscribe((result) => (this.users = result));
   }
 
   clear(dtUsers: any) {
@@ -49,6 +49,14 @@ numberOFOperator: any;
 
   onSearch(value: string, dtUsers: any) {
     dtUsers.filterGlobal(value, 'contains');
+  }
+
+  getNumber() {
+    this.aPIService.getNumber().subscribe((response: any) => {
+      this.numberOFAllUsers=response.All;
+      this.numberOFProsumer=response.Prosumer;
+      this.numberOFOperator=response.Other;
+    });
   }
 
 }
