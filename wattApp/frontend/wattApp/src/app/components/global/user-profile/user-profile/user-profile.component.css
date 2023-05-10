@@ -58,10 +58,6 @@ body{
 }
 
 @media only screen and (min-width: 1070px) {
-    .usercard{
-        width: 40%;
-    }
-
     .mapaISlika{
         width: 60%;
         margin-left:2%
@@ -87,8 +83,15 @@ body{
     .mapaISlika{
         margin-top: 20px;
     }
+    
+}
 
+@media only screen and (max-width: 870px) {
+    .map{
+        display: none;
+    }
     .usercard{
+        margin: auto;
         width: 100%;
     }
 }

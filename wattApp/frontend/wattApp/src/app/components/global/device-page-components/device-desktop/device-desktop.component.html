@@ -66,10 +66,10 @@
 
             <div class="stats-cards">
         
-              <app-stats-card class="stats-card" [isBgBlue]="true" [Title]="TitleMin" [subTitle]="theDay+ dataMin"[value]="min"></app-stats-card>
-              <app-stats-card class="stats-card" [isBgPurple]="true" [Title]="TittleMax" [subTitle]="theDay + dataMax"  [value]="max"></app-stats-card>
-              <app-stats-card class="stats-card" [isBgPink]="true" [Title]="TitleAverage" [value]="average"></app-stats-card>
-              <app-stats-card class="stats-card" [isBgOrange]="true" [Title]="TitleTotal" [value]="total"></app-stats-card>
+              <app-stats-card class="stats-card" [isBgBlue]="true" [Title]="TitleMin" [subTitle]="'23kWh (2%)'" [value]="min"></app-stats-card>
+              <app-stats-card class="stats-card" [isBgPurple]="true" [Title]="TittleMax" [subTitle]="'23kWh (2%)'" [value]="max"></app-stats-card>
+              <app-stats-card class="stats-card" [isBgPink]="true" [Title]="TitleAverage" [subTitle]="'23kWh (2%)'" [value]="average"></app-stats-card>
+              <app-stats-card class="stats-card" [isBgOrange]="true" [Title]="TitleTotal" [subTitle]="'23kWh (2%)'" [value]="total"></app-stats-card>
              
             </div>
 
@@ -89,9 +89,9 @@
             </p-dropdown>
           </div>
         </div>
-        <app-history-forecast-table
+        <app-history-forecast-table *ngIf="table"
         style="
-        margin-top:4%;
+        margin-top:32px;
         display: flex;
         position: relative;
         flex-direction: column;
@@ -102,6 +102,20 @@
         transition: ease-in-out;
         padding:10px 20px 30px 20px;
         " [name1]="name1" [name2]="name2" [hif]="hif"></app-history-forecast-table>
+        <app-history-or-forecast-table  *ngIf="!table"
+        style="
+          margin-top:32px;
+          display: flex;
+          position: relative;
+          flex-direction: column;
+          height: fit-content;
+          width: 100%;
+          border-radius: 20px;
+          background: linear-gradient(180deg, #151515 50%, #121212 100%) ;
+          box-shadow: 5px 5px 15px black;
+          transition: ease-in-out;
+          padding:10px 20px 30px 20px;"  [name]="name" [History]="History" [Forecast]="Forecast" [dates]="dates" >
+          </app-history-or-forecast-table>
       </div>
     </div>
   </div>

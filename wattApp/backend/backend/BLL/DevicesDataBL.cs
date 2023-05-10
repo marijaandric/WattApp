@@ -9,34 +9,36 @@ namespace backend.BLL
 
         private readonly IDevicesDataDAL _contextDAL;
 
-        public DevicesDataBL(IDevicesDataDAL context)
+        private readonly IDevicesDAL _contextDevicesDAL;
+        public DevicesDataBL(IDevicesDataDAL context, IDevicesDAL contextDevicesDAL)
         {
             _contextDAL = context;
+            _contextDevicesDAL = contextDevicesDAL;
         }
 
         public List<DevicesData> GetAllDataForDevice(int id)
         {
-            return _contextDAL.GetAllDataForDevice(id);
+            return _contextDAL.GetAllDataForDevice(_contextDevicesDAL.GetDevice(id).FakeID);
         }
 
         public List<DevicesData> GetDayDataForDevice(int id, int year, int month, int day)
         {
-            return _contextDAL.GetDayDataForDevice(id, year, month, day);
+            return _contextDAL.GetDayDataForDevice(_contextDevicesDAL.GetDevice(id).FakeID, year, month, day);
         }
 
         public DevicesData GetHourDataForDevice(int id, int year, int month, int day, int time)
         {
-            return _contextDAL.GetHourDataForDevice(id, year, month, day, time);
+            return _contextDAL.GetHourDataForDevice(_contextDevicesDAL.GetDevice(id).FakeID, year, month, day, time);
         }
 
         public List<DevicesData> GetMonthDataForDevice(int id, int year, int month)
         {
-            return _contextDAL.GetMonthDataForDevice(id, year, month);
+            return _contextDAL.GetMonthDataForDevice(_contextDevicesDAL.GetDevice(id).FakeID, year, month);
         }
 
         public List<DevicesData> GetYearDataForDevice(int id, int year)
         {
-            return _contextDAL.GetYearDataForDevice(id, year);
+            return _contextDAL.GetYearDataForDevice(_contextDevicesDAL.GetDevice(id).FakeID, year);
         }
     }
 }

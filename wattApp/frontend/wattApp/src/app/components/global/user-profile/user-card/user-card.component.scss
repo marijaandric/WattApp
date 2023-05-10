@@ -98,3 +98,22 @@ li{
 .text-secondary {
     font-family: 'Montserrat', sans-serif;
 }
+
+@media only screen and (max-width: 820px) {
+    .pen-container {
+        left:220px;
+        top:25px;
+        cursor: pointer;
+    }
+    
+}
+
+@media only screen and (max-width: 390px) {
+    .pen-container {
+        left:200px;
+        top:25px;
+        cursor: pointer;
+    }
+    
+}
+
