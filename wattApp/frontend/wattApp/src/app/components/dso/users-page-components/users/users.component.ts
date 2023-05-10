@@ -42,8 +42,8 @@ export class UsersComponent implements OnInit{
     //this.userService.getAllUsers().subscribe((result: UserDTO[]) => (this.users = result));
     this.userService.getUsersPaginationByRole("prosumer",this.currentPage,this.rowsPerPage).subscribe((result: UserDTO[])=>(this.loader=false,this.users = result))
     this.getAreas();
-    this.getPowerUsageForAllTypesForArea();
-    this.getChartArea();
+    //this.getPowerUsageForAllTypesForArea();
+    //this.getChartArea();
   }
 
   clear(dtUsers: any) {
@@ -75,11 +75,11 @@ export class UsersComponent implements OnInit{
   onDropdownChange() {
     //console.log(this.selectedOption);
     this.getPowerUsageForAllTypesForArea();
-    this.getChartArea();
+    //this.getChartArea();
 
   }
 
-  count: number[]=[];
+  count: number[]=[0,0,0];
   boris=[1,2,3];
   naziv: string = "";
 
@@ -91,16 +91,17 @@ export class UsersComponent implements OnInit{
     console.log(this.selectedOption.code);
     this.naziv=this.selectedOption.code;
     const timeType = "week"; 
-    this.count.splice(0, this.count.length);
+    //this.count = []
     this.deviceService.getPowerUsageForAllTypesForArea(deviceType,timeType).subscribe((data: any) => {
-      this.count.splice(0, this.count.length);
-     this.count.push(data.Consumer);
-     this.count.push(data.Producer);
-     this.count.push(data.Stock);
+    //  this.count[0] = data.Consumer;
+    //  this.count[1] = data.Producer;
+    //  this.count[2] = data.Stock;
+     
+     this.count = [data.Consumer,data.Producer,data.Stock];
+     console.log("USLo")
+     console.log(this.count)
     });
 
-    console.log(this.count);
-    console.log(this.boris);
   }
   keys: string[] = [];
   values: number[] = [];
