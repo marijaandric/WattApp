@@ -15,18 +15,28 @@ export class UsersOperatorsComponent implements OnInit {
   baseUrl = url + "/api/Images/user/";
   users: UserDTO[] = [];
   @ViewChild('dtUsers') dataTable!: Table;
-  totalRecords:number = 0;
-  currentpage:number= 0;
+  currentPage:number= 0;
+  rowsPerPage:number = 10;
+  allUsersCount!: number;
   loader=true;
 
-  constructor(private userService: UserService,private dsonew:DsonewsService) {
-
- }
+  constructor(private userService: UserService,
+                private dsonew:DsonewsService) { }
 
   ngOnInit() {
-    //this.userService.getAllUsers().subscribe((result: UserDTO[]) => (this.users = result));
-    this.userService.getUsersPaginationByRole("operator",this.currentpage,2).subscribe((result: UserDTO[])=>(this.loader=false,this.users = result))
+    this.userService.getCountDataByType("operator").subscribe(result => this.allUsersCount = result);
+    this.refreshAllUsers();
     this.getNews();
+  }
+
+  onPageChange(event: any) {
+    this.rowsPerPage = this.rowsPerPage; // implement changing of page size
+    this.currentPage = event.first/this.rowsPerPage;
+    this.refreshAllUsers();
+  }
+
+  private refreshAllUsers(){
+    this.userService.getUsersPaginationByRole("operator", this.currentPage, this.rowsPerPage).subscribe((result: UserDTO[])=>(this.loader=false,this.users = result));
   }
 
   clear(dtUsers: any) {
