@@ -23,6 +23,7 @@
             <div id="deviceInformation" class="flexColumn device-information" >
               <div class="flexRow">
                   <div class="colored-text" ><h5>{{device.deviceName}}</h5></div>
+                  <p-inputSwitch [(ngModel)]="device.isActive "  (onChange)="handleRunningSwitchChange()" class="margin-left__auto width__fit-content"></p-inputSwitch>
               </div>
         
               <div style="height:100% ;justify-content:center">
@@ -55,6 +56,11 @@
                   <span >Managed by operators:</span>
                   <p-inputSwitch [(ngModel)]="device.allowOperatorControll" (onChange)="handleManagementSwitchChange()" class="margin-left__auto width__fit-content"/>
                 </div>
+                <div class="flexRow margin-top__8px">
+                  <p-button label="Edit" (click)="showEditDeviceDialog()" class="margin-left__auto"/>
+                  <p-button label="Schedule" class="margin-left__8px"/>
+                  <p-button label="Delete" (onClick)="deleteDevice(device.id)" class="margin-left__8px"/>
+                </div>  
               </div>
             </div>
 

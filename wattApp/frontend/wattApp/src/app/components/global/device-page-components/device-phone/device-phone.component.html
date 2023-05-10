@@ -2,54 +2,38 @@
 
 <div *ngIf="!loader" class="device" >
     <div class="top-card">
-        <div class="widgets">       
-          <app-widget [subTitle]="SubTitleToday" [Title]="Today +' kW/h'" [isBlue]="true" [isBgBlue]="true" class="widget">
-          </app-widget>
-          <app-widget [subTitle]="SubTitleWeek" [Title]="Week+' kW/h'" [isYellow]="true" [isBgYellow]="true" class="widget">
-          </app-widget>
-          <app-widget [subTitle]="SubTitleMonth" [Title]="Month+' kW/h'" [isPink]="true" [isBgPink]="true" class="widget">
-          </app-widget>
-          <app-widget  [subTitle]="SubTitleYear" [Title]="Year+' kW/h'" [isOrange]="true" [isBgOrange]="true" class="widget">
-          </app-widget>
-          <app-widget  [subTitle]="SubTitleAll" [Title]="Year+' kW/h'" [isBlue]="true" [isBgBlue]="true" class="widget" >
-          </app-widget>
-        </div>
+        
+    <div class="widgets">       
+        <app-widget [subTitle]="SubTitleToday" [Title]="Today +' kW/h'" [isBlue]="true" [isBgBlue]="true" class="widget">
+        </app-widget>
+        <app-widget [subTitle]="SubTitleWeek" [Title]="Week+' kW/h'" [isYellow]="true" [isBgYellow]="true" class="widget">
+        </app-widget>
+        <app-widget [subTitle]="SubTitleMonth" [Title]="Month+' kW/h'" [isPink]="true" [isBgPink]="true" class="widget">
+        </app-widget>
+        <app-widget  [subTitle]="SubTitleYear" [Title]="Year+' kW/h'" [isOrange]="true" [isBgOrange]="true" class="widget">
+        </app-widget>
+        <app-widget  [subTitle]="SubTitleAll" [Title]="Year+' kW/h'" [isBlue]="true" [isBgBlue]="true" class="widget" >
+        </app-widget>
+      </div>
+    
       </div> 
     <div class="circles">
         <div class="main-card">
             <div class="card-1">
-                <div class="flexRow" style="height:70px;">
+                <div class="flexRow">
                     <div class="icon-1">
                         <i class="fa-solid fa-tv"></i>
                     </div>
 
                     <div class="colored-text" >
-                        <h5>{{ device.deviceName }}</h5>
+                        <h5>{{device.deviceName}}</h5>
                     </div>
-                        <!--
-                        <p-button label="Edit" (click)="showEditDeviceDialog()" class="margin-left__auto" style="border-radius:32px !important;"/>
-                        <p-button label="Delete" (onClick)="deleteDevice(device.id)" class="margin-left__8px"/>
-                        -->
-
-                    <div class="menu">
-                        <div class="icon-3">
-                            <i class="fa-solid fa-bars"></i>
-                        </div>
-                    </div>
-
-                    <div class="menu-container">
-                        <div class="float-element "><div class="icon-3"><i class="fa-solid fa-pen-to-square"></i></div></div>
-                        <div class="float-element "><div class="icon-3"><i class="fa-solid fa-trash"></i></div></div>
-                        <div class="float-element "><div class="icon-3"><i class="fa-solid fa-toggle-on"></i></div></div>
-                        <!--<i class="fa-solid fa-toggle-off"></i>-->
+                    <div style="margin-top:20px;" class="margin-left__auto">
+                        <p-inputSwitch [(ngModel)]="device.isActive "  (onChange)="handleRunningSwitchChange()" class=" width__fit-content"></p-inputSwitch>
                     </div>
                 </div>
-                <div class="title1">
+                <div class="title1" style="margin-bottom:20px;">
                     <h5>Consumption this hour</h5>
-                </div>
-    
-                <div class="subtitle">
-                    <h5>5.5% more than last hour</h5>
                 </div>
         
                 <div class=" circle circle-1">
@@ -68,15 +52,8 @@
                     </div>
                 </div>
             </div>
-              
-            
-        </div>  
-        
-
-    
-    <div class="manage-device">
-    
-    </div>
+        </div>
+    </div>  
     
     <div class="info" >
         <div id="deviceInformation" class="flexColumn device-information" >
@@ -100,7 +77,7 @@
             </div>
     
             <div class="flexRow margin-top__8px">
-            <span class="bold-text">Room:</span>
+            <span>Room:</span>
             <span class="margin-left__auto text-secondary">{{ device.room }}</span>
             </div>
     
@@ -113,14 +90,20 @@
             <span >Managed by operators:</span>
             <p-inputSwitch [(ngModel)]="device.allowOperatorControll" (onChange)="handleManagementSwitchChange()" class="margin-left__auto width__fit-content"/>
             </div>
+
+            <div class="flexRow margin-top__8px">
+                <p-button label="Edit" (click)="showEditDeviceDialog()" class="margin-left__auto"/>
+                <p-button label="Schedule" class="margin-left__8px"/>
+                <p-button label="Delete" (onClick)="deleteDevice(device.id)" class="margin-left__8px"/>
+              </div> 
         </div>
     </div>
 
     <div class="display:flex;position:relative; width:100%; height:fit-content;flex-direction:row;">
         <div style="width:100%; height:fit-content; display:flex; flex-direction:row;margin-bottom:12px;">
-            <p-dropdown [options]="type2" appendTo="body" [(ngModel)]="selectedHF"  optionLabel="name" (onChange)="updateType3()" >
+            <p-dropdown [options]="type2" appendTo="body" [(ngModel)]="selectedHF"  optionLabel="name" (onChange)="updateType3()" style="width:calc(50% - 10px) !important;">
             </p-dropdown>
-            <p-dropdown [options]="type3" appendTo="body" [(ngModel)]="selectedDate" optionLabel="name" (onChange)="dropdownChange()" >
+            <p-dropdown [options]="type3" appendTo="body" [(ngModel)]="selectedDate" optionLabel="name" (onChange)="dropdownChange()" style="width:calc(50% - 10px) !important;margin-left:20px;">
             </p-dropdown>
           </div>
     </div>
@@ -227,8 +210,8 @@
         </div>
     </div>
     
-    <div class="twoCharts" *ngIf="tableHiFWeek" style="margin-top:20px !important;position:relative">
-        <p-selectButton class="flexRow width__fit-content margin-left__auto" style="margin-bottom:16px;margin-top:20px !important;position:relative" [options]="switchOptions" [(ngModel)]="switchValue" optionLabel="label" optionValue="value"></p-selectButton>
+    <div class="twoCharts" *ngIf="tableHiFWeek" style="position:relative">
+        <p-selectButton class="flexRow width__fit-content margin-left__auto" style="margin-bottom:20px;margin-top:20px !important;position:relative" [options]="switchOptions" [(ngModel)]="switchValue" optionLabel="label" optionValue="value"></p-selectButton>
         <app-history-line-chart #myChart2 class="handf" *ngIf="switchValue == true" [array] = 'miniHistory' [array2] = 'miniarrayData1'></app-history-line-chart>
         <app-forecast-line-chart #myChart1 class="handf" *ngIf="switchValue == false"  [array]="miniForecast" [array2] = 'miniarrayData2'></app-forecast-line-chart>
     </div>
@@ -265,6 +248,17 @@
           transition: ease-in-out;
           padding:10px 20px 30px 20px;"  [name]="name" [History]="History" [Forecast]="Forecast" [dates]="dates" >
           </app-history-or-forecast-table>
+
+    
+
+          <div class="display:flex;position:relative; width:100%; height:fit-content;flex-direction:row;">
+            <div style="width:100%; height:fit-content; display:flex; flex-direction:row;margin-bottom:20px;margin-top:20px;">
+                <p-dropdown [options]="type2" appendTo="body" [(ngModel)]="selectedHF"  optionLabel="name" (onChange)="updateType3()" style="width:calc(50% - 10px) !important;">
+                </p-dropdown>
+                <p-dropdown [options]="type3" appendTo="body" [(ngModel)]="selectedDate" optionLabel="name" (onChange)="dropdownChange()" style="width:calc(50% - 10px) !important;margin-left:20px;">
+                </p-dropdown>
+              </div>
+        </div>
 </div>
    
 

@@ -223,7 +223,7 @@
     h5 {
         font-size: 24px;
         font-weight: bolder;
-        color: #6592d9;
+        color: #46c5f1;
     }
     
   }
@@ -232,7 +232,7 @@
     h5 {
         font-size: 24px;
         font-weight: bolder;
-        color: #6592d9;
+        color: #46c5f1;
     }
     
   }
@@ -252,7 +252,7 @@
     box-shadow: 5px 5px 15px black;
   }
 
-  ::ng-deep .p-dropdown {
+  :host::ng-deep .p-dropdown {
     position:relative;
     border-radius: 20px;
     border:none;
@@ -262,25 +262,25 @@
     background: #1b1b1b;
     
   }
-  ::ng-deep .p-dropdown.p-component {
-    width:30%;
+  :host::ng-deep .p-dropdown.p-component {
+    width:100%;
   }
 
-  ::ng-deep #pr_id_1_label{
+  :host::ng-deep #pr_id_1_label{
     font-size: 14px;
     padding:8px 0px 8px 16px;
     border:none;
     font-weight: bold;
     font-family: 'Lato', sans-serif;
   }
-  ::ng-deep #pr_id_2_label{
+  :host::ng-deep #pr_id_2_label{
     font-size: 14px;
     padding:8px 0px 8px 16px;
     border:none;
     font-weight: bold;
     font-family: 'Lato', sans-serif;
   }
-  ::ng-deep #pr_id_3_label{
+  :host::ng-deep #pr_id_3_label{
     font-size: 14px;
     padding:8px 0px 8px 16px;
     border:none;
@@ -320,7 +320,7 @@
   }
   .icon-1 i{
     font-size: 24px;
-    background: linear-gradient(45deg, #46c5f1 10%, #5245b7 100%);
+    background: #46c5f1;
     
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -333,22 +333,11 @@
     font-size: 24px;
     margin: 7px;
   }
-  .menu{
-    
-    position: absolute;
-    width: 40px;
-    height: 40px;
-    right: 0;
-    margin: 5px 10px 0px 10px;
-    cursor:pointer;
-  
-    -webkit-transform: translatey(5px);
-            transform: translatey(5px);
-    -webkit-transition: all 0.3s;
-    transition: all 0.3s;
-    align-items: center;
-    justify-content: center;
-  }
+
+:host :ng-deep .p-dropdown.p-component {
+  width:100% !important;
+}
+
   .icon-2 {
     width:40px;
     height:40px;
