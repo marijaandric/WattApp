@@ -1,6 +1,6 @@
 <div id="device-card" class="device-card">
     <div class="flexRow">
-        <a [routerLink]="['/device', device.id]"  style="display:flex;width:30px;padding-top:5px;"><i class="fa-solid fa-house"></i></a>
+        <a [routerLink]="['/device', device.id]"  style="display:flex;padding-top:5px;"><img src="../.../../../../../../assets/icons/images/icons8-fridge-50.png"></a>
         <a [routerLink]="['/device', device.id]" class="device-name abbreviate-text" style="padding-top:2px">{{ device.deviceName }}</a>
         <p-inputSwitch [(ngModel)]="isChecked" (click)="showDialog()" class="margin-left__auto width__fit-content"/>
     </div>
