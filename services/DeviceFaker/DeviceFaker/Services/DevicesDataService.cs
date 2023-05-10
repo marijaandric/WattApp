@@ -125,7 +125,9 @@ namespace DeviceFaker.Services
             Console.WriteLine("day" + day);
             Console.WriteLine("month" + month);
             Console.WriteLine("year" + year);
+
             HAFDatasDTO currentMonth = GetMonthHistoryAndForecastPowerUsageOfDevices(ids, year, month);
+
             HAFDatasDTO result = new HAFDatasDTO();
             result.dates = new List<string>();
             result.datas = new List<double>();

@@ -279,23 +279,48 @@ namespace backend.BLL
                 
 
             List<List<int>> devicesids = new List<List<int>>();
+            bool consumed = false;
+            bool produced = false;
+            bool stock = false;
 
-            if(consumerDevices != null && consumerDevices.Count != 0)
+
+            if (consumerDevices != null && consumerDevices.Count != 0)
+            {
                 devicesids.Add(consumerDevices.Select(d => d.FakeID).ToList());
+                consumed = true;
+            }
 
             if (producerDevices != null && producerDevices.Count != 0)
+            {
                 devicesids.Add(producerDevices.Select(d => d.FakeID).ToList());
+                produced = true;
+            }
 
             if (stockDevices != null && stockDevices.Count != 0)
+            {
                 devicesids.Add(stockDevices.Select(d => d.FakeID).ToList());
+                stock = true;
+            }
 
             if(devicesids.Count == 0)
                 return null;
 
             List<HAFDatasDTO> result = _contextDataDAL.GetByDayHistoryAndForecastForDevices(devicesids, now.Year, now.Month, now.Day, type);
 
-            return new HAFDatasTypesDTO(result[0].dates, result[0].datas, result[1].datas, result[2].datas);
-            
+            HAFDatasTypesDTO final = new HAFDatasTypesDTO();
+
+            int counter = 0;
+
+            final.dates = result[0].dates;
+            if (consumed)
+                final.totaldatasConsumer = result[counter++].datas;
+            if (produced)
+                final.totaldatasProducer = result[counter++].datas;
+            if (stock)
+                final.totaldatasStock = result[counter].datas;
+
+            return final;
+
         }
 
 
