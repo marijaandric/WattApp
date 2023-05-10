@@ -1,4 +1,4 @@
-import { Component, Input, SimpleChange } from '@angular/core';
+import { Component, Input, OnInit, SimpleChange } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
 import { DeviceDTO } from 'src/app/dtos/DeviceDTO';
 import { DeviceDataDTO } from 'src/app/dtos/DeviceDataDTO';
@@ -11,23 +11,32 @@ import { DeviceService } from 'src/app/services/device/device.service';
   templateUrl: './device-card.component.html',
   styleUrls: ['./device-card.component.css']
 })
-export class DeviceCardComponent{
+export class DeviceCardComponent implements OnInit{
   @Input() device: any;
   isChecked: boolean = true;
   display: boolean = false;
 
   constructor(private deviceService: DeviceService){ }
 
+  ngOnInit(): void {
+    this.isChecked = this.device.isActive
+  }
+
   async handleRunningSwitchChange(){
+    this.isChecked = !this.isChecked // za alert izbrisati ovo
+    this.device.isActive = this.isChecked 
     await lastValueFrom(this.deviceService.updateDevice(this.device));
+    this.display = false; // za alert izbrisati ovo
   }
 
   ngOnChange(changes:SimpleChange)
   {
     this.device = this.device;
+    this.isChecked = this.device.isActive
   }
 
   showDialog() {
+    this.isChecked = !this.isChecked
     this.display = !this.display;
   }
 
@@ -39,19 +48,31 @@ export class DeviceCardComponent{
   //   }
   // }
 
-  onSwitchChange(newVal: boolean) {
+  // onSwitchChange(newVal: boolean) {
+  //   //this.showDialog();
+  //   const confirmed = confirm('Do you want to change the device activity?');
+  //   if (confirmed) {
+  //     this.device.isActive = newVal;
+  //     this.handleRunningSwitchChange();
+  //   }
+
+  //   // const confirmed = this.showDialog();
+  //   // if (confirmed) {
+  //   //   this.device.isActive = newVal;
+  //   // }
+
+    
+  // }
+
+  onSwitchChange() {
     //this.showDialog();
-    const confirmed = confirm('Do you want to change the device activity?');
+     const confirmed = confirm('Do you want to change the device activity?');
     if (confirmed) {
-      this.device.isActive = newVal;
       this.handleRunningSwitchChange();
     }
-
-    // const confirmed = this.showDialog();
-    // if (confirmed) {
-    //   this.device.isActive = newVal;
-    // }
-
+    else{
+    this.isChecked = !this.isChecked
+    }
     
   }
 

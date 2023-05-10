@@ -4,9 +4,13 @@
 }
 
 .image-div {
+    background-image: url('/assets/images/application-images/vesti.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
     width:100%;
     height:450px;
-    background-color: cyan;
+    box-shadow: 5px 5px 15px black;
+    border-radius: 20px;
 }
 
 .promotions {
