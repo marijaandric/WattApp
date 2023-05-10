@@ -1,4 +1,4 @@
-import { Component, OnInit,Input,OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit,Input,OnChanges, SimpleChanges, ChangeDetectorRef } from '@angular/core';
 import {
   ApexChart,
   ApexDataLabels,
@@ -18,9 +18,9 @@ import {
   templateUrl: './single-area-pie.component.html',
   styleUrls: ['./single-area-pie.component.css']
 })
-export class SingleAreaPieComponent {
+export class SingleAreaPieComponent implements OnChanges{
   @Input() chartHeight: number = 200;
-  @Input() chartText: string = 'Info by suburbs';
+  @Input() chartText: string = 'Info by suburbs in the week';
   @Input() Series: number[] = [40, 32, 52,30];
   @Input() chartLabels = ["Станово", "Град Крагујевац", "Виногради", "Others"];
 
@@ -30,6 +30,7 @@ export class SingleAreaPieComponent {
     if ('Series' in changes) {
       this.chartSeries = this.Series;
     }
+    this.cdr.detectChanges();
   }
 
 
@@ -127,7 +128,7 @@ export class SingleAreaPieComponent {
     colors: ['#46c5f1', '#885ec0','#eb4886', '#f5805a'],
   };
 
-  constructor() { }
+  constructor(private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     this.chartDetails.height = '230px';

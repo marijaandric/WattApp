@@ -30,20 +30,20 @@ export class UsersComponent implements OnInit{
       {name: 'Consumption', code: 'Consumer'},
       {name: 'Production', code: 'Producer'},
       {name: 'Stock', code: 'Stock'}
-  ];
-  this.selectedType = {name: 'Consumption', code: 'Consumer'};
-  this.options = [
+    ];
+    this.selectedType = {name: 'Consumption', code: 'Consumer'};
+    this.options = [
 
-];
+    ];
 
- }
+  }
 
   ngOnInit() {
     //this.userService.getAllUsers().subscribe((result: UserDTO[]) => (this.users = result));
     this.userService.getUsersPaginationByRole("prosumer",this.currentPage,this.rowsPerPage).subscribe((result: UserDTO[])=>(this.loader=false,this.users = result))
     this.getAreas();
     //this.getPowerUsageForAllTypesForArea();
-    //this.getChartArea();
+    this.getChartArea();
   }
 
   clear(dtUsers: any) {
@@ -75,7 +75,13 @@ export class UsersComponent implements OnInit{
   onDropdownChange() {
     //console.log(this.selectedOption);
     this.getPowerUsageForAllTypesForArea();
-    //this.getChartArea();
+    // this.getChartArea();
+
+  }
+  onDropdownChange2() {
+    //console.log(this.selectedOption);
+    // this.getPowerUsageForAllTypesForArea();
+    this.getChartArea();
 
   }
 
@@ -96,10 +102,7 @@ export class UsersComponent implements OnInit{
     //  this.count[0] = data.Consumer;
     //  this.count[1] = data.Producer;
     //  this.count[2] = data.Stock;
-     
      this.count = [data.Consumer,data.Producer,data.Stock];
-     console.log("USLo")
-     console.log(this.count)
     });
 
   }
@@ -108,23 +111,21 @@ export class UsersComponent implements OnInit{
 
   getChartArea() {
     const deviceType = this.selectedType.code;
-    console.log(this.selectedType.code);
 
     const number = 4;
-    this.keys.splice(0, this.keys.length);
-    this.values.splice(0, this.values.length);
+    // this.keys.splice(0, this.keys.length);
+    // this.values.splice(0, this.values.length);
     this.deviceService.getChartArea(deviceType,number).subscribe((data: any) => {
-    this.keys.splice(0, this.keys.length);
-    this.values.splice(0, this.values.length);
-      console.log(data);
+    // this.keys.splice(0, this.keys.length);
+    // this.values.splice(0, this.values.length);
+      this.keys = []
+      this.values=[]
       for (const key in data) {
         this.keys.push(key);
         this.values.push(data[key]);
       }
+      console.log(this.values)
     });
-
-  console.log(this.keys);
-  console.log(this.values);
   }
 
 
