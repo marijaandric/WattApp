@@ -16,10 +16,148 @@ export class DeviceCardComponent implements OnInit{
   isChecked: boolean = true;
   display: boolean = false;
 
+  //za ikonice
+  isPhone: boolean = false;
+  isTablet: boolean = false;
+  isLaptop: boolean = false;
+  isDesktop: boolean = false;
+  isSmartwatch: boolean = false;
+  isSmartTV: boolean = false;
+  isGamingConsole: boolean = false;
+  isVirtualAssistant: boolean = false;
+  isCamera: boolean = false;
+  isDrone: boolean = false;
+  isWearable: boolean = false;
+  isSmartHomeHub: boolean = false;
+  isCar: boolean = false;
+  isHeadset: boolean = false;
+  isSpeaker: boolean = false;
+  isSolarPanel: boolean = false;
+  isBattery: boolean = false;
+  isFridge: boolean = false;
+  isMicrowave: boolean = false;
+  isWashingMachine: boolean = false;
+  isMixer: boolean = false;
+  isBlender: boolean = false;
+  isRadio: boolean = false;
+  isStove: boolean = false;
+  isVacuumCleaner: boolean = false;
+  isIron: boolean = false;
+  isLamp: boolean = false;
+  isBulb: boolean = false;
+  isOther: boolean = false;
+
+  isConsumer: boolean = false;
+  isProducer: boolean = false;
+  isStock: boolean = false;
+
   constructor(private deviceService: DeviceService){ }
 
   ngOnInit(): void {
-    this.isChecked = this.device.isActive
+    this.isChecked = this.device.isActive;
+    
+    switch(this.device.deviceType) {
+      case "Consumer":
+        this.isConsumer = true;
+        break;
+      case "Producer":
+        this.isProducer = true;
+        break;
+      case "Stock":
+        this.isStock = true;
+        break;
+    }
+
+    switch(this.device.deviceModel){
+      case "Phone":
+        this.isPhone = true;
+        break;
+      case "Tablet":
+        this.isTablet = true;
+        break;
+      case "Laptop":
+        this.isLaptop = true;
+        break;
+      case "Desktop":
+        this.isDesktop = true;
+        break;
+      case "Smartwatch":
+        this.isSmartwatch = true;
+        break;
+      case "Smart TV":
+        this.isSmartTV = true;
+        break;
+      case "Gaming Console":
+        this.isGamingConsole = true;
+        break;
+      case "Virtual Assistant":
+        this.isVirtualAssistant = true;
+        break;
+      case "Camera":
+        this.isCamera = true;
+        break;
+      case "Drone":
+        this.isDrone = true;
+        break;
+      case "Wearable":
+        this.isWearable = true;
+        break;
+      case "Smart Home Hub":
+        this.isSmartHomeHub = true;
+        break;
+      case "Car":
+        this.isCar = true;
+        break;
+      case "Headset":
+        this.isHeadset = true;
+        break;
+      case "Speaker":
+        this.isSpeaker = true;
+        break;
+      case "Solar panel":
+        this.isSolarPanel = true;
+        break;
+      case "Battery":
+        this.isBattery = true;
+        break;
+      case "Fridge":
+        this.isFridge = true;
+        break;
+      case "Microwave":
+        this.isMicrowave = true;
+        break;
+      case "Washing machine":
+        this.isWashingMachine = true;
+        break;
+      case "Mixer":
+        this.isMixer = true;
+        break;
+      case "Blender":
+        this.isBlender = true;
+        break;
+      case "Radio":
+        this.isRadio = true;
+        break;
+      case "Stove":
+        this.isStove = true;
+        break;
+      case "Vacuum cleaner":
+        this.isVacuumCleaner = true;
+        break;
+      case "Iron":
+        this.isIron = true;
+        break;
+      case "Lamp":
+        this.isLamp = true;
+        break;
+      case "Bulb":
+        this.isBulb = true;
+        break;
+      default:
+        this.isOther = true;
+        break;
+    }
+
   }
 
   async handleRunningSwitchChange(){

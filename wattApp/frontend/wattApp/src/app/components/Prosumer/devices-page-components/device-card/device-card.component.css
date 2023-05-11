@@ -12,9 +12,9 @@
 }
 
 img {
-    height:30px;
+    height:40px;
     width:auto;
-    padding-right:20px;
+    padding-right:10px;
 }
 
 .device-card:hover{
@@ -24,6 +24,7 @@ img {
 .device-name{
     max-width: 50%;
     width: fit-content;
+    font-size: 20px;
 }
 
 a{
@@ -31,6 +32,18 @@ a{
     text-decoration: none;
     color: #46c5f1;
     font-weight: bold;
+}
+
+.color-blue {
+    color: #46c5f1;
+}
+
+.color-purple {
+    color:#885ec0;
+}
+
+.color-pink {
+    color: #eb4886;
 }
 
 .bold-text {
