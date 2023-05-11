@@ -2,8 +2,8 @@
     <app-title-bar>
       <h3>News</h3>
     </app-title-bar>
-
-  <app-center-bar>
+    <app-center-bar *ngIf="loader"><app-loader></app-loader></app-center-bar>
+    <app-center-bar *ngIf="!loader">
     <div class="main-grid">
       <div class="image-div">
       </div>

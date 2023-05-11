@@ -54,7 +54,14 @@ export class DeviceCardComponent implements OnInit{
   constructor(private deviceService: DeviceService){ }
 
   ngOnInit(): void {
-    this.isChecked = this.device.isActive;
+    if(!this.device.power)
+    {
+      const min = 0;
+      const max = 15;
+      this.device.power = (Math.random() * (max - min) + min).toFixed(2);
+      this.isChecked = this.device.isActive;
+    }
+    
     
     switch(this.device.deviceType) {
       case "Consumer":

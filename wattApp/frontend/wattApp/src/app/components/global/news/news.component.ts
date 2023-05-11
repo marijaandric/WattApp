@@ -17,7 +17,7 @@ interface SwitchOption {
   styleUrls: ['./news.component.scss']
 })
 export class NewsComponent implements OnInit{
-
+  loader = true;
   news: any[] = [];
   newsImportant: any[] = [];
   newsRegular: any[] = [];
@@ -102,6 +102,7 @@ export class NewsComponent implements OnInit{
       console.log(this.news);
       console.log(this.MynewsRegular);
       console.log(this.MynewsImportant);
+      this.loader = false;
      // console.log(this.id);
 
     });

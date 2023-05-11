@@ -1,4 +1,4 @@
-import { Component, OnInit, HostBinding, Input } from '@angular/core';
+import { Component, OnInit, HostBinding, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { NgToastService } from 'ng-angular-popup';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { DsonewsService } from 'src/app/services/dsonews/dsonews.service';
@@ -9,7 +9,7 @@ import { UserService } from 'src/app/services/user.service';
   templateUrl: './promotion.component.html',
   styleUrls: ['./promotion.component.css']
 })
-export class PromotionComponent implements OnInit{
+export class PromotionComponent implements OnInit,OnChanges{
   @Input() subTitle : String ="Get a discount!";
   @Input() Title : String ="Show us all your device, get a 10% discount! For more information, contact our operators! Dear consumers, we inform you that the price of electricity will decrease by 5% in the coming period.";
   @Input() Datum : String ="01.01.2023.";
@@ -33,6 +33,14 @@ export class PromotionComponent implements OnInit{
     private dsonewsService: DsonewsService,
     private toast: NgToastService,
     ) {
+  }
+  ngOnChanges(changes: SimpleChanges): void {
+    //console.log("USLO")
+    this.subTitle = this.subTitle;
+    this.Title = this.Title;
+    this.Datum = this.Datum;
+    this.Status = this.Status;
+    this.ID = this.ID
   }
 
   isAdmin(): boolean {

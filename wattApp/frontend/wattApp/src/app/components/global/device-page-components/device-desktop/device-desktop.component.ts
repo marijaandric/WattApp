@@ -374,23 +374,23 @@ export class DeviceDesktopComponent implements OnInit {
 
 
 
-  History = [12, 19, 3, 5, 2, 6, 5, null,null,null,null, null, null, null];
-  Forecast= [null,null, null, null, null, null,5,10,12,3,16,5,10,5];
+  History = [0, 0, 0, 0, 0, 0, 0, null,null,null,null, null, null, null];
+  Forecast= [null,null, null, null, null, null,0, 0, 0, 0, 0, 0, 0];
   miniHistory = [12, 19, 3, 5, 2, 6, 5];
   miniForecast= [5,10,12,3,16,5,10];
 
-  arrayData = [1,2,3,4,5,6,7,8,9,10,11,12,13,14];
-  arrayData1 = [1,2,3,4,5,6,7];
-  arrayData2 = [8,9,10,11,12,13,14];
+  arrayData = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  arrayData1 = [0, 0, 0, 0, 0, 0, 0];
+  arrayData2 = [0, 0, 0, 0, 0, 0, 0];
 
-  miniarrayData1 = [1,2,3,4,5,6,7];
-  miniarrayData2 = [8,9,10,11,12,13,14];
+  miniarrayData1 = [0, 0, 0, 0, 0, 0, 0];
+  miniarrayData2 = [0, 0, 0, 0, 0, 0, 0];
 
   color1 = '#46c5f1';
   color2 = '#88dbf6';
 
   HistoryCon:any = [12, 19, 3, 5, 2, 6, 5,];
-  ForecastCon:any= [5,10,12,3,16,5,10,5];
+  ForecastCon:any= [0, 0, 0, 0, 0, 0, 0, 0];
   HistoryPro :any= [12, 19, 3, 5, 2, 6, 5];
   ForecastPro:any= [5,10,12,3,16,5,10,5];
   HistoryStock:any = [12, 19, 3, 5, 2, 6, 5];
@@ -412,7 +412,7 @@ export class DeviceDesktopComponent implements OnInit {
   HistoryStock3:any  = [12, 19, 3, 5, 2, 6];
   ForecastStock3:any  = [12, 19, 3, 5, 2, 6];
 
-  dates = [1,2,3,4,5,6,7,8,9,10,11,12,13,14];
+  dates = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
   arrayData3 = [1,2,3,4,5,6];
 
 
@@ -450,12 +450,28 @@ export class DeviceDesktopComponent implements OnInit {
         this.miniForecast  = this.miniForecastCon;
 
 
-        const arr = [10.20,20.30,-10.00,0.00,-12.00,37.20,12.00,0.23];
-        const arr2 = [12.20,-10.30,0.00,-13.30,20.70,10.20,30.00,-14.23];
-        for (let i = 0; i < 6; i++) {
-            this.ForecastCon[i] = parseFloat((this.ForecastCon[i]+arr[i]).toFixed(2));
-            this.ForecastPro[i] = parseFloat((this.ForecastPro[i]+arr2[i]).toFixed(2));
-            this.ForecastStock[i] = parseFloat((this.ForecastStock[i]+arr[i]).toFixed(2));
+        const arr = [10.20,20.30,-6.00,0.00,-7.07,37.20,12.00,0.23];
+        const arr2 = [12.20,-3.30,0.00,-3.30,20.70,10.20,30.00,-8.23];
+        if(this.ForecastCon.every((el: number) => el === 0))
+        {}
+        else{
+            for (let i = 0; i < 6; i++) {
+              this.ForecastCon[i] = parseFloat((this.ForecastCon[i]+arr[i]).toFixed(2));
+          }
+        }
+        if(this.ForecastPro.every((el: number) => el === 0))
+        {}
+        else{
+            for (let i = 0; i < 6; i++) {
+              this.ForecastPro[i] = parseFloat((this.ForecastPro[i]+arr2[i]).toFixed(2));
+          }
+        }
+        if(this.ForecastStock.every((el: number) => el === 0))
+        {}
+        else{
+            for (let i = 0; i < 6; i++) {
+              this.ForecastStock[i] = parseFloat((this.ForecastStock[i]+arr[i]).toFixed(2));
+          }
         }
 
         this.History = this.HistoryCon;

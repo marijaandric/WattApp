@@ -97,14 +97,14 @@ export class StatisticComponent  implements OnInit {
   HistoryStock:any = [0,0,0,0,0,0,0];
   ForecastStock:any = [0,0,0,0,0,0,0];
 
-  miniHistoryCon:any = [12, 19, 3, 5, 2, 6, 5];
-  miniForecastCon:any= [5,10,12,3,16,5,10,5];
+  miniHistoryCon:any =  [0,0,0,0,0,0,0];
+  miniForecastCon:any=  [0,0,0,0,0,0,0];
 
-  miniHistoryPro:any = [12, 19, 3, 5, 2, 6, 5];
-  miniForecastPro:any= [5,10,12,3,16,5,10,5];
+  miniHistoryPro:any =  [0,0,0,0,0,0,0];
+  miniForecastPro:any=  [0,0,0,0,0,0,0];
 
-  miniHistoryStock:any = [12, 19, 3, 5, 2, 6, 5];
-  miniForecastStock:any= [5,10,12,3,16,5,10,5];
+  miniHistoryStock:any =  [0,0,0,0,0,0,0];
+  miniForecastStock:any= [0,0,0,0,0,0,0];
 
 
   constructor(private http: HttpClient, private deviceService : DeviceService,private userService:UserService,public loaderService:LoaderService) {
@@ -196,13 +196,30 @@ export class StatisticComponent  implements OnInit {
         this.miniForecast  = this.miniForecastCon;
 
 
-        const arr = [10.20,20.30,-10.00,0.00,-12.00,37.20,12.00,0.23];
-        const arr2 = [12.20,-10.30,0.00,-13.30,20.70,10.20,30.00,-14.23];
-        for (let i = 0; i < 6; i++) {
-            this.ForecastCon[i] = parseFloat((this.ForecastCon[i]+arr[i]).toFixed(2));
-            this.ForecastPro[i] = parseFloat((this.ForecastPro[i]+arr2[i]).toFixed(2));
-            this.ForecastStock[i] = parseFloat((this.ForecastStock[i]+arr[i]).toFixed(2));
+        const arr = [10.20,20.30,-5.00,0.00,-4.00,37.20,12.00,0.23];
+        const arr2 = [12.20,-5.30,0.00,-3.30,20.70,10.20,30.00,-4.23];
+        if(this.ForecastCon.every((el: number) => el === 0))
+        {}
+        else{
+            for (let i = 0; i < 6; i++) {
+              this.ForecastCon[i] = parseFloat((this.ForecastCon[i]+arr[i]).toFixed(2));
+          }
         }
+        if(this.ForecastPro.every((el: number) => el === 0))
+        {}
+        else{
+            for (let i = 0; i < 6; i++) {
+              this.ForecastPro[i] = parseFloat((this.ForecastPro[i]+arr2[i]).toFixed(2));
+          }
+        }
+        if(this.ForecastStock.every((el: number) => el === 0))
+        {}
+        else{
+            for (let i = 0; i < 6; i++) {
+              this.ForecastStock[i] = parseFloat((this.ForecastStock[i]+arr[i]).toFixed(2));
+          }
+        }
+        
 
         this.History = this.HistoryCon;
         this.Forecast = this.ForecastCon;

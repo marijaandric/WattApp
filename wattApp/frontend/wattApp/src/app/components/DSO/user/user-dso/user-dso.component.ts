@@ -200,12 +200,28 @@ export class UserDSOComponent implements OnInit{
           this.HistoryStock[i] = null;
         }
 
-        const arr = [10.20,20.30,-10.00,0.00,-12.00,37.20,12.00,0.23];
-        const arr2 = [12.20,-10.30,0.00,-13.30,20.70,10.20,30.00,-14.23];
-        for (let i = 0; i < 6; i++) {
-            this.ForecastCon[i] = parseFloat((this.ForecastCon[i]+arr[i]).toFixed(2));
-            this.ForecastPro[i] = parseFloat((this.ForecastPro[i]+arr2[i]).toFixed(2));
-            this.ForecastStock[i] = parseFloat((this.ForecastStock[i]+arr[i]).toFixed(2));
+        const arr = [10.20,20.30,-6.00,0.00,-7.07,37.20,12.00,0.23];
+        const arr2 = [12.20,-3.30,0.00,-3.30,20.70,10.20,30.00,-8.23];
+        if(this.ForecastCon.every((el: number) => el === 0))
+        {}
+        else{
+            for (let i = 0; i < 6; i++) {
+              this.ForecastCon[i] = parseFloat((this.ForecastCon[i]+arr[i]).toFixed(2));
+          }
+        }
+        if(this.ForecastPro.every((el: number) => el === 0))
+        {}
+        else{
+            for (let i = 0; i < 6; i++) {
+              this.ForecastPro[i] = parseFloat((this.ForecastPro[i]+arr2[i]).toFixed(2));
+          }
+        }
+        if(this.ForecastStock.every((el: number) => el === 0))
+        {}
+        else{
+            for (let i = 0; i < 6; i++) {
+              this.ForecastStock[i] = parseFloat((this.ForecastStock[i]+arr[i]).toFixed(2));
+          }
         }
 
         this.History = this.HistoryCon;
@@ -257,7 +273,7 @@ export class UserDSOComponent implements OnInit{
   arrayDataM = [];
 
   getHistoryAndForecastByDayForAllDevicesByMonth() {
-    this.deviceService.GetHistoryAndForecastByDayForAllDevices("month").subscribe(data => {
+    this.deviceService.GetHistoryAndForecastByDayForAllDevices("monthhistory").subscribe(data => {
       this.arrayDataM = data.dates; //.slice(0, 7).concat(data.dates.slice(8));
       this.HistoryConM = data.totaldatasConsumer.map((val: number) => +val.toFixed(2));
       this.HistoryProM = data.totaldatasProducer.map((val: number) => +val.toFixed(2));
