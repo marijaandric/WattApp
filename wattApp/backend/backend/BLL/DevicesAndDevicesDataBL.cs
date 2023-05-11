@@ -108,7 +108,7 @@ namespace backend.BLL
         //optimizovano kao, ali moze bolje ako zatreba (da se odjednom salju sva naselja)
         public AreaExtreme GetExtremeUsageForAreas(string devicetype, string timeType, string minmax)
         {
-            List<User> users = _contextUserDAL.getUsers();
+            List<User> users = _contextUserDAL.getUsers().Where(u => u.Role.ToLower() == "prosumer").ToList();
             List<string> areas = users.Select(d => d.Area).ToList().Distinct().ToList();
 
             if (users == null || areas == null)
