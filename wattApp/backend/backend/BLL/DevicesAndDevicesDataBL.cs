@@ -187,7 +187,7 @@ namespace backend.BLL
             foreach (var dvcs in devicesDatas)
             {
                 Console.WriteLine("Fake: " + dvcs.deviceID);
-                Console.WriteLine("True: +" + _contextDAL.GetDevice(dvcs.deviceID).Id);
+                //Console.WriteLine("True: +" + _contextDAL.GetDevice(dvcs.deviceID).Id);
                 devicesMap.Add(_contextDAL.GetDeviceIDForUserByFakeID(userId, dvcs.deviceID), dvcs.usage);
             }
 
