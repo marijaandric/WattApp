@@ -153,18 +153,19 @@ namespace backend.BLL
                 return 0;
 
             devices = _contextDAL.GetAllDevicesForUserIDs(users.Select(d => d.Id).ToList());
+            devices = devices.Where(d => d.DeviceType.ToLower() == devicetype.ToLower()).ToList();
 
             if (devices == null || devices.Count == 0)
                 return 0;
 
             if(timeType.ToLower() == "year")
-                return _contextDataDAL.GetYearPowerUsageSumOfDevices(devices.Where(d => d.DeviceType.ToLower() == devicetype.ToLower()).Select(d => d.FakeID).ToList(), now.Year);
+                return _contextDataDAL.GetYearPowerUsageSumOfDevices(devices.Select(d => d.FakeID).ToList(), now.Year);
             else if (timeType.ToLower() == "month")
-                return _contextDataDAL.GetMonthPowerUsageSumOfDevices(devices.Where(d => d.DeviceType.ToLower() == devicetype.ToLower()).Select(d => d.FakeID).ToList(), now.Year, now.Month);
+                return _contextDataDAL.GetMonthPowerUsageSumOfDevices(devices.Select(d => d.FakeID).ToList(), now.Year, now.Month);
             else if (timeType.ToLower() == "week")
-                return _contextDataDAL.GetWeekPowerUsageSumOfDevices(devices.Where(d => d.DeviceType.ToLower() == devicetype.ToLower()).Select(d => d.FakeID).ToList(), now.Year, now.Month, now.Day);
+                return _contextDataDAL.GetWeekPowerUsageSumOfDevices(devices.Select(d => d.FakeID).ToList(), now.Year, now.Month, now.Day);
             else
-                return _contextDataDAL.GetDayPowerUsageSumOfDevices(devices.Where(d => d.DeviceType.ToLower() == devicetype.ToLower()).Select(d => d.FakeID).ToList(), now.Year, now.Month, now.Day);
+                return _contextDataDAL.GetDayPowerUsageSumOfDevices(devices.Select(d => d.FakeID).ToList(), now.Year, now.Month, now.Day);
         }
 
         //optimizovano
