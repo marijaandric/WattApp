@@ -77,7 +77,7 @@ Potrebno je instalirati RemoteSSH ekstenziju za lakšu konfiguraciju aplikacije,
 
 ## Trenutni nalozi
 - > Nalog za DSO korisnika: marijaandric2001@gmail.com
-- > Nalog za prosumera: dugicboris@gmail.com
+- > Nalog za prosumera: stojanoviccaleksa@gmail.com
 Šifra za oba naloga je Proba@123
 
 ## Autori
