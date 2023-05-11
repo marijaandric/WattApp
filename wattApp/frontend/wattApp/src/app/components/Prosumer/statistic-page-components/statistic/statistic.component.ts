@@ -74,15 +74,15 @@ export class StatisticComponent  implements OnInit {
   
   History = [0,0,0,0,0,0, null,null,null,null, null, null, null];
   Forecast= [null,null, null, null, null, null,0,0,0,0,0,0];
-  miniHistory = [0,0,0,0,0,0];
-  miniForecast= [0,0,0,0,0,0];
+  miniHistory = [0,0,0,0,0,0,0];
+  miniForecast= [0,0,0,0,0,0,0];
 
   arrayData = [0,0,0,0,0,0,0,0,0,0,0,0];
-  arrayData1 = [0,0,0,0,0,0,];
-  arrayData2 = [0,0,0,0,0,0,];
+  arrayData1 = [0,0,0,0,0,0,0];
+  arrayData2 = [0,0,0,0,0,0,0];
 
-  miniarrayData1 = [0,0,0,0,0,0,];
-  miniarrayData2 = [0,0,0,0,0,0,];
+  miniarrayData1 = [0,0,0,0,0,0,0];
+  miniarrayData2 = [0,0,0,0,0,0,0];
 
   name1 = "history";
   name2 = "forecast";
@@ -90,12 +90,12 @@ export class StatisticComponent  implements OnInit {
   color1 = '#46c5f1';
   color2 = '#88dbf6';
 
-  HistoryCon:any = [10,0,0,0,0,0];
-  ForecastCon:any= [0,0,0,0,0,0,];
-  HistoryPro :any= [0,0,0,0,0,0,];
-  ForecastPro:any= [0,0,0,0,0,0,];
-  HistoryStock:any = [0,0,0,0,0,0,];
-  ForecastStock:any = [0,0,0,0,0,0,];
+  HistoryCon:any = [0,0,0,0,0,0,0];
+  ForecastCon:any= [0,0,0,0,0,0,0];
+  HistoryPro :any= [0,0,0,0,0,0,0];
+  ForecastPro:any= [0,0,0,0,0,0,0];
+  HistoryStock:any = [0,0,0,0,0,0,0];
+  ForecastStock:any = [0,0,0,0,0,0,0];
 
   miniHistoryCon:any = [12, 19, 3, 5, 2, 6, 5];
   miniForecastCon:any= [5,10,12,3,16,5,10,5];

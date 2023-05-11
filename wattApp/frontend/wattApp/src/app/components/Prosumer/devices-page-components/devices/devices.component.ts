@@ -22,7 +22,7 @@ export class DevicesComponent implements OnInit{
   carousel: boolean[] = [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false];
 
   switchOptions: SwitchOption[] = [
-    {label: 'Grid', value: true},
+    {label: 'List', value: true},
     {label: 'Table', value: false}
   ];
 
