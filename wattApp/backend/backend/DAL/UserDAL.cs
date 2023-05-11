@@ -182,5 +182,9 @@ namespace backend.DAL
             return new StatusCodeResult(204);
         }
 
+        public List<User> GetProsumersByArea(string area)
+        {
+            return _context.Users.Where(u => u.Area == area && u.Role.ToLower() == "prosumer").ToList();
+        }
     }
 }

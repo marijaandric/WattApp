@@ -146,7 +146,7 @@ namespace backend.BLL
         public double GetTotalUsageByArea(string area, string devicetype, string timeType)
         {
             DateTime now = DateTime.Now;
-            List<User> users = _contextUserDAL.GetUsersByArea(area);
+            List<User> users = _contextUserDAL.GetProsumersByArea(area);
             List<Devices> devices = new List<Devices>();
 
             if (users == null || users.Count == 0)
