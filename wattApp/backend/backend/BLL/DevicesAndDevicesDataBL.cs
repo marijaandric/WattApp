@@ -108,7 +108,7 @@ namespace backend.BLL
         //optimizovano kao, ali moze bolje ako zatreba (da se odjednom salju sva naselja)
         public AreaExtreme GetExtremeUsageForAreas(string devicetype, string timeType, string minmax)
         {
-            List<User> users = _contextUserDAL.getUsers();
+            List<User> users = _contextUserDAL.getUsers().Where(u => u.Role.ToLower() == "prosumer").ToList();
             List<string> areas = users.Select(d => d.Area).ToList().Distinct().ToList();
 
             if (users == null || areas == null)
@@ -146,25 +146,26 @@ namespace backend.BLL
         public double GetTotalUsageByArea(string area, string devicetype, string timeType)
         {
             DateTime now = DateTime.Now;
-            List<User> users = _contextUserDAL.GetUsersByArea(area);
+            List<User> users = _contextUserDAL.GetProsumersByArea(area);
             List<Devices> devices = new List<Devices>();
 
             if (users == null || users.Count == 0)
                 return 0;
 
             devices = _contextDAL.GetAllDevicesForUserIDs(users.Select(d => d.Id).ToList());
+            devices = devices.Where(d => d.DeviceType.ToLower() == devicetype.ToLower()).ToList();
 
             if (devices == null || devices.Count == 0)
                 return 0;
 
             if(timeType.ToLower() == "year")
-                return _contextDataDAL.GetYearPowerUsageSumOfDevices(devices.Where(d => d.DeviceType.ToLower() == devicetype.ToLower()).Select(d => d.FakeID).ToList(), now.Year);
+                return _contextDataDAL.GetYearPowerUsageSumOfDevices(devices.Select(d => d.FakeID).ToList(), now.Year);
             else if (timeType.ToLower() == "month")
-                return _contextDataDAL.GetMonthPowerUsageSumOfDevices(devices.Where(d => d.DeviceType.ToLower() == devicetype.ToLower()).Select(d => d.FakeID).ToList(), now.Year, now.Month);
+                return _contextDataDAL.GetMonthPowerUsageSumOfDevices(devices.Select(d => d.FakeID).ToList(), now.Year, now.Month);
             else if (timeType.ToLower() == "week")
-                return _contextDataDAL.GetWeekPowerUsageSumOfDevices(devices.Where(d => d.DeviceType.ToLower() == devicetype.ToLower()).Select(d => d.FakeID).ToList(), now.Year, now.Month, now.Day);
+                return _contextDataDAL.GetWeekPowerUsageSumOfDevices(devices.Select(d => d.FakeID).ToList(), now.Year, now.Month, now.Day);
             else
-                return _contextDataDAL.GetDayPowerUsageSumOfDevices(devices.Where(d => d.DeviceType.ToLower() == devicetype.ToLower()).Select(d => d.FakeID).ToList(), now.Year, now.Month, now.Day);
+                return _contextDataDAL.GetDayPowerUsageSumOfDevices(devices.Select(d => d.FakeID).ToList(), now.Year, now.Month, now.Day);
         }
 
         //optimizovano
@@ -187,10 +188,10 @@ namespace backend.BLL
             {
                 Console.WriteLine("Fake: " + dvcs.deviceID);
                 Console.WriteLine("True: +" + _contextDAL.GetDevice(dvcs.deviceID).Id);
-                devicesMap.Add(_contextDAL.GetDevice(dvcs.deviceID).Id, dvcs.usage);
+                devicesMap.Add(_contextDAL.GetDeviceIDForUserByFakeID(userId, dvcs.deviceID), dvcs.usage);
             }
 
-            if (size == "max")
+            if (size.ToLower() == "max")
             {
                 double maxValue = double.MinValue;
 
@@ -279,23 +280,59 @@ namespace backend.BLL
                 
 
             List<List<int>> devicesids = new List<List<int>>();
+            bool consumed = false;
+            bool produced = false;
+            bool stock = false;
 
-            if(consumerDevices != null || consumerDevices.Count != 0)
+
+            if (consumerDevices != null && consumerDevices.Count != 0)
+            {
                 devicesids.Add(consumerDevices.Select(d => d.FakeID).ToList());
+                consumed = true;
+            }
 
-            if (producerDevices != null || producerDevices.Count != 0)
+            if (producerDevices != null && producerDevices.Count != 0)
+            {
                 devicesids.Add(producerDevices.Select(d => d.FakeID).ToList());
+                produced = true;
+            }
 
-            if (stockDevices != null || stockDevices.Count != 0)
+            if (stockDevices != null && stockDevices.Count != 0)
+            {
                 devicesids.Add(stockDevices.Select(d => d.FakeID).ToList());
+                stock = true;
+            }
 
             if(devicesids.Count == 0)
                 return null;
 
             List<HAFDatasDTO> result = _contextDataDAL.GetByDayHistoryAndForecastForDevices(devicesids, now.Year, now.Month, now.Day, type);
 
-            return new HAFDatasTypesDTO(result[0].dates, result[0].datas, result[1].datas, result[2].datas);
-            
+            HAFDatasTypesDTO final = new HAFDatasTypesDTO();
+
+
+            List<double> zeros = new List<double>();
+            for(int i = 0; i < result[0].dates.Count; i++)
+                zeros.Add(0);
+
+            int counter = 0;
+
+            final.dates = result[0].dates;
+            if (consumed)
+                final.totaldatasConsumer = result[counter++].datas;
+            else
+                final.totaldatasConsumer = zeros;
+            if (produced)
+                final.totaldatasProducer = result[counter++].datas;
+            else
+                final.totaldatasProducer = zeros;
+            if (stock)
+                final.totaldatasStock = result[counter].datas;
+            else
+                final.totaldatasStock = zeros;
+
+            return final;
+
         }
 
 

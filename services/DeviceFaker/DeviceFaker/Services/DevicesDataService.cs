@@ -120,7 +120,9 @@ namespace DeviceFaker.Services
         // #### WEEK HISTORY AND FORECAST ####
         public HAFDatasDTO GetWeekHistoryAndForecastPowerUsageOfDevices(List<int> ids, int year, int month, int day)
         {
+
             HAFDatasDTO currentMonth = GetMonthHistoryAndForecastPowerUsageOfDevices(ids, year, month);
+
             HAFDatasDTO result = new HAFDatasDTO();
             result.dates = new List<string>();
             result.datas = new List<double>();
@@ -142,14 +144,15 @@ namespace DeviceFaker.Services
                 result.dates.AddRange(currentMonth.dates.GetRange(0, day + 7));
                 result.datas.AddRange(currentMonth.datas.GetRange(0, day + 7));
             }
-            else if(day + 7 > currentMonth.datas.Count)
+            else if(day + 7 > currentMonth.dates.Count)
             {
+
                 // u slucaju da moram da idem u sledeci mesec
                 HAFDatasDTO nextMonth = GetMonthHistoryAndForecastPowerUsageOfDevices(ids, year, month + 1);
                 int mCount = currentMonth.dates.Count;
-
                 int start = day - 6 - 1;
                 int count = mCount - day + 6 + 1;
+
 
                 //for current month
                 result.dates.AddRange(currentMonth.dates.GetRange(start, count));

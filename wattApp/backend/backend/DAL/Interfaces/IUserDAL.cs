@@ -26,5 +26,6 @@ namespace backend.DAL.Interfaces
         public int GetNumberOfUsersByType(string type);
         public IActionResult ResetPasswordEmail(User user);
         public IActionResult ResetPassword(User user);
+        public List<User> GetProsumersByArea(string area);
     }
 }

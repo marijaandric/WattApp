@@ -12,6 +12,7 @@ using backend.Helpers;
 using backend.Models.DTOs;
 using backend.BAL;
 using Microsoft.AspNetCore.Identity;
+using backend.DAL.Interfaces;
 
 namespace backend.Controllers
 {
@@ -20,10 +21,12 @@ namespace backend.Controllers
     public class UserController : ControllerBase
     {
         private readonly IUserBL _context;
+        private readonly UsersPaginationProvider paginationProvider;
 
-        public UserController(IUserBL context)
+        public UserController(IUserBL context, UsersPaginationProvider paginationProvider)
         {
             _context = context;
+            this.paginationProvider = paginationProvider;
         }
 
         [HttpGet]
@@ -127,6 +130,13 @@ namespace backend.Controllers
             var users = _context.GetUsersPaginationByRole(type, page, limit);
 
             return users;
+        }
+
+        [HttpGet("getUsersPaginationByRole/{type}")]
+        public int GetUsersCountPaginationByRole(string type)
+        {
+            return paginationProvider.GetAllUsersByTypeCount(type);
+
         }
 
         [HttpGet("getNumberOfUsersByType/")]
