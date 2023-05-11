@@ -14,7 +14,7 @@ export class MapForDsoUserComponent implements OnInit, OnChanges{
   lan! : number;
   lon! : number;
   area! : string;
-  map! : any;
+  map! : L.Map;
 
   private darkLayer!: L.TileLayer;
   private lightLayer!: L.TileLayer;
@@ -30,24 +30,13 @@ export class MapForDsoUserComponent implements OnInit, OnChanges{
     }).addTo(this.map);
     this.darkLayer = L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png', { //https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png
       attribution: ''
-    }).addTo(this.map);
+    });
     this.lightLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: ''
     });
+    this.mapa()
 
     //this.mapa()
-  }
-
-  toggleDarkMode(): void {
-    if (this.map.hasLayer(this.darkLayer)) {
-      // if the dark layer is already active, switch to light
-      this.map.removeLayer(this.darkLayer);
-      this.lightLayer.addTo(this.map);
-    } else {
-      // if the light layer is active, switch to dark
-      this.map.removeLayer(this.lightLayer);
-      this.darkLayer.addTo(this.map);
-    }
   }
 
   ngOnChanges(changes: SimpleChanges): void {

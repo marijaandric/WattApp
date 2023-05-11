@@ -1,4 +1,4 @@
-import { Component, OnInit,Input,OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit,Input,OnChanges, SimpleChanges, ChangeDetectorRef } from '@angular/core';
 import {
   ApexChart,
   ApexDataLabels,
@@ -11,6 +11,7 @@ import {
   ApexStroke,
   ApexTooltip,
   ApexTheme,
+  ApexNoData,
 } from 'ng-apexcharts';
 
 @Component({
@@ -18,9 +19,9 @@ import {
   templateUrl: './single-area-pie.component.html',
   styleUrls: ['./single-area-pie.component.css']
 })
-export class SingleAreaPieComponent {
+export class SingleAreaPieComponent implements OnChanges{
   @Input() chartHeight: number = 200;
-  @Input() chartText: string = 'Info by suburbs';
+  @Input() chartText: string = 'Info by suburbs in the week';
   @Input() Series: number[] = [40, 32, 52,30];
   @Input() chartLabels = ["Станово", "Град Крагујевац", "Виногради", "Others"];
 
@@ -28,8 +29,17 @@ export class SingleAreaPieComponent {
 
   ngOnChanges(changes: SimpleChanges) {
     if ('Series' in changes) {
-      this.chartSeries = this.Series;
+      const hasData = this.Series.some((val) => val !== 0);
+      if (!hasData) {
+        this.chartSeries = [];
+        this.noData.text = "There are no devices yet!";
+      }
+      else{
+        this.chartSeries = this.Series;
+      }
     }
+    
+    this.cdr.detectChanges();
   }
 
 
@@ -116,6 +126,18 @@ export class SingleAreaPieComponent {
     }
   };
 
+  noData: ApexNoData = {
+    text: 'No data available',
+    align: 'left',
+    verticalAlign: 'middle',
+    offsetX: 0,
+    offsetY: 0,
+    style: {
+      fontSize: '12px',
+      color: '#fff'
+    }
+  }
+
   chartOptions: ApexOptions = {
     series: this.chartSeries,
     chart: this.chartDetails,
@@ -125,9 +147,10 @@ export class SingleAreaPieComponent {
     legend: this.chartLegend,
     tooltip: this.tooltip,
     colors: ['#46c5f1', '#885ec0','#eb4886', '#f5805a'],
+    noData: this.noData
   };
 
-  constructor() { }
+  constructor(private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     this.chartDetails.height = '230px';

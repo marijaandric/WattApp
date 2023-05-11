@@ -61,8 +61,8 @@
     </div>
 </div>
 
-<div  [ngClass]="{'hidden': isSubMenuShown, 'submenu': !isSubMenuShown}">
-    <div class="main submain" routerLinkActive="active" *ngIf="isAdmin()">
+<div  [ngClass]="{'hidden': isSubMenuShown, 'submenu': !isSubMenuShown}" *ngIf="isAdmin()">
+    <div class="main submain" routerLinkActive="active">
         <a routerLink="/users/prosumers">      
             <div class="left">
                 <div [ngClass]="{'icon-hidden': isSideBarExpanded, 'icon-displayed': !isSideBarExpanded}">
@@ -70,7 +70,7 @@
                 </div>
             </div>
         </a>
-        <div class="right">
+        <div class="right" *ngIf="isAdmin()">
             <div class="title">
                 <a routerLink="/users/prosumers">Prosumers</a>
             </div>
@@ -87,7 +87,7 @@
                 </div>
             </div>
         </a>
-        <div class="right" routerLinkActive="active">
+        <div class="right" routerLinkActive="active" *ngIf="isAdmin()">
             <div class="title">
                 <a routerLink="/users/operators">Operators</a>
             </div>
@@ -201,6 +201,21 @@
     <div class="right">
         <div class="title">
             <a routerLink="/faq">FAQ</a>
+        </div>
+
+    </div>
+</div>
+
+<div class="main" routerLinkActive="active">
+    <div class="left ">
+        <a routerLink="/news">
+            <i class="fa fa-newspaper-o" ></i>
+        </a>
+    </div>
+    
+    <div class="right">
+        <div class="title">
+            <a routerLink="/news">News</a>
         </div>
 
     </div>

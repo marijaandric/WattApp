@@ -7,7 +7,7 @@ import { Component, HostBinding, Input} from '@angular/core';
 })
 export class StatsCardComponent {
   @Input() Title : String ="9,051 din/kWh";
-  @Input() subTitle : String ="9,051 din/kWh";
+  @Input() subTitle : String ="";
   @Input() value : String ="9,051 din/kWh";
   
   @Input() @HostBinding("icon") public hasIcon = true;

@@ -1,0 +1,47 @@
+.main-grid {
+    width: 100%;
+    height:100%;
+}
+
+.image-div {
+    background-image: url('/assets/images/application-images/vesti.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    width:100%;
+    height:450px;
+    box-shadow: 5px 5px 15px black;
+    border-radius: 20px;
+}
+
+.promotions {
+    width:100%;
+}
+
+.promotion
+{
+    width:90%;
+    margin:5%;
+    background: linear-gradient(180deg, #121212 50%, #0d0d0d 100%) ;
+    display: inline-block;
+    position:relative;
+    flex-direction: row;
+    height:87%;
+}
+
+.carousel {
+    width:100% !important;
+}
+.carousels {
+    margin-top:32px;
+}
+.switch {
+    margin-bottom: 32px;
+}
+@media only screen and (max-width: 979px) {
+    .carousels {
+        margin-top:20px;
+    }
+    .switch {
+        margin-bottom: 20px;
+    }
+}

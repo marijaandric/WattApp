@@ -1,17 +1,48 @@
 <div id="device-card" class="device-card">
     <div class="flexRow">
-        <a [routerLink]="['/device', device.id]"  style="display:flex;width:30px;padding-top:5px;"><i class="fa-solid fa-house"></i></a>
-        <a [routerLink]="['/device', device.id]" class="device-name abbreviate-text" style="padding-top:2px">{{ device.deviceName }}</a>
-        <p-inputSwitch [(ngModel)]="device.isActive" (onChange)="handleRunningSwitchChange()" class="margin-left__auto width__fit-content"/>
+        <a [routerLink]="['/device', device.id]"  style="display:flex;">
+
+          <img *ngIf="isPhone" src="../.../../../../../../assets/icons/images/icons8-iphone-14-50.png">
+          <img *ngIf="isTablet" src="../.../../../../../../assets/icons/images/icons8-ipad-50.png">
+          <img *ngIf="isLaptop" src="../.../../../../../../assets/icons/images/icons8-laptop-closing-50.png">
+          <img *ngIf="isDesktop" src="../.../../../../../../assets/icons/images/icons8-pc-50.png">
+          <img *ngIf="isSmartwatch" src="../.../../../../../../assets/icons/images/icons8-smart-watch-50.png">
+          <img *ngIf="isSmartTV" src="../.../../../../../../assets/icons/images/icons8-tv-show-50.png">
+          <img *ngIf="isGamingConsole" src="../.../../../../../../assets/icons/images/icons8-game-controller-50.png">
+          <img *ngIf="isVirtualAssistant" src="../.../../../../../../assets/icons/images/icons8-amazon-alexa-logo-50.png">
+          <img *ngIf="isCamera" src="../.../../../../../../assets/icons/images/icons8-camera-50.png">
+          <img *ngIf="isDrone" src="../.../../../../../../assets/icons/images/icons8-drone-50.png">
+          <img *ngIf="isWearable" src="../.../../../../../../assets/icons/images/icons8-wearable-technology-50.png">
+          <img *ngIf="isSmartHomeHub" src="../.../../../../../../assets/icons/images/icons8-hub-50.png">
+          <img *ngIf="isCar" src="../.../../../../../../assets/icons/images/icons8-car-50.png">
+          <img *ngIf="isHeadset" src="../.../../../../../../assets/icons/images/icons8-headset-50.png">
+          <img *ngIf="isSpeaker" src="../.../../../../../../assets/icons/images/icons8-subwoofer-50.png">
+          <img *ngIf="isSolarPanel" src="../.../../../../../../assets/icons/images/icons8-solar-panel-50.png" style="height:30px !important;margin-top:5px; ">
+          <img *ngIf="isBattery" src="../.../../../../../../assets/icons/images/icons8-car-battery-50.png">
+          <img *ngIf="isFridge" src="../.../../../../../../assets/icons/images/icons8-fridge-50.png">
+          <img *ngIf="isMicrowave" src="../.../../../../../../assets/icons/images/icons8-microwave-50.png">
+          <img *ngIf="isWashingMachine" src="../.../../../../../../assets/icons/images/icons8-washing-machine-50.png">
+          <img *ngIf="isBlender" src="../.../../../../../../assets/icons/images/icons8-blender-50.png">
+          <img *ngIf="isRadio" src="../.../../../../../../assets/icons/images/icons8-mixer-50.png">
+          <img *ngIf="isStove" src="../.../../../../../../assets/icons/images/icons8-stove-50.png">
+          <img *ngIf="isVacuumCleaner" src="../.../../../../../../assets/icons/images/icons8-vacuum-cleaner-50.png">
+          <img *ngIf="isIron" src="../.../../../../../../assets/icons/images/icons8-iron-high-temperature-50.png">
+          <img *ngIf="isLamp" src="../.../../../../../../assets/icons/images/icons8-lamp-50.png">
+          <img *ngIf="isBulb" src="../.../../../../../../assets/icons/images/icons8-bulb-50.png">
+          <img *ngIf="isOther" src="../.../../../../../../assets/icons/images/icons8-multiple-devices-50.png">
+     
+        </a>
+        <a [routerLink]="['/device', device.id]" class="device-name abbreviate-text" style="padding-top:6px" [ngClass]="{'color-blue': isConsumer, 'color-purple': isProducer, 'color-pink': isStock}">{{ device.deviceName }}</a>
+        <p-inputSwitch [(ngModel)]="isChecked" (click)="showDialog()" class="margin-left__auto width__fit-content" style="padding-top:8px;"/>
     </div>
     <div class="flexRow" style="margin-top: 16px;">
         <span >Status:</span>
-        <span *ngIf="!isChecked" class="margin-left__auto" style="color:#eb4886;">Idle</span>
-        <span *ngIf="isChecked" class="margin-left__auto color-gray" style="color:#46c5f1;">Running</span>
+        <span *ngIf="!isChecked" class="margin-left__auto color-gray">Idle</span>
+        <span *ngIf="isChecked" class="margin-left__auto ">Running</span>
     </div>
     <div class="flexRow" style="margin-top: 6px;">
         <span>Type:</span>
-        <span class="margin-left__auto color-gray">{{ device.deviceType }}</span>
+        <span class="margin-left__auto" [ngClass]="{'color-blue': isConsumer, 'color-purple': isProducer, 'color-pink': isStock}">{{ device.deviceType }}</span>
     </div>
     <div class="flexRow" style="margin-top: 6px;">
         <span *ngIf="device.deviceType === 'Consumer'"  >Power consumed:</span>
@@ -20,3 +51,22 @@
         <span class="margin-left__auto color-gray">{{ device.power }} kW/h</span>
     </div>
 </div>
+
+
+<p-dialog [style]="{width:'300px',height:'200px'}" header="Title"  [transitionOptions]="'3ms'" 
+[draggable]="true" [keepInViewport]="true" [resizable]="false" 
+[blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true" 
+[modal]="true" [(visible)]="display" [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
+[closable]="true" >
+<ng-template pTemplate="header" class="header-dialog">
+  <span >Are you sure you want to change the device activity?</span>
+</ng-template>
+
+<ng-template pTemplate="center">
+  <div class="flexRow">
+    <button class="margin-left__16px edit-btn"  (click)="handleRunningSwitchChange()"> Yes</button>
+    <button class="margin-left__16px remove-btn"  (click)="display=false"> No</button>
+  </div>
+</ng-template>
+
+</p-dialog>

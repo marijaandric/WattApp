@@ -105,7 +105,7 @@
   
 
   
-  ::ng-deep .p-dropdown {
+  host::ng-deep .p-dropdown {
     position:relative;
     border-radius: 20px;
     border:none;
@@ -115,7 +115,7 @@
     
   }
 
-  ::ng-deep .p-dropdown.p-component {
+  host::ng-deep .p-dropdown.p-component {
     width:165.953px;
     box-shadow: 5px 5px 15px black;
   }

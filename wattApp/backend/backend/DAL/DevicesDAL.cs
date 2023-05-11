@@ -110,5 +110,24 @@ namespace backend.DAL
             _context.SaveChangesAsync();
         }
 
+        public List<int> GetListOfFakeIDsForUserDevices(int userid)
+        {
+            var devices = _context.Devices.Where(d => d.UserID == userid).ToList();
+            return devices.Select(d => d.FakeID).ToList();
+        }
+
+        public List<Devices> GetListOfDevicesByAreaAndType(string area, string deviceType)
+        {
+            List<int> usersIDs = _context.Users.Where(u => u.Area == area).Select(u => u.Id).ToList();
+            List<Devices> devices = _context.Devices.Where(d => usersIDs.Contains(d.UserID) && d.DeviceType == deviceType).ToList();
+
+            return devices;
+        }
+
+        public int GetDeviceIDForUserByFakeID(int userId, int fakeid)
+        {
+            return _context.Devices.FirstOrDefault(e => e.UserID == userId && e.FakeID == fakeid).Id;
+        }
+
     }
 }

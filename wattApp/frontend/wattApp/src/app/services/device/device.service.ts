@@ -157,6 +157,18 @@ export class DeviceService {
   {
     return this.http.get<any>(this.baseUrl+ "getMaxMinAvgTotalPowerUsageByTimeForUserDevicesByType" + "/" + id +"/"+deviceType+ "/" + timeType);
   }
+  getMaxMinAvgTotalPowerUsageByTimeForDevice(id: number,timeType:string)
+  {
+    return this.http.get<any>(this.baseUrl+ "getMaxMinAvgTotalPowerUsageByTimeForDevice" + "/" + id +"/"+ timeType);
+  }
+  getPowerUsageForAllTypesForArea(area:string,timeType:string)
+  {
+    return this.http.get<any>(this.baseUrl+ "getPowerUsageForAllTypesForArea" + "/" + area +"/"+ timeType);
+  }
+  getChartArea(Type:string,broj: number)
+  {
+    return this.http.get<any>(this.baseUrl+ "getChartArea" + "/" + Type +"/"+ broj);
+  }
 
 
 

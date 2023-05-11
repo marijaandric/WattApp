@@ -1,30 +1,29 @@
 :host{
     display: flex;
     flex-direction: column;
-    position: absolute;
     overflow: hidden;
     background-color: #1b1b1b;
     min-height: 120px;
     /*min-width: 340px;*/
     border-radius: 20px;
-    padding:  40px 40px 20px 20px;
+    padding:  20px 20px 20px 20px;
     flex-basis: calc(33.33333% - 30px);
     box-shadow: 5px 5px 15px black; 
 }
 
 :host>.item_title {
   margin-top: 20px;
-  min-height: 40px;
+  height: 150px;
   overflow: hidden;
-  font-weight: bold;
-  font-size: 19px;
+  font-size: 16px;
   color: #FFF;
   align-items: end;
   cursor: default;
+  bottom:0;
   z-index: 2;
   position: relative;
-  font-family: 'Lato', sans-serif;
   text-align: justify;
+  margin-bottom:20px;
 }
 
 :host>.item_date-box {
@@ -33,11 +32,11 @@
   cursor: default;
   font-weight: bold;
   font-size: 24px;
-  padding-right: 10px;
   -webkit-transition: color .5s ease;
   -o-transition: color .5s ease;
   font-family: 'Montserrat', sans-serif;
   transition: color .5s ease;
+  margin-right:30px;
 }
 
 :host>.item_date {
@@ -96,28 +95,75 @@
   background: #eb4886;
 }
 
-:host>.datum
+ .datum
 {
-  padding-top: 10px;
-  font-family: 'Lato', sans-serif ;
   font-weight: bold;
+  width:100px;
    /* padding-left: 80%; */
   color:grey;
+  display: inline-block;
+  height:30px;
 }
 
+.delete {
+  border-radius: 30px;
+  width:100px;
+  height:30px;
+  padding:8px 10px;
+  margin-right: -3%;
+  background: linear-gradient(135deg,#eb4886,#f075a4) !important;
+  cursor: pointer;
+  position:absolute;
+  right:0;
+  display: flex; 
+  justify-content: center;
+  align-items: center;
 
+}
+
+:host>.bottom {
+  
+  margin-top:20px;
+  width:100%;
+  margin-bottom:10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: end;
+  position:relative;
+}
+
+.edit {
+  border-radius: 30px;
+  padding:8px 10px;
+  width:100px;
+  height:30px;
+  background: linear-gradient(45deg, #46c5f1 10%, #5245b7 100%);
+  cursor: pointer;
+  position: absolute;
+  right:-10;
+  display: flex; 
+  justify-content: center;
+  align-items: center;
+}
 
 @media only screen and (max-width: 639px) {
   :host {
     -ms-flex-preferred-size: 100%;
     flex-basis: 100%;
   }
+
+  .delete {
+    width:30px;
+  }
+  .edit {
+    width:30px;
+  }
 }
 
 @media only screen and (max-width: 500px) {
   
   :host>.item_title {
-    font-size: 10px;
+    font-size: 12px;
   }
   :host>.item_date-box {
     font-size: 15px;

@@ -7,6 +7,7 @@ namespace backend.Models
         [Key]
         public int Id { get; set; }
         public int UserID { get; set; }
+        public int FakeID { get; set; }
         public string DeviceName { get; set; }
         public string DeviceModel { get; set; }
         public string Room { get; set; }

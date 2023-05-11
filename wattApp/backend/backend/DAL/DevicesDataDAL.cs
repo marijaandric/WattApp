@@ -45,7 +45,7 @@ namespace backend.DAL
 
 
 
-        // #### HISTORY AND FORECAST ZA JEDAN UREDJAJ ####
+        // #### HISTORY AND FORECAST ZA UREDJAJE####
 
         public List<HAFDatasDTO> GetByDayHistoryAndForecastForDevices(List<List<int>> devicesids, int year, int month, int day, string type)
         {

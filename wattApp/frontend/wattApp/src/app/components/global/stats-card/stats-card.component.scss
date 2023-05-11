@@ -87,6 +87,7 @@
     padding-left:10px;
 
     span {
+        font-weight: bolder;
         color:white;
         font-family: 'Mandali', sans-serif;
     }
@@ -121,14 +122,22 @@
 
 @media only screen and (max-width:980px) {
 
-.main-stat-card {
-    padding-top:6px !important;
+  .main-stat-card {
+    padding-top:0px !important;
   }
   .kwh-card {
-    padding-top:22px;
+    padding-top:16px;
   }
 
   .subtitle-2 {
     margin-top:0px;
+  }
+
+  .icon {
+    display: none;
+  }
+
+  .subtitle-card {
+    width:100%;
   }
 }

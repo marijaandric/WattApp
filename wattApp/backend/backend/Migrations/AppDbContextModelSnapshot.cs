@@ -32,6 +32,9 @@ namespace backend.Migrations
                     b.Property<string>("DeviceType")
                         .HasColumnType("TEXT");
 
+                    b.Property<int>("FakeID")
+                        .HasColumnType("INTEGER");
+
                     b.Property<int?>("ImageId")
                         .HasColumnType("INTEGER");
 
@@ -172,6 +175,9 @@ namespace backend.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<int>("CloudCover")
+                        .HasColumnType("INTEGER");
+
                     b.Property<int>("Day")
                         .HasColumnType("INTEGER");
 
@@ -181,8 +187,8 @@ namespace backend.Migrations
                     b.Property<float>("Temperature")
                         .HasColumnType("REAL");
 
-                    b.Property<string>("Time")
-                        .HasColumnType("TEXT");
+                    b.Property<int>("Time")
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("Year")
                         .HasColumnType("INTEGER");

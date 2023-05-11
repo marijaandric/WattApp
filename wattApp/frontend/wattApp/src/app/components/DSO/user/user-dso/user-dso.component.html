@@ -2,18 +2,18 @@
     <app-title-bar>
       <h3>User</h3>
     </app-title-bar>
-  
-    <app-center-bar>
+    <app-center-bar *ngIf="loader"><app-loader></app-loader></app-center-bar>
+    <app-center-bar *ngIf="!loader">
       <div  class="main-grid"> 
         <div style="display:flex;float:left; flex-direction:column; width:28%; height:fit-content;">
           <app-card [user] = 'user'></app-card>
 
           <div class="stats-cards">
         
-            <app-stats-card class="stats-card" [isBgBlue]="true" [Title]="'Minimal consumed electricity this week'" [subTitle]="'23kWh (2%)'" [value]="'34 kwh'"></app-stats-card>
-            <app-stats-card class="stats-card" [isBgPurple]="true" [Title]="'Maximum consumed electricity this week'" [subTitle]="'23kWh (2%)'" [value]="'34 kwh'"></app-stats-card>
-            <app-stats-card class="stats-card" [isBgPink]="true" [Title]="'Average consumed electricity this week'" [subTitle]="'23kWh (2%)'" [value]="'34 kwh'"></app-stats-card>
-            <app-stats-card class="stats-card" [isBgOrange]="true" [Title]="'Total consumed electricity this week'" [subTitle]="'23kWh (2%)'" [value]="'34 kwh'"></app-stats-card>
+            <app-stats-card class="stats-card" [isBgBlue]="true" [Title]="TitleMin" [subTitle]="theDay + dataMin"[value]="min"></app-stats-card>
+            <app-stats-card class="stats-card" [isBgPurple]="true" [Title]="TittleMax" [subTitle]="theDay + dataMax" [value]="max"></app-stats-card>
+            <app-stats-card class="stats-card" [isBgPink]="true" [Title]="TitleAverage"  [value]="average"></app-stats-card>
+            <app-stats-card class="stats-card" [isBgOrange]="true" [Title]="TitleTotal"  [value]="total"></app-stats-card>
            
           </div>
           <!--<div class="carousel"> 
@@ -30,9 +30,16 @@
           </div> -->
         </div> 
         <div style="display:flex;float:right; flex-direction:column; width:52%;padding: 0 2% 30px 2%;">
-          <p-dropdown [options]="type" appendTo="body" [(ngModel)]="selectedType" optionLabel="name" (onChange)="dropdownChange()" >
-          </p-dropdown>
-          <app-history-forecast style="width:100%;margin-top:20px" [boja1]="color1" [boja2]="color2" [naziv1]="name1" [naziv2]="name2" [array] = "History" [array2]="Forecast" [array3] = "arrayData"></app-history-forecast>
+          <div style="width:100%; height:fit-content; display:flex; flex-direction:row;margin-bottom:12px;">
+
+            <p-dropdown [options]="type" appendTo="body" [(ngModel)]="selectedType" optionLabel="name" (onChange)="dropdownChange()" >
+            </p-dropdown>
+            <p-dropdown [options]="type2" appendTo="body" [(ngModel)]="selectedHF"  optionLabel="name" (onChange)="updateType3()" >
+            </p-dropdown>
+            <p-dropdown [options]="type3" appendTo="body" [(ngModel)]="selectedDate" optionLabel="name" (onChange)="dropdownChange()" >
+            </p-dropdown>
+          </div>
+          <app-history-forecast style="width:100%;margin-top:20px" [boja1]="color1" [boja2]="color2" [naziv1]="name1" [naziv2]="name2" [array] = "History" [array2]="Forecast" [array3] = "dates"></app-history-forecast>
           <p-selectButton style="margin-top:20px" class="flexRow width__fit-content margin-left__auto " [options]="switchOptions" [(ngModel)]="switchValue" optionLabel="label" optionValue="value"></p-selectButton>
           <app-table [id] = 'id' *ngIf="switchValue == false"></app-table>
           <app-history-forecast-table
@@ -47,8 +54,22 @@
           box-shadow: 5px 5px 15px black;
           transition: ease-in-out;
           padding:10px 20px;
-          " [name1]="name1" [name2]="name2" [hif]="hif" *ngIf="switchValue == true"></app-history-forecast-table>
+          " [name1]="name1" [name2]="name2" [hif]="hif" *ngIf="switchValue == true && table"></app-history-forecast-table>
+          <app-history-or-forecast-table  *ngIf="switchValue == true && !table"
+          style="
+            margin-top:calc(2.8%);
+            display: flex;
+            position: relative;
+            flex-direction: column;
+            height: fit-content;
+            border-radius: 20px;
+            background: linear-gradient(180deg, #151515 50%, #121212 100%) ;
+            box-shadow: 5px 5px 15px black;
+            transition: ease-in-out;
+            padding:10px 20px"  [name]="name" [History]="History" [Forecast]="Forecast" [dates]="dates" >
+            </app-history-or-forecast-table>
         </div>
+        
         <div style="display:flex;float:right; flex-direction:column; width:20%; height:100%">
         <app-map-for-dso-user [user]="user" style="height: 30%; min-height:250px;"></app-map-for-dso-user>
         <div class="donuts" style="margin-top:calc(3vh);">

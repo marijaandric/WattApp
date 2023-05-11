@@ -35,7 +35,7 @@
   flex-direction: row;
 }
 
-::ng-deep .p-dropdown {
+:host::ng-deep .p-dropdown {
   position:relative!important;
   border-radius: 20px!important;
   display: flex;
@@ -45,31 +45,51 @@
   background: #1b1b1b;
   
 }
-::ng-deep .p-dropdown.p-component {
+:host::ng-deep .p-dropdown.p-component {
   width:150.953px!important;
   margin-right:20px !important;
 }
 
-::ng-deep #pr_id_1_label{
+:host::ng-deep #pr_id_1_label{
   font-size: 14px !important;
   padding:8px 0px 8px 16px!important;
   border:none!important;
   font-weight: bold!important;
-  font-family: 'Lato', sans-serif!important;
 }
-::ng-deep #pr_id_2_label{
+:host::ng-deep #pr_id_2_label{
   font-size: 14px!important;
   padding:8px 0px 8px 16px!important;
   border:none!important;
   font-weight: bold!important;
-  font-family: 'Lato', sans-serif!important;
 }
-::ng-deep #pr_id_3_label{
+:host::ng-deep #pr_id_3_label{
   font-size: 14px!important;
   padding:8px 0px 8px 16px!important;
   border:none!important;
   font-weight: bold!important;
-  font-family: 'Lato', sans-serif!important;
+}
+
+
+img {
+  height:40px;
+  width:auto;
+  padding-right:10px;
+}
+
+.color-blue {
+  color: #46c5f1;
+}
+
+.color-purple {
+  color:#885ec0;
+}
+
+.color-pink {
+  color: #eb4886;
+}
+
+.bold-text {
+  font-weight: bold;
 }
 
 .menage-device-div {

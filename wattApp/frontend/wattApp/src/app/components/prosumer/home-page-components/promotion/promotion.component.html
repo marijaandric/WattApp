@@ -1,9 +1,25 @@
 <div class="item_bg"  [ngClass]="{'bg-blue-color' : isBgBlue, 'bg-yellow-color' : isBgYellow, 'bg-pink-color' : isBgPink}"></div>
+
 <div class="item_date-box" [ngClass]="{'blue-color' : isBlue, 'yellow-color' : isYellow, 'pink-color' : isPink}">
     {{subTitle}}  <i class="fa-solid fa-circle-exclamation" *ngIf="Status === 'Important'"></i>
 </div>
+
 <div class="item_title">{{Title}}
 </div>
-<div class="datum">
-    {{Datum}}
+
+<div style="display:flex; flex-direction:row; width:100%; height:30px;position:relative">
+    <div style="display:flex; width:100px; height:100%;position:relative">
+        {{Datum}}
+    </div>
+
+    <div style="display:flex; width:calc(100% - 100px);margin-left:50px;  height:100%; position:relative">
+            <div *ngIf="isAdmin()" (click)="DeleteNews(ID)" class="delete"> Delete</div><div class="edit" *ngIf="isAdmin()">Edit </div>
+    </div>
 </div>
+<!--
+<div class="bottom">
+    <div class="datum"> {{Datum}} <div>
+    <div class="delete"> </div>
+    <div class="edit"> </div>
+</div>
+-->

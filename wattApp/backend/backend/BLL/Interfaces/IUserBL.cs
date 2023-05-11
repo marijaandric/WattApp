@@ -16,6 +16,8 @@ namespace backend.BAL.Interfaces
         public TokenApiDto refreshToken(TokenApiDto tokenApiDto);
         public List<User> GetUsersByType(string type);
         public List<User> GetUsersPaginationByRole(string type, int page, int limit);
+        public List<string> GetAreas();
+        public Dictionary<string, int> GetNumberOfUsersByArea();
         public Dictionary<string, int> GetNumberOfUsersByType();
         public IActionResult ResetPasswordEmail(string email);
         public IActionResult ResetPassword(ResetPasswordDTO resetPasswordDTO);

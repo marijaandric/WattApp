@@ -68,6 +68,16 @@ namespace backend.DAL
             return _context.Users.Any(a => a.RefreshToken == refreshToken);
         }
 
+        public List<string> GetAreas()
+        {
+            List<User> users = getUsers();
+
+            if (users != null && users.Count != 0)
+                return users.Select(d => d.Area).ToList().Distinct().ToList();
+
+            return null;
+        }
+
         public IActionResult updateUser(int id, User user)
         {
             _context.Entry(user).State = EntityState.Modified;
@@ -172,5 +182,9 @@ namespace backend.DAL
             return new StatusCodeResult(204);
         }
 
+        public List<User> GetProsumersByArea(string area)
+        {
+            return _context.Users.Where(u => u.Area == area && u.Role.ToLower() == "prosumer").ToList();
+        }
     }
 }

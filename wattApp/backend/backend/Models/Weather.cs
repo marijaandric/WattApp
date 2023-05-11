@@ -9,7 +9,8 @@ namespace backend.Models
         public int Year { get; set; }
         public int Month { get; set; }
         public int Day { get; set; }
-        public string Time { get; set; }
+        public int Time { get; set; }
         public float Temperature { get; set; }
+        public int CloudCover { get; set; }
     }
 }

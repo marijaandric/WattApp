@@ -65,6 +65,12 @@ namespace backend.BLL
 
         public void AddDevice(Devices device)
         {
+            var rand = new Random();
+            int count = _contextDAL.GetListOfFakeIDsForUserDevices(device.UserID).Count;
+            if (count <= 20)
+                device.FakeID = count + 1;
+            else
+                device.FakeID = rand.Next(1, 20);
             _contextDAL.AddDevice(device);
         }
 
