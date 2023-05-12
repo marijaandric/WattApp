@@ -1,7 +1,7 @@
-:host::ng-deep app-tab-menu .boja3 {
-    color: #885ec0;
-  }
-  
-  :host::ng-deep app-tab-menu .fa-solar-panel {
-    color: #885ec0;
-  }
+:host::ng-deep app-tab-menu .tab.active2 .tab-icon i {
+  color: #46c5f1;
+}
+
+:host::ng-deep app-tab-menu .tab.active2 .tab-title {
+  color: #46c5f1 !important;
+}

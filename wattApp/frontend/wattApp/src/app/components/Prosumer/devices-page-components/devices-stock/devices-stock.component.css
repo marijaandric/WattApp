@@ -1,7 +1,7 @@
-:host::ng-deep app-tab-menu .boja4 {
-    color: #885ec0;
-  }
-  
-  :host::ng-deep app-tab-menu .fa-battery-half {
-    color: #885ec0;
-  }
+:host::ng-deep app-tab-menu .tab.active3 .tab-icon i {
+  color: #46c5f1;
+}
+
+:host::ng-deep app-tab-menu .tab.active3 .tab-title {
+  color: #46c5f1 !important;
+}

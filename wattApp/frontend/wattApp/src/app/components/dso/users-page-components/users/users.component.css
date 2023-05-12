@@ -1,45 +1,69 @@
-:host::ng-deep app-tab-menu-users .boja2 {
-    color: #885ec0 !important;
-  }
-.detetova-klasa {
-    color: #885ec0 !important;
-  }
-.right {
-  width:48%;
-  display: flex;
-  /*flex-direction: column;*/
-  position: relative;
-}
-.main-grid {
+.tab.active5 .tab-icon i{
+  color: #46c5f1 !important;
 }
 
-::ng-deep .p-dropdown {
+.tab.active5 .tab-title {
+  color: #46c5f1 !important;
+}
+
+
+.right {
+  width:45%;
+  /*display: flex;*/
+  /*flex-direction: column*/;
+  position: relative;
+  
+ /*margin-bottom: 10%;*/
+}
+
+.p-dropdown {
   position:relative;
-  border-radius: 20px;
+  margin-bottom: 20px;
+  border-radius: 30px;
   border:none;
-  font-size:16px;
-  margin-right:20px;
-  margin-bottom:32px !important;
   background: linear-gradient(45deg, #46c5f1 10%, #5245b7 100%);
 }
 
-
-::ng-deep #pr_id_1_label{
-  font-size: 14px !important;
-  padding:8px 0px 8px 16px!important;
-  border:none!important;
-  font-weight: bold!important;
-  font-family: 'Lato', sans-serif!important;
+#pr_id_1_label{
+  border-radius: 30px 30px;
+  font-size: 17px;
+  padding:8px 20px;
+  border:none;
 }
 
-::ng-deep #pr_id_2_label{
-  font-size: 14px!important;
-  padding:8px 0px 8px 16px!important;
-  border:none!important;
-  font-weight: bold!important;
-  font-family: 'Lato', sans-serif!important;
+#pr_id_2_label{
+  border-radius: 30px 30px;
+  font-size: 17px;
+  padding:8px 20px;
+  border:none;
+}
+.widgets-users {
+  display:flex;
+  float:right; 
+  flex-direction:column;
+   width:20%; 
+  padding: 0px 0;
+  
+  position:relative;
+  align-items: end;
+  justify-content: space-evenly;
 }
 
-::ng-deep .p-dropdown.p-component {
-  width:165.953px;
+.widget-users {
+  margin-bottom: 30px;
+  position: relative;
+  width:90%;
+  box-shadow: 5px 5px 15px black;
+  
+}
+.widget-users:last-of-type {
+  margin-bottom: 0;
+}
+.widgets-users::-webkit-scrollbar {
+  width: 10px; /* adjust to your desired width */
+}
+
+.widgets-users::-webkit-scrollbar-thumb {
+  background-color: rgba(214, 214, 214, 0.212); /* adjust to your desired color */
+  border-radius: 10px; /* adjust to your desired radius */
 }

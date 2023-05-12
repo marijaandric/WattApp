@@ -1,16 +1,23 @@
-<nav>
-    <a routerLink="/users" class="color" *ngIf="isAdmin()">
-        <i class="fa-solid fa-users"></i>
-     <b >All users</b>
-    </a>
-    <a routerLink="/users/prosumers" class="color">
-        <i class="fa-solid fa-user-check"></i>
-      <b >Prosumers</b>
-    </a>
-    <a routerLink="/users/operators" class="color" *ngIf="isAdmin()">
-        <i class="fa-solid fa-user-shield"></i>
-      <b >Operators</b> <!-- class="boja3" -->
-    </a>
-  </nav>
+<div class="tab-menu">
+  <a href="users" >
+  <div class="tab active5">
+    <span class="tab-icon"> <i class="fa-solid fa-users"></i></span>
+    <span class="tab-title">All users</span>
+  </div>
+</a>
+<a href="users/prosumers" >
+  <div class="tab active6">
+    <span class="tab-icon"><i class="fa-solid fa-user-check"></i></span>
+    <span class="tab-title">Prosumers</span>
+  </div>
+</a>
+<a href="users/operators" >
+  <div class="tab active7">
+    <span class="tab-icon"><i class="fa-solid fa-user-shield"></i></span>
+    <span class="tab-title">Operators</span>
+  </div>
+</a>
+
+</div>
   
   

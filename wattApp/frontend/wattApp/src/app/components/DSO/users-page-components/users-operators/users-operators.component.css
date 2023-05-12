@@ -1,14 +1,18 @@
-app-tab-menu-users .boja3 {
-    color: #885ec0;;
-  }
+.tab.active7 .tab-icon {
+  color: #46c5f1 !important;
+}
 
-app-tab-menu-users .fa-user-shield {
-    color: #885ec0;;
-  }
+.tab.active7 .tab-title {
+  color: #46c5f1 !important;
+}
 
-app-tab-menu-users .color:hover{
-    color:#885ec0 !important;
-  }
+.tab.active5 .tab-icon {
+  color: #fff !important;
+}
+
+.tab.active5 .tab-title {
+  color: #fff !important;
+}
 
 .right {
  /*margin-bottom: 10%;*/

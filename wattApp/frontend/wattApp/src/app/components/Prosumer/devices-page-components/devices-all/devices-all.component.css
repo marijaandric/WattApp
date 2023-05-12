@@ -1,10 +1,11 @@
-:host::ng-deep app-tab-menu .boja {
-    color: #885ec0;;
-  }
-  
-  :host::ng-deep app-tab-menu .fa-bars {
-    color: #885ec0;;
-  }
+:host::ng-deep app-tab-menu .tab.active .tab-icon i {
+  color: #46c5f1;
+}
+
+:host::ng-deep app-tab-menu .tab.active .tab-title {
+  color: #46c5f1 !important;
+}
+
   .widgets {
     display: flex;
     flex-direction: row;

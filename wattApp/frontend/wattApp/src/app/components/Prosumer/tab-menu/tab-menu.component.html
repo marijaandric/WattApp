@@ -1,20 +1,20 @@
-<nav>
-    <a routerLink="/devices" class="color">
-        <i class="fa-solid fa-bars"></i>
-     <b  class="boja"><span>All</span></b>
-    </a>
-    <a routerLink="/devices/consumption" class="color">
-        <i class="fa-solid fa-plug-circle-bolt"></i>
-      <b class="boja2" ><span>Consumption</span></b>
-    </a>
-    <a routerLink="/devices/production" class="color">
-        <i class="fa-solid fa-solar-panel"></i>
-      <b class="boja3"><span>Production</span></b>
-    </a>
-    <a routerLink="/devices/stock" class="color">
-        <i class="fa-sharp fa-solid fa-battery-half"></i>
-       <b class="boja4" ><span>Stock</span></b>
-      </a>
-  </nav>
-  
-  
+<div class="tab-menu">
+  <div routerLink="/devices" class="tab active">
+    <span class="tab-icon"> <i class="fa-solid fa-bars"></i></span>
+    <span class="tab-title">All device</span>
+  </div>
+  <div routerLink="/devices/consumption" class="tab active1">
+    <span class="tab-icon"><i class="fa-solid fa-plug-circle-bolt"></i></span>
+    <span class="tab-title">
+      Consumption</span>
+  </div>
+  <div routerLink="/devices/production"  class="tab active2">
+    <span class="tab-icon"><i class="fa-solid fa-solar-panel"></i></span>
+    <span class="tab-title">
+      Production</span>
+  </div>
+  <div routerLink="/devices/stock" class="tab active3">
+    <span class="tab-icon"><i class="fa-sharp fa-solid fa-battery-half"></i></span>
+    <span class="tab-title">Stock</span>
+  </div>
+</div>
