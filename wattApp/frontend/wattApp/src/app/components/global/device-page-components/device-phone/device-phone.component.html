@@ -83,12 +83,12 @@
     
             <div class="flexRow margin-top__16px">
             <span >Visible to operators:</span>
-            <p-inputSwitch [(ngModel)]="device.allowOperatorVisibility" (onChange)="handleVisibilitySwitchChange()" class="margin-left__auto width__fit-content"/>
+            <p-inputSwitch [(ngModel)]="device.allowOperatorVisibility" (ngModelChange)="promijeniStanjeprviPrekidac()"  (onChange)="handleVisibilitySwitchChange()" class="margin-left__auto width__fit-content"/>
             </div>
     
             <div class="flexRow margin-top__8px">
             <span >Managed by operators:</span>
-            <p-inputSwitch [(ngModel)]="device.allowOperatorControll" (onChange)="handleManagementSwitchChange()" class="margin-left__auto width__fit-content"/>
+            <p-inputSwitch [(ngModel)]="device.allowOperatorControll" (ngModelChange)="promijeniStanjeDrugiPrekidac()"  (onChange)="handleManagementSwitchChange()" class="margin-left__auto width__fit-content"/>
             </div>
 
             <div class="flexRow margin-top__8px">
