@@ -315,6 +315,17 @@ export class DeviceDesktopComponent implements OnInit {
 
   }
 
+  promijeniStanjeDrugiPrekidac() {
+    if (this.device.allowOperatorControll) {
+      this.device.allowOperatorVisibility = true;
+    }
+  }
+  promijeniStanjeprviPrekidac() {
+    if (!(this.device.allowOperatorVisibility)) {
+      this.device.allowOperatorControll = false;
+    }
+  }
+
   navigateToDevices(): void {
     this.router.navigateByUrl("devices");
   }
