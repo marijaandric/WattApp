@@ -1,4 +1,4 @@
-import { Component, OnInit, SimpleChanges } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Map, tileLayer, marker } from 'leaflet';
 import * as L from 'leaflet';
 import { UserDTO } from 'src/app/dtos/UserDTO';
@@ -9,7 +9,7 @@ import { UserService } from 'src/app/services/user/user.service';
   templateUrl: './user-profile-component.component.html',
   styleUrls: ['./user-profile-component.component.css']
 })
-export class UserProfileComponentComponent implements OnInit{
+export class UserProfileComponentComponent implements OnInit,OnChanges{
   map: any;
   user : any;
   private darkLayer!: L.TileLayer;
@@ -20,19 +20,29 @@ export class UserProfileComponentComponent implements OnInit{
     
   }
 
+  ngOnChanges(changes: SimpleChanges): void {
+    const token = localStorage.getItem('token');
+    
+    if(token)
+    {
+      const userId = this.userService.getUserIdFromToken(token);
+      this.userService.GetUserWithoutToken(userId).toPromise()
+      .then(data=>{
+        this.user = data;
+      });
+    }
+  }
+
   async ngOnInit()
   {
     const token = localStorage.getItem('token');
     
-    console.log(token)
     if(token)
     {
-      console.log("USLO")
       const userId = this.userService.getUserIdFromToken(token);
       await this.userService.GetUserWithoutToken(userId).toPromise()
       .then(data=>{
         this.user = data;
-        console.log(this.user)
       });
     }
     this.map = L.map('userMap').setView([44.01761719631536, 20.900995763392213], 12);
@@ -64,7 +74,6 @@ export class UserProfileComponentComponent implements OnInit{
         const lan = this.user.x;
         const lon = this.user.y
         const id = this.user.id
-        console.log(lan,lon)
         this.map.setView([lan, lon], 14);
         if (lan != undefined && lon != undefined) {
           const marker = L.marker([lan, lon], {icon : markerIcon}).addTo(this.map);

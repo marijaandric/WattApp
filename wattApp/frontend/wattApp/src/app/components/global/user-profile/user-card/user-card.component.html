@@ -13,11 +13,11 @@
         </div>
 
         <!--Dialog-->
-        <p-dialog header="Title"  [transitionOptions]="'3ms'" 
+        <p-dialog header="Title" [style]="{width:'40%'}"  [transitionOptions]="'3ms'" 
           [draggable]="false" [keepInViewport]="true" [resizable]="false" 
           [blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true" 
-          [modal]="true" [(visible)]="display" [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
-          [closable]="true" >
+          [modal]="true" [(visible)]="display" [breakpoints]="{'1360px': '85vw', '740px': '100vw'}"
+          [closable]="true">
           <ng-template pTemplate="header" class="header-dialog">
             <span>Manage user</span>
           </ng-template>
@@ -33,15 +33,16 @@
                 <input formControlName="lastName" name="lastName"  appendTo="body" type="text" pInputText  class="p-inputtext-lg"  placeholder="LASTNAME" > 
                 <!--<label for="label-input" >Username</label>-->
                 <input formControlName="username" name="username"  appendTo="body" type="text" pInputText  class="p-inputtext-lg"  placeholder="USERNAME"> 
-              </div>
-            
-              <div class="half">
                 <!--<label for="label-input" >E-mail</label>-->
                 <input formControlName="email" name="email" appendTo="body" type="text" pInputText  class="p-inputtext-lg"  placeholder="EMAIL" > 
                 <!--<label for="label-input" >Phone number</label>-->
                 <input formControlName="phoneNumber" name="phone" appendTo="body" type="text" pInputText  class="p-inputtext-lg"  placeholder="PHONE NUMBER"> 
+              </div>
+            
+              <div class="half">
                 <!--<label for="label-input" >Address</label>-->
-                <input formControlName="address" name="address" appendTo="body" type="text" pInputText  class="p-inputtext-lg"  placeholder="ADDRESS">     
+                <input formControlName="address" name="address" appendTo="body" type="text" pInputText  class="p-inputtext-lg"  placeholder="ADDRESS" (change)="onAddressChange($event)"> 
+                <app-map-for-user-profile [address] = "value" (messageEvent)="receiveMessage($event)" ></app-map-for-user-profile>    
               </div>
             </div> 
           </form>
