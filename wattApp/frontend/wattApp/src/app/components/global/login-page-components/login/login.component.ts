@@ -44,17 +44,17 @@ export class LoginComponent implements OnInit{
         this.loginForm.reset();
         this.auth.storeToken(res.accessToken);
         this.auth.storeRefreshToken(res.refreshToken);
-        this.toast.success({detail:"SUCCESS",summary:res.message,duration:5000});
+        this.toast.success({detail:"SUCCESS",summary:"You have successfully logged in" ,duration:3000});
         this.router.navigate(['home']);
       },
       error:(err)=>{
-        this.toast.error({detail:"ERROR",summary:"Error",duration:5000});
+        this.toast.error({detail:"ERROR",summary:"Something is wrong, please check your email or password",duration:3000});
       }
      },
      )
     }
     else{
-      this.toast.error({detail:"ERROR",summary:"Error",duration:5000});
+      this.toast.error({detail:"ERROR",summary:"Something is wrong, please check your email or password",duration:3000});
     }
   }
 
