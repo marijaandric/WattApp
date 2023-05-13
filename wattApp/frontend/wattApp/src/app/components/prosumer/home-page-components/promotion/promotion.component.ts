@@ -2,7 +2,7 @@ import { Component, OnInit, HostBinding, Input, OnChanges, SimpleChanges } from 
 import { NgToastService } from 'ng-angular-popup';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { DsonewsService } from 'src/app/services/dsonews/dsonews.service';
-import { UserService } from 'src/app/services/user.service';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-promotion',
@@ -15,6 +15,8 @@ export class PromotionComponent implements OnInit,OnChanges{
   @Input() Datum : String ="01.01.2023.";
   @Input() Status : String ="Nista";
   @Input() ID : number =0;
+  @Input() authorId: any;
+  permission : boolean = false;
 
   
 
@@ -31,7 +33,7 @@ export class PromotionComponent implements OnInit,OnChanges{
     private authService: AuthService,
     private userService: UserService,
     private dsonewsService: DsonewsService,
-    private toast: NgToastService,
+    private toast: NgToastService
     ) {
   }
   ngOnChanges(changes: SimpleChanges): void {
@@ -41,6 +43,22 @@ export class PromotionComponent implements OnInit,OnChanges{
     this.Datum = this.Datum;
     this.Status = this.Status;
     this.ID = this.ID
+
+    const token = localStorage.getItem('token')
+    if(token)
+    {
+      const id = this.userService.getUserIdFromToken(token)
+      if(this.authorId == id || this.isAdmin() )
+      {
+        this.permission = true;
+      }
+      else{
+        this.permission = false;
+      }
+    }
+    
+
+    
   }
 
   isAdmin(): boolean {
@@ -49,7 +67,16 @@ export class PromotionComponent implements OnInit,OnChanges{
       return false;
     }
     const userRole = this.userService.getUserRoleFromToken(token);
-    return userRole === 'operator' || userRole === 'admin' || userRole === 'superadmin';
+    return userRole === 'admin';
+  }
+
+  isOperater(): boolean {
+    const token = this.authService.getToken();
+    if (!token) {
+      return false;
+    }
+    const userRole = this.userService.getUserRoleFromToken(token);
+    return userRole === 'operator';
   }
 
   DeleteNews(newsId: number) {

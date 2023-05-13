@@ -13,7 +13,7 @@
     </div>
 
     <div style="display:flex; width:calc(100% - 100px);margin-left:50px;  height:100%; position:relative">
-            <div *ngIf="isAdmin()" (click)="DeleteNews(ID)" class="delete"> Delete</div><div class="edit" *ngIf="isAdmin()">Edit </div>
+            <div *ngIf="permission" (click)="DeleteNews(ID)" class="delete"> Delete</div><div class="edit" *ngIf="permission">Edit </div>
     </div>
 </div>
 <!--

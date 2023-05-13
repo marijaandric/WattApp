@@ -33,6 +33,7 @@
           <p-carousel [value] = "MynewsRegular" [circular]="false" [numVisible]="4" [autoplayInterval]="4000" [numScroll]="4" [responsiveOptions]="responsiveOptions">
             <ng-template let-news pTemplate="new">
               <app-promotion [subTitle]="news.title"
+              [authorId] = "news.authorId"
               [Title]="news.content" 
               [Status]="news.priority"
               [Datum]="news.created"
@@ -47,6 +48,7 @@
           <p-carousel [value] = "newsImportant" [circular]="false" [numVisible]="4" [autoplayInterval]="4000" [numScroll]="4" [responsiveOptions]="responsiveOptions">
             <ng-template let-news pTemplate="new">
               <app-promotion [subTitle]="news.title"
+              [authorId] = "news.authorId"
               [Title]="news.content" 
               [Status]="news.priority"
               [Datum]="news.created"
@@ -62,6 +64,7 @@
           <p-carousel [value] = "newsRegular" [circular]="false" [numVisible]="4" [autoplayInterval]="4000" [numScroll]="4" [responsiveOptions]="responsiveOptions">
             <ng-template let-news pTemplate="new">
               <app-promotion [subTitle]="news.title"
+              [authorId] = "news.authorId"
               [Title]="news.content" 
               [Status]="news.priority"
               [Datum]="news.created"
