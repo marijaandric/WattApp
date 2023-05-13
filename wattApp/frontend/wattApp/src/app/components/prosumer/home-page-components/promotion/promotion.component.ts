@@ -18,6 +18,12 @@ export class PromotionComponent implements OnInit,OnChanges{
   @Input() authorId: any;
   permission : boolean = false;
 
+  display2 : Boolean = false;
+
+  showDialog2(){
+    this.display2 = !this.display2;
+  }
+  
   
 
   @Input() @HostBinding("blue-color") public isBlue = false;
