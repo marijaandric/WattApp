@@ -13,7 +13,7 @@
     </div>
 
     <div style="display:flex; width:calc(100% - 100px);margin-left:50px;  height:100%; position:relative">
-            <div *ngIf="permission" (click)="showDialog2()" class="delete"> Delete</div><div class="edit" *ngIf="permission">Edit </div>
+            <div *ngIf="permission" (click)="showDialog2()" class="delete"> Delete</div><div (click)="showDialog()" class="edit" *ngIf="permission">Edit </div>
     </div>
 </div>
 <!-- (click)="DeleteNews(ID) -->
@@ -41,4 +41,43 @@
   </div>
 </ng-template>
 
+</p-dialog>
+
+<p-dialog [style]="{width:'40%'}" header="Title"  [transitionOptions]="'3ms'" 
+[draggable]="true" [keepInViewport]="true" [resizable]="false" 
+[blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true" 
+[modal]="true" [(visible)]="display" [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
+[closable]="true" >
+<ng-template pTemplate="header" class="header-dialog">
+  <span>Update news</span>
+</ng-template>
+
+<ng-template pTemplate="content">
+  <form [formGroup]="updataNewsForm" > 
+  
+  <div class="p-inputgroup p-inputtext-lg p-input-filled">
+    <div class="half">
+      <input formControlName="title" name="name" appendTo="body" type="text" class="p-inputtext-lg" placeholder="TITLE"> 
+      <textarea id="text" formControlName="content" name="name" appendTo="body" type="text" class="p-inputtext-lg" style="width:100%;height: 250px;"></textarea>
+      <div style="display: flex;flex-direction: column; align-items: center;margin-right: 4%;">
+        <span style="font-size: 19px;color:grey">Priority:</span>
+        <div style="display: inline-flex;">
+          <input formControlName="priority" id="regular" type="radio"  value="Regular">
+          <label for="regular" style="margin-top: 15px; margin-left: 5px;">Regular</label>
+        </div>
+        <div style="display: inline-flex;">
+          <input formControlName="priority" id="important" type="radio"  value="Important">
+          <label for="important" style="margin-top: 15px; margin-left: 5px;">Important</label>
+        </div>
+      </div>
+    </div>
+  </div> 
+  </form>
+  
+</ng-template>
+
+<ng-template pTemplate="footer" style="min-height:100px;" >
+  <button type="button" class="footer-button" icon="pi pi-info-circle" label="Show" >Update</button>
+
+</ng-template>
 </p-dialog>

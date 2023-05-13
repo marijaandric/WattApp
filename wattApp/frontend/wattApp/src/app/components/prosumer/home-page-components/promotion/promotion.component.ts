@@ -1,5 +1,6 @@
 import { Component, OnInit, HostBinding, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { NgToastService } from 'ng-angular-popup';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { DsonewsService } from 'src/app/services/dsonews/dsonews.service';
 import { UserService } from 'src/app/services/user/user.service';
@@ -20,6 +21,13 @@ export class PromotionComponent implements OnInit,OnChanges{
 
   display2 : Boolean = false;
 
+  display: boolean = false;
+  updataNewsForm! : FormGroup;
+  newsForm! : FormGroup;
+
+
+  
+
   showDialog2(){
     this.display2 = !this.display2;
   }
@@ -38,10 +46,24 @@ export class PromotionComponent implements OnInit,OnChanges{
   constructor(
     private authService: AuthService,
     private userService: UserService,
+    private fb: FormBuilder,
     private dsonewsService: DsonewsService,
     private toast: NgToastService
     ) {
   }
+
+  
+
+  showDialog() {
+    this.display = true;
+    this.updataNewsForm = this.fb.group({
+      title: this.subTitle,
+      content: this.Title,
+      priority: [this.Status, Validators.required],
+    }); 
+  }
+
+
   ngOnChanges(changes: SimpleChanges): void {
     //console.log("USLO")
     this.subTitle = this.subTitle;

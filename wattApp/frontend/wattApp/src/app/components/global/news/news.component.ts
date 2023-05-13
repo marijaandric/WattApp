@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { DsonewsService } from 'src/app/services/dsonews/dsonews.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CarouselModule } from 'primeng/carousel';
 import { DeviceDTO } from 'src/app/dtos/DeviceDTO';
 import { AuthService } from 'src/app/services/auth/auth.service';
@@ -30,6 +31,8 @@ export class NewsComponent implements OnInit{
   responsiveOptions: any[] = [];
   switchValue: boolean = true;
 
+
+
   switchOptions: SwitchOption[] = [
     {label: 'All news', value: true},
     {label: 'My news', value: false}
@@ -47,6 +50,7 @@ export class NewsComponent implements OnInit{
       this.id = this.userService.getUserIdFromToken(this.token);
     }
   }
+  
 
   datum : any;
   getNews() {
