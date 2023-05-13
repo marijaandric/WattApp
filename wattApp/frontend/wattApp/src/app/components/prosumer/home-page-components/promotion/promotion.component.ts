@@ -18,12 +18,12 @@ export class PromotionComponent implements OnInit,OnChanges{
   @Input() ID : number =0;
   @Input() authorId: any;
   permission : boolean = false;
+  id:number = 0;
 
   display2 : Boolean = false;
 
   display: boolean = false;
   updataNewsForm! : FormGroup;
-  newsForm! : FormGroup;
 
 
   
@@ -61,6 +61,27 @@ export class PromotionComponent implements OnInit,OnChanges{
       content: this.Title,
       priority: [this.Status, Validators.required],
     }); 
+  }
+
+  UpdateNews()
+  {
+    this.updataNewsForm.patchValue({
+      authorId : this.id,
+      created: new Date()
+    });
+
+    console.log(this.updataNewsForm.value);
+    // this.dsonewsService.DeleteNews(this.updataNewsForm.value).subscribe({
+    //   next:(res => {
+    //     this.updataNewsForm.reset()
+    //     this.toast.success({detail:"SUCCESS",summary:"You have successfully update news",duration:4000});
+    //     this.display = false;
+    //     location.reload();
+    //   }),
+    //   error:(err => {
+    //     this.toast.error({detail:"ERROR",summary:"Error",duration:4000});
+    //   })
+    // }) 
   }
 
 
@@ -122,6 +143,21 @@ export class PromotionComponent implements OnInit,OnChanges{
   ngOnInit(): void {
     console.log(this.isBlue);
     console.log(this.isBgBlue);
-  }
+
+      this.updataNewsForm = this.fb.group({
+        title: ['th', Validators.required],
+        authorId :[this.id, Validators.required],
+        content: ['', Validators.required],
+        priority: ['Regular', Validators.required],
+        created: [new Date(), Validators.required],
+      })
+
+      const token = localStorage.getItem('token');
+    if(token)
+    {
+      this.id = this.userService.getUserIdFromToken(token)
+    }
+    }
+  
 
 }

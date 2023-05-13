@@ -23,6 +23,11 @@ export class DsonewsService {
     return this.http.post<any>(`${this.baseUrl}`,NewObj);
   }
 
+  // UpdateNews(NewObj:any)
+  // {
+  //   return this.http.post<any>(`${this.baseUrl}`,NewObj);
+  // }
+
   deleteNews(id: number)
   {
     return this.http.delete<any>(this.baseUrl+id);
