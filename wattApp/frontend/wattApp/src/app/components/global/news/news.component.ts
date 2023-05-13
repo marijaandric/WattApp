@@ -65,7 +65,7 @@ export class NewsComponent implements OnInit{
       this.newsRegular.sort((a, b) => b.id - a.id);
 
       data.forEach((element:any) => {
-        if((element.authorId===4) && (element.priority=== "Regular"))
+        if((element.authorId==this.id) && (element.priority=== "Regular"))
         {
           const createdDate = new Date(element.created); // kreiramo novi Date objekt iz element.created
           const formattedDate = createdDate.toLocaleDateString();
