@@ -1,4 +1,4 @@
-import { Component, OnInit, HostBinding, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, HostBinding, Input, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
 import { NgToastService } from 'ng-angular-popup';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth/auth.service';
@@ -17,6 +17,8 @@ export class PromotionComponent implements OnInit,OnChanges{
   @Input() Status : String ="Nista";
   @Input() ID : number =0;
   @Input() authorId: any;
+  @Output() public valueEmitter = new EventEmitter<string>();
+
   permission : boolean = false;
   id:number = 0;
 
@@ -25,15 +27,12 @@ export class PromotionComponent implements OnInit,OnChanges{
   display: boolean = false;
   updataNewsForm! : FormGroup;
 
-
-  
-
   showDialog2(){
-    this.display2 = !this.display2;
+    //this.valueEmitter.emit("promena");
+    this.display2 =!this.display2;
   }
-  
-  
 
+  
   @Input() @HostBinding("blue-color") public isBlue = false;
   @Input() @HostBinding("bg-blue-color") public isBgBlue = false;
   
@@ -55,16 +54,18 @@ export class PromotionComponent implements OnInit,OnChanges{
   
 
   showDialog() {
-    this.display = true;
-    this.updataNewsForm = this.fb.group({
-      title: this.subTitle,
-      content: this.Title,
-      priority: [this.Status, Validators.required],
-    }); 
+    this.valueEmitter.emit("promena");
+    // this.display = true;
+    // this.updataNewsForm = this.fb.group({
+    //   title: this.subTitle,
+    //   content: this.Title,
+    //   priority: [this.Status, Validators.required],
+    // }); 
   }
 
   UpdateNews()
   {
+    
     this.updataNewsForm.patchValue({
       authorId : this.id,
       created: new Date()
