@@ -18,6 +18,7 @@ export class PromotionComponent implements OnInit,OnChanges{
   @Input() ID : number =0;
   @Input() authorId: any;
   @Output() public valueEmitter = new EventEmitter<string>();
+  @Output() public valueEmitter2 = new EventEmitter<string>();
 
   permission : boolean = false;
   id:number = 0;
@@ -28,8 +29,8 @@ export class PromotionComponent implements OnInit,OnChanges{
   updataNewsForm! : FormGroup;
 
   showDialog2(){
-    //this.valueEmitter.emit("promena");
-    this.display2 =!this.display2;
+    this.valueEmitter2.emit("promena");
+    // this.display2 =!this.display2;
   }
 
   
@@ -74,7 +75,6 @@ export class PromotionComponent implements OnInit,OnChanges{
 
   UpdateNews()
   {
-    
     this.updataNewsForm.patchValue({
       authorId : this.id,
       created: new Date()
@@ -140,17 +140,7 @@ export class PromotionComponent implements OnInit,OnChanges{
     return userRole === 'operator';
   }
 
-  DeleteNews(newsId: number) {
-    this.dsonewsService.deleteNews(newsId).subscribe(() => {
-      this.toast.success({detail:"SUCCESS",summary:"You have successfully DELETE news",duration:5000});
-      setTimeout(() => {
-        location.reload();
-      }, 1500);
 
-    },
-    error => console.error(error)
-    );
-  }
 
   ngOnInit(): void {
     console.log(this.isBlue);
