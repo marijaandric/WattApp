@@ -242,6 +242,8 @@ namespace backend.Controllers
             return Ok(
                     new
                     {
+                        DeviceID = result.Device.Id,
+                        DeviceName = result.Device.DeviceName,
                         Device = result.Device,
                         AveragePowerUsage = result.Usage
                     }); ;
