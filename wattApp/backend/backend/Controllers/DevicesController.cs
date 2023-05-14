@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using backend.Models;
 using backend.BLL.Interfaces;
 using backend.Models.DTOs;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace backend.Controllers
 {
@@ -282,6 +283,9 @@ namespace backend.Controllers
         {
 
             var result = _contextDevicesAndData.GetExtremeUsageForAreas(devicetype, timeType, minmax);
+
+            if (result == null)
+                return BadRequest();
 
             return Ok(
                 new

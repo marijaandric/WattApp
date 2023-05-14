@@ -14,37 +14,6 @@
   color: #fff !important;
 }
 
-.right {
- /*margin-bottom: 10%;*/
-  width:45%;
-  display: flex;
-  /*flex-direction: column;*/
-  position: relative;
-}
-
-::ng-deep .p-dropdown {
-  position:relative;
-  margin-bottom: 20px;
-  border-radius: 30px;
-  border:none;
-  background-color:#885ec0;;
-}
-
-
-::ng-deep #pr_id_1_label{
-  border-radius: 30px 30px;
-  font-size: 17px;
-  padding:8px 20px;
-  border:none;
-}
-
-::ng-deep #pr_id_2_label{
-  border-radius: 30px 30px;
-  font-size: 17px;
-  padding:8px 20px;
-  border:none;
-}
-
 
 .promotions {
   display: grid;

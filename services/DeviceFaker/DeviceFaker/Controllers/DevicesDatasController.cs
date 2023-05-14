@@ -94,20 +94,7 @@ namespace DeviceFaker.Controllers
         [HttpPost("getPowerUsageOfDevicesForMatrixForTimeType/{timeType}")]
         public List<PowerUsageDTO> GetPowerUsageOfDevicesForMatrixForTimeType([FromBody] List<DevicesIdsDTO> userdevicesids,  string timeType)
         {
-            foreach (var deviceid in userdevicesids)
-            {
-                Console.WriteLine("------------");
-                Console.WriteLine("Consumers");
-                foreach (var id in deviceid.consumers)
-                    Console.Write(id + " ");
-                Console.WriteLine("Producers");
-                foreach (var id in deviceid.producers)
-                    Console.Write(id + " ");
-                Console.WriteLine("Stocks");
-                foreach (var id in deviceid.stocks)
-                    Console.Write(id + " ");
-            }
-
+            
             var result = _devicesDataService.GetPowerUsageOfDevicesForMatrixForTimeType(userdevicesids, timeType);
             return result;
         }

@@ -19,11 +19,11 @@
     </app-map>
 
     <div style="display:flex;float:right; flex-direction:column; width:60%; height:100%">
-      <div style="display:flex;float:right; flex-direction:row; width:100%; height:fit-content">
+      <div style="display:flex;float:right; flex-direction:row; width:100%; height:fit-content; margin-bottom:32px;" class="pdd-div">
         <div style="display:flex;float:right; flex-direction:column;  width:48%; height:100%" >
           
   
-  <p-dropdown [options]="type" appendTo="body" (onChange)="onDropdownChange2()" [(ngModel)]="selectedType" optionLabel="name"  >
+  <p-dropdown [options]="type" appendTo="body" (onChange)="onDropdownChange2()" [(ngModel)]="selectedType" optionLabel="name" >
   </p-dropdown>
         </div>
         <div style="display:flex;float:right; flex-direction:column; margin-left:calc(3%); width:48%; height:100%" >
