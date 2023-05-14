@@ -28,6 +28,12 @@ export class DsonewsService {
   //   return this.http.post<any>(`${this.baseUrl}`,NewObj);
   // }
 
+  UpdateNews(id : number,user : any): Observable<any>
+  {
+    const url = this.baseUrl+`${id}`;
+    return this.http.put(url,user);
+  }
+
   deleteNews(id: number)
   {
     return this.http.delete<any>(this.baseUrl+id);

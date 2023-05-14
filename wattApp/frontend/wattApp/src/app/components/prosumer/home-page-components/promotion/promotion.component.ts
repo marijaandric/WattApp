@@ -56,11 +56,14 @@ export class PromotionComponent implements OnInit,OnChanges{
 
   showDialog() {
     this.display = true;
-    this.updataNewsForm = this.fb.group({
-      title: this.subTitle,
-      content: this.Title,
-      priority: [this.Status, Validators.required],
-    }); 
+      this.updataNewsForm = this.fb.group({
+        id: [this.ID, Validators.required],
+        title: [this.subTitle, Validators.required],
+        authorId :[this.id, Validators.required],
+        content: [this.Title, Validators.required],
+        priority: [this.Status, Validators.required],
+        created: [new Date(), Validators.required],
+      })
   }
 
   UpdateNews()
@@ -71,17 +74,19 @@ export class PromotionComponent implements OnInit,OnChanges{
     });
 
     console.log(this.updataNewsForm.value);
-    // this.dsonewsService.DeleteNews(this.updataNewsForm.value).subscribe({
-    //   next:(res => {
-    //     this.updataNewsForm.reset()
-    //     this.toast.success({detail:"SUCCESS",summary:"You have successfully update news",duration:4000});
-    //     this.display = false;
-    //     location.reload();
-    //   }),
-    //   error:(err => {
-    //     this.toast.error({detail:"ERROR",summary:"Error",duration:4000});
-    //   })
-    // }) 
+    this.dsonewsService.UpdateNews(this.ID,this.updataNewsForm.value).subscribe({
+      next:(res => {
+        this.updataNewsForm.reset()
+        this.toast.success({detail:"SUCCESS",summary:"You have successfully update news",duration:4000});
+        this.display = false;
+        setTimeout(() => {
+          location.reload();
+        }, 1500);
+      }),
+      error:(err => {
+        this.toast.error({detail:"ERROR",summary:"Error",duration:4000});
+      })
+    }) 
   }
 
 
@@ -144,13 +149,15 @@ export class PromotionComponent implements OnInit,OnChanges{
     console.log(this.isBlue);
     console.log(this.isBgBlue);
 
-      this.updataNewsForm = this.fb.group({
-        title: ['th', Validators.required],
-        authorId :[this.id, Validators.required],
-        content: ['', Validators.required],
-        priority: ['Regular', Validators.required],
-        created: [new Date(), Validators.required],
-      })
+    this.updataNewsForm = this.fb.group({
+      id: [this.ID, Validators.required],
+      title: ['th', Validators.required],
+      authorId :[this.id, Validators.required],
+      content: ['', Validators.required],
+      priority: ['Regular', Validators.required],
+      created: [new Date(), Validators.required],
+    })
+     
 
       const token = localStorage.getItem('token');
     if(token)
