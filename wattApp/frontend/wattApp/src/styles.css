@@ -147,23 +147,27 @@
   display: -webkit-box !important;
   
 }
+.p-inputswitch.p-inputswitch-checked .p-inputswitch-slider {
+  background: #46c5f1 !important;
+}
 .p-carousel-items-content {
   min-height: 240px !important;
 }
 .p-carousel-container {
   width:100% !important;
+  
 }
-
+.p-carousel-container .pi {
+  color:#46c5f1 !important;
+}
+.p-carousel .p-carousel-indicators .p-carousel-indicator.p-highlight button {
+  background:#46c5f1 !important;
+}
 .p-column-filter-overlay {
   background: linear-gradient(180deg, #1e1e1e 50%, #121212 100%) !important;
   border:none !important;
   box-shadow: 5px 5px 15px black !important;
 
-}
-
-.p-column-filter-overlay .p-dropdown{
-  background: #46c5f1;
-    box-shadow: none !important;
 }
 
 .p-link {

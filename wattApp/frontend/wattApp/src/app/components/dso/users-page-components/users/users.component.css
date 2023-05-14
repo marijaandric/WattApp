@@ -7,36 +7,6 @@
 }
 
 
-.right {
-  width:45%;
-  /*display: flex;*/
-  /*flex-direction: column*/;
-  position: relative;
-  
- /*margin-bottom: 10%;*/
-}
-
-.p-dropdown {
-  position:relative;
-  margin-bottom: 20px;
-  border-radius: 30px;
-  border:none;
-  background: linear-gradient(45deg, #46c5f1 10%, #5245b7 100%);
-}
-
-#pr_id_1_label{
-  border-radius: 30px 30px;
-  font-size: 17px;
-  padding:8px 20px;
-  border:none;
-}
-
-#pr_id_2_label{
-  border-radius: 30px 30px;
-  font-size: 17px;
-  padding:8px 20px;
-  border:none;
-}
 .widgets-users {
   display:flex;
   float:right; 

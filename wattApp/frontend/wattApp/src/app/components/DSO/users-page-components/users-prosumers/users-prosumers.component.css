@@ -6,41 +6,6 @@
   color: #46c5f1 !important;
 }
 
-.right {
-width:48%;
-display: flex;
-/*flex-direction: column;*/
-position: relative;
-}
 .main-grid {
 }
 
-::ng-deep .p-dropdown {
-position:relative;
-border-radius: 20px;
-border:none;
-font-size:16px;
-margin-right:20px;
-margin-bottom:32px !important;
-background: linear-gradient(45deg, #46c5f1 10%, #5245b7 100%);
-}
-
-::ng-deep #pr_id_1_label{
-font-size: 14px !important;
-padding:8px 0px 8px 16px!important;
-border:none!important;
-font-weight: bold!important;
-font-family: 'Lato', sans-serif!important;
-}
-
-::ng-deep #pr_id_2_label{
-font-size: 14px!important;
-padding:8px 0px 8px 16px!important;
-border:none!important;
-font-weight: bold!important;
-font-family: 'Lato', sans-serif!important;
-}
-
-::ng-deep .p-dropdown.p-component {
-width:165.953px;
-}
