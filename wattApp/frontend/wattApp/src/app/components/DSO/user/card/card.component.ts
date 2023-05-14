@@ -2,6 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { UserService } from 'src/app/services/user/user.service';
 import { url } from 'src/app/app.module';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { NgToastComponent, NgToastService } from 'ng-angular-popup';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-card',
@@ -15,7 +17,7 @@ export class CardComponent implements OnInit{
   display = false;
   menageUserForm!:FormGroup;
 
-  constructor(private userService:UserService,private fb:FormBuilder){}
+  constructor(private userService:UserService,private fb:FormBuilder,private toast:NgToastService,private router:Router){}
 
   ngOnInit(){
     this.userImageUrlEndpoint = this.baseUrl + this.user.id;
@@ -43,7 +45,15 @@ export class CardComponent implements OnInit{
 
   edit()
   {
-    
+
+  }
+
+  deleteUser()
+  {
+    this.userService.deleteUser(this.user.id).subscribe(data=>{
+      this.toast.success({detail:"SUCCESS",summary:"You have successfully delete user" ,duration:3000});
+      this.router.navigate(['/users/prosumers'])
+    })
   }
   
 }
