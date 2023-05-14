@@ -154,29 +154,29 @@ export class HomeDSOComponent {
     dtUsers.filterGlobal(value, 'contains');
   }
 
-  History:any = [12, 19, 3, 5, 2, 6, 5, 0,0,0,0, 0, 0, 0];
-  Forecast:any= [0,0, 0, 0, 0, 0,5,10,12,3,16,5,10,5];
+  History:any = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  Forecast:any= [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
   
-  HistoryCon:any  = [12, 19, 3, 5, 2, 6, 5, 0,0,0,0, 0, 0, 0];
-  ForecastCon:any = [0,0, 0, 0, 0, 0,5,10,12,3,16,5,10,5];
-  HistoryPro:any  = [12, 19, 3, 5, 2, 6, 5, 0,0,0,0, 0, 0, 0];
-  ForecastPro:any = [0,0, 0, 0, 0, 0,5,10,12,3,16,5,10,5];
-  HistoryStock:any  = [12, 19, 3, 5, 2, 6, 5, 0,0,0,0, 0, 0, 0];
-  ForecastStock:any  = [0,0, 0, 0, 0, 0,5,10,12,3,16,5,10,5];
+  HistoryCon:any  = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  ForecastCon:any = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  HistoryPro:any  = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  ForecastPro:any = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  HistoryStock:any  = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  ForecastStock:any  = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
-  HistoryCon3:any  = [12, 19, 3, 5, 2, 6];
-  ForecastCon3:any = [12, 19, 3, 5, 2, 6];
-  HistoryPro3:any  = [12, 19, 3, 5, 2, 6];
-  ForecastPro3:any = [12, 19, 3, 5, 2, 6];
-  HistoryStock3:any  = [12, 19, 3, 5, 2, 6];
-  ForecastStock3:any  = [12, 19, 3, 5, 2, 6];
+  HistoryCon3:any  = [0, 0, 0, 0, 0, 0];
+  ForecastCon3:any = [0, 0, 0, 0, 0, 0];
+  HistoryPro3:any  = [0, 0, 0, 0, 0, 0];
+  ForecastPro3:any = [0, 0, 0, 0, 0, 0];
+  HistoryStock3:any  = [0, 0, 0, 0, 0, 0];
+  ForecastStock3:any  = [0, 0, 0, 0, 0, 0];
 
   dates = [1,2,3,4,5,6,7,8,9,10,11,12,13,14];
   arrayData = [1,2,3,4,5,6,7,8,9,10,11,12,13,14];
   arrayData3 = [1,2,3,4,5,6];
 
-  HistoryTable:any  = [12, 19, 3, 5, 2, 6];
-  ForecastTable:any  = [12, 19, 3, 5, 2, 6];
+  HistoryTable:any  = [0, 0, 0, 0, 0, 0];
+  ForecastTable:any  = [0, 0, 0, 0, 0, 0];
 
   name1 = "history";
   name2 = "forecast";
@@ -274,12 +274,12 @@ export class HomeDSOComponent {
       });
   }
 
-  HistoryConM:any  = [12, 19, 3, 5, 2, 6, 5, 0,0,0,0, 0, 0, 0];
-  HistoryProM:any  = [12, 19, 3, 5, 2, 6, 5, 0,0,0,0, 0, 0, 0];
-  HistoryStockM:any  = [12, 19, 3, 5, 2, 6, 5, 0,0,0,0, 0, 0, 0];
-  HistoryConMAll:any  = [12, 19, 3, 5, 2, 6, 5, 0,0,0,0, 0, 0, 0];
-  HistoryProMAll:any  = [12, 19, 3, 5, 2, 6, 5, 0,0,0,0, 0, 0, 0];
-  HistoryStockMAll:any  = [12, 19, 3, 5, 2, 6, 5, 0,0,0,0, 0, 0, 0];
+  HistoryConM:any  = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  HistoryProM:any  = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  HistoryStockM:any  = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  HistoryConMAll:any  = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  HistoryProMAll:any  = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  HistoryStockMAll:any  = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
   arrayDataM = [];
   arrayDataMAll = [];
@@ -306,9 +306,9 @@ export class HomeDSOComponent {
     });
   }
 
-  HistoryConY:any  = [12, 19, 3, 5, 2, 6, 5, 0,0,0,0, 0, 0, 0];
-  HistoryProY:any  = [12, 19, 3, 5, 2, 6, 5, 0,0,0,0, 0, 0, 0];
-  HistoryStockY:any  = [12, 19, 3, 5, 2, 6, 5, 0,0,0,0, 0, 0, 0];
+  HistoryConY:any  = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  HistoryProY:any  = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  HistoryStockY:any  = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
   arrayDataY:any = [1,2,3,4,5,6,7,8,9,10,11,12,13,14];
 

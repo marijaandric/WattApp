@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, SimpleChange } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnChanges, OnInit, SimpleChange, SimpleChanges } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
 import { DeviceDTO } from 'src/app/dtos/DeviceDTO';
 import { DeviceDataDTO } from 'src/app/dtos/DeviceDataDTO';
@@ -11,8 +11,9 @@ import { DeviceService } from 'src/app/services/device/device.service';
   templateUrl: './device-card.component.html',
   styleUrls: ['./device-card.component.css']
 })
-export class DeviceCardComponent implements OnInit{
+export class DeviceCardComponent implements OnInit,OnChanges{
   @Input() device: any;
+  @Input() devices: any;
   isChecked: boolean = true;
   display: boolean = false;
 
@@ -51,7 +52,7 @@ export class DeviceCardComponent implements OnInit{
   isProducer: boolean = false;
   isStock: boolean = false;
 
-  constructor(private deviceService: DeviceService){ }
+  constructor(private deviceService: DeviceService,private cdRef: ChangeDetectorRef){ }
 
   ngOnInit(): void {
     if(!this.device.power)
@@ -174,7 +175,7 @@ export class DeviceCardComponent implements OnInit{
     this.display = false; // za alert izbrisati ovo
   }
 
-  ngOnChange(changes:SimpleChange)
+  ngOnChanges(changes:SimpleChanges)
   {
     this.device = this.device;
     this.isChecked = this.device.isActive

@@ -181,6 +181,7 @@ export class UserDSOComponent implements OnInit{
 
   getHistoryAndForecastByDayForAllDevices() {
     this.deviceService.GetHistoryAndForecastByDayForAllUserDevices(this.id,"week").subscribe(data => {
+        this.loader = false;
         this.arrayData = data.dates; //.slice(0, 7).concat(data.dates.slice(8));
         this.dates = this.arrayData;
         this.loader = false;
@@ -263,6 +264,9 @@ export class UserDSOComponent implements OnInit{
         }
 
 
+      },
+      (error: any) => {
+        this.loader = false;
       });
   }
 
