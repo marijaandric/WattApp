@@ -11,6 +11,7 @@
     box-shadow: 5px 5px 15px black; 
 }
 
+
 :host>.item_title {
   margin-top: 20px;
   height: 150px;
