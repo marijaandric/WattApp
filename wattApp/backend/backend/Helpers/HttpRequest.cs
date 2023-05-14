@@ -91,8 +91,8 @@ namespace backend.Helpers
                 HttpResponseMessage response = httpClient.PostAsync(url, content).Result;
                 response.EnsureSuccessStatusCode();
                 string responseBody = response.Content.ReadAsStringAsync().Result;
-                Console.WriteLine("ALEKSAAAA");
-                Console.WriteLine(responseBody);
+                //Console.WriteLine("ALEKSAAAA");
+                //Console.WriteLine(responseBody);
                 return JsonSerializer.Deserialize<List<PowerUsageDTO>>(responseBody);
             }
         }
