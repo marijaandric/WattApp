@@ -103,8 +103,8 @@ import { HistoryOrForecastTableComponent } from './components/global/history-or-
 import { LoaderService } from './services/loader/loader.service';
 import { LoaderInterceptor } from './interceptors/loader.interceptor';
 
-export const url = 'http://softeng.pmf.kg.ac.rs:10012';
-export const deviceFakerUrl = "http://softeng.pmf.kg.ac.rs:10013";
+export const url = 'http://localhost:10012';
+export const deviceFakerUrl = "http://localhost:10013";
 
 @NgModule({
   declarations: [
