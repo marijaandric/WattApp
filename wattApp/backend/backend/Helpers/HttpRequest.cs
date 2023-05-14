@@ -1,5 +1,6 @@
 ﻿using backend.Models.DTOs;
 using System;
+using System.Security.Policy;
 using System.Text;
 using System.Text.Json;
 
@@ -81,5 +82,19 @@ namespace backend.Helpers
             }
         }
 
+        public static List<PowerUsageDTO> SendPostRequestForPowerUsageDTO(string url, List<DevicesIdsDTO> userdevicesids)
+        {
+            using (var httpClient = new HttpClient())
+            {
+                var content = new StringContent(JsonSerializer.Serialize(userdevicesids), Encoding.UTF8, "application/json");
+                //Console.WriteLine(content);
+                HttpResponseMessage response = httpClient.PostAsync(url, content).Result;
+                response.EnsureSuccessStatusCode();
+                string responseBody = response.Content.ReadAsStringAsync().Result;
+                Console.WriteLine("ALEKSAAAA");
+                Console.WriteLine(responseBody);
+                return JsonSerializer.Deserialize<List<PowerUsageDTO>>(responseBody);
+            }
+        }
     }
 }

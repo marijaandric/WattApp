@@ -370,5 +370,12 @@ namespace backend.Controllers
             return Ok(result);
         }
 
+        [HttpPost("getUsersWithPowerUsage/{timeType}")]
+        public IActionResult GetUsersWithPowerUsage([FromBody] List<int> userIds, string timeType)
+        {
+            var result = _contextDevicesAndData.GetUsersWithPowerUsage(userIds, timeType);
+            return Ok(result);
+        }
+
     }
 }

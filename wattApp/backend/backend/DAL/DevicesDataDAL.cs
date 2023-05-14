@@ -106,5 +106,10 @@ namespace backend.DAL
             return Helpers.HttpRequest.SendPostRequestForUsageDTO($"http://{host}:{port}/api/DevicesDatas/getYearUsageForDevicesByDay/{year}", devicesids);
         }
 
+
+        public List<PowerUsageDTO> GetPowerUsageOfDevicesForMatrixForTimeType(List<DevicesIdsDTO> userdevicesids, string timeType)
+        {
+            return Helpers.HttpRequest.SendPostRequestForPowerUsageDTO($"http://{host}:{port}/api/DevicesDatas/getPowerUsageOfDevicesForMatrixForTimeType/{timeType}", userdevicesids);
+        }
     }
 }

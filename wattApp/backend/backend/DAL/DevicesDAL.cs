@@ -33,7 +33,7 @@ namespace backend.DAL
 
         public List<Devices> GetDevicesForUserByType(int userId, string deviceType)
         {
-            return _context.Devices.Where(d => d.UserID == userId && d.DeviceType == deviceType).ToList();
+            return _context.Devices.Where(d => d.UserID == userId && d.DeviceType.ToLower() == deviceType.ToLower()).ToList();
         }
 
         public List<Devices> GetAllDevicesForUserIDs(List<int> userids)
