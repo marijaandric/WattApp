@@ -30,6 +30,54 @@ export class NewsComponent implements OnInit{
 
   responsiveOptions: any[] = [];
   switchValue: boolean = true;
+  display2 : Boolean = false;
+
+  display: boolean = false;
+  updataNewsForm! : FormGroup;
+
+
+
+  public handleValue(value: any): void {
+    this.display = !this.display;
+    this.updataNewsForm = this.fb.group({
+      title: [value.title, Validators.required],
+      authorId :[value.authorId, Validators.required],
+      content: [value.content, Validators.required],
+      priority: [value.priority, Validators.required],
+      created: [new Date(), Validators.required],
+    })
+    this.updataNewsForm.patchValue({
+      authorId : this.id,
+      created: new Date()
+    });
+    //logika za editovanje
+  }
+
+  showDialog2(){
+    this.display2 = !this.display2;
+  }
+
+  UpdateNews()
+  {
+    this.updataNewsForm.patchValue({
+      authorId : this.id,
+      created: new Date()
+    });
+
+    console.log(this.updataNewsForm.value);
+    // this.dsonewsService.DeleteNews(this.updataNewsForm.value).subscribe({
+    //   next:(res => {
+    //     this.updataNewsForm.reset()
+    //     this.toast.success({detail:"SUCCESS",summary:"You have successfully update news",duration:4000});
+    //     this.display = false;
+    //     location.reload();
+    //   }),
+    //   error:(err => {
+    //     this.toast.error({detail:"ERROR",summary:"Error",duration:4000});
+    //   })
+    // }) 
+  }
+  
 
 
 
@@ -42,7 +90,7 @@ export class NewsComponent implements OnInit{
 
   constructor(private dsonew : DsonewsService,
     private authService: AuthService,
-    private userService: UserService,
+    private userService: UserService,private fb:FormBuilder
     ) {
 
   if(this.token)

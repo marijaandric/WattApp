@@ -17,7 +17,7 @@
 
           <p-table class="d-table" #dtUsers class="ui-table-default" [value]="users" dataKey="id" [scrollable]="true" 
             [rows]="pageSize" [lazy]="true" [totalRecords]="allUsersCount" [showCurrentPageReport]="true" (onPage)="onPageChange($event)"
-            [globalFilterFields]="['id','firstName','lastName','email','role']" [paginator]="true" 
+            [globalFilterFields]="['firstName','lastName','email','role']" [paginator]="true" 
             style="
               display: flex;
               position: relative;
