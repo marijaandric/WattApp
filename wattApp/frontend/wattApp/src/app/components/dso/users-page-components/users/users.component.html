@@ -16,7 +16,7 @@
       <div style="display:flex;float:right; flex-direction:row; width:100%; height:100%">
 
           <p-table class="d-table" #dtUsers class="ui-table-default" [value]="users" dataKey="id" [scrollable]="true" 
-            [rows]="pageSize" [lazy]="true" [totalRecords]="allUsersCount" [showCurrentPageReport]="true" (onPage)="onPageChange($event)"
+            [rows]="pageSize" [totalRecords]="allUsersCount" [showCurrentPageReport]="true" (onPage)="onPageChange($event)"
             [globalFilterFields]="['firstName','lastName','email','role']" [paginator]="true" 
             style="
               display: flex;
