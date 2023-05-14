@@ -83,8 +83,15 @@
   font-size: 17px !important;
 }
 
+.apexcharts-menu {
+  background: #121212 !important;
+  border:none !important ;
+  box-shadow: 5px 5px 15px black;
+}
+.apexcharts-menu-item:hover {
+  background: #373737 !important;
 
-
+}
 .p-datatable .p-datatable-header .p-inputtext{
   padding-top: 12px !important;
 }

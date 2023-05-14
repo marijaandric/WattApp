@@ -125,7 +125,7 @@ export class HistoryForecastComponent implements OnInit,OnChanges{
   ];
 
   public marker: ApexMarkers = {
-    size:4,
+    size:[8,8],
     strokeWidth: 0,
     fillOpacity: 1,
     radius: 10,
@@ -164,12 +164,14 @@ export class HistoryForecastComponent implements OnInit,OnChanges{
     },
     redrawOnParentResize: true,
     redrawOnWindowResize: true,
+    
   };
 
   
 
   public tooltip: ApexTooltip = {
     theme:'dark',
+
     style : {
       fontSize:'17px'
     },
@@ -250,11 +252,23 @@ export class HistoryForecastComponent implements OnInit,OnChanges{
   public stroke: ApexStroke = {
     curve: 'smooth',
     width: 3,
-    dashArray:[0,5,0,5,0,5]
+    dashArray:[0,5,0,5,0,5],
+
   }
 
   public dataLabels: ApexDataLabels = {
-  
+    background: {
+      borderColor:'#323232',
+      foreColor: 'black',
+      padding:12,
+      opacity:1,
+      borderRadius:5,
+    },
+    style: {
+    fontSize:'14',
+    
+    fontWeight: 'normal'
+  }
   
   }
 }
