@@ -111,7 +111,7 @@ namespace backend.BLL
             List<User> users = _contextUserDAL.getUsers().Where(u => u.Role.ToLower() == "prosumer").ToList();
             List<string> areas = users.Select(d => d.Area).ToList().Distinct().ToList();
 
-            if (users == null || areas == null)
+            if (users == null || areas == null || users.Count == 0 || areas.Count == 0)
                 return null;
 
             string maxArea = "";
