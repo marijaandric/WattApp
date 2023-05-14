@@ -365,6 +365,7 @@ roomSelected! : Rooms;
         this.addDeviceForm.reset()
         this.toast.success({detail:"SUCCESS",summary:"You have successfully added device",duration:4000});
         this.display = false;
+        location.reload()
       }),
       error:(err => {
         this.toast.error({detail:"ERROR",summary:"Error",duration:4000});

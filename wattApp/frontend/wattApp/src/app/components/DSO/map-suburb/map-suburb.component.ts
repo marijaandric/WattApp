@@ -140,10 +140,18 @@ export class MapSuburbComponent implements OnInit,OnChanges {
       }, 150);
   
   
-      // Bind a popup to the circle
-      this.circle.bindPopup("<div class='popup'><p style='color:black'>The highest "+this.type.name+" - "+this.highestCoordinates[2]+"</p><br><h4 style='color:black'>Usage : "+this.usageMax+" kWh</h4></div>");
-      this.circle2.bindPopup("<div class='popup'><p style='color:black'>The lowest "+this.type.name+" - "+this.lowestCoordinates[2]+"</p><br><h4 style='color:black'>Usage : "+this.usageMin+" kWh</h4></div>");
-  
+      if(this.highestCoordinates[2] != this.lowestCoordinates[2])
+      {
+        // Bind a popup to the circle
+        this.circle.bindPopup("<div class='popup'><p style='color:black'>The highest "+this.type.name+" - "+this.highestCoordinates[2]+"</p><br><h4 style='color:black'>Usage : "+this.usageMax+" kWh</h4></div>");
+        this.circle2.bindPopup("<div class='popup'><p style='color:black'>The lowest "+this.type.name+" - "+this.lowestCoordinates[2]+"</p><br><h4 style='color:black'>Usage : "+this.usageMin+" kWh</h4></div>");
+      }
+      else{
+        this.circle.bindPopup("<div class='popup'><p style='color:black'>The highest and lowest "+this.type.name+" - "+this.highestCoordinates[2]+"</p><br></div>");
+        this.circle2.bindPopup("<div class='popup'><p style='color:black'>The highest and lowest "+this.type.name+" - "+this.lowestCoordinates[2]+"</p><br></div>");
+
+      }
+
       // Show and hide the popups on hover
       this.circle.on('mouseover', (e: L.LeafletMouseEvent) => {
         this.circle.openPopup();
@@ -161,10 +169,21 @@ export class MapSuburbComponent implements OnInit,OnChanges {
     else{
       await this.getAreas("Max");
       this.circle.setLatLng([this.highestCoordinates[0],this.highestCoordinates[1]]);
-      this.circle.bindPopup("<div class='popup'><p style='color:black'>The highest "+this.type.name+" - "+this.highestCoordinates[2]+"</p><br><h4 style='color:black'>Usage : "+this.usageMax+" kWh</h4></div>");
+      // this.circle.bindPopup("<div class='popup'><p style='color:black'>The highest "+this.type.name+" - "+this.highestCoordinates[2]+"</p><br><h4 style='color:black'>Usage : "+this.usageMax+" kWh</h4></div>");
       await this.getAreas("Min");
       this.circle2.setLatLng([this.lowestCoordinates[0],this.lowestCoordinates[1]]);
-      this.circle2.bindPopup("<div class='popup'><p style='color:black'>The lowest "+this.type.name+" - "+this.lowestCoordinates[2]+"</p><br><h4 style='color:black'>Usage : "+this.usageMin+" kWh</h4></div>");
+      // this.circle2.bindPopup("<div class='popup'><p style='color:black'>The lowest "+this.type.name+" - "+this.lowestCoordinates[2]+"</p><br><h4 style='color:black'>Usage : "+this.usageMin+" kWh</h4></div>");
+      
+      if(this.highestCoordinates[2] != this.lowestCoordinates[2])
+      {
+        // Bind a popup to the circle
+        this.circle.bindPopup("<div class='popup'><p style='color:black'>The highest "+this.type.name+" - "+this.highestCoordinates[2]+"</p><br><h4 style='color:black'>Usage : "+this.usageMax+" kWh</h4></div>");
+        this.circle2.bindPopup("<div class='popup'><p style='color:black'>The lowest "+this.type.name+" - "+this.lowestCoordinates[2]+"</p><br><h4 style='color:black'>Usage : "+this.usageMin+" kWh</h4></div>");
+      }
+      else{
+        this.circle.bindPopup("<div class='popup'><p style='color:black'>The highest and lowest "+this.type.name+" - "+this.highestCoordinates[2]+"</p><br></div>");
+        this.circle2.bindPopup("<div class='popup'><p style='color:black'>The highest and lowest "+this.type.name+" - "+this.lowestCoordinates[2]+"</p><br></div>");
+      }
     }
     
     
