@@ -13,9 +13,9 @@
     
       <div style="display:flex;float:right; flex-direction:column; width:100%; height:100%">
         <div style="display:flex;float:right; flex-direction:row; width:100%; height:100%">
-              
+          <!-- [lazy]="true" -->
           <p-table class="d-table" #dtUsers class="ui-table-default" [value]="users" dataKey="id" [scrollable]="true" 
-            [rows]="rowsPerPage" [totalRecords]="allUsersCount" [lazy]="true" [showCurrentPageReport]="true"
+            [rows]="rowsPerPage" [totalRecords]="allUsersCount"  [showCurrentPageReport]="true"
             [globalFilterFields]="['firstName','lastName','email','role']" [paginator]="true" 
             style="
               margin-top:calc(6%);

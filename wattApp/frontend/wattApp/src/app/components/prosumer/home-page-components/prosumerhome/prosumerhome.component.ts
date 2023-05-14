@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { StadardTemplateComponent } from 'src/app/components/global/layout-components/standard-template/stadard-template.component';
 import { UserService } from 'src/app/services/user.service';
 import { HttpClient } from '@angular/common/http';
@@ -12,6 +12,7 @@ import { map } from 'rxjs';
 import { RoomTypesService } from 'src/app/services/room-types/room-types.service';
 import { DeviceTypesService } from 'src/app/services/device-types/device-types.service';
 import { NgToastService } from 'ng-angular-popup';
+import { DeviceCardComponent } from '../../devices-page-components/device-card/device-card.component';
 
 
 interface Models{
@@ -62,14 +63,14 @@ roomSelected! : Rooms;
   addDeviceForm! : FormGroup;
   display = false;
 
-  @Input() device:any={id:1,deviceName: "device", deviceType:"Consumer",power: 10}
-  @Input() device1:any={id:1,deviceName: "device", deviceType:"Producer",power: 10}
-  @Input() device2:any={id:1,deviceName: "device", deviceType:"Stock",power: 10}
+  @Input() device:any={id:1,deviceName: "default", deviceType:"Consumer",power: 10}
+  @Input() device1:any={id:1,deviceName: "default", deviceType:"Producer",power: 10}
+  @Input() device2:any={id:1,deviceName: "default", deviceType:"Stock",power: 10}
 
   constructor(private fb: FormBuilder,private userService:UserService,private http: HttpClient,private deviceService : DeviceService,private dsonew : DsonewsService,private roomTypesService: RoomTypesService, 
     private roleTypesService: RoleTypesService,
     private modelTypesService: ModelTypesService,
-    private deviceTypesService: DeviceTypesService,private toast:NgToastService)
+    private deviceTypesService: DeviceTypesService,private toast:NgToastService,private cdRef: ChangeDetectorRef)
   {
     this.quote = this.quotes[Math.floor(Math.random() * this.quotes.length)];
     if(this.token)
@@ -82,6 +83,7 @@ roomSelected! : Rooms;
     }
     
   }
+
   IdBiggestConsumer: any;
   NameBiggestConsumer: any;
   PowerUsageBiggestConsumer : any;
@@ -95,15 +97,12 @@ roomSelected! : Rooms;
     const max = 'max';
     
     this.deviceService.getBiggest(this.id,year,month,day,consumer,max).subscribe((response: any) => {
-      this.loader = false;
-       this.IdBiggestConsumer=response.deviceId;
-       this.NameBiggestConsumer=response.deviceName;
        this.PowerUsageBiggestConsumer=response.averagePowerUsage.toFixed(2);
-       this.device.deviceName = this.NameBiggestConsumer;
-       this.device.id=this.IdBiggestConsumer;
-       this.device.power=this.PowerUsageBiggestConsumer;
-       this.device.deviceType="Consumer";
-     //console.log(response);
+       this.device.power = this.PowerUsageBiggestConsumer
+       this.device = response.device
+       this.devices[0] = this.device
+       this.cdRef.detectChanges()
+       this.loader = false;
     },(error: any) => {
       this.loader = false;
     });
@@ -124,14 +123,14 @@ roomSelected! : Rooms;
     const max = 'max';
 
     this.deviceService.getBiggest(this.id,year,month,day,consumer,max).subscribe((response: any) => {
-       this.IdBiggestProducer=response.deviceId;
-       this.NameBiggestProducer=response.deviceName;
        this.PowerUsageBiggestProducer=response.averagePowerUsage.toFixed(2);
-       this.device1.deviceName = this.NameBiggestProducer;
-       this.device1.id=this.IdBiggestProducer;
-       this.device1.power=this.PowerUsageBiggestProducer;
-       this.device1.deviceType="Producer";
+       this.device1 = response.device1
+       this.device1.power = this.PowerUsageBiggestProducer
+       this.devices[1] = this.device1
+       this.cdRef.detectChanges();
      //console.log(response);
+    },(error: any) => {
+      this.loader = false;
     });
   
   }
@@ -151,15 +150,15 @@ roomSelected! : Rooms;
 
 
     this.deviceService.getBiggest(this.id,year,month,day,consumer,max).subscribe((response: any) => {
-       this.IdBiggestStorage=response.deviceId;
-       this.NameBiggestStorage=response.deviceName;
        this.PowerUsageBiggestStorage=response.averagePowerUsage.toFixed(2);
-       this.device2.deviceName = this.NameBiggestStorage;
-       this.device2.id=this.IdBiggestStorage;
-       this.device2.power=this.PowerUsageBiggestStorage;
-       this.device2.deviceType="Stock";
+       this.device2 = response.device
+       this.device2.power = this.PowerUsageBiggestStorage
+       this.devices[2] = this.device2
+       this.cdRef.detectChanges()
        console.log(response);
-    });
+      },(error: any) => {
+        this.loader = false;
+      });
   
   }
 
@@ -267,10 +266,10 @@ roomSelected! : Rooms;
 
 
   ngOnInit(): void {
+    this.devices[0]=this.device;
+    this.devices[1] = this.device1;
+    this.devices[2] = this.device2;
     this.getNews();
-    this.devices.push(this.device);
-    this.devices.push(this.device1);
-    this.devices.push(this.device2);
     this.getBiggestConsumer();
     this.getBiggestProducer();
     this.getBiggestStorage();
@@ -366,6 +365,7 @@ roomSelected! : Rooms;
         this.addDeviceForm.reset()
         this.toast.success({detail:"SUCCESS",summary:"You have successfully added device",duration:4000});
         this.display = false;
+        location.reload()
       }),
       error:(err => {
         this.toast.error({detail:"ERROR",summary:"Error",duration:4000});
