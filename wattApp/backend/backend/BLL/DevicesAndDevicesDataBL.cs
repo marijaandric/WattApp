@@ -222,8 +222,8 @@ namespace backend.BLL
 
             deviceName = _contextDAL.GetDevice(deviceWithValue).DeviceName;
             ExtremeDeviceDTO deviceDTO = new ExtremeDeviceDTO();
-            deviceDTO.DeviceName = deviceName;
-            deviceDTO.DeviceID = deviceWithValue;
+
+            deviceDTO.Device = _contextDAL.GetDevice(deviceWithValue);
             deviceDTO.Usage = value;
             return deviceDTO;
         }

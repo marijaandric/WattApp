@@ -233,16 +233,16 @@ namespace backend.Controllers
         [HttpGet("{userId}/{year}/{month}/{day}/{type}/{size}")]
         public IActionResult GetExrtemeDevice(int userId, int year, int month, int day, string type, string size)
         {
+
             ExtremeDeviceDTO result = _contextDevicesAndData.GetExtremeDevice(userId, year, month, day, type, size);
-            if (result == null || result.DeviceName == "")
+            if (result == null || result.Device.DeviceName == "" || result.Device == null)
             {
                 return BadRequest();
             }
             return Ok(
                     new
                     {
-                        DeviceId = result.DeviceID,
-                        DeviceName = result.DeviceName,
+                        Device = result.Device,
                         AveragePowerUsage = result.Usage
                     }); ;
         }
