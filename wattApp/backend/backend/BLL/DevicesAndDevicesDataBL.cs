@@ -111,7 +111,7 @@ namespace backend.BLL
             List<User> users = _contextUserDAL.getUsers().Where(u => u.Role.ToLower() == "prosumer").ToList();
             List<string> areas = users.Select(d => d.Area).ToList().Distinct().ToList();
 
-            if (users == null || areas == null)
+            if (users == null || areas == null || users.Count == 0 || areas.Count == 0)
                 return null;
 
             string maxArea = "";
@@ -516,6 +516,59 @@ namespace backend.BLL
             result.Add("Stock", GetTotalUsageByArea(area, "Stock", timetype));
 
             return result;
+        }
+
+        public List<UserWithPowerUsageDTO> GetUsersWithPowerUsage(List<int> userIds, string timetype)
+        {
+            List<DevicesIdsDTO> dto = new List<DevicesIdsDTO>();
+            
+
+            foreach( int id in userIds )
+            {
+                DevicesIdsDTO userdevices = new DevicesIdsDTO();
+
+                if(_contextUserDAL.userExists(id))
+                {
+                    List<int> cons = _contextDAL.GetDevicesForUserByType(id, "consumer").Select(d => d.FakeID).ToList();
+                    List<int> prod = _contextDAL.GetDevicesForUserByType(id, "producer").Select(d => d.FakeID).ToList();
+                    List<int> st = _contextDAL.GetDevicesForUserByType(id, "stock").Select(d => d.FakeID).ToList();
+
+                    if (cons == null || cons.Count == 0)
+                        userdevices.consumers = new List<int> { 0 };
+                    else
+                        userdevices.consumers = cons;
+
+                    if (prod == null || prod.Count == 0)
+                        userdevices.producers = new List<int> { 0 };
+                    else
+                        userdevices.producers = prod;
+
+                    if (st == null || st.Count == 0)
+                        userdevices.stocks = new List<int> { 0 };
+                    else
+                        userdevices.stocks = st;
+
+                    dto.Add(userdevices);
+                }
+            }
+
+            var result = _contextDataDAL.GetPowerUsageOfDevicesForMatrixForTimeType(dto, timetype);
+            List<UserWithPowerUsageDTO> final = new List<UserWithPowerUsageDTO>();
+            
+
+            for(int i = 0; i < result.Count; i++)
+            {
+                UserWithPowerUsageDTO uwp = new UserWithPowerUsageDTO();
+
+                uwp.user = _contextUserDAL.getUser(userIds[i]);
+                uwp.consumption = result[i].consumption;
+                uwp.production = result[i].production;
+                uwp.stock = result[i].stock;
+
+                final.Add(uwp);
+            }
+
+            return final;
         }
     }
 }

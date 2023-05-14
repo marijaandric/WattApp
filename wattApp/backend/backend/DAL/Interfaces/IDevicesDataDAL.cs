@@ -22,5 +22,6 @@ namespace backend.DAL.Interfaces
         public List<UsageDTO> GetWeekUsageForDevicesByDay(List<int> devicesids, int year, int month, int day);
         public List<UsageDTO> GetMonthUsageForDevicesByDay(List<int> devicesids, int year, int month);
         public List<UsageDTO> GetYearUsageForDevicesByMonth(List<int> devicesids, int year);
+        public List<PowerUsageDTO> GetPowerUsageOfDevicesForMatrixForTimeType(List<DevicesIdsDTO> userdevicesids, string timeType);
     }
 }

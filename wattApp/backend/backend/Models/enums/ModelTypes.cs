@@ -54,7 +54,40 @@ namespace backend.Models.enums
         SOLARPANEL,
         [Display(Name = "Battery")]
         [DeviceModelTypes(DeviceTypes.STOCK)]
-        BATTERY
+        BATTERY,
+        [Display(Name = "Fridge")]
+        [DeviceModelTypes(DeviceTypes.CONSUMER)]
+        FRIDGE,
+        [Display(Name = "Microwave")]
+        [DeviceModelTypes(DeviceTypes.CONSUMER)]
+        MICROWAVE,
+        [Display(Name = "Washing machine")]
+        [DeviceModelTypes(DeviceTypes.CONSUMER)]
+        WASHINGMACHINE,
+        [Display(Name = "Mixer")]
+        [DeviceModelTypes(DeviceTypes.CONSUMER)]
+        MIXER,
+        [Display(Name = "Blender")]
+        [DeviceModelTypes(DeviceTypes.CONSUMER)]
+        BLENDER,
+        [Display(Name = "Radio")]
+        [DeviceModelTypes(DeviceTypes.CONSUMER)]
+        RADIO,
+        [Display(Name = "Stove")]
+        [DeviceModelTypes(DeviceTypes.CONSUMER)]
+        STOVE,
+        [Display(Name = "Vacuum cleaner")]
+        [DeviceModelTypes(DeviceTypes.CONSUMER)]
+        VACUUMCLEANER,
+        [Display(Name = "Iron")]
+        [DeviceModelTypes(DeviceTypes.CONSUMER)]
+        IRON,
+        [Display(Name = "Lamp")]
+        [DeviceModelTypes(DeviceTypes.CONSUMER)]
+        LAMP,
+        [Display(Name = "Bulb")]
+        [DeviceModelTypes(DeviceTypes.CONSUMER)]
+        BULB,
     }
 
     public static class ModelTypesEnumExtensions

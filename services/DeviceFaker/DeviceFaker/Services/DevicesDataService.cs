@@ -123,6 +123,11 @@ namespace DeviceFaker.Services
 
             HAFDatasDTO currentMonth = GetMonthHistoryAndForecastPowerUsageOfDevices(ids, year, month);
 
+            ids = ids.Where(x => x > 0 && x < 20).ToList();
+
+            if (ids == null || ids.Count == 0)
+                return null;
+
             HAFDatasDTO result = new HAFDatasDTO();
             result.dates = new List<string>();
             result.datas = new List<double>();
@@ -176,10 +181,15 @@ namespace DeviceFaker.Services
             return result;
         }
 
-        // #### MONTH HISTORY AND FORECAST ####
+        // #### 2 MONTHS HISTORY AND FORECAST ####
         public HAFDatasDTO GetMonthHistory2MonthsPowerUsageOfDevices(List<int> ids, int year, int month)
         {
             DateTime now = DateTime.Now;
+
+            ids = ids.Where(x => x > 0 && x < 20).ToList();
+
+            if (ids == null || ids.Count == 0)
+                return null;
 
             var filter = Builders<DevicesData>.Filter.And(
                 Builders<DevicesData>.Filter.In(x => x.DeviceID, ids),
@@ -227,10 +237,15 @@ namespace DeviceFaker.Services
             return haf;
         }
 
-
+        // #### MONTH HISTORY AND FORECAST ####
         public HAFDatasDTO GetMonthHistoryAndForecastPowerUsageOfDevices(List<int> ids, int year, int month)
         {
             DateTime now = DateTime.Now;
+
+            ids = ids.Where(x => x > 0 && x < 20).ToList();
+
+            if (ids == null || ids.Count == 0)
+                return null;
 
             var filter = Builders<DevicesData>.Filter.And(
                 Builders<DevicesData>.Filter.In(x => x.DeviceID, ids),
@@ -278,11 +293,58 @@ namespace DeviceFaker.Services
             return haf;
         }
 
+        public List<PowerUsageDTO> GetPowerUsageOfDevicesForMatrixForTimeType(List<DevicesIdsDTO> userdevicesids, string timeType)
+        {
+            DateTime now = DateTime.Now;
+            List<PowerUsageDTO> powerUsageDTOs = new List<PowerUsageDTO>();
+
+            foreach (var ids in userdevicesids)
+                powerUsageDTOs.Add(GetPowerUsageOfDevicesByTypeForTimeType(ids, now.Year, now.Month, now.Day, timeType));
+
+            return powerUsageDTOs;
+        }
+
+        public PowerUsageDTO GetPowerUsageOfDevicesByTypeForTimeType(DevicesIdsDTO devicesids, int year, int month, int day, string timeType)
+        {
+            PowerUsageDTO powerUsageDTO = new PowerUsageDTO();
+
+            if (timeType.ToLower() == "year")
+            {
+                powerUsageDTO.consumption = GetYearPowerUsageSumOfDevices(devicesids.consumers.Where(x => x > 0 && x < 20).ToList(), year);
+                powerUsageDTO.production = GetYearPowerUsageSumOfDevices(devicesids.producers.Where(x => x > 0 && x < 20).ToList(), year);
+                powerUsageDTO.stock = GetYearPowerUsageSumOfDevices(devicesids.stocks.Where(x => x > 0 && x < 20).ToList(), year);
+            }
+            else if (timeType.ToLower() == "month")
+            {
+                powerUsageDTO.consumption = GetMonthPowerUsageSumOfDevices(devicesids.consumers.Where(x => x > 0 && x < 20).ToList(), year, month);
+                powerUsageDTO.production = GetMonthPowerUsageSumOfDevices(devicesids.producers.Where(x => x > 0 && x < 20).ToList(), year, month);
+                powerUsageDTO.stock = GetMonthPowerUsageSumOfDevices(devicesids.stocks.Where(x => x > 0 && x < 20).ToList(), year, month);
+            }
+            else if (timeType.ToLower() == "week")
+            {
+                powerUsageDTO.consumption = GetWeekPowerUsageSumOfDevices(devicesids.consumers.Where(x => x > 0 && x < 20).ToList(), year, month, day);
+                powerUsageDTO.production = GetWeekPowerUsageSumOfDevices(devicesids.producers.Where(x => x > 0 && x < 20).ToList(), year, month, day);
+                powerUsageDTO.stock = GetWeekPowerUsageSumOfDevices(devicesids.stocks.Where(x => x > 0 && x < 20).ToList(), year, month, day);
+            }
+            else //day
+            {
+                powerUsageDTO.consumption = GetDayPowerUsageSumOfDevices(devicesids.consumers.Where(x => x > 0 && x < 20).ToList(), year, month, day);
+                powerUsageDTO.production = GetDayPowerUsageSumOfDevices(devicesids.producers.Where(x => x > 0 && x < 20).ToList(), year, month, day);
+                powerUsageDTO.stock = GetDayPowerUsageSumOfDevices(devicesids.stocks.Where(x => x > 0 && x < 20).ToList(), year, month, day);
+            }
+
+            return powerUsageDTO;
+        }
 
         // #### YEAR HISTORY AND FORECAST ####
         public HAFDatasDTO GetYearHistoryAndForecastPowerUsageOfDevices(List<int> ids, int year)
         {
             DateTime now = DateTime.Now;
+
+            ids = ids.Where(x => x > 0 && x < 20).ToList();
+
+            if (ids == null || ids.Count == 0)
+                return null;
 
             var filter = Builders<DevicesData>.Filter.And(
                 Builders<DevicesData>.Filter.In(x => x.DeviceID, ids),
@@ -326,6 +388,11 @@ namespace DeviceFaker.Services
         public List<UsageDTO> GetMonthPowerUsageOfDevices(List<int> ids, int year, int month)
         {
             DateTime now = DateTime.Now;
+
+            ids = ids.Where(x => x > 0 && x < 20).ToList();
+
+            if (ids == null || ids.Count == 0)
+                return null;
 
             var filter = Builders<DevicesData>.Filter.And(
                 Builders<DevicesData>.Filter.In(x => x.DeviceID, ids),
@@ -380,6 +447,11 @@ namespace DeviceFaker.Services
         {
             DateTime now = DateTime.Now;
 
+            ids = ids.Where(x => x > 0 && x < 20).ToList();
+
+            if (ids == null || ids.Count == 0)
+                return null;
+
             var filter = Builders<DevicesData>.Filter.And(
                 Builders<DevicesData>.Filter.In(x => x.DeviceID, ids),
                 Builders<DevicesData>.Filter.Where(x => x.Year == year && x.Month == month && x.Day == day));
@@ -430,10 +502,17 @@ namespace DeviceFaker.Services
             return usage;
         }
 
+
+
         // #### SUMA PO DANU UKUPNA ZA SVE DEVICE-ove ####
         public double GetDayPowerUsageSumOfDevices(List<int> ids, int year, int month, int day)
         {
             DateTime now = DateTime.Now;
+
+            ids = ids.Where(x => x > 0 && x < 20).ToList();
+
+            if (ids == null || ids.Count == 0)
+                return 0;
 
             var filter = Builders<DevicesData>.Filter.And(
                 Builders<DevicesData>.Filter.In(x => x.DeviceID, ids),
@@ -475,6 +554,11 @@ namespace DeviceFaker.Services
         {
             DateTime now = DateTime.Now;
 
+            ids = ids.Where(x => x > 0 && x < 20).ToList();
+
+            if (ids == null || ids.Count == 0)
+                return 0;
+
             var filter = Builders<DevicesData>.Filter.And(
                 Builders<DevicesData>.Filter.In(x => x.DeviceID, ids),
                 Builders<DevicesData>.Filter.Where(x => x.Year == year && x.Month == month));
@@ -510,6 +594,11 @@ namespace DeviceFaker.Services
         {
             DateTime now = DateTime.Now;
 
+            ids = ids.Where(x => x > 0 && x < 20).ToList();
+
+            if (ids == null || ids.Count == 0)
+                return 0;
+
             var filter = Builders<DevicesData>.Filter.And(
                 Builders<DevicesData>.Filter.In(x => x.DeviceID, ids),
                 Builders<DevicesData>.Filter.Where(x => x.Year == year));
@@ -543,12 +632,25 @@ namespace DeviceFaker.Services
         // #### SUMA PO NEDELJI UKUPNA ZA SVE DEVICE-ove ####
         public double GetWeekPowerUsageSumOfDevices(List<int> ids, int year, int month, int day)
         {
+            ids = ids.Where(x => x > 0 && x < 20).ToList();
+
+            if (ids == null || ids.Count == 0)
+                return 0;
+
             return GetWeekUsageForDevicesByDay(ids, year, month, day).Sum(item => item.usage);
         }
+
+
+
 
         // #### SUMA ZA PERIOD OD NEDELJU DANA, GRUPISANA PO DANU UKUPNA ZA SVE DEVICE-ove ####
         public List<UsageDTO> GetWeekUsageForDevicesByDay(List<int> devicesids, int year, int month, int day)
         {
+            devicesids = devicesids.Where(x => x > 0 && x < 20).ToList();
+
+            if (devicesids == null || devicesids.Count == 0)
+                return null;
+
             List<UsageDTO> currentMonth = GetMonthUsageForDevicesByDay(devicesids, year, month);
             List<UsageDTO> result = new List<UsageDTO>();
             if (day <= 6)
@@ -582,6 +684,11 @@ namespace DeviceFaker.Services
         public List<UsageDTO> GetMonthUsageForDevicesByDay(List<int> ids, int year, int month)
         {
             DateTime now = DateTime.Now;
+
+            ids = ids.Where(x => x > 0 && x < 20).ToList();
+
+            if (ids == null || ids.Count == 0)
+                return null;
 
             var filter = Builders<DevicesData>.Filter.And(
                 Builders<DevicesData>.Filter.In(x => x.DeviceID, ids),
@@ -633,6 +740,11 @@ namespace DeviceFaker.Services
         public List<UsageDTO> GetYearUsageForDevicesByMonth(List<int> ids, int year)
         {
             DateTime now = DateTime.Now;
+
+            ids = ids.Where(x => x > 0 && x < 20).ToList();
+
+            if (ids == null || ids.Count == 0)
+                return null;
 
             var filter = Builders<DevicesData>.Filter.And(
                 Builders<DevicesData>.Filter.In(x => x.DeviceID, ids),

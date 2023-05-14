@@ -5,6 +5,7 @@ import { CarouselModule } from 'primeng/carousel';
 import { DeviceDTO } from 'src/app/dtos/DeviceDTO';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { UserService } from 'src/app/services/user.service';
+import { NgToastService } from 'ng-angular-popup';
 
 
 interface SwitchOption {
@@ -30,7 +31,77 @@ export class NewsComponent implements OnInit{
 
   responsiveOptions: any[] = [];
   switchValue: boolean = true;
+  display2 : Boolean = false;
 
+  display: boolean = false;
+  updataNewsForm! : FormGroup;
+
+
+
+  public handleValue(value: any): void {
+    this.display = !this.display;
+    this.updataNewsForm = this.fb.group({
+      id: [value.id],
+      title: [value.title, Validators.required],
+      authorId :[value.authorId, Validators.required],
+      content: [value.content, Validators.required],
+      priority: [value.priority, Validators.required],
+      created: [new Date(), Validators.required],
+    })
+    this.updataNewsForm.patchValue({
+      authorId : this.id,
+      created: new Date()
+    });
+  }
+
+  TrenutniId: any;
+  public handleValue2(value: any): void {
+    this.display2=!this.display2;
+    this.TrenutniId=value.id;
+ 
+  }
+
+  showDialog2(){
+    this.display2 = !this.display2;
+  }
+
+  DeleteNews(newsId: any) {
+    console.log("Usao sam");
+    this.dsonewsService.deleteNews(newsId).subscribe(() => {
+      this.toast.success({detail:"SUCCESS",summary:"You have successfully DELETE news",duration:5000});
+      setTimeout(() => {
+        location.reload();
+      }, 1500);
+
+    },
+    error => console.error( this.toast.success({detail:"Error",summary:"You can't delete",duration:5000}))
+    );
+  }
+
+ 
+  UpdateNews()
+  {
+    
+    this.updataNewsForm.patchValue({
+      authorId : this.id,
+      created: new Date()
+    });
+
+    console.log(this.updataNewsForm.value);
+    this.dsonewsService.UpdateNews(this.updataNewsForm.value.id,this.updataNewsForm.value).subscribe({
+      next:(res => {
+        this.updataNewsForm.reset()
+        this.toast.success({detail:"SUCCESS",summary:"You have successfully update news",duration:4000});
+        this.display = false;
+        setTimeout(() => {
+          location.reload();
+        }, 1500);
+      }),
+      error:(err => {
+        this.toast.error({detail:"ERROR",summary:"Error",duration:4000});
+      })
+    }) 
+  }
 
 
   switchOptions: SwitchOption[] = [
@@ -42,7 +113,9 @@ export class NewsComponent implements OnInit{
 
   constructor(private dsonew : DsonewsService,
     private authService: AuthService,
-    private userService: UserService,
+    private userService: UserService,private fb:FormBuilder,
+    private dsonewsService: DsonewsService,
+    private toast: NgToastService,
     ) {
 
   if(this.token)

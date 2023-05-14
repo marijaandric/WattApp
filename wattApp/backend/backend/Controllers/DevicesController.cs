@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using backend.Models;
 using backend.BLL.Interfaces;
 using backend.Models.DTOs;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace backend.Controllers
 {
@@ -242,8 +243,6 @@ namespace backend.Controllers
             return Ok(
                     new
                     {
-                        DeviceId = result.Device.Id,
-                        DeviceName = result.Device.DeviceName,
                         AveragePowerUsage = result.Usage,
                         Device = result.Device,
 
@@ -284,6 +283,9 @@ namespace backend.Controllers
         {
 
             var result = _contextDevicesAndData.GetExtremeUsageForAreas(devicetype, timeType, minmax);
+
+            if (result == null)
+                return BadRequest();
 
             return Ok(
                 new
@@ -369,6 +371,13 @@ namespace backend.Controllers
         public IActionResult GetPowerUsageForAllTypesForArea(string area, string timetype)
         {
             var result = _contextDevicesAndData.GetPowerUsageForAllTypesForArea(area, timetype);
+            return Ok(result);
+        }
+
+        [HttpPost("getUsersWithPowerUsage/{timeType}")]
+        public IActionResult GetUsersWithPowerUsage([FromBody] List<int> userIds, string timeType)
+        {
+            var result = _contextDevicesAndData.GetUsersWithPowerUsage(userIds, timeType);
             return Ok(result);
         }
 

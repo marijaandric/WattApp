@@ -23,7 +23,7 @@
               [Status]="news.priority"
               [Datum]="news.created"
               [ID]="news.id"
-              [isBlue]="true" [isBgBlue]="true" class="promotion">
+              [isBlue]="true" [isBgBlue]="true" class="promotion" (valueEmitter2)="handleValue2(news)" (valueEmitter)="handleValue(news)">
               </app-promotion>
             </ng-template>
           </p-carousel>
@@ -39,7 +39,7 @@
               [Status]="news.priority"
               [Datum]="news.created"
               [ID]="news.id"
-              [isBlue]="true" [isBgBlue]="true" class="promotion">
+              [isBlue]="true" [isBgBlue]="true" class="promotion" (valueEmitter2)="handleValue2(news)" (valueEmitter)="handleValue(news)">
               </app-promotion>
             </ng-template>
           </p-carousel>
@@ -54,7 +54,7 @@
               [Status]="news.priority"
               [Datum]="news.created"
               [ID]="news.id"
-              [isBlue]="true" [isBgBlue]="true" class="promotion">
+              [isBlue]="true" [isBgBlue]="true" class="promotion" (valueEmitter2)="handleValue2(news)" (valueEmitter)="handleValue(news)">
               </app-promotion>
             </ng-template>
           </p-carousel>
@@ -62,7 +62,7 @@
 
         <div *ngIf="switchValue == true" class="carousel-pc">
           <h4 style="margin:0px 0px 10px 10px;">Regular news</h4> 
-          <p-carousel [value] = "newsRegular" [circular]="false" [numVisible]="4" [autoplayInterval]="4000" [numScroll]="4" [responsiveOptions]="responsiveOptions">
+          <p-carousel [value] = "newsRegular" [circular]="false" [numVisible]="4"  [autoplayInterval]="4000" [numScroll]="4" [responsiveOptions]="responsiveOptions">
             <ng-template let-news pTemplate="new">
               <app-promotion [subTitle]="news.title"
               [authorId] = "news.authorId"
@@ -70,7 +70,7 @@
               [Status]="news.priority"
               [Datum]="news.created"
               [ID]="news.id"
-              [isBlue]="true" [isBgBlue]="true" class="promotion">
+              [isBlue]="true" [isBgBlue]="true" class="promotion" (valueEmitter2)="handleValue2(news)" (valueEmitter)="handleValue(news)">
               </app-promotion>
             </ng-template>
           </p-carousel>
@@ -85,3 +85,59 @@
 
 
   
+<p-dialog [style]="{width:'40%'}" header="Title"  [transitionOptions]="'3ms'" 
+[draggable]="true" [keepInViewport]="true" [resizable]="false" 
+[blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true" 
+[modal]="true" [(visible)]="display" [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
+[closable]="true" >
+<ng-template pTemplate="header" class="header-dialog">
+  <span>Update news</span>
+</ng-template>
+
+<ng-template pTemplate="content">
+  <form [formGroup]="updataNewsForm" > 
+  
+  <div class="p-inputgroup p-inputtext-lg p-input-filled">
+    <div class="half">
+      <input formControlName="title" name="name" appendTo="body" type="text" class="p-inputtext-lg" placeholder="TITLE"> 
+      <textarea id="text" formControlName="content" name="name" appendTo="body" type="text" class="p-inputtext-lg" style="width:100%;height: 250px;"></textarea>
+      <div style="display: flex;flex-direction: column; align-items: center;margin-right: 4%;">
+        <span style="font-size: 19px;color:grey">Priority:</span>
+        <div style="display: inline-flex;">
+          <input formControlName="priority" id="regular" type="radio"  value="Regular">
+          <label for="regular" style="margin-top: 15px; margin-left: 5px;">Regular</label>
+        </div>
+        <div style="display: inline-flex;">
+          <input formControlName="priority" id="important" type="radio"  value="Important">
+          <label for="important" style="margin-top: 15px; margin-left: 5px;">Important</label>
+        </div>
+      </div>
+    </div>
+  </div> 
+  </form>
+  
+</ng-template>
+
+<ng-template pTemplate="footer" style="min-height:100px;" >
+  <button type="button" class="footer-button" icon="pi pi-info-circle" label="Show" (click)="UpdateNews()" >Update</button>
+
+</ng-template>
+</p-dialog>
+
+<p-dialog [style]="{width:'300px',height:'200px'}" header="Title"  [transitionOptions]="'3ms'" 
+[draggable]="true" [keepInViewport]="true" [resizable]="false" 
+[blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true" 
+[modal]="true" [(visible)]="display2" [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
+[closable]="true"  >
+<ng-template pTemplate="header" class="header-dialog">
+  <span >Are you sure you want to delete this news?</span>
+</ng-template>
+
+<ng-template pTemplate="footer">
+  <div class="flexRow">
+    <p-button class="margin-left__16px edit-btn" (click)="DeleteNews(TrenutniId)">Yes</p-button>
+    <p-button class="margin-left__16px remove-btn"  (click)="display2=false"> No</p-button>
+  </div>
+</ng-template>
+
+</p-dialog>

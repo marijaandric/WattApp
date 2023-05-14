@@ -64,7 +64,8 @@ export class UserCardComponent implements OnInit {
       y: ['', Validators.required],
       area :['', Validators.required],
       resetPasswordToken: ['string', Validators.required],
-      resetPasswordExpiryTime: ['2023-05-04T11:25:23.308Z', Validators.required]
+      resetPasswordExpiryTime: ['2023-05-04T11:25:23.308Z', Validators.required],
+      imageId: this.userInfo.imageId
     }); 
   }
 
@@ -81,6 +82,9 @@ export class UserCardComponent implements OnInit {
     })
     this.menageUserForm.patchValue({
       token: token
+    })
+    this.menageUserForm.patchValue({
+      imageId: this.userInfo.imageId
     })
 
       if(token){
@@ -105,12 +109,14 @@ export class UserCardComponent implements OnInit {
     const randomNumber = Math.floor(Math.random() * 1000);
     this.userImageUrlEndpoint += `?random=${randomNumber}`;
     this.display3 = false;
+    location.reload();
   }
   
   deleteImage() {
     this.fileUploadService.deleteUserImage(this.userInfo.id).subscribe(() => {
       this.onImageChange(null);
       this.display3 = false;
+      location.reload();
     });
   }
   
