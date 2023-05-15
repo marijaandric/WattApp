@@ -44,15 +44,15 @@
     
     <div class="right" *ngIf="isAdmin()">
         <div class="title">
-            <a routerLink="/users">Users</a>
+            <a href="/users">Users</a>
         </div>
         
-        <div *ngIf="!isSubMenuShown" class="submain-title" routerLinkActive="active" >
-            <a routerLink="/users/prosumers">Prosumers</a>
+        <div *ngIf="!isSubMenuShown" class="submain-title" routerLinkActive="active">
+            <a href="/users/prosumers">Prosumers</a>
         </div>
 
         <div *ngIf="!isSubMenuShown" class="submain-title" routerLinkActive="active">
-            <a routerLink="/users/operators">Operators</a>
+            <a href="/users/operators">Operators</a>
         </div>
 
         <div class="arrow"  [ngClass]="{'passive': isSubMenuShown}"  (click)="showSubMenu()">

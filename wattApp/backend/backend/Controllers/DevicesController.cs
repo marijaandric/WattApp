@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using backend.Models;
 using backend.BLL.Interfaces;
 using backend.Models.DTOs;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace backend.Controllers
 {
@@ -233,17 +234,18 @@ namespace backend.Controllers
         [HttpGet("{userId}/{year}/{month}/{day}/{type}/{size}")]
         public IActionResult GetExrtemeDevice(int userId, int year, int month, int day, string type, string size)
         {
+
             ExtremeDeviceDTO result = _contextDevicesAndData.GetExtremeDevice(userId, year, month, day, type, size);
-            if (result == null || result.DeviceName == "")
+            if (result == null || result.Device.DeviceName == "" || result.Device == null)
             {
                 return BadRequest();
             }
             return Ok(
                     new
                     {
-                        DeviceId = result.DeviceID,
-                        DeviceName = result.DeviceName,
-                        AveragePowerUsage = result.Usage
+                        AveragePowerUsage = result.Usage,
+                        Device = result.Device,
+
                     }); ;
         }
 
@@ -281,6 +283,9 @@ namespace backend.Controllers
         {
 
             var result = _contextDevicesAndData.GetExtremeUsageForAreas(devicetype, timeType, minmax);
+
+            if (result == null)
+                return BadRequest();
 
             return Ok(
                 new
@@ -366,6 +371,13 @@ namespace backend.Controllers
         public IActionResult GetPowerUsageForAllTypesForArea(string area, string timetype)
         {
             var result = _contextDevicesAndData.GetPowerUsageForAllTypesForArea(area, timetype);
+            return Ok(result);
+        }
+
+        [HttpPost("getUsersWithPowerUsage/{timeType}")]
+        public IActionResult GetUsersWithPowerUsage([FromBody] List<int> userIds, string timeType)
+        {
+            var result = _contextDevicesAndData.GetUsersWithPowerUsage(userIds, timeType);
             return Ok(result);
         }
 

@@ -35,39 +35,7 @@
   flex-direction: row;
 }
 
-:host::ng-deep .p-dropdown {
-  position:relative!important;
-  border-radius: 20px!important;
-  display: flex;
-  border:none!important;
-  font-size:16px!important;
-  margin-right:40px!important;
-  background: #1b1b1b;
-  
-}
-:host::ng-deep .p-dropdown.p-component {
-  width:150.953px!important;
-  margin-right:20px !important;
-}
 
-:host::ng-deep #pr_id_1_label{
-  font-size: 14px !important;
-  padding:8px 0px 8px 16px!important;
-  border:none!important;
-  font-weight: bold!important;
-}
-:host::ng-deep #pr_id_2_label{
-  font-size: 14px!important;
-  padding:8px 0px 8px 16px!important;
-  border:none!important;
-  font-weight: bold!important;
-}
-:host::ng-deep #pr_id_3_label{
-  font-size: 14px!important;
-  padding:8px 0px 8px 16px!important;
-  border:none!important;
-  font-weight: bold!important;
-}
 
 
 img {
@@ -142,7 +110,7 @@ img {
   h5 {
       font-size: 24px;
       font-weight: bolder;
-      color: #46c5f1;
+      
   }
     
 }

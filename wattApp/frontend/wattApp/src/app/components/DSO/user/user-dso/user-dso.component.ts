@@ -157,30 +157,31 @@ export class UserDSOComponent implements OnInit{
   
 
   
-  History:any = [12, 19, 3, 5, 2, 6, 5, 0,0,0,0, 0, 0, 0];
-  Forecast:any= [0,0, 0, 0, 0, 0,5,10,12,3,16,5,10,5];
+  History:any = [0, 0, 0, 0, 0, 0, 0, 0,0,0,0, 0, 0, 0];
+  Forecast:any= [0,0, 0, 0, 0, 0,0,0,0,0,0,0,0,0];
   
-  HistoryCon:any  = [12, 19, 3, 5, 2, 6, 5, 0,0,0,0, 0, 0, 0];
-  ForecastCon:any = [0,0, 0, 0, 0, 0,5,10,12,3,16,5,10,5];
-  HistoryPro:any  = [12, 19, 3, 5, 2, 6, 5, 0,0,0,0, 0, 0, 0];
-  ForecastPro:any = [0,0, 0, 0, 0, 0,5,10,12,3,16,5,10,5];
-  HistoryStock:any  = [12, 19, 3, 5, 2, 6, 5, 0,0,0,0, 0, 0, 0];
-  ForecastStock:any  = [0,0, 0, 0, 0, 0,5,10,12,3,16,5,10,5];
+  HistoryCon:any  = [0, 0, 0, 0, 0, 0, 0, 0,0,0,0, 0, 0, 0];
+  ForecastCon:any = [0,0, 0, 0, 0, 0,0,0,0,0,0,0,0,0];
+  HistoryPro:any  = [0, 0, 0, 0, 0,0, 0, 0,0,0,0, 0, 0, 0];
+  ForecastPro:any = [0,0, 0, 0, 0, 0,0,0,0,0,0,0,0,0];
+  HistoryStock:any  = [0, 0, 0, 0, 0, 0, 0, 0,0,0,0, 0, 0, 0];
+  ForecastStock:any  =  [0, 0, 0, 0, 0, 0, 0, 0,0,0,0, 0, 0, 0];
 
-  HistoryCon3:any  = [12, 19, 3, 5, 2, 6];
-  ForecastCon3:any = [12, 19, 3, 5, 2, 6];
-  HistoryPro3:any  = [12, 19, 3, 5, 2, 6];
-  ForecastPro3:any = [12, 19, 3, 5, 2, 6];
-  HistoryStock3:any  = [12, 19, 3, 5, 2, 6];
-  ForecastStock3:any  = [12, 19, 3, 5, 2, 6];
+  HistoryCon3:any  = [0, 0, 0, 0, 0, 0];
+  ForecastCon3:any = [0, 0, 0, 0, 0, 0];
+  HistoryPro3:any  =  [0, 0, 0, 0, 0, 0];
+  ForecastPro3:any =  [0, 0, 0, 0, 0, 0];
+  HistoryStock3:any  =  [0, 0, 0, 0, 0, 0];
+  ForecastStock3:any  =  [0, 0, 0, 0, 0, 0];
 
-  dates = [1,2,3,4,5,6,7,8,9,10,11,12,13,14];
-  arrayData = [1,2,3,4,5,6,7,8,9,10,11,12,13,14];
-  arrayData3 = [1,2,3,4,5,6];
+  dates = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+  arrayData = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0];
+  arrayData3 = [0,0,0,0,0,0];
 
 
   getHistoryAndForecastByDayForAllDevices() {
     this.deviceService.GetHistoryAndForecastByDayForAllUserDevices(this.id,"week").subscribe(data => {
+        this.loader = false;
         this.arrayData = data.dates; //.slice(0, 7).concat(data.dates.slice(8));
         this.dates = this.arrayData;
         this.loader = false;
@@ -263,12 +264,15 @@ export class UserDSOComponent implements OnInit{
         }
 
 
+      },
+      (error: any) => {
+        this.loader = false;
       });
   }
 
-  HistoryConM:any  = [12, 19, 3, 5, 2, 6, 5, 0,0,0,0, 0, 0, 0];
-  HistoryProM:any  = [12, 19, 3, 5, 2, 6, 5, 0,0,0,0, 0, 0, 0];
-  HistoryStockM:any  = [12, 19, 3, 5, 2, 6, 5, 0,0,0,0, 0, 0, 0];
+  HistoryConM:any  = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+  HistoryProM:any  = [ 0, 0, 0, 0, 0, 0, 0, 0,0,0,0, 0, 0, 0];
+  HistoryStockM:any  = [ 0, 0, 0, 0, 0, 0, 0, 0,0,0,0, 0, 0, 0];
 
   arrayDataM = [];
 
@@ -294,9 +298,9 @@ export class UserDSOComponent implements OnInit{
     });
   }
 
-  HistoryConY:any  = [12, 19, 3, 5, 2, 6, 5, 0,0,0,0, 0, 0, 0];
-  HistoryProY:any  = [12, 19, 3, 5, 2, 6, 5, 0,0,0,0, 0, 0, 0];
-  HistoryStockY:any  = [12, 19, 3, 5, 2, 6, 5, 0,0,0,0, 0, 0, 0];
+  HistoryConY:any  = [ 0, 0, 0, 0, 0, 0, 0, 0,0,0,0, 0, 0, 0];
+  HistoryProY:any  = [ 0, 0, 0, 0, 0, 0, 0, 0,0,0,0, 0, 0, 0];
+  HistoryStockY:any  = [ 0, 0, 0, 0, 0, 0, 0, 0,0,0,0, 0, 0, 0];
 
   arrayDataY:any = [1,2,3,4,5,6,7,8,9,10,11,12,13,14];
 

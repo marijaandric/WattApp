@@ -4,6 +4,17 @@
   min-height: 100vh;
 }
 
+.slika{
+  margin-left:1.8%; 
+  margin-top:0px;
+  border-radius: 20px;
+  float:right;
+  height: 300px; 
+  width: 68.2%;
+  background-image: url('/assets/images/application-images/blue.jpg');
+  background-size: cover;
+}
+
 .hello {
   position:relative;
   position: relative;
@@ -140,6 +151,14 @@ display: inline;
 width: 78%;
 }
 
+@media only screen and (max-width: 1482px) {
+  .slika{
+    margin-right: 0;
+    width: 60%;
+    margin-left: 70px;
+  }
+}
+
 @media only screen and (max-width: 1126px) {
 .prviDeo{
   width: 100%;
@@ -150,6 +169,11 @@ width: 78%;
 
 .vreme{
   margin: 0;
+}
+.slika{
+  width: 52%;
+  margin-left: 150px;
+  margin-right: 0;
 }
 }
 
@@ -167,10 +191,15 @@ width: 78%;
     width:100%;
   }
   .vreme {
-    width:90%;
+    width:100%;
     margin:auto;
   }
 
+  .slika{
+    width: 46%;
+    margin-left: 150px;
+    margin-right: 0;
+  }
 }
 
 @media only screen and (max-width: 796px) {

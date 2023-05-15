@@ -20,17 +20,17 @@
     </ul>
     </li>
     <li>
-    <div class="iocn-link" *ngIf="isAdmin()">
-        <a routerLink="/users">
+    <div class="iocn-link">
+        <a href="users">
         <i class="fa-solid fa-users"></i>
         <span class="link_name">Users</span>
         </a>
         <div class="round"><i class="fa-solid fa-caret-down arrow" [ngClass]="{'arrow2' : !isSubMenuShown}" id="UsersDrpId" (click)="showSubMenus()"></i></div>
     </div>
     <ul  class="sub-menu nopadding">
-        <li><a class="link_name" routerLink="/users">Users</a></li>
-        <li *ngIf="!isSubMenuShown"><a routerLink="/users/prosumers">Prosumers</a></li>
-        <li *ngIf="!isSubMenuShown"><a routerLink="/users/operators">Operators</a></li>
+        <li><a class="link_name" href="users">Users</a></li>
+        <li *ngIf="!isSubMenuShown"><a href="users/prosumers">Prosumers</a></li>
+        <li *ngIf="!isSubMenuShown"><a href="users/operators">Operators</a></li>
     </ul>
     </li>
     <li *ngIf="isSubMenuShown" class="submenus" [ngClass]="{'marginLeft' : !isSidebarShown}">

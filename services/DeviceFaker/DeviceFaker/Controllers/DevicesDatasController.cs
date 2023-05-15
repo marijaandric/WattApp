@@ -88,7 +88,16 @@ namespace DeviceFaker.Controllers
             return result;
         }
 
+        // #### LISTA MESECNIH SUMA ZA VISE UREDJAJA ####
+        // #### CONSUMER PROSUMER STOCK ####
 
+        [HttpPost("getPowerUsageOfDevicesForMatrixForTimeType/{timeType}")]
+        public List<PowerUsageDTO> GetPowerUsageOfDevicesForMatrixForTimeType([FromBody] List<DevicesIdsDTO> userdevicesids,  string timeType)
+        {
+            
+            var result = _devicesDataService.GetPowerUsageOfDevicesForMatrixForTimeType(userdevicesids, timeType);
+            return result;
+        }
 
         // #### LISTA MESECNE SUMIRANE POTROSNJE UREDJAJA PO ID-u ####
 

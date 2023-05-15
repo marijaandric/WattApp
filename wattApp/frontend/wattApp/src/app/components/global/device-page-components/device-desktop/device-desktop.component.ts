@@ -63,6 +63,7 @@ export class DeviceDesktopComponent implements OnInit {
   roomSelected! : Rooms;
   modelSelected! : Models;
   display3 : Boolean = false;
+  display2 : Boolean = false;
 
   isPhone: boolean = false;
   isTablet: boolean = false;
@@ -98,6 +99,7 @@ export class DeviceDesktopComponent implements OnInit {
   isProducer: boolean = false;
   isStock: boolean = false;
 
+  isChecked!:boolean;
 
   type: City[];
   type2: City[];
@@ -168,6 +170,8 @@ export class DeviceDesktopComponent implements OnInit {
       this.deviceService.getDeviceById(id)
         .subscribe(device => {
           this.device = device;
+          this.setIcons()
+          this.isChecked = this.device.isActive
           if(!this.device){
             this.navigateToDevices();
           }
@@ -211,6 +215,13 @@ export class DeviceDesktopComponent implements OnInit {
       this.navigateToDevices();
     }
 
+    
+
+  }
+
+
+  setIcons()
+  {
     switch(this.device.deviceType) {
       case "Consumer":
         this.isConsumer = true;
@@ -312,7 +323,17 @@ export class DeviceDesktopComponent implements OnInit {
         this.isOther = true;
         break;
     }
+  }
 
+  promijeniStanjeDrugiPrekidac() {
+    if (this.device.allowOperatorControll) {
+      this.device.allowOperatorVisibility = true;
+    }
+  }
+  promijeniStanjeprviPrekidac() {
+    if (!(this.device.allowOperatorVisibility)) {
+      this.device.allowOperatorControll = false;
+    }
   }
 
   navigateToDevices(): void {
@@ -326,6 +347,7 @@ export class DeviceDesktopComponent implements OnInit {
   showDialog(){
     this.display3 = !this.display3 ;
   }
+  
 
   async handleVisibilitySwitchChange(){
     await lastValueFrom(this.deviceService.updateDevice(this.device));
@@ -957,6 +979,17 @@ theDay = "On the day: ";
       // console.log(this.average);
 
   });
+}
+
+showDialog2(){
+  this.isChecked = !this.isChecked
+  this.display2 = !this.display2;
+}
+async handleRunningSwitchChange2(){
+  this.isChecked = !this.isChecked // za alert izbrisati ovo
+  this.device.isActive = this.isChecked 
+  await lastValueFrom(this.deviceService.updateDevice(this.device));
+  this.display2 = false; // za alert izbrisati ovo
 }
 
 }

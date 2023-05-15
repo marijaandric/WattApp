@@ -12,32 +12,23 @@ export class TabMenuUsersComponent implements OnInit{
   rola! : string;
   constructor(private router: Router, private userService:UserService) {}
   ngOnInit(): void {
-    this.isAdmin();
+    this.role();
   }
 
   goToAboutPage() {
     this.router.navigate(['/prosumerhome']);
   }
 
-  isAdmin()
+  role()
   {
     const token = localStorage.getItem('token')
     if(token)
     {
       this.rola = this.userService.getUserRoleFromToken(token)
-      if(this.rola === "admin")
-      {
-        return true;
-      }
-      else if(this.rola === "superAdmin")
-      {
-        return true;
-      }
-      else{
-        return false;
-      }
+      return this.rola;
     }
-    return false;
+    return null;
     
   }
+
 }

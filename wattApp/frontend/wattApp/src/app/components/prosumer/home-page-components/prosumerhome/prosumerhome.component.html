@@ -26,13 +26,25 @@
     flex-direction: row;
     flex-wrap: wrap;">
     <div class="crsl" style="width: 30%;">
-        <p-carousel [value] = "devices" [circular]="false" [numScroll]="1">
+        <p-carousel *ngIf="devices[0].deviceName != 'default'" [value] = "devices" [circular]="false" [numScroll]="1">
           <ng-template let-device pTemplate="device">
               <h6 style="text-align: center;">The biggest {{device.deviceType}}</h6>
-              <div *ngIf ="device.deviceName != 'device'">
-              <app-device-card [device]="device"></app-device-card>
+              <div *ngIf ="device.deviceName != 'default'">
+              <app-device-card [device]="device" [devices]="devices"></app-device-card>
               </div>
-              <div *ngIf ="device.deviceName == 'device'">
+              <div *ngIf ="device.deviceName == 'default'">
+                <div style="cursor: pointer;margin-top:40px" (click)="showDisplay()">
+                <div style="width:92%;height:170px;margin:auto;background-color: #1b1b1b;border-radius: 20px;box-shadow: 5px 5px 15px black;text-align: center;">
+                <div style="padding: 20px;padding-top:70px"><i class="fa fa-plus" aria-hidden="true"></i>Add {{device.deviceType}} device</div>
+                </div>
+                </div>
+              </div>
+          </ng-template>
+        </p-carousel>
+        <p-carousel *ngIf="devices[0].deviceName == 'default'" [value] = "devices" [circular]="false" [numScroll]="1">
+          <ng-template let-device pTemplate="device">
+              <h6 style="text-align: center;">The biggest {{device.deviceType}}</h6>
+              <div *ngIf ="device.deviceName == 'default'">
                 <div style="cursor: pointer;margin-top:40px" (click)="showDisplay()">
                 <div style="width:92%;height:170px;margin:auto;background-color: #1b1b1b;border-radius: 20px;box-shadow: 5px 5px 15px black;text-align: center;">
                 <div style="padding: 20px;padding-top:70px"><i class="fa fa-plus" aria-hidden="true"></i>Add {{device.deviceType}} device</div>
@@ -43,7 +55,7 @@
         </p-carousel>
         </div>
         
-        <div class="slika" style="margin-left:1.8%; margin-top:0px;border-radius: 20px;float:right;height: 300px; width: 68.2%;background-image: url('/assets/images/application-images/blue.jpg');background-size: cover;">
+        <div class="slika" style="">
           
         </div>
     </div>

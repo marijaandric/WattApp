@@ -13,6 +13,11 @@
     border-radius: 20px;
 }
 
+.full-width {
+    flex-basis: 100%;
+    max-width: 100%;
+  }
+
 .promotions {
     width:100%;
 }
@@ -43,5 +48,9 @@
     }
     .switch {
         margin-bottom: 20px;
+    }
+    .image-div {
+        height:150px;
+        background-size: cover;
     }
 }

@@ -7,17 +7,17 @@
   <div class="mt-3">
         <h3 style="margin-bottom: 30px;">{{ userInfo?.firstName }} {{ userInfo?.lastName }}</h3>
         <h3 style="margin-bottom: 30px;"></h3>
-        <div class="flexRow">
-          <button label="Edit" (click)="showDialog()">Edit</button>
+        <div class="flexRow button-div" style="justify-content:center">
+          <p-button label="Edit" (click)="showDialog()"></p-button>
          
         </div>
 
         <!--Dialog-->
-        <p-dialog header="Title"  [transitionOptions]="'3ms'" 
+        <p-dialog header="Title" [style]="{width:'40%'}"  [transitionOptions]="'3ms'" 
           [draggable]="false" [keepInViewport]="true" [resizable]="false" 
           [blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true" 
-          [modal]="true" [(visible)]="display" [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
-          [closable]="true" >
+          [modal]="true" [(visible)]="display" [breakpoints]="{'1360px': '85vw', '740px': '100vw'}"
+          [closable]="true">
           <ng-template pTemplate="header" class="header-dialog">
             <span>Manage user</span>
           </ng-template>
@@ -28,20 +28,21 @@
             <div class="p-inputgroup p-inputtext-lg p-input-filled">
               <div class="half">
                 <!--<label for="label-input" >Name</label>-->
-                <input formControlName="firstName" name="firstName" appendTo="body" type="text" pInputText  class="p-inputtext-lg"  placeholder="NAME"> 
+                <input formControlName="firstName" name="firstName" appendTo="body" type="text"  class="p-inputtext-lg"  placeholder="NAME"> 
                 <!--<label for="label-input" >Last name</label>-->
-                <input formControlName="lastName" name="lastName"  appendTo="body" type="text" pInputText  class="p-inputtext-lg"  placeholder="LASTNAME" > 
+                <input formControlName="lastName" name="lastName"  appendTo="body" type="text" class="p-inputtext-lg"  placeholder="LASTNAME" > 
                 <!--<label for="label-input" >Username</label>-->
-                <input formControlName="username" name="username"  appendTo="body" type="text" pInputText  class="p-inputtext-lg"  placeholder="USERNAME"> 
+                <input formControlName="username" name="username"  appendTo="body" type="text"   class="p-inputtext-lg"  placeholder="USERNAME"> 
+                <!--<label for="label-input" >E-mail</label>-->
+                <input formControlName="email" name="email" appendTo="body" type="text"   class="p-inputtext-lg"  placeholder="EMAIL" > 
+                <!--<label for="label-input" >Phone number</label>-->
+                <input formControlName="phoneNumber" name="phone" appendTo="body" type="text"  class="p-inputtext-lg"  placeholder="PHONE NUMBER"> 
               </div>
             
               <div class="half">
-                <!--<label for="label-input" >E-mail</label>-->
-                <input formControlName="email" name="email" appendTo="body" type="text" pInputText  class="p-inputtext-lg"  placeholder="EMAIL" > 
-                <!--<label for="label-input" >Phone number</label>-->
-                <input formControlName="phoneNumber" name="phone" appendTo="body" type="text" pInputText  class="p-inputtext-lg"  placeholder="PHONE NUMBER"> 
                 <!--<label for="label-input" >Address</label>-->
-                <input formControlName="address" name="address" appendTo="body" type="text" pInputText  class="p-inputtext-lg"  placeholder="ADDRESS">     
+                <input formControlName="address" name="address" appendTo="body" type="text"  class="p-inputtext-lg"  placeholder="ADDRESS" (change)="onAddressChange($event)"> 
+                <app-map-for-user-profile [address] = "value" (messageEvent)="receiveMessage($event)"></app-map-for-user-profile>    
               </div>
             </div> 
           </form>
@@ -49,12 +50,12 @@
           </ng-template>
           
           <ng-template pTemplate="footer" >
-            <button (click)="edit()" type="button" class="footer-button" icon="pi pi-info-circle" label="Save">Save</button>
-          </ng-template>
+            <div class="button-div"><p-button (click)="edit()" type="button" label="Save"></p-button>
+            </div>
+            </ng-template>
         </p-dialog>
     </div>
 </div>
-<hr class="my-4">
 <ul class="list-group list-group-flush">
     <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap" >
         <h6 class="mb-0">Full Name</h6>
@@ -66,7 +67,7 @@
     </li>
     <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
         <h6 class="mb-0">Email</h6>
-        <span class="text-secondary">{{ userInfo?.email }}</span>
+        <span class="text-secondary" >{{ userInfo?.email }}</span>
     </li>
     <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
         <h6 class="mb-0">Phone</h6>
@@ -96,13 +97,14 @@
 
 <ng-template pTemplate="center">
   <div class="flexRow">
-    <p-fileUpload name="file" styleClass="margin-left__16px"
+    <div class="button-div" style="margin-top:5px;color:black;"><p-fileUpload name="file" styleClass="margin-left__16px"
       mode="basic" chooseLabel="Upload"
       [url]="userImageUrlEndpoint" (onUpload)="onImageChange($event)"
       accept="image/*" [auto]="true" [maxFileSize]="2000000">
-    </p-fileUpload>
-    <button (click)="deleteImage()" class="margin-left__16px remove-btn" style="position: absolute;right:10px;"><i class="fa-solid fa-minus"></i> Remove</button>
-  </div>
+    </p-fileUpload></div>
+    <div class="remove-or-no" style="margin-top:5px;"><p-button (click)="deleteImage()" icon="fa-solid fa-minus" class="margin-left__16px " style="float:right" label="Remove"></p-button>
+    </div>
+    </div>
 </ng-template>
 
 </p-dialog>

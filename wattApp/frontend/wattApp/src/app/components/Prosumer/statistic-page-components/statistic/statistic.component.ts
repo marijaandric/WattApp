@@ -147,12 +147,12 @@ export class StatisticComponent  implements OnInit {
 
   
   
-  HistoryCon3:any  = [12, 19, 3, 5, 2, 6];
-  ForecastCon3:any = [12, 19, 3, 5, 2, 6];
-  HistoryPro3:any  = [12, 19, 3, 5, 2, 6];
-  ForecastPro3:any = [12, 19, 3, 5, 2, 6];
-  HistoryStock3:any  = [12, 19, 3, 5, 2, 6];
-  ForecastStock3:any  = [12, 19, 3, 5, 2, 6];
+  HistoryCon3:any  = [0,0,0,0,0,0];
+  ForecastCon3:any = [0,0,0,0,0,0];
+  HistoryPro3:any  = [0,0,0,0,0,0];
+  ForecastPro3:any = [0,0,0,0,0,0];
+  HistoryStock3:any  = [0,0,0,0,0,0];
+  ForecastStock3:any  = [0,0,0,0,0,0];
 
   dates = [1,2,3,4,5,6,7,8,9,10,11,12,13,14];
   arrayData3 = [1,2,3,4,5,6];
@@ -263,9 +263,9 @@ export class StatisticComponent  implements OnInit {
       });
   }
 
-  HistoryConM:any  = [12, 19, 3, 5, 2, 6, 5, 0,0,0,0, 0, 0, 0];
-  HistoryProM:any  = [12, 19, 3, 5, 2, 6, 5, 0,0,0,0, 0, 0, 0];
-  HistoryStockM:any  = [12, 19, 3, 5, 2, 6, 5, 0,0,0,0, 0, 0, 0];
+  HistoryConM:any  = [0,0,0,0,0,0,0,0,0,0,0,0];
+  HistoryProM:any  =[0,0,0,0,0,0,0,0,0,0,0,0];
+  HistoryStockM:any  = [0,0,0,0,0,0,0,0,0,0,0,0];
 
   arrayDataM = [];
 
@@ -291,11 +291,11 @@ export class StatisticComponent  implements OnInit {
     });
   }
 
-  HistoryConY:any  = [12, 19, 3, 5, 2, 6, 5, 0,0,0,0, 0, 0, 0];
-  HistoryProY:any  = [12, 19, 3, 5, 2, 6, 5, 0,0,0,0, 0, 0, 0];
-  HistoryStockY:any  = [12, 19, 3, 5, 2, 6, 5, 0,0,0,0, 0, 0, 0];
+  HistoryConY:any  = [0,0,0,0,0,0,0,0,0,0,0,0];
+  HistoryProY:any  = [0,0,0,0,0,0,0,0,0,0,0,0];
+  HistoryStockY:any  = [0,0,0,0,0,0,0,0,0,0,0,0];
 
-  arrayDataY:any = [1,2,3,4,5,6,7,8,9,10,11,12,13,14];
+  arrayDataY:any = [];
 
   getHistoryAndForecastByDayForAllDevicesByYear() {
     this.deviceService.GetHistoryAndForecastByDayForAllDevices("year").subscribe(data => { 

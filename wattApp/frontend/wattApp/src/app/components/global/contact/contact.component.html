@@ -1,47 +1,52 @@
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-<body>
-	<section class="login">
-		<app-navbar ></app-navbar>
-		<div class="login_box">
-			<div class="left">
-				<div class="contact">
-					<form action="">
-						<h3>Send us a message</h3>
-						<input type="text" placeholder="Name" name="Name">
-						<input type="text" placeholder="Email" name="Email">
-                        <input type="text" placeholder="Subject" name="subject">
-                        <input type="text" placeholder="Message" name="message">
-						<button class="submit"><span>Send Message</span></button>
-					</form>
+<standard-template>
+    <app-title-bar>
+      <h3 class="title">Conatct us</h3>
+    </app-title-bar>
+  
+    <app-center-bar>
+			<section class="login">
+				<div class="login_box">
+					<div class="left">
+						<div class="contact">
+							<form action="">
+								<h3>Send us a message</h3>
+								<input type="text" placeholder="Name" name="Name">
+								<input type="text" placeholder="Email" name="Email">
+								<input type="text" placeholder="Subject" name="subject">
+								<input type="text" placeholder="Message" name="message">
+								<button class="submit"><span>Send Message</span></button>
+							</form>
+						</div>
+					</div>
+					<div class="right">
+						
+					<p class="text2">Contact us</p>	
+						<p class="text3">We're open for any suggestion or just to have a chat</p>	
+						<div class="info">
+							<i class="fa-sharp fa-solid fa-location-dot"></i>
+							<p class="bold">Address:</p>
+							<p class="naziv">Radoja Domanovića 12</p>
+						</div>
+						<div class="info">
+							<i class="fa-solid fa-phone"></i>
+							<p class="bold">Phone:</p>
+							<p class="naziv">+381 600102030</p>
+						</div>
+						<div class="info">
+							<i class="fa-solid fa-envelope"></i>
+							<p class="bold">Email:</p>
+							<p class="naziv">contact@codesparkyenergy.com</p>
+						</div>
+						<div class="info">
+							<i class="fa-solid fa-earth-americas"></i>
+							<p class="bold">Website:</p>
+							<p class="naziv">codesparkyenergy.com</p>
+						</div>
+					</div>
 				</div>
-			</div>
-			<div class="right">
-				
-			<p class="text2">Contact us</p>	
-				<p class="text3">We're open for any suggestion or just to have a chat</p>	
-				<div class="info">
-					<i class="fa-sharp fa-solid fa-location-dot"></i>
-					<p class="bold">Address:</p>
-					<p class="naziv">Radoja Domanovića 12</p>
-				</div>
-				<div class="info">
-					<i class="fa-solid fa-phone"></i>
-					<p class="bold">Phone:</p>
-					<p class="naziv">+381 600102030</p>
-				</div>
-				<div class="info">
-					<i class="fa-solid fa-envelope"></i>
-					<p class="bold">Email:</p>
-					<p class="naziv">contact@codesparkyenergy.com</p>
-				</div>
-				<div class="info">
-					<i class="fa-solid fa-earth-americas"></i>
-					<p class="bold">Website:</p>
-					<p class="naziv">codesparkyenergy.com</p>
-				</div>
-			</div>
-		</div>
-	</section>
-</body>
+			</section>
+
+    </app-center-bar>
+    
+  </standard-template>

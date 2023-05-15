@@ -145,19 +145,19 @@ const LegendControl = L.Control.extend({
     // Add the legend HTML content here
     div.innerHTML = `
     <div style='
-    background: #1e1e1e ;; box-shadow: 2px 2px 10px black;border-radius: 20px;padding:10px'>
-      <h5 style=font-weight:bold; font-size:15px;>Legend</h5>
+    background: white ;color:black; box-shadow: 2px 2px 10px #BBB;border-radius: 20px;padding:10px'>
+      <h5 style="font-weight:bold; font-size:15px;color:black;">Legend</h5>
       <div>
         <span><img style='width:20px;height:auto;padding-top:10px;padding-bottom:10px;' src='/assets/icons/images/marker-red.png'>  </span>
-        <span>More than 200kwh per month</span>
+        <span style="color:black;">More than 200kwh per month</span>
       </div>
       <div>
       <span><img style='width:20px;height:auto;padding-bottom:10px;' src='/assets/icons/images/marker-pink.png'>  </span>
-        <span>Average prosumer</span>
+        <span style="color:black;">Average prosumer</span>
       </div>
       <div>
       <span><img style='width:20px;height:auto;padding-bottom:10px;' src='/assets/icons/images/marker-green.png'>  </span>
-      <span>Less than 100kwh per month</span>
+      <span style="color:black;">Less than 100kwh per month</span>
       </div>
       </div>
     `;

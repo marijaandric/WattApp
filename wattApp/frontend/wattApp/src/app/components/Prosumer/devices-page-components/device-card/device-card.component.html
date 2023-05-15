@@ -1,4 +1,4 @@
-<div id="device-card" class="device-card">
+<div id="device-card" class="device-card" >
     <div class="flexRow">
         <a [routerLink]="['/device', device.id]"  style="display:flex;">
 
@@ -48,7 +48,7 @@
         <span *ngIf="device.deviceType === 'Consumer'"  >Power consumed:</span>
         <span *ngIf="device.deviceType === 'Producer'"  >Power produced:</span>
         <span *ngIf="device.deviceType !== 'Consumer' && device.deviceType !== 'Producer'"  class="bold-text">Power stored:</span>
-        <span class="margin-left__auto color-gray">{{ device.power }} kW/h</span>
+        <span class="margin-left__auto color-gray">{{ device.power }} kWh</span>
     </div>
 </div>
 
@@ -57,16 +57,17 @@
 [draggable]="true" [keepInViewport]="true" [resizable]="false" 
 [blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true" 
 [modal]="true" [(visible)]="display" [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
-[closable]="true" >
+[closable]="true" appendTo="body">
 <ng-template pTemplate="header" class="header-dialog">
   <span >Are you sure you want to change the device activity?</span>
 </ng-template>
 
-<ng-template pTemplate="center">
-  <div class="flexRow">
-    <button class="margin-left__16px edit-btn"  (click)="handleRunningSwitchChange()"> Yes</button>
-    <button class="margin-left__16px remove-btn"  (click)="display=false"> No</button>
-  </div>
+<ng-template pTemplate="footer">
+  <div class="flexRow" style="margin-top:20px;">
+    <div class="button-div" style="padding-right: 20px;"><p-button  (click)="handleRunningSwitchChange()" label="Yes"> </p-button>
+    </div>
+    <div class="remove-or-no"><p-button  (click)="display=false" label="No"></p-button>
+  </div></div>
 </ng-template>
 
 </p-dialog>
