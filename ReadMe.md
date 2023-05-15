@@ -2,11 +2,11 @@
 - > http://softeng.pmf.kg.ac.rs:10011/
 
 ## O nama
-CodeSpark Energy je tim stručnjaka koji se bavi razvojem inovativne aplikacije čiji je svrha praćenje potrošnje, proizvodnje i skladištenje električne energije. Ova aplikacija je namijenjena različitim vrstama korisnika: DSO korisnicima i prosumerima.
+CodeSpark Energy je tim stručnjaka koji se bavi razvojem inovativne aplikacije čiji je svrha praćenje potrošnje, proizvodnje i skladištenje električne energije. Ova aplikacija je namenjena različitim vrstama korisnika: DSO korisnicima i prosumerima.
 
 DSO korisnici koriste aplikaciju kako bi imali uvid u stanje elektroenergetskog sistema u realnom vremenu. Mogu pratiti potrošnju i proizvodnju električne energije, skladištenje, upravljati distribucijskom mrežom i slično. Aplikacija pruža korisnicima alate za praćenje i analizu podataka i upozorava ih na potencijalne probleme u elektroenergetskom sistemu.
 
-Prosumeri su korisnici koji troše električnu energiju, ali mogu i da je proiyvode iz obnovljivih izvora i skladište je u baterijama. Oni koriste aplikaciju kako bi pratili svoju proizvodnju i potrošnju i na taj način znali kako i kada će upotrebiti svoju uskladištenu energiju. Aplikacija pruža prosumerima uvid u stanje njihovih baterija i omogućava im da optimiyuju svoju proizvodnju i potrošnju električne energije. Pored toga oni su u mogućnosti da upravljaju svojim uređajima čak i kada se nalaze izvan svojih domova, što im pruža sigurnost i kontrolu nad svojom kućom.
+Prosumeri su korisnici koji troše električnu energiju, ali mogu i da je proizvode iz obnovljivih izvora i skladište je u baterijama. Oni koriste aplikaciju kako bi pratili svoju proizvodnju i potrošnju i na taj način znali kako i kada će upotrebiti svoju uskladištenu energiju. Aplikacija pruža prosumerima uvid u stanje njihovih baterija i omogućava im da optimiyuju svoju proizvodnju i potrošnju električne energije. Pored toga oni su u mogućnosti da upravljaju svojim uređajima čak i kada se nalaze izvan svojih domova, što im pruža sigurnost i kontrolu nad svojom kućom.
 
 Ukratko, aplikacija koju razvija naš tim omogućava DSO korisnicima i prosumerima da bolje upravljaju elektroenergetskim sistemom, praćenjem i analizom podataka o proizvodnji i potrošnji električne energije. Oba tipa korisnika dobijaju alate za optimizaciju svoje potrošnje i proizvodnje električne energije, što im omogućava da smanje troškove i budu ekološki svesniji.
 
