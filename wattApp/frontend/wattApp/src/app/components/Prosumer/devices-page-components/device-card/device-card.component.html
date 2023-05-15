@@ -62,11 +62,12 @@
   <span >Are you sure you want to change the device activity?</span>
 </ng-template>
 
-<ng-template pTemplate="center">
-  <div class="flexRow">
-    <button class="margin-left__16px edit-btn"  (click)="handleRunningSwitchChange()"> Yes</button>
-    <button class="margin-left__16px remove-btn"  (click)="display=false"> No</button>
-  </div>
+<ng-template pTemplate="footer">
+  <div class="flexRow" style="margin-top:20px;">
+    <div class="button-div"><p-button  (click)="handleRunningSwitchChange()" label="Yes"> </p-button>
+    </div>
+    <div class="remove-or-no"><p-button  (click)="display=false" label="No"></p-button>
+  </div></div>
 </ng-template>
 
 </p-dialog>
