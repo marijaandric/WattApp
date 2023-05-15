@@ -3,8 +3,13 @@
     <div class="mt-3">
     <h3 style="margin-bottom: 30px;">{{user?.firstName}} {{user?.lastName}}</h3>
     <div class="flex-column">
-        <!-- <button (click)="showDialog()" label="Edit" style="float:left"><i class="fa-solid fa-pen"  style="margin-right:16px;" (click)="showDialog()" ></i>Edit</button> -->
-        <button (click)="showDialog()" label="Remove" class="remove-btn margin-left__16px"><i class="fa-solid fa-minus" style="margin-right:16px;"></i>Delete user</button>
+        <!--<div class="button-div">
+          <p-button label="Edit" style="float:left" icon="fa-solid fa-pen" (click)="showDialog()"></p-button>
+        </div>-->
+        <div class="remove-or-no" style="position:relative;display:flex;justify-content:center">
+          <p-button  icon="fa-solid fa-minus" label="Remove"></p-button>
+        </div>
+             
     </div>
 </div>
 
@@ -67,7 +72,9 @@
       </ng-template>
       
       <ng-template pTemplate="footer" style="min-height:100px;" >
-        <button type="button" class="footer-button" icon="pi pi-info-circle" label="Show">Save</button>
+        <div class="button-div">
+          <p-button type="button" label="Save"></p-button>
+        </div>
   
       </ng-template>
     </p-dialog> -->

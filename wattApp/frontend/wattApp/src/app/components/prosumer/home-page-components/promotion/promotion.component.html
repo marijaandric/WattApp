@@ -12,9 +12,9 @@
         {{Datum}}
     </div>
 
-    <div style="display:flex; width:calc(100% - 100px);margin-left:50px;  height:100%; position:relative">
-            <div *ngIf="permission" (click)="showDialog2()" class="delete"> Delete</div><div (click)="showDialog()" class="edit" *ngIf="permission">Edit </div>
-    </div>
+    <div class="button-div"><p-button (click)="showDialog()"  *ngIf="permission"label="Edit"></p-button></div>
+             <div class="remove-or-no"> <p-button *ngIf="permission" (click)="showDialog2()" label="Delete"></p-button></div>
+           
 </div>
 <!-- (click)="DeleteNews(ID) -->
 <!--

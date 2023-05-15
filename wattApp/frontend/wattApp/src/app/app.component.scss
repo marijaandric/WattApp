@@ -47,6 +47,9 @@
       color:#1e1e1e !important;
 
     }
+    .p-button-icon {
+      color:#1e1e1e !important;
+    }
   }
 
   .remove-or-no .p-button {
@@ -55,7 +58,7 @@
     display: flex;
     border:none!important;
     font-size:16px!important;
-    background: #eb4886;
+    background: transparent;
     padding:5px 10px;
     min-width:80px!important;
     border:none !important;
@@ -63,22 +66,23 @@
     outline-offset: 2px;
     margin-left:10px;
     .p-button-label {
-      color:#1e1e1e !important;
+      color:#eb4886  !important;
 
-    }
-    .p-button-icon {
-      color:#1e1e1e !important;
+    } .p-button-icon {
+      color:#eb4886  !important;
 
     }
   }
 
   .remove-or-no .p-button:hover {
-    background: transparent !important;
+    
+    background: #eb4886 !important;
     .p-button-label {
-      color:#eb4886  !important;
+      color:#1e1e1e !important;
 
-    } .p-button-icon {
-      color:#eb4886  !important;
+    }
+    .p-button-icon {
+      color:#1e1e1e !important;
 
     }
   }
@@ -92,6 +96,9 @@
     .pi {
       color:#46c5f1 !important;
 
+    }
+    .p-button-icon {
+      color:#46c5f1 !important;
     }
 
   }
@@ -203,6 +210,9 @@
       span {
         margin:auto;
         padding-left: 5%;
+      }
+      .pi {
+        color:white !important;
       }
     }
 

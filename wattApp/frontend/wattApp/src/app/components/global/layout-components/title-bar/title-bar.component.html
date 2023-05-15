@@ -101,9 +101,9 @@
       <div class="p-inputgroup p-inputtext-lg p-input-filled">
         <div class="half">
           <input formControlName="title" name="name" appendTo="body" type="text" class="p-inputtext-lg" placeholder="TITLE"> 
-          <textarea id="text" formControlName="content" name="name" appendTo="body" type="text" class="p-inputtext-lg" style="width:100%;height: 250px;"></textarea>
+          <textarea id="text" formControlName="content" name="name" appendTo="body" type="text" class="p-inputtext-lg" style="width:100%;height: 250px;background:#121212 !important;"></textarea>
           <div style="display: flex;flex-direction: column; align-items: center;margin-right: 4%;">
-            <span style="font-size: 19px;color:grey">Priority:</span>
+            <span style="font-size: 19px;color:gray">Priority:</span>
             <div style="display: inline-flex;">
               <input formControlName="priority" id="regular" type="radio"  value="Regular">
               <label for="regular" style="margin-top: 15px; margin-left: 5px;">Regular</label>
@@ -119,9 +119,9 @@
       
     </ng-template>
     
-    <ng-template pTemplate="footer" style="min-height:100px;" >
-      <button type="button" class="footer-button" icon="pi pi-info-circle" label="Show" (click)="addNews()">Save</button>
-
+    <ng-template pTemplate="footer" style="min-height:100px" >
+      <div class="button-div"><p-button type="button"  label="Save" (click)="addNews()"></p-button>
+      </div>
     </ng-template>
   </p-dialog>
 

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-faq-page-componenets',
@@ -26,6 +27,19 @@ export class FaqPageComponenetsComponent {
     } else {
       this.activeTab = index;
     }
+  }
+  constructor(
+    private toast: NgToastService,
+    ) {
+  }
+
+  SendMessage() {
+    this.toast.success({detail:"SUCCESS",summary:"You have successfully send message",duration:5000});
+     
+      setTimeout(() => {
+        location.reload();
+      }, 1500);
+
   }
 
 }
