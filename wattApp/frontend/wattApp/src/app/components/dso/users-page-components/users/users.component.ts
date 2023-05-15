@@ -1,13 +1,9 @@
 import { Component, OnChanges, OnInit, SimpleChanges, ViewChild, ViewEncapsulation  } from '@angular/core';
 import { UserDTO } from '../../../../dtos/UserDTO';
 import { UserService } from '../../../../services/user/user.service';
-import { DeviceService } from 'src/app/services/device/device.service';
 import { url } from 'src/app/app.module';
-
-interface City {
-  name: string,
-  code: string
-}
+import { APIService } from 'src/app/services/api/api.service';
+import { PaginationService } from 'src/app/services/pagination/pagination.service';
 
 @Component({
   selector: 'users',
@@ -18,25 +14,32 @@ interface City {
 export class UsersComponent implements OnInit{
   baseUrl = url + "/api/Images/user/";
   users: UserDTO[] = [];
-  type: City[];
-  selectedType!: City;
-  currentPage :any = 0;
-  rowsPerPage :any = 2;
+  allUsersCount!: number;
   loader=true;
+  pageSize: number = 10; // default page size
+  currentPage: number = 1; // default current page
+  numberOFAllUsers: any;
+  numberOFProsumer: any;
+  numberOFOperator: any;
 
-  constructor(private userService: UserService, private deviceService : DeviceService) {
-    this.type = [
-      {name: 'Consumption', code: '1'},
-      {name: 'Production', code: '2'},
-      {name: 'Stock', code: '3'},
-      {name: 'All', code: '4'},
-  ];
- }
+  constructor(private userService: UserService, 
+              private aPIService: APIService,
+              private paginationService: PaginationService) { }
 
   ngOnInit() {
-    //this.userService.getAllUsers().subscribe((result: UserDTO[]) => (this.users = result));
-    this.userService.getUsersPaginationByRole("prosumer",this.currentPage,this.rowsPerPage).subscribe((result: UserDTO[])=>(this.loader=false,this.users = result))
+    this.getNumber();
+    this.paginationService.getCountData("/api/UserPagination/users/pagination/count").subscribe(result => (this.loader = false, this.allUsersCount = result));
+    this.refreshAllUsers();
+  }
 
+  onPageChange(event: any) {
+    this.pageSize = this.pageSize; // implement changing of page size
+    this.currentPage = event.first/this.pageSize + 1; // PrimeNG uses zero-based indexing, so we add 1 to get the current page number
+    this.refreshAllUsers();
+  }
+
+  private refreshAllUsers(){
+    this.paginationService.getData("/api/UserPagination/users/pagination/pageNo="+ this.currentPage + "&pageSize=" + this.pageSize + "&sortOrder=Username").subscribe((result) => (this.users = result));
   }
 
   clear(dtUsers: any) {
@@ -47,5 +50,12 @@ export class UsersComponent implements OnInit{
     dtUsers.filterGlobal(value, 'contains');
   }
 
+  getNumber() {
+    this.aPIService.getNumber().subscribe((response: any) => {
+      this.numberOFAllUsers=response.All;
+      this.numberOFProsumer=response.Prosumer;
+      this.numberOFOperator=response.Other;
+    });
+  }
 
 }

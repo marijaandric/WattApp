@@ -1,7 +1,7 @@
-:host::ng-deep app-tab-menu .boja2 {
-    color: #885ec0;
-  }
-  
-  :host::ng-deep app-tab-menu .fa-plug-circle-bolt {
-    color: #885ec0;
-  }
+:host::ng-deep app-tab-menu .tab.active1 .tab-icon i {
+  color: #46c5f1;
+}
+
+:host::ng-deep app-tab-menu .tab.active1 .tab-title {
+  color: #46c5f1 !important;
+}

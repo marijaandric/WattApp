@@ -1,89 +1,60 @@
-:host {
-    height: 100%;
-    display: flex;
-    margin: 0;
-  }
-  
-  nav {
-    position: relative;
-    display: block;
-    padding: 10px;
-    margin-left: -5%;
-    margin-top: -2%;
-    
-  }
-  .color
-  {
-    text-align: center;
-    justify-content: center;
-    
-  }
-  
-  nav a {
-    position: relative;
-    text-decoration: none;
-    color: #fff;
-    font-Family: 'Montserrat';
-    font-size: 12px;
-    text-align: center;
-    font-Family: 'Montserrat';
-    display: inline-block;
-    width: 100px;
-  }
-  
-  nav a b {
-    position: relative;
-    left:10%; 
-    display: inline-block;
-    text-align: center;
-  }
-  
-  nav a i {
-    position: relative;
-    font-size: 20px;
-    left: 10%;
-    margin-bottom: 10px;
-  }
-  .fa-solid {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* centriraj ikonicu i tekst u vertikalnom smeru */
-  }
-  
-  .color:hover{
-    color: #885ec0;
-  }
-  :host.boja{
-    color: white;
-  }
-  :host.boja2{
-    color: white;
-  }
-  :host.boja3{
-    color: white;
-  }
-  :host.boja4{
-    color: white;
-  }
-  
-  :host.fa-bars
-  {
-    color:white;
-  }
-  :host.fa-plug-circle-bolt
-  {
-    color:white;
-  }
-  :host.fa-solar-panel
-  {
-    color:white;
-  }
-  :host.fa-battery-half
-  {
-    color:white;
-  }
+.tab-menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 
-@media only screen and (max-width: 600px) {
+}
+
+.tab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.tab:hover .tab-icon i {
+  color: #46c5f1;
+}
+
+.tab:hover .tab-title {
+  color: #46c5f1 !important;
+}
+
+
+.tab-icon {
+  font-size: 20px;
+  color: #fff;
+}
+
+.tab-title {
+  font-size: 15px;
+  color: #fff;
+}
+
+:host .tab.active .tab-icon {
+  color: #fff;
+}
+
+:host .tab.active .tab-title {
+  color: #fff;
+} 
+:host .tab.active1 .tab-icon {
+  color: #fff;
+}
+
+:host .tab.active1 .tab-title {
+  color: #fff;
+} 
+:host .tab.active2 .tab-icon {
+  color: #fff;
+}
+
+:host .tab.active2 .tab-title {
+  color: #fff;
+} 
+
+/* @media only screen and (max-width: 600px) {
 
     nav a div b {
         display: none;
@@ -91,9 +62,9 @@
         span{
           display:none;
         }
-}
+} */
 
-@media only screen and (max-width: 500px) {
+/* @media only screen and (max-width: 500px) {
   nav a div b {
       display: none;
       }
@@ -104,4 +75,4 @@
   span{
     display:none;
   }
-}
+} */

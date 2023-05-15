@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using backend.Models;
 using backend.BLL.Interfaces;
 using backend.Models.DTOs;
+using Microsoft.AspNetCore.Http.HttpResults;
 
 namespace backend.Controllers
 {
@@ -193,7 +194,7 @@ namespace backend.Controllers
         }
 
         [HttpGet("chart/{userId}/{type}/{limit}")]
-        public IActionResult GetTableContent(int userId, string type, int limit)
+        public IActionResult GetChartContent(int userId, string type, int limit)
         {
             var result = _context.GetDevicesCountByType(userId, type, limit);
             return Ok(
@@ -204,6 +205,14 @@ namespace backend.Controllers
                     }
 
                 );
+
+        }
+
+        [HttpGet("getChartArea/{deviceType}/{limit}")]
+        public IActionResult GetChartAreaContent(string deviceType, int limit)
+        {
+            var result = _contextDevicesAndData.GetChartAreaContent(deviceType, limit);
+            return Ok(result);
 
         }
 
@@ -225,17 +234,18 @@ namespace backend.Controllers
         [HttpGet("{userId}/{year}/{month}/{day}/{type}/{size}")]
         public IActionResult GetExrtemeDevice(int userId, int year, int month, int day, string type, string size)
         {
+
             ExtremeDeviceDTO result = _contextDevicesAndData.GetExtremeDevice(userId, year, month, day, type, size);
-            if (result == null || result.DeviceName == "")
+            if (result == null || result.Device.DeviceName == "" || result.Device == null)
             {
                 return BadRequest();
             }
             return Ok(
                     new
                     {
-                        DeviceId = result.DeviceID,
-                        DeviceName = result.DeviceName,
-                        AveragePowerUsage = result.Usage
+                        AveragePowerUsage = result.Usage,
+                        Device = result.Device,
+
                     }); ;
         }
 
@@ -253,26 +263,29 @@ namespace backend.Controllers
 
         }
 
-        [HttpGet("getTotalUsageByArea/{area}/{type}/{timeType}")]
-        public IActionResult getTotalUsageByArea(string area, string type, string timeType)
+        [HttpGet("getTotalUsageByArea/{area}/{devicetype}/{timeType}")]
+        public IActionResult getTotalUsageByArea(string area, string devicetype, string timeType)
         {
 
-            var result = _contextDevicesAndData.getTotalUsageByArea(area, type, timeType);
+            var result = _contextDevicesAndData.GetTotalUsageByArea(area, devicetype, timeType);
 
             return Ok(
                 new
                 {
                     Area = area,
-                    Type = type,
+                    Type = devicetype,
                     Usage = result
                 });
         }
 
-        [HttpGet("getExtremeUsageForAreas/{type}/{timeType}/{minmax}")]
-        public IActionResult getExtremeUsageForAreas(string type, string timeType, string minmax)
+        [HttpGet("getExtremeUsageForAreas/{devicetype}/{timeType}/{minmax}")]
+        public IActionResult getExtremeUsageForAreas(string devicetype, string timeType, string minmax)
         {
 
-            var result = _contextDevicesAndData.getExtremeUsageForAreas(type, timeType, minmax);
+            var result = _contextDevicesAndData.GetExtremeUsageForAreas(devicetype, timeType, minmax);
+
+            if (result == null)
+                return BadRequest();
 
             return Ok(
                 new
@@ -282,24 +295,24 @@ namespace backend.Controllers
                 });
         }
 
-        [HttpGet("getHistoryAndForecastByDayForDevice/{deviceid}")]
-        public IActionResult getHistoryAndForecastByDayForDevice(int deviceid)
+        [HttpGet("getHistoryAndForecastByDayForDevice/{deviceid}/{type}")]
+        public IActionResult GetHistoryAndForecastByDayForDevice(int deviceid, string type)
         {
-            var result = _contextDevicesAndData.GetWeekByDayHistoryAndFutureForDevice(deviceid);
+            var result = _contextDevicesAndData.GetHistoryAndForecastByDayForDevice(deviceid, type);
             return Ok(result);
         }
 
-        [HttpGet("getHistoryAndForecastByDayForAllDevices")]
-        public IActionResult getHistoryAndForecastByDayForAllDevices()
+        [HttpGet("getHistoryAndForecastByDayForAllDevices/{type}")]
+        public IActionResult GetHistoryAndForecastByDayForAllDevices(string type)
         {
-            var result = _contextDevicesAndData.GetWeekByDayHistoryAndFutureForAllUserDevicesOrAllDevices(-1);
+            var result = _contextDevicesAndData.GetHistoryAndForecastByDayForAllDevices(-1, type);
             return Ok(result);
         }
 
-        [HttpGet("getHistoryAndForecastByDayForAllUserDevices/{userid}")]
-        public IActionResult getHistoryAndForecastByDayForAllUserDevices(int userid)
+        [HttpGet("getHistoryAndForecastByDayForAllUserDevices/{userid}/{type}")]
+        public IActionResult GetHistoryAndForecastByDayForAllUserDevices(int userid, string type)
         {
-            var result = _contextDevicesAndData.GetWeekByDayHistoryAndFutureForAllUserDevicesOrAllDevices(userid);
+            var result = _contextDevicesAndData.GetHistoryAndForecastByDayForAllDevices(userid, type);
             return Ok(result);
         }
 
@@ -332,5 +345,41 @@ namespace backend.Controllers
             var result = _contextDevicesAndData.GetPowerUsageOfDeviceForGivenTime(deviceid, time);
             return Ok(result);
         }
+
+        [HttpGet("getMaxMinAvgTotalPowerUsageByTimeForAllDevicesByType/{deviceType}/{timeType}")]
+        public IActionResult GetMaxMinAvgTotalPowerUsageByTimeForAllDevicesByType(string deviceType, string timeType)
+        {
+            var result = _contextDevicesAndData.GetMaxMinAvgTotalPowerUsageByTimeForDevicesByType(-1, deviceType, timeType);
+            return Ok(result);
+        }
+
+        [HttpGet("getMaxMinAvgTotalPowerUsageByTimeForUserDevicesByType/{userid}/{deviceType}/{timeType}")]
+        public IActionResult GetMaxMinAvgTotalPowerUsageByTimeForUserDevicesByType(int userid, string deviceType, string timeType)
+        {
+            var result = _contextDevicesAndData.GetMaxMinAvgTotalPowerUsageByTimeForDevicesByType(userid, deviceType, timeType);
+            return Ok(result);
+        }
+
+        [HttpGet("getMaxMinAvgTotalPowerUsageByTimeForDevice/{deviceid}/{timeType}")]
+        public IActionResult GetMaxMinAvgTotalPowerUsageByTimeForDevice(int deviceid, string timeType)
+        {
+            var result = _contextDevicesAndData.GetMaxMinAvgTotalPowerUsageByTimeForDevice(deviceid, timeType);
+            return Ok(result);
+        }
+
+        [HttpGet("getPowerUsageForAllTypesForArea/{area}/{timetype}")]
+        public IActionResult GetPowerUsageForAllTypesForArea(string area, string timetype)
+        {
+            var result = _contextDevicesAndData.GetPowerUsageForAllTypesForArea(area, timetype);
+            return Ok(result);
+        }
+
+        [HttpPost("getUsersWithPowerUsage/{timeType}")]
+        public IActionResult GetUsersWithPowerUsage([FromBody] List<int> userIds, string timeType)
+        {
+            var result = _contextDevicesAndData.GetUsersWithPowerUsage(userIds, timeType);
+            return Ok(result);
+        }
+
     }
 }

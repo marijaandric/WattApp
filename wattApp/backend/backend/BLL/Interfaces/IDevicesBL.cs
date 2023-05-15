@@ -22,6 +22,6 @@ namespace backend.BLL.Interfaces
         public int GetNumberOfDevicesForUserThatDSOCanSee(int userId);
         public int GetNumberOfDevicesForUserThatDSOCanManage(int userId);
         public DevicesCountByTypeDTO GetDevicesCountByType(int userId, string type, int limit);
-        Dictionary<string, int> GetNumberOfDevicesByType(int userId);
+        public Dictionary<string, int> GetNumberOfDevicesByType(int userId);
     }
 }

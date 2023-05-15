@@ -104,7 +104,6 @@ export class TitleBarComponent implements OnInit{
   }
 
   ngOnInit(): void {
-
     const token = localStorage.getItem('token');
     if(token)
     {
@@ -192,7 +191,7 @@ export class TitleBarComponent implements OnInit{
 
     this.newsForm = this.fb.group({
       title: ['', Validators.required],
-      userID :[0, Validators.required],
+      authorId :[0, Validators.required],
       content: ['', Validators.required],
       priority: ['Regular', Validators.required],
       created: ['', Validators.required],
@@ -332,21 +331,22 @@ export class TitleBarComponent implements OnInit{
   
   addNews()
   {
-    
+
     this.newsForm.patchValue({
-      userID : this.id
+      authorId : this.id
     })
     this.newsForm.patchValue({
       created: new Date()
     });
 
   
-    
+    console.log(this.newsForm.value);
     this.dsonewsService.AddNews(this.newsForm.value).subscribe({
       next:(res => {
         this.newsForm.reset()
         this.toast.success({detail:"SUCCESS",summary:"You have successfully added news",duration:4000});
         this.display3 = false;
+        //location.reload();
       }),
       error:(err => {
         this.toast.error({detail:"ERROR",summary:"Error",duration:4000});

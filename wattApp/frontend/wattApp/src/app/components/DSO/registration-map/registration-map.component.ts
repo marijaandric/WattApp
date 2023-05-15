@@ -63,6 +63,9 @@ export class RegistrationMapComponent implements OnInit{
           {
             this.message.district = "Grad Kragujevac"
           }
+          else{
+            this.message.district = this.message.district + ",Крагујевац";
+          }
           this.messageEvent.emit(this.message);
         }
         else{

@@ -9,6 +9,10 @@
     box-shadow: 5px 5px 15px black;
     margin-bottom:32px;
   }
+  .top-card {
+    width:100%;
+    height:fit-content;
+}
   
   .bold-text {
     font-weight: bold;
@@ -50,6 +54,28 @@
     border-radius: 20px;
     padding:10px 10px 0px 0px;
   }
+  .widgets {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width:100%;
+    padding: 0px 0;
+    justify-content:space-between;
+    position:relative;
+    float:left;
+  }
+  
+  .widget {
+    flex-basis: calc(18.4%);
+    margin-bottom: 30px;
+    display: inline-block;
+    position: relative;
+    flex-direction: row;
+    max-width: 23%;
+    min-width: 240px;
+    width:20%;
+    box-shadow: 5px 5px 15px black;
+  }
   .card-2-2{
     position: relative;
     display:flex;
@@ -71,7 +97,7 @@
     border-radius: 50%;
     width:200px;
     height:200px;
-    background: linear-gradient(45deg, #46c5f1 10%, #864cdd 100%);
+    background: linear-gradient(45deg, #46c5f1 60%, #864cdd 100%);
     box-shadow:2px 2px 15px black;
   }
   .title1 {
@@ -118,12 +144,12 @@
     font-weight:bold;
   }
   .subtitle-card {
-    width:60%;
+    width:100%;
     display: inline-block;
     font-size: 14px;
     padding:8px 5px 0px 10px;
     span {
-        color: #6592d9;
+        color: #46c5f1;
         font-weight:bold;
     }
   }
@@ -197,7 +223,7 @@
     h5 {
         font-size: 24px;
         font-weight: bolder;
-        color: #6592d9;
+        color: #46c5f1;
     }
     
   }
@@ -206,7 +232,7 @@
     h5 {
         font-size: 24px;
         font-weight: bolder;
-        color: #6592d9;
+        color: #46c5f1;
     }
     
   }
@@ -226,41 +252,6 @@
     box-shadow: 5px 5px 15px black;
   }
 
-  ::ng-deep .p-dropdown {
-    position:relative;
-    border-radius: 20px;
-    border:none;
-    margin-right:0% !important;
-    margin-left:0% !important;
-    font-size:16px;
-    background: #1b1b1b;
-    
-  }
-  ::ng-deep .p-dropdown.p-component {
-    width:30%;
-  }
-
-  ::ng-deep #pr_id_1_label{
-    font-size: 14px;
-    padding:8px 0px 8px 16px;
-    border:none;
-    font-weight: bold;
-    font-family: 'Lato', sans-serif;
-  }
-  ::ng-deep #pr_id_2_label{
-    font-size: 14px;
-    padding:8px 0px 8px 16px;
-    border:none;
-    font-weight: bold;
-    font-family: 'Lato', sans-serif;
-  }
-  ::ng-deep #pr_id_3_label{
-    font-size: 14px;
-    padding:8px 0px 8px 16px;
-    border:none;
-    font-weight: bold;
-    font-family: 'Lato', sans-serif;
-  }
   .circle-2 {
     margin:auto;
     border-radius: 50%;
@@ -294,7 +285,7 @@
   }
   .icon-1 i{
     font-size: 24px;
-    background: linear-gradient(45deg, #46c5f1 10%, #5245b7 100%);
+    background: #46c5f1;
     
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -307,22 +298,11 @@
     font-size: 24px;
     margin: 7px;
   }
-  .menu{
-    
-    position: absolute;
-    width: 40px;
-    height: 40px;
-    right: 0;
-    margin: 5px 10px 0px 10px;
-    cursor:pointer;
-  
-    -webkit-transform: translatey(5px);
-            transform: translatey(5px);
-    -webkit-transition: all 0.3s;
-    transition: all 0.3s;
-    align-items: center;
-    justify-content: center;
-  }
+
+:host :ng-deep .p-dropdown.p-component {
+  width:100% !important;
+}
+
   .icon-2 {
     width:40px;
     height:40px;
@@ -482,6 +462,22 @@
       display:none;
     }
     
+
+    .widgets{
+      overflow-x: scroll;
+      display: flex;
+      flex-wrap: nowrap;
+    }
+    .widget{
+      margin-right: 10px;
+      margin-left: 10px;
+      display: inline-block;
+      vertical-align: top;
+    }
+    .widgets {
+      margin-bottom:20px;
+    }
+
     .device-information {
       margin-top: 40px;
     }
@@ -493,9 +489,7 @@
     }
   
     #oneChart{
+      margin-top: 32px;
       display: none;
-    }
-    .twoCharts{
-      margin-top: 2%;
     }
   }

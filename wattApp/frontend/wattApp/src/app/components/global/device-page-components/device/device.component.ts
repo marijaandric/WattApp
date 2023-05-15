@@ -204,7 +204,8 @@ export class DeviceComponent implements OnInit{
 
   getHistoryAndForecastByDayForDevice(id:any)
   {
-    this.deviceService.getHistoryAndForecastByDayForDevice(id).subscribe(data => {
+    const type='week';
+    this.deviceService.getHistoryAndForecastByDayForDevice(id,type).subscribe(data => {
       let a = [];
       let b = [];
       let c = [];

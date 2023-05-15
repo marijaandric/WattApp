@@ -1,136 +1,155 @@
-<div class="col">
-    <div class="card">
-        <div class="card-body">
-            <div class="d-flex flex-column align-items-center text-center">
-              <img [src]="userImageUrlEndpoint" class="rounded-circle" style="background-color: white;" width="110" height="110">
-                <div class="mt-3">
-                    <h3 style="margin-bottom: 30px;">{{ userInfo?.firstName }}</h3>
-                    <p style="margin-bottom: 30px;">{{userInfo?.address}}</p>
-                    <div class="flexRow">
-                      <button label="Edit" (click)="showDialog()">Edit</button>
-                      <p-fileUpload name="file" styleClass="margin-left__16px"
-                        mode="basic" chooseLabel="Upload"
-                        [url]="userImageUrlEndpoint" (onUpload)="onImageChange($event)"
-                        accept="image/*" [auto]="true" [maxFileSize]="2000000">
-                      </p-fileUpload>
-                      <button (click)="deleteImage()" class="margin-left__16px">Remove</button>
-                    </div>
 
-                    <!--Dialog-->
-                    <p-dialog header="Title"  [transitionOptions]="'3ms'" 
-                      [draggable]="false" [keepInViewport]="true" [resizable]="false" 
-                      [blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true" 
-                      [modal]="true" [(visible)]="display" [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
-                      [closable]="true" >
-                      <ng-template pTemplate="header" class="header-dialog">
-                        <span>Manage user</span>
-                      </ng-template>
-                      
-                      <ng-template pTemplate="center">
-                        <!--<form [formGroup]="menageUserForm" >-->
-                      <form [formGroup]="menageUserForm">
-                        <div class="p-inputgroup p-inputtext-lg p-input-filled">
-                          <div class="half">
-                            <!--<label for="label-input" >Name</label>-->
-                            <input formControlName="firstName" name="firstName" appendTo="body" type="text" pInputText  class="p-inputtext-lg"  placeholder="NAME"> 
-                            <!--<label for="label-input" >Last name</label>-->
-                            <input formControlName="lastName" name="lastName"  appendTo="body" type="text" pInputText  class="p-inputtext-lg"  placeholder="LASTNAME" > 
-                            <!--<label for="label-input" >Username</label>-->
-                            <input formControlName="username" name="username"  appendTo="body" type="text" pInputText  class="p-inputtext-lg"  placeholder="USERNAME"> 
-                          </div>
-                        
-                          <div class="half">
-                            <!--<label for="label-input" >E-mail</label>-->
-                            <input formControlName="email" name="email" appendTo="body" type="text" pInputText  class="p-inputtext-lg"  placeholder="EMAIL" > 
-                            <!--<label for="label-input" >Phone number</label>-->
-                            <input formControlName="phoneNumber" name="phone" appendTo="body" type="text" pInputText  class="p-inputtext-lg"  placeholder="PHONE NUMBER"> 
-                            <!--<label for="label-input" >Address</label>-->
-                            <input formControlName="address" name="address" appendTo="body" type="text" pInputText  class="p-inputtext-lg"  placeholder="ADDRESS">     
-                          </div>
-                        </div> 
-                      </form>
-                     <!--</form>-->
-                      </ng-template>
-                      
-                      <ng-template pTemplate="footer" >
-                        <button (click)="edit()" type="button" class="footer-button" icon="pi pi-info-circle" label="Save">Save</button>
-                      </ng-template>
-                    </p-dialog>
-                </div>
-            </div>
-            <hr class="my-4">
-            <ul class="list-group list-group-flush">
-                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap" >
-                    <h6 class="mb-0">Full Name</h6>
-                    <span class="text-secondary">{{ userInfo?.firstName }} {{ userInfo?.lastName }}</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                    <h6 class="mb-0">Username</h6>
-                    <span class="text-secondary">{{userInfo?.username}}</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                    <h6 class="mb-0">Email</h6>
-                    <span class="text-secondary">{{ userInfo?.email }}</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                    <h6 class="mb-0">Phone</h6>
-                    <span class="text-secondary">{{userInfo?.phoneNumber}}</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                    <h6 class="mb-0">Address</h6>
-                    <span class="text-secondary">{{userInfo?.address}}</span>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-                  <h6 class="mb-0">Role</h6>
-                  <span class="text-secondary">{{ userInfo?.role }}</span>
-              </li>
-            </ul>
+<div class="d-flex flex-column align-items-center text-center" style="width:100%;">
+  <img [src]="userImageUrlEndpoint" class="rounded-circle" style="background-color: white;" width="110" height="110">
+  <div class="pen-container" (click)="showDialog3()">
+    <i class="pen fa-solid fa-pen"></i>
+  </div>  
+  <div class="mt-3">
+        <h3 style="margin-bottom: 30px;">{{ userInfo?.firstName }} {{ userInfo?.lastName }}</h3>
+        <h3 style="margin-bottom: 30px;"></h3>
+        <div class="flexRow button-div" style="justify-content:center">
+          <p-button label="Edit" (click)="showDialog()"></p-button>
+         
         </div>
+
+        <!--Dialog-->
+        <p-dialog header="Title" [style]="{width:'40%'}"  [transitionOptions]="'3ms'" 
+          [draggable]="false" [keepInViewport]="true" [resizable]="false" 
+          [blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true" 
+          [modal]="true" [(visible)]="display" [breakpoints]="{'1360px': '85vw', '740px': '100vw'}"
+          [closable]="true">
+          <ng-template pTemplate="header" class="header-dialog">
+            <span>Manage user</span>
+          </ng-template>
+          
+          <ng-template pTemplate="center">
+            <!--<form [formGroup]="menageUserForm" >-->
+          <form [formGroup]="menageUserForm">
+            <div class="p-inputgroup p-inputtext-lg p-input-filled">
+              <div class="half">
+                <!--<label for="label-input" >Name</label>-->
+                <input formControlName="firstName" name="firstName" appendTo="body" type="text"  class="p-inputtext-lg"  placeholder="NAME"> 
+                <!--<label for="label-input" >Last name</label>-->
+                <input formControlName="lastName" name="lastName"  appendTo="body" type="text" class="p-inputtext-lg"  placeholder="LASTNAME" > 
+                <!--<label for="label-input" >Username</label>-->
+                <input formControlName="username" name="username"  appendTo="body" type="text"   class="p-inputtext-lg"  placeholder="USERNAME"> 
+                <!--<label for="label-input" >E-mail</label>-->
+                <input formControlName="email" name="email" appendTo="body" type="text"   class="p-inputtext-lg"  placeholder="EMAIL" > 
+                <!--<label for="label-input" >Phone number</label>-->
+                <input formControlName="phoneNumber" name="phone" appendTo="body" type="text"  class="p-inputtext-lg"  placeholder="PHONE NUMBER"> 
+              </div>
+            
+              <div class="half">
+                <!--<label for="label-input" >Address</label>-->
+                <input formControlName="address" name="address" appendTo="body" type="text"  class="p-inputtext-lg"  placeholder="ADDRESS" (change)="onAddressChange($event)"> 
+                <app-map-for-user-profile [address] = "value" (messageEvent)="receiveMessage($event)"></app-map-for-user-profile>    
+              </div>
+            </div> 
+          </form>
+          <!--</form>-->
+          </ng-template>
+          
+          <ng-template pTemplate="footer" >
+            <div class="button-div"><p-button (click)="edit()" type="button" label="Save"></p-button>
+            </div>
+            </ng-template>
+        </p-dialog>
     </div>
 </div>
+<ul class="list-group list-group-flush">
+    <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap" >
+        <h6 class="mb-0">Full Name</h6>
+        <span class="text-secondary">{{ userInfo?.firstName }} {{ userInfo?.lastName }}</span>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+        <h6 class="mb-0">Username</h6>
+        <span class="text-secondary">{{userInfo?.username}}</span>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+        <h6 class="mb-0">Email</h6>
+        <span class="text-secondary" >{{ userInfo?.email }}</span>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+        <h6 class="mb-0">Phone</h6>
+        <span class="text-secondary">{{userInfo?.phoneNumber}}</span>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
+        <h6 class="mb-0">Address</h6>
+        <span class="text-secondary">{{userInfo?.address}}</span>
+    </li>
+    <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap" style="border:none;">
+      <h6 class="mb-0">Role</h6>
+      <span class="text-secondary">{{ userInfo?.role }}</span>
+  </li>
+</ul>
 
-      <!--<div class="row d-flex justify-content-center align-items-center h-100">
-            <div class="rounded-top text-white d-flex " style="background-color:#161817; height:200px;">
-              <div class="ms-4 mt-5 d-flex flex-column" style="width: 200px;">
-                <img src="/assets/images/team-profile-pictures/vanja.png"
-                  class="img-fluid img-thumbnail mt-4 mb-2"
-                  style="width: 200px; z-index: 1">
-                <button type="button"
-                  style="z-index: 1;">
-                  Edit profile
-                </button>
-              </div>
-              <div class="ms-3" style="margin-top: 150px;">
-                <h3>{{userInfo.firstName}} {{userInfo.lastName}}</h3>
-              </div>
-            </div>
-            <div class="p-4 text-black" style="background-color: #363636; border-radius: 0px 0px 20px 20px;">
-              <div class="d-flex justify-content-end text-center py-1">
-                <div>
-                  <p class="mb-1 h5">25</p>
-                  <p class="small text-muted mb-0">Total devices</p>
-                </div>
-                <div class="px-3">
-                  <p class="mb-1 h5">20</p>
-                  <p class="small text-muted mb-0">Total active devices</p>
-                </div>
-                <div>
-                  <p class="mb-1 h5">5</p>
-                  <p class="small text-muted mb-0">Total inactive devices</p>
-                </div>
-              </div>
-            <div class="card-body p-4 text-black">
-              <div class="mb-5">
-                <p class="lead fw-normal mb-1">About</p>
-                <div class="p-4" style="background-color: #222222; border-radius: 20px;">
-                  <p class="font-italic mb-0"><b>Username</b>: mijatovic</p>
-                  <p class="font-italic mb-0"><b>Email</b>: {{userInfo.email}}</p>
-                  <p class="font-italic mb-1"><b>Address</b>: Kragujevac</p>
-                  <p class="font-italic mb-1"><b>Phone</b>: 069 111-111</p>
-                  <p class="font-italic mb-1"><b>Date of birth</b>: 1.1.2000</p>
-                </div>
-              </div>
-            </div>
-            
-        </div>
-      </div>-->
+
+
+
+<p-dialog [style]="{width:'300px'}" header="Title"  [transitionOptions]="'3ms'" 
+[draggable]="true" [keepInViewport]="true" [resizable]="false" 
+[blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true" 
+[modal]="true" [(visible)]="display3" [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
+[closable]="true" >
+<ng-template pTemplate="header" class="header-dialog">
+  <span>Edit profile image</span>
+</ng-template>
+
+<ng-template pTemplate="center">
+  <div class="flexRow">
+    <div class="button-div" style="margin-top:5px;color:black;"><p-fileUpload name="file" styleClass="margin-left__16px"
+      mode="basic" chooseLabel="Upload"
+      [url]="userImageUrlEndpoint" (onUpload)="onImageChange($event)"
+      accept="image/*" [auto]="true" [maxFileSize]="2000000">
+    </p-fileUpload></div>
+    <div class="remove-or-no" style="margin-top:5px;"><p-button (click)="deleteImage()" icon="fa-solid fa-minus" class="margin-left__16px " style="float:right" label="Remove"></p-button>
+    </div>
+    </div>
+</ng-template>
+
+</p-dialog>
+<!--<div class="row d-flex justify-content-center align-items-center h-100">
+<div class="rounded-top text-white d-flex " style="background-color:#161817; height:200px;">
+  <div class="ms-4 mt-5 d-flex flex-column" style="width: 200px;">
+    <img src="/assets/images/team-profile-pictures/vanja.png"
+      class="img-fluid img-thumbnail mt-4 mb-2"
+      style="width: 200px; z-index: 1">
+    <button type="button"
+      style="z-index: 1;">
+      Edit profile
+    </button>
+  </div>
+  <div class="ms-3" style="margin-top: 150px;">
+    <h3>{{userInfo.firstName}} {{userInfo.lastName}}</h3>
+  </div>
+</div>
+<div class="p-4 text-black" style="background-color: #363636; border-radius: 0px 0px 20px 20px;">
+  <div class="d-flex justify-content-end text-center py-1">
+    <div>
+      <p class="mb-1 h5">25</p>
+      <p class="small text-muted mb-0">Total devices</p>
+    </div>
+    <div class="px-3">
+      <p class="mb-1 h5">20</p>
+      <p class="small text-muted mb-0">Total active devices</p>
+    </div>
+    <div>
+      <p class="mb-1 h5">5</p>
+      <p class="small text-muted mb-0">Total inactive devices</p>
+    </div>
+  </div>
+<div class="card-body p-4 text-black">
+  <div class="mb-5">
+    <p class="lead fw-normal mb-1">About</p>
+    <div class="p-4" style="background-color: #222222; border-radius: 20px;">
+      <p class="font-italic mb-0"><b>Username</b>: mijatovic</p>
+      <p class="font-italic mb-0"><b>Email</b>: {{userInfo.email}}</p>
+      <p class="font-italic mb-1"><b>Address</b>: Kragujevac</p>
+      <p class="font-italic mb-1"><b>Phone</b>: 069 111-111</p>
+      <p class="font-italic mb-1"><b>Date of birth</b>: 1.1.2000</p>
+    </div>
+  </div>
+</div>
+
+</div>
+</div>-->

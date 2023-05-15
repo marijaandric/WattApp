@@ -18,6 +18,7 @@ namespace backend.DAL.Interfaces
         public IActionResult updateUser(int id, User user);
         public IActionResult deleteUser(int id);
         public IActionResult addUser(User userObj);
+        public List<string> GetAreas();
         public void SaveChanges();
         public List<User> GetUsersByArea(string area);
         public List<User> GetUsersByType(string type);
@@ -25,5 +26,6 @@ namespace backend.DAL.Interfaces
         public int GetNumberOfUsersByType(string type);
         public IActionResult ResetPasswordEmail(User user);
         public IActionResult ResetPassword(User user);
+        public List<User> GetProsumersByArea(string area);
     }
 }

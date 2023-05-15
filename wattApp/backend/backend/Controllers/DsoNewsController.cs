@@ -70,5 +70,41 @@ namespace backend.Controllers
             return NoContent();
         }
 
+        // PUT: api/DsoNews
+        [HttpPut("{id}")]
+        public IActionResult UpdateDsoNews(int id, DsoNews dsoNews)
+        {
+            if (id != dsoNews.Id)
+            {
+                return new StatusCodeResult(404);
+            }
+            _context.Entry(dsoNews).State = EntityState.Modified;
+            try
+            {
+                _context.SaveChanges();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!dsoNewsExists(id))
+                {
+                    return new StatusCodeResult(404);
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return new StatusCodeResult(204);
+        }
+
+        private bool dsoNewsExists(int id)
+        {
+            DsoNews dn = _context.DsoNews.Find(id);
+            if (dn != null)
+                return true;
+            return false;
+        }
+
     }
 }

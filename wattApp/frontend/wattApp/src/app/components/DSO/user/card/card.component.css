@@ -6,7 +6,8 @@ p{
 
 :host{
     display:flex;
-    align-items: center;
+    position: relative;
+    flex-direction: column;
     color: white;
     background-color: transparent;
     background: linear-gradient(180deg, #1e1e1e 30%, #121212 100%) ;
@@ -22,14 +23,22 @@ button {
     border-radius: 32px;
     display: block;
     background: linear-gradient(45deg, #46c5f1 10%, #5245b7 100%);
-    color: #fff;
-    font-weight:bolder;
     box-shadow: 2px 2px 10px black;
-  font-size: 17px;
-  color:white;
-  padding:7px 40px;
-  }
+    font-size: 16px;
+    color:white;
+    padding:8px 20px;
+    min-width:150px;
+}
 
+.remove-btn {
+    float:right !important;
+    background: linear-gradient(135deg,#eb4886,#f075a4) !important;
+}
+
+h6 {
+    padding-left:10px;
+    padding-right:10px;
+}
 
 button:hover{
     background: #1f221f;
@@ -39,6 +48,7 @@ button:hover{
 
 
 li{
+    padding-left: 0rem !important;
     padding:10px 10px;
     color: white;
     background-color: transparent;

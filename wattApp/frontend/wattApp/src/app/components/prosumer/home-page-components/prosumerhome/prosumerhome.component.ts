@@ -1,10 +1,39 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import { StadardTemplateComponent } from 'src/app/components/global/layout-components/standard-template/stadard-template.component';
 import { UserService } from 'src/app/services/user.service';
 import { HttpClient } from '@angular/common/http';
 import { DeviceDTO } from 'src/app/dtos/DeviceDTO';
 import { DeviceService } from 'src/app/services/device/device.service';
 import { DsonewsService } from 'src/app/services/dsonews/dsonews.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { RoleTypesService } from 'src/app/services/role-types/role-types.service';
+import { ModelTypesService } from 'src/app/services/model-types/model-types.service';
+import { map } from 'rxjs';
+import { RoomTypesService } from 'src/app/services/room-types/room-types.service';
+import { DeviceTypesService } from 'src/app/services/device-types/device-types.service';
+import { NgToastService } from 'ng-angular-popup';
+import { DeviceCardComponent } from '../../devices-page-components/device-card/device-card.component';
+
+
+interface Models{
+  code: string;
+  name: string;
+}
+
+interface Rooms{
+  code: string;
+  name: string;
+}
+
+interface Types{
+  code: string;
+  name: string;
+}
+
+interface Roles{
+  code :string;
+  name: string;
+}
 
 @Component({
   selector: 'app-prosumerhome',
@@ -23,11 +52,25 @@ export class ProsumerhomeComponent implements OnInit{
 "Welcome to our virtual home. Feel free to make yourself comfortable.","A warm welcome to you! We hope our page is just what you're looking for.",
 "We're honored to have you as our guest. "];
 
-  @Input() device:any={id:1,deviceName: "device", deviceType:"Consumer",power: 10}
-  @Input() device1:any={id:1,deviceName: "device", deviceType:"Producer",power: 10}
-  @Input() device2:any={id:1,deviceName: "device", deviceType:"Stock",power: 10}
+types!: Types[];
+rooms!: Rooms[];
+models! : Models[];
+roleSelected! : string;
+typeSelected! : Types;
+modelSelected! : Models;
+roomSelected! : Rooms;
 
-  constructor(private userService:UserService,private http: HttpClient,private deviceService : DeviceService,private dsonew : DsonewsService)
+  addDeviceForm! : FormGroup;
+  display = false;
+
+  @Input() device:any={id:1,deviceName: "default", deviceType:"Consumer",power: 10}
+  @Input() device1:any={id:1,deviceName: "default", deviceType:"Producer",power: 10}
+  @Input() device2:any={id:1,deviceName: "default", deviceType:"Stock",power: 10}
+
+  constructor(private fb: FormBuilder,private userService:UserService,private http: HttpClient,private deviceService : DeviceService,private dsonew : DsonewsService,private roomTypesService: RoomTypesService, 
+    private roleTypesService: RoleTypesService,
+    private modelTypesService: ModelTypesService,
+    private deviceTypesService: DeviceTypesService,private toast:NgToastService,private cdRef: ChangeDetectorRef)
   {
     this.quote = this.quotes[Math.floor(Math.random() * this.quotes.length)];
     if(this.token)
@@ -40,6 +83,7 @@ export class ProsumerhomeComponent implements OnInit{
     }
     
   }
+
   IdBiggestConsumer: any;
   NameBiggestConsumer: any;
   PowerUsageBiggestConsumer : any;
@@ -53,15 +97,14 @@ export class ProsumerhomeComponent implements OnInit{
     const max = 'max';
     
     this.deviceService.getBiggest(this.id,year,month,day,consumer,max).subscribe((response: any) => {
-      this.loader = false;
-       this.IdBiggestConsumer=response.id;
-       this.NameBiggestConsumer=response.deviceName;
        this.PowerUsageBiggestConsumer=response.averagePowerUsage.toFixed(2);
-       this.device.deviceName = this.NameBiggestConsumer;
-       this.device.id=this.IdBiggestConsumer;
-       this.device.power=this.PowerUsageBiggestConsumer;
-       this.device.deviceType="Consumer";
-     //console.log(response);
+       this.device.power = this.PowerUsageBiggestConsumer
+       this.device = response.device
+       this.devices[0] = this.device
+       this.cdRef.markForCheck()
+       this.loader = false;
+    },(error: any) => {
+      this.loader = false;
     });
   }
 
@@ -80,14 +123,14 @@ export class ProsumerhomeComponent implements OnInit{
     const max = 'max';
 
     this.deviceService.getBiggest(this.id,year,month,day,consumer,max).subscribe((response: any) => {
-       this.IdBiggestProducer=response.id;
-       this.NameBiggestProducer=response.deviceName;
-       this.PowerUsageBiggestProducer=response.averagePowerUsage.toFixed(2);
-       this.device1.deviceName = this.NameBiggestProducer;
-       this.device1.id=this.IdBiggestProducer;
-       this.device1.power=this.PowerUsageBiggestProducer;
-       this.device1.deviceType="Producer";
-     //console.log(response);
+      this.PowerUsageBiggestProducer=response.averagePowerUsage.toFixed(2);
+       this.device.power = this.PowerUsageBiggestProducer
+       this.device = response.device
+       this.devices[1] = this.device
+       this.cdRef.markForCheck()
+       //this.loader = false;
+    },(error: any) => {
+      this.loader = false;
     });
   
   }
@@ -107,15 +150,14 @@ export class ProsumerhomeComponent implements OnInit{
 
 
     this.deviceService.getBiggest(this.id,year,month,day,consumer,max).subscribe((response: any) => {
-       this.IdBiggestStorage=response.id;
-       this.NameBiggestStorage=response.deviceName;
        this.PowerUsageBiggestStorage=response.averagePowerUsage.toFixed(2);
-       this.device2.deviceName = this.NameBiggestStorage;
-       this.device2.id=this.IdBiggestStorage;
-       this.device2.power=this.PowerUsageBiggestStorage;
-       this.device2.deviceType="Stock";
-     //console.log(response);
-    });
+       this.device2 = response.device
+       this.device2.power = this.PowerUsageBiggestStorage
+       this.devices[2] = this.device2
+       this.cdRef.markForCheck()
+      },(error: any) => {
+        this.loader = false;
+      });
   
   }
 
@@ -223,10 +265,10 @@ export class ProsumerhomeComponent implements OnInit{
 
 
   ngOnInit(): void {
+    this.devices[0]=this.device;
+    this.devices[1] = this.device1;
+    this.devices[2] = this.device2;
     this.getNews();
-    this.devices.push(this.device);
-    this.devices.push(this.device1);
-    this.devices.push(this.device2);
     this.getBiggestConsumer();
     this.getBiggestProducer();
     this.getBiggestStorage();
@@ -234,8 +276,101 @@ export class ProsumerhomeComponent implements OnInit{
     this.getmonthPowerUsageProducer();
     this.getmonthPowerUsageStorage();
     this.getdayPowerPrice();
+
+    this.addDeviceForm = this.fb.group({
+      userID :[0, Validators.required],
+      deviceName:['', Validators.required],
+      deviceModel: ['', Validators.required],
+      room: ['', Validators.required],
+      deviceType: ['', Validators.required],
+    })
+
+    this.deviceTypesService.getAllDeviceTypes()
+      .pipe(
+        map(deviceTypes => {
+          return Object.entries(deviceTypes).map(([code, name]) => ({ code, name }));
+        })
+      )
+      .subscribe(mappedDeviceTypes => {
+        this.types = mappedDeviceTypes;
+        this.typeSelected = this.types[0];
+
+        this.modelTypesService.getAllModelTypes(this.typeSelected.code)
+          .pipe(
+            map(modelTypes => Object.entries(modelTypes).map(([code, name]) => ({ code, name })))
+          )
+          .subscribe(mappedModelTypes => {
+            this.models = mappedModelTypes;
+            this.modelSelected = this.models[0];
+        });
+    });
+
+    this.roomTypesService.getAllRoomTypes()
+      .pipe(
+        map(roomTypes => Object.entries(roomTypes).map(([code, name]) => ({ code, name })))
+      )
+      .subscribe(mappedRoomTypes => {
+        this.rooms = mappedRoomTypes;
+        this.roomSelected = this.rooms[0];
+    });
   }
 
+
+  showDisplay()
+  {
+    this.display = !this.display;
+  }
+
+  onTypeChange(event:any){
+    this.typeSelected = event.value;
+
+    this.modelTypesService.getAllModelTypes(this.typeSelected.code)
+      .pipe(
+        map(modelTypes => Object.entries(modelTypes).map(([code, name]) => ({ code, name })))
+      )
+      .subscribe(mappedModelTypes => {
+        this.models = mappedModelTypes;
+        this.modelSelected = this.models[0];
+    });
+  }
+
+  onModelChange(event:any){
+    this.modelSelected = event.value;
+  }
+  
+  onRoomChange(event:any)
+  {
+    this.roomSelected = event.value;
+  }
+
+  addDevice()
+  {
+    
+    this.addDeviceForm.patchValue({
+      deviceType : this.typeSelected.name
+    })
+    this.addDeviceForm.patchValue({
+      userID : this.id
+    })
+    this.addDeviceForm.patchValue({
+      deviceModel : this.modelSelected.name
+    })
+    this.addDeviceForm.patchValue({
+      room : this.roomSelected.name
+    })
+    
+    this.deviceService.AddDevice(this.addDeviceForm.value).subscribe({
+      next:(res => {
+        this.addDeviceForm.reset()
+        this.toast.success({detail:"SUCCESS",summary:"You have successfully added device",duration:4000});
+        this.display = false;
+        location.reload()
+      }),
+      error:(err => {
+        this.toast.error({detail:"ERROR",summary:"Error",duration:4000});
+      })
+    }) 
+  }
   
 
 }

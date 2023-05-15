@@ -10,29 +10,14 @@
   
     <app-center-bar *ngIf="loader"><app-loader></app-loader></app-center-bar>
     <app-center-bar *ngIf="!loader">
-    <div  class="main-grid">
-      <div style="display:flex;flex-direction:row">
-        <div class="promotions">
-          <div class="promo" *ngFor="let n of news">
-            <div class="card">
-              <app-promotion [subTitle]="n.title"
-              [Title]="n.content" 
-              [Status]="n.status"
-              [Datum]="n.date"
-              [isBlue]="true" [isBgBlue]="true" class="promotion">
-              </app-promotion>
-            </div>
-          </div>
-        </div>
-      
-      <div style="display:flex;float:right; flex-direction:column; width:48.5%; height:100%">
+    
+      <div style="display:flex;float:right; flex-direction:column; width:100%; height:100%">
         <div style="display:flex;float:right; flex-direction:row; width:100%; height:100%">
-              
+          <!-- [lazy]="true" -->
           <p-table class="d-table" #dtUsers class="ui-table-default" [value]="users" dataKey="id" [scrollable]="true" 
-            [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]"
-            [globalFilterFields]="['id','firstName','lastName','email','role']" [paginator]="true" 
+            [rows]="rowsPerPage" [totalRecords]="allUsersCount"  [showCurrentPageReport]="true"
+            [globalFilterFields]="['firstName','lastName','email','role']" [paginator]="true" 
             style="
-              margin-top:calc(6%);
               display: flex;
               position: relative;
               flex-direction: column;
@@ -91,7 +76,7 @@
               </ng-template>
   
                 <ng-template pTemplate="body" let-user>
-                  <tr routerLink="/userDSO/{{user.id}}">
+                  <tr >
                     <td class="flexRow"><img src="{{ baseUrl + user.id }}" class="rounded-circle" width="25px" height="25px" style="margin-right: 8px;"> {{user.firstName}} {{user.lastName}}</td>
                     <td>{{user.address}}</td>
                     <td>{{user.email}}</td>
@@ -108,8 +93,6 @@
             </p-table>
           </div>
         </div>
-      </div>
-    </div>
     </app-center-bar>
   
     

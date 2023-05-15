@@ -162,8 +162,6 @@ namespace backend.BAL
         }
 
 
-
-
         public string GenerateRandomPassword()
         {
             const string uppercaseLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -341,5 +339,26 @@ namespace backend.BAL
             }
         }
 
+        public List<string> GetAreas()
+        {
+           return _contextDAL.GetAreas();
+        }
+
+        public Dictionary<string, int> GetNumberOfUsersByArea()
+        {
+            Dictionary<string, int> total = new Dictionary<string, int>();
+
+            List<string> areas = GetAreas();
+
+            if(areas == null)
+                return null;
+
+            foreach(var area in areas)
+            {
+                total.Add(area, _contextDAL.GetUsersByArea(area).Count);
+            }
+
+            return total;
+        }
     }
 }

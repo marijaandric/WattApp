@@ -1,0 +1,129 @@
+
+.device-card{
+    min-width: 250px;
+    width: 92%;    background: linear-gradient(180deg, #1b1b1b 50%, #121212 100%) ;
+    border-radius: 20px;
+    padding: 16px;
+    margin: auto;
+    box-shadow: 5px 5px 15px black;
+    min-height:170px;
+    margin-top: 40px;
+    max-width:300px;
+}
+
+img {
+    height:40px;
+    width:auto;
+    padding-right:10px;
+}
+
+.device-card:hover{
+    transform: scale(1.01);
+}
+
+.device-name{
+    max-width: 50%;
+    width: fit-content;
+    font-size: 20px;
+}
+
+a{
+    font-size: 18px;
+    text-decoration: none;
+    color: #46c5f1;
+    font-weight: bold;
+}
+
+.color-blue {
+    color: #46c5f1;
+}
+
+.color-purple {
+    color:#885ec0;
+}
+
+.color-pink {
+    color: #eb4886;
+}
+
+.bold-text {
+    font-weight: bold;
+}
+
+.color-gray{
+    color:rgb(184, 184, 184);
+  }
+
+  
+button {
+    margin: auto;
+    border: none;
+    min-width: 120px;
+    border-radius: 32px;
+    display: block;
+    background: linear-gradient(45deg, #46c5f1 10%, #5245b7 100%);
+    color: #fff;
+    box-shadow: 2px 2px 10px black;
+  font-size: 16px;
+  color:white;
+  padding:8px 20px;
+  position: absolute;
+  bottom:20px;
+}
+
+.edit-btn {
+  left:10px;
+}
+.remove-btn {
+    float:right !important;
+    right:20px;
+    background: linear-gradient(135deg,#eb4886,#f075a4) !important;
+}
+
+::ng-deep .button-div .p-button  {
+    position:relative!important;
+    border-radius: 2px!important;
+    display: flex;
+    border:none!important;
+    font-size:16px!important;
+    background: #46c5f1;
+    padding:5px 10px;
+    min-width:80px!important;
+    border:none !important;
+    outline: 1px solid #46c5f1;
+    outline-offset: 2px;
+    margin-left:10px;
+    .p-button-label {
+      color:#1e1e1e !important;
+  
+    }
+    .pi {
+      color:#1e1e1e !important;
+  
+    }
+    .p-button-icon {
+      color:#1e1e1e !important;
+    }
+  }
+  
+  ::ng-deep  .remove-or-no .p-button  {
+    position:relative!important;
+    border-radius: 2px!important;
+    display: flex;
+    border:none!important;
+    font-size:16px!important;
+    background: transparent;
+    padding:5px 10px;
+    min-width:80px!important;
+    border:none !important;
+    outline: 1px solid #eb4886;
+    outline-offset: 2px;
+    margin-left:10px;
+    .p-button-label {
+      color:#eb4886  !important;
+  
+    } .p-button-icon {
+      color:#eb4886  !important;
+  
+    }
+  } 

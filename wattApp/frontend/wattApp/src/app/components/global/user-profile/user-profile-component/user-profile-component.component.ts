@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { Map, tileLayer, marker } from 'leaflet';
 import * as L from 'leaflet';
 import { UserDTO } from 'src/app/dtos/UserDTO';
@@ -9,7 +9,7 @@ import { UserService } from 'src/app/services/user/user.service';
   templateUrl: './user-profile-component.component.html',
   styleUrls: ['./user-profile-component.component.css']
 })
-export class UserProfileComponentComponent implements OnInit{
+export class UserProfileComponentComponent implements OnInit,OnChanges{
   map: any;
   user : any;
   private darkLayer!: L.TileLayer;
@@ -17,11 +17,34 @@ export class UserProfileComponentComponent implements OnInit{
 
   constructor(private userService: UserService)
   {
-
+    
   }
 
-  ngOnInit()
+  ngOnChanges(changes: SimpleChanges): void {
+    const token = localStorage.getItem('token');
+    
+    if(token)
+    {
+      const userId = this.userService.getUserIdFromToken(token);
+      this.userService.GetUserWithoutToken(userId).toPromise()
+      .then(data=>{
+        this.user = data;
+      });
+    }
+  }
+
+  async ngOnInit()
   {
+    const token = localStorage.getItem('token');
+    
+    if(token)
+    {
+      const userId = this.userService.getUserIdFromToken(token);
+      await this.userService.GetUserWithoutToken(userId).toPromise()
+      .then(data=>{
+        this.user = data;
+      });
+    }
     this.map = L.map('userMap').setView([44.01761719631536, 20.900995763392213], 12);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; OpenStreetMap contributors'
@@ -33,19 +56,45 @@ export class UserProfileComponentComponent implements OnInit{
     this.lightLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; OpenStreetMap contributors'
     });
+
+    const markerIcon = L.icon({
+      iconUrl: '/assets/icons/images/marker-pink.png',
+      iconRetinaUrl: '/assets/icons/images/marker-pink.png',
+      iconSize: [50, 50],
+      iconAnchor: [2, 11],
+      popupAnchor: [1, -34],
+      tooltipAnchor: [16, -28],
+      shadowUrl: '/assets/icons/images/marker-shadow.png',
+      shadowSize: [60, 60],
+      shadowAnchor: [0, 15]
+    });
+
+    if(this.user != null)
+    {
+        const lan = this.user.x;
+        const lon = this.user.y
+        const id = this.user.id
+        this.map.setView([lan, lon], 14);
+        if (lan != undefined && lon != undefined) {
+          const marker = L.marker([lan, lon], {icon : markerIcon}).addTo(this.map);
+          marker.bindPopup("<div class='black-popup' style='color:black'>"+this.user.firstName+" "+this.user.lastName+"<br>"+this.user.address+"</div>");
+  
+          marker.on('mouseover', function (e) {
+            marker.openPopup();
+          });
+  
+          marker.on('mouseout', function (e) {
+            marker.closePopup();
+          });
+          
+        }
+      }
   }
 
-  toggleDarkMode(): void {
-    if (this.map.hasLayer(this.darkLayer)) {
-      // if the dark layer is already active, switch to light
-      this.map.removeLayer(this.darkLayer);
-      this.lightLayer.addTo(this.map);
-    } else {
-      // if the light layer is active, switch to dark
-      this.map.removeLayer(this.lightLayer);
-      this.darkLayer.addTo(this.map);
-    }
-  }
+ 
+  
+
+  
 
 }
 

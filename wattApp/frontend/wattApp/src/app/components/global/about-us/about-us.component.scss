@@ -48,6 +48,10 @@ main {
    border-radius: 20px;
 }
 
+p{
+  font-size: 13px;
+}
+
 .fensi {
   font-size: 1em;
   line-height: 1.75em;
@@ -123,7 +127,7 @@ main {
   box-shadow: 5px 5px 15px black;
   border-radius: 20px;
   background: linear-gradient(180deg, #1e1e1e 10%, #121212 100%) ;
-  height: 124%;
+  height: 100%;
 }
 
 .card img {
@@ -136,6 +140,7 @@ main {
 .desc{
   text-align: center;
   padding: 10px;
+  margin-bottom: 0px;
 }
 
 @media screen and (min-width: 1456px) {

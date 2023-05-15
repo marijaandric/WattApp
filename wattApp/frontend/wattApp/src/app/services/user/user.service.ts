@@ -84,5 +84,18 @@ export class UserService {
     );
   }
 
+  getCountDataByType(type: string){
+    return this.http.get<number>(this.baseUrl + "getUsersPaginationByRole/" + type);
+  }
 
+  getUsersWithPowerUsage(type:string,ids:number[])
+  {
+    const url = this.baseUrl+`/getUsersWithPowerUsage/`+type;
+    return this.http.put(url,ids);
+  }
+
+  deleteUser(id: number) {
+    const url = `${this.baseUrl}${id}`;
+    return this.http.delete(url);
+  }
 }

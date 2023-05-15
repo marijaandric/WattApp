@@ -2,11 +2,11 @@
 {
     public class UsageDTO
     {
-        public int DeviceID { get; set; }
-        public int Day { get; set; }
-        public int Month { get; set; }
-        public int Year { get; set; }
-        public int Time { get; set; }
-        public double Usage { get; set; }
+        public int deviceID { get; set; }
+        public int day { get; set; }
+        public int month { get; set; }
+        public int year { get; set; }
+        public int time { get; set; }
+        public double usage { get; set; }
     }
 }

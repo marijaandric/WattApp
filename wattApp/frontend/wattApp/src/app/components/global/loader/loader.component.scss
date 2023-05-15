@@ -22,8 +22,7 @@
     width: var(--clock-width);
     height: var(--clock-width);
     border-radius: 50%;
-    border: 3px solid var(--clock-color);
-    border-image: var(--border-gradient) 1;
+    border: 3px solid #46c5f1;
   
     &::before,
     &::after {

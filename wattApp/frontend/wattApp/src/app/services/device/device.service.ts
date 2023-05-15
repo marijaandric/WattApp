@@ -25,7 +25,8 @@ export class DeviceService {
           device.isActive,
           device.allowOperatorControll,
           device.allowOperatorVisibility,
-          device.imageId
+          device.imageId,
+          device.power
         ));
       })
     );
@@ -44,7 +45,8 @@ export class DeviceService {
           device.isActive,
           device.allowOperatorControll,
           device.allowOperatorVisibility,
-          device.imageId
+          device.imageId,
+          device.power
         ));
       })
     );
@@ -105,9 +107,9 @@ export class DeviceService {
     return this.http.put<DeviceDTO>(this.baseUrl + device.id, device);
   }
 
-  getHistoryAndForecastByDayForDevice(id :number)
+  getHistoryAndForecastByDayForDevice(id :number, type:string)
   {
-    return this.http.get<any>(this.baseUrl+"getHistoryAndForecastByDayForDevice/"+id)
+    return this.http.get<any>(this.baseUrl+"getHistoryAndForecastByDayForDevice/"+id+"/"+type)
   }
 
   GetNumberOfUserDevices(id :number)
@@ -126,13 +128,13 @@ export class DeviceService {
   {
     return this.http.get<any>(this.baseUrl+"GetNumberOfDevicesForUserThatDSOCanManage"+"/"+id)
   }
-  GetHistoryAndForecastByDayForAllUserDevices(id :number)
+  GetHistoryAndForecastByDayForAllUserDevices(id :number,type: string)
   {
-    return this.http.get<any>(this.baseUrl+"getHistoryAndForecastByDayForAllUserDevices"+"/"+id)
+    return this.http.get<any>(this.baseUrl+"getHistoryAndForecastByDayForAllUserDevices"+"/"+id+"/"+type)
   }
-  GetHistoryAndForecastByDayForAllDevices()
+  GetHistoryAndForecastByDayForAllDevices(type: string)
   {
-    return this.http.get<any>(this.baseUrl+"getHistoryAndForecastByDayForAllDevices")
+    return this.http.get<any>(this.baseUrl+"getHistoryAndForecastByDayForAllDevices"+"/"+type)
   }
 
   GetUserDevicesVisibleForDSO(id:number)
@@ -148,6 +150,26 @@ export class DeviceService {
   getUsage(id: number,time: string)
   {
     return this.http.get<any>(this.baseUrl+ "getPowerUsageOfDeviceForGivenTime" + "/" + id+ "/" + time);
+  }
+  getMaxMinAvgTotalPowerUsageByTimeForAllDevicesByType(deviceType: string, timeType:string)
+  {
+    return this.http.get<any>(this.baseUrl+ "getMaxMinAvgTotalPowerUsageByTimeForAllDevicesByType" + "/" + deviceType+ "/" + timeType);
+  }
+  getMaxMinAvgTotalPowerUsageByTimeForUserDevicesByType(id: number, deviceType: string, timeType:string)
+  {
+    return this.http.get<any>(this.baseUrl+ "getMaxMinAvgTotalPowerUsageByTimeForUserDevicesByType" + "/" + id +"/"+deviceType+ "/" + timeType);
+  }
+  getMaxMinAvgTotalPowerUsageByTimeForDevice(id: number,timeType:string)
+  {
+    return this.http.get<any>(this.baseUrl+ "getMaxMinAvgTotalPowerUsageByTimeForDevice" + "/" + id +"/"+ timeType);
+  }
+  getPowerUsageForAllTypesForArea(area:string,timeType:string)
+  {
+    return this.http.get<any>(this.baseUrl+ "getPowerUsageForAllTypesForArea" + "/" + area +"/"+ timeType);
+  }
+  getChartArea(Type:string,broj: number)
+  {
+    return this.http.get<any>(this.baseUrl+ "getChartArea" + "/" + Type +"/"+ broj);
   }
 
 

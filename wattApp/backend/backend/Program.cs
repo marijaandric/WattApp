@@ -28,6 +28,7 @@ builder.Services.AddSwaggerGen();
 //User
 builder.Services.AddScoped<IUserBL, UserBL>();
 builder.Services.AddScoped<IUserDAL, UserDAL>();
+builder.Services.AddScoped<UsersPaginationProvider, UsersPaginationProviderImpl>();
 
 //Devices
 builder.Services.AddScoped<IDevicesBL, DevicesBL>();
@@ -98,6 +99,6 @@ app.MapControllers();
 app.UseHangfireDashboard();
 app.MapHangfireDashboard();
 
-RecurringJob.AddOrUpdate<IWeatherService>(x => x.ScrapeWeatherApi(), "0 0 * * *");
-
+RecurringJob.AddOrUpdate<IWeatherService>(x => x.ScrapeWeatherApi(), "0 0 1 * * ?"); //svakog dana u 13:00h
+//RecurringJob.AddOrUpdate<IWeatherService>(x => x.ScrapeWeatherApi(), "0 */5 * ? * *"); //pokrenuti ovako samo prilikom testiranja, ovaj cron job se trigeruje svakih 5 minuta
 app.Run();

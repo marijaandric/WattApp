@@ -22,5 +22,8 @@ namespace backend.DAL.Interfaces
         public void RemoveDevice(Devices device);
         public bool DevicesExists(int id);
         public int GetNumberOfDevicesByType(int userId, string type);
+        public List<int> GetListOfFakeIDsForUserDevices(int userid);
+        public List<Devices> GetListOfDevicesByAreaAndType(string area, string deviceType);
+        public int GetDeviceIDForUserByFakeID(int userId, int fakeid);
     }
 }

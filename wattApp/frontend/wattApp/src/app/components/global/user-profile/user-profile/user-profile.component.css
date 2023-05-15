@@ -52,13 +52,12 @@ body{
     box-shadow: none!important;
 }
 
-
+.map {
+    float:right;
+    width: calc(100% - 482px);
+}
 
 @media only screen and (min-width: 1070px) {
-    .usercard{
-        width: 40%;
-    }
-
     .mapaISlika{
         width: 60%;
         margin-left:2%
@@ -67,13 +66,15 @@ body{
         display: flex;
         flex-direction: row;
     }
+
     
 }
 
 
 @media only screen and (max-width: 1070px) {
     .slika{
-        display: none;
+        background-size: cover;
+        background-position: 200 !important;
     }
 
     .user{
@@ -84,8 +85,15 @@ body{
     .mapaISlika{
         margin-top: 20px;
     }
+    
+}
 
+@media only screen and (max-width: 870px) {
+    .map{
+        display: none;
+    }
     .usercard{
+        margin: auto;
         width: 100%;
     }
 }

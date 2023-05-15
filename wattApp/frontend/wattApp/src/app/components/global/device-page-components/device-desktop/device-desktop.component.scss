@@ -35,41 +35,29 @@
   flex-direction: row;
 }
 
-::ng-deep .p-dropdown {
-  position:relative!important;
-  border-radius: 20px!important;
-  display: flex;
-  border:none!important;
-  font-size:16px!important;
-  margin-right:40px!important;
-  background: #1b1b1b;
-  
-}
-::ng-deep .p-dropdown.p-component {
-  width:150.953px!important;
-  margin-right:20px !important;
+
+
+
+img {
+  height:40px;
+  width:auto;
+  padding-right:10px;
 }
 
-::ng-deep #pr_id_1_label{
-  font-size: 14px !important;
-  padding:8px 0px 8px 16px!important;
-  border:none!important;
-  font-weight: bold!important;
-  font-family: 'Lato', sans-serif!important;
+.color-blue {
+  color: #46c5f1;
 }
-::ng-deep #pr_id_2_label{
-  font-size: 14px!important;
-  padding:8px 0px 8px 16px!important;
-  border:none!important;
-  font-weight: bold!important;
-  font-family: 'Lato', sans-serif!important;
+
+.color-purple {
+  color:#885ec0;
 }
-::ng-deep #pr_id_3_label{
-  font-size: 14px!important;
-  padding:8px 0px 8px 16px!important;
-  border:none!important;
-  font-weight: bold!important;
-  font-family: 'Lato', sans-serif!important;
+
+.color-pink {
+  color: #eb4886;
+}
+
+.bold-text {
+  font-weight: bold;
 }
 
 .menage-device-div {
@@ -122,7 +110,7 @@
   h5 {
       font-size: 24px;
       font-weight: bolder;
-      color: #46c5f1;
+      
   }
     
 }

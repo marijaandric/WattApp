@@ -1,4 +1,4 @@
-import { Component, OnInit,Input,OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit,Input,OnChanges, SimpleChanges, DoCheck, ChangeDetectorRef } from '@angular/core';
 import {
   ApexChart,
   ApexDataLabels,
@@ -11,6 +11,7 @@ import {
   ApexStroke,
   ApexTooltip,
   ApexResponsive,
+  ApexNoData,
 } from 'ng-apexcharts';
 
 @Component({
@@ -18,18 +19,48 @@ import {
   templateUrl: './all-areas-donut.component.html',
   styleUrls: ['./all-areas-donut.component.css']
 })
-export class AllAreasDonutComponent {
+export class AllAreasDonutComponent implements OnChanges{
   @Input() chartHeight: number = 200;
   @Input() chartText: string = 'Станово';
-  @Input() Series: number[] = [55, 32, 28];
-  @Input() chartLabels = ["Consumption", "Prodaction", "Stock"];
+  @Input() Series: number[] = [0, 0, 0];
+  chartLabels = ["Consumption", "Prodaction", "Stock"];
 
   chartSeries: ApexNonAxisChartSeries = this.Series;
 
+
   ngOnChanges(changes: SimpleChanges) {
-    if ('Series' in changes) {
+    
+    if('Series' in changes)
+    {
       this.chartSeries = this.Series;
+      const hasData = this.Series.some((val) => val !== 0);
+      if (!hasData) {
+        this.chartSeries = [];
+        this.noData.text = "There are no devices yet!";
+        this.chartLabels = [];
+      }
+      else{
+        this.chartSeries = this.Series;
+        this.chartLabels = ["Consumption", "Prodaction", "Stock"];
+      }
+      //changes['Series'].currentValue
     }
+      
+    if ('chartText' in changes) {
+      this.chartTitle = { text: this.chartText,
+        style: {
+          color: '#FFFFFF',
+          fontSize: '19px',
+          fontFamily:'Montserrat',
+          fontWeight:'bold'  
+        }, };
+    }
+    if ('chartHeight' in changes) {
+      this.chartDetails.height = this.chartHeight;
+    }
+    
+    this.cdr.detectChanges();
+    
   }
 
 
@@ -125,21 +156,35 @@ export class AllAreasDonutComponent {
     }
   };
 
+  noData: ApexNoData = {
+    text: 'No data available',
+    align: 'left',
+    verticalAlign: 'middle',
+    offsetX: 0,
+    offsetY: 0,
+    style: {
+      fontSize: '12px',
+      color: '#fff'
+    }
+  }
+
   chartOptions: ApexOptions = {
-    series: this.chartSeries,
+    series: this.Series,
     chart: this.chartDetails,
     labels: this.chartLabels,
     title: this.chartTitle,
     dataLabels: this.chartDataLabels,
     legend: this.chartLegend,
     tooltip: this.tooltip,
-    colors: ['#46c5f1', '#885ec0','#eb4886']
+    colors: ['#46c5f1', '#885ec0','#eb4886'],
+    noData: this.noData
   };
 
-  constructor() { }
+  constructor(private cdr: ChangeDetectorRef) {}
+
 
   ngOnInit(): void {
-    this.chartDetails.height = '230px';
+    this.chartDetails.height = '220px';
     this.chartTitle.text=this.chartText;
     this.chartSeries=this.Series;
     this.chartLegend=this.chartLegend;

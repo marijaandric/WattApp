@@ -16,11 +16,11 @@
       </app-widget>
         
     </div>
-    <div style="width:100%; height:fit-content; display:flex; flex-direction:row;margin-bottom:12px;">
+    <div style="width:100%; height:fit-content; display:flex; flex-direction:row;margin-bottom:32px;" class="pdd-div">
 
       <p-dropdown [options]="type" appendTo="body" [(ngModel)]="selectedType" optionLabel="name" (onChange)="dropdownChange()" >
       </p-dropdown>
-      <p-dropdown [options]="type2" appendTo="body"  optionLabel="name" (onChange)="dropdownChange()" >
+      <p-dropdown [options]="type2" appendTo="body" [(ngModel)]="selectedHF"  optionLabel="name" (onChange)="updateType3()" >
       </p-dropdown>
       <p-dropdown [options]="type3" appendTo="body" [(ngModel)]="selectedDate" optionLabel="name" (onChange)="dropdownChange()" >
       </p-dropdown>
@@ -28,14 +28,14 @@
     
   
     <div class="main-grid">
-      <app-history-forecast style="width: 62.5% !important;" [boja1]="color1" [boja2]="color2" [naziv1]="name1" [naziv2]="name2" [array] = "History" [array2]="Forecast" [array3] = "arrayData" class="chart" id="oneChart"  ></app-history-forecast>
+      <app-history-forecast style="width: 62.5% !important;" [boja1]="color1" [boja2]="color2" [naziv1]="name1" [naziv2]="name2" [array] = "History" [array2]="Forecast" [array3] = "dates" class="chart" id="oneChart"  ></app-history-forecast>
       
       <div class="stats-cards">
         
-        <app-stats-card class="stats-card" [isBgBlue]="true" [Title]="'Minimal consumed electricity this week'" [subTitle]="'23kWh (2%)'" [value]="'34 kwh'"></app-stats-card>
-        <app-stats-card class="stats-card" [isBgPurple]="true" [Title]="'Maximum consumed electricity this week'" [subTitle]="'23kWh (2%)'" [value]="'34 kwh'"></app-stats-card>
-        <app-stats-card class="stats-card" [isBgPink]="true" [Title]="'Average consumed electricity this week'" [subTitle]="'23kWh (2%)'" [value]="'34 kwh'"></app-stats-card>
-        <app-stats-card class="stats-card" [isBgOrange]="true" [Title]="'Total consumed electricity this week'" [subTitle]="'23kWh (2%)'" [value]="'34 kwh'"></app-stats-card>
+        <app-stats-card class="stats-card" [isBgBlue]="true" [Title]="TitleMin" [subTitle]="theDay+ dataMin" [value]="min"></app-stats-card>
+        <app-stats-card class="stats-card" [isBgPurple]="true" [Title]="TittleMax" [subTitle]="theDay + dataMax"  [value]="max"></app-stats-card>
+        <app-stats-card class="stats-card" [isBgPink]="true" [Title]="TitleAverage"  [value]="average"></app-stats-card>
+        <app-stats-card class="stats-card" [isBgOrange]="true" [Title]="TitleTotal" [value]="total"></app-stats-card>
        
       </div>
 
@@ -47,7 +47,7 @@
 -->
 
       <div class="bottom-grid">
-        <app-history-forecast-table
+        <app-history-forecast-table *ngIf="table"
           style="
           margin-top:calc(2%);
           display: flex;
@@ -62,6 +62,20 @@
           padding:10px 20px 30px 20px;" 
           [name1]="name1" [name2]="name2" [hif]="hif">
         </app-history-forecast-table>
+        <app-history-or-forecast-table  *ngIf="!table"
+        style="
+          margin-top:calc(2%);
+          display: flex;
+          position: relative;
+          flex-direction: column;
+          height: fit-content;
+          width: 49%;
+          border-radius: 20px;
+          background: linear-gradient(180deg, #151515 50%, #121212 100%) ;
+          box-shadow: 5px 5px 15px black;
+          transition: ease-in-out;
+          padding:10px 20px 30px 20px;"  [name]="name" [History]="History" [Forecast]="Forecast" [dates]="dates" >
+          </app-history-or-forecast-table>
         <div class="bottom-right">
           <div class="map">
             <app-map-suburb [type]="selectedType" [date]="selectedDate"></app-map-suburb>

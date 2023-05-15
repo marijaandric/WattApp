@@ -1,84 +1,61 @@
-:host {
-    height: 100%;
-    display: flex;
-    margin: 0;
-  }
-  
-  nav {
-    position: relative;
-    display: block;
-    padding: 10px;
-    margin-left: -5%;
-    margin-top: -2%;
-    
-  }
-  .color
-  {
-    text-align: center;
-    justify-content: center;
-    
-  }
-  
-  nav a {
-    position: relative;
-    text-decoration: none;
-    color: #fff;
-    font-Family: 'Montserrat';
-    font-size: 12px;
-    text-align: center;
-    font-Family: 'Montserrat';
-    display: inline-block;
-    width: 100px;
-  }
-  
-  nav a b {
-    position: relative;
-    left:10%; 
-    display: inline-block;
-    text-align: center;
-  }
-  
-  nav a i {
-    position: relative;
-    font-size: 20px;
-    left: 10%;
-    margin-bottom: 10px;
-  }
-  
-  .color:hover{
-    color: #885ec0 !important;
-  }
-  :host.boja2{
-    color: white;
-  }
-  :host.boja3{
-    color: white;
-  }
-  :host.boja4{
-    color: white;
-  }
-  
-  :host.fa-users
-  {
-    color:white;
-  }
-  :host.fa-user-headset
-  {
-    color:white;
-  }
-  :host.fa-user-check
-  {
-    color:white;
-  }
-  :host.fa-battery-half
-  {
-    color:white;
-  }
-  .fa-solid {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* centriraj ikonicu i tekst u vertikalnom smeru */
-  }
+.tab-menu {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.tab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 10px;
+  cursor: pointer;
+}
+
+.tab:hover .tab-icon i {
+  color: #46c5f1;
+}
+
+.tab:hover .tab-title {
+  color: #46c5f1 !important;
+}
+
+
+.tab-icon {
+  font-size: 20px;
+  color: #fff;
+}
+
+.tab-title {
+  font-size: 15px;
+  color: #fff;
+}
+a {
+  text-decoration: none;
+}
+
+:host .tab.active5 .tab-icon {
+  color: #fff;
+}
+
+:host .tab.active5 .tab-title {
+  color: #fff;
+} 
+:host .tab.active6 .tab-icon {
+  color: #fff;
+}
+
+:host .tab.active6 .tab-title {
+  color: #fff;
+} 
+:host .tab.active7 .tab-icon {
+  color: #fff;
+}
+
+:host .tab.active7 .tab-title {
+  color: #fff;
+} 
 
 @media only screen and (max-width: 600px) {
 

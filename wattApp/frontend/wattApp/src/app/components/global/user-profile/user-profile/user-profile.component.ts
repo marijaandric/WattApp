@@ -18,4 +18,5 @@ export class UserProfileComponent {
   
   @Input() @HostBinding("pink-color") public isPink = false;
   @Input() @HostBinding("bg-pink-color") public isBgPink = false;
+
 }

@@ -4,15 +4,15 @@
   <div class="main-card">
     <div class="top-card">
       <div class="widgets">       
-        <app-widget [subTitle]="'Consumption Today'" [Title]="Today +' kW/h'" [isBlue]="true" [isBgBlue]="true" class="widget">
+        <app-widget [subTitle]="SubTitleToday" [Title]="Today +' kW/h'" [isBlue]="true" [isBgBlue]="true" class="widget">
         </app-widget>
-        <app-widget [subTitle]="'Consumption this week'" [Title]="Week+' kW/h'" [isYellow]="true" [isBgYellow]="true" class="widget">
+        <app-widget [subTitle]="SubTitleWeek" [Title]="Week+' kW/h'" [isYellow]="true" [isBgYellow]="true" class="widget">
         </app-widget>
-        <app-widget [subTitle]="'Consumption this month'" [Title]="Month+' kW/h'" [isPink]="true" [isBgPink]="true" class="widget">
+        <app-widget [subTitle]="SubTitleMonth" [Title]="Month+' kW/h'" [isPink]="true" [isBgPink]="true" class="widget">
         </app-widget>
-        <app-widget  [subTitle]="'Consumption this year'" [Title]="Year+' kW/h'" [isOrange]="true" [isBgOrange]="true" class="widget">
+        <app-widget  [subTitle]="SubTitleYear" [Title]="Year+' kW/h'" [isOrange]="true" [isBgOrange]="true" class="widget">
         </app-widget>
-        <app-widget  [subTitle]="'Consumption all time'" [Title]="Year+' kW/h'" [isBlue]="true" [isBgBlue]="true" class="widget">
+        <app-widget  [subTitle]="SubTitleAll" [Title]="Year+' kW/h'" [isBlue]="true" [isBgBlue]="true" class="widget">
         </app-widget>
       </div>
     </div>  
@@ -22,7 +22,38 @@
         <div class="bottom-left-top-card">
             <div id="deviceInformation" class="flexColumn device-information" >
               <div class="flexRow">
-                  <div class="colored-text" ><h5>{{device.deviceName}}</h5></div>
+
+                <img *ngIf="isPhone" src="../.../../../../../../assets/icons/images/icons8-iphone-14-50.png">
+                <img *ngIf="isTablet" src="../.../../../../../../assets/icons/images/icons8-ipad-50.png">
+                <img *ngIf="isLaptop" src="../.../../../../../../assets/icons/images/icons8-laptop-closing-50.png">
+                <img *ngIf="isDesktop" src="../.../../../../../../assets/icons/images/icons8-pc-50.png">
+                <img *ngIf="isSmartwatch" src="../.../../../../../../assets/icons/images/icons8-smart-watch-50.png">
+                <img *ngIf="isSmartTV" src="../.../../../../../../assets/icons/images/icons8-tv-show-50.png">
+                <img *ngIf="isGamingConsole" src="../.../../../../../../assets/icons/images/icons8-game-controller-50.png">
+                <img *ngIf="isVirtualAssistant" src="../.../../../../../../assets/icons/images/icons8-amazon-alexa-logo-50.png">
+                <img *ngIf="isCamera" src="../.../../../../../../assets/icons/images/icons8-camera-50.png">
+                <img *ngIf="isDrone" src="../.../../../../../../assets/icons/images/icons8-drone-50.png">
+                <img *ngIf="isWearable" src="../.../../../../../../assets/icons/images/icons8-wearable-technology-50.png">
+                <img *ngIf="isSmartHomeHub" src="../.../../../../../../assets/icons/images/icons8-hub-50.png">
+                <img *ngIf="isCar" src="../.../../../../../../assets/icons/images/icons8-car-50.png">
+                <img *ngIf="isHeadset" src="../.../../../../../../assets/icons/images/icons8-headset-50.png">
+                <img *ngIf="isSpeaker" src="../.../../../../../../assets/icons/images/icons8-subwoofer-50.png">
+                <img *ngIf="isSolarPanel" src="../.../../../../../../assets/icons/images/icons8-solar-panel-50.png" style="height:30px !important;margin-top:5px; ">
+                <img *ngIf="isBattery" src="../.../../../../../../assets/icons/images/icons8-car-battery-50.png">
+                <img *ngIf="isFridge" src="../.../../../../../../assets/icons/images/icons8-fridge-50.png">
+                <img *ngIf="isMicrowave" src="../.../../../../../../assets/icons/images/icons8-microwave-50.png">
+                <img *ngIf="isWashingMachine" src="../.../../../../../../assets/icons/images/icons8-washing-machine-50.png">
+                <img *ngIf="isBlender" src="../.../../../../../../assets/icons/images/icons8-blender-50.png">
+                <img *ngIf="isRadio" src="../.../../../../../../assets/icons/images/icons8-mixer-50.png">
+                <img *ngIf="isStove" src="../.../../../../../../assets/icons/images/icons8-stove-50.png">
+                <img *ngIf="isVacuumCleaner" src="../.../../../../../../assets/icons/images/icons8-vacuum-cleaner-50.png">
+                <img *ngIf="isIron" src="../.../../../../../../assets/icons/images/icons8-iron-high-temperature-50.png">
+                <img *ngIf="isLamp" src="../.../../../../../../assets/icons/images/icons8-lamp-50.png">
+                <img *ngIf="isBulb" src="../.../../../../../../assets/icons/images/icons8-bulb-50.png">
+                <img *ngIf="isOther" src="../.../../../../../../assets/icons/images/icons8-multiple-devices-50.png">
+          
+                  <div class="colored-text" ><h5 style="margin-top:10px">{{device.deviceName}}</h5></div>
+                  <p-inputSwitch [(ngModel)]="isChecked" (click)="showDialog2()" class="margin-left__auto width__fit-content"></p-inputSwitch>
               </div>
         
               <div style="height:100% ;justify-content:center">
@@ -48,44 +79,53 @@
           
                 <div class="flexRow"style="margin-top:20px">
                   <span>Visible to operators:</span>
-                  <p-inputSwitch [(ngModel)]="device.allowOperatorVisibility " (onChange)="handleVisibilitySwitchChange()" class="margin-left__auto width__fit-content"/>
+                  <p-inputSwitch [(ngModel)]="device.allowOperatorVisibility " (ngModelChange)="promijeniStanjeprviPrekidac()"  (onChange)="handleVisibilitySwitchChange()" class="margin-left__auto width__fit-content"/>
                 </div>
           
                 <div class="flexRow margin-top__8px">
                   <span >Managed by operators:</span>
-                  <p-inputSwitch [(ngModel)]="device.allowOperatorControll" (onChange)="handleManagementSwitchChange()" class="margin-left__auto width__fit-content"/>
+                  <p-inputSwitch [(ngModel)]="device.allowOperatorControll" (ngModelChange)="promijeniStanjeDrugiPrekidac()" (onChange)="handleManagementSwitchChange()" class="margin-left__auto width__fit-content"/>
                 </div>
+                <div class="flexRow margin-top__8px ">
+                  <div class="button-div">
+                  <p-button label="Edit" (click)="showEditDeviceDialog()" />
+                  </div>
+                  <div class="button-div">
+                  <p-button label="Schedule"/>
+                  </div>
+                  <div class="remove-or-no"><p-button label="Delete" (onClick)="showDialog()" /></div>
+                </div>  
               </div>
             </div>
 
             <div class="stats-cards">
         
-              <app-stats-card class="stats-card" [isBgBlue]="true" [Title]="'Minimal consumed electricity this week'" [subTitle]="'23kWh (2%)'" [value]="'34 kwh'"></app-stats-card>
-              <app-stats-card class="stats-card" [isBgPurple]="true" [Title]="'Maximum consumed electricity this week'" [subTitle]="'23kWh (2%)'" [value]="'34 kwh'"></app-stats-card>
-              <app-stats-card class="stats-card" [isBgPink]="true" [Title]="'Average consumed electricity this week'" [subTitle]="'23kWh (2%)'" [value]="'34 kwh'"></app-stats-card>
-              <app-stats-card class="stats-card" [isBgOrange]="true" [Title]="'Total consumed electricity this week'" [subTitle]="'23kWh (2%)'" [value]="'34 kwh'"></app-stats-card>
+              <app-stats-card class="stats-card" [isBgBlue]="true" [Title]="TitleMin" [subTitle]="theDay + dataMin" [value]="min"></app-stats-card>
+              <app-stats-card class="stats-card" [isBgPurple]="true" [Title]="TittleMax" [subTitle]="theDay + dataMax" [value]="max"></app-stats-card>
+              <app-stats-card class="stats-card" [isBgPink]="true" [Title]="TitleAverage" [value]="average"></app-stats-card>
+              <app-stats-card class="stats-card" [isBgOrange]="true" [Title]="TitleTotal"  [value]="total"></app-stats-card>
              
             </div>
 
         </div>
 
         <app-history-forecast id="oneChart"  style="width: 100%;
-        background: linear-gradient(180deg, #151515 50%, #0d0d0d 100%)  !important;" [array] = 'array' [array2]="array2" [array3] = 'array3'></app-history-forecast>
-            
+        background: linear-gradient(180deg, #151515 50%, #0d0d0d 100%)  !important;" [boja1]="color1" [boja2]="color2" [naziv1]="name1" [naziv2]="name2" [array] = "History" [array2]="Forecast" [array3] = "dates" class="chart" id="oneChart"></app-history-forecast>
+
       </div>
 
-      <div class="bottom-right-card">
+      <div class="bottom-right-card pdd-div">
         <div class="display:flex;position:relative; width:100%; height:fit-content;">
-          <p-dropdown  appendTo="body" optionLabel="name"  >
-          </p-dropdown>
-          <p-dropdown  appendTo="body" optionLabel="name"  >
-          </p-dropdown>
-          <p-dropdown  appendTo="body" optionLabel="name"  >
-          </p-dropdown>
+          <div style="width:100%; height:fit-content; display:flex; flex-direction:row;margin-bottom:12px;">
+            <p-dropdown [options]="type2" appendTo="body" [(ngModel)]="selectedHF"  optionLabel="name" (onChange)="updateType3()" >
+            </p-dropdown>
+            <p-dropdown [options]="type3" appendTo="body" [(ngModel)]="selectedDate" optionLabel="name" (onChange)="dropdownChange()" >
+            </p-dropdown>
+          </div>
         </div>
-        <app-history-forecast-table
+        <app-history-forecast-table *ngIf="table"
         style="
-        margin-top:4%;
+        margin-top:32px;
         display: flex;
         position: relative;
         flex-direction: column;
@@ -96,6 +136,20 @@
         transition: ease-in-out;
         padding:10px 20px 30px 20px;
         " [name1]="name1" [name2]="name2" [hif]="hif"></app-history-forecast-table>
+        <app-history-or-forecast-table  *ngIf="!table"
+        style="
+          margin-top:32px;
+          display: flex;
+          position: relative;
+          flex-direction: column;
+          height: fit-content;
+          width: 100%;
+          border-radius: 20px;
+          background: linear-gradient(180deg, #151515 50%, #121212 100%) ;
+          box-shadow: 5px 5px 15px black;
+          transition: ease-in-out;
+          padding:10px 20px 30px 20px;"  [name]="name" [History]="History" [Forecast]="Forecast" [dates]="dates" >
+          </app-history-or-forecast-table>
       </div>
     </div>
   </div>
@@ -116,26 +170,28 @@
       <div class="p-inputgroup p-inputtext-lg p-input-filled">
         <div class="half">
           Device type
-          <p-dropdown [options]="types" [(ngModel)]="typeSelected" name="typeSelected" appendTo="body" optionLabel="name" />
-          Device model
-          <p-dropdown [options]="models" [(ngModel)]="modelSelected" name="modelSelected" appendTo="body" optionLabel="name" />
-        </div> 
+          <div class="dropdown-div" style="margin-bottom:20px"><p-dropdown [options]="types" [(ngModel)]="typeSelected" name="typeSelected" appendTo="body" optionLabel="name" />
+          </div>Device model
+          <div class="dropdown-div"><p-dropdown [options]="models" [(ngModel)]="modelSelected" name="modelSelected" appendTo="body" optionLabel="name" />
+        </div></div> 
         
         <div class="half">
             Room
-          <p-dropdown [options]="rooms" [(ngModel)]="roomSelected" name="roomSelected" appendTo="body" optionLabel="name" />
-            Name
-          <input style="margin-top:45px;" [(ngModel)]="nameSelected" name="nameSelected" appendTo="body" type="text" class="p-inputtext-lg" placeholder="DEVICE NAME"> 
+            <div class="dropdown-div" style="margin-bottom:20px"><p-dropdown [options]="rooms" [(ngModel)]="roomSelected" name="roomSelected" appendTo="body" optionLabel="name" />
+            </div>Name
+            <input style="margin-top:0px;" [(ngModel)]="nameSelected" name="nameSelected" appendTo="body" type="text" class="p-inputtext-lg" placeholder="DEVICE NAME"> 
         </div>
       </div> 
     </form>
   </ng-template>
 
   <ng-template pTemplate="footer" >
-    <div class="flexRow">
-      <button style="margin-right: 0px;" (click)="save()" type="submit">Save</button>
-      <button class="margin-left__16px" (click)="cancel()" type="submit">Cancel</button>
-    </div>
+    <div class="remove-or-no" style="float:right">
+    <p-button class="margin-left__16px" (click)="cancel()" type="submit" label="Cancel"></p-button>
+</div>
+      <div class="button-div" style="float:right"><p-button style="margin-right: 0px;" (click)="save()" type="submit" label="Save"></p-button>
+      </div>
+      
   </ng-template>
 </p-dialog>
 
@@ -151,15 +207,38 @@
 
 <ng-template pTemplate="center">
   <div class="delete-device-content">
-    Are you sure you want to erase the device?
+    Are you sure you want to delete the device?
     All data will be deleted and you will not be able to recover it.
 
   </div>
 </ng-template>
 
 <ng-template pTemplate="footer" >
-  <button type="button" class="no-button" icon="fa-home" label="No" (click)="showDialog()"><span clas="no-span">No</span></button>
-  <button type="button" class="yes-button" icon="pi pi-info-circle" label="Yes" (click)="deleteDevice(device.id)"><span clas="no-span">Yes</span></button>
-
+  <div class="remove-or-no" style="float:right">
+    <p-button type="button" label="Cancel" (click)="showDialog()"></p-button>
+ </div>
+    <div class="button-div" style="float:right">
+      <p-button type="button" label="Yes" (click)="deleteDevice(device.id)"></p-button>
+    </div>
 </ng-template>
+</p-dialog>
+
+<p-dialog [style]="{width:'300px',height:'200px'}" header="Title"  [transitionOptions]="'3ms'" 
+[draggable]="true" [keepInViewport]="true" [resizable]="false" 
+[blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true" 
+[modal]="true" [(visible)]="display2" [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
+[closable]="true" >
+<ng-template pTemplate="header" class="header-dialog">
+  <span >Are you sure you want to change the device activity?</span>
+</ng-template>
+
+<ng-template pTemplate="footer">
+  <div class="remove-or-no" style="float:right">
+    <p-button class="margin-left__16px "  (click)="display2=false" label="Cancel"></p-button>
+   </div>
+  <div class="button-div" style="float:right">
+    <p-button class="margin-left__16px "  (click)="handleRunningSwitchChange2()" label="Yes"></p-button>
+  </div>
+</ng-template>
+
 </p-dialog>

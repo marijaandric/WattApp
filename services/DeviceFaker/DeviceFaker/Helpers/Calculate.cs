@@ -29,7 +29,7 @@ namespace DeviceFaker.Helpers
             double pom = 0;
             foreach (var device in devicesData)
             {
-                pom += device.Usage;
+                pom += device.usage;
             }
             return pom;
         }
