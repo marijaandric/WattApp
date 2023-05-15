@@ -105,6 +105,11 @@
     }
 }
 
+.slika {
+    height:40px; 
+    width:auto;
+}
+
 .bg-blue-color{
     background: linear-gradient(135deg,#3c8ce7,#00eaff);
 }
@@ -140,4 +145,10 @@
   .subtitle-card {
     width:100%;
   }
+
+  
+  .slika{
+    display: none;
+  }
+
 }

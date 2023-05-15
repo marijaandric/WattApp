@@ -97,7 +97,7 @@
     border-radius: 50%;
     width:200px;
     height:200px;
-    background: linear-gradient(45deg, #46c5f1 10%, #864cdd 100%);
+    background: linear-gradient(45deg, #46c5f1 60%, #864cdd 100%);
     box-shadow:2px 2px 15px black;
   }
   .title1 {
@@ -149,7 +149,7 @@
     font-size: 14px;
     padding:8px 5px 0px 10px;
     span {
-        color: #6592d9;
+        color: #46c5f1;
         font-weight:bold;
     }
   }
@@ -252,41 +252,6 @@
     box-shadow: 5px 5px 15px black;
   }
 
-  :host::ng-deep .p-dropdown {
-    position:relative;
-    border-radius: 20px;
-    border:none;
-    margin-right:0% !important;
-    margin-left:0% !important;
-    font-size:16px;
-    background: #1b1b1b;
-    
-  }
-  :host::ng-deep .p-dropdown.p-component {
-    width:100%;
-  }
-
-  :host::ng-deep #pr_id_1_label{
-    font-size: 14px;
-    padding:8px 0px 8px 16px;
-    border:none;
-    font-weight: bold;
-    font-family: 'Lato', sans-serif;
-  }
-  :host::ng-deep #pr_id_2_label{
-    font-size: 14px;
-    padding:8px 0px 8px 16px;
-    border:none;
-    font-weight: bold;
-    font-family: 'Lato', sans-serif;
-  }
-  :host::ng-deep #pr_id_3_label{
-    font-size: 14px;
-    padding:8px 0px 8px 16px;
-    border:none;
-    font-weight: bold;
-    font-family: 'Lato', sans-serif;
-  }
   .circle-2 {
     margin:auto;
     border-radius: 50%;
@@ -526,8 +491,5 @@
     #oneChart{
       margin-top: 32px;
       display: none;
-    }
-    .twoCharts{
-      margin-top: 32px;
     }
   }
