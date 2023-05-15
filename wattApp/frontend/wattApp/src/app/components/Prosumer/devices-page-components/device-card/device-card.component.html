@@ -1,4 +1,4 @@
-<div id="device-card" class="device-card">
+<div id="device-card" class="device-card" >
     <div class="flexRow">
         <a [routerLink]="['/device', device.id]"  style="display:flex;">
 
@@ -64,7 +64,7 @@
 
 <ng-template pTemplate="footer">
   <div class="flexRow" style="margin-top:20px;">
-    <div class="button-div"><p-button  (click)="handleRunningSwitchChange()" label="Yes"> </p-button>
+    <div class="button-div" style="padding-right: 20px;"><p-button  (click)="handleRunningSwitchChange()" label="Yes"> </p-button>
     </div>
     <div class="remove-or-no"><p-button  (click)="display=false" label="No"></p-button>
   </div></div>

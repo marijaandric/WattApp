@@ -12,6 +12,7 @@ export class SidebarNewComponent {
   isSideBarExpanded: boolean = false;
   isSubMenuShown: boolean = false;
   isSubMenu2Shown: boolean = false;
+  roles:any;
   
   hostElement: HTMLElement | undefined;
   @Output() toggleEventEmitter = new EventEmitter<boolean>();
@@ -20,6 +21,7 @@ export class SidebarNewComponent {
   }
 
   ngOnInit(): void {
+    this.role()
     this.hostElement = this.elementRef.nativeElement as HTMLElement;
     this.hostElement?.classList.toggle('close', !this.isSideBarExpanded);
     const innerElements = this.hostElement?.querySelectorAll('.main');
@@ -64,5 +66,17 @@ export class SidebarNewComponent {
     }
     const userRole = this.userService.getUserRoleFromToken(token);
     return userRole === 'operator' || userRole === 'admin' || userRole === 'superadmin';
+  }
+
+  role()
+  {
+    const token = localStorage.getItem('token')
+    if(token)
+    {
+      this.roles = this.userService.getUserRoleFromToken(token);
+      return this.roles ;
+    }
+    return null;
+    
   }
 }
