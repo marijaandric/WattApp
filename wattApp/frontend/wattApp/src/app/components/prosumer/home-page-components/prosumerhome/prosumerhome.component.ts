@@ -101,7 +101,7 @@ roomSelected! : Rooms;
        this.device.power = this.PowerUsageBiggestConsumer
        this.device = response.device
        this.devices[0] = this.device
-       this.cdRef.detectChanges()
+       this.cdRef.markForCheck()
        this.loader = false;
     },(error: any) => {
       this.loader = false;
@@ -123,12 +123,12 @@ roomSelected! : Rooms;
     const max = 'max';
 
     this.deviceService.getBiggest(this.id,year,month,day,consumer,max).subscribe((response: any) => {
-       this.PowerUsageBiggestProducer=response.averagePowerUsage.toFixed(2);
-       this.device1 = response.device1
-       this.device1.power = this.PowerUsageBiggestProducer
-       this.devices[1] = this.device1
-       this.cdRef.detectChanges();
-     //console.log(response);
+      this.PowerUsageBiggestProducer=response.averagePowerUsage.toFixed(2);
+       this.device.power = this.PowerUsageBiggestProducer
+       this.device = response.device
+       this.devices[1] = this.device
+       this.cdRef.markForCheck()
+       //this.loader = false;
     },(error: any) => {
       this.loader = false;
     });
@@ -154,8 +154,7 @@ roomSelected! : Rooms;
        this.device2 = response.device
        this.device2.power = this.PowerUsageBiggestStorage
        this.devices[2] = this.device2
-       this.cdRef.detectChanges()
-       console.log(response);
+       this.cdRef.markForCheck()
       },(error: any) => {
         this.loader = false;
       });

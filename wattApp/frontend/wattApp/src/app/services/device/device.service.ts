@@ -25,7 +25,8 @@ export class DeviceService {
           device.isActive,
           device.allowOperatorControll,
           device.allowOperatorVisibility,
-          device.imageId
+          device.imageId,
+          device.power
         ));
       })
     );
@@ -44,7 +45,8 @@ export class DeviceService {
           device.isActive,
           device.allowOperatorControll,
           device.allowOperatorVisibility,
-          device.imageId
+          device.imageId,
+          device.power
         ));
       })
     );
