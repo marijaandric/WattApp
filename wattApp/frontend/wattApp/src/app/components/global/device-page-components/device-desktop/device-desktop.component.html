@@ -52,7 +52,7 @@
                 <img *ngIf="isBulb" src="../.../../../../../../assets/icons/images/icons8-bulb-50.png">
                 <img *ngIf="isOther" src="../.../../../../../../assets/icons/images/icons8-multiple-devices-50.png">
           
-                  <div class="colored-text" ><h5>{{device.deviceName}}</h5></div>
+                  <div class="colored-text" ><h5 style="margin-top:10px">{{device.deviceName}}</h5></div>
                   <p-inputSwitch [(ngModel)]="isChecked" (click)="showDialog2()" class="margin-left__auto width__fit-content"></p-inputSwitch>
               </div>
         

@@ -7,7 +7,7 @@
     <app-center-bar *ngIf="!loader">
       <div style="width:100%; height:fit-content; display:flex; flex-direction:row;margin-bottom:32px;">
         <div class="firstdds">
-          <div class="pdd-div"><p-dropdown [options]="type" appendTo="body" [(ngModel)]="selectedType" optionLabel="name" (onChange)="dropdownChange()" >
+          <div style="margin-bottom:10px" class="pdd-div"><p-dropdown [options]="type" appendTo="body" [(ngModel)]="selectedType" optionLabel="name" (onChange)="dropdownChange()" >
           </p-dropdown></div>
           <div class="pdd-div"><p-dropdown [options]="type2" appendTo="body" [(ngModel)]="selectedHF"  optionLabel="name" (onChange)="updateType3()" >
           </p-dropdown></div>

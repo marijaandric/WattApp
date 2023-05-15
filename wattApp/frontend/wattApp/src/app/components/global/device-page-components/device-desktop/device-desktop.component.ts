@@ -170,6 +170,7 @@ export class DeviceDesktopComponent implements OnInit {
       this.deviceService.getDeviceById(id)
         .subscribe(device => {
           this.device = device;
+          this.setIcons()
           this.isChecked = this.device.isActive
           if(!this.device){
             this.navigateToDevices();
@@ -214,6 +215,13 @@ export class DeviceDesktopComponent implements OnInit {
       this.navigateToDevices();
     }
 
+    
+
+  }
+
+
+  setIcons()
+  {
     switch(this.device.deviceType) {
       case "Consumer":
         this.isConsumer = true;
@@ -315,7 +323,6 @@ export class DeviceDesktopComponent implements OnInit {
         this.isOther = true;
         break;
     }
-
   }
 
   promijeniStanjeDrugiPrekidac() {

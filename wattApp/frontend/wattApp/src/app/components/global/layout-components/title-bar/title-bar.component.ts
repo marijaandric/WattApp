@@ -346,7 +346,7 @@ export class TitleBarComponent implements OnInit{
         this.newsForm.reset()
         this.toast.success({detail:"SUCCESS",summary:"You have successfully added news",duration:4000});
         this.display3 = false;
-        location.reload();
+        //location.reload();
       }),
       error:(err => {
         this.toast.error({detail:"ERROR",summary:"Error",duration:4000});

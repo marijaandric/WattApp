@@ -147,12 +147,12 @@ export class StatisticComponent  implements OnInit {
 
   
   
-  HistoryCon3:any  = [0,0,0,0,0,0,0];
-  ForecastCon3:any = [0,0,0,0,0,0,0];
-  HistoryPro3:any  = [0,0,0,0,0,0,0];
-  ForecastPro3:any = [0,0,0,0,0,0,0];
-  HistoryStock3:any  = [0,0,0,0,0,0,0];
-  ForecastStock3:any  = [0,0,0,0,0,0,0];
+  HistoryCon3:any  = [0,0,0,0,0,0];
+  ForecastCon3:any = [0,0,0,0,0,0];
+  HistoryPro3:any  = [0,0,0,0,0,0];
+  ForecastPro3:any = [0,0,0,0,0,0];
+  HistoryStock3:any  = [0,0,0,0,0,0];
+  ForecastStock3:any  = [0,0,0,0,0,0];
 
   dates = [1,2,3,4,5,6,7,8,9,10,11,12,13,14];
   arrayData3 = [1,2,3,4,5,6];

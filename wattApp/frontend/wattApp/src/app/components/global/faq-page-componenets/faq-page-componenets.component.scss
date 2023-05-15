@@ -259,3 +259,19 @@ background: linear-gradient(135deg,#885ec0,#ae91d4);
     margin-bottom: 40px;
     font-weight: bolder;
   }
+
+  @media screen and (max-width: 600px) {
+    .login_box {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+    .left{
+        margin-top: 30px;;
+        width: 100%;
+    }
+    .right{
+        width: 100%;
+    }
+  }
+  
