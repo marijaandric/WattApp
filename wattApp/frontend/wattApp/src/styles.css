@@ -304,10 +304,14 @@
   color:black;
 }
 
-.dark-theme-text-color-gray {
+.ligh-theme-text-color-gray {
   color: #4e4e4e;
 }
 
 .dark-theme-color-gray:hover {
   background: #323232;
+}
+
+.color-white {
+  color:white;
 }

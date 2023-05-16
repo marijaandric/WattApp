@@ -6,8 +6,9 @@
     /*min-width: 340px;*/
     border-radius: 20px;
     padding:  10px 0px 10px 15px;
+    /*
     background: linear-gradient(180deg, #1e1e1e 50%, #121212 100%) ;
-    
+    */
     /* LIGHT VERZIJA - BG WHITE */
 
     flex-basis: calc(33.33333% - 30px);
@@ -29,15 +30,19 @@
   overflow: hidden;
   font-weight: bolder;
   font-size: 22px;
+  /*
   color: #FFF;
-  
-  /* LIGHT VERZIJA - color: #4e4e4e; */
+  */
+  /* LIGHT VERZIJA -  */
 
   align-items: end;
   cursor: default;
   z-index: 2;
   position: relative;
   font-family: 'Montserrat', sans-serif;
+  -webkit-transition: color .5s ease;
+  -o-transition: color .5s ease;
+  transition: color .5s ease;
 }
 
 :host>.item_date-box {
