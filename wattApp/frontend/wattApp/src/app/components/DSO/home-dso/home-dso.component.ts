@@ -34,6 +34,8 @@ interface HiF2{
 
 
 export class HomeDSOComponent {
+  hostElement: HTMLElement | undefined;
+
   display: boolean = false;
   display2: boolean = false;
   display3: boolean = false;
@@ -144,6 +146,15 @@ export class HomeDSOComponent {
     //   console.log(count)
     //   this.loader = count;
     // });
+
+    
+    this.hostElement = this.elementRef.nativeElement as HTMLElement;
+    const widgets = this.hostElement?.querySelectorAll('.widget');
+    widgets.forEach((widget) => {
+      
+    });
+   
+    
   }
 
   clear(dtUsers: any) {

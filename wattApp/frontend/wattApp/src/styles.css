@@ -289,11 +289,11 @@
 }
 
 .light-theme-bigger-shadow {
-  box-shadow: 5px 5px 10px #c6c6c6;  
+  box-shadow: 10px 10px 25px -7px rgba(0,0,0,0.20); 
 }
 
 .light-theme-shadow {
-  box-shadow: 2px 2px 5px #c6c6c6; 
+  box-shadow: 2px 2px 5px #ffffff; 
 }
 
 .border-none {
@@ -305,7 +305,7 @@
 }
 
 .ligh-theme-text-color-gray {
-  color: #4e4e4e;
+  color: #5b5b5b;
 }
 
 .dark-theme-color-gray:hover {

@@ -36,10 +36,12 @@ export class WidgetComponent implements OnInit{
     });
   */
     this.hostElement?.classList.add('light-theme-background-white');
+    this.hostElement?.classList.toggle('light-theme-bigger-shadow', true);
     const text = this.hostElement?.querySelector('.item_title');
     this.renderer.addClass(text, 'ligh-theme-text-color-gray');
     this.hostElement.addEventListener('mouseenter', this.onMouseEnter.bind(this));
     this.hostElement.addEventListener('mouseleave', this.onMouseLeave.bind(this));
+
   }
 
 

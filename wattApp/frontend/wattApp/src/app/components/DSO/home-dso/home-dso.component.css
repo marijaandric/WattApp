@@ -29,7 +29,8 @@
     flex-direction: row;
     min-width: 240px;
     width:20%;
-    box-shadow: 5px 5px 15px black;
+    /*
+    box-shadow: 5px 5px 15px black;*/
     /*  box-shadow: 5px 5px 10px rgb(198, 198, 198); */
   }
   
@@ -98,7 +99,7 @@
 .stats-card{
   display:flex;
   flex-basis: 47%;
-  box-shadow: 5px 5px 15px black;
+  border:none;
 }
 
 .stats-card:nth-child(1), .stats-card:nth-child(2) {
