@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, ElementRef, Input, OnChanges, OnInit, Renderer2, SimpleChanges } from '@angular/core';
 import * as L from 'leaflet';
 import { Observable } from 'rxjs';
 import { AreasService } from 'src/app/services/areas/areas.service';
@@ -15,6 +15,8 @@ interface City {
   styleUrls: ['./map-suburb.component.css']
 })
 export class MapSuburbComponent implements OnInit,OnChanges {
+  hostElement: HTMLElement | undefined;
+
   @Input() type : City = {name: 'Consumption', code: 'Consumer'};
   @Input() date : City= {name: 'Week', code: 'Week'};
   map: any;
@@ -30,7 +32,7 @@ export class MapSuburbComponent implements OnInit,OnChanges {
   usageMin:any;
   usageMax:any;
 
-  constructor(private areaService:AreasService,private http:HttpClient){}
+  constructor(private areaService:AreasService,private http:HttpClient, private elementRef: ElementRef, private renderer: Renderer2){}
 
   ngOnChanges(changes: SimpleChanges): void {
     if ('type' in changes) {
@@ -41,6 +43,8 @@ export class MapSuburbComponent implements OnInit,OnChanges {
       this.date = this.date;
       this.create();
     }
+
+
   }
 
   async getCoordinates(district: string): Promise<[number, number,string] | undefined> {
@@ -87,6 +91,12 @@ export class MapSuburbComponent implements OnInit,OnChanges {
         attribution: '&copy; OpenStreetMap contributors'
       }).addTo(this.map);
     this.create();
+
+    
+    this.hostElement = this.elementRef.nativeElement as HTMLElement;
+    const main_text = this.hostElement?.querySelector(".map");
+ 
+    this.renderer.addClass(main_text, 'light-theme-bigger-shadow');
   }
 
   async create()

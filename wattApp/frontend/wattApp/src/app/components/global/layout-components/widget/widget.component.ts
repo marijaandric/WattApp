@@ -29,14 +29,14 @@ export class WidgetComponent implements OnInit{
 
 
   ngOnInit(): void {
-    this.hostElement = this.elementRef.nativeElement as HTMLElement;
     /*const innerElements = this.hostElement?.querySelectorAll('.main');
     innerElements.forEach((innerElement) => {
       this.renderer.addClass(innerElement, 'dark-theme-color-gray');
     });
   */
-    this.hostElement?.classList.add('light-theme-background-white');
+    this.hostElement = this.elementRef.nativeElement as HTMLElement;
     this.hostElement?.classList.toggle('light-theme-bigger-shadow', true);
+    this.hostElement?.classList.add('light-theme-background-white');
     const text = this.hostElement?.querySelector('.item_title');
     this.renderer.addClass(text, 'ligh-theme-text-color-gray');
     this.hostElement.addEventListener('mouseenter', this.onMouseEnter.bind(this));

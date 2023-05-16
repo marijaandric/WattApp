@@ -149,10 +149,7 @@ export class HomeDSOComponent {
 
     
     this.hostElement = this.elementRef.nativeElement as HTMLElement;
-    const widgets = this.hostElement?.querySelectorAll('.widget');
-    widgets.forEach((widget) => {
-      
-    });
+
    
     
   }

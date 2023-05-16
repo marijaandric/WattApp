@@ -6,7 +6,7 @@
     <div class="current">
         <h3 class="location">{{WeatherData?.name}}</h3>
         <h3 class="location">{{WeatherData?.temp_celcius}}°C</h3>
-        <p class="date" style="color:white">{{ time }} | {{ weatherData?.[0]?.dt_txt}}</p>
+        <p class="date" >{{ time }} | {{ weatherData?.[0]?.dt_txt}}</p>
         <div class="info2">
           <h4 >Humidity: {{WeatherData?.main.humidity}}%</h4>
           <h4 >Feels Like: {{WeatherData?.temp_feels_like}}°C</h4>

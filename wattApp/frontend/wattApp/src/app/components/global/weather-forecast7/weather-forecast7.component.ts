@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
 import { Observable } from 'rxjs';
 import axios from 'axios';
 import { HttpClient } from '@angular/common/http';
@@ -10,6 +10,8 @@ import { HttpClient } from '@angular/common/http';
 })
 
 export class WeatherForecast7Component implements OnInit{
+  
+  hostElement: HTMLElement | undefined;
   private apiKey = '1702d844857d1ce89239d1c1a641dd84';
   weatherData: any;
   WeatherData: any;
@@ -19,7 +21,7 @@ export class WeatherForecast7Component implements OnInit{
   date : string = this.currentDate.toLocaleDateString();
   boja = "#f5805a";
 
-  constructor() {
+  constructor(private elementRef: ElementRef, private renderer: Renderer2) {
     this.getWeatherForecast(44.01860475758608,20.907175572741636).subscribe(data=>{
       this.futureForecast(data.list)
       this.weatherData = this.filterWeatherData;
@@ -27,6 +29,19 @@ export class WeatherForecast7Component implements OnInit{
   }
 
   ngOnInit(): void {
+    this.hostElement = this.elementRef.nativeElement as HTMLElement;
+    const mapa = this.hostElement?.querySelector('.box');
+    const tekst = this.hostElement?.querySelectorAll('.box .current h3, p, .info2 h4');
+    const mini_tekst = this.hostElement?.querySelectorAll('.box .info .info2 h6');
+    mini_tekst.forEach((innerElement) => {
+      this.renderer.addClass(innerElement, 'light-theme-text-color-dark-gray');
+    });
+    
+    this.renderer.addClass(mapa, 'light-theme-bigger-shadow');
+
+    tekst.forEach((innerElement) => {
+      this.renderer.addClass(innerElement, 'light-theme-text-color-dark-gray');
+    });
     
     this.getWeatherData();
     setInterval(() => {
