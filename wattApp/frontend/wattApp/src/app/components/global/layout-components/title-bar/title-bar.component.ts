@@ -320,8 +320,12 @@ export class TitleBarComponent implements OnInit{
     this.deviceService.AddDevice(this.addDeviceForm.value).subscribe({
       next:(res => {
         this.addDeviceForm.reset()
-        this.toast.success({detail:"SUCCESS",summary:"You have successfully added device",duration:4000});
+        this.toast.success({detail:"SUCCESS",summary:"You have successfully added device",duration:5000});
         this.display2 = false;
+      setTimeout(() => {
+        location.reload();
+      }, 1350)
+
       }),
       error:(err => {
         this.toast.error({detail:"ERROR",summary:"Error",duration:4000});
@@ -344,9 +348,11 @@ export class TitleBarComponent implements OnInit{
     this.dsonewsService.AddNews(this.newsForm.value).subscribe({
       next:(res => {
         this.newsForm.reset()
-        this.toast.success({detail:"SUCCESS",summary:"You have successfully added news",duration:4000});
+        this.toast.success({detail:"SUCCESS",summary:"You have successfully added news",duration:5000});
         this.display3 = false;
-        //location.reload();
+      setTimeout(() => {
+        location.reload();
+      }, 1350)
       }),
       error:(err => {
         this.toast.error({detail:"ERROR",summary:"Error",duration:4000});
