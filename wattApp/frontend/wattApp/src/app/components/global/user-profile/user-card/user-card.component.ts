@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { FileUploadService } from 'src/app/services/file-upload/file-upload.service';
 import { UserService } from 'src/app/services/user.service';
 import { url } from 'src/app/app.module';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'app-user-card',
@@ -23,7 +24,7 @@ export class UserCardComponent implements OnInit {
   constructor(private router:Router,
     private userService: UserService,
     private fb: FormBuilder,
-    private fileUploadService: FileUploadService) {}
+    private fileUploadService: FileUploadService, private toast:NgToastService) {}
 
   ngOnInit() {
     
@@ -60,8 +61,8 @@ export class UserCardComponent implements OnInit {
       token: this.userInfo.token,
       refreshToken:['string', Validators.required],
       refreshTokenExpiryTime: ['2023-05-04T11:25:23.308Z', Validators.required],
-      x: ['', Validators.required],
-      y: ['', Validators.required],
+      x:  this.userInfo.x,
+      y:  this.userInfo.y,
       area :['', Validators.required],
       resetPasswordToken: ['string', Validators.required],
       resetPasswordExpiryTime: ['2023-05-04T11:25:23.308Z', Validators.required],
@@ -97,7 +98,7 @@ export class UserCardComponent implements OnInit {
             location.reload();
             },
           error: error => {
-            alert("Niste lepo azurirali profil");
+            this.toast.error({detail:"Error",summary:"Please check all your details",duration:4000});
             // mislim da alert treba da bude konkretniji
           }
         }

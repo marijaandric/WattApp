@@ -244,7 +244,7 @@ export class HistoryForecastComponent implements OnInit,OnChanges{
 
   public yaxis: ApexYAxis = {
     title:{
-      text:"kwh",
+      text:"kWh",
       style :{
         color:this.titleColor,
         fontFamily: 'Montserrat,sans-serif',

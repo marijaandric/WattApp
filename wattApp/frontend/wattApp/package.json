@@ -29,6 +29,7 @@
     "cyrillic-to-latin": "^2.0.0",
     "jquery": "^3.6.3",
     "leaflet": "^1.9.3",
+    "leaflet-bing-layer": "^3.3.1",
     "ng-angular-popup": "^0.2.0",
     "ng-apexcharts": "^1.7.4",
     "ngx-apexcharts": "^0.1.1",

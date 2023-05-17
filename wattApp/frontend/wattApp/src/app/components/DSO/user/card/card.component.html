@@ -7,7 +7,7 @@
           <p-button label="Edit" style="float:left" icon="fa-solid fa-pen" (click)="showDialog()"></p-button>
         </div>-->
         <div class="remove-or-no" style="position:relative;display:flex;justify-content:center">
-          <p-button  icon="fa-solid fa-minus" label="Remove"></p-button>
+          <p-button (onClick)="showDialog()"  icon="fa-solid fa-minus" label="Remove"></p-button>
         </div>
              
     </div>
@@ -84,7 +84,7 @@
 [draggable]="true" [keepInViewport]="true" [resizable]="false" 
 [blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true" 
 [modal]="true" [(visible)]="display" [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
-[closable]="true" >
+[closable]="true" appendTo="body">
 <ng-template pTemplate="header" class="header-dialog">
   <span>Delete user</span>
 </ng-template>
@@ -94,7 +94,7 @@
 </ng-template>
 
 <ng-template pTemplate="footer" style="min-height:100px;" >
-  <button type="button" class="footer-button" icon="pi pi-info-circle" label="Show" (click)="deleteUser()" >Yes</button>
-  <button style="margin-top: 10px;" type="button" class="footer-button" icon="pi pi-info-circle" label="Show" (click)="showDialog()" >No</button>
+  <button type="button" class="button-div" icon="pi pi-info-circle" label="Show" (click)="deleteUser()" >Yes</button>
+  <button style="margin-top: 10px;" type="button" class="remove-or-no" con="pi pi-info-circle" label="Show" (click)="showDialog()" >No</button>
 </ng-template>
 </p-dialog>

@@ -50,7 +50,9 @@
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
               "node_modules/bootstrap/dist/js/bootstrap.min.js",
-              "node_modules/parallax-js/dist/parallax.min.js"
+              "node_modules/parallax-js/dist/parallax.min.js",
+              "node_modules/leaflet/dist/leaflet.js",
+              "node_modules/leaflet-bing-layer/leaflet-bing-layer.js"
             ]
           },
           "configurations": {

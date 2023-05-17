@@ -53,12 +53,12 @@ export class MapForDsoUserComponent implements OnInit, OnChanges{
       iconUrl: '/assets/icons/images/marker-pink.png',
       iconRetinaUrl: '/assets/icons/images/marker-pink.png',
       iconSize: [50, 50],
-      iconAnchor: [2, 11],
+      iconAnchor: [25,55],
       popupAnchor: [1, -34],
       tooltipAnchor: [16, -28],
       shadowUrl: '/assets/icons/images/marker-shadow.png',
       shadowSize: [60, 60],
-      shadowAnchor: [0, 15]
+      shadowAnchor: [20,65]
     });
 
     if(this.user != null)

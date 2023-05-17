@@ -149,7 +149,7 @@ export class HistoryLineChartComponent implements OnChanges{
 
   public yaxis: ApexYAxis = {
     title:{
-      text:"kwh",
+      text:"kWh",
       style :{
         color:'white',
         fontFamily: 'Montserrat,sans-serif',
