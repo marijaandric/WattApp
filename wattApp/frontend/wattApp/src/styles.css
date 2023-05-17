@@ -280,6 +280,16 @@
   background: white;
 }
 
+.light-theme-background-color-white{
+  background-color: white;
+}
+
+
+
+.light-theme-color-000{
+  color:#000;
+}
+
 .dark-theme-bigger-shadow {
   box-shadow: 5px 5px 15px black;
 }
@@ -287,6 +297,12 @@
 .dark-theme-smaller-shadow {
   box-shadow: 2px 2px 10px black;
 }
+
+.dark-theme-background-1b1b1b {
+  background: #1b1b1b;
+}
+
+
 /*
 .light-theme-bigger-shadow {
   box-shadow: 8px 8px 25px -8px rgba(0,0,0,0.24); 
@@ -297,7 +313,11 @@
 
 
 .light-theme-shadow {
-  box-shadow: 2px 2px 5px #ffffff; 
+  box-shadow: 10px 10px 35px -5px rgb(200, 200, 200); 
+}
+
+.light-theme-background-light-gray {
+  background: #bababa;
 }
 
 .border-none {
@@ -317,8 +337,43 @@
   color: #252525 !important;
 }
 
+.dark-theme-coloro-gray {
+  background:red !important;
+}
+
 .dark-theme-color-gray:hover {
   background: #323232;
+}
+.light-theme-color-gray {
+  
+}
+
+.light-theme-color-gray:hover {
+  background: #46c5f1;
+}
+
+.light-theme-color-gray a {
+  color: #46c5f1 !important;
+
+}
+
+.text-color-blue {
+  color: #46c5f1;
+}
+
+
+.light-theme-color-gray:hover a{
+  color: white !important;
+}
+
+.active  a {
+  color: white !important;
+
+}
+
+
+.light-theme-color-gray:hover {
+  color:red;
 }
 
 .color-white {

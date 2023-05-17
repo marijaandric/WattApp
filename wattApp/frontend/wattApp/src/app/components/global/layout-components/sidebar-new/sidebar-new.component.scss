@@ -188,7 +188,10 @@
   top:60px;
   border-radius: 50%;
   cursor: pointer;
+
+  /*
   background-color: #1b1b1b;
+  */
 }
 
 .arrow-left {
@@ -285,12 +288,13 @@ a {
   overflow: hidden;
   z-index: 4;
   .left {
-    background-color: #323232;
+    /*
+    background-color: red;*/
   }
 
   .right {
     transform: translateX(20px);
-    background-color: #1b1b1b;
+    background-color: blue;
     display:flex;
     z-index:3;
     flex-direction: column;
@@ -337,7 +341,10 @@ a {
 }
 
 .active {
-  background: #323232 !important;
+  /*
+  background: #323232 ;
+  */
+  background: #46c5f1;
 }
 
 .last-main {

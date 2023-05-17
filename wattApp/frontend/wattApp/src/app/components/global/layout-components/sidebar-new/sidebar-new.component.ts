@@ -24,12 +24,29 @@ export class SidebarNewComponent {
     this.role()
     this.hostElement = this.elementRef.nativeElement as HTMLElement;
     this.hostElement?.classList.toggle('close', !this.isSideBarExpanded);
+    //light mode
+    
+    const innerElements = this.hostElement?.querySelectorAll('.main');
+    innerElements.forEach((innerElement) => {
+      this.renderer.addClass(innerElement, 'light-theme-color-gray');
+    });
+    const arrow = this.hostElement?.querySelector('.sidebar-arrow');
+    const sidebar = this.hostElement?.querySelector('.left');
+    this.renderer.addClass(sidebar, '.dark-theme-coloro-gray');
+    
+    this.renderer.addClass(arrow, 'light-theme-background-white');
+    this.renderer.addClass(arrow, 'text-color-blue');
+  
+    this.hostElement?.classList.add('light-theme-background-white');
+
+    /*dark mode
     const innerElements = this.hostElement?.querySelectorAll('.main');
     innerElements.forEach((innerElement) => {
       this.renderer.addClass(innerElement, 'dark-theme-color-gray');
     });
   
     this.hostElement?.classList.add('dark-theme-background-gray-gradient-3');
+ */
   }
 
   expandSidebar() {
