@@ -1,5 +1,5 @@
 import { style } from '@angular/animations';
-import { Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnChanges, OnInit, Renderer2, SimpleChanges, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import {  ApexAxisChartSeries,ApexDataLabels,ApexLegend,ApexMarkers, ApexTooltip, ApexStroke, ApexFill, ApexChart, ApexXAxis, ApexTitleSubtitle,ApexYAxis, ApexNonAxisChartSeries } from 'ng-apexcharts';
 import { AuthService } from 'src/app/services/auth/auth.service';
@@ -18,6 +18,12 @@ interface City {
   templateUrl: './history-forecast.component.html',
 })
 export class HistoryForecastComponent implements OnInit,OnChanges{
+  hostElement: HTMLElement | undefined;
+  lightBackground: boolean = false;
+  xAxisColors: string[] = [];
+  titleColor: string = "";
+  themeChart: string = "";
+  yAxisColos: string = "";
   menageUserForm! : FormGroup;
   cities: City[];
   selectedCity!: City;
@@ -32,7 +38,7 @@ export class HistoryForecastComponent implements OnInit,OnChanges{
   @Input() boja2 = '#ae91d4';
 
 
-  constructor(private userService:UserService, private authService:AuthService, private deviceService:DeviceService) {
+  constructor(private userService:UserService, private authService:AuthService, private deviceService:DeviceService, private elementRef: ElementRef, private renderer: Renderer2) {
     this.cities = [
       {name: 'Consumption', code: '1'},
       {name: 'Production', code: '2'},
@@ -43,6 +49,20 @@ export class HistoryForecastComponent implements OnInit,OnChanges{
   }
 
   ngOnInit(): void {
+
+    this.hostElement = this.elementRef.nativeElement as HTMLElement;
+    this.hostElement?.classList.toggle('light-theme-bigger-shadow', true);
+    this.hostElement?.classList.add('light-theme-background-white');
+    this.xAxisColors = ['#252525','#252525','#252525','#252525', '#252525','#252525','#252525','#252525','#252525','#252525','#252525','#252525','#252525','#252525','#252525'];
+    
+    /*
+    this.xAxisColors = ['#FFF','#FFF','#FFF','#FFF', '#FFF','#FFF','#FFF','#FFF','#FFF','#FFF','#FFF','#FFF','#FFF','#FFF','#FFF'];
+    */
+   this.themeChart = 'dark';
+    this.titleColor = '#252525';
+    this.yAxisColos = '#252525';
+    const text = this.hostElement?.querySelector('.item_title');
+    this.renderer.addClass(text, 'ligh-theme-text-color-gray');
   }
 
   ngOnChanges(changes: SimpleChanges) {
@@ -89,7 +109,7 @@ export class HistoryForecastComponent implements OnInit,OnChanges{
       title:{
         text:"date",
         style :{
-          color:'white',
+          color:this.titleColor,
           fontFamily: 'Montserrat,sans-serif',
           fontSize: '16px' 
         }
@@ -97,7 +117,7 @@ export class HistoryForecastComponent implements OnInit,OnChanges{
       categories: this.array3,
       labels: {
         style: {
-          colors: ['#FFF','#FFF','#FFF','#FFF', '#FFF','#FFF','#FFF','#FFF','#FFF','#FFF','#FFF','#FFF','#FFF','#FFF','#FFF'],
+          colors: this.xAxisColors,
           fontSize: '16px',
           fontFamily: 'Lato, sans-serif'
         }
@@ -171,9 +191,9 @@ export class HistoryForecastComponent implements OnInit,OnChanges{
 
   public tooltip: ApexTooltip = {
     theme:'dark',
-
     style : {
-      fontSize:'17px'
+      fontSize:'17px',
+
     },
   }
 
@@ -215,7 +235,7 @@ export class HistoryForecastComponent implements OnInit,OnChanges{
     categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun','Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
     labels: {
       style: {
-        colors: ['#FFF','#FFF','#FFF','#FFF', '#FFF','#FFF','#FFF','#FFF','#FFF','#FFF','#FFF','#FFF','#FFF','#FFF','#FFF'],
+        colors: this.xAxisColors,
         fontSize: '16px',
         fontFamily: 'Lato, sans-serif'
       }
@@ -226,14 +246,14 @@ export class HistoryForecastComponent implements OnInit,OnChanges{
     title:{
       text:"kwh",
       style :{
-        color:'white',
+        color:this.titleColor,
         fontFamily: 'Montserrat,sans-serif',
         fontSize: '16px' 
       }
     },
     labels: {
       style: {
-        colors: ['#FFF'],
+        colors: [this.yAxisColos],
         fontSize:'16px',
         fontFamily: 'Lato, sans-serif'
       },
@@ -243,7 +263,7 @@ export class HistoryForecastComponent implements OnInit,OnChanges{
   public title: ApexTitleSubtitle = {
     text: this.Title,
     style: {
-      color: '#FFF',
+      color: this.titleColor,
       fontSize: '19px',
       fontFamily: 'Montserrat'
     }
@@ -258,7 +278,6 @@ export class HistoryForecastComponent implements OnInit,OnChanges{
 
   public dataLabels: ApexDataLabels = {
     background: {
-      borderColor:'#323232',
       foreColor: 'black',
       padding:12,
       opacity:1,

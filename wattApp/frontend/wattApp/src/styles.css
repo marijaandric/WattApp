@@ -287,10 +287,14 @@
 .dark-theme-smaller-shadow {
   box-shadow: 2px 2px 10px black;
 }
-
+/*
 .light-theme-bigger-shadow {
   box-shadow: 8px 8px 25px -8px rgba(0,0,0,0.24); 
+}*/
+.light-theme-bigger-shadow {
+  box-shadow: 10px 10px 35px -5px rgb(200, 200, 200);
 }
+
 
 .light-theme-shadow {
   box-shadow: 2px 2px 5px #ffffff; 
