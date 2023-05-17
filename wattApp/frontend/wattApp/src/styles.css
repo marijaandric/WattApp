@@ -328,14 +328,6 @@
   color:black;
 }
 
-.ligh-theme-text-color-gray {
-  color: #5b5b5b;
-}
-
-
-.light-theme-text-color-dark-gray {
-  color: #252525 !important;
-}
 
 .dark-theme-coloro-gray {
   background:red !important;
@@ -344,8 +336,15 @@
 .dark-theme-color-gray:hover {
   background: #323232;
 }
-.light-theme-color-gray {
-  
+
+
+.ligh-theme-text-color-gray {
+  color: #5b5b5b;
+}
+
+
+.light-theme-text-color-dark-gray {
+  color: #252525 !important;
 }
 
 .light-theme-color-gray:hover {
