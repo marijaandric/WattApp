@@ -11,7 +11,7 @@
   <app-center-bar *ngIf="loader"><app-loader></app-loader></app-center-bar>
     <app-center-bar *ngIf="!loader">
   <div  class="main-grid"> 
-    <app-map [users] = 'users' style="
+    <app-map [users] = "getUserDTOs(users)" style="
       height: 79.2vh;
       width:38%; display: flex;
       float:left;
@@ -42,10 +42,11 @@
       </div>
 
       <div style="display:flex;float:right; flex-direction:row; width:100%; height:100%">
-        <!-- [lazy]="true" -->
         <p-table class="d-table" #dtUsers class="ui-table-default" [value]="users" dataKey="id" [scrollable]="true" 
-          [rows]="rowsPerPage" [totalRecords]="allUsersCount" [showCurrentPageReport]="true" (onPage)="onPageChange($event)"
-          [globalFilterFields]="['id','firstName','lastName','email','role']" [paginator]="true" 
+          [rows]="rowsPerPage" [totalRecords]="allUsersCount" [lazy]="true" 
+          (onSort)="customSort($event)" [customSort]="true"
+          [showCurrentPageReport]="true" (onPage)="onPageChange($event)"
+          [globalFilterFields]="['id','firstName','address','consumption','production', 'stock']" [paginator]="true" 
           style="
             margin-top:calc(3.5%);
             display: flex;
@@ -81,25 +82,32 @@
                       <p-columnFilter class="ml-auto" type="text" field="firstName" display="menu"></p-columnFilter>
                   </div>
                 </th>
-                <th pSortableColumn="lastName" style="min-width:9rem;  border-top:2px solid #46c5f1; border-bottom:2px solid #46c5f1;">
+                <th pSortableColumn="address" style="min-width:9rem;  border-top:2px solid #46c5f1; border-bottom:2px solid #46c5f1;">
                   <div class="flexRow">
                       <p style=" font-size: 18px !important;">Address</p>
-                      <p-sortIcon field="lastName"></p-sortIcon>
-                      <p-columnFilter class="ml-auto" type="text" field="lastName" display="menu"></p-columnFilter>
+                      <p-sortIcon field="address"></p-sortIcon>
+                      <p-columnFilter class="ml-auto" type="text" field="address" display="menu"></p-columnFilter>
                   </div>
                 </th>
-                <th pSortableColumn="email" style="min-width:10rem;  border-top:2px solid #46c5f1; border-bottom:2px solid #46c5f1;">
+                <th pSortableColumn="consumption" style="min-width:10rem;  border-top:2px solid #46c5f1; border-bottom:2px solid #46c5f1;">
                   <div class="flexRow">
-                      <p style=" font-size: 18px !important;">Email</p>
-                      <p-sortIcon field="email"></p-sortIcon>
-                      <p-columnFilter class="ml-auto" type="text" field="email" display="menu"></p-columnFilter>
+                      <p style=" font-size: 18px !important;">Monthly consumption</p>
+                      <p-sortIcon field="consumption"></p-sortIcon>
+                      <p-columnFilter class="ml-auto" type="text" field="consumption" display="menu"></p-columnFilter>
                   </div>
                 </th>
-                <th pSortableColumn="role" style="min-width:8rem; border-top:2px solid #46c5f1; border-bottom:2px solid #46c5f1;">
+                <th pSortableColumn="production" style="min-width:8rem; border-top:2px solid #46c5f1; border-bottom:2px solid #46c5f1;">
                   <div class="flexRow">
-                      <p style=" font-size: 18px !important;">Role</p>
-                      <p-sortIcon field="role"></p-sortIcon>
-                      <p-columnFilter class="ml-auto" type="text" field="role" display="menu"></p-columnFilter>
+                      <p style=" font-size: 18px !important;">Monthly production</p>
+                      <p-sortIcon field="production"></p-sortIcon>
+                      <p-columnFilter class="ml-auto" type="text" field="production" display="menu"></p-columnFilter>
+                  </div>
+                </th>
+                <th pSortableColumn="stock" style="min-width:8rem; border-top:2px solid #46c5f1; border-bottom:2px solid #46c5f1;">
+                  <div class="flexRow">
+                      <p style=" font-size: 18px !important;">Monthly stock</p>
+                      <p-sortIcon field="stock"></p-sortIcon>
+                      <p-columnFilter class="ml-auto" type="text" field="stock" display="menu"></p-columnFilter>
                   </div>
                 </th>
               </tr>
@@ -107,10 +115,11 @@
 
               <ng-template pTemplate="body" let-user>
                 <tr routerLink="/userDSO/{{user.id}}">
-                  <td><div style="width:20%;position:relative;float:left"><img src="{{ baseUrl + user.id }}" class="rounded-circle" width="25px" height="25px" style="margin-right: 10%"></div><div style="width:70%;position:relative;float:right">{{user.firstName}} {{user.lastName}}</div> </td>
-                  <td>{{user.address}}</td>
-                  <td>{{user.email}}</td>
-                  <td>{{user.role}}</td>
+                  <td><div style="width:20%;position:relative;float:left"><img src="{{ baseUrl + user.id }}" class="rounded-circle" width="25px" height="25px" style="margin-right: 10%"></div><div style="width:70%;position:relative;float:right">{{user.user.firstName}} {{user.user.lastName}}</div> </td>
+                  <td>{{user.user.address}}</td>
+                  <td>{{user.production}}</td>
+                  <td>{{user.consumption}}</td>
+                  <td>{{user.stock}}</td>
                 </tr>
               </ng-template>
 

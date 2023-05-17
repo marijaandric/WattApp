@@ -13,6 +13,8 @@ using backend.Models.DTOs;
 using backend.BAL;
 using Microsoft.AspNetCore.Identity;
 using backend.DAL.Interfaces;
+using backend.BLL.Interfaces;
+using static SQLite.SQLite3;
 
 namespace backend.Controllers
 {
@@ -22,11 +24,13 @@ namespace backend.Controllers
     {
         private readonly IUserBL _context;
         private readonly UsersPaginationProvider paginationProvider;
+        private readonly IDevicesAndDevicesData devicesAndDevicesData;
 
-        public UserController(IUserBL context, UsersPaginationProvider paginationProvider)
+        public UserController(IUserBL context, UsersPaginationProvider paginationProvider, IDevicesAndDevicesData devicesAndDevicesData)
         {
             _context = context;
             this.paginationProvider = paginationProvider;
+            this.devicesAndDevicesData = devicesAndDevicesData;
         }
 
         [HttpGet]
@@ -124,12 +128,89 @@ namespace backend.Controllers
             return users;
         }
 
-        [HttpGet("getUsersPaginationByRole/{type}/{page}/{limit}")]
-        public List<User> GetUsersPaginationByRole(string type, int page, int limit)
+        [HttpGet("getUsersPaginationByRole/{type}/{page}/{limit}/{sortOrder}")]
+        public List<User> GetUsersPaginationByRole(string type, int page, int limit, string sortOrder)
         {
-            var users = _context.GetUsersPaginationByRole(type, page, limit);
+            return _context.GetUsersPaginationByRole(type, page, limit, sortOrder);
+        }
 
-            return users;
+        [HttpGet("getUsersPaginationByRole/prosumer/{page}/{limit}/{sortOrder}")]
+        public List<UserWithPowerUsageDTO> GetUsersPaginationForProsumers(int page, int limit, string sortOrder)
+        {
+            List<UserWithPowerUsageDTO> usersWithPowerUsages = new List<UserWithPowerUsageDTO>();
+
+            if (sortOrder.Contains("production") || sortOrder.Contains("consumption") || sortOrder.Contains("stock"))
+            {
+                var users = _context.GetUsersPaginationByRole("prosumer", page, limit, "USERNAME");
+                var userIds = users.Select(user => user.Id).ToList();
+                var powerUsages = devicesAndDevicesData.GetPowerUsageForUsers(userIds, "week");
+
+                for (int i = 0; i < users.Count; i++)
+                {
+                    var userWithPowerUsage = new UserWithPowerUsageDTO
+                    {
+                        user = users[i],
+                        consumption = powerUsages[i].consumption,
+                        production = powerUsages[i].production,
+                        stock = powerUsages[i].stock
+                    };
+
+                    usersWithPowerUsages.Add(userWithPowerUsage);
+                }
+
+                if(sortOrder.Contains("desc"))
+                {
+                    if (sortOrder.Contains("production")) 
+                    {
+                        usersWithPowerUsages = usersWithPowerUsages.OrderByDescending(u => u.production).ToList();
+                    } 
+                    else if (sortOrder.Contains("consumption"))
+                    {
+                        usersWithPowerUsages = usersWithPowerUsages.OrderByDescending(u => u.consumption).ToList();
+                    }
+                    else
+                    {
+                        usersWithPowerUsages = usersWithPowerUsages.OrderByDescending(u => u.stock).ToList();
+                    }
+                }
+                else
+                {
+                    if (sortOrder.Contains("production"))
+                    {
+                        usersWithPowerUsages = usersWithPowerUsages.OrderBy(u => u.production).ToList();
+                    }
+                    else if (sortOrder.Contains("consumption"))
+                    {
+                        usersWithPowerUsages = usersWithPowerUsages.OrderBy(u => u.consumption).ToList();
+                    }
+                    else
+                    {
+                        usersWithPowerUsages = usersWithPowerUsages.OrderBy(u => u.stock).ToList();
+                    }
+                }
+               
+            }
+            else
+            {
+                var users = _context.GetUsersPaginationByRole("prosumers", page, limit, sortOrder);
+                var userIds = users.Select(user => user.Id).ToList();
+                var powerUsages = devicesAndDevicesData.GetPowerUsageForUsers(userIds, "week");
+
+                for (int i = 0; i < users.Count; i++)
+                {
+                    var userWithPowerUsage = new UserWithPowerUsageDTO
+                    {
+                        user = users[i],
+                        consumption = powerUsages[i].consumption,
+                        production = powerUsages[i].production,
+                        stock = powerUsages[i].stock
+                    };
+
+                    usersWithPowerUsages.Add(userWithPowerUsage);
+                }
+            }
+
+            return usersWithPowerUsages;
         }
 
         [HttpGet("getUsersPaginationByRole/{type}")]

@@ -6,6 +6,8 @@ namespace backend.DAL.Interfaces
     {
         public List<User> GetAllUsers(int pageNo, int pageSize, string sortOrder);
 
+        public List<User> GetAllUsersByType(string type, int pageNo, int pageSize, string sortOrder);
+
         public int GetAllUsersCount();
 
         public int GetAllUsersByTypeCount(string type);

@@ -4,6 +4,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { map, Observable } from 'rxjs';
 import { url } from '../../app.module';
 import { UserDTO } from '../../dtos/UserDTO';
+import { UserWithPowerUsageDTO } from 'src/app/dtos/UserWithPowerUsageDTO ';
 
 @Injectable({
   providedIn: 'root'
@@ -63,8 +64,34 @@ export class UserService {
     return this.http.put(url,user);
   }
   
-  getUsersPaginationByRole(type:string, page:number,limit:number): Observable<UserDTO[]> {
-    return this.http.get<UserDTO[]>(this.baseUrl+"getUsersPaginationByRole/"+type+"/"+page+"/"+limit).pipe(
+  getUsersProsumersPagination(page: number, limit: number, sortOrder: string): Observable<UserWithPowerUsageDTO[]> {
+    return this.http.get<UserWithPowerUsageDTO[]>(this.baseUrl + "getUsersPaginationByRole/prosumer/" + page + "/" + limit + "/" + sortOrder).pipe(
+      map(users => {
+        return users.map(userWithPowerUsage => new UserWithPowerUsageDTO(
+          new UserDTO(
+            userWithPowerUsage.user.id,
+            userWithPowerUsage.user.firstName,
+            userWithPowerUsage.user.lastName,
+            userWithPowerUsage.user.email,
+            userWithPowerUsage.user.password,
+            userWithPowerUsage.user.token,
+            userWithPowerUsage.user.address,
+            userWithPowerUsage.user.role,
+            userWithPowerUsage.user.x,
+            userWithPowerUsage.user.y,
+            userWithPowerUsage.user.area,
+            userWithPowerUsage.user.imageId
+          ),
+          userWithPowerUsage.consumption,
+          userWithPowerUsage.production,
+          userWithPowerUsage.stock
+        ));
+      })
+    );
+  }
+
+  getUsersPaginationByRole(type:string, page:number,limit:number, sortOrder:string): Observable<UserDTO[]> {
+    return this.http.get<UserDTO[]>(this.baseUrl+"getUsersPaginationByRole/"+type+"/"+page+"/"+limit+"/"+sortOrder).pipe(
       map(users => {
         return users.map(user => new UserDTO(
           user.id,

@@ -20,6 +20,13 @@ namespace backend.DAL
             return _context.Users.FromSqlRaw(query).ToList();
         }
 
+        public List<User> GetAllUsersByType(string type, int pageNo, int pageSize, string sortOrder)
+        {
+            int offset = (pageNo - 1) * pageSize;
+            string query = $"SELECT * FROM Users WHERE Role = '{type}' ORDER BY {sortOrder} LIMIT {pageSize} OFFSET {offset}";
+            return _context.Users.FromSqlRaw(query).ToList();
+        }
+
         public int GetAllUsersCount()
         {
             return _context.Users.Count();

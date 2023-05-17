@@ -570,5 +570,43 @@ namespace backend.BLL
 
             return final;
         }
+
+        public List<PowerUsageDTO> GetPowerUsageForUsers(List<int> userIds, string timetype)
+        {
+            List<DevicesIdsDTO> dto = new List<DevicesIdsDTO>();
+
+            foreach (int id in userIds)
+            {
+                DevicesIdsDTO userdevices = new DevicesIdsDTO();
+
+                if (_contextUserDAL.userExists(id))
+                {
+                    List<int> cons = _contextDAL.GetDevicesForUserByType(id, "consumer").Select(d => d.FakeID).ToList();
+                    List<int> prod = _contextDAL.GetDevicesForUserByType(id, "producer").Select(d => d.FakeID).ToList();
+                    List<int> st = _contextDAL.GetDevicesForUserByType(id, "stock").Select(d => d.FakeID).ToList();
+
+                    if (cons == null || cons.Count == 0)
+                        userdevices.consumers = new List<int> { 0 };
+                    else
+                        userdevices.consumers = cons;
+
+                    if (prod == null || prod.Count == 0)
+                        userdevices.producers = new List<int> { 0 };
+                    else
+                        userdevices.producers = prod;
+
+                    if (st == null || st.Count == 0)
+                        userdevices.stocks = new List<int> { 0 };
+                    else
+                        userdevices.stocks = st;
+
+                    dto.Add(userdevices);
+                }
+                
+            }
+
+            return _contextDataDAL.GetPowerUsageOfDevicesForMatrixForTimeType(dto, timetype);
+
+        }
     }
 }

@@ -4,6 +4,7 @@ import { UserService } from '../../../../services/user/user.service';
 import { DsonewsService } from 'src/app/services/dsonews/dsonews.service';
 import { Table } from 'primeng/table';
 import { url } from 'src/app/app.module';
+import { SortEvent } from 'primeng/api';
 
 @Component({
   selector: 'app-users-operators',
@@ -17,6 +18,7 @@ export class UsersOperatorsComponent implements OnInit {
   @ViewChild('dtUsers') dataTable!: Table;
   currentPage:number= 0;
   rowsPerPage:number = 10;
+  sortOrder: string = "USERNAME";
   allUsersCount!: number;
   loader=true;
 
@@ -35,8 +37,15 @@ export class UsersOperatorsComponent implements OnInit {
     this.refreshAllUsers();
   }
 
+  customSort(event: SortEvent){
+    const field = event.field;
+    const order = event.order === 1 ? 'asc' : 'desc';
+    this.sortOrder = field + " " + order;
+    this.refreshAllUsers();
+  }
+
   private refreshAllUsers(){
-    this.userService.getUsersPaginationByRole("operator", this.currentPage, this.rowsPerPage).subscribe((result: UserDTO[])=>(this.loader=false,this.users = result));
+    this.userService.getUsersPaginationByRole("operator", this.currentPage, this.rowsPerPage, this.sortOrder).subscribe((result: UserDTO[])=>(this.loader=false,this.users = result));
   }
 
   clear(dtUsers: any) {

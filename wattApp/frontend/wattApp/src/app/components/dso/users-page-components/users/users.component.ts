@@ -4,6 +4,7 @@ import { UserService } from '../../../../services/user/user.service';
 import { url } from 'src/app/app.module';
 import { APIService } from 'src/app/services/api/api.service';
 import { PaginationService } from 'src/app/services/pagination/pagination.service';
+import { SortEvent } from 'primeng/api';
 
 @Component({
   selector: 'users',
@@ -18,6 +19,7 @@ export class UsersComponent implements OnInit{
   loader=true;
   pageSize: number = 10; // default page size
   currentPage: number = 1; // default current page
+  sortOrder: string = "USERNAME";
   numberOFAllUsers: any;
   numberOFProsumer: any;
   numberOFOperator: any;
@@ -38,8 +40,15 @@ export class UsersComponent implements OnInit{
     this.refreshAllUsers();
   }
 
+  customSort(event: SortEvent){
+    const field = event.field;
+    const order = event.order === 1 ? 'asc' : 'desc';
+    this.sortOrder = field + " " + order;
+    this.refreshAllUsers();
+  }
+
   private refreshAllUsers(){
-    this.paginationService.getData("/api/UserPagination/users/pagination/pageNo="+ this.currentPage + "&pageSize=" + this.pageSize + "&sortOrder=Username").subscribe((result) => (this.users = result));
+    this.paginationService.getData("/api/UserPagination/users/pagination/pageNo="+ this.currentPage + "&pageSize=" + this.pageSize + "&sortOrder=" + this.sortOrder).subscribe((result) => (this.users = result));
   }
 
   clear(dtUsers: any) {

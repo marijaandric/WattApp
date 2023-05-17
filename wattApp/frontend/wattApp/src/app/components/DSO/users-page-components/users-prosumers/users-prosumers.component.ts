@@ -4,13 +4,13 @@ import { UserService } from '../../../../services/user/user.service';
 import { DeviceService } from 'src/app/services/device/device.service';
 import { url } from 'src/app/app.module';
 import { APIService } from 'src/app/services/api/api.service';
-import { LoaderService } from 'src/app/services/loader/loader.service';
+import { SortEvent } from 'primeng/api';
+import { UserWithPowerUsageDTO } from 'src/app/dtos/UserWithPowerUsageDTO ';
 
 interface City {
   name: string,
   code: string
 }
-
 
 @Component({
   selector: 'app-users-prosumers',
@@ -22,11 +22,12 @@ interface City {
 export class UsersProsumersComponent implements OnInit {
 
   baseUrl = url + "/api/Images/user/";
-  users: UserDTO[] = [];
+  users: UserWithPowerUsageDTO[] = [];
   type: City[];
   selectedType!: City;
   currentPage :any = 0;
   rowsPerPage :any = 10;
+  sortOrder: string = "USERNAME";
   allUsersCount!: number;
   loader=true;
 
@@ -62,11 +63,25 @@ export class UsersProsumersComponent implements OnInit {
     this.refreshAllUsers();
   }
 
-  private refreshAllUsers(){
-    this.userService.getUsersPaginationByRole("prosumer",this.currentPage,this.rowsPerPage).subscribe((result: UserDTO[])=>(this.loader=false,this.users = result));
+  customSort(event: SortEvent){
+    const field = event.field;
+    const order = event.order === 1 ? 'asc' : 'desc';
+    this.sortOrder = field + " " + order;
+    this.refreshAllUsers();
+  }
+
+  private refreshAllUsers() {
+    this.userService.getUsersProsumersPagination(this.currentPage, this.rowsPerPage, this.sortOrder)
+      .subscribe((result: UserWithPowerUsageDTO[]) => {
+        this.loader = false;
+        this.users = result;
+      });
     this.getAreas();
-    //this.getPowerUsageForAllTypesForArea();
     this.getChartArea();
+  }
+
+  getUserDTOs(usersWithPowerUsage: UserWithPowerUsageDTO[]): UserDTO[] {
+    return usersWithPowerUsage.map(userWithPowerUsage => userWithPowerUsage.user);
   }
 
   options : City [];

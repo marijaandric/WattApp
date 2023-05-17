@@ -15,9 +15,12 @@
     <div style="display:flex;float:left; flex-direction:column; width:80%; height:100%">
       <div style="display:flex;float:right; flex-direction:row; width:100%; height:100%">
 
-          <p-table class="d-table" #dtUsers class="ui-table-default" [value]="users" dataKey="id" [scrollable]="true" 
-            [rows]="pageSize" [totalRecords]="allUsersCount" [showCurrentPageReport]="true" (onPage)="onPageChange($event)"
-            [globalFilterFields]="['firstName','lastName','email','role']" [paginator]="true" 
+          <p-table class="d-table" #dtUsers class="ui-table-default" [value]="users" 
+            (onSort)="customSort($event)" [customSort]="true" 
+            dataKey="id" [scrollable]="true" 
+            [rows]="pageSize" [lazy]="true" [totalRecords]="allUsersCount" 
+            [showCurrentPageReport]="true" (onPage)="onPageChange($event)"
+            [globalFilterFields]="['id','firstName','address','email','role']" [paginator]="true" 
             style="
               display: flex;
               position: relative;
@@ -52,11 +55,11 @@
                         <p-columnFilter class="ml-auto" type="text" field="firstName" display="menu"></p-columnFilter>
                     </div>
                   </th>
-                  <th pSortableColumn="lastName" style="min-width:9rem;  border-top:2px solid #46c5f1; border-bottom:2px solid #46c5f1;">
+                  <th pSortableColumn="address" style="min-width:9rem;  border-top:2px solid #46c5f1; border-bottom:2px solid #46c5f1;">
                     <div class="flexRow">
                         <p style=" font-size: 18px !important;">Address</p>
-                        <p-sortIcon field="lastName"></p-sortIcon>
-                        <p-columnFilter class="ml-auto" type="text" field="lastName" display="menu"></p-columnFilter>
+                        <p-sortIcon field="address"></p-sortIcon>
+                        <p-columnFilter class="ml-auto" type="text" field="address" display="menu"></p-columnFilter>
                     </div>
                   </th>
                   <th pSortableColumn="email" style="min-width:10rem;  border-top:2px solid #46c5f1; border-bottom:2px solid #46c5f1;">
