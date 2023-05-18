@@ -277,6 +277,7 @@ export class HistoryForecastComponent implements OnInit,OnChanges{
   }
 
   public dataLabels: ApexDataLabels = {
+    enabled:false,
     background: {
       foreColor: 'black',
       padding:12,
@@ -284,6 +285,7 @@ export class HistoryForecastComponent implements OnInit,OnChanges{
       borderRadius:5,
     },
     style: {
+
     fontSize:'14',
     
     fontWeight: 'normal'
