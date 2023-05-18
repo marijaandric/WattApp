@@ -36,8 +36,14 @@ export class WeatherForecast7Component implements OnInit{
     mini_tekst.forEach((innerElement) => {
       this.renderer.addClass(innerElement, 'light-theme-text-color-dark-gray');
     });
-    
+
     this.renderer.addClass(mapa, 'light-theme-bigger-shadow');
+
+    const waves = this.hostElement?.querySelectorAll('.wave');
+    waves.forEach((wave) => {
+      this.renderer.addClass(wave,'light-theme-bg-blue');
+    });
+
 
     tekst.forEach((innerElement) => {
       this.renderer.addClass(innerElement, 'light-theme-text-color-dark-gray');
