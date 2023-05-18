@@ -88,6 +88,7 @@ export class UserCardComponent implements OnInit {
       imageId: this.userInfo.imageId
     })
 
+    console.log(this.menageUserForm.value)
       if(token){
       this.userService.PutUser(this.userService.getUserIdFromToken(token),this.menageUserForm.value)
       .subscribe(
@@ -99,7 +100,6 @@ export class UserCardComponent implements OnInit {
             },
           error: error => {
             this.toast.error({detail:"Error",summary:"Please check all your details",duration:4000});
-            // mislim da alert treba da bude konkretniji
           }
         }
       )

@@ -88,7 +88,7 @@ export class RegistrationMapComponent implements OnInit{
             this.message.district = res.city
           }
           else{
-            this.message.district = res.district + " " + res.city
+            this.message.district = res.district + ", " + res.city
           }
           this.messageEvent.emit(this.message);
         }
@@ -136,7 +136,7 @@ export class RegistrationMapComponent implements OnInit{
             this.message.district = res.city
           }
           else{
-            this.message.district = res.district + " " + res.city
+            this.message.district = res.district + ", " + res.city
           }
         this.messageEvent.emit(this.message);
       } catch (error) {
