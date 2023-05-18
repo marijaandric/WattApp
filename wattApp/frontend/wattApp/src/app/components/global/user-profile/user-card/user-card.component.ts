@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, ElementRef, EventEmitter, OnInit, Output, Renderer2 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FileUploadService } from 'src/app/services/file-upload/file-upload.service';
@@ -12,6 +12,7 @@ import { NgToastService } from 'ng-angular-popup';
   styleUrls: ['./user-card.component.scss']
 })
 export class UserCardComponent implements OnInit {
+  hostElement: HTMLElement | undefined;
   display3: boolean = false;
   baseUrl = url + "/api/Images/user/";
   userInfo: any;
@@ -24,10 +25,25 @@ export class UserCardComponent implements OnInit {
   constructor(private router:Router,
     private userService: UserService,
     private fb: FormBuilder,
-    private fileUploadService: FileUploadService, private toast:NgToastService) {}
+    private fileUploadService: FileUploadService, private toast:NgToastService,private elementRef: ElementRef, private renderer: Renderer2) {}
 
   ngOnInit() {
     
+    this.hostElement = this.elementRef.nativeElement as HTMLElement;
+    this.hostElement?.classList.toggle('light-theme-bigger-shadow', true);
+    this.hostElement?.classList.add('light-theme-background-white');
+    
+    const pencnt = this.hostElement.querySelector('.pen-container');
+    this.renderer.addClass(pencnt, 'light-theme-text-color-black')
+    this.renderer.addClass(pencnt, 'light-theme-background-white')
+
+    const usrTitle = this.hostElement.querySelector('.username-title');
+    this.renderer.addClass(usrTitle, 'text-color-blue')
+    const texts = this.hostElement.querySelectorAll('h6');
+    texts.forEach((innerElement) => {
+      this.renderer.addClass(innerElement, 'light-theme-text-color-black');
+    });
+
     this.getUser();
      
   }

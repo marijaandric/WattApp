@@ -308,7 +308,7 @@
   box-shadow: 8px 8px 25px -8px rgba(0,0,0,0.24); 
 }*/
 .light-theme-bigger-shadow {
-  box-shadow: 10px 10px 35px -5px rgb(200, 200, 200);
+  box-shadow: 8px 8px 30px -5px rgb(200, 200, 200);
 }
 
 
@@ -327,7 +327,10 @@
 .dark-theme-text-color-black {
   color:black;
 }
-
+.light-theme-text-color-black {
+  color:black;
+  font-weight: bold;
+}
 
 .dark-theme-coloro-gray {
   background:red !important;

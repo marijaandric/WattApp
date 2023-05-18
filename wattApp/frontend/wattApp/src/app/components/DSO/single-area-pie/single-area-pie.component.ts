@@ -1,4 +1,4 @@
-import { Component, OnInit,Input,OnChanges, SimpleChanges, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit,Input,OnChanges, SimpleChanges, ChangeDetectorRef, ElementRef, Renderer2 } from '@angular/core';
 import {
   ApexChart,
   ApexDataLabels,
@@ -11,6 +11,7 @@ import {
   ApexStroke,
   ApexTooltip,
   ApexTheme,
+  ApexResponsive,
   ApexNoData,
 } from 'ng-apexcharts';
 
@@ -20,12 +21,20 @@ import {
   styleUrls: ['./single-area-pie.component.css']
 })
 export class SingleAreaPieComponent implements OnChanges{
+  hostElement: HTMLElement | undefined;
+  colorTheme: string = "";
   @Input() chartHeight: number = 200;
   @Input() chartText: string = 'Info by suburbs in the week';
   @Input() Series: number[] = [40, 32, 52,30];
   @Input() chartLabels = ["Станово", "Град Крагујевац", "Виногради", "Others"];
 
+  colors: string[] =  ['#46c5f1', '#885ec0','#eb4886', '#f5805a'];
+
   chartSeries: ApexNonAxisChartSeries = this.Series;
+
+  constructor(private cdr: ChangeDetectorRef, private elementRef: ElementRef, private renderer: Renderer2) {
+
+  }
 
   ngOnChanges(changes: SimpleChanges) {
     if ('Series' in changes) {
@@ -35,13 +44,13 @@ export class SingleAreaPieComponent implements OnChanges{
         this.noData.text = "There are no devices yet!";
       }
       else{
+         
         this.chartSeries = this.Series;
       }
     }
     
     this.cdr.detectChanges();
   }
-
 
   chartDetails: ApexChart = {
     type: 'pie',
@@ -64,12 +73,21 @@ export class SingleAreaPieComponent implements OnChanges{
   };
 
   
+  responsive: ApexResponsive = {
+    breakpoint: 1700,
+    options: {
+      legend: {
+        position:"bottom"
+      }
+    }
+  }
+
 
   chartTitle: ApexTitleSubtitle = {
     text:  this.chartText,
     align: 'left',
     style: {
-      color: '#FFFFFF',
+      color: this.colorTheme,
       fontSize: '19px',
       fontFamily:'Montserrat',
       fontWeight:'bold'  
@@ -102,7 +120,7 @@ export class SingleAreaPieComponent implements OnChanges{
     },  
     theme:"dark",
     marker: {
-      show:false,
+      show:true,
       fillColors:['#46c5f1', '#885ec0','#eb4886', '#f5805a'],
     }
   }
@@ -118,9 +136,10 @@ export class SingleAreaPieComponent implements OnChanges{
     fontSize:'12px',
     fontWeight:'bold',
     fontFamily: 'Montserrat, sans-serif',
-    labels: {
-      colors: '#FFFFFF',
+    labels : {
+      colors: this.colorTheme,
     },
+    
     markers:{
       fillColors:['#46c5f1', '#885ec0','#eb4886', '#f5805a'],
     }
@@ -134,7 +153,7 @@ export class SingleAreaPieComponent implements OnChanges{
     offsetY: 0,
     style: {
       fontSize: '12px',
-      color: '#fff'
+      color: this.colorTheme
     }
   }
 
@@ -147,12 +166,20 @@ export class SingleAreaPieComponent implements OnChanges{
     legend: this.chartLegend,
     tooltip: this.tooltip,
     colors: ['#46c5f1', '#885ec0','#eb4886', '#f5805a'],
-    noData: this.noData
+    noData: this.noData,
+    responsive: [this.responsive]
   };
 
-  constructor(private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
+
+    this.hostElement = this.elementRef.nativeElement as HTMLElement;
+    this.hostElement?.classList.toggle('light-theme-bigger-shadow', true);
+    this.hostElement?.classList.add('light-theme-background-white');
+
+    this.colorTheme = '#000';
+
+
     this.chartDetails.height = '230px';
     this.chartTitle.text=this.chartText;
     this.chartSeries=this.Series;

@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, ElementRef, Input, OnChanges, OnInit, Renderer2, SimpleChanges } from '@angular/core';
 import axios from 'axios';
 import * as L from 'leaflet';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
@@ -11,6 +11,7 @@ declare var $: any;
   styleUrls: ['./map.component.css']
 })
 export class MapComponent implements OnInit, OnChanges{
+  hostElement: HTMLElement | undefined;
   @Input() users! : UserDTO[];
   lan! : number;
   lon! : number;
@@ -20,11 +21,16 @@ export class MapComponent implements OnInit, OnChanges{
   private darkLayer!: L.TileLayer;
   private lightLayer!: L.TileLayer;
 
-  constructor(private http: HttpClient){
+  constructor(private http: HttpClient, private elementRef: ElementRef, private renderer: Renderer2){
     
   }
 
   ngOnInit(): void {
+    this.hostElement = this.elementRef.nativeElement as HTMLElement;
+    this.hostElement?.classList.toggle('light-theme-bigger-shadow', true);
+    this.hostElement?.classList.add('light-theme-background-white');
+
+    
     this.map = L.map('map').setView([44.007247, 20.904429], 13);
     
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
