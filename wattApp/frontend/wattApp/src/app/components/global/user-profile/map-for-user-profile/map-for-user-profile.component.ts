@@ -103,7 +103,7 @@ export class MapForUserProfileComponent implements OnInit{
       this.address = changes['address'].currentValue;
       if(this.address != "" && this.address != undefined)
       {
-        this.address += ", Serbia"
+        this.address = "Ulica" +this.address + ", Serbia"
         const apiKey = 'AumQQtxIWQ1XOGigIU7OkM9IVZB9KpZ9Q6nXeNAvf1c5ctZuidAHJ4zXqvjIeedr'; 
     
         const url = 'https://dev.virtualearth.net/REST/v1/Locations';
