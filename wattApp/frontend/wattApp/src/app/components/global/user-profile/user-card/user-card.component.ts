@@ -104,6 +104,7 @@ export class UserCardComponent implements OnInit {
       imageId: this.userInfo.imageId
     })
 
+    console.log(this.menageUserForm.value)
       if(token){
       this.userService.PutUser(this.userService.getUserIdFromToken(token),this.menageUserForm.value)
       .subscribe(
@@ -111,11 +112,13 @@ export class UserCardComponent implements OnInit {
           next: () => {
             this.display = false;
             this.getUser();
+            this.toast.success({detail:"SUCCESS",summary:"You have successfully changed your profile",duration:5000});
+          setTimeout(() => {
             location.reload();
+          }, 1350)
             },
           error: error => {
             this.toast.error({detail:"Error",summary:"Please check all your details",duration:4000});
-            // mislim da alert treba da bude konkretniji
           }
         }
       )
