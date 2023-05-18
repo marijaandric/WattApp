@@ -1,11 +1,11 @@
-.tab.active7 .tab-icon {
+.tab.active7 .tab-icon i{
   color: #46c5f1 !important;
 }
 
 .tab.active7 .tab-title {
   color: #46c5f1 !important;
 }
-
+/*
 .tab.active5 .tab-icon {
   color: #fff !important;
 }
@@ -13,7 +13,7 @@
 .tab.active5 .tab-title {
   color: #fff !important;
 }
-
+*/
 
 .promotions {
   display: grid;
