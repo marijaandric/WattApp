@@ -368,9 +368,9 @@ export class DevicePhoneComponent implements OnInit{
           this.HistoryCon3[br] = this.HistoryCon[i];
           this.HistoryPro3[br]= this.HistoryPro[i];
           this.HistoryStock3[br] = this.HistoryStock[i];
-          this.ForecastCon3[br] = parseFloat((this.ForecastCon[i]+arr[i]).toFixed(2));
-          this.ForecastPro3[br] = parseFloat((this.ForecastPro[i]+arr2[i]).toFixed(2));
-          this.ForecastStock3[br] = parseFloat((this.ForecastStock[i]+arr[i]).toFixed(2));
+          this.ForecastCon3[br] = parseFloat((this.ForecastCon[i]).toFixed(2));
+          this.ForecastPro3[br] = parseFloat((this.ForecastPro[i]).toFixed(2));
+          this.ForecastStock3[br] = parseFloat((this.ForecastStock[i]).toFixed(2));
           this.arrayData3[br] = this.arrayData[i];
           br++;
         }

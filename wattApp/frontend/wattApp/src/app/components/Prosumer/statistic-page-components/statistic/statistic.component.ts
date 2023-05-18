@@ -73,7 +73,7 @@ export class StatisticComponent  implements OnInit {
   count: number[]=[];
   
   History = [0,0,0,0,0,0, null,null,null,null, null, null, null];
-  Forecast= [null,null, null, null, null, null,0,0,0,0,0,0];
+  Forecast= [null,null, null, null, null, null,0,0,0,0,0,0,null];
   miniHistory = [0,0,0,0,0,0,0];
   miniForecast= [0,0,0,0,0,0,0];
 
@@ -90,12 +90,12 @@ export class StatisticComponent  implements OnInit {
   color1 = '#46c5f1';
   color2 = '#88dbf6';
 
-  HistoryCon:any = [0,0,0,0,0,0,0];
-  ForecastCon:any= [0,0,0,0,0,0,0];
-  HistoryPro :any= [0,0,0,0,0,0,0];
-  ForecastPro:any= [0,0,0,0,0,0,0];
-  HistoryStock:any = [0,0,0,0,0,0,0];
-  ForecastStock:any = [0,0,0,0,0,0,0];
+  HistoryCon:any = [null,,0,0,0,0,0,0];
+  ForecastCon:any= [null,,0,0,0,0,0,0];
+  HistoryPro :any= [null,,0,0,0,0,0,0];
+  ForecastPro:any= [null,,0,0,0,0,0,0];
+  HistoryStock:any = [null,,0,0,0,0,0,0];
+  ForecastStock:any = [null,,0,0,0,0,0,0];
 
   miniHistoryCon:any =  [0,0,0,0,0,0,0];
   miniForecastCon:any=  [0,0,0,0,0,0,0];
@@ -199,21 +199,21 @@ export class StatisticComponent  implements OnInit {
         const arr = [10.20,20.30,-5.00,0.00,-4.00,37.20,12.00,0.23];
         const arr2 = [12.20,-5.30,0.00,-3.30,20.70,10.20,30.00,-4.23];
         if(this.ForecastCon.every((el: number) => el === 0))
-        {}
+        {this.ForecastCon[5] = null}
         else{
             for (let i = 0; i < 6; i++) {
               this.ForecastCon[i] = parseFloat((this.ForecastCon[i]+arr[i]).toFixed(2));
           }
         }
         if(this.ForecastPro.every((el: number) => el === 0))
-        {}
+        {this.ForecastPro[5] = null}
         else{
             for (let i = 0; i < 6; i++) {
               this.ForecastPro[i] = parseFloat((this.ForecastPro[i]+arr2[i]).toFixed(2));
           }
         }
         if(this.ForecastStock.every((el: number) => el === 0))
-        {}
+        {this.ForecastStock[5] = null}
         else{
             for (let i = 0; i < 6; i++) {
               this.ForecastStock[i] = parseFloat((this.ForecastStock[i]+arr[i]).toFixed(2));
@@ -242,9 +242,9 @@ export class StatisticComponent  implements OnInit {
           this.HistoryCon3[br] = this.HistoryCon[i];
           this.HistoryPro3[br]= this.HistoryPro[i];
           this.HistoryStock3[br] = this.HistoryStock[i];
-          this.ForecastCon3[br] = parseFloat((this.ForecastCon[i]+arr[i]).toFixed(2));
-          this.ForecastPro3[br] = parseFloat((this.ForecastPro[i]+arr2[i]).toFixed(2));
-          this.ForecastStock3[br] = parseFloat((this.ForecastStock[i]+arr[i]).toFixed(2));
+          this.ForecastCon3[br] = parseFloat((this.ForecastCon[i]).toFixed(2));
+          this.ForecastPro3[br] = parseFloat((this.ForecastPro[i]).toFixed(2));
+          this.ForecastStock3[br] = parseFloat((this.ForecastStock[i]).toFixed(2));
           this.arrayData3[br] = this.arrayData[i];
           br++;
         }
