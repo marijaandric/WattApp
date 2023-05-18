@@ -1,4 +1,4 @@
-import { Component, OnInit,Input,OnChanges, SimpleChanges, DoCheck, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit,Input,OnChanges, SimpleChanges, DoCheck, ChangeDetectorRef, ElementRef, Renderer2 } from '@angular/core';
 import {
   ApexChart,
   ApexDataLabels,
@@ -20,6 +20,8 @@ import {
   styleUrls: ['./all-areas-donut.component.css']
 })
 export class AllAreasDonutComponent implements OnChanges{
+  hostElement: HTMLElement | undefined;
+  colorTheme: string = "";
   @Input() chartHeight: number = 200;
   @Input() chartText: string = 'Станово';
   @Input() Series: number[] = [0, 0, 0];
@@ -27,6 +29,9 @@ export class AllAreasDonutComponent implements OnChanges{
 
   chartSeries: ApexNonAxisChartSeries = this.Series;
 
+  constructor(private cdr: ChangeDetectorRef, private elementRef: ElementRef, private renderer: Renderer2) {
+
+  }
 
   ngOnChanges(changes: SimpleChanges) {
     
@@ -49,7 +54,7 @@ export class AllAreasDonutComponent implements OnChanges{
     if ('chartText' in changes) {
       this.chartTitle = { text: this.chartText,
         style: {
-          color: '#FFFFFF',
+          color: this.colorTheme,
           fontSize: '19px',
           fontFamily:'Montserrat',
           fontWeight:'bold'  
@@ -80,13 +85,13 @@ export class AllAreasDonutComponent implements OnChanges{
       top: 0,
       left: 0,
       blur: 1,
-      color: '#000',
+      color: this.colorTheme,
       opacity: 0.9
   }
   };
 
   responsive: ApexResponsive = {
-    breakpoint: 200,
+    breakpoint: 1700,
     options: {
       legend: {
         position:"bottom"
@@ -98,7 +103,7 @@ export class AllAreasDonutComponent implements OnChanges{
     text:  this.chartText,
     align: 'left',
     style: {
-      color: '#FFFFFF',
+      color: this.colorTheme,
       fontSize: '19px',
       fontFamily:'Montserrat',
       fontWeight:'bold'  
@@ -111,6 +116,7 @@ export class AllAreasDonutComponent implements OnChanges{
 
   fill: ApexFill = {
     colors: ['#46c5f1', '#885ec0','#eb4886'],
+
   }
   plotOptions: ApexPlotOptions = {
     pie :  {
@@ -128,10 +134,10 @@ export class AllAreasDonutComponent implements OnChanges{
 
     style: {
       fontSize:'16px',
-      fontFamily: 'Lato, sans-serif'
+      fontFamily: 'Lato, sans-serif',
     },  
     marker: {
-      show:true,
+      show:false,
       fillColors:['#46c5f1', '#885ec0','#eb4886'],
     }
   }
@@ -148,7 +154,7 @@ export class AllAreasDonutComponent implements OnChanges{
     fontWeight:'bold',
     fontFamily: 'Montserrat, sans-serif',
     labels: {
-      colors: '#FFFFFF',
+      colors:this.colorTheme,
     },
     markers:{
       fillColors:['#46c5f1', '#885ec0','#eb4886'
@@ -177,13 +183,20 @@ export class AllAreasDonutComponent implements OnChanges{
     legend: this.chartLegend,
     tooltip: this.tooltip,
     colors: ['#46c5f1', '#885ec0','#eb4886'],
-    noData: this.noData
+    noData: this.noData,
+    responsive: [this.responsive]
   };
-
-  constructor(private cdr: ChangeDetectorRef) {}
 
 
   ngOnInit(): void {
+
+    this.hostElement = this.elementRef.nativeElement as HTMLElement;
+    this.hostElement?.classList.toggle('light-theme-bigger-shadow', true);
+    this.hostElement?.classList.add('light-theme-background-white');
+
+    this.colorTheme = '#000';
+
+
     this.chartDetails.height = '220px';
     this.chartTitle.text=this.chartText;
     this.chartSeries=this.Series;

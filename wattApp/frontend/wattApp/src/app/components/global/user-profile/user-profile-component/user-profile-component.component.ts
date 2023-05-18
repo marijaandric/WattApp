@@ -1,4 +1,4 @@
-import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, ElementRef, OnChanges, OnInit, Renderer2, SimpleChanges } from '@angular/core';
 import { Map, tileLayer, marker } from 'leaflet';
 import * as L from 'leaflet';
 import { UserDTO } from 'src/app/dtos/UserDTO';
@@ -10,12 +10,14 @@ import { UserService } from 'src/app/services/user/user.service';
   styleUrls: ['./user-profile-component.component.css']
 })
 export class UserProfileComponentComponent implements OnInit,OnChanges{
+  hostElement: HTMLElement | undefined;
+
   map: any;
   user : any;
   private darkLayer!: L.TileLayer;
   private lightLayer!: L.TileLayer;
 
-  constructor(private userService: UserService)
+  constructor(private userService: UserService, private elementRef: ElementRef, private renderer: Renderer2)
   {
     
   }
@@ -35,6 +37,12 @@ export class UserProfileComponentComponent implements OnInit,OnChanges{
 
   async ngOnInit()
   {
+    
+    this.hostElement = this.elementRef.nativeElement as HTMLElement;
+    const mapShadow = this.hostElement.querySelector('.mapaSHD');
+    this.renderer.addClass(mapShadow, 'light-theme-bigger-shadow')
+
+
     const token = localStorage.getItem('token');
     
     if(token)
