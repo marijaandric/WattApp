@@ -52,10 +52,10 @@ export class AllAreasDonutComponent implements OnChanges{
     }
       
     if ('chartText' in changes) {
-      this.chartTitle = { text: this.chartText,
+      this.chartTitle = { text: 'Weekly report for: ' + this.chartText,
         style: {
           color: this.colorTheme,
-          fontSize: '19px',
+          fontSize: '17px',
           fontFamily:'Montserrat',
           fontWeight:'bold'  
         }, };
@@ -127,9 +127,15 @@ export class AllAreasDonutComponent implements OnChanges{
       offsetY:20,
     }
   }
+  formatNumberWithUnit(value: number): string {
+    return value.toFixed(2) + " kWh";
+  }
 
   tooltip:ApexTooltip = {
     enabled:true,
+    y: {
+      formatter: (value: number) => this.formatNumberWithUnit(value)
+    },
     fillSeriesColor: false,
 
     style: {

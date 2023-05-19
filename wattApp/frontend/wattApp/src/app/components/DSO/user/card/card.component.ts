@@ -48,6 +48,10 @@ export class CardComponent implements OnInit{
 
   }
 
+  navigateToProsumers(): void {
+    this.router.navigateByUrl("users/prosumers");
+  }
+
   deleteUser()
   {
     this.userService.deleteUser(this.user.id).subscribe(data=>{
