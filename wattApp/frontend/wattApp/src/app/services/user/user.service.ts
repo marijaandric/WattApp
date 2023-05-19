@@ -90,12 +90,18 @@ export class UserService {
 
   getUsersWithPowerUsage(type:string,ids:number[])
   {
-    const url = this.baseUrl+`/getUsersWithPowerUsage/`+type;
+    const url = this.baseUrl+`getUsersWithPowerUsage/`+type;
     return this.http.put(url,ids);
   }
 
   deleteUser(id: number) {
     const url = `${this.baseUrl}${id}`;
     return this.http.delete(url);
+  }
+
+  changeTheme(id:number)
+  {
+    const url = `${this.baseUrl}updateUserTheme/${id}`;
+    return this.http.put(url,id);
   }
 }

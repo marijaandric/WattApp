@@ -10,10 +10,10 @@ import { DeviceService } from 'src/app/services/device/device.service';
 import { ModelTypesService } from 'src/app/services/model-types/model-types.service';
 import { RoleTypesService } from 'src/app/services/role-types/role-types.service';
 import { RoomTypesService } from 'src/app/services/room-types/room-types.service';
-import { UserService } from 'src/app/services/user.service';
 import axios from 'axios';
 import { DsonewsService } from 'src/app/services/dsonews/dsonews.service';
 import { url } from 'src/app/app.module';
+import { UserService } from 'src/app/services/user/user.service';
 
 interface Models{
   code: string;
@@ -412,5 +412,18 @@ export class TitleBarComponent implements OnInit{
     }) 
   }
 
+  changeTheme()
+  {
+    this.userService.changeTheme(this.id).subscribe({
+      next:(res => {
+        this.changePassForm.reset()
+        this.toast.success({detail:"SUCCESS",summary:"You have successfully changed theme",duration:4000});
+        this.display4 = false;
+      }),
+      error:(err => {
+        this.toast.error({detail:"ERROR",summary:"Error",duration:4000});
+      })
+    })
+  }
   
 }

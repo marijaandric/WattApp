@@ -181,9 +181,10 @@
                   <i class="fa-solid fa-user"></i>
                   <p routerLink="/user">Profile</p>
                 </a>
-                <a class="sub-menu-link">
+                <a class="sub-menu-link" style="cursor: default;">
                   <i class="fa-sharp fa-regular fa-sun"></i>
                   <p>Light theme</p>
+                  <p-inputSwitch class="margin-left__auto width__fit-content" style="margin-left:-5px;margin-top: -7px;" (click)="changeTheme()"/>
                 </a>
                 <a class="sub-menu-link">
                   <i class="fa-sharp fa-solid fa fa-key"></i>
