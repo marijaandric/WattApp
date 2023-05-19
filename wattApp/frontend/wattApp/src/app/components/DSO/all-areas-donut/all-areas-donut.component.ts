@@ -52,10 +52,10 @@ export class AllAreasDonutComponent implements OnChanges{
     }
       
     if ('chartText' in changes) {
-      this.chartTitle = { text: this.chartText,
+      this.chartTitle = { text: 'Weekly report for: ' + this.chartText,
         style: {
           color: this.colorTheme,
-          fontSize: '19px',
+          fontSize: '17px',
           fontFamily:'Montserrat',
           fontWeight:'bold'  
         }, };
