@@ -80,7 +80,7 @@
     </p-dialog> -->
 
     
-<p-dialog [style]="{width:'40%',height:400}" header="Title"  [transitionOptions]="'3ms'" 
+<!-- <p-dialog [style]="{width:'40%',height:400}" header="Title"  [transitionOptions]="'3ms'" 
 [draggable]="true" [keepInViewport]="true" [resizable]="false" 
 [blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true" 
 [modal]="true" [(visible)]="display" [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
@@ -96,5 +96,30 @@
 <ng-template pTemplate="footer" style="min-height:100px;" >
   <button type="button" class="button-div" icon="pi pi-info-circle" label="Show" (click)="deleteUser()" >Yes</button>
   <button style="margin-top: 10px;" type="button" class="remove-or-no" con="pi pi-info-circle" label="Show" (click)="showDialog()" >No</button>
+</ng-template>
+</p-dialog> -->
+
+<p-dialog [style]="{width:'20%'}" header="Title"  [transitionOptions]="'3ms'" 
+[draggable]="false" [keepInViewport]="true" [resizable]="false" 
+[blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true" 
+[modal]="true" [(visible)]="display" [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
+[closable]="true" >
+<ng-template pTemplate="header" class="header-dialog">
+  <span>Delete user</span>
+</ng-template>
+
+<ng-template pTemplate="center">
+  <div class="delete-device-content">
+    Are you sure you want to delete this user?
+  </div>
+</ng-template>
+
+<ng-template pTemplate="footer" >
+  <div class="remove-or-no" style="float:right">
+    <p-button type="button" label="Cancel" (click)="showDialog()" ></p-button>
+ </div>
+    <div class="button-div" style="float:right">
+      <p-button type="button" label="Yes" (click)="deleteUser()"></p-button>
+    </div>
 </ng-template>
 </p-dialog>

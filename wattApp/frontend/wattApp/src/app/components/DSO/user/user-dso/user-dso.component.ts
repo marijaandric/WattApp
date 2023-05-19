@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { DeviceService } from 'src/app/services/device/device.service';
 import { DsonewsService } from 'src/app/services/dsonews/dsonews.service';
 
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { UserService } from 'src/app/services/user/user.service';
 
 
@@ -69,7 +69,8 @@ export class UserDSOComponent implements OnInit{
 
 
 
-  constructor(private route: ActivatedRoute,private dsonew : DsonewsService,private userService:UserService,private deviceService:DeviceService) {
+  constructor(private route: ActivatedRoute,
+    private router1: Router,private dsonew : DsonewsService,private userService:UserService,private deviceService:DeviceService) {
     this.id = this.route.snapshot.paramMap.get('id');
     this.getUser();
     this.type = [
@@ -269,6 +270,8 @@ export class UserDSOComponent implements OnInit{
         this.loader = false;
       });
   }
+
+
 
   HistoryConM:any  = [ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
   HistoryProM:any  = [ 0, 0, 0, 0, 0, 0, 0, 0,0,0,0, 0, 0, 0];

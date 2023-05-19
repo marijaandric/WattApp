@@ -127,9 +127,15 @@ export class AllAreasDonutComponent implements OnChanges{
       offsetY:20,
     }
   }
+  formatNumberWithUnit(value: number): string {
+    return value.toFixed(2) + " kWh";
+  }
 
   tooltip:ApexTooltip = {
     enabled:true,
+    y: {
+      formatter: (value: number) => this.formatNumberWithUnit(value)
+    },
     fillSeriesColor: false,
 
     style: {
