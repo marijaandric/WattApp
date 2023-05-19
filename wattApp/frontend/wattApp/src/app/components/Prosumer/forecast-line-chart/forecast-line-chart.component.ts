@@ -102,8 +102,22 @@ export class ForecastLineChartComponent implements OnChanges{
     redrawOnWindowResize: false,
   };
 
+  formatNumberWithUnit(value: number): string {
+    if(value!=null)
+    {
+      return value.toFixed(2) + " kWh";
+    }
+    else
+    {
+      return value;
+    }
+  }
+
   public tooltip: ApexTooltip = {
     theme:'dark',
+    y: {
+      formatter: (value: number) => this.formatNumberWithUnit(value)
+    },
     style : {
       fontSize:'17px'
     }
