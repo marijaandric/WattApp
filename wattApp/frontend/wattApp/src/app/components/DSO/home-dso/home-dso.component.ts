@@ -35,6 +35,7 @@ interface HiF2{
 
 export class HomeDSOComponent {
   hostElement: HTMLElement | undefined;
+  lightMode: boolean = true;
 
   display: boolean = false;
   display2: boolean = false;
