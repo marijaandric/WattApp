@@ -1,5 +1,5 @@
 import { Token } from '@angular/compiler';
-import { Component, ElementRef, OnInit, HostListener ,ViewChild, ɵɵqueryRefresh } from '@angular/core';
+import { Component, ElementRef, OnInit, HostListener ,ViewChild, ɵɵqueryRefresh, Renderer2 } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
@@ -41,6 +41,7 @@ interface Roles{
   styleUrls: ['./title-bar.component.css']
 })
 export class TitleBarComponent implements OnInit{
+  hostElement: HTMLElement | undefined;
   display : boolean = false;
   display2 : boolean = false;
   display3 : boolean = false;
@@ -93,7 +94,7 @@ export class TitleBarComponent implements OnInit{
               private roomTypesService: RoomTypesService, 
               private roleTypesService: RoleTypesService,
               private modelTypesService: ModelTypesService,
-              private dsonewsService : DsonewsService,
+              private dsonewsService : DsonewsService,private elementRef: ElementRef, private renderer: Renderer2,
               private auth:AuthService) {
 
     const token = localStorage.getItem('token');
@@ -104,6 +105,17 @@ export class TitleBarComponent implements OnInit{
   }
 
   ngOnInit(): void {
+    
+    this.hostElement = this.elementRef.nativeElement as HTMLElement;
+    const innerElements = this.hostElement?.querySelectorAll('a, p, div');
+    innerElements.forEach((innerElement) => {
+      this.renderer.addClass(innerElement, 'ligh-theme-text-color-gray');
+    });
+    const dd = this.hostElement?.querySelector('.sub-menu');
+    this.renderer.addClass(dd, 'light-theme-shadow');
+    this.renderer.addClass(dd, 'light-theme-background-white');
+
+
     const token = localStorage.getItem('token');
     if(token)
     {
