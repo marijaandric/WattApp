@@ -1,4 +1,4 @@
-import { Component, OnInit,Input, SimpleChanges, OnChanges } from '@angular/core';
+import { Component, OnInit,Input, SimpleChanges, OnChanges, ElementRef, Renderer2 } from '@angular/core';
 import {  ApexAxisChartSeries,ApexFill, ApexTooltip,ApexPlotOptions, ApexStroke,ApexLegend, ApexChart, ApexXAxis, ApexTitleSubtitle,ApexYAxis, ApexNonAxisChartSeries } from 'ng-apexcharts';
 
 @Component({
@@ -8,8 +8,12 @@ import {  ApexAxisChartSeries,ApexFill, ApexTooltip,ApexPlotOptions, ApexStroke,
 })
 export class AreaBarChartComponent implements OnInit, OnChanges {
   @Input() seriesData: number[] = [40, 32, 28];
+  hostElement: HTMLElement | undefined;
+  colorTheme: string = "";
 
+  constructor(private elementRef: ElementRef, private renderer: Renderer2) {
 
+  }
   
   public series: ApexAxisChartSeries = [
     {
@@ -77,7 +81,7 @@ export class AreaBarChartComponent implements OnInit, OnChanges {
   public yaxis: ApexYAxis = {
     labels: {
       style: {
-        colors: ['white'],
+        colors: [this.colorTheme],
       },
     },
   };
@@ -94,13 +98,20 @@ export class AreaBarChartComponent implements OnInit, OnChanges {
   public title: ApexTitleSubtitle = {
     text: 'Devices comparison',
     style: {
-      color: '#FFFFFF',
+      color: this.colorTheme,
       fontSize: '19px',
       fontFamily: 'Montserrat',
     }
   };
 
   ngOnInit(): void {
+    
+    this.hostElement = this.elementRef.nativeElement as HTMLElement;
+    this.hostElement?.classList.toggle('light-theme-bigger-shadow', true);
+    this.hostElement?.classList.add('light-theme-background-white');
+
+    this.colorTheme = '#000';
+
     this.series = [
       {
         name: 'Resource',

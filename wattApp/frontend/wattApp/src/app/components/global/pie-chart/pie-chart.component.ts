@@ -1,4 +1,4 @@
-import { Component, OnInit,Input, SimpleChanges} from '@angular/core';
+import { Component, OnInit,Input, SimpleChanges, ElementRef, Renderer2} from '@angular/core';
 import {
   ApexChart,
   ApexDataLabels,
@@ -18,6 +18,9 @@ import {
   styleUrls: ['./pie-chart.component.css']
 })
 export class PieChartComponent implements OnInit {
+  
+  hostElement: HTMLElement | undefined;
+  colorTheme: string = "";
   @Input() chartHeight: number = 200;
   @Input() chartText: string = 'Total devices per room';
   @Input() Series: number[] = [40, 32, 28, 55,23,43];
@@ -39,9 +42,9 @@ export class PieChartComponent implements OnInit {
       enabledOnSeries: undefined,
       top: 0,
       left: 0,
-      blur: 3,
+      blur: 1,
       color: '#000',
-      opacity: 0.7
+      opacity: 0.9
   }
   };
 
@@ -49,7 +52,7 @@ export class PieChartComponent implements OnInit {
     text:  this.chartText,
     align: 'left',
     style: {
-    color: '#FFFFFF',
+    color: this.colorTheme,
     fontSize: '19px',
     fontFamily:'Montserrat',
     fontWeight:'bold' 
@@ -102,7 +105,7 @@ export class PieChartComponent implements OnInit {
     fontWeight:'bold',
     fontFamily: 'Montserrat, sans-serif',
     labels: {
-      colors: '#FFFFFF',
+      colors: this.colorTheme,
     },
     markers:{
       fillColors:['#46c5f1', '#885ec0','#eb4886', '#f5805a'],
@@ -120,9 +123,16 @@ export class PieChartComponent implements OnInit {
     tooltip: this.tooltip
   };
 
-  constructor() { }
+  constructor(private elementRef: ElementRef, private renderer: Renderer2) { }
 
   ngOnInit(): void {
+    
+    this.hostElement = this.elementRef.nativeElement as HTMLElement;
+    this.hostElement?.classList.toggle('light-theme-bigger-shadow', true);
+    this.hostElement?.classList.add('light-theme-background-white');
+
+    this.colorTheme = '#000';
+
     this.chartDetails.height = '250px';
     this.chartTitle.text=this.chartText;
     this.chartSeries=this.Series;
