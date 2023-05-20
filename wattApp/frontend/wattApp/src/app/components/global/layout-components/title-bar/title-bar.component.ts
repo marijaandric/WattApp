@@ -295,7 +295,7 @@ export class TitleBarComponent implements OnInit{
           this.display = false;
         }),
         error:(err => {
-          this.toast.error({detail:"ERROR",summary:"Error",duration:4000});
+          this.toast.error({detail:"ERROR",summary:"Please complete all fields.",duration:4000});
         })
         
       })
@@ -328,7 +328,7 @@ export class TitleBarComponent implements OnInit{
 
       }),
       error:(err => {
-        this.toast.error({detail:"ERROR",summary:"Error",duration:4000});
+        this.toast.error({detail:"ERROR",summary:"Please complete all fields.",duration:4000});
       })
     }) 
   }
@@ -355,7 +355,7 @@ export class TitleBarComponent implements OnInit{
       }, 1350)
       }),
       error:(err => {
-        this.toast.error({detail:"ERROR",summary:"Error",duration:4000});
+        this.toast.error({detail:"ERROR",summary:"Please complete all fields.",duration:4000});
       })
     }) 
   }
@@ -407,7 +407,7 @@ export class TitleBarComponent implements OnInit{
         this.display4 = false;
       }),
       error:(err => {
-        this.toast.error({detail:"ERROR",summary:"Error",duration:4000});
+        this.toast.error({detail:"ERROR",summary:"Please complete all fields.",duration:4000});
       })
     }) 
   }
