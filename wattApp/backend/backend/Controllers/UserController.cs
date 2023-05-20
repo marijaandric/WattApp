@@ -139,7 +139,7 @@ namespace backend.Controllers
         {
             List<UserWithPowerUsageDTO> usersWithPowerUsages = new List<UserWithPowerUsageDTO>();
 
-            if (sortOrder.Contains("production") || sortOrder.Contains("consumption") || sortOrder.Contains("stock"))
+            if (sortOrder != null && (sortOrder.Contains("production") || sortOrder.Contains("consumption") || sortOrder.Contains("stock")))
             {
                 var users = _context.GetUsersPaginationByRole("prosumer", page, limit, "USERNAME");
                 var userIds = users.Select(user => user.Id).ToList();
@@ -192,7 +192,7 @@ namespace backend.Controllers
             }
             else
             {
-                var users = _context.GetUsersPaginationByRole("prosumers", page, limit, sortOrder);
+                var users = _context.GetUsersPaginationByRole("prosumer", page, limit, sortOrder);
                 var userIds = users.Select(user => user.Id).ToList();
                 var powerUsages = devicesAndDevicesData.GetPowerUsageForUsers(userIds, "week");
 
