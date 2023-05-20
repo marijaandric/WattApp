@@ -120,7 +120,7 @@ export class SingleAreaPieComponent implements OnChanges{
     },  
     theme:"dark",
     marker: {
-      show:true,
+      show:false,
       fillColors:['#46c5f1', '#885ec0','#eb4886', '#f5805a'],
     }
   }
