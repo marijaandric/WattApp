@@ -1,4 +1,4 @@
-import { Component, OnInit, HostBinding, Input, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, HostBinding, Input, OnChanges, SimpleChanges, Output, EventEmitter, ElementRef, Renderer2 } from '@angular/core';
 import { NgToastService } from 'ng-angular-popup';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth/auth.service';
@@ -11,6 +11,8 @@ import { UserService } from 'src/app/services/user/user.service';
   styleUrls: ['./promotion.component.css']
 })
 export class PromotionComponent implements OnInit,OnChanges{
+  
+  hostElement: HTMLElement | undefined;
   @Input() subTitle : String ="Get a discount!";
   @Input() Title : String ="Show us all your device, get a 10% discount! For more information, contact our operators! Dear consumers, we inform you that the price of electricity will decrease by 5% in the coming period.";
   @Input() Datum : String ="01.01.2023.";
@@ -48,7 +50,9 @@ export class PromotionComponent implements OnInit,OnChanges{
     private userService: UserService,
     private fb: FormBuilder,
     private dsonewsService: DsonewsService,
-    private toast: NgToastService
+    private toast: NgToastService,
+    private elementRef: ElementRef, 
+    private renderer: Renderer2
     ) {
   }
 
@@ -143,8 +147,16 @@ export class PromotionComponent implements OnInit,OnChanges{
 
 
   ngOnInit(): void {
-    console.log(this.isBlue);
-    console.log(this.isBgBlue);
+
+    this.hostElement = this.elementRef.nativeElement as HTMLElement;
+    this.hostElement?.classList.toggle('light-theme-bigger-shadow', true);
+    this.hostElement?.classList.add('light-theme-background-white');
+    const text = this.hostElement?.querySelector('.item_title');
+    this.renderer.addClass(text, 'ligh-theme-text-color-gray');
+    const text2 = this.hostElement?.querySelector('.date');
+    this.renderer.addClass(text2, 'ligh-theme-text-color-gray');
+
+
 
     this.updataNewsForm = this.fb.group({
       id: [this.ID, Validators.required],

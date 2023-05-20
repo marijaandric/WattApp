@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
 
 @Component({
   selector: 'app-weather-forecast',
@@ -6,13 +6,40 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./weather-forecast.component.css']
 })
 export class WeatherForecastComponent implements OnInit {
+  hostElement: HTMLElement | undefined;
   WeatherData:any;
   icon : string = "fa fa-sun";
   currentDate : Date = new Date;
   time : string = this.currentDate.toLocaleTimeString();
   date : string = this.currentDate.toLocaleDateString();
 
+  constructor(private elementRef: ElementRef, private renderer: Renderer2) {
+
+  }
+
   ngOnInit(): void {
+    this.hostElement = this.elementRef.nativeElement as HTMLElement;
+    const mapa = this.hostElement?.querySelector('.box');
+    const tekst = this.hostElement?.querySelectorAll('.box .info h2, p, .info2 h4');
+    const mini_tekst = this.hostElement?.querySelectorAll('.box .info .info2 h6');
+    mini_tekst.forEach((innerElement) => {
+      this.renderer.addClass(innerElement, 'light-theme-text-color-dark-gray');
+    });
+
+    this.renderer.addClass(mapa, 'light-theme-bigger-shadow');
+
+    const waves = this.hostElement?.querySelectorAll('.wave');
+    waves.forEach((wave) => {
+      this.renderer.addClass(wave,'light-theme-bg-blue');
+    });
+
+
+    tekst.forEach((innerElement) => {
+      this.renderer.addClass(innerElement, 'light-theme-text-color-dark-gray');
+    });
+    
+
+    
     this.WeatherData = {
       main : {},
       isDay: true
