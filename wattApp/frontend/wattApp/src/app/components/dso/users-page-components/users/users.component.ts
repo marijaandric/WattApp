@@ -21,15 +21,26 @@ export class UsersComponent implements OnInit{
   numberOFAllUsers: any;
   numberOFProsumer: any;
   numberOFOperator: any;
+  token = localStorage.getItem('token');
+
+  Myid : any;
 
   constructor(private userService: UserService, 
               private aPIService: APIService,
-              private paginationService: PaginationService) { }
+              private paginationService: PaginationService) {
+
+               
+               }
 
   ngOnInit() {
     this.getNumber();
     this.paginationService.getCountData("/api/UserPagination/users/pagination/count").subscribe(result => (this.loader = false, this.allUsersCount = result));
     this.refreshAllUsers();
+
+    if(this.token)
+    {
+      this.Myid = this.userService.getUserIdFromToken(this.token);
+    }
   }
 
   onPageChange(event: any) {
