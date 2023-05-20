@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ElementRef, Renderer2 } from '@angular/core';
 import { NgToastService } from 'ng-angular-popup';
 
 @Component({
@@ -7,6 +7,8 @@ import { NgToastService } from 'ng-angular-popup';
   styleUrls: ['./faq-page-componenets.component.scss']
 })
 export class FaqPageComponenetsComponent {
+  hostElement: HTMLElement | undefined;
+
   tabs = [
     { title: 'How does your energy management application work?', content: 'Our energy management application uses the Internet of Things (IoT) and artificial intelligence (AI) to collect, analyze and predict electricity consumption and production within a customers microgrid. Network managers will be able to monitor the behavior of all system users and analyze consumption and production, as well as the state of system components.' },
     { title: 'Who can use your app?', content: 'Our electricity app can be used by anyone who wants to keep track of their energy usage and costs. It is particularly useful for individuals or households who want to monitor their energy consumption and take steps towards reducing their carbon footprint. The app is also suitable for businesses that want to manage and optimize their energy usage for cost savings and sustainability. It is also used by electricity distribution operators' },
@@ -29,7 +31,7 @@ export class FaqPageComponenetsComponent {
     }
   }
   constructor(
-    private toast: NgToastService,
+    private toast: NgToastService,private elementRef: ElementRef, private renderer: Renderer2
     ) {
   }
 
@@ -42,4 +44,19 @@ export class FaqPageComponenetsComponent {
 
   }
 
+  ngOnInit () {
+    
+    this.hostElement = this.elementRef.nativeElement as HTMLElement;
+    const text = this.hostElement?.querySelectorAll('.tab');
+    text.forEach((innerElement) => {
+      this.renderer.addClass(innerElement, 'light-theme-background-white');
+      this.renderer.addClass(innerElement, 'light-theme-bigger-shadow');
+      this.renderer.addClass(innerElement, 'light-theme-color-gray');
+    });
+    const contact = this.hostElement?.querySelector('.left');
+    this.renderer.addClass(contact, 'ligh-theme-text-color-gray');
+    this.renderer.addClass(contact, 'light-theme-bigger-shadow');
+    this.renderer.addClass(contact, 'light-theme-color-gray');
+    
+  }
 }

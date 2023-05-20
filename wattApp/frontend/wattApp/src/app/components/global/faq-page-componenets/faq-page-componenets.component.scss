@@ -2,13 +2,6 @@
 {
     box-sizing: border-box;
 }
-body{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-}
-
 .container
 {
     margin:0 ;
@@ -22,12 +15,16 @@ body{
 }
 .container .tab{
     position: relative;
+    /*
     background: linear-gradient(180deg, #1b1b1b 50%, #121212 100%) ;
+    */
     padding: 0px 20px 20px;
-    box-shadow: 0 15px 25px rgba(0,0,0,0.05);
-    border-radius: 5px;
-    overflow: hidden;
+    /*
     box-shadow: 5px 5px 15px black;
+    box-shadow: 0 15px 25px rgba(0,0,0,0.05);
+    */
+    border-radius: 20px;
+    overflow: hidden;
 }
 .container .tab input{
    appearance: none;
@@ -171,7 +168,6 @@ background: linear-gradient(135deg,#885ec0,#ae91d4);
   
   .left {
     float: right;
-    display: inline-block;
     width: 40%;
     vertical-align: top;
   }
@@ -224,9 +220,11 @@ background: linear-gradient(135deg,#885ec0,#ae91d4);
   }
   
   .left {
+    /*
     background: linear-gradient(180deg, #1b1b1b 50%, #121212 100%);
     box-shadow: 5px 5px 15px black;
-    border-radius: 5px;
+    */
+    border-radius: 20px;
   }
   
   .submit {

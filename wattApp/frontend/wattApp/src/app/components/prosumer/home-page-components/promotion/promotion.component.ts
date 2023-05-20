@@ -152,7 +152,7 @@ export class PromotionComponent implements OnInit,OnChanges{
     this.hostElement?.classList.toggle('light-theme-bigger-shadow', true);
     this.hostElement?.classList.add('light-theme-background-white');
     const text = this.hostElement?.querySelector('.item_title');
-    this.renderer.addClass(text, 'ligh-theme-text-color-gray');
+    this.renderer.addClass(text, 'dark-theme-text-color-black');
     const text2 = this.hostElement?.querySelector('.date');
     this.renderer.addClass(text2, 'ligh-theme-text-color-gray');
 
