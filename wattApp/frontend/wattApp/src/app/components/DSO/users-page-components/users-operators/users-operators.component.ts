@@ -19,6 +19,9 @@ export class UsersOperatorsComponent implements OnInit {
   rowsPerPage:number = 10;
   allUsersCount!: number;
   loader=true;
+  token = localStorage.getItem('token');
+
+  Myid : any;
 
   constructor(private userService: UserService,
                 private dsonew:DsonewsService) { }
@@ -27,6 +30,10 @@ export class UsersOperatorsComponent implements OnInit {
     this.userService.getCountDataByType("operator").subscribe(result => this.allUsersCount = result);
     this.refreshAllUsers();
     this.getNews();
+    if(this.token)
+    {
+      this.Myid = this.userService.getUserIdFromToken(this.token);
+    }
   }
 
   onPageChange(event: any) {
