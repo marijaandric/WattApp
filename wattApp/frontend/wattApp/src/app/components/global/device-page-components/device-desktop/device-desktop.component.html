@@ -109,8 +109,7 @@
 
         </div>
 
-        <app-history-forecast id="oneChart"  style="width: 100%;
-        background: linear-gradient(180deg, #151515 50%, #0d0d0d 100%)  !important;" [boja1]="color1" [boja2]="color2" [naziv1]="name1" [naziv2]="name2" [array] = "History" [array2]="Forecast" [array3] = "dates" class="chart" id="oneChart"></app-history-forecast>
+        <app-history-forecast id="oneChart"  style="width: 100%;" [boja1]="color1" [boja2]="color2" [naziv1]="name1" [naziv2]="name2" [array] = "History" [array2]="Forecast" [array3] = "dates" class="chart" id="oneChart"></app-history-forecast>
 
       </div>
 
@@ -131,8 +130,6 @@
         flex-direction: column;
         height: fit-content;
         border-radius: 20px;
-        background: linear-gradient(180deg, #151515 50%, #0d0d0d 100%) ;
-        box-shadow: 5px 5px 15px black;
         transition: ease-in-out;
         padding:10px 20px 30px 20px;
         " [name1]="name1" [name2]="name2" [hif]="hif"></app-history-forecast-table>
@@ -145,8 +142,6 @@
           height: fit-content;
           width: 100%;
           border-radius: 20px;
-          background: linear-gradient(180deg, #151515 50%, #121212 100%) ;
-          box-shadow: 5px 5px 15px black;
           transition: ease-in-out;
           padding:10px 20px 30px 20px;"  [name]="name" [History]="History" [Forecast]="Forecast" [dates]="dates" >
           </app-history-or-forecast-table>

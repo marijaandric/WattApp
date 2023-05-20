@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DeviceDTO } from 'src/app/dtos/DeviceDTO';
 import { DeviceService } from 'src/app/services/device/device.service';
@@ -50,7 +50,7 @@ interface HiF{
 })
 export class DeviceComponent implements OnInit{
   device!: DeviceDTO;
-
+  hostElement:  HTMLElement | undefined;
   displayEditDeviceDialog: boolean = false;
   isRunning: boolean = true;
 
@@ -94,10 +94,15 @@ export class DeviceComponent implements OnInit{
               private fromBuilder: FormBuilder,
               private roomTypesService: RoomTypesService,
               private modelTypesService: ModelTypesService,
-              private deviceTypesService: DeviceTypesService) 
+              private deviceTypesService: DeviceTypesService,private elementRef: ElementRef, private renderer: Renderer2) 
               { }
 
   ngOnInit() {
+    
+    this.hostElement = this.elementRef.nativeElement as HTMLElement;
+    const desktop = this.hostElement.querySelector('.desktop');
+    console.log(desktop);
+
     const id = this.route.snapshot.paramMap.get('id');
     this.getHistoryAndForecastByDayForDevice(id);
     if (id){

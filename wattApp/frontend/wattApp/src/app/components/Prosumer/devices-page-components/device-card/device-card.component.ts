@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, Input, OnChanges, OnInit, SimpleChange, SimpleChanges } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, Input, OnChanges, OnInit, Renderer2, SimpleChange, SimpleChanges } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
 import { DeviceDTO } from 'src/app/dtos/DeviceDTO';
 import { DeviceDataDTO } from 'src/app/dtos/DeviceDataDTO';
@@ -12,6 +12,7 @@ import { DeviceService } from 'src/app/services/device/device.service';
   styleUrls: ['./device-card.component.scss']
 })
 export class DeviceCardComponent implements OnInit,OnChanges{
+  hostElement: HTMLElement | undefined;
   @Input() device: any;
   @Input() devices: any;
   isChecked: boolean = true;
@@ -52,9 +53,20 @@ export class DeviceCardComponent implements OnInit,OnChanges{
   isProducer: boolean = false;
   isStock: boolean = false;
 
-  constructor(private deviceService: DeviceService,private cdRef: ChangeDetectorRef){ }
+  constructor(private deviceService: DeviceService,private cdRef: ChangeDetectorRef, private elementRef: ElementRef, private renderer: Renderer2){ }
 
   ngOnInit(): void {
+    
+    this.hostElement = this.elementRef.nativeElement as HTMLElement;
+    console.log(this.hostElement);
+    const dvcCard = this.hostElement.querySelector('.device-card');
+    console.log(dvcCard);
+    this.renderer.addClass(dvcCard, 'light-theme-bigger-shadow');
+    this.renderer.addClass(dvcCard, 'light-theme-background-white');
+    const spans = this.hostElement.querySelectorAll('.device-card span');
+    spans.forEach((span) => {
+      this.renderer.addClass(span, 'light-theme-text-color-dark-gray');
+    });
     if(!this.device.power)
     {
       const min = 0;
