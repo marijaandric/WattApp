@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DeviceDTO } from 'src/app/dtos/DeviceDTO';
 import { DeviceService } from 'src/app/services/device/device.service';
@@ -48,6 +48,8 @@ interface HiF{
   styleUrls: ['./device-desktop.component.scss']
 })
 export class DeviceDesktopComponent implements OnInit {
+  
+  hostElement: HTMLElement | undefined;
   device!: DeviceDTO;
   loader=true;
 
@@ -141,7 +143,7 @@ export class DeviceDesktopComponent implements OnInit {
               private fromBuilder: FormBuilder,
               private roomTypesService: RoomTypesService,
               private modelTypesService: ModelTypesService,
-              private deviceTypesService: DeviceTypesService) 
+              private deviceTypesService: DeviceTypesService,private elementRef: ElementRef, private renderer: Renderer2) 
               {
 
                 this.type = [
@@ -162,11 +164,22 @@ export class DeviceDesktopComponent implements OnInit {
                }
 
   ngOnInit() {
+    
+    this.hostElement = this.elementRef.nativeElement as HTMLElement;
+    console.log(this.hostElement);
+    const pencnt = this.hostElement.querySelector('.device');
+    console.log(pencnt);
+
     const id = this.route.snapshot.paramMap.get('id');
     this.getHistoryAndForecastByDayForDevice(id)
     this.getHistoryAndForecastByDayForAllDevicesByMonth(id)
     this.getHistoryAndForecastByDayForAllDevicesByYear(id)
+
+    
+
     if (id){
+    
+
       this.deviceService.getDeviceById(id)
         .subscribe(device => {
           this.device = device;
@@ -209,13 +222,15 @@ export class DeviceDesktopComponent implements OnInit {
           this.getUsageMonth();
           this.getUsageYear();
           this.getMaxMinAvgTotalPowerUsageByTimeForDevice();
+
+          
+    
       });
 
     } else{
       this.navigateToDevices();
     }
 
-    
 
   }
 

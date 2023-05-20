@@ -27,9 +27,7 @@ export class SidebarNewComponent {
     //light mode
     
     const innerElements = this.hostElement?.querySelectorAll('.main');
-    innerElements.forEach((innerElement) => {
-      this.renderer.addClass(innerElement, 'light-theme-color-gray');
-    });
+    
     const arrow = this.hostElement?.querySelector('.sidebar-arrow');
     const sidebar = this.hostElement?.querySelector('.left');
     this.renderer.addClass(sidebar, '.dark-theme-coloro-gray');

@@ -68,8 +68,6 @@ img {
   padding: 20px;
   border-radius: 20px;
   color: white;
-  background: linear-gradient(180deg, #1b1b1b 50%, #121212 100%) ;
-  box-shadow: 5px 5px 15px black;
 }
 .device-information{
     position: relative;
@@ -78,9 +76,6 @@ img {
     width: 42.5%;
     padding: 20px;
     border-radius: 20px;
-    color: white;
-    background: linear-gradient(180deg, #1b1b1b 50%, #121212 100%) ;
-    box-shadow: 5px 5px 15px black;
 }
 
 
@@ -98,7 +93,6 @@ img {
 .stats-card{
   display:flex;
   flex-basis: 47%;
-  box-shadow: 5px 5px 15px black;
   min-height:150px;
 }
 
@@ -140,5 +134,4 @@ img {
   max-width: 23%;
   min-width: 240px;
   width:20%;
-  box-shadow: 5px 5px 15px black;
 }

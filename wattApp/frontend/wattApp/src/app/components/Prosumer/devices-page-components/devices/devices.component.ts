@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, HostListener, Input, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, HostListener, Input, OnInit, Renderer2 } from '@angular/core';
 import { DeviceDTO } from 'src/app/dtos/DeviceDTO';
 import { DeviceService } from 'src/app/services/device/device.service';
 
@@ -13,6 +13,7 @@ interface SwitchOption {
   styleUrls: ['./devices.component.css']
 })
 export class DevicesComponent implements OnInit{
+  hostElement: HTMLElement | undefined;
   @Input() devices: any;
   numVisible: number = 5;
   devicesByRoomType: {[key: string]: DeviceDTO[]} = {};
@@ -27,6 +28,19 @@ export class DevicesComponent implements OnInit{
   ];
 
   ngOnInit():void {
+
+    /*
+    this.hostElement = this.elementRef.nativeElement as HTMLElement;
+    innerElements.forEach((innerElement) => {
+      this.renderer.addClass(innerElement, 'light-theme-color-gray');
+    });
+    this.hostElement.classList.forEach((DeviceCardComponent) => {
+      const dvc = DeviceCardComponent as HTMLElement;
+    })
+    console.log(deviceCard);
+    this.hostElement?.classList.toggle('light-theme-bigger-shadow', true);
+    this.hostElement?.classList.add('light-theme-background-white');
+*/
     this.responsiveOptions = [
       {
           breakpoint: '1400px',
@@ -52,7 +66,7 @@ export class DevicesComponent implements OnInit{
   }
 
   constructor(private deviceService: DeviceService,
-    private cdr: ChangeDetectorRef) { }
+    private cdr: ChangeDetectorRef,private elementRef: ElementRef, private renderer: Renderer2) { }
 
   ngOnChanges() {
     this.updateNumVisible(window.innerWidth);
