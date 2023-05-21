@@ -12,6 +12,7 @@ import { HttpClient } from '@angular/common/http';
 export class WeatherForecast7Component implements OnInit{
   
   hostElement: HTMLElement | undefined;
+  lightMode: Boolean = true;
   private apiKey = '1702d844857d1ce89239d1c1a641dd84';
   weatherData: any;
   WeatherData: any;
@@ -31,10 +32,10 @@ export class WeatherForecast7Component implements OnInit{
   ngOnInit(): void {
     this.hostElement = this.elementRef.nativeElement as HTMLElement;
     const mapa = this.hostElement?.querySelector('.box');
-    const tekst = this.hostElement?.querySelectorAll('.box .current h3, p, .info2 h4');
-    const mini_tekst = this.hostElement?.querySelectorAll('.box .info .info2 h6');
+    const tekst = this.hostElement?.querySelectorAll('h3, p, h4, h6, .location');
+    const mini_tekst = this.hostElement?.querySelectorAll('h6');
     mini_tekst.forEach((innerElement) => {
-      this.renderer.addClass(innerElement, 'light-theme-text-color-dark-gray');
+      this.renderer.addClass(innerElement, 'ligh-theme-text-color-gray');
     });
 
     this.renderer.addClass(mapa, 'light-theme-bigger-shadow');
@@ -46,7 +47,7 @@ export class WeatherForecast7Component implements OnInit{
 
 
     tekst.forEach((innerElement) => {
-      this.renderer.addClass(innerElement, 'light-theme-text-color-dark-gray');
+      this.renderer.addClass(innerElement, 'ligh-theme-text-color-gray');
     });
     
     this.getWeatherData();
