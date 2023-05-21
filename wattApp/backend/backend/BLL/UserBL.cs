@@ -90,9 +90,14 @@ namespace backend.BAL
             return _contextDAL.GetUsersByType(type);
         }
 
-        public List<User> GetUsersPaginationByRole(string type, int page, int limit, string sortOrder)
+        public List<User> GetUsersPaginationByRole(int page, int limit, string sortOrder, string nameFilter, string addressFilter, string emailFilter)
         {
-            return paginationProvider.GetAllUsersByType(type, page, limit, sortOrder);
+            return paginationProvider.GetAllUsersByType(page, limit, sortOrder, nameFilter, addressFilter, emailFilter);
+        }
+
+        public List<User> GetProsumersPaginationByRole(int page, int limit, string sortOrder, string nameFilter, string addressFilter)
+        {
+            return paginationProvider.GetAllProsumers(page, limit, sortOrder, nameFilter, addressFilter);
         }
 
         public TokenApiDto refreshToken(TokenApiDto tokenApiDto)

@@ -19,10 +19,16 @@ export class UsersComponent implements OnInit{
   loader=true;
   pageSize: number = 10; // default page size
   currentPage: number = 1; // default current page
-  sortOrder: string = "USERNAME";
+  sortOrder: string = "";
   numberOFAllUsers: any;
   numberOFProsumer: any;
   numberOFOperator: any;
+  filterValues: any = {
+    name: '',
+    address: '',
+    email: '',
+    role: ''
+  };
 
   constructor(private userService: UserService, 
               private aPIService: APIService,
@@ -47,16 +53,44 @@ export class UsersComponent implements OnInit{
     this.refreshAllUsers();
   }
 
-  private refreshAllUsers(){
-    this.paginationService.getData("/api/UserPagination/users/pagination/pageNo="+ this.currentPage + "&pageSize=" + this.pageSize + "&sortOrder=" + this.sortOrder).subscribe((result) => (this.users = result));
+  private refreshAllUsers() {
+    let url = "/api/UserPagination/users/pagination?pageNo=" + this.currentPage 
+              + "&pageSize=" + this.pageSize;
+  
+    if (this.sortOrder) {
+      url += "&sortOrder=" + this.sortOrder;
+    }
+    if (this.filterValues.name) {
+      url += "&name=" + this.filterValues.name;
+    }
+    if (this.filterValues.address) {
+      url += "&address=" + this.filterValues.address;
+    }
+    if (this.filterValues.email) {
+      url += "&email=" + this.filterValues.email;
+    }
+    if (this.filterValues.role) {
+      url += "&role=" + this.filterValues.role;
+    }
+  
+    this.paginationService.getData(url)
+      .subscribe((result) => {
+        this.users = result;
+      });
+  }
+
+  applyFilters() {
+    this.refreshAllUsers();
   }
 
   clear(dtUsers: any) {
     dtUsers.clear();
-  }
-
-  onSearch(value: string, dtUsers: any) {
-    dtUsers.filterGlobal(value, 'contains');
+    this.sortOrder = "";
+    this.filterValues.firstName = "";
+    this.filterValues.address = "";
+    this.filterValues.email = "";
+    this.filterValues.role = "";
+    this.refreshAllUsers();
   }
 
   getNumber() {

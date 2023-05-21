@@ -20,7 +20,7 @@
             dataKey="id" [scrollable]="true" 
             [rows]="pageSize" [lazy]="true" [totalRecords]="allUsersCount" 
             [showCurrentPageReport]="true" (onPage)="onPageChange($event)"
-            [globalFilterFields]="['id','firstName','address','email','role']" [paginator]="true" 
+            [globalFilterFields]="['id','name','address','email','role']" [paginator]="true" 
             style="
               display: flex;
               position: relative;
@@ -36,45 +36,50 @@
   
               <ng-template pTemplate="caption">
                 <div class="flexRow">
-                    <h3 >
-                    All Users</h3>
-                    <span class="p-input-icon-left margin-left__auto margin-right__16px">
-                        <i class="pi pi-search"></i>
-                        <input pInputText type="text" (input)="dtUsers.filterGlobal($any($event.target).value, 'contains')" placeholder="Search keyword" />
-                    </span>
-                    <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash" (click)="clear(dtUsers)"></button>
+                    <h3>All Users</h3>
+                    <button pButton label="Clear" class="p-button-outlined margin-left__auto" icon="pi pi-filter-slash" (click)="clear(dtUsers)"></button>
                 </div>
               </ng-template>
   
               <ng-template pTemplate="header">
                 <tr>
-                  <th pSortableColumn="firstName" style="min-width:8rem;  border:none; border-top: 2px solid #46c5f1;  border-bottom:2px solid #46c5f1;">
+                  <th pSortableColumn="name" style="min-width:8rem;  border:none; border-top: 2px solid #46c5f1;  border-bottom:2px solid #46c5f1;">
                     <div class="flexRow">
                         <p style=" font-size: 18px !important;">Name</p>
-                        <p-sortIcon field="firstName"></p-sortIcon>
-                        <p-columnFilter class="ml-auto" type="text" field="firstName" display="menu"></p-columnFilter>
+                        <p-sortIcon field="name"></p-sortIcon>
                     </div>
                   </th>
                   <th pSortableColumn="address" style="min-width:9rem;  border-top:2px solid #46c5f1; border-bottom:2px solid #46c5f1;">
                     <div class="flexRow">
                         <p style=" font-size: 18px !important;">Address</p>
                         <p-sortIcon field="address"></p-sortIcon>
-                        <p-columnFilter class="ml-auto" type="text" field="address" display="menu"></p-columnFilter>
                     </div>
                   </th>
                   <th pSortableColumn="email" style="min-width:10rem;  border-top:2px solid #46c5f1; border-bottom:2px solid #46c5f1;">
                     <div class="flexRow">
                         <p style=" font-size: 18px !important;">Email</p>
                         <p-sortIcon field="email"></p-sortIcon>
-                        <p-columnFilter class="ml-auto" type="text" field="email" display="menu"></p-columnFilter>
                     </div>
                   </th>
                   <th pSortableColumn="role" style="min-width:8rem; border-top:2px solid #46c5f1; border-bottom:2px solid #46c5f1;">
                     <div class="flexRow">
                         <p style=" font-size: 18px !important;">Role</p>
                         <p-sortIcon field="role"></p-sortIcon>
-                        <p-columnFilter class="ml-auto" type="text" field="role" display="menu"></p-columnFilter>
                     </div>
+                  </th>
+                </tr>
+                <tr>
+                  <th>
+                    <input pInputText type="text" p-columnFilter field="name" placeholder="Search" [(ngModel)]="filterValues.name" (ngModelChange)="applyFilters()" style="width: 100%" />
+                  </th>
+                  <th>
+                    <input pInputText type="text" p-columnFilter field="address" placeholder="Search" [(ngModel)]="filterValues.address" (ngModelChange)="applyFilters()" style="width: 100%" />
+                  </th>
+                  <th>
+                    <input pInputText type="text" p-columnFilter field="email" placeholder="Search" [(ngModel)]="filterValues.email" (ngModelChange)="applyFilters()" style="width: 100%" />
+                  </th>
+                  <th>
+                    <input pInputText type="text" p-columnFilter field="role" placeholder="Search" [(ngModel)]="filterValues.role" (ngModelChange)="applyFilters()" style="width: 100%" />
                   </th>
                 </tr>
               </ng-template>

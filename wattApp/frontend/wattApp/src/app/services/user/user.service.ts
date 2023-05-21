@@ -64,8 +64,8 @@ export class UserService {
     return this.http.put(url,user);
   }
   
-  getUsersProsumersPagination(page: number, limit: number, sortOrder: string): Observable<UserWithPowerUsageDTO[]> {
-    return this.http.get<UserWithPowerUsageDTO[]>(this.baseUrl + "getUsersPaginationByRole/prosumer/" + page + "/" + limit + "/" + sortOrder).pipe(
+  getUsersProsumersPagination(apiUrl:string): Observable<UserWithPowerUsageDTO[]> {
+    return this.http.get<UserWithPowerUsageDTO[]>(url + apiUrl).pipe(
       map(users => {
         return users.map(userWithPowerUsage => new UserWithPowerUsageDTO(
           new UserDTO(
@@ -90,8 +90,8 @@ export class UserService {
     );
   }
 
-  getUsersPaginationByRole(type:string, page:number,limit:number, sortOrder:string): Observable<UserDTO[]> {
-    return this.http.get<UserDTO[]>(this.baseUrl+"getUsersPaginationByRole/"+type+"/"+page+"/"+limit+"/"+sortOrder).pipe(
+  getUsersPaginationByRole(apiUrl:string): Observable<UserDTO[]> {
+    return this.http.get<UserDTO[]>(url + apiUrl).pipe(
       map(users => {
         return users.map(user => new UserDTO(
           user.id,

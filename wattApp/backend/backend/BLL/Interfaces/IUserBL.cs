@@ -15,7 +15,8 @@ namespace backend.BAL.Interfaces
         public IActionResult registerUser(User userObj);
         public TokenApiDto refreshToken(TokenApiDto tokenApiDto);
         public List<User> GetUsersByType(string type);
-        public List<User> GetUsersPaginationByRole(string type, int page, int limit, string sortOrder);
+        public List<User> GetUsersPaginationByRole(int page, int limit, string sortOrder, string nameFilter, string addressFilter, string emailFilter);
+        public List<User> GetProsumersPaginationByRole(int page, int limit, string sortOrder, string nameFilter, string addressFilter);
         public List<string> GetAreas();
         public Dictionary<string, int> GetNumberOfUsersByArea();
         public Dictionary<string, int> GetNumberOfUsersByType();

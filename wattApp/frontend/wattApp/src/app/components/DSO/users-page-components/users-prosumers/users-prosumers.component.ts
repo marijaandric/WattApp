@@ -25,11 +25,15 @@ export class UsersProsumersComponent implements OnInit {
   users: UserWithPowerUsageDTO[] = [];
   type: City[];
   selectedType!: City;
-  currentPage :any = 0;
+  currentPage :any = 1;
   rowsPerPage :any = 10;
-  sortOrder: string = "USERNAME";
+  sortOrder: string = "";
   allUsersCount!: number;
   loader=true;
+  filterValues: any = {
+    name: '',
+    address: '',
+  };
 
   constructor(private aPIService: APIService, 
               private userService: UserService, 
@@ -51,10 +55,14 @@ export class UsersProsumersComponent implements OnInit {
 
   clear(dtUsers: any) {
     dtUsers.clear();
+    this.sortOrder = "";
+    this.filterValues.name = "";
+    this.filterValues.address = "";
+    this.refreshAllUsers();
   }
 
-  onSearch(value: string, dtUsers: any) {
-    dtUsers.filterGlobal(value, 'contains');
+  applyFilters() {
+    this.refreshAllUsers();
   }
 
   onPageChange(event: any) {
@@ -71,7 +79,20 @@ export class UsersProsumersComponent implements OnInit {
   }
 
   private refreshAllUsers() {
-    this.userService.getUsersProsumersPagination(this.currentPage, this.rowsPerPage, this.sortOrder)
+    let url = "/api/User/pagination/getUsersPaginationByRole/prosumer?page=" + this.currentPage 
+              + "&limit=" + this.rowsPerPage;
+
+    if (this.sortOrder) {
+      url += "&sortOrder=" + this.sortOrder;
+    }
+    if (this.filterValues.name) {
+      url += "&name=" + this.filterValues.name;
+    }
+    if (this.filterValues.address) {
+      url += "&address=" + this.filterValues.address;
+    }
+
+    this.userService.getUsersProsumersPagination(url)
       .subscribe((result: UserWithPowerUsageDTO[]) => {
         this.loader = false;
         this.users = result;

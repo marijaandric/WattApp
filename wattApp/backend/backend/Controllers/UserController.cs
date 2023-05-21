@@ -1,20 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using backend.Context;
+﻿using Microsoft.AspNetCore.Mvc;
 using backend.Models;
 using backend.BAL.Interfaces;
-using backend.Helpers;
 using backend.Models.DTOs;
-using backend.BAL;
-using Microsoft.AspNetCore.Identity;
 using backend.DAL.Interfaces;
 using backend.BLL.Interfaces;
-using static SQLite.SQLite3;
+using System.ComponentModel;
 
 namespace backend.Controllers
 {
@@ -128,20 +118,34 @@ namespace backend.Controllers
             return users;
         }
 
-        [HttpGet("getUsersPaginationByRole/{type}/{page}/{limit}/{sortOrder}")]
-        public List<User> GetUsersPaginationByRole(string type, int page, int limit, string sortOrder)
+        [HttpGet("pagination/getUsersPaginationByRole")]
+        public List<User> GetUsersPaginationByRole()
         {
-            return _context.GetUsersPaginationByRole(type, page, limit, sortOrder);
+            int page = int.Parse(Request.Query["page"]);
+            int limit = int.Parse(Request.Query["limit"]);
+            string sortOrder = Request.Query.TryGetValue("sortOrder", out var sortOrderValue) ? sortOrderValue.ToString() : "USERNAME";
+            string nameFilter = Request.Query.TryGetValue("name", out var nameValue) ? nameValue.ToString() : "";
+            string addressFilter = Request.Query.TryGetValue("address", out var addressValue) ? addressValue.ToString() : "";
+            string emailFilter = Request.Query.TryGetValue("email", out var emailValue) ? emailValue.ToString() : "";
+
+            return _context.GetUsersPaginationByRole(page, limit, sortOrder, nameFilter, addressFilter, emailFilter);
         }
 
-        [HttpGet("getUsersPaginationByRole/prosumer/{page}/{limit}/{sortOrder}")]
-        public List<UserWithPowerUsageDTO> GetUsersPaginationForProsumers(int page, int limit, string sortOrder)
+
+        [HttpGet("pagination/getUsersPaginationByRole/prosumer")]
+        public List<UserWithPowerUsageDTO> GetUsersPaginationForProsumers()
         {
+            int page = int.Parse(Request.Query["page"]);
+            int limit = int.Parse(Request.Query["limit"]);
+            string sortOrder = Request.Query.TryGetValue("sortOrder", out var sortOrderValue) ? sortOrderValue.ToString() : "USERNAME";
+            string nameFilter = Request.Query.TryGetValue("name", out var nameValue) ? nameValue.ToString() : "";
+            string addressFilter = Request.Query.TryGetValue("address", out var addressValue) ? addressValue.ToString() : "";
+
             List<UserWithPowerUsageDTO> usersWithPowerUsages = new List<UserWithPowerUsageDTO>();
 
             if (sortOrder != null && (sortOrder.Contains("production") || sortOrder.Contains("consumption") || sortOrder.Contains("stock")))
             {
-                var users = _context.GetUsersPaginationByRole("prosumer", page, limit, "USERNAME");
+                var users = _context.GetProsumersPaginationByRole(page, limit, "FirstName", nameFilter, addressFilter);
                 var userIds = users.Select(user => user.Id).ToList();
                 var powerUsages = devicesAndDevicesData.GetPowerUsageForUsers(userIds, "week");
 
@@ -192,7 +196,7 @@ namespace backend.Controllers
             }
             else
             {
-                var users = _context.GetUsersPaginationByRole("prosumer", page, limit, sortOrder);
+                var users = _context.GetProsumersPaginationByRole(page, limit, sortOrder, nameFilter, addressFilter);
                 var userIds = users.Select(user => user.Id).ToList();
                 var powerUsages = devicesAndDevicesData.GetPowerUsageForUsers(userIds, "week");
 

@@ -12,7 +12,6 @@ export class PaginationService {
   constructor(private http: HttpClient) { }
 
   getData(apiuUrl: string){
-    console.log(url + apiuUrl);
     return this.http.get<UserDTO[]>(url + apiuUrl).pipe(
       map(users => {
         return users.map(user => new UserDTO(

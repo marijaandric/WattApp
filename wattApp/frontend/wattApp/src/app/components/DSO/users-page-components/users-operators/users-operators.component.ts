@@ -16,11 +16,16 @@ export class UsersOperatorsComponent implements OnInit {
   baseUrl = url + "/api/Images/user/";
   users: UserDTO[] = [];
   @ViewChild('dtUsers') dataTable!: Table;
-  currentPage:number= 0;
+  currentPage:number= 1;
   rowsPerPage:number = 10;
-  sortOrder: string = "USERNAME";
+  sortOrder: string = "";
   allUsersCount!: number;
   loader=true;
+  filterValues: any = {
+    name: "",
+    address: "",
+    email: ""
+  };
 
   constructor(private userService: UserService,
                 private dsonew:DsonewsService) { }
@@ -45,15 +50,36 @@ export class UsersOperatorsComponent implements OnInit {
   }
 
   private refreshAllUsers(){
-    this.userService.getUsersPaginationByRole("operator", this.currentPage, this.rowsPerPage, this.sortOrder).subscribe((result: UserDTO[])=>(this.loader=false,this.users = result));
+    let url = "/api/User/pagination/getUsersPaginationByRole?page=" + this.currentPage 
+              + "&limit=" + this.rowsPerPage;
+
+    if (this.sortOrder) {
+      url += "&sortOrder=" + this.sortOrder;
+    }
+    if (this.filterValues.name) {
+      url += "&name=" + this.filterValues.name;
+    }
+    if (this.filterValues.addres) {
+      url += "&address=" + this.filterValues.addres;
+    }
+    if (this.filterValues.email) {
+      url += "&email=" + this.filterValues.email;
+    }
+
+    this.userService.getUsersPaginationByRole(url).subscribe((result: UserDTO[])=>(this.loader=false,this.users = result));
+  }
+
+  applyFilters() {
+    this.refreshAllUsers();
   }
 
   clear(dtUsers: any) {
     dtUsers.clear();
-  }
-
-  onSearch(value: string, dtUsers: any) {
-    dtUsers.filterGlobal(value, 'contains');
+    this.sortOrder = "";
+    this.filterValues.name = "";
+    this.filterValues.address = "";
+    this.filterValues.email = "";
+    this.refreshAllUsers();
   }
 
   news: any[] = [];
