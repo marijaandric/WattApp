@@ -48,7 +48,7 @@ interface HiF{
   styleUrls: ['./device-desktop.component.scss']
 })
 export class DeviceDesktopComponent implements OnInit {
-  
+  lightMode: Boolean = true;
   hostElement: HTMLElement | undefined;
   device!: DeviceDTO;
   loader=true;
