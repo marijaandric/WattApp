@@ -46,12 +46,12 @@
 </ng-template>
 </p-dialog>
 
-
+<div >
 <p-dialog [style]="{width:'40%'}" header="Title"  [transitionOptions]="'3ms'" 
 [draggable]="true" [keepInViewport]="true" [resizable]="false" 
 [blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true" 
 [modal]="true" [(visible)]="display2" [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
-[closable]="true" >
+[closable]="true" [ngClass]="{'light-mode':lightMode}" >
 <ng-template pTemplate="header" class="header-dialog">
   <span>Add Device</span>
 </ng-template>
@@ -60,17 +60,17 @@
   <form [formGroup]="addDeviceForm" >  
   <div class="p-inputgroup p-inputtext-lg p-input-filled">
     <div class="half">  
-      Device type 
-      <div class="dropdown-div" style="margin-bottom:20px;"> <p-dropdown [options]="types" appendTo="body" optionLabel="name" (onChange)="onTypeChange($event)" /></div>
-      Device model 
-      <div class="dropdown-div" style="margin-top:0px;"><p-dropdown [options]="models" appendTo="body" optionLabel="name" (onChange)="onModelChange($event)"/>
+      <span>Device type</span> 
+      <div class="dropdown-div" style="margin-bottom:20px;" [ngClass]="{'light-mode':lightMode}"> <p-dropdown [options]="types" appendTo="body" optionLabel="name" (onChange)="onTypeChange($event)" [ngClass]="{'light-mode':lightMode}" /></div>
+      <span >Device model </span>
+      <div class="dropdown-div" style="margin-top:0px;" [ngClass]="{'light-mode':lightMode}"><p-dropdown [options]="models" appendTo="body" optionLabel="name" (onChange)="onModelChange($event)" [ngClass]="{'light-mode':lightMode}" />
     </div></div>
     
     <div class="half">       
-       Room
-       <div class="dropdown-div" style="margin-bottom:20px;"><p-dropdown [options]="rooms" appendTo="body" optionLabel="name" (onChange)="onRoomChange($event)" /></div>
-      Device name
-       <input formControlName="deviceName" name="name"  appendTo="body" type="text"   class="p-inputtext-lg"  placeholder="DEVICE NAME" style="margin-top:0px;"> 
+      <span>Room</span>
+       <div class="dropdown-div" style="margin-bottom:20px;" [ngClass]="{'light-mode':lightMode}"><p-dropdown [options]="rooms" appendTo="body" optionLabel="name" (onChange)="onRoomChange($event)" [ngClass]="{'light-mode':lightMode}" /></div>
+       <span> Device name </span>
+       <input formControlName="deviceName" name="name"  type="text"   class="p-inputtext-lg"  placeholder="DEVICE NAME" style="margin-top:0px;"> 
     </div>
   </div> 
   </form>
@@ -81,7 +81,7 @@
   </div>
 </ng-template>
 </p-dialog>
-
+</div>
 
 
 

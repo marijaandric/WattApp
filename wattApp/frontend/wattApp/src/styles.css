@@ -270,6 +270,14 @@
 
 }
 
+.light-mode .p-dialog {
+  background: white;
+}
+.light-mode .p-dialog span {
+  color:#323232;
+
+}
+
 .p-link {
   border-radius: 20px !important;
 }
@@ -429,12 +437,18 @@
   height: 90px !important;
 }
 
+.light-mode .p-dialog-header .pi{
+  
+  color:#323232 !important;
+}
 
 .light-mode .p-dropdown-panel {
   background: white !important;
   border: none !important;
   box-shadow: 5px 5px 15px rgb(200, 200, 200);
   color:#323232;
+
+  
 }
 
 .light-mode .p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight  span{

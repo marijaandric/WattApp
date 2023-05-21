@@ -6,10 +6,6 @@
 
 :host ::ng-deep {
 
-  .p-dialog {
-    background-color: #d90372;
-  }
-
   .dark-mode .p-dropdown {
     position:relative!important;
     border-radius: 20px!important;
@@ -173,7 +169,7 @@
     display:flex;
   }
   .p-dialog {
-    background: linear-gradient(180deg, #1e1e1e 50%, #121212 100%) ;
+
     height:fit-content;
     border-radius: 20px;
     margin-bottom: 30px;
@@ -235,7 +231,7 @@
         padding-left: 5%;
       }
       .pi {
-        color:white !important;
+        color:white ;
       }
     }
 
