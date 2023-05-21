@@ -437,7 +437,7 @@
   height: 90px !important;
 }
 
-.light-mode .p-dialog-header .pi,.light-mode .p-dialog p{
+.light-mode .p-dialog-header .pi,.light-mode .p-dialog p, .light-mode .p-dialog input{
   
   color:#323232 !important;
 }
