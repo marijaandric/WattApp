@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, Input, OnChanges, OnInit, Renderer2, SimpleChanges, ViewChild } from '@angular/core';
 import { StadardTemplateComponent } from 'src/app/components/global/layout-components/standard-template/stadard-template.component';
 import { UserService } from 'src/app/services/user.service';
 import { HttpClient } from '@angular/common/http';
@@ -41,6 +41,8 @@ interface Roles{
   styleUrls: ['./prosumerhome.component.css']
 })
 export class ProsumerhomeComponent implements OnInit{
+  hostElement : HTMLElement | undefined;
+  lightMode: Boolean = true;
   loader = true;
   user:any;
   id: any;
@@ -70,7 +72,7 @@ roomSelected! : Rooms;
   constructor(private fb: FormBuilder,private userService:UserService,private http: HttpClient,private deviceService : DeviceService,private dsonew : DsonewsService,private roomTypesService: RoomTypesService, 
     private roleTypesService: RoleTypesService,
     private modelTypesService: ModelTypesService,
-    private deviceTypesService: DeviceTypesService,private toast:NgToastService,private cdRef: ChangeDetectorRef)
+    private deviceTypesService: DeviceTypesService,private toast:NgToastService,private cdRef: ChangeDetectorRef, private elementRef: ElementRef, private renderer: Renderer2)
   {
     this.quote = this.quotes[Math.floor(Math.random() * this.quotes.length)];
     if(this.token)
@@ -265,6 +267,11 @@ roomSelected! : Rooms;
 
 
   ngOnInit(): void {
+    
+    this.hostElement = this.elementRef.nativeElement as HTMLElement;
+    const text = this.hostElement?.querySelector('h3, h6');
+    this.renderer.addClass(text, 'ligh-theme-text-color-gray');
+
     this.devices[0]=this.device;
     this.devices[1] = this.device1;
     this.devices[2] = this.device2;

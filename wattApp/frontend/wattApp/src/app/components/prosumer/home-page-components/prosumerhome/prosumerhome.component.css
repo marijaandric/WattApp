@@ -20,7 +20,6 @@
   position: relative;
   display: inline-block;
   flex-direction: column;
-  color:white;
 }
 
 .widgets {
@@ -39,6 +38,10 @@ flex-direction: row;
 flex-wrap: wrap;
 padding-top: 25px;
 
+}
+
+.light-mode {
+  color: #323232 !important;
 }
 
 .prviDeoPrognoza{
