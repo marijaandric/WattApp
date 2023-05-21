@@ -86,6 +86,9 @@ export class MapSuburbComponent implements OnInit,OnChanges {
   }
 
   async ngOnInit(): Promise<void> {
+    
+
+
     this.map = L.map('map1').setView([44.01761719631536, 20.900995763392213], 12);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; OpenStreetMap contributors'
@@ -95,8 +98,9 @@ export class MapSuburbComponent implements OnInit,OnChanges {
     
     this.hostElement = this.elementRef.nativeElement as HTMLElement;
     const main_text = this.hostElement?.querySelector(".map");
- 
     this.renderer.addClass(main_text, 'light-theme-bigger-shadow');
+    const h5text = this.hostElement?.querySelector("h5");
+    this.renderer.addClass(h5text, 'ligh-theme-text-color-gray');
   }
 
   async create()
