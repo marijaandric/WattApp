@@ -26,6 +26,7 @@ interface HiF{
   styleUrls: ['./statistic.component.css'],
 })
 export class StatisticComponent  implements OnInit {
+  lightMode : Boolean = true;
   type: City[];
   type2: City[];
   type3: City[];
