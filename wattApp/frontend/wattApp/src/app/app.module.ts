@@ -103,6 +103,7 @@ import { HistoryOrForecastTableComponent } from './components/global/history-or-
 import { LoaderService } from './services/loader/loader.service';
 import { LoaderInterceptor } from './interceptors/loader.interceptor';
 import { MapForUserProfileComponent } from './components/global/user-profile/map-for-user-profile/map-for-user-profile.component';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
 
 export const url = 'https://localhost:7158';
 export const deviceFakerUrl = "https://localhost:7233";
@@ -210,6 +211,7 @@ export const deviceFakerUrl = "https://localhost:7233";
     LeafletModule,
     FileUploadModule,
     ImageModule,
+    OverlayPanelModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: () => localStorage.getItem('access_token'),

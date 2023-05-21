@@ -19,7 +19,12 @@
           [modal]="true" [(visible)]="display" [breakpoints]="{'1360px': '85vw', '740px': '100vw'}"
           [closable]="true">
           <ng-template pTemplate="header" class="header-dialog">
-            <span>Manage user</span>
+            <span>Manage user <i class="fa fa-info-circle" style="cursor:pointer" aria-hidden="true" (click)="op.toggle($event)"></i> </span>
+            <p-overlayPanel #op >
+              <p style="width:350px">Dear user,</p> 
+              <p style="width:350px">Please make sure to fill out all the required fields when editing your profile. The email must be in the format firstPart@secondPart.thirdPart, with the firstPart containing at least 4 letters, and the secondPart and thirdPart having a minimum of 2 and a maximum of 4 letters.</p>
+              <p style="width:350px">Additionally, we kindly ask you to include the city name in the location field when updating it. Once you've made the changes, pressing Enter will display the updated location on the map. You can also click on the map to navigate to the specific location you clicked on.</p>
+            </p-overlayPanel>
           </ng-template>
           
           <ng-template pTemplate="center">
