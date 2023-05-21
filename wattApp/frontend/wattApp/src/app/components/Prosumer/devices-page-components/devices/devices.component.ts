@@ -14,6 +14,7 @@ interface SwitchOption {
 })
 export class DevicesComponent implements OnInit{
   hostElement: HTMLElement | undefined;
+  lightMode: boolean = true;
   @Input() devices: any;
   numVisible: number = 5;
   devicesByRoomType: {[key: string]: DeviceDTO[]} = {};
@@ -29,8 +30,12 @@ export class DevicesComponent implements OnInit{
 
   ngOnInit():void {
 
-    /*
     this.hostElement = this.elementRef.nativeElement as HTMLElement;
+    const tabela = this.hostElement.querySelector('.tabela');
+    this.renderer.addClass(tabela, 'light-theme-background-white');
+    this.renderer.addClass(tabela, 'light-theme-bigger-shadow');
+
+    /*
     innerElements.forEach((innerElement) => {
       this.renderer.addClass(innerElement, 'light-theme-color-gray');
     });

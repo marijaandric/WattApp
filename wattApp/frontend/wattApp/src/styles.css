@@ -65,25 +65,6 @@
   min-height: 60px;
 }
 
-.p-paginator .p-dropdown {
-  margin-bottom: 0px !important;
-}
-.p-datatable .p-datatable-header{
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-  background-color: transparent !important;
-  padding:10px 20px 10px 10px !important;
-}
-
-.p-datatable .p-datatable-header h3{
-  padding-top: 10px;
-  font-size: 17px;
-  font-weight: 600;
-}
-.p-datatable .p-datatable-header p {
-  font-size: 17px !important;
-}
-
 .apexcharts-menu {
   background: #121212 !important;
   border:none !important ;
@@ -93,20 +74,29 @@
   background: #373737 !important;
 
 }
+
+.p-paginator .p-dropdown {
+  margin-bottom: 0px !important;
+}
+
+/*     DATATABLE GENERAL */
+
+.p-datatable .p-datatable-header{
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  background: transparent !important;
+  padding:10px 20px 10px 10px !important;
+}
+.p-datatable .p-datatable-header h3{
+  padding-top: 10px;
+  font-size: 17px;
+  font-weight: 600;
+}
+.p-datatable .p-datatable-header p {
+  font-size: 17px !important;
+}
 .p-datatable .p-datatable-header .p-inputtext{
   padding-top: 12px !important;
-}
-.p-datatable .p-datatable-header>tr>th {
-  border:none !important;
-  border-top:4px solid red !important;
-  border-bottom: 4px solid red !important;
-  background: linear-gradient(45deg, #46c5f1 10%, #5245b7 100%) !important;
-}
-.p-datatable .p-datatable-tbody>tr:hover {
-  background-color: #191919 !important;
-  transform: scaley(1.01) !important;
-  box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.87);
-  cursor:pointer !important;
 }
 .p-datatable .p-datatable-thead>tr>th {
   padding: 0.6rem 0.5rem 0rem 0.5rem !important;
@@ -130,27 +120,129 @@
 }
 .p-datatable .p-datatable-thead>tr>th {
   background-color: transparent !important;
-
 }
-
 .p-datatable .p-datatable-tbody>tr {
   background-color: transparent !important;
-
 }
-
 .p-datatable .p-paginator {
   background-color: transparent !important;
-
 }
 .p-datatable .p-datatable-tbody>tr>td {
   padding: 0.8rem 0rem 0.8rem 0.5rem !important;
 }
-
 .p-datatable .p-paginator-bottom{
   border-bottom-left-radius: 20px !important;
   border-bottom-right-radius: 20px !important;
   border:none;
 }
+
+/*    DATATABLE DARK MODE */
+
+.dark-mode .p-datatable .p-datatable-tbody>tr:hover {
+  background-color: #191919 !important;
+  transform: scaley(1.01) !important;
+  box-shadow: 2px 2px 10px 0px rgba(0, 0, 0, 0.87);
+  cursor:pointer !important;
+}
+
+.dark-mode .p-datatable .p-datatable-tbody>tr:hover {
+  background-color: #ffffff !important;
+  transform: scaley(1.01) !important;
+  box-shadow: 2px 2px 10px 0px rgba(210, 210, 210, 0.87);
+  cursor:pointer !important;
+}
+
+.light-mode .p-datatable .p-datatable-tbody>tr>td {
+  border: 1px solid #393939 !important;
+  border-width: 0px 0px 1px 0px !important;
+}
+
+.light-mode .p-datatable .p-datatable-tbody>tr>td,.light-mode .p-datatable .p-datatable-thead>tr>th p, .light-mode .p-datatable .p-datatable-thead>tr>th .pi {
+  color:#323232 !important;
+}
+.light-mode .p-datatable .p-datatable-tbody>tr>td a {
+  color: #323232 !important;
+}
+
+.light-mode .p-datatable .p-datatable-header .p-inputtext{
+  padding-top: 12px !important;
+}
+.light-mode .p-datatable .p-datatable-header>tr>th {
+  border:none !important;
+  border-top:4px solid red !important;
+  border-bottom: 4px solid red !important;
+  background: linear-gradient(45deg, #46c5f1 10%, #5245b7 100%) !important;
+}
+.light-mode .p-datatable .p-datatable-tbody>tr:hover {
+  background-color: #ffffff !important;
+  transform: scaley(1.01) !important;
+  box-shadow: 0px 2px 15px 0px rgb(170, 170, 170);
+  cursor:default !important;
+}
+.light-mode .p-datatable .p-datatable-thead>tr>th {
+  padding: 0.6rem 0.5rem 0rem 0.5rem !important;
+  background-color: transparent !important;
+}
+.light-mode .p-datatable .p-datatable-header h3 {
+  color:#323232 !important;
+}
+.light-mode .p-datatable .p-datatable-tbody>tr {
+  border-bottom:2px solid rgb(156, 156, 156) !important;
+}
+.light-mode .p-datatable .p-datatable-header span, .light-mode .p-datatable .p-datatable-header .p-input-icon-left>i:first-of-type{
+  color:#323232 !important;
+}
+.light-mode .p-datatable .p-datatable-header .p-inputtext {
+  border:1px solid #323232;
+  border-radius: 20px;
+  color:#323232;
+}
+
+
+.light-mode .p-selectbutton .p-button.p-highlight{
+  border: none;
+  background: #323232 !important;
+  border-radius:32px;
+}
+.light-mode .p-selectbutton .p-button.p-highlight span{
+  
+  color: white !important;
+}
+.light-mode .p-selectbutton .p-button{
+  border:none !important;
+  background: white !important;
+  border-radius: 32px;
+}
+.light-mode .p-selectbutton .p-button span{
+  color: #323232 !important;
+}
+.light-mode .p-selectbutton {
+  border-radius: 32px;
+  box-shadow: 5px 5px 15px rgb(200, 200, 200) !important;
+}
+
+.light-mode .p-datatable .p-paginator .pi{
+  color: #323232 !important;
+}
+
+.light-mode .p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
+  color: white;
+}
+
+.light-mode .p-paginator .p-paginator-pages .p-paginator-page{
+  color: #323232 ;
+  border: 1px solid #323232;
+}
+
+.light-mode .p-paginator .p-paginator-pages .p-paginator-page:hover{
+  color: red ;
+  border: 1px solid #323232;
+}
+
+.leaflet-control-zoom-in span, .leaflet-control-zoom-out span {
+  color:#46c5f1 !important;
+}
+
 .p-carousel-items-container {
   display: -webkit-box !important;
   
@@ -178,6 +270,14 @@
 
 }
 
+.light-mode .p-dialog {
+  background: white;
+}
+.light-mode .p-dialog span {
+  color:#323232;
+
+}
+
 .p-link {
   border-radius: 20px !important;
 }
@@ -201,66 +301,6 @@
 /*
   height:15px !important;
   width:40px !important;
-*/
-
-.p-dropdown-panel {
-  background: white !important;
-  border: none !important;
-  box-shadow: 5px 5px 15px rgb(233, 233, 233);
-}
- 
-
-/*    LIGHT VERZIJA - NE BRISATI 
-
-.p-datatable .p-datatable-tbody>tr>td {
-  border: 1px solid #393939 !important;
-  border-width: 0px 0px 1px 0px !important;
-}
-
-.p-datatable .p-datatable-header{
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-  background-color: transparent !important;
-  padding:10px 20px 10px 10px !important;
-  border:none !important;
-}
-
-.p-datatable .p-datatable-header h3{
-  padding-top: 10px;
-  font-size: 17px;
-  font-weight: 600;
-}
-.p-datatable .p-datatable-header p {
-  font-size: 17px !important;
-}
-
-.p-datatable .p-datatable-tbody>tr>td,.p-datatable .p-datatable-thead>tr>th p {
-  color:#323232 !important;
-}
-
-.p-datatable .p-datatable-header .p-inputtext{
-  padding-top: 12px !important;
-}
-.p-datatable .p-datatable-header>tr>th {
-  border:none !important;
-  border-top:4px solid red !important;
-  border-bottom: 4px solid red !important;
-  background: linear-gradient(45deg, #46c5f1 10%, #5245b7 100%) !important;
-}
-.p-datatable .p-datatable-tbody>tr:hover {
-  background-color: #ffffff !important;
-  transform: scaley(1.01) !important;
-  box-shadow: 2px 2px 10px 0px rgb(197, 197, 197);
-  cursor:pointer !important;
-}
-.p-datatable .p-datatable-thead>tr>th {
-  padding: 0.6rem 0.5rem 0rem 0.5rem !important;
-  background-color: transparent !important;
-}
-.p-datatable .p-datatable-header h3 {
-  color:#323232 !important;
-}
-
 */
 
 .dark-theme-background-gray-gradient-1 {
@@ -396,3 +436,27 @@
 .toast-right-top {
   height: 90px !important;
 }
+
+.light-mode .p-dialog-header .pi,.light-mode .p-dialog p, .light-mode .p-dialog input{
+  
+  color:#323232 !important;
+}
+
+.light-mode .p-dialog ::placeholder{
+  color:#aeaeae !important;
+}
+
+.light-mode .p-dropdown-panel {
+  background: white !important;
+  border: none !important;
+  box-shadow: 5px 5px 15px rgb(200, 200, 200);
+  color:#323232;
+
+  
+}
+
+.light-mode .p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight  span{
+  color:white !important;
+}
+ 
+

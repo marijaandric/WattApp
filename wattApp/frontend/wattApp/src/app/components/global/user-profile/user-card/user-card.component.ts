@@ -13,6 +13,7 @@ import { NgToastService } from 'ng-angular-popup';
 })
 export class UserCardComponent implements OnInit {
   hostElement: HTMLElement | undefined;
+  lightMode: Boolean = true;
   display3: boolean = false;
   baseUrl = url + "/api/Images/user/";
   userInfo: any;

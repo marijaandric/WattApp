@@ -1,6 +1,7 @@
+<a [routerLink]="['/device', device.id]"  style="display:flex;">
 <div id="device-card" class="device-card" >
     <div class="flexRow">
-        <a [routerLink]="['/device', device.id]"  style="display:flex;">
+        
 
           <img *ngIf="isPhone" src="../.../../../../../../assets/icons/images/icons8-iphone-14-50.png">
           <img *ngIf="isTablet" src="../.../../../../../../assets/icons/images/icons8-ipad-50.png">
@@ -31,7 +32,6 @@
           <img *ngIf="isBulb" src="../.../../../../../../assets/icons/images/icons8-bulb-50.png">
           <img *ngIf="isOther" src="../.../../../../../../assets/icons/images/icons8-multiple-devices-50.png">
      
-        </a>
         <a [routerLink]="['/device', device.id]" class="device-name abbreviate-text" style="padding-top:6px" [ngClass]="{'color-blue': isConsumer, 'color-purple': isProducer, 'color-pink': isStock}">{{ device.deviceName }}</a>
         <p-inputSwitch [(ngModel)]="isChecked" (click)="showDialog()" class="margin-left__auto width__fit-content" style="padding-top:8px;"/>
     </div>
@@ -52,7 +52,7 @@
     </div>
 </div>
 
-
+</a>
 <p-dialog [style]="{width:'300px',height:'200px'}" header="Title"  [transitionOptions]="'3ms'" 
 [draggable]="true" [keepInViewport]="true" [resizable]="false" 
 [blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true" 

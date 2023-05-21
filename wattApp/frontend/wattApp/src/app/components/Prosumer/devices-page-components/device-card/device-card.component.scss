@@ -20,9 +20,6 @@ img {
     padding-right:10px;
 }
 
-.device-card:hover{
-    transform: scale(1.01);
-}
 
 .device-name{
     max-width: 50%;
@@ -34,7 +31,7 @@ a{
     font-size: 18px;
     text-decoration: none;
     color: #46c5f1;
-    font-weight: bold;
+    font-family:'Mandali', sans-serif;
 }
 
 .color-blue {
@@ -130,3 +127,12 @@ button {
   
     }
   } 
+
+
+  @media only screen and (min-width: 1420px) {
+    
+    
+.device-card:hover{
+  transform: scale(1.01);
+}
+}

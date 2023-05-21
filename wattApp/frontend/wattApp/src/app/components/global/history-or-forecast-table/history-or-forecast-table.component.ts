@@ -17,7 +17,6 @@ export class HistoryOrForecastTableComponent implements OnChanges {
   constructor(private userService: UserService,private cd: ChangeDetectorRef) { }
 
   ngOnInit() {
-    
   }
 
   ngOnChanges(changes: SimpleChanges): void {

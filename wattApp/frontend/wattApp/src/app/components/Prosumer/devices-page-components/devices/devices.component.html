@@ -1,12 +1,12 @@
-<p-selectButton class="flexRow width__fit-content margin-left__auto margin-bottom__16px" [options]="switchOptions" [(ngModel)]="switchValue" optionLabel="label" optionValue="value" (onChange)="updateView()"></p-selectButton>
-
+<div [ngClass]="{'light-mode':lightMode}"><p-selectButton class="flexRow width__fit-content margin-left__auto margin-bottom__16px" [options]="switchOptions" [(ngModel)]="switchValue" optionLabel="label" optionValue="value" (onChange)="updateView()"></p-selectButton>
+</div>
 <div *ngIf="switchValue == true">
   <div *ngFor="let devices of devicesByRoomType | keyvalue; index as i">
     
       <div class="hederContainer">
-        <p style="color:white" class="roomNameHeader">{{ devices.key }}</p>
-        <div class="arrow"><i class="fa-solid fa-angle-down"  [ngClass]="{'arrow-down': carousel[i],'arrow-right': !carousel[i]}"  (click)="collapseDevices(i)"></i></div>
-        <p style="color:white" class="roomSizeHeader">Total: {{ devices.value.length }}</p>
+        <p class="roomNameHeader"  [ngClass]="{'light-mode':lightMode}">{{ devices.key }}</p>
+        <div class="arrow"  [ngClass]="{'light-mode':lightMode}"><i class="fa-solid fa-angle-down"  [ngClass]="{'arrow-down': carousel[i],'arrow-right': !carousel[i]}"  (click)="collapseDevices(i)"></i></div>
+        <p  class="roomSizeHeader"  [ngClass]="{'light-mode':lightMode}">Total: {{ devices.value.length }}</p>
       </div>
     <p-carousel [value]="devices.value" [numVisible]="5" [circular]="false" [numScroll]="1" [responsiveOptions]="responsiveOptions" [ngClass]="{'hidden': carousel[i]}">
      <ng-template let-device pTemplate="device" >
@@ -17,18 +17,17 @@
 </div>
 
 <div *ngIf="switchValue == false">
+  <div [ngClass]="{'light-mode': lightMode,'light-mode2': lightMode}">
   <p-table #dtAllDevices class="ui-table-default" [value]="devices" dataKey="id" [scrollable]="true" 
     [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]"
     [globalFilterFields]="['userId','deviceName','room', 'deviceType']" [paginator]="true"
     style="
-    margin-top:calc(2.8%);
+    margin-top:32px;
     display: flex;
     position: relative;
     flex-direction: column;
     height: fit-content;
     border-radius: 20px;
-    background-color: #1b1b1b;
-    box-shadow: 5px 5px 15px black;
     transition: ease-in-out;
     padding:10px 20px;
       ">
@@ -84,4 +83,4 @@
       </tr>
     </ng-template>
   </p-table>
-</div>
+</div></div>

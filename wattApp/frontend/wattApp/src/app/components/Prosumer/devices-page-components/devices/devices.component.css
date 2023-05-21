@@ -16,7 +16,6 @@
 
 a{
     text-decoration: none;
-    color:white;
 }
 
 .hidden {
@@ -39,4 +38,14 @@ a{
 .arrow-down {
     transform:rotate(-90deg);
     transition-duration: 0.3s;
+}
+
+.light-mode2 {
+    box-shadow: 2px 2px 15px -5px rgb(200, 200, 200); 
+    border-radius: 20px;
+    margin-bottom:32px;
+}
+
+.light-mode {
+    color:#323232 !important;
 }
