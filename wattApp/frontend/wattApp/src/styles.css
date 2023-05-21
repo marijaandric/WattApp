@@ -160,6 +160,9 @@
 .light-mode .p-datatable .p-datatable-tbody>tr>td,.light-mode .p-datatable .p-datatable-thead>tr>th p, .light-mode .p-datatable .p-datatable-thead>tr>th .pi {
   color:#323232 !important;
 }
+.light-mode .p-datatable .p-datatable-tbody>tr>td a {
+  color: #323232 !important;
+}
 
 .light-mode .p-datatable .p-datatable-header .p-inputtext{
   padding-top: 12px !important;
@@ -218,6 +221,23 @@
   box-shadow: 5px 5px 15px rgb(200, 200, 200) !important;
 }
 
+.light-mode .p-datatable .p-paginator .pi{
+  color: #323232 !important;
+}
+
+.light-mode .p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
+  color: white;
+}
+
+.light-mode .p-paginator .p-paginator-pages .p-paginator-page{
+  color: #323232 ;
+  border: 1px solid #323232;
+}
+
+.light-mode .p-paginator .p-paginator-pages .p-paginator-page:hover{
+  color: red ;
+  border: 1px solid #323232;
+}
 
 .leaflet-control-zoom-in span, .leaflet-control-zoom-out span {
   color:#46c5f1 !important;
