@@ -14,6 +14,7 @@ import axios from 'axios';
 import { DsonewsService } from 'src/app/services/dsonews/dsonews.service';
 import { url } from 'src/app/app.module';
 import { UserService } from 'src/app/services/user/user.service';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
 
 interface Models{
   code: string;
@@ -292,6 +293,7 @@ export class TitleBarComponent implements OnInit{
     this.roomSelected = event.value;
   }
 
+  phoneNumber: string = "123";
   //registracija
   onSignUp()
   {
@@ -299,7 +301,30 @@ export class TitleBarComponent implements OnInit{
       role : this.roleSelected
     })
 
-    console.log(this.signUpForm.value)
+    if(!this.signUpForm.value.firstName || !this.signUpForm.value.lastName || !this.signUpForm.value.username || !this.signUpForm.value.phoneNumber)
+    {
+      this.toast.error({detail:"ERROR",summary:"Please fill in all fields.",duration:4000});
+      return
+    }
+    if(!this.signUpForm.value.address && !this.signUpForm.value.x && !this.signUpForm.value.y )
+    {
+      this.toast.error({detail:"ERROR",summary:"Please fill in the field intended for correct address",duration:4000});
+      return
+    }
+    const emailRegex: RegExp = /^[a-zA-Z0-9]{3,}@[a-zA-Z]{2,6}\.[a-zA-Z]{2,4}$/;
+
+    if (this.signUpForm.value.email.trim() === '' || !emailRegex.test(this.signUpForm.value.email)) {
+      this.toast.error({detail:"ERROR",summary:"Please enter a valid email format.",duration:4000});
+      return
+    } 
+
+    const phoneNumberRegexWithPrefix = /^\+\d{1,3}-\d{3,14}$/;
+    const phoneNumberRegexWithoutPrefix = /^\d{7,15}$/;
+    if (!phoneNumberRegexWithPrefix.test(this.signUpForm.value.phoneNumber ) && !phoneNumberRegexWithoutPrefix.test(this.signUpForm.value.phoneNumber)) {
+      this.toast.error({detail:"ERROR",summary:"Please enter a valid phone number format.",duration:4000});
+      return
+    }
+    
     this.authService.signUp(this.signUpForm.value).subscribe({
         next:(res => {
           this.signUpForm.reset()
@@ -307,7 +332,7 @@ export class TitleBarComponent implements OnInit{
           this.display = false;
         }),
         error:(err => {
-          this.toast.error({detail:"ERROR",summary:"Please complete all fields.",duration:4000});
+          this.toast.error({detail:"ERROR",summary:"Please complete all fields or check if you have already used your mail",duration:4000});
         })
         
       })
@@ -328,6 +353,12 @@ export class TitleBarComponent implements OnInit{
     this.addDeviceForm.patchValue({
       room : this.roomSelected.name
     })
+
+    if(!this.addDeviceForm.value.deviceName)
+    {
+      this.toast.error({detail:"ERROR",summary:"Please fill in all fields.",duration:4000});
+      return
+    }
     
     this.deviceService.AddDevice(this.addDeviceForm.value).subscribe({
       next:(res => {
@@ -340,7 +371,7 @@ export class TitleBarComponent implements OnInit{
 
       }),
       error:(err => {
-        this.toast.error({detail:"ERROR",summary:"Please complete all fields.",duration:4000});
+        this.toast.error({detail:"ERROR",summary:"Our team is working diligently to resolve the issue and get everything back up and running smoothly!",duration:4000});
       })
     }) 
   }
@@ -355,6 +386,12 @@ export class TitleBarComponent implements OnInit{
       created: new Date()
     });
 
+    if(!this.newsForm.value.content || !this.newsForm.value.title)
+    {
+      this.toast.error({detail:"ERROR",summary:"Please write the name of the device.",duration:4000});
+      return
+    }
+
   
     console.log(this.newsForm.value);
     this.dsonewsService.AddNews(this.newsForm.value).subscribe({
@@ -367,7 +404,7 @@ export class TitleBarComponent implements OnInit{
       }, 1350)
       }),
       error:(err => {
-        this.toast.error({detail:"ERROR",summary:"Please complete all fields.",duration:4000});
+        this.toast.error({detail:"ERROR",summary:"Our team is working diligently to resolve the issue and get everything back up and running smoothly.",duration:4000});
       })
     }) 
   }
