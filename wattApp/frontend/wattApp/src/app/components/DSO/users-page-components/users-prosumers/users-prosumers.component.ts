@@ -20,7 +20,7 @@ interface City {
 })
 
 export class UsersProsumersComponent implements OnInit {
-
+  lightMode: Boolean = true;
   baseUrl = url + "/api/Images/user/";
   users: UserDTO[] = [];
   type: City[];
