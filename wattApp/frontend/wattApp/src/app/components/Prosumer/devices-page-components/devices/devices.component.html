@@ -1,12 +1,12 @@
-<p-selectButton class="flexRow width__fit-content margin-left__auto margin-bottom__16px" [options]="switchOptions" [(ngModel)]="switchValue" optionLabel="label" optionValue="value" (onChange)="updateView()"></p-selectButton>
-
+<div [ngClass]="{'light-mode':lightMode}"><p-selectButton class="flexRow width__fit-content margin-left__auto margin-bottom__16px" [options]="switchOptions" [(ngModel)]="switchValue" optionLabel="label" optionValue="value" (onChange)="updateView()"></p-selectButton>
+</div>
 <div *ngIf="switchValue == true">
   <div *ngFor="let devices of devicesByRoomType | keyvalue; index as i">
     
       <div class="hederContainer">
-        <p style="color:white" class="roomNameHeader">{{ devices.key }}</p>
+        <p class="roomNameHeader">{{ devices.key }}</p>
         <div class="arrow"><i class="fa-solid fa-angle-down"  [ngClass]="{'arrow-down': carousel[i],'arrow-right': !carousel[i]}"  (click)="collapseDevices(i)"></i></div>
-        <p style="color:white" class="roomSizeHeader">Total: {{ devices.value.length }}</p>
+        <p  class="roomSizeHeader">Total: {{ devices.value.length }}</p>
       </div>
     <p-carousel [value]="devices.value" [numVisible]="5" [circular]="false" [numScroll]="1" [responsiveOptions]="responsiveOptions" [ngClass]="{'hidden': carousel[i]}">
      <ng-template let-device pTemplate="device" >

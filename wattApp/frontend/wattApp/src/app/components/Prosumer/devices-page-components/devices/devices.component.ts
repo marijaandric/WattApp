@@ -14,6 +14,7 @@ interface SwitchOption {
 })
 export class DevicesComponent implements OnInit{
   hostElement: HTMLElement | undefined;
+  lightMode: boolean = true;
   @Input() devices: any;
   numVisible: number = 5;
   devicesByRoomType: {[key: string]: DeviceDTO[]} = {};

@@ -42,6 +42,7 @@ interface Roles{
 })
 export class TitleBarComponent implements OnInit{
   hostElement: HTMLElement | undefined;
+  lightMode: Boolean = true;
   display : boolean = false;
   display2 : boolean = false;
   display3 : boolean = false;
@@ -107,7 +108,7 @@ export class TitleBarComponent implements OnInit{
   ngOnInit(): void {
     
     this.hostElement = this.elementRef.nativeElement as HTMLElement;
-    const innerElements = this.hostElement?.querySelectorAll('a, p, div');
+    const innerElements = this.hostElement?.querySelectorAll('a, p,li, div');
     innerElements.forEach((innerElement) => {
       this.renderer.addClass(innerElement, 'ligh-theme-text-color-gray');
     });

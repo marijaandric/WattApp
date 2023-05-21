@@ -162,9 +162,9 @@
 
 <nav>
   <ul class="right-part">
-    <div *ngIf="isAdmin()" style="cursor:pointer"><li><a (click)="showDialog()"><div class="fa fa-user-plus " ></div><div class="text" [ngClass]="{ 'hidden-xs': !showText }">Add user</div></a></li></div>
-    <div *ngIf="!isAdmin()" style="cursor:pointer"><li><a (click)="showDialog2()"><div class="fa fa-plus " ></div><div class="text" [ngClass]="{ 'hidden-xs': !showText }">Add device</div></a></li></div>
-    <div *ngIf="isAdmin()" style="cursor:pointer"><li><a (click)="showDialog3()"><div class="fa-solid fa-newspaper " ></div><div class="text" [ngClass]="{ 'hidden-xs': !showText }">Add news</div></a></li></div>
+    <div *ngIf="isAdmin()" style="cursor:pointer" [ngClass]="{'light-mode':lightMode}"><li><a (click)="showDialog()"><div class="fa fa-user-plus " [ngClass]="{'light-mode':lightMode}"></div><div class="text" [ngClass]="{'light-mode':lightMode}" [ngClass]="{ 'hidden-xs': !showText }" ><span [ngClass]="{'light-mode':lightMode}">Add user</span></div></a></li></div>
+    <div *ngIf="!isAdmin()" style="cursor:pointer" [ngClass]="{'light-mode':lightMode}"><li><a (click)="showDialog2()"><div class="fa fa-plus " [ngClass]="{'light-mode':lightMode}"></div><div class="text" [ngClass]="{'light-mode':lightMode}" [ngClass]="{ 'hidden-xs': !showText }"><span [ngClass]="{'light-mode':lightMode}">Add device</span></div></a></li></div>
+    <div *ngIf="isAdmin()" style="cursor:pointer" [ngClass]="{'light-mode':lightMode}"><li><a (click)="showDialog3()"><div class="fa-solid fa-newspaper " [ngClass]="{'light-mode':lightMode}"></div><div class="text"  [ngClass]="{'light-mode':lightMode}" [ngClass]="{ 'hidden-xs': !showText }" [ngClass]="{'light-mode':lightMode}"><span>Add news</span></div></a></li></div>
     <li><a routerLink="/aboutus"><div class="fa fa-address-book" ></div><div class="text" [ngClass]="{ 'hidden-xs': !showText }">About us</div></a></li>
     <li>
       <div class="hero">
@@ -174,7 +174,7 @@
             <div class="sub-menu">
                 <div class="user-info">
                   <img [src]="userImageUrlEndpoint" class="profile-image"><div class="text" [ngClass]="{ 'hidden-xs': !showText }"></div>
-                    <h5>{{user?.firstName}} {{user?.lastName}}</h5>
+                    <h5 [ngClass]="{'light-mode':lightMode}">{{user?.firstName}} {{user?.lastName}}</h5>
                 </div>
                 <hr>
                 <a class="sub-menu-link">

@@ -196,6 +196,28 @@
 }
 
 
+.light-mode .p-selectbutton .p-button.p-highlight{
+  border: none;
+  background: #323232 !important;
+  border-radius:32px;
+}
+.light-mode .p-selectbutton .p-button.p-highlight span{
+  
+  color: white !important;
+}
+.light-mode .p-selectbutton .p-button{
+  border:none !important;
+  background: white !important;
+  border-radius: 32px;
+}
+.light-mode .p-selectbutton .p-button span{
+  color: #323232 !important;
+}
+.light-mode .p-selectbutton {
+  border-radius: 32px;
+  box-shadow: 5px 5px 15px rgb(200, 200, 200) !important;
+}
+
 
 .leaflet-control-zoom-in span, .leaflet-control-zoom-out span {
   color:#46c5f1 !important;
