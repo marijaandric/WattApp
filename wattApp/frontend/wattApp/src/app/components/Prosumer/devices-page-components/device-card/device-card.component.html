@@ -33,7 +33,7 @@
           <img *ngIf="isOther" src="../.../../../../../../assets/icons/images/icons8-multiple-devices-50.png">
      
         <a [routerLink]="['/device', device.id]" class="device-name abbreviate-text" style="padding-top:6px" [ngClass]="{'color-blue': isConsumer, 'color-purple': isProducer, 'color-pink': isStock}">{{ device.deviceName }}</a>
-        <p-inputSwitch [(ngModel)]="isChecked" (click)="showDialog()" class="margin-left__auto width__fit-content" style="padding-top:8px;"/>
+        <p-inputSwitch [(ngModel)]="isChecked" (click)="showDialog($event)" class="margin-left__auto width__fit-content" style="padding-top:8px;"/>
     </div>
     <div class="flexRow" style="margin-top: 16px;">
         <span >Status:</span>
@@ -59,7 +59,8 @@
 [modal]="true" [(visible)]="display" [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
 [closable]="true" appendTo="body">
 <ng-template pTemplate="header" class="header-dialog">
-  <span >Are you sure you want to change the device activity?</span>
+  <span *ngIf="isChecked">Are you sure you want to turn off the {{device?.deviceName}}?</span>
+  <span *ngIf="!isChecked">Are you sure you want to turn on the {{device?.deviceName}}</span>
 </ng-template>
 
 <ng-template pTemplate="footer">

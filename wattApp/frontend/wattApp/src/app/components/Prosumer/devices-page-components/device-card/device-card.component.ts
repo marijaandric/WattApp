@@ -193,7 +193,8 @@ export class DeviceCardComponent implements OnInit,OnChanges{
     this.isChecked = this.device.isActive
   }
 
-  showDialog() {
+  showDialog(event: MouseEvent) {
+    event.stopPropagation();
     this.isChecked = !this.isChecked
     this.display = !this.display;
   }
