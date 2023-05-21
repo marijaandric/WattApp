@@ -30,7 +30,7 @@
         </div>
 
         <div *ngIf="switchValue == false" class="carousel-pc">
-          <h4 style="margin:0px 0px 10px 10px;">Regular news</h4> 
+          <h4 style="margin:0px 0px 10px 10px;"   [ngClass]="{'light-mode':lightMode}">Regular news</h4> 
           <p-carousel [value] = "MynewsRegular" [circular]="false" [numVisible]="4" [autoplayInterval]="4000" [numScroll]="4" [responsiveOptions]="responsiveOptions">
             <ng-template let-news pTemplate="new">
               <app-promotion [subTitle]="news.title"
@@ -45,7 +45,7 @@
           </p-carousel>
         </div>
         <div *ngIf="switchValue == true"  class="carousel-pc">
-          <h4 style="margin:0px 0px 10px 10px;">Important news</h4> 
+          <h4 style="margin:0px 0px 10px 10px;"   [ngClass]="{'light-mode':lightMode}">Important news</h4> 
           <p-carousel [value] = "newsImportant" [circular]="false" [numVisible]="4" [autoplayInterval]="4000" [numScroll]="4" [responsiveOptions]="responsiveOptions">
             <ng-template let-news pTemplate="new">
               <app-promotion [subTitle]="news.title"
@@ -61,7 +61,7 @@
         </div>
 
         <div *ngIf="switchValue == true" class="carousel-pc">
-          <h4 style="margin:0px 0px 10px 10px;">Regular news</h4> 
+          <h4 style="margin:0px 0px 10px 10px;"   [ngClass]="{'light-mode':lightMode}">Regular news</h4> 
           <p-carousel [value] = "newsRegular" [circular]="false" [numVisible]="4"  [autoplayInterval]="4000" [numScroll]="4" [responsiveOptions]="responsiveOptions">
             <ng-template let-news pTemplate="new">
               <app-promotion [subTitle]="news.title"
@@ -87,7 +87,7 @@
   
 <p-dialog [style]="{width:'40%'}" header="Title"  [transitionOptions]="'3ms'" 
 [draggable]="true" [keepInViewport]="true" [resizable]="false" 
-[blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true" 
+[blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true"   [ngClass]="{'light-mode':lightMode}"
 [modal]="true" [(visible)]="display" [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
 [closable]="true" >
 <ng-template pTemplate="header" class="header-dialog">
@@ -100,7 +100,7 @@
   <div class="p-inputgroup p-inputtext-lg p-input-filled">
     <div class="half">
       <input formControlName="title" name="name" appendTo="body" type="text" class="p-inputtext-lg" placeholder="TITLE"> 
-      <textarea id="text" formControlName="content" name="name" appendTo="body" type="text" class="p-inputtext-lg" style="width:100%;height: 250px;background:#121212 !important"></textarea>
+      <textarea id="text" formControlName="content" name="name" appendTo="body" type="text" class="p-inputtext-lg" style="width:100%;height: 250px;"></textarea>
       <div style="display: flex;flex-direction: column; align-items: center;margin-right: 4%;">
         <span style="font-size: 19px;color:grey">Priority:</span>
         <div style="display: inline-flex;">
@@ -124,13 +124,19 @@
 </ng-template>
 </p-dialog>
 
-<p-dialog [style]="{width:'300px',height:'200px'}" header="Title"  [transitionOptions]="'3ms'" 
+<p-dialog [style]="{width:'300px',height:'260px'}" header="Title"  [transitionOptions]="'3ms'" 
 [draggable]="true" [keepInViewport]="true" [resizable]="false" 
-[blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true" 
+[blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true"  [ngClass]="{'light-mode':lightMode}"
 [modal]="true" [(visible)]="display2" [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
 [closable]="true"  >
 <ng-template pTemplate="header" class="header-dialog">
+  <span >Delete news</span>
+</ng-template>
+
+<ng-template pTemplate="center">
+  <div class="delete-device-content">
   <span >Are you sure you want to delete this news?</span>
+  </div>
 </ng-template>
 
 <ng-template pTemplate="footer" style="margin-top:30px;">
