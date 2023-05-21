@@ -437,9 +437,13 @@
   height: 90px !important;
 }
 
-.light-mode .p-dialog-header .pi{
+.light-mode .p-dialog-header .pi,.light-mode .p-dialog p{
   
   color:#323232 !important;
+}
+
+.light-mode .p-dialog ::placeholder{
+  color:#aeaeae !important;
 }
 
 .light-mode .p-dropdown-panel {
