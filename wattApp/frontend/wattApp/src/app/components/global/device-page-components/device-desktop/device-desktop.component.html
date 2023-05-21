@@ -153,7 +153,7 @@
 
 <p-dialog id="editDeviceDialogId" [style]="{width:'40%'}"
   [draggable]="false" [keepInViewport]="true" [resizable]="false" 
-  [blockScroll]="true" [closeOnEscape]="true" 
+  [blockScroll]="true" [closeOnEscape]="true"  [ngClass]="{'light-mode':lightMode}"
   [modal]="true" [(visible)]="displayEditDeviceDialog" [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
   [closable]="true" >
   <ng-template pTemplate="header" class="header-dialog">
@@ -164,16 +164,16 @@
     <form id="editDeviceDialogForm" >  
       <div class="p-inputgroup p-inputtext-lg p-input-filled">
         <div class="half">
-          Device type
+          <span>Device type</span>
           <div class="dropdown-div" style="margin-bottom:20px"><p-dropdown [options]="types" [(ngModel)]="typeSelected" name="typeSelected" appendTo="body" optionLabel="name" />
-          </div>Device model
+          </div><span>Device model</span>
           <div class="dropdown-div"><p-dropdown [options]="models" [(ngModel)]="modelSelected" name="modelSelected" appendTo="body" optionLabel="name" />
         </div></div> 
         
         <div class="half">
-            Room
+          <span>Room</span>
             <div class="dropdown-div" style="margin-bottom:20px"><p-dropdown [options]="rooms" [(ngModel)]="roomSelected" name="roomSelected" appendTo="body" optionLabel="name" />
-            </div>Name
+            </div><span>Name</span>
             <input style="margin-top:0px;" [(ngModel)]="nameSelected" name="nameSelected" appendTo="body" type="text" class="p-inputtext-lg" placeholder="DEVICE NAME"> 
         </div>
       </div> 
@@ -193,7 +193,7 @@
 
 <p-dialog [style]="{width:'20%'}" header="Title"  [transitionOptions]="'3ms'" 
 [draggable]="false" [keepInViewport]="true" [resizable]="false" 
-[blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true" 
+[blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true"  [ngClass]="{'light-mode':lightMode}"
 [modal]="true" [(visible)]="display3" [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
 [closable]="true" >
 <ng-template pTemplate="header" class="header-dialog">
@@ -202,9 +202,10 @@
 
 <ng-template pTemplate="center">
   <div class="delete-device-content">
+    <span>
     Are you sure you want to delete the device?
     All data will be deleted and you will not be able to recover it.
-
+  </span>
   </div>
 </ng-template>
 
@@ -218,13 +219,20 @@
 </ng-template>
 </p-dialog>
 
-<p-dialog [style]="{width:'300px',height:'200px'}" header="Title"  [transitionOptions]="'3ms'" 
+<p-dialog [style]="{width:'300px',height:'260px'}" header="Title"  [transitionOptions]="'3ms'" 
 [draggable]="true" [keepInViewport]="true" [resizable]="false" 
-[blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true" 
+[blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true"  [ngClass]="{'light-mode':lightMode}"
 [modal]="true" [(visible)]="display2" [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
 [closable]="true" >
 <ng-template pTemplate="header" class="header-dialog">
+  <span >Turn on/off</span>
+</ng-template>
+
+<ng-template pTemplate="center" >
+  <div class="delete-device-content">
+  
   <span >Are you sure you want to change the device activity?</span>
+  </div>
 </ng-template>
 
 <ng-template pTemplate="footer">
