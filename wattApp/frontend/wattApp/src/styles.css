@@ -203,13 +203,6 @@
   width:40px !important;
 */
 
-.p-dropdown-panel {
-  background: white !important;
-  border: none !important;
-  box-shadow: 5px 5px 15px rgb(233, 233, 233);
-}
- 
-
 /*    LIGHT VERZIJA - NE BRISATI 
 
 .p-datatable .p-datatable-tbody>tr>td {
@@ -396,3 +389,12 @@
 .toast-right-top {
   height: 90px !important;
 }
+
+
+.light-mode .p-dropdown-panel {
+  background: white !important;
+  border: none !important;
+  box-shadow: 5px 5px 15px red;
+}
+ 
+

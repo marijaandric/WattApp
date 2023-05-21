@@ -18,11 +18,11 @@
     </div>
     <div style="width:100%; height:fit-content; display:flex; flex-direction:row;margin-bottom:32px;" class="pdd-div">
 
-      <div [ngClass]="{'light-mode':lightMode}"><p-dropdown [options]="type" appendTo="body" [(ngModel)]="selectedType" optionLabel="name" (onChange)="dropdownChange()" >
+      <p-dropdown id="p1" [options]="type" appendTo="pdd-div" [(ngModel)]="selectedType" optionLabel="name" (onChange)="dropdownChange()" >
+      </p-dropdown>
+      <div [ngClass]="{'light-mode':lightMode}" ><p-dropdown id="p2" [options]="type2" appendTo="pdd-div" [(ngModel)]="selectedHF"  optionLabel="name" (onChange)="updateType3()" >
       </p-dropdown></div>
-      <div [ngClass]="{'light-mode':lightMode}"><p-dropdown [options]="type2" appendTo="body" [(ngModel)]="selectedHF"  optionLabel="name" (onChange)="updateType3()" >
-      </p-dropdown></div>
-      <div [ngClass]="{'light-mode':lightMode}"><p-dropdown [options]="type3" appendTo="body" [(ngModel)]="selectedDate" optionLabel="name" (onChange)="dropdownChange()" >
+      <div [ngClass]="{'light-mode':lightMode}" ><p-dropdown id="p3" [options]="type3" appendTo="p3" [(ngModel)]="selectedDate" optionLabel="name" (onChange)="dropdownChange()" >
       </p-dropdown></div>
     </div>
     
