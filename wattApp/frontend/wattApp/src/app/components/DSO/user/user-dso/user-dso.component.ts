@@ -366,10 +366,10 @@ export class UserDSOComponent implements OnInit{
   min: any;
   max: any;
 
-  TitleMin='Minimal consumed electricity this week';
-  TittleMax='Maximum consumed electricity this week';
-  TitleAverage='Average consumed electricity this week';
-  TitleTotal='Total consumed electricity this week';
+  TitleMin='Minimal consumed by day this week';
+  TittleMax='Maximal consumed by day this week';
+  TitleAverage='Average consumed by day this week';
+  TitleTotal='Total consumed by day this week';
 
   Consumertotal: any;
   Consumeraverage: any;
@@ -423,10 +423,10 @@ theDay = "On the day: ";
       this.color2 = '#88dbf6';
       if(this.selectedDate.code == "week" && this.selectedHF.code == "both")
       {
-        this.TitleMin='Minimal consumed electricity this week';
-        this.TittleMax='Maximum consumed electricity this week';
-        this.TitleAverage='Average consumed electricity this week';
-        this.TitleTotal='Total consumed electricity this week';
+        this.TitleMin='Minimal consumed by day this week';
+        this.TittleMax='Maximal consumed by day this week';
+        this.TitleAverage='Average consumed by day this week';
+        this.TitleTotal='Total consumed by day this week';
         this.theDay = "On the day: ";
 
         this.max=this.Consumermax;
@@ -472,10 +472,10 @@ theDay = "On the day: ";
       }
       else if( this.selectedDate.code == "3 days" && this.selectedHF.code == "both")
       {
-        this.TitleMin='Minimal consumed electricity by 3 days';
-        this.TittleMax='Maximum consumed electricity by 3 days';
-        this.TitleAverage='Average consumed electricity by 3 days';
-        this.TitleTotal='Total consumed electricity by 3 days';
+        this.TitleMin='Minimal consumed by day for 3 days';
+        this.TittleMax='Maximal consumed by day for 3 days';
+        this.TitleAverage='Average consumed by day for 3 days';
+        this.TitleTotal='Total consumed by day for 3 days';
         this.theDay = "On the day: ";
 
         this.table = true;
@@ -498,10 +498,10 @@ theDay = "On the day: ";
       }
       else if( this.selectedDate.code == "3 days" && this.selectedHF.code == "forecast")
       {
-        this.TitleMin='Minimal consumed electricity by 3 days';
-        this.TittleMax='Maximum consumed electricity by 3 days';
-        this.TitleAverage='Average consumed electricity by 3 days';
-        this.TitleTotal='Total consumed electricity by 3 days';
+        this.TitleMin='Minimal consumed by day for 3 days';
+        this.TittleMax='Maximal consumed by day for 3 days';
+        this.TitleAverage='Average consumed by day for 3 days';
+        this.TitleTotal='Total consumed by day for 3 days';
         this.theDay = "On the day: ";
 
         this.name = "Consumption forecast"
@@ -513,10 +513,10 @@ theDay = "On the day: ";
       }
       else if( this.selectedDate.code == "week" && this.selectedHF.code == "forecast")
       {
-        this.TitleMin='Minimal consumed electricity this week';
-        this.TittleMax='Maximum consumed electricity this week';
-        this.TitleAverage='Average consumed electricity this week';
-        this.TitleTotal='Total consumed electricity this week';
+        this.TitleMin='Minimal consumed by day this week';
+        this.TittleMax='Maximal consumed by day this week';
+        this.TitleAverage='Average consumed by day this week';
+        this.TitleTotal='Total consumed by day this week';
         this.theDay = "On the day: ";
 
         this.name = "Consumption forecast"
@@ -528,10 +528,10 @@ theDay = "On the day: ";
       }
       else if( this.selectedDate.code == "week" && this.selectedHF.code == "history")
       {
-        this.TitleMin='Minimal consumed electricity this week';
-        this.TittleMax='Maximum consumed electricity this week';
-        this.TitleAverage='Average consumed electricity this week';
-        this.TitleTotal='Total consumed electricity this week';
+        this.TitleMin='Minimal consumed by day this week';
+        this.TittleMax='Maximal consumed by day this week';
+        this.TitleAverage='Average consumed by day this week';
+        this.TitleTotal='Total consumed by day this week';
         this.theDay = "On the day: ";
 
         this.name = "Consumption history"
@@ -543,10 +543,10 @@ theDay = "On the day: ";
       }
       else if( this.selectedDate.code == "month")
       {
-        this.TitleMin='Minimal consumed electricity this month';
-        this.TittleMax='Maximum consumed electricity this month';
-        this.TitleAverage='Average consumed electricity this month';
-        this.TitleTotal='Total consumed electricity this month';
+        this.TitleMin='Minimal consumed by day this month';
+        this.TittleMax='Maximal consumed by day this month';
+        this.TitleAverage='Average consumed by day this month';
+        this.TitleTotal='Total consumed by day this month';
         this.theDay = "On the day: ";
 
         this.name = "Consumption history"
@@ -558,10 +558,10 @@ theDay = "On the day: ";
         
       }
       else{
-        this.TitleMin='Minimal consumed electricity this year';
-        this.TittleMax='Maximum consumed electricity this year';
-        this.TitleAverage='Average consumed electricity this year';
-        this.TitleTotal='Total consumed electricity this year';
+        this.TitleMin='Minimal consumed by day this year';
+        this.TittleMax='Maximal consumed by day this year';
+        this.TitleAverage='Average consumed by day this year';
+        this.TitleTotal='Total consumed by day this year';
         this.theDay = "On the month: ";
 
         this.name = "Consumption history"
@@ -576,10 +576,10 @@ theDay = "On the day: ";
     }
     else if(this.selectedType.code == "Producer")
     {
-      this.TitleMin='Minimal produced electricity this week';
-      this.TittleMax='Maximum produced electricity this week';
-      this.TitleAverage='Average produced electricity this week';
-      this.TitleTotal='Total produced electricity this week';
+      this.TitleMin='Minimal produced by day this week';
+      this.TittleMax='Maximal produced by day this week';
+      this.TitleAverage='Average produced by day this week';
+      this.TitleTotal='Total produced by day this week';
       this.theDay = "On the day: ";
 
    
@@ -595,10 +595,10 @@ theDay = "On the day: ";
 
       if(this.selectedDate.code == "week" && this.selectedHF.code == "both")
       {
-        this.TitleMin='Minimal produced electricity this week';
-        this.TittleMax='Maximum produced electricity this week';
-        this.TitleAverage='Average produced electricity this week';
-        this.TitleTotal='Total produced electricity this week';
+        this.TitleMin='Minimal produced by day this week';
+        this.TittleMax='Maximal produced by day this week';
+        this.TitleAverage='Average produced by day this week';
+        this.TitleTotal='Total produced by day this week';
         this.theDay = "On the day: ";
 
         this.table = true;
@@ -623,10 +623,10 @@ theDay = "On the day: ";
       }
       else if( this.selectedDate.code == "3 days" && this.selectedHF.code == "both")
       {
-        this.TitleMin='Minimal produced electricity by 3 days';
-        this.TittleMax='Maximum produced electricity by 3 days';
-        this.TitleAverage='Average produced electricity by 3 days';
-        this.TitleTotal='Total produced electricity by 3 days';
+        this.TitleMin='Minimal produced by day for 3 days';
+        this.TittleMax='Maximal produced by day for 3 days';
+        this.TitleAverage='Average produced by day for 3 days';
+        this.TitleTotal='Total produced by day for 3 days';
         this.theDay = "On the day: ";
 
         this.table = true;
@@ -649,10 +649,10 @@ theDay = "On the day: ";
       }
       else if( this.selectedDate.code == "3 days" && this.selectedHF.code == "forecast")
       {
-        this.TitleMin='Minimal produced electricity by 3 days';
-        this.TittleMax='Maximum produced electricity by 3 days';
-        this.TitleAverage='Average produced electricity by 3 days';
-        this.TitleTotal='Total produced electricity by 3 days';
+        this.TitleMin='Minimal produced by day for 3 days';
+        this.TittleMax='Maximal produced by day for 3 days';
+        this.TitleAverage='Average produced by day for 3 days';
+        this.TitleTotal='Total produced by day for 3 days';
         this.theDay = "On the day: ";
 
         this.name = "Production forecast"
@@ -664,10 +664,10 @@ theDay = "On the day: ";
       }
       else if( this.selectedDate.code == "week" && this.selectedHF.code == "forecast")
       {
-        this.TitleMin='Minimal produced electricity this week';
-        this.TittleMax='Maximum produced electricity this week';
-        this.TitleAverage='Average produced electricity this week';
-        this.TitleTotal='Total produced electricity this week';
+        this.TitleMin='Minimal produced by day this week';
+        this.TittleMax='Maximal produced by day this week';
+        this.TitleAverage='Average produced by day this week';
+        this.TitleTotal='Total produced by day this week';
         this.theDay = "On the day: ";
 
         this.name = "Production forecast"
@@ -679,10 +679,10 @@ theDay = "On the day: ";
       }
       else if( this.selectedDate.code == "week" && this.selectedHF.code == "history")
       {
-        this.TitleMin='Minimal produced electricity this week';
-        this.TittleMax='Maximum produced electricity this week';
-        this.TitleAverage='Average produced electricity this week';
-        this.TitleTotal='Total produced electricity this week';
+        this.TitleMin='Minimal produced by day this week';
+        this.TittleMax='Maximal produced by day this week';
+        this.TitleAverage='Average produced by day this week';
+        this.TitleTotal='Total produced by day this week';
         this.theDay = "On the day: ";
 
         this.name = "Production history"
@@ -693,10 +693,10 @@ theDay = "On the day: ";
       }
       else if( this.selectedDate.code == "month")
       {
-        this.TitleMin='Minimal produced electricity this month';
-        this.TittleMax='Maximum produced electricity this month';
-        this.TitleAverage='Average produced electricity this month';
-        this.TitleTotal='Total produced electricity this month';
+        this.TitleMin='Minimal produced by day this month';
+        this.TittleMax='Maximal produced by day this month';
+        this.TitleAverage='Average produced by day this month';
+        this.TitleTotal='Total produced by day this month';
         this.theDay = "On the day: ";
 
         this.name = "Production history"
@@ -706,10 +706,10 @@ theDay = "On the day: ";
         this.dates = this.arrayDataM;
       }
       else{
-        this.TitleMin='Minimal produced electricity this year';
-        this.TittleMax='Maximum produced electricity this year';
-        this.TitleAverage='Average produced electricity this year';
-        this.TitleTotal='Total produced electricity this year';
+        this.TitleMin='Minimal produced by day this year';
+        this.TittleMax='Maximal produced by day this year';
+        this.TitleAverage='Average produced by day this year';
+        this.TitleTotal='Total produced by day this year';
 
         this.theDay = "On the month: ";
 
@@ -725,20 +725,20 @@ theDay = "On the day: ";
       this.color1 = '#eb4886';
       this.color2 = '#f075a4';
 
-      this.TitleMin='Minimal stocked electricity this week';
-      this.TittleMax='Maximum stocked electricity this week';
-      this.TitleAverage='Average stocked electricity this week';
-      this.TitleTotal='Total stocked electricity this week';
+      this.TitleMin='Minimal stocked by day this week';
+      this.TittleMax='Maximal stocked by day this week';
+      this.TitleAverage='Average stocked by day this week';
+      this.TitleTotal='Total stocked by day this week';
       this.theDay = "On the day: ";
 
 
 
       if(this.selectedDate.code == "week" && this.selectedHF.code == "both")
       {
-        this.TitleMin='Minimal stocked electricity this week';
-      this.TittleMax='Maximum stocked electricity this week';
-      this.TitleAverage='Average stocked electricity this week';
-      this.TitleTotal='Total stocked electricity this week';
+        this.TitleMin='Minimal stocked by day this week';
+      this.TittleMax='Maximal stocked by day this week';
+      this.TitleAverage='Average stocked by day this week';
+      this.TitleTotal='Total stocked by day this week';
       this.theDay = "On the day: ";
 
         this.table = true;
@@ -761,10 +761,10 @@ theDay = "On the day: ";
       }
       else if( this.selectedDate.code == "3 days" && this.selectedHF.code == "both")
       {
-        this.TitleMin='Minimal stocked electricity by 3 days';
-        this.TittleMax='Maximum stocked electricity by 3 days';
-        this.TitleAverage='Average stocked electricity by 3 days';
-        this.TitleTotal='Total stocked electricity by 3 days';
+        this.TitleMin='Minimal stocked by day for 3 days';
+        this.TittleMax='Maximal stocked by day for 3 days';
+        this.TitleAverage='Average stocked by day for 3 days';
+        this.TitleTotal='Total stocked by day for 3 days';
         this.theDay = "On the day: ";
 
         this.table = true;
@@ -787,10 +787,10 @@ theDay = "On the day: ";
       }
       else if( this.selectedDate.code == "3 days" && this.selectedHF.code == "forecast")
       {
-        this.TitleMin='Minimal stocked electricity by 3 days';
-        this.TittleMax='Maximum stocked electricity by 3 days';
-        this.TitleAverage='Average stocked electricity by 3 days';
-        this.TitleTotal='Total stocked electricity by 3 days';
+        this.TitleMin='Minimal stocked by day for 3 days';
+        this.TittleMax='Maximal stocked by day for 3 days';
+        this.TitleAverage='Average stocked by day for 3 days';
+        this.TitleTotal='Total stocked by day for 3 days';
         this.theDay = "On the day: ";
 
         this.name1="Stock forecast";
@@ -802,10 +802,10 @@ theDay = "On the day: ";
       }
       else if( this.selectedDate.code == "week" && this.selectedHF.code == "forecast")
       {
-        this.TitleMin='Minimal stocked electricity this week';
-      this.TittleMax='Maximum stocked electricity this week';
-      this.TitleAverage='Average stocked electricity this week';
-      this.TitleTotal='Total stocked electricity this week';
+        this.TitleMin='Minimal stocked by day this week';
+      this.TittleMax='Maximal stocked by day this week';
+      this.TitleAverage='Average stocked by day this week';
+      this.TitleTotal='Total stocked by day this week';
       this.theDay = "On the day: ";
 
         this.name1="Stock forecast";
@@ -817,10 +817,10 @@ theDay = "On the day: ";
       }
       else if( this.selectedDate.code == "week" && this.selectedHF.code == "history")
       {
-        this.TitleMin='Minimal stocked electricity this week';
-      this.TittleMax='Maximum stocked electricity this week';
-      this.TitleAverage='Average stocked electricity this week';
-      this.TitleTotal='Total stocked electricity this week';
+        this.TitleMin='Minimal stocked by day this week';
+      this.TittleMax='Maximal stocked by day this week';
+      this.TitleAverage='Average stocked by day this week';
+      this.TitleTotal='Total stocked by day this week';
       this.theDay = "On the day: ";
 
         this.name1="Stock history";
@@ -832,10 +832,10 @@ theDay = "On the day: ";
       }
       else if( this.selectedDate.code == "month")
       {
-        this.TitleMin='Minimal stocked electricity this month';
-      this.TittleMax='Maximum stocked electricity this month';
-      this.TitleAverage='Average stocked electricity this month';
-      this.TitleTotal='Total stocked electricity this month';
+        this.TitleMin='Minimal stocked by day this month';
+      this.TittleMax='Maximal stocked by day this month';
+      this.TitleAverage='Average stocked by day this month';
+      this.TitleTotal='Total stocked by day this month';
       this.theDay = "On the day: ";
 
         this.name1="Stock history";
@@ -845,10 +845,10 @@ theDay = "On the day: ";
         this.dates = this.arrayDataM;
       }
       else{
-        this.TitleMin='Minimal stocked electricity this year';
-      this.TittleMax='Maximum stocked electricity this year';
-      this.TitleAverage='Average stocked electricity this year';
-      this.TitleTotal='Total stocked electricity this year';
+        this.TitleMin='Minimal stocked by day this year';
+      this.TittleMax='Maximal stocked by day this year';
+      this.TitleAverage='Average stocked by day this year';
+      this.TitleTotal='Total stocked by day this year';
       this.theDay = "On the month: ";
       
         this.name1="Stock history";
