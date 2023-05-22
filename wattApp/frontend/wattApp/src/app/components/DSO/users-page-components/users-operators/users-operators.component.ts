@@ -1,4 +1,4 @@
-import { Component, OnChanges, OnInit, SimpleChanges, ViewChild, ViewEncapsulation  } from '@angular/core';
+import { Component, ElementRef, OnChanges, OnInit, SimpleChanges, ViewChild, ViewEncapsulation  } from '@angular/core';
 import { UserDTO } from '../../../../dtos/UserDTO';
 import { UserService } from '../../../../services/user/user.service';
 import { DsonewsService } from 'src/app/services/dsonews/dsonews.service';
@@ -12,6 +12,7 @@ import { url } from 'src/app/app.module';
   encapsulation: ViewEncapsulation.None
 })
 export class UsersOperatorsComponent implements OnInit {
+  @ViewChild('searchInput') searchInput!: ElementRef;
   baseUrl = url + "/api/Images/user/";
   users: UserDTO[] = [];
   @ViewChild('dtUsers') dataTable!: Table;
@@ -47,6 +48,7 @@ export class UsersOperatorsComponent implements OnInit {
   }
 
   clear(dtUsers: any) {
+    this.searchInput.nativeElement.value = '';
     dtUsers.clear();
   }
 

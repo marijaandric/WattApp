@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, ElementRef, Input, Renderer2, SimpleChanges, ViewEncapsulation } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, Input, Renderer2, SimpleChanges, ViewChild, ViewEncapsulation } from '@angular/core';
 import { UserDTO } from '../../../dtos/UserDTO';
 import { UserService } from '../../../services/user/user.service';
 
@@ -17,6 +17,8 @@ interface HiF{
 })
 export class HistoryForecastTableComponent {
   hostElement: HTMLElement | undefined;
+
+  @ViewChild('searchInput') searchInput!: ElementRef;
 
   @Input() name1 = "history";
   @Input() name2 = "forecast";
@@ -39,6 +41,7 @@ export class HistoryForecastTableComponent {
   }
 
   clear(dtUsers: any) {
+    this.searchInput.nativeElement.value = '';
     dtUsers.clear();
   }
 

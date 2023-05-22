@@ -1,4 +1,4 @@
-import { Component, OnChanges, OnInit, SimpleChanges, ViewChild, ViewEncapsulation  } from '@angular/core';
+import { Component, ElementRef, OnChanges, OnInit, SimpleChanges, ViewChild, ViewEncapsulation  } from '@angular/core';
 import { UserDTO } from '../../../../dtos/UserDTO';
 import { UserService } from '../../../../services/user/user.service';
 import { DeviceService } from 'src/app/services/device/device.service';
@@ -20,6 +20,7 @@ interface City {
 })
 
 export class UsersProsumersComponent implements OnInit {
+  @ViewChild('searchInput') searchInput!: ElementRef;
   lightMode: Boolean = true;
   baseUrl = url + "/api/Images/user/";
   users: UserDTO[] = [];
@@ -49,6 +50,7 @@ export class UsersProsumersComponent implements OnInit {
   }
 
   clear(dtUsers: any) {
+    this.searchInput.nativeElement.value = '';
     dtUsers.clear();
   }
 

@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, ElementRef, HostListener, Input, OnInit, Renderer2 } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, HostListener, Input, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DeviceDTO } from 'src/app/dtos/DeviceDTO';
 import { DeviceService } from 'src/app/services/device/device.service';
@@ -14,6 +14,7 @@ interface SwitchOption {
   styleUrls: ['./devices.component.css']
 })
 export class DevicesComponent implements OnInit{
+  @ViewChild('searchInput') searchInput!: ElementRef;
   hostElement: HTMLElement | undefined;
   lightMode: boolean = true;
   @Input() devices: any;
@@ -102,6 +103,7 @@ export class DevicesComponent implements OnInit{
   }
 
   clear(dtAllDevices: any) {
+    this.searchInput.nativeElement.value = '';
     dtAllDevices.clear();
   }
 

@@ -1,4 +1,4 @@
-import { Component, OnChanges, OnInit, SimpleChanges, ViewChild, ViewEncapsulation  } from '@angular/core';
+import { Component, ElementRef, OnChanges, OnInit, SimpleChanges, ViewChild, ViewEncapsulation  } from '@angular/core';
 import { UserDTO } from '../../../../dtos/UserDTO';
 import { UserService } from '../../../../services/user/user.service';
 import { url } from 'src/app/app.module';
@@ -12,6 +12,7 @@ import { PaginationService } from 'src/app/services/pagination/pagination.servic
   encapsulation: ViewEncapsulation.None
 })
 export class UsersComponent implements OnInit{
+  @ViewChild('searchInput') searchInput!: ElementRef;
   baseUrl = url + "/api/Images/user/";
   users: UserDTO[] = [];
   allUsersCount!: number;
@@ -54,6 +55,7 @@ export class UsersComponent implements OnInit{
   }
 
   clear(dtUsers: any) {
+    this.searchInput.nativeElement.value = '';
     dtUsers.clear();
   }
 

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { DeviceDataService } from 'src/app/services/device-data/device-data.service';
 import { DeviceService } from 'src/app/services/device/device.service';
 import { lastValueFrom } from 'rxjs';
@@ -9,6 +9,7 @@ import { lastValueFrom } from 'rxjs';
   styleUrls: ['./table.component.css']
 })
 export class TableComponent implements OnInit{
+  @ViewChild('searchInput') searchInput!: ElementRef;
   devices: any;
   @Input() id : any;
   isChecked: boolean = true;
@@ -23,6 +24,7 @@ export class TableComponent implements OnInit{
   }
 
   clear(dtUsers: any) {
+    this.searchInput.nativeElement.value = '';
     dtUsers.clear();
   }
 

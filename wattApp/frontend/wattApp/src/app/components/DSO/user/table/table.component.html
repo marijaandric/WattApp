@@ -21,7 +21,7 @@
                   Devices</h3>
                   <span class="p-input-icon-left margin-left__auto margin-right__16px">
                       <i class="pi pi-search"></i>
-                      <input pInputText type="text" (input)="dtUsers.filterGlobal($any($event.target).value, 'contains')" placeholder="Search keyword" />
+                      <input #searchInput pInputText type="text" (input)="dtUsers.filterGlobal($any($event.target).value, 'contains')" placeholder="Search keyword" />
                   </span>
                   <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash" (click)="clear(dtUsers)"></button>
               </div>

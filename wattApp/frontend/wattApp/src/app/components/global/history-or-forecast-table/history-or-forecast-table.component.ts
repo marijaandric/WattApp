@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, Input, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
 import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
@@ -7,6 +7,7 @@ import { UserService } from 'src/app/services/user/user.service';
   styleUrls: ['./history-or-forecast-table.component.css']
 })
 export class HistoryOrForecastTableComponent implements OnChanges {
+  @ViewChild('searchInput') searchInput!: ElementRef;
   @Input() name = "History";
   @Input() History! : any[];
   @Input() Forecast! : any[];
@@ -41,6 +42,7 @@ export class HistoryOrForecastTableComponent implements OnChanges {
   }
 
   clear(dtUsers: any) {
+    this.searchInput.nativeElement.value = '';
     dtUsers.clear();
   }
 
