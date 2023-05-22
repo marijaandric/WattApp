@@ -46,6 +46,7 @@ li :visited{
 
 .profile-image{
     background-color: white;
+    cursor: pointer;
     width: 2em;
     border-radius: 20px;
     width: 30px;
