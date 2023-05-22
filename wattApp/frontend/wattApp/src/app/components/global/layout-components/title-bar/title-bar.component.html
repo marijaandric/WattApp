@@ -73,9 +73,9 @@
   <form [formGroup]="addDeviceForm" >  
   <div class="p-inputgroup p-inputtext-lg p-input-filled">
     <div class="half">  
-      <span>Device type</span> 
+      <span>Device category</span> 
       <div class="dropdown-div" style="margin-bottom:20px;" [ngClass]="{'light-mode':lightMode}"> <p-dropdown [options]="types" appendTo="body" optionLabel="name" (onChange)="onTypeChange($event)" [ngClass]="{'light-mode':lightMode}" /></div>
-      <span >Device model </span>
+      <span >Device type </span>
       <div class="dropdown-div" style="margin-top:0px;" [ngClass]="{'light-mode':lightMode}"><p-dropdown [options]="models" appendTo="body" optionLabel="name" (onChange)="onModelChange($event)" [ngClass]="{'light-mode':lightMode}" />
     </div></div>
     

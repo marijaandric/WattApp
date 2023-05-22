@@ -113,9 +113,9 @@
   <form [formGroup]="addDeviceForm" >  
   <div class="p-inputgroup p-inputtext-lg p-input-filled">
     <div class="half">  
-      Device type 
+      Device category 
       <p-dropdown [options]="types" appendTo="body" optionLabel="name" (onChange)="onTypeChange($event)"/>
-      Device model 
+      Device type 
       <p-dropdown [options]="models" appendTo="body" optionLabel="name" (onChange)="onModelChange($event)"/>
     </div>
     

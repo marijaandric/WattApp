@@ -88,6 +88,18 @@ namespace backend.Models.enums
         [Display(Name = "Bulb")]
         [DeviceModelTypes(DeviceTypes.CONSUMER)]
         BULB,
+        [Display(Name = "Small Wind Turbine")]
+        [DeviceModelTypes(DeviceTypes.PRODUCER)]
+        SMALLWINDTURBINE,
+        [Display(Name = "Portable Generator")]
+        [DeviceModelTypes(DeviceTypes.PRODUCER)]
+        PORTABLEGENERATOR,
+        [Display(Name = "Bicycle Generator")]
+        [DeviceModelTypes(DeviceTypes.PRODUCER)]
+        BICYCLEGENERATOR,
+        [Display(Name = "Power Bank")]
+        [DeviceModelTypes(DeviceTypes.STOCK)]
+        POWERBANK,
     }
 
     public static class ModelTypesEnumExtensions
