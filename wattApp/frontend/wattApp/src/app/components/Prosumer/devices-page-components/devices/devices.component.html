@@ -59,7 +59,7 @@
               <p-columnFilter class="ml-auto" type="text" field="room" display="menu"></p-columnFilter>
           </div>
         </th>
-        <th pSortableColumn="deviceType" style="min-width:10rem; border-top:2px solid #46c5f1; border-bottom:2px solid #46c5f1;">
+        <th pSortableColumn="deviceType" *ngIf="isCurrentRoute('devices')" style="min-width:10rem; border-top:2px solid #46c5f1; border-bottom:2px solid #46c5f1;">
           <div class="flexRow">
               <p>Type</p>
               <p-sortIcon field="deviceType"></p-sortIcon>
@@ -73,7 +73,7 @@
       <tr>
         <td><a [routerLink]="['/device', device.id]">{{ device.deviceName }}</a></td>
         <td><a [routerLink]="['/device', device.id]">{{device.room}}</a></td>
-        <td><a [routerLink]="['/device', device.id]">{{device.deviceType}}</a></td>
+        <td *ngIf="isCurrentRoute('devices')"><a [routerLink]="['/device', device.id]">{{device.deviceType}}</a></td>
       </tr>
     </ng-template>
 

@@ -1,4 +1,5 @@
 import { ChangeDetectorRef, Component, ElementRef, HostListener, Input, OnInit, Renderer2 } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { DeviceDTO } from 'src/app/dtos/DeviceDTO';
 import { DeviceService } from 'src/app/services/device/device.service';
 
@@ -71,7 +72,10 @@ export class DevicesComponent implements OnInit{
   }
 
   constructor(private deviceService: DeviceService,
-    private cdr: ChangeDetectorRef,private elementRef: ElementRef, private renderer: Renderer2) { }
+              private cdr: ChangeDetectorRef,
+              private elementRef: ElementRef, 
+              private renderer: Renderer2,
+              private activatedRoute: ActivatedRoute) { }
 
   ngOnChanges() {
     this.updateNumVisible(window.innerWidth);
@@ -111,5 +115,9 @@ export class DevicesComponent implements OnInit{
   
   collapseDevices(index: number): void {
     this.carousel[index] = !this.carousel[index];
-}
+  }
+
+  isCurrentRoute(route: string): boolean {
+    return this.activatedRoute.snapshot.routeConfig?.path === route;
+  }
 }
