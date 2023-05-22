@@ -51,6 +51,8 @@ interface HiF{
 export class DevicePhoneComponent implements OnInit{
   device!: DeviceDTO;
   loader = true;
+  isChecked!:boolean;
+  lightMode : Boolean = true
 
   displayEditDeviceDialog: boolean = false;
   isRunning: boolean = true;
@@ -64,6 +66,7 @@ export class DevicePhoneComponent implements OnInit{
   roomSelected! : Rooms;
   modelSelected! : Models;
   display3 : Boolean = false;
+  display: Boolean = false;
 
   evice!: DeviceDTO;
 
@@ -133,6 +136,7 @@ export class DevicePhoneComponent implements OnInit{
       this.deviceService.getDeviceById(id)
         .subscribe(device => {
           this.device = device;
+          this.isChecked = device.isActive
           if(!this.device){
             this.navigateToDevices();
           }
@@ -850,5 +854,43 @@ isForecastTrue = true;
 
   });
 }
+
+showDialog2(){
+  this.isChecked = !this.isChecked
+  this.display = !this.display;
+}
+async handleRunningSwitchChange2(){
+  this.isChecked = !this.isChecked // za alert izbrisati ovo
+  this.device.isActive = this.isChecked 
+  await lastValueFrom(this.deviceService.updateDevice(this.device));
+  this.display = false; // za alert izbrisati ovo
+}
+
+
+// ngOnChanges() {
+//   // Update the switch button state when the device.isActive property changes
+//   const switchButton = document.querySelector('#mySwitch');
+//   if (switchButton) {
+//     switchButton['checked'] = this.device.isActive;
+//   }
+// }
+
+// onSwitchChange(newVal: boolean) {
+//   //this.showDialog();
+//   const confirmed = confirm('Do you want to change the device activity?');
+//   if (confirmed) {
+//     this.device.isActive = newVal;
+//     this.handleRunningSwitchChange();
+//   }
+
+//   // const confirmed = this.showDialog();
+//   // if (confirmed) {
+//   //   this.device.isActive = newVal;
+//   // }
+
+  
+// }
+
+
 
 }

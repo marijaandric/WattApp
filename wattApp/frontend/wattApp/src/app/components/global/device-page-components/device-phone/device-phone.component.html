@@ -29,7 +29,7 @@
                         <h5>{{device.deviceName}}</h5>
                     </div>
                     <div style="margin-top:20px;" class="margin-left__auto">
-                        <p-inputSwitch [(ngModel)]="device.isActive "  (onChange)="handleRunningSwitchChange()" class=" width__fit-content"></p-inputSwitch>
+                        <p-inputSwitch [(ngModel)]="isChecked "  (click)="showDialog2()" class=" width__fit-content"></p-inputSwitch>
                     </div>
                 </div>
                 <div class="title1" style="margin-bottom:20px;">
@@ -250,11 +250,27 @@
           </app-history-or-forecast-table>
 
     <div style="margin-bottom:20px;"></div>
-</div>
-   
 
 
+<p-dialog [style]="{width:'300px',height:'200px'}" header="Title"  [transitionOptions]="'3ms'" 
+[draggable]="true" [keepInViewport]="true" [resizable]="false" 
+[blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true" 
+[modal]="true" [(visible)]="display" [breakpoints]="{'960px': '75vw', '640px': '90vw'}" [ngClass]="{'light-mode':lightMode}"
+[closable]="true" >
+<ng-template pTemplate="header" class="header-dialog">
+  <span *ngIf="isChecked">Are you sure you want to turn off the {{device?.deviceName}}?</span>
+  <span *ngIf="!isChecked">Are you sure you want to turn on the {{device?.deviceName}}</span>
+</ng-template>
 
+<ng-template pTemplate="footer">
+  <div class="flexRow" style="margin-top:20px;">
+    <div class="button-div" style="padding-right: 20px;"><p-button  (click)="handleRunningSwitchChange2()" label="Yes"> </p-button>
+    </div>
+    <div class="remove-or-no"><p-button  (click)="display=false" label="No"></p-button>
+  </div></div>
+</ng-template>
+
+</p-dialog>
 
 
 <p-dialog id="editDeviceDialogId" [style]="{width:'40%'}"
@@ -323,3 +339,11 @@
       </div>
   </ng-template>
 </p-dialog>
+
+
+</div>
+   
+
+
+
+
