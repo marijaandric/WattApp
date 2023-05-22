@@ -28,6 +28,7 @@ import { ResetPasswordComponent } from './components/global/reset-password/reset
 import { AboutUsComponent } from './components/global/about-us/about-us.component';
 import { NewsComponent } from './components/global/news/news.component';
 import { LoginGuard } from './guards/login.guard';
+import { AdminPageComponent } from './components/DSO/admin-page/admin-page.component';
 
 
 const routes: Routes = [
@@ -51,6 +52,7 @@ const routes: Routes = [
   { path: 'users', component: UsersComponent, canActivate:[AuthGuard]},
   { path: 'users/operators', component: UsersOperatorsComponent, canActivate:[AuthGuard]},
   { path: 'userDSO/:id', component: UserDSOComponent, canActivate:[AuthGuard]},
+  { path: 'admin-operator/:id', component: AdminPageComponent, canActivate:[AuthGuard]},
   { path: 'PageNotFound', component:PageNotFoundComponent },
   { path: 'faq', component:FaqPageComponenetsComponent , canActivate:[AuthGuard]},
   { path: 'sidebar-new', component: SidebarNewComponent},

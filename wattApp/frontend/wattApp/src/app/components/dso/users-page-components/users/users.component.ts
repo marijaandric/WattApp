@@ -4,6 +4,7 @@ import { UserService } from '../../../../services/user/user.service';
 import { url } from 'src/app/app.module';
 import { APIService } from 'src/app/services/api/api.service';
 import { PaginationService } from 'src/app/services/pagination/pagination.service';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'users',
@@ -28,6 +29,7 @@ export class UsersComponent implements OnInit{
 
   constructor(private userService: UserService, 
               private aPIService: APIService,
+              private authService: AuthService,
               private paginationService: PaginationService) {
 
                
@@ -70,5 +72,15 @@ export class UsersComponent implements OnInit{
       this.numberOFOperator=response.Other;
     });
   }
+
+  isAdmin(): boolean {
+    const token = this.authService.getToken();
+    if (!token) {
+      return false;
+    }
+    const userRole = this.userService.getUserRoleFromToken(token);
+    return userRole === 'operator' || userRole === 'admin' || userRole === 'superadmin';
+  }
+
 
 }

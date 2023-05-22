@@ -21,6 +21,11 @@ export class UserService {
     return this.http.get(`${this.baseUrl}/${userId}`, { headers });
   }
 
+  deleteUser(id: number) {
+    const url = this.baseUrl+`/${id}`;
+    return this.http.delete(url);
+  }
+
   getUserIdFromToken(token: string) {
     const decodedToken = this.jwtHelper.decodeToken(token);
     return decodedToken.nameid;

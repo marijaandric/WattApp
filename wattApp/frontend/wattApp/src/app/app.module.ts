@@ -104,6 +104,8 @@ import { LoaderService } from './services/loader/loader.service';
 import { LoaderInterceptor } from './interceptors/loader.interceptor';
 import { MapForUserProfileComponent } from './components/global/user-profile/map-for-user-profile/map-for-user-profile.component';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { AdminPageComponent } from './components/DSO/admin-page/admin-page.component';
+import { AdminCardComponent } from './components/DSO/admin-card/admin-card.component';
 
 export const url = 'https://localhost:7158';
 export const deviceFakerUrl = "https://localhost:7233";
@@ -184,7 +186,9 @@ export const deviceFakerUrl = "https://localhost:7233";
     NewsComponent,
     LoaderComponent,
     HistoryOrForecastTableComponent,
-    MapForUserProfileComponent
+    MapForUserProfileComponent,
+    AdminPageComponent,
+    AdminCardComponent
   ],
   imports: [
     CommonModule,
