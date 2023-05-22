@@ -19,6 +19,7 @@ interface SwitchOption {
   styleUrls: ['./news.component.scss']
 })
 export class NewsComponent implements OnInit{
+  lightMode : Boolean = true;
   loader = true;
   news: any[] = [];
   newsImportant: any[] = [];

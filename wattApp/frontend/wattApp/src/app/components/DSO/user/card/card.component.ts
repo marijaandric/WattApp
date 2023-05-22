@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./card.component.scss']
 })
 export class CardComponent implements OnInit{
+  lightMode: Boolean = true;
   baseUrl = url + "/api/Images/user/";
   @Input() user : any;
   userImageUrlEndpoint!: string;

@@ -101,7 +101,7 @@
 
 <p-dialog [style]="{width:'20%'}" header="Title"  [transitionOptions]="'3ms'" 
 [draggable]="false" [keepInViewport]="true" [resizable]="false" 
-[blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true" 
+[blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true" [ngClass]="{'light-mode':lightMode}"
 [modal]="true" [(visible)]="display" [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
 [closable]="true" >
 <ng-template pTemplate="header" class="header-dialog">
@@ -110,7 +110,7 @@
 
 <ng-template pTemplate="center">
   <div class="delete-device-content">
-    Are you sure you want to delete this user?
+    <span>Are you sure you want to delete this user?</span>
   </div>
 </ng-template>
 
