@@ -21,10 +21,10 @@
       <app-forecast-line-chart  [boja1]="color1" [array] = "miniForecast" [array2] = "miniarrayData2" class="handf" *ngIf="switchValue == false"></app-forecast-line-chart>
     </div>
     <div class="twoCharts" *ngIf="!tableHiFWeek">
-      <app-history-forecast [boja1]="color1" [boja2]="color2" [naziv1]="name1" [naziv2]="name2" [array] = "History" [array2]="Forecast" [array3] = "dates" class="chart"  style="width:100% !important;"></app-history-forecast>
+      <app-history-forecast [boja1]="color1" [boja2]="color2" [naziv1]="name1" [naziv2]="name2" [array] = "History" [array2]="Forecast" [array3] = "dates" class="chart" [Title]="Title"  style="width:100% !important;"></app-history-forecast>
     </div>
-    <app-history-forecast [boja1]="color1" [boja2]="color2" [naziv1]="name1" [naziv2]="name2" [array] = "History" [array2]="Forecast" [array3] = "dates" class="chart" id="oneChart"  style="width:62.5% !important;"></app-history-forecast>
- 
+    <app-history-forecast [boja1]="color1" [boja2]="color2" [naziv1]="name1" [naziv2]="name2" [array] = "History" [array2]="Forecast" [array3] = "dates" class="chart" id="oneChart" [Title]="Title"  style="width:62.5% !important;"></app-history-forecast>
+
     <div class="stats-cards for-pc">
         
       <app-stats-card class="stats-card" [isBgBlue]="true" [Title]="TitleMin" [subTitle]="theDay+ dataMin" [value]="min" [hasIcon]="true"></app-stats-card>
