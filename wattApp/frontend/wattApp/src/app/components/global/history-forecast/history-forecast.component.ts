@@ -37,6 +37,7 @@ export class HistoryForecastComponent implements OnInit,OnChanges{
   @Input() boja1 = '#885ec0';
   @Input() boja2 = '#ae91d4';
   @Input() Title ='History & forecast'
+  @Input() Period ='week'
 
 
   constructor(private userService:UserService, private authService:AuthService, private deviceService:DeviceService, private elementRef: ElementRef, private renderer: Renderer2) {
@@ -124,7 +125,7 @@ export class HistoryForecastComponent implements OnInit,OnChanges{
 
      this.xaxis = {
       title:{
-        text:"period",
+        text: this.Period,
         style :{
           color:this.titleColor,
           fontFamily: 'Montserrat,sans-serif',

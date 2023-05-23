@@ -17,13 +17,13 @@
   <div class="main-grid">
     <div class="twoCharts" *ngIf="tableHiFWeek">
       <p-selectButton class="flexRow width__fit-content margin-left__auto margin-bottom__16px" [options]="switchOptions" [(ngModel)]="switchValue" optionLabel="label" optionValue="value"></p-selectButton>
-      <app-history-line-chart [boja1]="color1" [array] = "miniHistory" [array2] = "miniarrayData1" class="handf" *ngIf="switchValue == true"></app-history-line-chart>
-      <app-forecast-line-chart  [boja1]="color1" [array] = "miniForecast" [array2] = "miniarrayData2" class="handf" *ngIf="switchValue == false"></app-forecast-line-chart>
+      <app-history-line-chart [boja1]="color1" [array] = "miniHistory" [array2] = "miniarrayData1" class="handf" *ngIf="switchValue == true" [Period] = "Period"></app-history-line-chart>
+      <app-forecast-line-chart  [boja1]="color1" [array] = "miniForecast" [array2] = "miniarrayData2" class="handf" *ngIf="switchValue == false" [Period] = "Period"></app-forecast-line-chart>
     </div>
     <div class="twoCharts" *ngIf="!tableHiFWeek">
-      <app-history-forecast [boja1]="color1" [boja2]="color2" [naziv1]="name1" [naziv2]="name2" [array] = "History" [array2]="Forecast" [array3] = "dates" class="chart" [Title]="Title"  style="width:100% !important;"></app-history-forecast>
+      <app-history-forecast [boja1]="color1" [boja2]="color2" [naziv1]="name1" [naziv2]="name2" [array] = "History" [array2]="Forecast" [array3] = "dates" class="chart" [Title]="Title"  style="width:100% !important;" [Period] = "Period"></app-history-forecast>
     </div>
-    <app-history-forecast [boja1]="color1" [boja2]="color2" [naziv1]="name1" [naziv2]="name2" [array] = "History" [array2]="Forecast" [array3] = "dates" class="chart" id="oneChart" [Title]="Title"  style="width:62.5% !important;"></app-history-forecast>
+    <app-history-forecast [boja1]="color1" [boja2]="color2" [naziv1]="name1" [naziv2]="name2" [array] = "History" [array2]="Forecast" [array3] = "dates" class="chart" id="oneChart" [Title]="Title" [Period] = "Period"  style="width:62.5% !important;"></app-history-forecast>
 
     <div class="stats-cards for-pc">
         
