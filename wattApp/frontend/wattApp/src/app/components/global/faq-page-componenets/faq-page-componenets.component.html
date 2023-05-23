@@ -1,26 +1,26 @@
 <standard-template>
-    <app-title-bar>
-      <h3 class="title">Frequently Asked Question</h3>
+    <app-title-bar [ngClass]="{'light-mode2':lightMode}">
+      <h3 class="title">Frequently Asked Questions</h3>
     </app-title-bar>
   
     <app-center-bar>
-      <div class="login_box">
-        <div class="right">
+      <div class="login_box" >
+        <div class="right" [ngClass]="{'light-mode3':lightMode}">
           <div class="container">
             <div class="tab" *ngFor="let tab of tabs; let i = index;">
               <input type="radio" name="acc" [id]="'acc' + i" [(ngModel)]="activeTab" [value]="i" (click)="toggleTab(i)">
-              <label for="acc{{i}}">
+              <label for="acc{{i}}"   >
                 <h2>0{{i + 1}}</h2>
                 <h3>{{tab.title}}</h3>
               </label>
-              <div class="content" *ngIf="activeTab === i">
+              <div class="content" *ngIf="activeTab === i" >
                 <p>{{tab.content}}</p>
                 <button (click)="toggleTab(i)">-</button>
               </div>
             </div>
           </div>
         </div>
-        <div class="left">
+        <div class="left"  [ngClass]="{'light-mode':lightMode}">
           <div class="contact">
             <form action="">
               <h3>Send us a message</h3>
