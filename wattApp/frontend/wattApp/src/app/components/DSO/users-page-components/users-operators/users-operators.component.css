@@ -46,3 +46,7 @@
 .light-mode {
   color:#323232 !important;
 }
+
+.light-mode-title-bar h3{
+  color:#323232;
+}

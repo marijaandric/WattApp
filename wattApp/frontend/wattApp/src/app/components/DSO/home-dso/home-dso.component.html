@@ -1,5 +1,5 @@
 <standard-template>
-    <app-title-bar>
+    <app-title-bar [ngClass]="{'light-mode2': lightMode}">
       <h3>Home</h3>
     </app-title-bar>
     <app-center-bar *ngIf="loader"><app-loader></app-loader></app-center-bar>
