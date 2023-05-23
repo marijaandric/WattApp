@@ -32,12 +32,12 @@
         <div style="display:flex;float:right; flex-direction:column; width:52%;padding: 0 2% 30px 2%;">
           <div style="width:100%; height:fit-content; display:flex; flex-direction:row;margin-bottom:12px;">
 
-            <div class="pdd-div"><p-dropdown [options]="type" appendTo="body" [(ngModel)]="selectedType" optionLabel="name" (onChange)="dropdownChange()" >
-            </p-dropdown></div>
-            <div class="pdd-div"><p-dropdown [options]="type2" appendTo="body" [(ngModel)]="selectedHF"  optionLabel="name" (onChange)="updateType3()" >
-            </p-dropdown></div>
-            <div class="pdd-div"><p-dropdown [options]="type3" appendTo="body" [(ngModel)]="selectedDate" optionLabel="name" (onChange)="dropdownChange()" >
-            </p-dropdown></div>
+            <div class="pdd-div"><div [ngClass]="{'light-mode':lightMode}" ><p-dropdown [options]="type" [(ngModel)]="selectedType" optionLabel="name" (onChange)="dropdownChange()" >
+            </p-dropdown></div></div>
+            <div class="pdd-div"><div [ngClass]="{'light-mode':lightMode}" ><p-dropdown [options]="type2" [(ngModel)]="selectedHF"  optionLabel="name" (onChange)="updateType3()" >
+            </p-dropdown></div></div>
+            <div class="pdd-div"><div [ngClass]="{'light-mode':lightMode}" ><p-dropdown [options]="type3" [(ngModel)]="selectedDate" optionLabel="name" (onChange)="dropdownChange()" >
+            </p-dropdown></div></div>
           </div>
           <app-history-forecast style="width:100%;margin-top:20px" [boja1]="color1" [boja2]="color2" [naziv1]="name1" [naziv2]="name2" [array] = "History" [array2]="Forecast" [array3] = "dates"></app-history-forecast>
           <div [ngClass]="{'light-mode':lightMode}">
@@ -69,8 +69,8 @@
         </div>
         
         <div style="display:flex;float:right; flex-direction:column; width:20%; height:100%">
-        <app-map-for-dso-user [user]="user" style="height: 30%; min-height:250px;" [ngClass]="{'light-mode':lightMode}"></app-map-for-dso-user>
-        <div class="donuts" style="margin-top:calc(3vh);">
+        <app-map-for-dso-user [user]="user" style=" min-height:350px;" [ngClass]="{'light-mode':lightMode}"></app-map-for-dso-user>
+        <div class="donuts" style="margin-top:calc(3vh);"  [ngClass]="{'light-mode-circles':lightMode}">
           <h5>Monthly power usage</h5>
           <p>in kWh</p>
           <app-circle [id] = 'id' [type] = 'Consumer'></app-circle>

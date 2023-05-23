@@ -7,9 +7,10 @@ import { UserDTO } from 'src/app/dtos/UserDTO';
 @Component({
   selector: 'app-map-for-dso-user',
   templateUrl: './map-for-dso-user.component.html',
-  styleUrls: ['./map-for-dso-user.component.css']
+  styleUrls: ['./map-for-dso-user.component.scss']
 })
 export class MapForDsoUserComponent implements OnInit, OnChanges{
+  lightMode: Boolean = true;
   @Input() user : any;
   lan! : number;
   lon! : number;

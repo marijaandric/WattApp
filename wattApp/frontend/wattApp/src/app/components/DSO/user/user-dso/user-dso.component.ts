@@ -27,7 +27,7 @@ interface City {
 @Component({
   selector: 'app-user-dso',
   templateUrl: './user-dso.component.html',
-  styleUrls: ['./user-dso.component.css']
+  styleUrls: ['./user-dso.component.scss']
 })
 export class UserDSOComponent implements OnInit{
   lightMode: Boolean = true;
