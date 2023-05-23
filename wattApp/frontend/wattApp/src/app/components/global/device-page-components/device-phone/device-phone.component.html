@@ -94,7 +94,7 @@
             <div class="flexRow margin-top__8px">
                 <div class="button-div"><p-button label="Edit" (click)="showEditDeviceDialog()" class="margin-left__auto"/>
                 </div><div class="button-div"><p-button label="Schedule"/>
-            </div><div class="remove-or-no"><p-button label="Delete" (onClick)="deleteDevice(device.id)" />
+            </div><div class="remove-or-no"><p-button label="Delete" (onClick)="showDialog()" />
               </div> 
         </div>
     </div>
@@ -277,7 +277,7 @@
   [draggable]="false" [keepInViewport]="true" [resizable]="false" 
   [blockScroll]="true" [closeOnEscape]="true" 
   [modal]="true" [(visible)]="displayEditDeviceDialog" [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
-  [closable]="true" >
+  [closable]="true" [ngClass]="{'light-mode':lightMode}">
   <ng-template pTemplate="header" class="header-dialog">
     <span>Edit device</span>
   </ng-template>
@@ -317,7 +317,7 @@
 [draggable]="false" [keepInViewport]="true" [resizable]="false" 
 [blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true" 
 [modal]="true" [(visible)]="display3" [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
-[closable]="true" >
+[closable]="true" [ngClass]="{'light-mode':lightMode}">
 <ng-template pTemplate="header" class="header-dialog">
     <span>Delete device</span>
   </ng-template>
