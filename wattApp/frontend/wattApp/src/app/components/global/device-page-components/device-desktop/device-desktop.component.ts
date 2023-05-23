@@ -103,6 +103,7 @@ export class DeviceDesktopComponent implements OnInit {
 
   isChecked!:boolean;
   Title = "Consumption history & forecast"
+  Period = "week"
 
   type: City[];
   type2: City[];
@@ -649,6 +650,7 @@ isForecastTrue = true;
       this.color2 = '#88dbf6';
       if(this.selectedDate.code == "week" && this.selectedHF.code == "both")
       {
+        this.Period = "week"
         this.Title = "History & Forecast"
         this.tableHiFWeek = true;
         this.miniHistory=this.miniHistoryCon;
@@ -692,6 +694,7 @@ isForecastTrue = true;
       }
       else if( this.selectedDate.code == "3 days" && this.selectedHF.code == "both")
       {
+        this.Period = "3 years"
         this.Title = "History & Forecast"
         this.table = true;
         this.History = this.HistoryCon3;
@@ -711,6 +714,7 @@ isForecastTrue = true;
       }
       else if( this.selectedDate.code == "3 days" && this.selectedHF.code == "forecast")
       {
+        this.Period = "3 days"
         this.Title = "Forecast"
         this.name = "Forecast"
         this.History = [null];
@@ -721,6 +725,7 @@ isForecastTrue = true;
       }
       else if( this.selectedDate.code == "week" && this.selectedHF.code == "forecast")
       {
+        this.Period = "week"
         this.Title = "Forecast"
         this.name = "Forecast"
         this.History = [null];
@@ -731,6 +736,7 @@ isForecastTrue = true;
       }
       else if( this.selectedDate.code == "week" && this.selectedHF.code == "history")
       {
+        this.Period = "week"
         this.Title = "History"
         this.name = "History"
         this.History = [this.HistoryCon[0],this.HistoryCon[1],this.HistoryCon[2],this.HistoryCon[3],this.HistoryCon[4],this.HistoryCon[5],this.HistoryCon[6]]
@@ -741,6 +747,7 @@ isForecastTrue = true;
       }
       else if( this.selectedDate.code == "month")
       {
+        this.Period = "month"
         this.Title = "History"
         this.name = "History"
         this.History = this.HistoryConM;
@@ -751,6 +758,7 @@ isForecastTrue = true;
         
       }
       else{
+        this.Period = "year"
         this.Title = "History"
         this.name = "History"
         this.History = this.HistoryConY;

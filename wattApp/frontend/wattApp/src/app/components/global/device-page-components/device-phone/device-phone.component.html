@@ -212,12 +212,12 @@
     
     <div class="twoCharts" *ngIf="tableHiFWeek" style="position:relative">
         <p-selectButton class="flexRow width__fit-content margin-left__auto" style="margin-bottom:20px;position:relative" [options]="switchOptions" [(ngModel)]="switchValue" optionLabel="label" optionValue="value"></p-selectButton>
-        <app-history-line-chart #myChart2 class="handf" *ngIf="switchValue == true" [array] = 'miniHistory' [array2] = 'miniarrayData1'></app-history-line-chart>
-        <app-forecast-line-chart #myChart1 class="handf" *ngIf="switchValue == false"  [array]="miniForecast" [array2] = 'miniarrayData2'></app-forecast-line-chart>
+        <app-history-line-chart #myChart2 class="handf" *ngIf="switchValue == true" [array] = 'miniHistory' [array2] = 'miniarrayData1' [Period]="Period"></app-history-line-chart>
+        <app-forecast-line-chart #myChart1 class="handf" *ngIf="switchValue == false"  [array]="miniForecast" [array2] = 'miniarrayData2' [Period]="Period"></app-forecast-line-chart>
     </div>
     <div class="twoCharts" *ngIf="!tableHiFWeek">
         <app-history-forecast style="width: 100%;
-        background: linear-gradient(180deg, #1b1b1b 50%, #121212 100%)  !important;" [boja1]="color1" [boja2]="color2" [naziv1]="name" [naziv2]="name" [array] = "History" [array2]="Forecast" [array3] = "dates" [Title]="Title" class="chart"></app-history-forecast>
+        background: linear-gradient(180deg, #1b1b1b 50%, #121212 100%)  !important;" [boja1]="color1" [boja2]="color2" [naziv1]="name" [naziv2]="name" [array] = "History" [array2]="Forecast" [array3] = "dates" [Title]="Title" class="chart" [Period]="Period"></app-history-forecast>
     </div>
 
     

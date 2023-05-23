@@ -23,7 +23,7 @@ export class ForecastLineChartComponent implements OnChanges{
   @Input() array2 : any[] = [null,null, null, null, null, null,5.00,10.00,12.00,23.00,16.00,5.00,10.00,5.00]
   @Input() array3 : any[] = [null,null, null, null, null, null,null]
   @Input() boja1 = '#88dbf6';
-
+  @Input() Period = '#46c5f1';
 
   constructor(private userService:UserService, private authService:AuthService) {
     this.cities = [
@@ -46,7 +46,7 @@ export class ForecastLineChartComponent implements OnChanges{
     ];
     this.xaxis = {
       title:{
-        text:"period",
+        text:this.Period,
         style :{
           color:'white',
           fontFamily: 'Montserrat,sans-serif',
