@@ -7,6 +7,7 @@ import { DeviceService } from 'src/app/services/device/device.service';
   styleUrls: ['./circle.component.scss']
 })
 export class CircleComponent implements OnInit{
+  lightMode: Boolean = true;
   @Input() id : any;
   @Input() type : any;
   result :any;

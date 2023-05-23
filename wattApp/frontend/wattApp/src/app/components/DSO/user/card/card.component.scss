@@ -4,17 +4,29 @@ p{
     color:rgb(255, 255, 255);
 }
 
+.light-mode-card {
+  .circle-1 {
+      box-shadow: 4px 4px 40px -5px rgb(207, 207, 207) !important;
+  
+  }
+  .circle-2 {
+      background:white !important;
+      h5,p {
+          color:#323232;
+        }
+  }
+  
+}
+
 :host{
     display:flex;
     position: relative;
     flex-direction: column;
     color: white;
     background-color: transparent;
-    background: linear-gradient(180deg, #1e1e1e 30%, #121212 100%) ;
     border-radius: 20px;
     width: 100%;
     padding:20px;
-    box-shadow: 5px 5px 15px black;
 }
 
 button {

@@ -66,3 +66,17 @@ position: relative;
 flex-direction: row;
 
 }
+
+
+.light-mode-circles {
+  
+    box-shadow: 12px 12px 40px -5px rgb(200, 200, 200) !important;
+    background:white !important;
+    h5,p {
+      color:#323232;
+    }
+  }
+
+  .light-mode-title-bar h3{
+    color:#323232;
+  }

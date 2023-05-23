@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
 import { UserService } from 'src/app/services/user/user.service';
 import { url } from 'src/app/app.module';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -11,6 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   styleUrls: ['./card.component.scss']
 })
 export class CardComponent implements OnInit{
+  hostElement: HTMLElement | undefined;
   lightMode: Boolean = true;
   baseUrl = url + "/api/Images/user/";
   @Input() user : any;
@@ -19,13 +20,25 @@ export class CardComponent implements OnInit{
   menageUserForm!:FormGroup;
   id: any;
 
-  constructor(private routers:ActivatedRoute,private userService:UserService,private fb:FormBuilder,private toast:NgToastService,private router:Router){
+  constructor(private routers:ActivatedRoute,private userService:UserService,private fb:FormBuilder,private toast:NgToastService,private router:Router,private elementRef: ElementRef, private renderer: Renderer2){
     this.id = this.routers.snapshot.paramMap.get('id');
   }
 
   ngOnInit(){
     this.userImageUrlEndpoint = this.baseUrl + this.id;
     
+    this.hostElement = this.elementRef.nativeElement as HTMLElement;
+    this.hostElement?.classList.toggle('light-theme-bigger-shadow', true);
+    this.hostElement?.classList.add('light-theme-background-white');
+  
+
+    const usrTitle = this.hostElement.querySelector('.username-title');
+    this.renderer.addClass(usrTitle, 'text-color-blue')
+    const texts = this.hostElement.querySelectorAll('h6');
+    texts.forEach((innerElement) => {
+      this.renderer.addClass(innerElement, 'light-theme-text-color-black');
+    });
+
   }
 
   showDialog()
