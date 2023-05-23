@@ -9,8 +9,9 @@
   margin-top:0px;
   border-radius: 20px;
   float:right;
-  height: 300px; 
-  width: 68.2%;
+  height: 320px;
+  box-shadow: 8px 8px 30px -5px rgb(200, 200, 200);
+  width: 58.2%;
   background-image: url('/assets/images/application-images/blue.jpg');
   background-size: cover;
 }
@@ -26,7 +27,6 @@
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  padding: 20px 0;
   min-height: 120px;
   justify-content:space-between;
   
@@ -132,7 +132,9 @@ padding-top: 10px;
 margin-top: 20px;
 margin-left: 40px;
 }
-
+.crsl {
+  
+}
 .line2{
 float:left;
 }
@@ -146,7 +148,7 @@ padding:10px;
 }
 
 .divVreme{
-margin:20px 0 0 2.2%;
+margin:0px 0 0 2.2%;
 width: 19.8%; 
 display: inline;
 }
