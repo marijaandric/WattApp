@@ -6,6 +6,7 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 import { DeviceService } from 'src/app/services/device/device.service';
 import { UserService } from 'src/app/services/user.service';
 import { HistoryLineChartComponent } from '../../Prosumer/history-line-chart/history-line-chart.component';
+import * as ApexCharts from 'apexcharts';
 
 interface City {
   name: string,
@@ -123,6 +124,13 @@ export class HistoryForecastComponent implements OnInit,OnChanges{
         }
       }
     };
+
+    const options = {
+      series: this.series,
+    };
+
+    const chart2 = new ApexCharts(document.querySelector("#chart2"), options);
+    chart2.render();
 
   }
 

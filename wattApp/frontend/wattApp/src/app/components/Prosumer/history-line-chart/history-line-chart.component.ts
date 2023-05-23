@@ -67,6 +67,12 @@ export class HistoryLineChartComponent implements OnChanges{
         }
       }
     };
+    const options = {
+      series: this.series,
+    };
+
+    const chart2 = new ApexCharts(document.querySelector("#chart2"), options);
+    chart2.render();
   }
 
 
