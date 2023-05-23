@@ -12,6 +12,7 @@ import { url } from 'src/app/app.module';
   encapsulation: ViewEncapsulation.None
 })
 export class UsersOperatorsComponent implements OnInit {
+  lightMode: Boolean = true;
   @ViewChild('searchInput') searchInput!: ElementRef;
   baseUrl = url + "/api/Images/user/";
   users: UserDTO[] = [];

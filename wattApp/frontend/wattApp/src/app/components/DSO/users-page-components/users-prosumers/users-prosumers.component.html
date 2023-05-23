@@ -32,7 +32,7 @@
           </p-dropdown></div>
         </div>
       </div>
-      <div style="display:flex;float:right; flex-direction:row; width:100%; height:400px">
+      <div style="display:flex;float:right; flex-direction:row; width:100%;margin-bottom:32px;">
         <div style="display:flex;float:right; flex-direction:column;  width:48%; height:100%" >
           <app-single-area-pie [Series]="values" [chartLabels]="keys"></app-single-area-pie>
         </div>
@@ -41,21 +41,19 @@
         </div>
       </div>
 
+      <div [ngClass]="{'light-mode': lightMode,'light-mode2': lightMode}">
       <div style="display:flex;float:right; flex-direction:row; width:100%; height:100%">
         <!-- [lazy]="true" -->
         <p-table class="d-table" #dtUsers class="ui-table-default" [value]="users" dataKey="id" [scrollable]="true" 
           [rows]="rowsPerPage" [totalRecords]="allUsersCount" [showCurrentPageReport]="true" (onPage)="onPageChange($event)"
           [globalFilterFields]="['id','firstName','lastName','email','role']" [paginator]="true" 
           style="
-            margin-top:calc(3.5%);
             display: flex;
             position: relative;
             flex-direction: column;
             height: fit-content;
             width: 100%;
             border-radius: 20px;
-            background: linear-gradient(180deg, #151515 50%, #121212 100%) ;
-            box-shadow: 5px 5px 15px black;
             transition: ease-in-out;
             padding:10px 20px;
             ">
@@ -121,6 +119,7 @@
                 </tr>
             </ng-template>
           </p-table>
+        </div>
         </div>
       </div>
     </div>

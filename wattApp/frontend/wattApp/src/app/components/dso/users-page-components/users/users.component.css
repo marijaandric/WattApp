@@ -36,3 +36,14 @@
   background-color: rgba(214, 214, 214, 0.212); /* adjust to your desired color */
   border-radius: 10px; /* adjust to your desired radius */
 }
+
+.light-mode2 {
+  box-shadow: 8px 8px 32px -5px rgb(200, 200, 200); 
+  border-radius: 20px;
+  margin-bottom:32px;
+}
+
+
+.light-mode {
+  color:#323232 !important;
+}

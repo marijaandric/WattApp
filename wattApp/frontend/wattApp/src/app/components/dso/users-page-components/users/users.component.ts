@@ -13,6 +13,7 @@ import { AuthService } from 'src/app/services/auth/auth.service';
   encapsulation: ViewEncapsulation.None
 })
 export class UsersComponent implements OnInit{
+  lightMode: Boolean = true;
   @ViewChild('searchInput') searchInput!: ElementRef;
   baseUrl = url + "/api/Images/user/";
   users: UserDTO[] = [];
