@@ -5,3 +5,8 @@
 :host::ng-deep app-tab-menu .tab.active3 .tab-title {
   color: #46c5f1 !important;
 }
+
+.light-mode-title-bar h3{
+  color:#323232;
+}
+

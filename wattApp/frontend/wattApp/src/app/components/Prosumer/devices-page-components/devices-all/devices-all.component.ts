@@ -16,6 +16,8 @@ export class DevicesAllComponent implements OnInit {
   user:any;
   loader=true;
 
+  lightMode: Boolean = true;
+  
   constructor(private userService:UserService,
               private deviceService: DeviceService,
               private router: Router) { 

@@ -12,6 +12,8 @@ export class DevicesConsumptionComponent {
   consumptionDevices: DeviceDTO[] = [];
   loader = true;
 
+  lightMode: Boolean = true;
+  
   constructor(private deviceService: DeviceService,
     private userService: UserService) { }
 

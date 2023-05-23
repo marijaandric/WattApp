@@ -11,6 +11,7 @@ import { UserService } from 'src/app/services/user.service';
 export class DevicesProductionComponent {
   productionDevices: DeviceDTO[] = [];
   loader = true;
+  lightMode: Boolean = true;
 
   constructor(private deviceService: DeviceService,
     private userService: UserService) { }
