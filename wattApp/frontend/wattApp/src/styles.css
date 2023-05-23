@@ -209,7 +209,7 @@
 
 .light-mode .p-selectbutton .p-button.p-highlight{
   border: none;
-  background: #323232 !important;
+  background: #46c5f1 !important;
   border-radius:32px;
 }
 .light-mode .p-selectbutton .p-button.p-highlight span{
@@ -257,6 +257,9 @@
 }
 .p-inputswitch.p-inputswitch-checked .p-inputswitch-slider {
   background: #46c5f1 !important;
+}
+.p-inputswitch-slider:hover {
+  background: #323232 !important;
 }
 .p-carousel-items-content {
   min-height: 240px !important;
