@@ -19,7 +19,6 @@
 .stats-card{
   display:flex;
   flex-basis: 47%;
-  box-shadow: 5px 5px 15px black;
 }
 
 .stats-card:nth-child(1), .stats-card:nth-child(2) {

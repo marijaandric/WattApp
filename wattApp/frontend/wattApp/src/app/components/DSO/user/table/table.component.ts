@@ -9,6 +9,7 @@ import { lastValueFrom } from 'rxjs';
   styleUrls: ['./table.component.css']
 })
 export class TableComponent implements OnInit{
+  lightMode : Boolean = true;
   @ViewChild('searchInput') searchInput!: ElementRef;
   devices: any;
   @Input() id : any;

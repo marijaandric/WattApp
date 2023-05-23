@@ -30,6 +30,7 @@ interface City {
   styleUrls: ['./user-dso.component.css']
 })
 export class UserDSOComponent implements OnInit{
+  lightMode: Boolean = true;
   id : any;
   type: City[];
   type2: City[];
