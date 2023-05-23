@@ -319,8 +319,8 @@ export class TitleBarComponent implements OnInit{
       return
     } 
 
-    const phoneNumberRegexWithPrefix = /^\+\d{1,3}-\d{3,14}$/;
-    const phoneNumberRegexWithoutPrefix = /^\d{7,15}$/;
+    const phoneNumberRegexWithPrefix = /^\+381-\d{3,14}$/;
+    const phoneNumberRegexWithoutPrefix = /^06\d{7,15}$/;
     if (!phoneNumberRegexWithPrefix.test(this.signUpForm.value.phoneNumber ) && !phoneNumberRegexWithoutPrefix.test(this.signUpForm.value.phoneNumber)) {
       this.toast.error({detail:"ERROR",summary:"Please enter a valid phone number format.",duration:4000});
       return
