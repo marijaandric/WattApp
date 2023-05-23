@@ -1,4 +1,4 @@
-import { ChangeDetectorRef, Component, ElementRef, Input, OnChanges, SimpleChanges, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, Input, OnChanges, Renderer2, SimpleChanges, ViewChild } from '@angular/core';
 import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
@@ -7,6 +7,7 @@ import { UserService } from 'src/app/services/user/user.service';
   styleUrls: ['./history-or-forecast-table.component.css']
 })
 export class HistoryOrForecastTableComponent implements OnChanges {
+  hostElement: HTMLElement | undefined;
   @ViewChild('searchInput') searchInput!: ElementRef;
   @Input() name = "History";
   @Input() History! : any[];
@@ -15,9 +16,11 @@ export class HistoryOrForecastTableComponent implements OnChanges {
 
   hif:any[] = []
 
-  constructor(private userService: UserService,private cd: ChangeDetectorRef) { }
+  constructor(private userService: UserService,private cd: ChangeDetectorRef, private elementRef: ElementRef, private renderer: Renderer2) { }
 
   ngOnInit() {
+    this.hostElement = this.elementRef.nativeElement as HTMLElement;
+    this.hostElement?.classList.toggle('light-theme-bigger-shadow', true);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
