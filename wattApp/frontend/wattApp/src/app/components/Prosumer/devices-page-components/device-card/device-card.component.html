@@ -36,19 +36,19 @@
         <p-inputSwitch [(ngModel)]="isChecked" (click)="showDialog($event)" class="margin-left__auto width__fit-content" style="padding-top:8px;"/>
     </div>
     <div class="flexRow" style="margin-top: 16px;">
-        <span >Status:</span>
+        <span [ngClass]="{'light-mode-left-span':lightMode}">Status:</span>
         <span *ngIf="!isChecked" class="margin-left__auto color-gray">Idle</span>
-        <span *ngIf="isChecked" class="margin-left__auto ">Running</span>
+        <span *ngIf="isChecked" class="margin-left__auto " [ngClass]="{'light-mode-left-span-run':lightMode}">Running</span>
     </div>
     <div class="flexRow" style="margin-top: 6px;">
-        <span>Type:</span>
+        <span [ngClass]="{'light-mode-left-span':lightMode}">Type:</span>
         <span class="margin-left__auto" [ngClass]="{'color-blue': isConsumer, 'color-purple': isProducer, 'color-pink': isStock}">{{ device.deviceType }}</span>
     </div>
     <div class="flexRow" style="margin-top: 6px;">
-        <span *ngIf="device.deviceType === 'Consumer'"  >Power consumed:</span>
-        <span *ngIf="device.deviceType === 'Producer'"  >Power produced:</span>
-        <span *ngIf="device.deviceType !== 'Consumer' && device.deviceType !== 'Producer'"  class="bold-text">Power stored:</span>
-        <span class="margin-left__auto color-gray">{{ device.power }} kWh</span>
+        <span *ngIf="device.deviceType === 'Consumer'" [ngClass]="{'light-mode-left-span':lightMode}" >Power consumed:</span>
+        <span *ngIf="device.deviceType === 'Producer'"  [ngClass]="{'light-mode-left-span':lightMode}">Power produced:</span>
+        <span *ngIf="device.deviceType !== 'Consumer' && device.deviceType !== 'Producer'" [ngClass]="{'light-mode-left-span':lightMode}">Power stored:</span>
+        <span class="margin-left__auto color-gray" [ngClass]="{'light-mode-left-span-run':lightMode}">{{ device.power }} kWh</span>
     </div>
 </div>
 

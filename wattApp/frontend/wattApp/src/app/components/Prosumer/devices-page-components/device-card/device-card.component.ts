@@ -13,6 +13,7 @@ import { DeviceService } from 'src/app/services/device/device.service';
 })
 export class DeviceCardComponent implements OnInit,OnChanges{
   hostElement: HTMLElement | undefined;
+  lightMode: Boolean = true;
   @Input() device: any;
   @Input() devices: any;
   isChecked: boolean = true;
@@ -63,10 +64,7 @@ export class DeviceCardComponent implements OnInit,OnChanges{
     console.log(dvcCard);
     this.renderer.addClass(dvcCard, 'light-theme-bigger-shadow');
     this.renderer.addClass(dvcCard, 'light-theme-background-white');
-    const spans = this.hostElement.querySelectorAll('.device-card span');
-    spans.forEach((span) => {
-      this.renderer.addClass(span, 'light-theme-text-color-dark-gray');
-    });
+    
     if(!this.device.power)
     {
       const min = 0;
