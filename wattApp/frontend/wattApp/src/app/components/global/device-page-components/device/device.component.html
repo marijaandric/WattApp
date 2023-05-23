@@ -1,6 +1,6 @@
 <standard-template>
-  <app-title-bar>
-    <h3 style="z-index:2000"><a [routerLink]="['/devices']">Devices</a> > {{device!.deviceName}}</h3>
+  <app-title-bar [ngClass]="{'light-mode-title-bar':lightMode}">
+    <h3 style="z-index:2000"><a [routerLink]="['/devices']" >Devices</a> > {{device!.deviceName}}</h3>
   </app-title-bar>
 
   <app-center-bar>

@@ -49,6 +49,7 @@ interface HiF{
   styleUrls: ['./device.component.scss']
 })
 export class DeviceComponent implements OnInit{
+  lightMode: Boolean = true;
   device!: DeviceDTO;
   hostElement:  HTMLElement | undefined;
   displayEditDeviceDialog: boolean = false;

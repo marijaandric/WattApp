@@ -20,7 +20,7 @@
     <div class="bottom-card">
       <div class="bottom-left-card">
         <div class="bottom-left-top-card">
-            <div id="deviceInformation" class="flexColumn device-information" >
+            <div id="deviceInformation" class="flexColumn device-information" [ngClass]="{'light-mode-device-info': lightMode}">
               <div class="flexRow">
 
                 <img *ngIf="isPhone" src="../.../../../../../../assets/icons/images/icons8-iphone-14-50.png">
@@ -52,8 +52,8 @@
                 <img *ngIf="isBulb" src="../.../../../../../../assets/icons/images/icons8-bulb-50.png">
                 <img *ngIf="isOther" src="../.../../../../../../assets/icons/images/icons8-multiple-devices-50.png">
           
-                  <div class="colored-text" ><h5 style="margin-top:10px">{{device.deviceName}}</h5></div>
-                  <p-inputSwitch [(ngModel)]="isChecked" (click)="showDialog2()" class="margin-left__auto width__fit-content"></p-inputSwitch>
+                  <div class="colored-text" ><h5 style="margin-top:10px" [ngClass]="{'color-blue': isConsumer, 'color-purple': isProducer, 'color-pink': isStock}">{{device.deviceName}}</h5></div>
+                  <p-inputSwitch [(ngModel)]="isChecked" (click)="showDialog2()" class="margin-left__auto width__fit-content" style="padding-top:10px;"></p-inputSwitch>
               </div>
         
               <div style="height:100% ;justify-content:center">

@@ -104,7 +104,6 @@ img {
   h5 {
       font-size: 24px;
       font-weight: bolder;
-      
   }
     
 }
@@ -134,4 +133,27 @@ img {
   max-width: 23%;
   min-width: 240px;
   width:20%;
+}
+
+
+.color-blue {
+  color: #46c5f1;
+}
+
+.color-purple {
+  color:#885ec0;
+}
+
+.color-pink {
+  color: #eb4886;
+}
+
+
+.light-mode-device-info {
+  
+  box-shadow: 8px 8px 40px -5px rgb(200,200,200);
+  span {
+    color: #323232;
+    font-weight: bold;
+  }
 }
