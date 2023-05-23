@@ -40,7 +40,9 @@
             </p-dropdown></div>
           </div>
           <app-history-forecast style="width:100%;margin-top:20px" [boja1]="color1" [boja2]="color2" [naziv1]="name1" [naziv2]="name2" [array] = "History" [array2]="Forecast" [array3] = "dates" [Title]="Title"></app-history-forecast>
-          <p-selectButton style="margin-top:20px" class="flexRow width__fit-content margin-left__auto " [options]="switchOptions" [(ngModel)]="switchValue" optionLabel="label" optionValue="value"></p-selectButton>
+          <div [ngClass]="{'light-mode':lightMode}">
+            <p-selectButton style="margin-top:20px" class="flexRow width__fit-content margin-left__auto " [options]="switchOptions" [(ngModel)]="switchValue" optionLabel="label" optionValue="value"></p-selectButton>
+          </div>
           <app-table [id] = 'id' *ngIf="switchValue == false"></app-table>
           <app-history-forecast-table
           style="
@@ -50,11 +52,9 @@
           flex-direction: column;
           height: fit-content;
           border-radius: 20px;
-          background: linear-gradient(180deg, #171717, #0d0d0d);
-          box-shadow: 5px 5px 15px black;
           transition: ease-in-out;
-          padding:10px 20px;
-          " [name1]="name1" [name2]="name2" [hif]="hif" *ngIf="switchValue == true && table"></app-history-forecast-table>
+          padding:10px 20px 20px 20px;
+          " [name1]="name1" [name2]="name2" [hif]="hif" *ngIf="switchValue == true && table" [ngClass]="{'light-mode':lightMode}"></app-history-forecast-table>
           <app-history-or-forecast-table  *ngIf="switchValue == true && !table"
           style="
             margin-top:calc(2.8%);
@@ -63,15 +63,13 @@
             flex-direction: column;
             height: fit-content;
             border-radius: 20px;
-            background: linear-gradient(180deg, #151515 50%, #121212 100%) ;
-            box-shadow: 5px 5px 15px black;
             transition: ease-in-out;
-            padding:10px 20px"  [name]="name" [History]="History" [Forecast]="Forecast" [dates]="dates" >
+            padding:10px 20px 20px 20px"  [name]="name" [History]="History" [Forecast]="Forecast" [dates]="dates" >
             </app-history-or-forecast-table>
         </div>
         
         <div style="display:flex;float:right; flex-direction:column; width:20%; height:100%">
-        <app-map-for-dso-user [user]="user" style="height: 30%; min-height:250px;"></app-map-for-dso-user>
+        <app-map-for-dso-user [user]="user" style="height: 30%; min-height:250px;" [ngClass]="{'light-mode':lightMode}"></app-map-for-dso-user>
         <div class="donuts" style="margin-top:calc(3vh);">
           <h5>Monthly power usage</h5>
           <p>in kWh</p>
