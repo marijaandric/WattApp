@@ -102,6 +102,7 @@ export class DeviceDesktopComponent implements OnInit {
   isStock: boolean = false;
 
   isChecked!:boolean;
+  Title = "Consumption history & forecast"
 
   type: City[];
   type2: City[];
@@ -635,7 +636,7 @@ export class DeviceDesktopComponent implements OnInit {
   
 table = true;
 tableHiFWeek = true;
-name:string="Consumption history"
+name:string="History"
 isForecastTrue = true;
 
   dropdownChange()
@@ -648,6 +649,7 @@ isForecastTrue = true;
       this.color2 = '#88dbf6';
       if(this.selectedDate.code == "week" && this.selectedHF.code == "both")
       {
+        this.Title = "History & Forecast"
         this.tableHiFWeek = true;
         this.miniHistory=this.miniHistoryCon;
         this.miniForecast=this.miniForecastCon;
@@ -690,6 +692,7 @@ isForecastTrue = true;
       }
       else if( this.selectedDate.code == "3 days" && this.selectedHF.code == "both")
       {
+        this.Title = "History & Forecast"
         this.table = true;
         this.History = this.HistoryCon3;
         this.Forecast = this.ForecastCon3;
@@ -708,7 +711,8 @@ isForecastTrue = true;
       }
       else if( this.selectedDate.code == "3 days" && this.selectedHF.code == "forecast")
       {
-        this.name = "Consumption forecast"
+        this.Title = "Forecast"
+        this.name = "Forecast"
         this.History = [null];
         this.Forecast = [this.ForecastCon3[3],this.ForecastCon3[4],this.ForecastCon3[5]]
 
@@ -717,7 +721,8 @@ isForecastTrue = true;
       }
       else if( this.selectedDate.code == "week" && this.selectedHF.code == "forecast")
       {
-        this.name = "Consumption forecast"
+        this.Title = "Forecast"
+        this.name = "Forecast"
         this.History = [null];
         this.Forecast = [this.ForecastCon[6],this.ForecastCon[7],this.ForecastCon[8],this.ForecastCon[9],this.ForecastCon[10],this.ForecastCon[11],this.ForecastCon[12],this.ForecastCon[13]]
 
@@ -726,7 +731,8 @@ isForecastTrue = true;
       }
       else if( this.selectedDate.code == "week" && this.selectedHF.code == "history")
       {
-        this.name = "Consumption history"
+        this.Title = "History"
+        this.name = "History"
         this.History = [this.HistoryCon[0],this.HistoryCon[1],this.HistoryCon[2],this.HistoryCon[3],this.HistoryCon[4],this.HistoryCon[5],this.HistoryCon[6]]
         this.Forecast = [null];
 
@@ -735,7 +741,8 @@ isForecastTrue = true;
       }
       else if( this.selectedDate.code == "month")
       {
-        this.name = "Consumption history"
+        this.Title = "History"
+        this.name = "History"
         this.History = this.HistoryConM;
         this.Forecast = [null]
 
@@ -744,7 +751,8 @@ isForecastTrue = true;
         
       }
       else{
-        this.name = "Consumption history"
+        this.Title = "History"
+        this.name = "History"
         this.History = this.HistoryConY;
         this.Forecast = [null]
 

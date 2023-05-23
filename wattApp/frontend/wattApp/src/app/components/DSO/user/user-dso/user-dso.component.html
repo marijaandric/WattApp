@@ -39,7 +39,7 @@
             <div class="pdd-div"><p-dropdown [options]="type3" appendTo="body" [(ngModel)]="selectedDate" optionLabel="name" (onChange)="dropdownChange()" >
             </p-dropdown></div>
           </div>
-          <app-history-forecast style="width:100%;margin-top:20px" [boja1]="color1" [boja2]="color2" [naziv1]="name1" [naziv2]="name2" [array] = "History" [array2]="Forecast" [array3] = "dates"></app-history-forecast>
+          <app-history-forecast style="width:100%;margin-top:20px" [boja1]="color1" [boja2]="color2" [naziv1]="name1" [naziv2]="name2" [array] = "History" [array2]="Forecast" [array3] = "dates" [Title]="Title"></app-history-forecast>
           <p-selectButton style="margin-top:20px" class="flexRow width__fit-content margin-left__auto " [options]="switchOptions" [(ngModel)]="switchValue" optionLabel="label" optionValue="value"></p-selectButton>
           <app-table [id] = 'id' *ngIf="switchValue == false"></app-table>
           <app-history-forecast-table

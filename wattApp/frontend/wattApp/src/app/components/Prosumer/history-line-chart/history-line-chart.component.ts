@@ -37,6 +37,17 @@ export class HistoryLineChartComponent implements OnChanges{
   ];
   }
 
+  forecastArray(niz: number[]): number[] {
+    const rezultat: number[] = [];
+    const niz2 = [20.20,13.30,-5.00,0.00,-4.00,29.20,22.00,0.23];
+  
+    for (let i = 0; i < niz.length; i++) {
+      rezultat.push(parseFloat((niz[i] + niz2[i]).toFixed(2)));
+    }
+  
+    return rezultat;
+  }
+
   ngOnChanges(changes: SimpleChanges)
   {
 
@@ -44,13 +55,17 @@ export class HistoryLineChartComponent implements OnChanges{
       {
         name: 'History',
         data: this.array,
-        color: this.boja1,
-        
+        color: this.boja1
+      },
+      {
+        name: 'Forecast',
+        data: this.forecastArray(this.array),
+        color: this.boja1
       }
     ];
     this.xaxis = {
       title:{
-        text:"date",
+        text:"period",
         style :{
           color:'white',
           fontFamily: 'Montserrat,sans-serif',
@@ -148,7 +163,7 @@ export class HistoryLineChartComponent implements OnChanges{
 
   public xaxis: ApexXAxis = {
     title:{
-      text:"date",
+      text:"period",
       style :{
         color:'white',
         fontFamily: 'Montserrat,sans-serif',
@@ -168,11 +183,11 @@ export class HistoryLineChartComponent implements OnChanges{
 
   public yaxis: ApexYAxis = {
     title:{
-      text:"kWh",
+      text:"Electric energy [kWh]",
       style :{
         color:'white',
         fontFamily: 'Montserrat,sans-serif',
-        fontSize: '16px' 
+        fontSize: '14px' 
       }
     },
     labels: {
@@ -198,8 +213,10 @@ export class HistoryLineChartComponent implements OnChanges{
   };
 
   public stroke: ApexStroke = {
-    curve: 'smooth',
+    curve: 'straight', //stepline
     width: 3,
+    dashArray:[0,5,0,5,0,5],
+
   }
 
   public dataLabels: ApexDataLabels = {

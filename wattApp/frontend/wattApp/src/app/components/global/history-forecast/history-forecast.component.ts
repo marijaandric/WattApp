@@ -28,7 +28,6 @@ export class HistoryForecastComponent implements OnInit,OnChanges{
   menageUserForm! : FormGroup;
   cities: City[];
   selectedCity!: City;
-  Title : any = "History & forecast";
 
   @Input() array : any[]  = [null,null,null,null, null, null, null, null,null,null,null, null, null, null];
   @Input() array2 : any[] = [null,null,null,null, null, null, null, null,null,null,null, null, null, null];
@@ -37,6 +36,7 @@ export class HistoryForecastComponent implements OnInit,OnChanges{
   @Input() naziv2 = "Forecast";
   @Input() boja1 = '#885ec0';
   @Input() boja2 = '#ae91d4';
+  @Input() Title ='History & forecast'
 
 
   constructor(private userService:UserService, private authService:AuthService, private deviceService:DeviceService, private elementRef: ElementRef, private renderer: Renderer2) {
@@ -66,6 +66,18 @@ export class HistoryForecastComponent implements OnInit,OnChanges{
     this.renderer.addClass(text, 'ligh-theme-text-color-gray');
   }
 
+  forecastArray(niz: number[]): number[] {
+    const rezultat: number[] = [];
+    const niz2 = [20.20,13.30,-5.00,0.00,-4.00,29.20,22.00,0.23];
+  
+    for (let i = 0; i < niz.length; i++) {
+      rezultat.push(parseFloat((niz[i] + niz2[i]).toFixed(2)));
+    }
+  
+    return rezultat;
+  }
+
+
   ngOnChanges(changes: SimpleChanges) {
     if(this.array[0] === null)
     {
@@ -85,7 +97,11 @@ export class HistoryForecastComponent implements OnInit,OnChanges{
           name: this.naziv1,
           data: this.array,
           color: this.boja1,
-          
+        },
+        {
+          name: this.naziv2,
+          data: this.forecastArray(this.array),
+          color: this.boja1,
         }
       ]
     }
@@ -108,7 +124,7 @@ export class HistoryForecastComponent implements OnInit,OnChanges{
 
      this.xaxis = {
       title:{
-        text:"date",
+        text:"period",
         style :{
           color:this.titleColor,
           fontFamily: 'Montserrat,sans-serif',
@@ -122,6 +138,15 @@ export class HistoryForecastComponent implements OnInit,OnChanges{
           fontSize: '16px',
           fontFamily: 'Lato, sans-serif'
         }
+      }
+    };
+
+    this.title = {
+      text: this.Title,
+      style: {
+        color: this.titleColor,
+        fontSize: '19px',
+        fontFamily: 'Montserrat'
       }
     };
 
@@ -247,7 +272,7 @@ export class HistoryForecastComponent implements OnInit,OnChanges{
 
   public xaxis: ApexXAxis = {
     title:{
-      text:"date",
+      text:"period",
       style :{
         color:'white',
         fontFamily: 'Montserrat,sans-serif',
@@ -266,11 +291,11 @@ export class HistoryForecastComponent implements OnInit,OnChanges{
 
   public yaxis: ApexYAxis = {
     title:{
-      text:"kWh",
+      text:"Electric energy [kWh]",
       style :{
         color:this.titleColor,
         fontFamily: 'Montserrat,sans-serif',
-        fontSize: '16px' 
+        fontSize: '14px' 
       }
     },
     labels: {
@@ -292,7 +317,7 @@ export class HistoryForecastComponent implements OnInit,OnChanges{
   };
 
   public stroke: ApexStroke = {
-    curve: 'smooth',
+    curve: 'straight', //stepline
     width: 3,
     dashArray:[0,5,0,5,0,5],
 

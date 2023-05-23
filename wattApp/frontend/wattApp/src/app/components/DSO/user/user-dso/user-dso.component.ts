@@ -44,6 +44,7 @@ export class UserDSOComponent implements OnInit{
   selectedHF: City = {name: 'Both', code: 'both'};
 
   responsiveOptions: any = null;
+  Title = "Consumption history & forecast"
 
   hif : HiF[]  = [{history: 0, forecast: 0, date1: [], date2: []},
   {history: 0, forecast: 0, date1: [], date2: []},
@@ -423,6 +424,7 @@ theDay = "On the day: ";
       this.color2 = '#88dbf6';
       if(this.selectedDate.code == "week" && this.selectedHF.code == "both")
       {
+        this.Title = "Consumption history & forecast"
         this.TitleMin='Minimal consumed by day this week';
         this.TittleMax='Maximal consumed by day this week';
         this.TitleAverage='Average consumed by day this week';
@@ -472,6 +474,7 @@ theDay = "On the day: ";
       }
       else if( this.selectedDate.code == "3 days" && this.selectedHF.code == "both")
       {
+        this.Title = "Consumption history & forecast"
         this.TitleMin='Minimal consumed by day for 3 days';
         this.TittleMax='Maximal consumed by day for 3 days';
         this.TitleAverage='Average consumed by day for 3 days';
@@ -498,6 +501,7 @@ theDay = "On the day: ";
       }
       else if( this.selectedDate.code == "3 days" && this.selectedHF.code == "forecast")
       {
+        this.Title = "Consumption forecast"
         this.TitleMin='Minimal consumed by day for 3 days';
         this.TittleMax='Maximal consumed by day for 3 days';
         this.TitleAverage='Average consumed by day for 3 days';
@@ -513,6 +517,7 @@ theDay = "On the day: ";
       }
       else if( this.selectedDate.code == "week" && this.selectedHF.code == "forecast")
       {
+        this.Title = "Consumption forecast"
         this.TitleMin='Minimal consumed by day this week';
         this.TittleMax='Maximal consumed by day this week';
         this.TitleAverage='Average consumed by day this week';
@@ -528,6 +533,7 @@ theDay = "On the day: ";
       }
       else if( this.selectedDate.code == "week" && this.selectedHF.code == "history")
       {
+        this.Title = "Consumption history"
         this.TitleMin='Minimal consumed by day this week';
         this.TittleMax='Maximal consumed by day this week';
         this.TitleAverage='Average consumed by day this week';
@@ -543,6 +549,7 @@ theDay = "On the day: ";
       }
       else if( this.selectedDate.code == "month")
       {
+        this.Title = "Consumption history"
         this.TitleMin='Minimal consumed by day this month';
         this.TittleMax='Maximal consumed by day this month';
         this.TitleAverage='Average consumed by day this month';
@@ -558,6 +565,7 @@ theDay = "On the day: ";
         
       }
       else{
+        this.Title = "Consumption history"
         this.TitleMin='Minimal consumed by day this year';
         this.TittleMax='Maximal consumed by day this year';
         this.TitleAverage='Average consumed by day this year';
@@ -595,6 +603,7 @@ theDay = "On the day: ";
 
       if(this.selectedDate.code == "week" && this.selectedHF.code == "both")
       {
+        this.Title = "Production history & forecast"
         this.TitleMin='Minimal produced by day this week';
         this.TittleMax='Maximal produced by day this week';
         this.TitleAverage='Average produced by day this week';
@@ -623,6 +632,7 @@ theDay = "On the day: ";
       }
       else if( this.selectedDate.code == "3 days" && this.selectedHF.code == "both")
       {
+        this.Title = "Production history & forecast"
         this.TitleMin='Minimal produced by day for 3 days';
         this.TittleMax='Maximal produced by day for 3 days';
         this.TitleAverage='Average produced by day for 3 days';
@@ -649,6 +659,7 @@ theDay = "On the day: ";
       }
       else if( this.selectedDate.code == "3 days" && this.selectedHF.code == "forecast")
       {
+        this.Title = "Production forecast"
         this.TitleMin='Minimal produced by day for 3 days';
         this.TittleMax='Maximal produced by day for 3 days';
         this.TitleAverage='Average produced by day for 3 days';
@@ -664,6 +675,7 @@ theDay = "On the day: ";
       }
       else if( this.selectedDate.code == "week" && this.selectedHF.code == "forecast")
       {
+        this.Title = "Production forecast"
         this.TitleMin='Minimal produced by day this week';
         this.TittleMax='Maximal produced by day this week';
         this.TitleAverage='Average produced by day this week';
@@ -679,6 +691,7 @@ theDay = "On the day: ";
       }
       else if( this.selectedDate.code == "week" && this.selectedHF.code == "history")
       {
+        this.Title = "Production history"
         this.TitleMin='Minimal produced by day this week';
         this.TittleMax='Maximal produced by day this week';
         this.TitleAverage='Average produced by day this week';
@@ -693,6 +706,7 @@ theDay = "On the day: ";
       }
       else if( this.selectedDate.code == "month")
       {
+        this.Title = "Production history"
         this.TitleMin='Minimal produced by day this month';
         this.TittleMax='Maximal produced by day this month';
         this.TitleAverage='Average produced by day this month';
@@ -706,6 +720,7 @@ theDay = "On the day: ";
         this.dates = this.arrayDataM;
       }
       else{
+        this.Title = "Production history"
         this.TitleMin='Minimal produced by day this year';
         this.TittleMax='Maximal produced by day this year';
         this.TitleAverage='Average produced by day this year';
@@ -735,6 +750,7 @@ theDay = "On the day: ";
 
       if(this.selectedDate.code == "week" && this.selectedHF.code == "both")
       {
+        this.Title = "Storage history & forecast"
         this.TitleMin='Minimal stocked by day this week';
       this.TittleMax='Maximal stocked by day this week';
       this.TitleAverage='Average stocked by day this week';
@@ -761,6 +777,7 @@ theDay = "On the day: ";
       }
       else if( this.selectedDate.code == "3 days" && this.selectedHF.code == "both")
       {
+        this.Title = "Storage history & forecast"
         this.TitleMin='Minimal stocked by day for 3 days';
         this.TittleMax='Maximal stocked by day for 3 days';
         this.TitleAverage='Average stocked by day for 3 days';
@@ -787,6 +804,7 @@ theDay = "On the day: ";
       }
       else if( this.selectedDate.code == "3 days" && this.selectedHF.code == "forecast")
       {
+        this.Title = "Storage forecast"
         this.TitleMin='Minimal stocked by day for 3 days';
         this.TittleMax='Maximal stocked by day for 3 days';
         this.TitleAverage='Average stocked by day for 3 days';
@@ -802,6 +820,7 @@ theDay = "On the day: ";
       }
       else if( this.selectedDate.code == "week" && this.selectedHF.code == "forecast")
       {
+        this.Title = "Storage forecast"
         this.TitleMin='Minimal stocked by day this week';
       this.TittleMax='Maximal stocked by day this week';
       this.TitleAverage='Average stocked by day this week';
@@ -817,6 +836,7 @@ theDay = "On the day: ";
       }
       else if( this.selectedDate.code == "week" && this.selectedHF.code == "history")
       {
+        this.Title = "Storage historyt"
         this.TitleMin='Minimal stocked by day this week';
       this.TittleMax='Maximal stocked by day this week';
       this.TitleAverage='Average stocked by day this week';
@@ -832,6 +852,7 @@ theDay = "On the day: ";
       }
       else if( this.selectedDate.code == "month")
       {
+        this.Title = "Storage history"
         this.TitleMin='Minimal stocked by day this month';
       this.TittleMax='Maximal stocked by day this month';
       this.TitleAverage='Average stocked by day this month';
@@ -845,6 +866,7 @@ theDay = "On the day: ";
         this.dates = this.arrayDataM;
       }
       else{
+        this.Title = "Storage history"
         this.TitleMin='Minimal stocked by day this year';
       this.TittleMax='Maximal stocked by day this year';
       this.TitleAverage='Average stocked by day this year';

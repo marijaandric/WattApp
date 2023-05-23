@@ -46,7 +46,7 @@ export class ForecastLineChartComponent implements OnChanges{
     ];
     this.xaxis = {
       title:{
-        text:"date",
+        text:"period",
         style :{
           color:'white',
           fontFamily: 'Montserrat,sans-serif',
@@ -157,7 +157,7 @@ export class ForecastLineChartComponent implements OnChanges{
 
   public xaxis: ApexXAxis = {
     title:{
-      text:"date",
+      text:"period",
       style :{
         color:'white',
         fontFamily: 'Montserrat,sans-serif',
@@ -177,11 +177,11 @@ export class ForecastLineChartComponent implements OnChanges{
 
   public yaxis: ApexYAxis = {
     title:{
-      text:"kWh",
+      text:"Electric energy [kWh]",
       style :{
         color:'white',
         fontFamily: 'Montserrat,sans-serif',
-        fontSize: '16px' 
+        fontSize: '14px' 
       }
     },
     labels: {
@@ -204,7 +204,7 @@ export class ForecastLineChartComponent implements OnChanges{
   };
 
   public stroke: ApexStroke = {
-    curve: 'smooth',
+    curve: 'straight',
     width: 3,
   }
 
