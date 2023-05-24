@@ -19,8 +19,8 @@
 <!--        HOME        -->
 
 <div class="main"  style="margin-top:20px;" routerLinkActive="active">
-    <div class="left ">
-        <a routerLink="/home">
+    <div class="left " [ngClass]="{'light-theme':lightMode}">
+        <a routerLink="/home" >
             <i class="fa-solid fa-house"></i>
         </a>
     </div>
