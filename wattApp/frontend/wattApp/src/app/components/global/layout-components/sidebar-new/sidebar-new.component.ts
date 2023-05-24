@@ -29,10 +29,21 @@ export class SidebarNewComponent {
     
     const innerElements = this.hostElement?.querySelectorAll('.main');
     
+    const hostClose = this.hostElement?.querySelector('close');
+    const hostOpen = this.hostElement?.querySelector('open');
+
+  
+
     const arrow = this.hostElement?.querySelector('.sidebar-arrow');
-    const sidebar = this.hostElement?.querySelector('.left');
-    this.renderer.addClass(sidebar, 'light-theme-color-gray');
-    
+    const sidebar = this.hostElement?.querySelectorAll('.main');
+    const sidebar2 = this.hostElement?.querySelectorAll('.left');
+    sidebar.forEach((innerElement) => {
+      this.renderer.addClass(innerElement, 'light-theme-color-gray');
+    });
+    sidebar2.forEach((innerElement) => {
+      this.renderer.addClass(innerElement, 'light-theme-color-gray');
+    });
+
     this.renderer.addClass(arrow, 'light-theme-background-white');
     this.renderer.addClass(arrow, 'text-color-blue');
   

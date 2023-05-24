@@ -35,8 +35,8 @@
 
 <!--        USERS       -->
 
-<div class="main" [ngClass]="{'margin-100': !isSubMenuShown}" routerLinkActive="active" *ngIf="isAdmin()">
-    <div class="left">
+<div class="main" [ngClass]="{'margin-100': !isSubMenuShown}" routerLinkActive="active" >
+    <div class="left" [ngClass]="{'light-theme':lightMode}">
         <a routerLink="/users">
             <i class="fa-solid fa-users"></i>
         </a>
@@ -47,11 +47,11 @@
             <a href="/users">Users</a>
         </div>
         
-        <div *ngIf="!isSubMenuShown" class="submain-title" routerLinkActive="active">
+        <div *ngIf="!isSubMenuShown" class="submain-title" routerLinkActive="active" [ngClass]="{'light-theme':lightMode}">
             <a href="/users/prosumers">Prosumers</a>
         </div>
 
-        <div *ngIf="!isSubMenuShown" class="submain-title" routerLinkActive="active">
+        <div *ngIf="!isSubMenuShown" class="submain-title" routerLinkActive="active" [ngClass]="{'light-theme':lightMode}">
             <a href="/users/operators">Operators</a>
         </div>
 
@@ -61,35 +61,35 @@
     </div>
 </div>
 
-<div  [ngClass]="{'hidden': isSubMenuShown, 'submenu': !isSubMenuShown}" *ngIf="isAdmin()">
+<div  [ngClass]="{'hidden': isSubMenuShown, 'submenu': !isSubMenuShown}" >
     <div class="main submain" routerLinkActive="active">
         <a routerLink="/users/prosumers">      
-            <div class="left">
+            <div class="left" [ngClass]="{'light-theme':lightMode}">
                 <div [ngClass]="{'icon-hidden': isSideBarExpanded, 'icon-displayed': !isSideBarExpanded}">
                         <i class="fa-solid fa-user-group"></i>            
                 </div>
             </div>
         </a>
-        <div class="right" *ngIf="isAdmin()">
+        <div class="right">
             <div class="title">
-                <a routerLink="/users/prosumers">Prosumers</a>
+                <a routerLink="/users/prosumers"><i class="fa-solid fa-users">Prosumers</i></a>
             </div>
         </div>
 
     </div> 
 
-    <div class="main submain" routerLinkActive="active" *ngIf="isAdmin()">
+    <div class="main submain" routerLinkActive="active" >
         <a routerLink="/users/operators">
-            <div class="left">
+            <div class="left" [ngClass]="{'light-theme':lightMode}">
                 <div [ngClass]="{'icon-hidden': isSideBarExpanded, 'icon-displayed': !isSideBarExpanded}">
                         <i class="fa-solid fa-users-gear"></i>
                     
                 </div>
             </div> 
         </a>
-        <div class="right" routerLinkActive="active" *ngIf="isAdmin()">
+        <div class="right" routerLinkActive="active" >
             <div class="title">
-                <a routerLink="/users/operators">Operators</a>
+                <a routerLink="/users/operators"><i class="fa-solid fa-users">Operators</i></a>
             </div>
         </div>
     </div> 
@@ -99,7 +99,7 @@
 <!--        DEVICES       -->
 
 <div class="main" [ngClass]="{'margin-150': !isSubMenuShown}" routerLinkActive="active" *ngIf="!isAdmin()">
-    <div class="left">
+    <div class="left" [ngClass]="{'light-theme':lightMode}">
         <a routerLink="/devices">
             <i class='fa-solid fa-computer'></i>
         </a>
@@ -131,7 +131,7 @@
 <div  [ngClass]="{'hidden': isSubMenuShown, 'submenu': !isSubMenuShown}" *ngIf="!isAdmin()">
     <div class="main submain" routerLinkActive="active">
         <a routerLink="/devices/consumption">
-            <div class="left">
+            <div class="left" [ngClass]="{'light-theme':lightMode}">
                 <div [ngClass]="{'icon-hidden': isSideBarExpanded, 'icon-displayed': !isSideBarExpanded}">
                     <i class="fa-solid fa-bolt"></i>
                 </div>
@@ -146,7 +146,7 @@
 
     <div class="main submain" routerLinkActive="active" *ngIf="!isAdmin()">
         <a routerLink="/devices/production">
-            <div class="left">
+            <div class="left" [ngClass]="{'light-theme':lightMode}">
                 <div [ngClass]="{'icon-hidden': isSideBarExpanded, 'icon-displayed': !isSideBarExpanded}">
                     <i class="fa-solid  fa-solar-panel"></i>
                 </div>
@@ -161,7 +161,7 @@
 
     <div class="main submain" routerLinkActive="active" *ngIf="!isAdmin()">
         <a routerLink="/devices/stock">
-            <div class="left">
+            <div class="left" [ngClass]="{'light-theme':lightMode}">
                 <div [ngClass]="{'icon-hidden': isSideBarExpanded, 'icon-displayed': !isSideBarExpanded}">
                     <i class="fa-solid fa-car-battery"></i>
                 </div>
@@ -178,7 +178,7 @@
 
 <div class="main" routerLinkActive="active" *ngIf="!isAdmin()">
     <a routerLink="/statistics" >
-        <div class="left ">
+        <div class="left " [ngClass]="{'light-theme':lightMode}">
             <i class='fa-solid fa-chart-pie' ></i>
         </div>
     </a>
@@ -192,7 +192,7 @@
 </div>
 
 <div class="main" routerLinkActive="active">
-    <div class="left ">
+    <div class="left " [ngClass]="{'light-theme':lightMode}">
         <a routerLink="/faq">
             <i class=' fa-solid fa-question' ></i>
         </a>
@@ -207,7 +207,7 @@
 </div>
 
 <div class="main" routerLinkActive="active">
-    <div class="left ">
+    <div class="left " [ngClass]="{'light-theme':lightMode}">
         <a routerLink="/news">
             <i class="fa fa-newspaper-o" ></i>
         </a>
@@ -222,7 +222,7 @@
 </div>
 
 <div class="main last-main" routerLinkActive="active">
-    <div class="left " (click)="logout()">
+    <div class="left " [ngClass]="{'light-theme':lightMode}" (click)="logout()">
         <a >
             <i class='fa-solid fa-right-from-bracket' ></i>
         </a>

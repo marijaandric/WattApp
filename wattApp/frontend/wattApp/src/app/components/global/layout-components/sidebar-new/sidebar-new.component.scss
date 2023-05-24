@@ -37,11 +37,10 @@
       margin-left:60px;
 
       .left {
-        margin-left:70px;
       }
 
       .right {
-        width:152px;
+        width:calc(100% - 140px);
       }
       .right .title {
         transition:opc 0.5s ease;
@@ -290,12 +289,10 @@ a {
   z-index: 4;
   .left {
     
-    background-color: red;
   }
 
   .right {
     transform: translateX(20px);
-    background-color: blue;
     display:flex;
     z-index:3;
     flex-direction: column;
