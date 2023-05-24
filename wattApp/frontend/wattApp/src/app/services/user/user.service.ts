@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { map, Observable } from 'rxjs';
+import { BehaviorSubject, map, Observable } from 'rxjs';
 import { url } from '../../app.module';
 import { UserDTO } from '../../dtos/UserDTO';
 
@@ -10,6 +10,8 @@ import { UserDTO } from '../../dtos/UserDTO';
 })
 export class UserService {
   private baseUrl: string = url + "/api/User/";
+  isDark$ : BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true)
+  public isDark = this.isDark$.asObservable();
 
   constructor(private http: HttpClient,private jwtHelper:JwtHelperService) { }
 
@@ -101,7 +103,11 @@ export class UserService {
 
   changeTheme(id:number)
   {
+    const x = this.isDark$.value
+    this.isDark$.next(!x)
     const url = `${this.baseUrl}updateUserTheme/${id}`;
     return this.http.put(url,id);
   }
+
+
 }

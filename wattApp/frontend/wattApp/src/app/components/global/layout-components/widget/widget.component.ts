@@ -1,4 +1,5 @@
 import { Component, ElementRef, HostBinding, Input, OnInit, Renderer2 } from '@angular/core';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-widget',
@@ -23,24 +24,29 @@ export class WidgetComponent implements OnInit{
   @Input() @HostBinding("orange-color") public isOrange = false;
   @Input() @HostBinding("bg-orange-color") public isBgOrange = false;
 
-  constructor (private elementRef: ElementRef, private renderer: Renderer2) {
+  constructor (private elementRef: ElementRef, private renderer: Renderer2, private userService:UserService) {
 
   }
 
 
   ngOnInit(): void {
-    /*const innerElements = this.hostElement?.querySelectorAll('.main');
-    innerElements.forEach((innerElement) => {
-      this.renderer.addClass(innerElement, 'dark-theme-color-gray');
-    });
-  */
     this.hostElement = this.elementRef.nativeElement as HTMLElement;
-    this.hostElement?.classList.toggle('light-theme-bigger-shadow', true);
-    this.hostElement?.classList.add('light-theme-background-white');
-    const text = this.hostElement?.querySelector('.item_title');
-    this.renderer.addClass(text, 'ligh-theme-text-color-gray');
-    this.hostElement.addEventListener('mouseenter', this.onMouseEnter.bind(this));
-    this.hostElement.addEventListener('mouseleave', this.onMouseLeave.bind(this));
+    if(this.userService.isDark)
+    {
+      const innerElements = this.hostElement?.querySelectorAll('.main');
+      innerElements.forEach((innerElement) => {
+        this.renderer.addClass(innerElement, 'dark-theme-color-gray');
+      });
+    }
+    else{
+      this.hostElement?.classList.toggle('light-theme-bigger-shadow', true);
+      this.hostElement?.classList.add('light-theme-background-white');
+      const text = this.hostElement?.querySelector('.item_title');
+      this.renderer.addClass(text, 'ligh-theme-text-color-gray');
+      this.hostElement.addEventListener('mouseenter', this.onMouseEnter.bind(this));
+      this.hostElement.addEventListener('mouseleave', this.onMouseLeave.bind(this));
+    }
+   
 
   }
 

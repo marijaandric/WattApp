@@ -464,11 +464,13 @@ export class TitleBarComponent implements OnInit{
 
   changeTheme()
   {
+    console.log(this.userService.isDark)
     this.userService.changeTheme(this.id).subscribe({
       next:(res => {
         this.changePassForm.reset()
         this.toast.success({detail:"SUCCESS",summary:"You have successfully changed theme",duration:4000});
         this.display4 = false;
+        location.reload()
       }),
       error:(err => {
         this.toast.error({detail:"ERROR",summary:"Error",duration:4000});
