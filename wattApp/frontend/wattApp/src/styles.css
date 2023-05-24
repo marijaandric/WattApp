@@ -436,7 +436,7 @@
 
 
 .light-theme-color-gray:hover {
-  color:red;
+  color:rgb(255, 3, 226) !important;
 }
 
 .color-white {

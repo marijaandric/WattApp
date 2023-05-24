@@ -37,7 +37,7 @@
       margin-left:60px;
 
       .left {
-        display: none;
+        margin-left:70px;
       }
 
       .right {
@@ -121,6 +121,7 @@
     align-items: center;
     text-align: center;
     justify-content: center;
+    vertical-align:middle;
     z-index:1;
     .icon {
       width:100%;

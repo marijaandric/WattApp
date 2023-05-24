@@ -13,7 +13,8 @@ export class SidebarNewComponent {
   isSubMenuShown: boolean = false;
   isSubMenu2Shown: boolean = false;
   roles:any;
-  
+  lightMode: Boolean = true;
+
   hostElement: HTMLElement | undefined;
   @Output() toggleEventEmitter = new EventEmitter<boolean>();
 
@@ -30,7 +31,7 @@ export class SidebarNewComponent {
     
     const arrow = this.hostElement?.querySelector('.sidebar-arrow');
     const sidebar = this.hostElement?.querySelector('.left');
-    this.renderer.addClass(sidebar, '.dark-theme-coloro-gray');
+    this.renderer.addClass(sidebar, 'light-theme-color-gray');
     
     this.renderer.addClass(arrow, 'light-theme-background-white');
     this.renderer.addClass(arrow, 'text-color-blue');
@@ -45,6 +46,26 @@ export class SidebarNewComponent {
   
     this.hostElement?.classList.add('dark-theme-background-gray-gradient-3');
  */
+
+    /*
+    this.userService.isDark.subscribe(dark => {
+      this.hostElement = this.elementRef.nativeElement as HTMLElement;
+      if (dark) {
+        const innerElements = this.hostElement?.querySelectorAll('.main');
+        this.hostElement?.classList.toggle('dark-theme-bigger-shadow', true);
+        this.hostElement?.classList.add('dark-theme-background-gray-gradient-1');
+        innerElements?.forEach((innerElement: any) => {
+          this.renderer.addClass(innerElement, 'dark-theme-color-gray');
+        });
+      } else {
+        this.hostElement?.classList.toggle('light-theme-bigger-shadow', true);
+        this.hostElement?.classList.add('light-theme-background-white');
+        const text = this.hostElement?.querySelector('.item_title');
+        this.renderer.addClass(text, 'light-theme-text-color-gray');
+        this.hostElement?.addEventListener('mouseenter', this.onMouseEnter.bind(this));
+        this.hostElement?.addEventListener('mouseleave', this.onMouseLeave.bind(this));
+      }
+    });*/
   }
 
   expandSidebar() {
