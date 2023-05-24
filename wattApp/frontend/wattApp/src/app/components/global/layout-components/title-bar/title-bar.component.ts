@@ -462,7 +462,7 @@ export class TitleBarComponent implements OnInit{
     }) 
   }
 
-  changeTheme()
+  async changeTheme()
   {
     console.log(this.userService.isDark)
     this.userService.changeTheme(this.id).subscribe({

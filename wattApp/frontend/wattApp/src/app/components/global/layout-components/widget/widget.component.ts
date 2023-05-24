@@ -23,30 +23,44 @@ export class WidgetComponent implements OnInit{
 
   @Input() @HostBinding("orange-color") public isOrange = false;
   @Input() @HostBinding("bg-orange-color") public isBgOrange = false;
+  user: any | undefined;
 
   constructor (private elementRef: ElementRef, private renderer: Renderer2, private userService:UserService) {
 
   }
 
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    /*
     this.hostElement = this.elementRef.nativeElement as HTMLElement;
-    if(this.userService.isDark)
+    const token = localStorage.getItem('token');
+    if(token)
     {
-      const innerElements = this.hostElement?.querySelectorAll('.main');
-      innerElements.forEach((innerElement) => {
-        this.renderer.addClass(innerElement, 'dark-theme-color-gray');
+      const userId = this.userService.getUserIdFromToken(token);
+      await this.userService.GetUser(userId,token).subscribe(data=>{
+        this.user = data;
       });
+      console.log(this.user.isDarkTheme);
+
+      if(this.user.isDarkTheme)
+      {
+        const innerElements = this.hostElement?.querySelectorAll('.main');
+        this.hostElement?.classList.toggle('dark-theme-bigger-shadow', true);
+        innerElements.forEach((innerElement) => {
+          this.renderer.addClass(innerElement, 'dark-theme-color-gray');
+        });
+      } 
+      else{
+        this.hostElement?.classList.toggle('light-theme-bigger-shadow', true);
+        this.hostElement?.classList.add('light-theme-background-white');
+        const text = this.hostElement?.querySelector('.item_title');
+        this.renderer.addClass(text, 'ligh-theme-text-color-gray');
+        this.hostElement.addEventListener('mouseenter', this.onMouseEnter.bind(this));
+        this.hostElement.addEventListener('mouseleave', this.onMouseLeave.bind(this));
+      } 
     }
-    else{
-      this.hostElement?.classList.toggle('light-theme-bigger-shadow', true);
-      this.hostElement?.classList.add('light-theme-background-white');
-      const text = this.hostElement?.querySelector('.item_title');
-      this.renderer.addClass(text, 'ligh-theme-text-color-gray');
-      this.hostElement.addEventListener('mouseenter', this.onMouseEnter.bind(this));
-      this.hostElement.addEventListener('mouseleave', this.onMouseLeave.bind(this));
-    }
-   
+    */
+    
 
   }
 
