@@ -215,8 +215,8 @@ export class StatisticComponent  implements OnInit {
           this.hif[i].date1 = this.arrayData[i]
           this.hif[i].date2 = this.arrayData[i+7]
         }
-        const arr = [20.20,13.30,-5.00,0.00,-4.00,29.20,22.00,0.23];
-        const arr2 = [12.20,-5.30,0.00,-3.30,20.70,10.20,30.00,-4.23];
+        const arr = [20.20,13.30,-5.00,0.00,-4.00,29.20,22.00,0.23,45.00,58.98,74.22,12.44,22.11];
+        const arr2 = [20.20,13.30,-5.00,0.00,-4.00,29.20,22.00,0.23,45.00,58.98,74.22,12.44,22.11];
         let br = 0;
         for (let i = 3; i < 6; i++) {
           this.HistoryCon3[br] = this.HistoryCon[i];
