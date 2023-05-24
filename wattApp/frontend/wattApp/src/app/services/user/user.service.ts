@@ -39,7 +39,7 @@ export class UserService {
       'Authorization': 'Bearer ' + token
     });
 
-    return this.http.get(`${this.baseUrl}/${userId}`, { headers });
+    return this.http.get(`${this.baseUrl}${userId}`, { headers });
   }
 
   GetUserWithoutToken(userId: number) {

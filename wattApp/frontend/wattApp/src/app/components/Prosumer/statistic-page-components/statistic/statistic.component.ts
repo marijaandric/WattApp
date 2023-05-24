@@ -198,10 +198,68 @@ export class StatisticComponent  implements OnInit {
 
         this.miniHistory = this.miniHistoryCon;
         this.miniForecast  = this.miniForecastCon;
+        
 
+        this.History = this.HistoryCon;
+        this.Forecast = this.ForecastCon;
+        this.name1="Consumption history";
+        this.name2="Consumption forecast";
 
+        this.color1 = '#46c5f1';
+        this.color2 = '#88dbf6';
+
+        for(let i = 0;i<7;i++)
+        {
+          this.hif[i].history = this.HistoryCon[i]
+          this.hif[i].forecast = this.ForecastCon[i+7]
+          this.hif[i].date1 = this.arrayData[i]
+          this.hif[i].date2 = this.arrayData[i+7]
+        }
         const arr = [20.20,13.30,-5.00,0.00,-4.00,29.20,22.00,0.23];
         const arr2 = [12.20,-5.30,0.00,-3.30,20.70,10.20,30.00,-4.23];
+        let br = 0;
+        for (let i = 3; i < 6; i++) {
+          this.HistoryCon3[br] = this.HistoryCon[i];
+          this.HistoryPro3[br]= this.HistoryPro[i];
+          this.HistoryStock3[br] = this.HistoryStock[i];
+          if(this.ForecastCon[i] != 0)
+          {
+            this.ForecastCon3[br] = parseFloat((this.ForecastCon[i]+arr[i]).toFixed(2));
+          }
+          else{
+            this.ForecastCon3[br] = 0;
+          }
+
+          if(this.ForecastPro[i] != 0)
+          {
+            this.ForecastPro3[br] = parseFloat((this.ForecastPro[i]+arr2[i]).toFixed(2));
+          }
+          else
+          {
+            this.ForecastPro3[br] = 0
+          }
+
+          if(this.ForecastStock[i] !=0)
+          {
+            this.ForecastStock3[br] = parseFloat((this.ForecastStock[i]+arr[i]).toFixed(2));
+          }
+          else{
+            this.ForecastStock3[br] = 0
+          }
+          
+          this.arrayData3[br] = this.arrayData[i];
+          br++;
+        }
+        for (let i = 6; i < 9; i++) {
+          this.HistoryCon3[br] = null;
+          this.HistoryPro3[br]= null;
+          this.HistoryStock3[br] = null;
+          this.ForecastCon3[br] = this.ForecastCon[i];
+          this.ForecastPro3[br]= this.ForecastPro[i];
+          this.ForecastStock3[br] = this.ForecastStock[i];
+          this.arrayData3[br] = this.arrayData[i];
+          br++;
+        }
         if(this.ForecastCon.every((el: number) => el === 0))
         {this.ForecastCon[5] = null}
         else{
@@ -223,46 +281,7 @@ export class StatisticComponent  implements OnInit {
               this.ForecastStock[i] = parseFloat((this.ForecastStock[i]+arr[i]).toFixed(2));
           }
         }
-        
-
-        this.History = this.HistoryCon;
-        this.Forecast = this.ForecastCon;
-        this.name1="Consumption history";
-        this.name2="Consumption forecast";
-
-        this.color1 = '#46c5f1';
-        this.color2 = '#88dbf6';
-
-        for(let i = 0;i<7;i++)
-        {
-          this.hif[i].history = this.HistoryCon[i]
-          this.hif[i].forecast = this.ForecastCon[i+7]
-          this.hif[i].date1 = this.arrayData[i]
-          this.hif[i].date2 = this.arrayData[i+7]
-        }
-
-        let br = 0;
-        for (let i = 3; i < 6; i++) {
-          this.HistoryCon3[br] = this.HistoryCon[i];
-          this.HistoryPro3[br]= this.HistoryPro[i];
-          this.HistoryStock3[br] = this.HistoryStock[i];
-          this.ForecastCon3[br] = parseFloat((this.ForecastCon[i]).toFixed(2));
-          this.ForecastPro3[br] = parseFloat((this.ForecastPro[i]).toFixed(2));
-          this.ForecastStock3[br] = parseFloat((this.ForecastStock[i]).toFixed(2));
-          this.arrayData3[br] = this.arrayData[i];
-          br++;
-        }
-        for (let i = 6; i < 9; i++) {
-          this.HistoryCon3[br] = null;
-          this.HistoryPro3[br]= null;
-          this.HistoryStock3[br] = null;
-          this.ForecastCon3[br] = this.ForecastCon[i];
-          this.ForecastPro3[br]= this.ForecastPro[i];
-          this.ForecastStock3[br] = this.ForecastStock[i];
-          this.arrayData3[br] = this.arrayData[i];
-          br++;
-        }
-
+        this.loader = false;
 
       });
   }
