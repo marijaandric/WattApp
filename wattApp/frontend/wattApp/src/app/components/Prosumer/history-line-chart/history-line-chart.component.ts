@@ -39,7 +39,12 @@ export class HistoryLineChartComponent implements OnChanges{
 
   forecastArray(niz: number[]): number[] {
     const rezultat: number[] = [];
-    const niz2 = [20.20,13.30,-5.00,0.00,-4.00,29.20,22.00,0.23];
+    let niz2 = [20.20,13.30,-5.00,0.00,-4.00,29.20,22.00,0.23,45.00,58.98,74.22,12.44,22.11];
+  
+    if(this.Period =="year")
+    {
+      niz2 = [55.03,145.12,66.83,-143.11,-74.92,44.65,-10.55,134.22,11.00,67.00,89.77,66.93]
+    }
   
     for (let i = 0; i < niz.length; i++) {
       rezultat.push(parseFloat((niz[i] + niz2[i]).toFixed(2)));
