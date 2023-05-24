@@ -5,6 +5,11 @@
   }
 
   
+.light-mode-title-bar h3{
+  color:#323232;
+}
+
+
   
   .chart-container {
     display: inline-block;

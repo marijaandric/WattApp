@@ -22,7 +22,33 @@ export class DevicesComponent implements OnInit{
   devicesByRoomType: {[key: string]: DeviceDTO[]} = {};
   switchValue: boolean = true;
 
-  responsiveOptions: any[] = [];
+  responsiveOptions: any[] = [{breakpoint: '2300px',
+  numVisible: 6,
+  numScroll: 1
+},{
+    breakpoint: '2000px',
+    numVisible: 5,
+    numScroll: 1
+},{
+    breakpoint: '1700px',
+    numVisible: 4,
+    numScroll: 1
+},
+{
+    breakpoint: '1500px',
+    numVisible: 3,
+    numScroll: 1
+},
+{
+    breakpoint: '1300px',
+    numVisible: 2,
+    numScroll: 1
+},
+{
+    breakpoint: '800px',
+    numVisible: 1,
+    numScroll: 1
+}];
   carousel: boolean[] = [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false];
 
   switchOptions: SwitchOption[] = [
@@ -49,26 +75,7 @@ export class DevicesComponent implements OnInit{
     this.hostElement?.classList.add('light-theme-background-white');
 */
     this.responsiveOptions = [
-      {
-          breakpoint: '1400px',
-          numVisible: 4,
-          numScroll: 1
-      },
-      {
-          breakpoint: '1220px',
-          numVisible: 3,
-          numScroll: 1
-      },
-      {
-          breakpoint: '900px',
-          numVisible: 2,
-          numScroll: 1
-      },
-      {
-          breakpoint: '500px',
-          numVisible: 1,
-          numScroll: 1
-      }
+      
   ];
   }
 

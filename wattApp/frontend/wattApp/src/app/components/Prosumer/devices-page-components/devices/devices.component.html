@@ -8,7 +8,7 @@
         <div class="arrow"  [ngClass]="{'light-mode':lightMode}"><i class="fa-solid fa-angle-down"  [ngClass]="{'arrow-down': carousel[i],'arrow-right': !carousel[i]}"  (click)="collapseDevices(i)"></i></div>
         <p  class="roomSizeHeader"  [ngClass]="{'light-mode':lightMode}">Total: {{ devices.value.length }}</p>
       </div>
-    <p-carousel [value]="devices.value" [numVisible]="5" [circular]="false" [numScroll]="1" [responsiveOptions]="responsiveOptions" [ngClass]="{'hidden': carousel[i]}">
+    <p-carousel [value]="devices.value"  [circular]="false" [responsiveOptions]="responsiveOptions" [ngClass]="{'hidden': carousel[i]}">
      <ng-template let-device pTemplate="device" >
           <app-device-card [device]="device" ></app-device-card>
       </ng-template>
