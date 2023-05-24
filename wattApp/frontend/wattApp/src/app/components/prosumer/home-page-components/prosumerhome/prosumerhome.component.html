@@ -34,7 +34,7 @@
               </div>
               <div *ngIf ="device.deviceName == 'default'">
                 <div style="cursor: pointer;margin-top:20px" (click)="showDisplay()">
-                <div style="width:92%;margin:auto;background-color: #1b1b1b;border-radius: 20px;box-shadow: 5px 5px 15px black;text-align: center;">
+                <div style="width:90%;min-height:170px;max-width:300px;margin:auto;border-radius: 20px;text-align: center;" [ngClass]="{'light-mode-card':lightMode}">
                 <div style="padding: 20px;padding-top:70px"><i class="fa fa-plus" aria-hidden="true"></i>Add {{device.deviceType}} device</div>
                 </div>
                 </div>
@@ -46,7 +46,7 @@
               <h6 style="text-align: center;" [ngClass]="{'light-mode':lightMode}">The biggest {{device.deviceType}}</h6>
               <div *ngIf ="device.deviceName == 'default'">
                 <div style="cursor: pointer;margin-top:20px" (click)="showDisplay()">
-                <div style="width:92%;margin:auto;background-color: #1b1b1b;border-radius: 20px;box-shadow: 5px 5px 15px black;text-align: center;">
+                <div style="width:90%;min-height:170px;max-width:300px;margin:auto;border-radius: 20px; text-align: center;" [ngClass]="{'light-mode=-card':lightMode}">
                 <div style="padding: 20px;padding-top:70px"><i class="fa fa-plus" aria-hidden="true"></i>Add {{device.deviceType}} device</div>
                 </div>
                 </div>
@@ -104,33 +104,38 @@
 [draggable]="true" [keepInViewport]="true" [resizable]="false" 
 [blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true" 
 [modal]="true" [(visible)]="display" [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
-[closable]="true" >
+[closable]="true" [ngClass]="{'light-mode':lightMode}" >
 <ng-template pTemplate="header" class="header-dialog">
-  <span>Add Device</span>
+  <span>Add Device <i class="fa fa-info-circle" style="cursor:pointer" aria-hidden="true" (click)="op3.toggle($event)"></i> </span>
+  <p-overlayPanel #op3 >
+    <p style="width:350px">Dear user,</p> 
+    <p style="width:350px">You must fill in all fields.</p>
+    <p style="width:350px">If an error occurs while adding your device and you have followed the steps, please consult with your nearest operator for assistance.</p>
+  </p-overlayPanel>
 </ng-template>
 
 <ng-template pTemplate="content">
   <form [formGroup]="addDeviceForm" >  
   <div class="p-inputgroup p-inputtext-lg p-input-filled">
     <div class="half">  
-      Device category 
-      <p-dropdown [options]="types" appendTo="body" optionLabel="name" (onChange)="onTypeChange($event)"/>
-      Device type 
-      <p-dropdown [options]="models" appendTo="body" optionLabel="name" (onChange)="onModelChange($event)"/>
-    </div>
+      <span>Device category</span> 
+      <div class="dropdown-div" style="margin-bottom:20px;" [ngClass]="{'light-mode':lightMode}"> <p-dropdown [options]="types" appendTo="body" optionLabel="name" (onChange)="onTypeChange($event)" [ngClass]="{'light-mode':lightMode}" /></div>
+      <span >Device type </span>
+      <div class="dropdown-div" style="margin-top:0px;" [ngClass]="{'light-mode':lightMode}"><p-dropdown [options]="models" appendTo="body" optionLabel="name" (onChange)="onModelChange($event)" [ngClass]="{'light-mode':lightMode}" />
+    </div></div>
     
     <div class="half">       
-       Location
-      <p-dropdown [options]="rooms" appendTo="body" optionLabel="name" (onChange)="onRoomChange($event)"/>
-      <input style="margin-top:45px;" formControlName="deviceName" name="name"  appendTo="body" type="text"   class="p-inputtext-lg"  placeholder="DEVICE NAME"> 
+      <span>Location</span>
+       <div class="dropdown-div" style="margin-bottom:20px;" [ngClass]="{'light-mode':lightMode}"><p-dropdown [options]="rooms" appendTo="body" optionLabel="name" (onChange)="onRoomChange($event)" [ngClass]="{'light-mode':lightMode}" /></div>
+       <span> Device name </span>
+       <input formControlName="deviceName" name="name"  type="text"   class="p-inputtext-lg"  placeholder="DEVICE NAME" style="margin-top:0px;"> 
     </div>
   </div> 
   </form>
 </ng-template>
 
 <ng-template pTemplate="footer" style="min-height:100px;" >
-  <button type="button" class="footer-button" icon="pi pi-info-circle" label="Show" (click)="addDevice()"><span>Save</span></button>
-
+  <div class="button-div"><p-button type="button" class="footer-button" label="Save" (click)="addDevice()"></p-button>
+  </div>
 </ng-template>
 </p-dialog>
-
