@@ -252,7 +252,7 @@
 }
 
 .p-carousel-items-container {
-  
+  display: -webkit-box !important;
 }
 .p-inputswitch.p-inputswitch-checked .p-inputswitch-slider {
   background: #46c5f1 !important;
