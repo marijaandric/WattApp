@@ -33,6 +33,13 @@
                 <p-columnFilter class="ml-auto" type="text" field="values" display="menu"></p-columnFilter>
             </div>
           </th>
+          <th *ngIf="this.History[0] != null" pSortableColumn="values" style="min-width:14rem;  border-top:2px  solid #46c5f1; border-bottom:2px solid #46c5f1;">
+            <div class="flexRow">
+                <p style=" font-size: 15px !important;">Forecast</p>
+                <p-sortIcon field="values"></p-sortIcon>
+                <p-columnFilter class="ml-auto" type="text" field="values" display="menu"></p-columnFilter>
+            </div>
+          </th>
           
         </tr>
       </ng-template>
@@ -45,6 +52,9 @@
           <td>{{hif.date}}</td>
           <td>
             <b>{{hif.values}} kWh</b>
+          </td>
+          <td *ngIf="this.History[0] != null">
+            {{hif.values2}} kWh
           </td>
         </tr>
       </ng-template>
