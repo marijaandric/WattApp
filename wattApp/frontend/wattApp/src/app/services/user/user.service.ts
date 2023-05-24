@@ -10,10 +10,21 @@ import { UserDTO } from '../../dtos/UserDTO';
 })
 export class UserService {
   private baseUrl: string = url + "/api/User/";
-  isDark$ : BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true)
+  public isDark$ : BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true)
   public isDark = this.isDark$.asObservable();
 
-  constructor(private http: HttpClient,private jwtHelper:JwtHelperService) { }
+  constructor(private http: HttpClient,private jwtHelper:JwtHelperService) 
+  {
+    const storedValue = localStorage.getItem('myVariable');
+    console.log(storedValue)
+    if (storedValue) {
+      this.isDark$.next(JSON.parse(storedValue));
+    }
+    else{
+      console.log(String(this.isDark$.value))
+      this.isDark$.next(true);
+    }
+  }
 
   getAllUsers(): Observable<UserDTO[]> {
     return this.http.get<UserDTO[]>(this.baseUrl).pipe(
@@ -105,9 +116,11 @@ export class UserService {
   {
     const x = this.isDark$.value
     this.isDark$.next(!x)
+    localStorage.setItem('myVariable', String(this.isDark$.value));
     const url = `${this.baseUrl}updateUserTheme/${id}`;
     return this.http.put(url,id);
   }
+
 
 
 }

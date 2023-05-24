@@ -106,7 +106,7 @@ export class TitleBarComponent implements OnInit{
     }
   }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     
     this.hostElement = this.elementRef.nativeElement as HTMLElement;
     const innerElements = this.hostElement?.querySelectorAll('a, p,li, div');
@@ -124,7 +124,7 @@ export class TitleBarComponent implements OnInit{
       this.rola = this.userService.getUserRoleFromToken(token);
       const userId = this.userService.getUserIdFromToken(token);
       this.userImageUrlEndpoint = this.baseUrl + userId;
-      this.userService.GetUser(userId,token).subscribe(data=>{
+      await this.userService.GetUser(userId,token).subscribe(data=>{
         this.user = data;
       })
     }
@@ -467,10 +467,9 @@ export class TitleBarComponent implements OnInit{
     console.log(this.userService.isDark)
     this.userService.changeTheme(this.id).subscribe({
       next:(res => {
-        this.changePassForm.reset()
-        this.toast.success({detail:"SUCCESS",summary:"You have successfully changed theme",duration:4000});
+        //this.toast.success({detail:"SUCCESS",summary:"You have successfully changed theme",duration:4000});
         this.display4 = false;
-        location.reload()
+        //location.reload()
       }),
       error:(err => {
         this.toast.error({detail:"ERROR",summary:"Error",duration:4000});
