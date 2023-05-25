@@ -98,8 +98,8 @@
 
 
 <!--        DEVICES       -->
-
-<div class="main" [ngClass]="{'margin-150': !isSubMenuShown}" routerLinkActive="active" *ngIf="!isAdmin()">
+<div *ngIf="!isAdmin()">
+<div class="main" [ngClass]="{'margin-150': !isSubMenuShown}" routerLinkActive="active" >
     <div class="left" [ngClass]="{'light-theme':lightMode}">
         <a routerLink="/devices">
             <i class='fa-solid fa-computer'></i>
@@ -129,7 +129,7 @@
     </div>
 </div>
 
-<div  [ngClass]="{'hidden': isSubMenuShown, 'submenu': !isSubMenuShown}" *ngIf="!isAdmin()">
+<div  [ngClass]="{'hidden': isSubMenuShown, 'submenu': !isSubMenuShown}">
     <div class="main submain" routerLinkActive="active">
         <a routerLink="/devices/consumption">
             <div class="left" [ngClass]="{'light-theme':lightMode}">
@@ -145,7 +145,7 @@
         </div>
     </div> 
 
-    <div class="main submain" routerLinkActive="active" *ngIf="!isAdmin()">
+    <div class="main submain" routerLinkActive="active">
         <a routerLink="/devices/production">
             <div class="left" [ngClass]="{'light-theme':lightMode}">
                 <div [ngClass]="{'icon-hidden': isSideBarExpanded, 'icon-displayed': !isSideBarExpanded}">
@@ -160,7 +160,7 @@
         </div>
     </div> 
 
-    <div class="main submain" routerLinkActive="active" *ngIf="!isAdmin()">
+    <div class="main submain" routerLinkActive="active" >
         <a routerLink="/devices/stock">
             <div class="left" [ngClass]="{'light-theme':lightMode}">
                 <div [ngClass]="{'icon-hidden': isSideBarExpanded, 'icon-displayed': !isSideBarExpanded}">
@@ -177,7 +177,7 @@
 </div>
 
 
-<div class="main" routerLinkActive="active" *ngIf="!isAdmin()">
+<div class="main" routerLinkActive="active" >
     <a routerLink="/statistics" >
         <div class="left " [ngClass]="{'light-theme':lightMode}">
             <i class='fa-solid fa-chart-pie' ></i>
@@ -191,7 +191,7 @@
         </div>
     </div>
 </div>
-
+</div>
 <div class="main" routerLinkActive="active">
     <div class="left " [ngClass]="{'light-theme':lightMode}">
         <a routerLink="/faq">

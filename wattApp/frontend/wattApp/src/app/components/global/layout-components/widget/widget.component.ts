@@ -79,6 +79,8 @@ export class WidgetComponent implements OnInit{
       this.lightMode = dark
       this.hostElement?.classList.toggle('dark-theme-bigger-shadow', dark);
       this.hostElement?.classList.toggle('light-theme-bigger-shadow', !dark);
+      this.hostElement?.classList.toggle('dark-theme-background-gray-gradient-1', dark);
+      this.hostElement?.classList.toggle('light-theme-background-white', !dark);
     });
     
   

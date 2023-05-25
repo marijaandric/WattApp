@@ -36,7 +36,7 @@ export class SidebarNewComponent {
   
 
     const arrow = this.hostElement?.querySelector('.sidebar-arrow');
-    const sidebar = this.hostElement?.querySelectorAll('.main');
+    const sidebar = this.hostElement?.querySelectorAll('.main, .ng-star-inserted .main');
     const sidebar2 = this.hostElement?.querySelectorAll('.left');
     sidebar.forEach((innerElement) => {
       this.renderer.addClass(innerElement, 'light-theme-color-gray');
