@@ -5,8 +5,8 @@
   
     <app-center-bar *ngIf="loader"><app-loader></app-loader></app-center-bar>
     <app-center-bar *ngIf="!loader">
-    <h3 class="hello" [ngClass]="{'light-mode':lightMode}">Hello, {{user?.firstName}} {{user?.lastName}}</h3>
-    <h6 style="margin-bottom: -10px;font-size:14px !important;" [ngClass]="{'light-mode':lightMode}">{{quote}}</h6>
+    <h3 class="hello"  class="t1">Hello, {{user?.firstName}} {{user?.lastName}}</h3>
+    <h6 style="margin-bottom: -10px;font-size:14px !important;" class="t5">{{quote}}</h6>
     <div class="prviDeoPrognoza">
     <div class="prviDeo">
     <div class="widgets">
@@ -21,14 +21,14 @@
       </app-widget>
         
     </div>
-    <h3 class="hello" [ngClass]="{'light-mode':lightMode}">Top Devices</h3>
+    <h3 class="hello" class="t2"> Top Devices</h3>
     <div style="display: flex;
     flex-direction: row;
     flex-wrap: wrap;">
     <div class="crsl" style="width: 40%;">
         <p-carousel *ngIf="devices[0].deviceName != 'default'" [value] = "devices" [circular]="false" [numScroll]="1">
           <ng-template let-device pTemplate="device">
-              <h6 style="text-align: center;" [ngClass]="{'light-mode':lightMode}">The biggest {{device.deviceType}}</h6>
+              <h6 style="text-align: center;" class="t3">The biggest {{device.deviceType}}</h6>
               <div *ngIf ="device.deviceName != 'default'"  style="margin-bottom:20px;">
               <app-device-card [device]="device" [devices]="devices"></app-device-card>
               </div>
@@ -43,7 +43,7 @@
         </p-carousel>
         <p-carousel *ngIf="devices[0].deviceName == 'default'" [value] = "devices" [circular]="false" [numScroll]="1">
           <ng-template let-device pTemplate="device">
-              <h6 style="text-align: center;" [ngClass]="{'light-mode':lightMode}">The biggest {{device.deviceType}}</h6>
+              <h6 style="text-align: center;" class="t4">The biggest {{device.deviceType}}</h6>
               <div *ngIf ="device.deviceName == 'default'">
                 <div style="cursor: pointer;margin-top:20px" (click)="showDisplay()">
                 <div style="width:90%;min-height:170px;max-width:300px;margin:auto;border-radius: 20px; text-align: center;" [ngClass]="{'light-mode=-card':lightMode}">
@@ -55,7 +55,7 @@
         </p-carousel>
         </div>
         
-        <div class="slika">
+        <div class="slika" [ngClass]="{'light-theme-bigger-shadow':lightMode,'dark-theme-bigger-shadow':!lightMode}" >
           
         </div>
     </div>
@@ -68,7 +68,7 @@
       </div>
     </div>
   </div>
-  <h3 class="hello" [ngClass]="{'light-mode':lightMode}" style="margin-top:20px;">News and fun</h3>
+  <h3 class="hello" class="t6" style="margin-top:20px;">News and fun</h3>
   <div class="promotions" >
     <app-promotion [subTitle]="naslov1"
      [Title]="sadrzaj1" 

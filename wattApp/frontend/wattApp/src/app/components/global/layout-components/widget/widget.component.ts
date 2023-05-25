@@ -54,13 +54,11 @@ export class WidgetComponent implements OnInit{
       this.hostElement?.classList.toggle('light-theme-bigger-shadow', !dark);
       this.hostElement?.classList.toggle('dark-theme-background-gray-gradient-1', dark);
       this.hostElement?.classList.toggle('light-theme-background-white', !dark);
-      if(dark)
-      {
-        
-      }
+      
     });
+    
     this.hostElement?.addEventListener('mouseenter', this.onMouseEnter.bind(this));
-        this.hostElement?.addEventListener('mouseleave', this.onMouseLeave.bind(this));
+    this.hostElement?.addEventListener('mouseleave', this.onMouseLeave.bind(this));
   
     
   }

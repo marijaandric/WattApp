@@ -1,6 +1,6 @@
 import { ChangeDetectorRef, Component, ElementRef, Input, OnChanges, OnInit, Renderer2, SimpleChanges, ViewChild } from '@angular/core';
 import { StadardTemplateComponent } from 'src/app/components/global/layout-components/standard-template/stadard-template.component';
-import { UserService } from 'src/app/services/user.service';
+import { UserService } from 'src/app/services/user/user.service';
 import { HttpClient } from '@angular/common/http';
 import { DeviceDTO } from 'src/app/dtos/DeviceDTO';
 import { DeviceService } from 'src/app/services/device/device.service';
@@ -266,11 +266,38 @@ roomSelected! : Rooms;
 
 
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     
     this.hostElement = this.elementRef.nativeElement as HTMLElement;
-    const text = this.hostElement?.querySelector('h3, h6');
-    this.renderer.addClass(text, 'ligh-theme-text-color-gray');
+    const token = localStorage.getItem('token');
+    this.userService.isDark$.subscribe(dark => {
+      this.lightMode = !dark;
+
+      const text = this.hostElement?.querySelector('h3');
+      text?.classList.toggle('ligh-theme-text-color-gray', !dark);
+      text?.classList.toggle('color-white', dark);
+      const text2 = this.hostElement?.querySelector('.t1');
+      text2?.classList.toggle('ligh-theme-text-color-gray', !dark);
+      text2?.classList.toggle('color-white', dark);
+      const text3 = this.hostElement?.querySelector('.t2');
+      text3?.classList.toggle('ligh-theme-text-color-gray', !dark);
+      text3?.classList.toggle('color-white', dark);
+      const text4 = this.hostElement?.querySelector('.t3');
+      text4?.classList.toggle('ligh-theme-text-color-gray', !dark);
+      text4?.classList.toggle('color-white-imp', dark);
+      const text5 = this.hostElement?.querySelector('.t4');
+      text5?.classList.toggle('ligh-theme-text-color-gray', !dark);
+      text5?.classList.toggle('color-white', dark);
+      const text6 = this.hostElement?.querySelector('.t5');
+      text6?.classList.toggle('ligh-theme-text-color-gray', !dark);
+      text6?.classList.toggle('color-white', dark);
+      const text7 = this.hostElement?.querySelector('.t6');
+      text7?.classList.toggle('ligh-theme-text-color-gray', !dark);
+      text7?.classList.toggle('color-white', dark);
+      const slika = this.hostElement?.querySelector('.slika');
+      
+    });
+
 
     this.devices[0]=this.device;
     this.devices[1] = this.device1;

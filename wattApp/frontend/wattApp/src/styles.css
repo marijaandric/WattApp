@@ -300,7 +300,7 @@
     font-family: 'Mandali', sans-serif;
     
   }
-  h1,h2,h3,h4,h5,h6 {
+  h1,h2,h3,h4,h5 {
     font-family: 'Montserrat', sans-serif;
     color:white;
   
@@ -352,7 +352,7 @@
 }
 
 .dark-theme-bigger-shadow {
-  box-shadow: 5px 5px 15px black;
+  box-shadow: 5px 5px 15px black !important;
 }
 
 .dark-theme-smaller-shadow {
@@ -369,7 +369,7 @@
   box-shadow: 8px 8px 25px -8px rgba(0,0,0,0.24); 
 }*/
 .light-theme-bigger-shadow {
-  box-shadow: 8px 8px 35px -15px rgb(200, 200, 200);
+  box-shadow: 8px 8px 35px -15px rgb(200, 200, 200) !important;
 }
 
 
