@@ -134,7 +134,11 @@ namespace backend.BAL
             string psw = userObj.Password;
             userObj.Password = PasswordHasher.HashPassword(userObj.Password);
             userObj.Token = "";
-            SendEmailAsync(userObj.Email, "CodeSpark Energy", "Hi, "+ userObj.FirstName + "\nThis is your password: "+ psw + "\nYou can change your password in our application at any time. Your password is unique and only you can know it.\r\nThank you for your trust! Enjoy using the application!\r\n\r\nSincerely, Your Distribution");
+            var tokenBytes = RandomNumberGenerator.GetBytes(64);
+            var emailToken = Convert.ToBase64String(tokenBytes);
+            userObj.ResetPasswordExpiryTime = DateTime.Now.AddDays(15);
+            userObj.ResetPasswordToken = emailToken;
+            SendEmailAsync(userObj.Email, "CodeSpark Energy", "Hi, "+ userObj.FirstName + "\nThis is your password: "+ psw + "\nYou can change your password in our application at any time. Your password is unique and only you can know it.\r\nThe link that leads to our application login is: http://localhost:4200/login\r\nIf you want to reset your password immediately, you can do so by clicking on the following link:http://localhost:4200/reset?email=" + userObj.Email + "&code=" + emailToken + "\nDo not forget that the password should have at least 8 letters, at least one uppercase letter, at least one lowercase letter, a special character and a number\nThank you for your trust! Enjoy using the application!\r\n\r\nSincerely, CodeSpark Energy");
             return _contextDAL.addUser(userObj);
         }
 
