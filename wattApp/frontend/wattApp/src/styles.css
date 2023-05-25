@@ -300,7 +300,7 @@
     font-family: 'Mandali', sans-serif;
     
   }
-  h1,h2,h3,h4,h5 {
+  h1,h2,h3,h4,h5,h5 {
     font-family: 'Montserrat', sans-serif;
     color:white;
   
@@ -406,6 +406,9 @@
   color: #5b5b5b;
 }
 
+.light-theme-color-gray-323232 {
+  color: #323232 !important;
+}
 
 .light-theme-text-color-dark-gray {
   color: #252525 !important;

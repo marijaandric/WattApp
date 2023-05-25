@@ -146,15 +146,25 @@ export class PromotionComponent implements OnInit,OnChanges{
 
 
 
-  ngOnInit(): void {
-
+ 
+  async ngOnInit(): Promise<void> {
+    
     this.hostElement = this.elementRef.nativeElement as HTMLElement;
-    this.hostElement?.classList.toggle('light-theme-bigger-shadow', true);
-    this.hostElement?.classList.add('light-theme-background-white');
-    const text = this.hostElement?.querySelector('.item_title');
-    this.renderer.addClass(text, 'dark-theme-text-color-black');
-    const text2 = this.hostElement?.querySelector('.date');
-    this.renderer.addClass(text2, 'ligh-theme-text-color-gray');
+    const token = localStorage.getItem('token');
+    this.userService.isDark$.subscribe(dark => {
+      
+            
+      this.hostElement?.classList.toggle('dark-theme-bigger-shadow', dark);
+      this.hostElement?.classList.toggle('light-theme-bigger-shadow', !dark);
+      this.hostElement?.classList.toggle('dark-theme-background-gray-gradient-3', dark);
+      this.hostElement?.classList.toggle('light-theme-background-white', !dark);
+      
+        const text = this.hostElement?.querySelector('.item_title');
+        this.renderer.addClass(text, 'dark-theme-text-color-black');
+        const text2 = this.hostElement?.querySelector('.date');
+        this.renderer.addClass(text2, 'ligh-theme-text-color-gray');
+    });
+
 
 
 
@@ -168,7 +178,6 @@ export class PromotionComponent implements OnInit,OnChanges{
     })
      
 
-      const token = localStorage.getItem('token');
     if(token)
     {
       this.id = this.userService.getUserIdFromToken(token)

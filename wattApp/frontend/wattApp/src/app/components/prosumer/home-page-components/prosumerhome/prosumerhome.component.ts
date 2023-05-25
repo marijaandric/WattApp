@@ -42,7 +42,7 @@ interface Roles{
 })
 export class ProsumerhomeComponent implements OnInit{
   hostElement : HTMLElement | undefined;
-  lightMode: Boolean = true;
+  lightMode: Boolean = false;
   loader = true;
   user:any;
   id: any;
@@ -273,28 +273,6 @@ roomSelected! : Rooms;
     this.userService.isDark$.subscribe(dark => {
       this.lightMode = !dark;
 
-      const text = this.hostElement?.querySelector('h3');
-      text?.classList.toggle('ligh-theme-text-color-gray', !dark);
-      text?.classList.toggle('color-white', dark);
-      const text2 = this.hostElement?.querySelector('.t1');
-      text2?.classList.toggle('ligh-theme-text-color-gray', !dark);
-      text2?.classList.toggle('color-white', dark);
-      const text3 = this.hostElement?.querySelector('.t2');
-      text3?.classList.toggle('ligh-theme-text-color-gray', !dark);
-      text3?.classList.toggle('color-white', dark);
-      const text4 = this.hostElement?.querySelector('.t3');
-      text4?.classList.toggle('ligh-theme-text-color-gray', !dark);
-      text4?.classList.toggle('color-white-imp', dark);
-      const text5 = this.hostElement?.querySelector('.t4');
-      text5?.classList.toggle('ligh-theme-text-color-gray', !dark);
-      text5?.classList.toggle('color-white', dark);
-      const text6 = this.hostElement?.querySelector('.t5');
-      text6?.classList.toggle('ligh-theme-text-color-gray', !dark);
-      text6?.classList.toggle('color-white', dark);
-      const text7 = this.hostElement?.querySelector('.t6');
-      text7?.classList.toggle('ligh-theme-text-color-gray', !dark);
-      text7?.classList.toggle('color-white', dark);
-      const slika = this.hostElement?.querySelector('.slika');
       
     });
 
