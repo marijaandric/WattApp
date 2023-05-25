@@ -443,6 +443,10 @@
   color:white;
 }
 
+.color-white-imp{
+  color:white !important;
+}
+
 .light-theme-bg-blue {
   background:#46c5f1;
 }
