@@ -14,6 +14,7 @@ export class SidebarNewComponent {
   isSubMenu2Shown: boolean = false;
   roles:any;
   lightMode: Boolean = true;
+  isAdminRole: Boolean = false;
 
   hostElement: HTMLElement | undefined;
   @Output() toggleEventEmitter = new EventEmitter<boolean>();
@@ -112,6 +113,8 @@ export class SidebarNewComponent {
       return false;
     }
     const userRole = this.userService.getUserRoleFromToken(token);
+    if(userRole === 'operator' || userRole === 'admin')
+      this.isAdminRole = true;
     return userRole === 'operator' || userRole === 'admin' || userRole === 'superadmin';
   }
 

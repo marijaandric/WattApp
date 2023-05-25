@@ -209,6 +209,11 @@ a {
 .light-theme .arrow i {
   color:#46c5f1 ;
 }
+
+.active .light-theme .arrow i {
+  color:white ;
+}
+
 .main:hover .light-theme .arrow i {
   color:white ;
 }
@@ -228,13 +233,15 @@ a {
     display: none;
   }
 }
-
+ 
 .hidden {
   opacity: 1;
   height:fit-content;
   transition-duration: 0.5s;
 }
-
+.admin {
+  display:none !important;
+}
 .logo-icon {
   width:50px;
 

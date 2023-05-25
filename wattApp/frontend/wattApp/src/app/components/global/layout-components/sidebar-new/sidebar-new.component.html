@@ -64,33 +64,33 @@
 
 <div  [ngClass]="{'hidden': isSubMenuShown, 'submenu': !isSubMenuShown}" >
     <div class="main submain" routerLinkActive="active">
-        <a routerLink="/users/prosumers">      
+        <a  href="users/prosumers">      
             <div class="left" [ngClass]="{'light-theme':lightMode}">
                 <div [ngClass]="{'icon-hidden': isSideBarExpanded, 'icon-displayed': !isSideBarExpanded}">
-                    <a routerLink="/users/prosumers"><i class="fa-solid fa-user-group"></i> </a>           
+                    <a  href="users/prosumers"><i class="fa-solid fa-user-group"></i> </a>           
                 </div>
             </div>
         </a>
         <div class="right">
             <div class="title">
-                <a routerLink="/users/prosumers">Prosumers</a>
+                <a href="users/prosumers">Prosumers</a>
             </div>
         </div>
 
     </div> 
 
     <div class="main submain" routerLinkActive="active" >
-        <a routerLink="/users/operators">
+        <a  href="users/operators">
             <div class="left" [ngClass]="{'light-theme':lightMode}">
                 <div [ngClass]="{'icon-hidden': isSideBarExpanded, 'icon-displayed': !isSideBarExpanded}">
-                    <a routerLink="/users/prosumers"><i class="fa-solid fa-users-gear"></i></a>
+                    <a  href="users/operators"><i class="fa-solid fa-users-gear"></i></a>
                     
                 </div>
             </div> 
         </a>
         <div class="right" routerLinkActive="active" >
             <div class="title">
-                <a routerLink="/users/operators">Operators</a>
+                <a  href="users/operators">Operators</a>
             </div>
         </div>
     </div> 
