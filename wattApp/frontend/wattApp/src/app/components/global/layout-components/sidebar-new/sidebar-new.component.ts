@@ -19,7 +19,7 @@ export class SidebarNewComponent {
   hostElement: HTMLElement | undefined;
   @Output() toggleEventEmitter = new EventEmitter<boolean>();
 
-  constructor(private elementRef: ElementRef,private api : APIService, private auth:AuthService, private renderer: Renderer2,private authService:AuthService,private userService:UserService) {
+  constructor(private elementRef: ElementRef, private api : APIService, private auth:AuthService, private renderer: Renderer2,private authService:AuthService,private userService:UserService) {
   }
 
   ngOnInit(): void {

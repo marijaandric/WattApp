@@ -34,31 +34,6 @@ export class WidgetComponent implements OnInit{
   async ngOnInit(): Promise<void> {
     
     const token = localStorage.getItem('token');
-    // if(token)
-    // {
-    //   const userId = this.userService.getUserIdFromToken(token);
-    //   await this.userService.GetUser(userId,token).subscribe(data=>{
-    //     this.user = data;
-    //     // this.hostElement = this.elementRef.nativeElement as HTMLElement;
-    //     // if(this.user.isDarkTheme)
-    //     // {
-    //     //   const innerElements = this.hostElement?.querySelectorAll('.main');
-    //     //   this.hostElement?.classList.toggle('dark-theme-bigger-shadow', true);
-    //     //    this.hostElement?.classList.add('dark-theme-background-gray-gradient-1');
-    //     //   innerElements.forEach((innerElement) => {
-    //     //     this.renderer.addClass(innerElement, 'dark-theme-color-gray');
-    //     //   });
-    //     // } 
-    //     // else{
-    //     //   this.hostElement?.classList.toggle('light-theme-bigger-shadow', true);
-    //     //   this.hostElement?.classList.add('light-theme-background-white');
-    //     //   const text = this.hostElement?.querySelector('.item_title');
-    //     //   this.renderer.addClass(text, 'ligh-theme-text-color-gray');
-    //     //   this.hostElement.addEventListener('mouseenter', this.onMouseEnter.bind(this));
-    //     //   this.hostElement.addEventListener('mouseleave', this.onMouseLeave.bind(this));
-    //     // } 
-    //   });
-
     this.userService.isDark$.subscribe(dark => {
       this.hostElement = this.elementRef.nativeElement as HTMLElement;
       // if (dark) {
@@ -73,16 +48,19 @@ export class WidgetComponent implements OnInit{
       //   this.hostElement?.classList.add('light-theme-background-white');
       //   const text = this.hostElement?.querySelector('.item_title');
       //   this.renderer.addClass(text, 'light-theme-text-color-gray');
-      //   this.hostElement?.addEventListener('mouseenter', this.onMouseEnter.bind(this));
-      //   this.hostElement?.addEventListener('mouseleave', this.onMouseLeave.bind(this));
       // }
       this.lightMode = dark
       this.hostElement?.classList.toggle('dark-theme-bigger-shadow', dark);
       this.hostElement?.classList.toggle('light-theme-bigger-shadow', !dark);
       this.hostElement?.classList.toggle('dark-theme-background-gray-gradient-1', dark);
       this.hostElement?.classList.toggle('light-theme-background-white', !dark);
+      if(dark)
+      {
+        
+      }
     });
-    
+    this.hostElement?.addEventListener('mouseenter', this.onMouseEnter.bind(this));
+        this.hostElement?.addEventListener('mouseleave', this.onMouseLeave.bind(this));
   
     
   }
@@ -90,16 +68,13 @@ export class WidgetComponent implements OnInit{
 
   private onMouseEnter(): void {
     const text = this.hostElement?.querySelector('.item_title');
-    if (text) {
-      text.classList.add('color-white');
-    }
+
+    this.renderer.addClass(text, 'color-white-imp');
   }
 
   private onMouseLeave(): void {
     const text = this.hostElement?.querySelector('.item_title');
-    if (text) {
-      text.classList.remove('color-white');
-    }
+    this.renderer.removeClass(text, 'color-white-imp');
   }
 
   
