@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-weather-forecast',
@@ -12,32 +13,85 @@ export class WeatherForecastComponent implements OnInit {
   currentDate : Date = new Date;
   time : string = this.currentDate.toLocaleTimeString();
   date : string = this.currentDate.toLocaleDateString();
+  lightMode:Boolean = false;
 
-  constructor(private elementRef: ElementRef, private renderer: Renderer2) {
+  constructor(private elementRef: ElementRef, private renderer: Renderer2, private userService:UserService ) {
 
   }
 
-  ngOnInit(): void {
+  
+  async ngOnInit(): Promise<void> {
     this.hostElement = this.elementRef.nativeElement as HTMLElement;
     const mapa = this.hostElement?.querySelector('.box');
     const tekst = this.hostElement?.querySelectorAll('.box .info h2, p, .info2 h4');
     const mini_tekst = this.hostElement?.querySelectorAll('.box .info .info2 h6');
-    mini_tekst.forEach((innerElement) => {
-      this.renderer.addClass(innerElement, 'light-theme-text-color-dark-gray');
-    });
-
-    this.renderer.addClass(mapa, 'light-theme-bigger-shadow');
-
     const waves = this.hostElement?.querySelectorAll('.wave');
-    waves.forEach((wave) => {
-      this.renderer.addClass(wave,'light-theme-bg-blue');
-    });
-
-
-    tekst.forEach((innerElement) => {
-      this.renderer.addClass(innerElement, 'light-theme-text-color-dark-gray');
-    });
     
+    const token = localStorage.getItem('token');
+    this.userService.isDark$.subscribe(dark => {
+      this.lightMode = dark;
+      if(this.lightMode == true)
+      {
+        this.renderer.removeClass(mapa, 'light-theme-background-white');
+        this.renderer.addClass(mapa, 'dark-theme-background-gray-gradient-1');
+        
+        this.renderer.removeClass(mapa, 'light-theme-bigger-shadow');
+        this.renderer.addClass(mapa, 'dark-theme-bigger-shadow');
+        
+        
+        mini_tekst.forEach((innerElement) => {
+          this.renderer.removeClass(innerElement, 'light-theme-text-color-dark-gray');
+        });
+        waves.forEach((wave) => {
+          this.renderer.removeClass(wave,'light-theme-bg-blue');
+        });
+        tekst.forEach((innerElement) => {
+          this.renderer.removeClass(innerElement, 'light-theme-text-color-dark-gray');
+        });
+
+        
+      } else {
+        this.renderer.addClass(mapa, 'light-theme-bigger-shadow');
+        this.renderer.addClass(mapa, 'light-theme-background-white');
+
+
+        //sklanjaju se klase za dark
+        this.renderer.removeClass(mapa, 'dark-theme-bigger-shadow');
+        this.renderer.addClass(mapa, 'dark-theme-background-gray-gradient-1');
+        mini_tekst.forEach((innerElement) => {
+          this.renderer.addClass(innerElement, 'light-theme-text-color-dark-gray');
+        });
+        waves.forEach((wave) => {
+          this.renderer.addClass(wave,'light-theme-bg-blue');
+        });
+        tekst.forEach((innerElement) => {
+          this.renderer.addClass(innerElement, 'light-theme-text-color-dark-gray');
+        });
+
+        //      postavljaju se klase za light
+       
+        
+        mini_tekst.forEach((innerElement) => {
+          this.renderer.addClass(innerElement, 'light-theme-text-color-dark-gray');
+        });
+        waves.forEach((wave) => {
+          this.renderer.addClass(wave,'light-theme-bg-blue');
+        });
+        tekst.forEach((innerElement) => {
+          this.renderer.addClass(innerElement, 'light-theme-text-color-dark-gray');
+        });
+
+      }
+     
+      
+
+
+      this.hostElement?.classList.toggle('dark-theme-bigger-shadow', dark);
+      this.hostElement?.classList.toggle('light-theme-bigger-shadow', !dark);
+      this.hostElement?.classList.toggle('dark-theme-background-gray-gradient-1', dark);
+      this.hostElement?.classList.toggle('light-theme-background-white', !dark);
+    });
+
 
     
     this.WeatherData = {
