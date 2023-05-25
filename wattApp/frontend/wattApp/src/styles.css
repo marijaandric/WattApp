@@ -421,7 +421,7 @@
 }
 
 .text-color-blue {
-  color: #46c5f1;
+  color: #46c5f1 !important;
 }
 
 

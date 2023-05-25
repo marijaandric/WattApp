@@ -35,7 +35,7 @@
     .submain {
       width:calc(100% - 70px);
       margin-left:60px;
-
+      transition: margin-left 0.5s ease-in-out;
       .left {
       }
 
@@ -110,6 +110,7 @@
 .submain {
   width:calc(100% - 20px);
   margin-left:10px;
+  transition: margin-left 0.5s ease-in-out;
 }
 
 .left {
@@ -128,15 +129,11 @@
 
     .icon-hidden {
       position: absolute;
-      opacity: 0;
-      transform: translateX(40px);
       transition-duration: 1s;
     }
 
     .icon-displayed {
-      opacity: 1;
       position: absolute;
-      transform: translateX(0px);
       transition-duration: 1s;
     }
     
@@ -160,8 +157,8 @@
     display: flex;
     transition: all 0.5s ease-in-out;
     align-items: center;
-
-    .title {
+   
+      .title {
       transition:opc 0.5s ease;
       display: none;
     }
@@ -171,7 +168,9 @@
       display: none;
     }
 }
-
+.right:hover {
+  
+}
 
 .arrow {
   display: none;
@@ -207,7 +206,12 @@ a {
   text-decoration: none;
   color: #fff;
 }
-
+.light-theme .arrow i {
+  color:#46c5f1 ;
+}
+.main:hover .light-theme .arrow i {
+  color:white ;
+}
 .logo {
   margin-top:10px;
   display:flex;
@@ -287,8 +291,12 @@ a {
   background:transparent !important;
   overflow: hidden;
   z-index: 4;
+
   .left {
-    
+    background:  #46c5f1 !important;
+    a {
+      color:white;
+    }
   }
 
   .right {
@@ -298,7 +306,10 @@ a {
     flex-direction: column;
     width:162px;
     border-radius: 10px;
-
+    background: white;
+    a {
+      color:#46c5f1 !important;
+    }
     .title {
       display: flex;
       width:100%;
@@ -316,7 +327,10 @@ a {
       }
     }
     .title:hover, .submain-title:hover{
-      background-color: #323232;
+      background: #46c5f1 !important;
+      a {
+        color:white !important;
+      }
     }
     .submain-title {
       margin-top:10px;
