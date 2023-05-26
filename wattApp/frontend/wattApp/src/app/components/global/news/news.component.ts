@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CarouselModule } from 'primeng/carousel';
 import { DeviceDTO } from 'src/app/dtos/DeviceDTO';
 import { AuthService } from 'src/app/services/auth/auth.service';
-import { UserService } from 'src/app/services/user.service';
+import { UserService } from 'src/app/services/user/user.service';
 import { NgToastService } from 'ng-angular-popup';
 
 
@@ -187,7 +187,13 @@ export class NewsComponent implements OnInit{
   
   }
 
-  ngOnInit(): void {
+   async ngOnInit(): Promise<void> {
+    
+    const token = localStorage.getItem('token');
+    this.userService.isDark$.subscribe(dark => {
+      this.lightMode = !dark;
+    });
+    
     this.getNews();
     
     this.responsiveOptions = [
