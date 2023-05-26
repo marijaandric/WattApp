@@ -100,6 +100,11 @@ export class MapComponent implements OnInit, OnChanges{
     if(changes['users'])
     {
       this.users = changes['users'].currentValue;
+      this.map.eachLayer((layer: any) => {
+        if (layer instanceof L.Marker || layer instanceof L.Polyline || layer instanceof L.Polygon) {
+          this.map.removeLayer(layer);
+        }
+      });
       this.mapa()
     }
   }

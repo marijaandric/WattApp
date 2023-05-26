@@ -11,7 +11,7 @@
   <app-center-bar *ngIf="loader"><app-loader></app-loader></app-center-bar>
     <app-center-bar *ngIf="!loader">
   <div  class="main-grid"> 
-    <app-map [users] = 'users' style="
+    <app-map [users] = 'users2' style="
       height: 79.2vh;
       width:38%; display: flex;
       float:left;
@@ -64,7 +64,7 @@
                   Prosumers</h3>
                   <span class="p-input-icon-left margin-left__auto margin-right__16px">
                       <i class="pi pi-search"></i>
-                      <input #searchInput pInputText type="text" (input)="dtUsers.filterGlobal($any($event.target).value, 'contains')" placeholder="Search keyword" />
+                      <input #searchInput pInputText type="text"  (input)="onSearch($any($event.target).value, dtUsers)" placeholder="Search keyword" />
                   </span>
                   <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash" (click)="clear(dtUsers)"></button>
               </div>

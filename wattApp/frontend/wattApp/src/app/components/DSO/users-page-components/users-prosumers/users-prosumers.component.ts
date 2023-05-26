@@ -25,6 +25,7 @@ export class UsersProsumersComponent implements OnInit {
   lightMode: Boolean = true;
   baseUrl = url + "/api/Images/user/";
   users: UserDTO[] = [];
+  users2:UserDTO[] = []
   type: City[];
   selectedType!: City;
   currentPage :any = 0;
@@ -62,6 +63,13 @@ export class UsersProsumersComponent implements OnInit {
 
   onSearch(value: string, dtUsers: any) {
     dtUsers.filterGlobal(value, 'contains');
+    setTimeout(() => {
+      this.users2 = dtUsers.filteredValue;
+      if(this.users2 == undefined || this.users2 == null)
+      {
+        this.users2 = this.users
+      }
+    }, 500);
   }
 
   onPageChange(event: any) {
@@ -71,7 +79,7 @@ export class UsersProsumersComponent implements OnInit {
   }
 
   private refreshAllUsers(){
-    this.userService.getUsersPaginationByRole("prosumer",this.currentPage,this.rowsPerPage).subscribe((result: UserDTO[])=>(this.loader=false,this.users = result));
+    this.userService.getUsersPaginationByRole("prosumer",this.currentPage,this.rowsPerPage).subscribe((result: UserDTO[])=>(this.loader=false,this.users = result,this.users2=result));
     this.getAreas();
     //this.getPowerUsageForAllTypesForArea();
     this.getChartArea();
