@@ -1,5 +1,5 @@
 <standard-template>
-    <app-title-bar [ngClass]="{'light-mode-title-bar':lightMode}">
+    <app-title-bar [ngClass]="{'light-mode-title-bar':lightMode,'color-white':!lightMode}" >
       <h3>News</h3>
     </app-title-bar>
     <app-center-bar *ngIf="loader"><app-loader></app-loader></app-center-bar>
@@ -15,7 +15,7 @@
         </div>
         </div>
         <div *ngIf="switchValue == false" class="carousel-pc">
-          <h4 style="margin:0px 0px 10px 10px;">Important news</h4> 
+          <h4 style="margin:0px 0px 10px 10px;" [ngClass]="{'color-white':!lightMode}">Important news</h4> 
           <p-carousel [value] = "MynewsImportant" [circular]="false" [numVisible]="4" [autoplayInterval]="4000" [numScroll]="4" [responsiveOptions]="responsiveOptions">
             <ng-template let-news pTemplate="new">
               <app-promotion [subTitle]="news.title"
@@ -31,7 +31,7 @@
         </div>
 
         <div *ngIf="switchValue == false" class="carousel-pc">
-          <h4 style="margin:0px 0px 10px 10px;"   [ngClass]="{'light-mode':lightMode}">Regular news</h4> 
+          <h4 style="margin:0px 0px 10px 10px;"   [ngClass]="{'light-mode':lightMode}" [ngClass]="{'color-white':!lightMode}">Regular news</h4> 
           <p-carousel [value] = "MynewsRegular" [circular]="false" [numVisible]="4" [autoplayInterval]="4000" [numScroll]="4" [responsiveOptions]="responsiveOptions">
             <ng-template let-news pTemplate="new">
               <app-promotion [subTitle]="news.title"
@@ -46,7 +46,7 @@
           </p-carousel>
         </div>
         <div *ngIf="switchValue == true"  class="carousel-pc">
-          <h4 style="margin:0px 0px 10px 10px;"   [ngClass]="{'light-mode':lightMode}">Important news</h4> 
+          <h4 style="margin:0px 0px 10px 10px;"   [ngClass]="{'light-mode':lightMode,'color-white':!lightMode}">Important news</h4> 
           <p-carousel [value] = "newsImportant" [circular]="false" [numVisible]="4" [autoplayInterval]="4000" [numScroll]="4" [responsiveOptions]="responsiveOptions">
             <ng-template let-news pTemplate="new">
               <app-promotion [subTitle]="news.title"
@@ -62,7 +62,7 @@
         </div>
 
         <div *ngIf="switchValue == true" class="carousel-pc">
-          <h4 style="margin:0px 0px 10px 10px;"   [ngClass]="{'light-mode':lightMode}">Regular news</h4> 
+          <h4 style="margin:0px 0px 10px 10px;"   [ngClass]="{'light-mode':lightMode,'color-white':!lightMode}">Regular news</h4> 
           <p-carousel [value] = "newsRegular" [circular]="false" [numVisible]="4"  [autoplayInterval]="4000" [numScroll]="4" [responsiveOptions]="responsiveOptions">
             <ng-template let-news pTemplate="new">
               <app-promotion [subTitle]="news.title"

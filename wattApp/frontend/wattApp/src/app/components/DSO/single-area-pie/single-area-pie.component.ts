@@ -14,6 +14,7 @@ import {
   ApexResponsive,
   ApexNoData,
 } from 'ng-apexcharts';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-single-area-pie',
@@ -32,11 +33,31 @@ export class SingleAreaPieComponent implements OnChanges{
 
   chartSeries: ApexNonAxisChartSeries = this.Series;
 
-  constructor(private cdr: ChangeDetectorRef, private elementRef: ElementRef, private renderer: Renderer2) {
+  constructor(private cdr: ChangeDetectorRef,private userService: UserService, private elementRef: ElementRef, private renderer: Renderer2) {
 
   }
 
   ngOnChanges(changes: SimpleChanges) {
+    this.hostElement = this.elementRef.nativeElement as HTMLElement;
+    const token = localStorage.getItem('token');
+    this.userService.isDark$.subscribe(dark => {
+      this.hostElement?.classList.toggle('dark-theme-bigger-shadow', dark);
+      this.hostElement?.classList.toggle('light-theme-bigger-shadow', !dark);
+      this.hostElement?.classList.toggle('dark-theme-background-gray-gradient-1', dark);
+      this.hostElement?.classList.toggle('light-theme-background-white', !dark);
+     if(dark) {
+      console.log(dark);
+      this.chartLegend = this.chartLegend2;
+      this.chartTitle = this.chartTitle2;
+      this.noData = this.noData2;
+     }
+     else {
+      console.log(dark);
+      this.chartLegend = this.chartLegend3;
+      this.chartTitle = this.chartTitle3;
+      this.noData = this.noData3;
+     }
+    });
     if ('Series' in changes) {
       const hasData = this.Series.some((val) => val !== 0);
       if (!hasData) {
@@ -94,6 +115,30 @@ export class SingleAreaPieComponent implements OnChanges{
     },
     
   };
+  
+  
+  chartTitle2: ApexTitleSubtitle = {
+    text:  this.chartText,
+    align: 'left',
+    style: {
+      color: '#FFF',
+      fontSize:  '19px',
+      fontFamily:'Montserrat',
+      fontWeight:'bold'  
+    },
+    
+  };
+  chartTitle3: ApexTitleSubtitle = {
+    text:  this.chartText,
+    align: 'left',
+    style: {
+      color: '#000',
+      fontSize:  '19px',
+      fontFamily:'Montserrat',
+      fontWeight:'bold'  
+    },
+    
+  };
   stroke: ApexStroke = {
     show:false
   }
@@ -145,6 +190,40 @@ export class SingleAreaPieComponent implements OnChanges{
     }
   };
 
+  chartLegend2: ApexLegend = {
+    position: 'right',
+    offsetY: 50,
+    offsetX: -40,
+    
+    fontSize:'12px',
+    fontWeight:'bold',
+    fontFamily: 'Montserrat, sans-serif',
+    labels: {
+      colors:['#FFF'],
+    },
+    markers:{
+      fillColors:['#46c5f1', '#885ec0','#eb4886'
+    ]
+    }
+  };
+  
+  chartLegend3: ApexLegend = {
+    position: 'right',
+    offsetY: 50,
+    offsetX: -40,
+    
+    fontSize:'12px',
+    fontWeight:'bold',
+    fontFamily: 'Montserrat, sans-serif',
+    labels: {
+      colors:['#000'],
+    },
+    markers:{
+      fillColors:['#46c5f1', '#885ec0','#eb4886'
+    ]
+    }
+  };
+
   noData: ApexNoData = {
     text: 'No data available',
     align: 'left',
@@ -157,28 +236,60 @@ export class SingleAreaPieComponent implements OnChanges{
     }
   }
 
+  noData2: ApexNoData = {
+    text: 'No data available',
+    align: 'left',
+    verticalAlign: 'middle',
+    offsetX: 0,
+    offsetY: 0,
+    style: {
+      fontSize: '12px',
+      color: '#FFF'
+    }
+  }
+
+  noData3: ApexNoData = {
+    text: 'No data available',
+    align: 'left',
+    verticalAlign: 'middle',
+    offsetX: 0,
+    offsetY: 0,
+    style: {
+      fontSize: '12px',
+      color: '#000'
+    }
+  }
+
   chartOptions: ApexOptions = {
     series: this.chartSeries,
     chart: this.chartDetails,
     labels: this.chartLabels,
-    title: this.chartTitle,
     dataLabels: this.chartDataLabels,
-    legend: this.chartLegend,
     tooltip: this.tooltip,
     colors: ['#46c5f1', '#885ec0','#eb4886', '#f5805a'],
-    noData: this.noData,
     responsive: [this.responsive]
   };
 
 
-  ngOnInit(): void {
-
+  async ngOnInit(): Promise<void> {
     this.hostElement = this.elementRef.nativeElement as HTMLElement;
-    this.hostElement?.classList.toggle('light-theme-bigger-shadow', true);
-    this.hostElement?.classList.add('light-theme-background-white');
-
-    this.colorTheme = '#000';
-
+    const token = localStorage.getItem('token');
+    this.userService.isDark$.subscribe(dark => {
+      this.hostElement?.classList.toggle('dark-theme-bigger-shadow', dark);
+      this.hostElement?.classList.toggle('light-theme-bigger-shadow', !dark);
+      this.hostElement?.classList.toggle('dark-theme-background-gray-gradient-1', dark);
+      this.hostElement?.classList.toggle('light-theme-background-white', !dark);
+     if(dark) {
+      this.chartLegend = this.chartLegend2;
+      this.chartTitle = this.chartTitle2;
+      this.noData = this.noData2;
+     }
+     else {
+      this.chartLegend = this.chartLegend3;
+      this.chartTitle = this.chartTitle3;
+      this.noData = this.noData3;
+     }
+    });
 
     this.chartDetails.height = '230px';
     this.chartTitle.text=this.chartText;

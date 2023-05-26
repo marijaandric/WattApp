@@ -59,23 +59,17 @@ export class DeviceCardComponent implements OnInit,OnChanges{
   
   async ngOnInit(): Promise<void> {
     
-    this.hostElement = this.elementRef.nativeElement as HTMLElement;
     const token = localStorage.getItem('token');
     this.userService.isDark$.subscribe(dark => {
       this.lightMode = !dark;
 
       
+    this.hostElement = this.elementRef.nativeElement as HTMLElement;
       this.hostElement?.classList.toggle('dark-theme-bigger-shadow', dark);
       this.hostElement?.classList.toggle('light-theme-bigger-shadow', !dark);
       this.hostElement?.classList.toggle('dark-theme-background-gray-gradient-1', dark);
       this.hostElement?.classList.toggle('light-theme-background-white', !dark);
     });
-    this.hostElement = this.elementRef.nativeElement as HTMLElement;
-    console.log(this.hostElement);
-    const dvcCard = this.hostElement.querySelector('.device-card');
-    console.log(dvcCard);
-    this.renderer.addClass(dvcCard, 'light-theme-bigger-shadow');
-    this.renderer.addClass(dvcCard, 'light-theme-background-white');
     
     
     if(!this.device.power)

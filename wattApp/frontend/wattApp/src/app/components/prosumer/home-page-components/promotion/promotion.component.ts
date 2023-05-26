@@ -11,7 +11,7 @@ import { UserService } from 'src/app/services/user/user.service';
   styleUrls: ['./promotion.component.css']
 })
 export class PromotionComponent implements OnInit,OnChanges{
-  
+  lightMode : Boolean = false;
   hostElement: HTMLElement | undefined;
   @Input() subTitle : String ="Get a discount!";
   @Input() Title : String ="Show us all your device, get a 10% discount! For more information, contact our operators! Dear consumers, we inform you that the price of electricity will decrease by 5% in the coming period.";
@@ -152,17 +152,14 @@ export class PromotionComponent implements OnInit,OnChanges{
     this.hostElement = this.elementRef.nativeElement as HTMLElement;
     const token = localStorage.getItem('token');
     this.userService.isDark$.subscribe(dark => {
-      
+      this.lightMode = dark;
             
       this.hostElement?.classList.toggle('dark-theme-bigger-shadow', dark);
       this.hostElement?.classList.toggle('light-theme-bigger-shadow', !dark);
       this.hostElement?.classList.toggle('dark-theme-background-gray-gradient-3', dark);
       this.hostElement?.classList.toggle('light-theme-background-white', !dark);
       
-        const text = this.hostElement?.querySelector('.item_title');
-        this.renderer.addClass(text, 'dark-theme-text-color-black');
-        const text2 = this.hostElement?.querySelector('.date');
-        this.renderer.addClass(text2, 'ligh-theme-text-color-gray');
+      
     });
 
 

@@ -4,7 +4,7 @@ import { FormGroup } from '@angular/forms';
 import {  ApexAxisChartSeries,ApexDataLabels,ApexLegend,ApexMarkers, ApexTooltip, ApexStroke, ApexFill, ApexChart, ApexXAxis, ApexTitleSubtitle,ApexYAxis, ApexNonAxisChartSeries } from 'ng-apexcharts';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { DeviceService } from 'src/app/services/device/device.service';
-import { UserService } from 'src/app/services/user.service';
+import { UserService } from 'src/app/services/user/user.service';
 import { HistoryLineChartComponent } from '../../Prosumer/history-line-chart/history-line-chart.component';
 import * as ApexCharts from 'apexcharts';
 
@@ -28,6 +28,7 @@ export class HistoryForecastComponent implements OnInit,OnChanges{
   menageUserForm! : FormGroup;
   cities: City[];
   selectedCity!: City;
+  dark: Boolean = true;
 
   @Input() array : any[]  = [null,null,null,null, null, null, null, null,null,null,null, null, null, null];
   @Input() array2 : any[] = [null,null,null,null, null, null, null, null,null,null,null, null, null, null];
@@ -50,21 +51,22 @@ export class HistoryForecastComponent implements OnInit,OnChanges{
  
   }
 
-  ngOnInit(): void {
-
+  async ngOnInit(): Promise<void> {
     this.hostElement = this.elementRef.nativeElement as HTMLElement;
-    this.hostElement?.classList.toggle('light-theme-bigger-shadow', true);
-    this.hostElement?.classList.add('light-theme-background-white');
-    this.xAxisColors = ['#252525','#252525','#252525','#252525', '#252525','#252525','#252525','#252525','#252525','#252525','#252525','#252525','#252525','#252525','#252525'];
+    const token = localStorage.getItem('token');
+    this.userService.isDark$.subscribe(dark => {
+      this.hostElement?.classList.toggle('dark-theme-bigger-shadow', dark);
+      this.hostElement?.classList.toggle('light-theme-bigger-shadow', !dark);
+      this.hostElement?.classList.toggle('dark-theme-background-gray-gradient-1', dark);
+      this.hostElement?.classList.toggle('light-theme-background-white', !dark);
+      this.dark = dark;
+    
+    });
     
     /*
     this.xAxisColors = ['#FFF','#FFF','#FFF','#FFF', '#FFF','#FFF','#FFF','#FFF','#FFF','#FFF','#FFF','#FFF','#FFF','#FFF','#FFF'];
     */
    this.themeChart = 'dark';
-    this.titleColor = '#252525';
-    this.yAxisColos = '#252525';
-    const text = this.hostElement?.querySelector('.item_title');
-    this.renderer.addClass(text, 'ligh-theme-text-color-gray');
   }
 
   forecastArray(niz: number[]): number[] {
@@ -94,6 +96,16 @@ export class HistoryForecastComponent implements OnInit,OnChanges{
 
 
   ngOnChanges(changes: SimpleChanges) {
+    this.hostElement = this.elementRef.nativeElement as HTMLElement;
+    const token = localStorage.getItem('token');
+    this.userService.isDark$.subscribe(dark => {
+      this.hostElement?.classList.toggle('dark-theme-bigger-shadow', dark);
+      this.hostElement?.classList.toggle('light-theme-bigger-shadow', !dark);
+      this.hostElement?.classList.toggle('dark-theme-background-gray-gradient-1', dark);
+      this.hostElement?.classList.toggle('light-theme-background-white', !dark);
+      this.dark = dark;
+
+      
     if(this.array[0] === null)
     {
       this.series = [
@@ -136,34 +148,104 @@ export class HistoryForecastComponent implements OnInit,OnChanges{
       ];
     }
     
+    
+    if(this.dark == true)
+    {
 
-     this.xaxis = {
-      title:{
-        text: this.Period,
-        style :{
-          color:this.titleColor,
-          fontFamily: 'Montserrat,sans-serif',
-          fontSize: '16px' 
+      this.xaxis = {
+        title:{
+          text: this.Period,
+          style :{
+            color: '#FFF',
+            fontFamily: 'Montserrat,sans-serif',
+            fontSize: '16px' 
+          }
+        },
+        categories: this.array3,
+        labels: {
+          style: {
+            colors: '#FFF',
+            fontSize: '16px',
+            fontFamily: 'Lato, sans-serif'
+          }
         }
-      },
-      categories: this.array3,
-      labels: {
+      };
+
+      this.yaxis = {
+        title:{
+          text:"Electric energy [kWh]",
+          style :{
+            color:'#FFF',
+            fontFamily: 'Montserrat,sans-serif',
+            fontSize: '14px' 
+          }
+        },
+        labels: {
+          style: {
+            colors: '#FFF',
+            fontSize:'16px',
+            fontFamily: 'Lato, sans-serif'
+          },
+        },
+      }
+      
+      this.title = {
+        text: this.Title,
         style: {
-          colors: this.xAxisColors,
-          fontSize: '16px',
-          fontFamily: 'Lato, sans-serif'
+          color: '#FFF',
+          fontSize: '19px',
+          fontFamily: 'Montserrat'
         }
-      }
-    };
+      };
+    }
+    else {
 
-    this.title = {
-      text: this.Title,
-      style: {
-        color: this.titleColor,
-        fontSize: '19px',
-        fontFamily: 'Montserrat'
+      this.xaxis = {
+        title:{
+          text: this.Period,
+          style :{
+            color: '#000',
+            fontFamily: 'Montserrat,sans-serif',
+            fontSize: '16px' 
+          }
+        },
+        categories: this.array3,
+        labels: {
+          style: {
+            colors: '#000',
+            fontSize: '16px',
+            fontFamily: 'Lato, sans-serif'
+          }
+        }
+      };
+      
+      this.yaxis = {
+        title:{
+          text:"Electric energy [kWh]",
+          style :{
+            color:'#000',
+            fontFamily: 'Montserrat,sans-serif',
+            fontSize: '14px' 
+          }
+        },
+        labels: {
+          style: {
+            colors: '#000',
+            fontSize:'16px',
+            fontFamily: 'Lato, sans-serif'
+          },
+        },
       }
-    };
+      this.title = {
+        text: this.Title,
+        style: {
+          color: '#000',
+          fontSize: '19px',
+          fontFamily: 'Montserrat'
+        }
+      };
+    }
+
 
     const options = {
       series: this.series,
@@ -171,6 +253,8 @@ export class HistoryForecastComponent implements OnInit,OnChanges{
 
     const chart2 = new ApexCharts(document.querySelector("#chart2"), options);
     chart2.render();
+    });
+
 
   }
 
@@ -286,22 +370,22 @@ export class HistoryForecastComponent implements OnInit,OnChanges{
   }
 
   public xaxis: ApexXAxis = {
+   
     title:{
-      text:"period",
       style :{
-        color:'white',
+        color:'#FFF',
         fontFamily: 'Montserrat,sans-serif',
         fontSize: '16px' 
       }
     },
-    categories: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun','Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
     labels: {
       style: {
-        colors: this.xAxisColors,
+        colors: '#FFF',
         fontSize: '16px',
         fontFamily: 'Lato, sans-serif'
       }
     }
+      
   };
 
   public yaxis: ApexYAxis = {
@@ -337,6 +421,9 @@ export class HistoryForecastComponent implements OnInit,OnChanges{
     dashArray:[0,5,0,5,0,5],
 
   }
+
+
+
 
   public dataLabels: ApexDataLabels = {
     enabled:false,

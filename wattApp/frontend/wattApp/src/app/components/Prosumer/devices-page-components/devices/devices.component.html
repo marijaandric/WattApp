@@ -17,7 +17,7 @@
 </div>
 
 <div *ngIf="switchValue == false">
-  <div [ngClass]="{'light-mode': lightMode,'light-mode2': lightMode}">
+  <div [ngClass]="{'light-mode': lightMode,'light-mode2': lightMode, 'dark-mode2': !lightMode,'dark-mode': !lightMode}">
   <p-table #dtAllDevices class="ui-table-default" [value]="devices" dataKey="id" [scrollable]="true" 
     [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]"
     [globalFilterFields]="['userId','deviceName','room', 'deviceType']" [paginator]="true"
@@ -44,7 +44,7 @@
     </ng-template>
 
     <ng-template pTemplate="header">
-      <tr>
+      <tr >
         <th pSortableColumn="deviceName" style="min-width:15rem;   border-top:2px solid #46c5f1; border-bottom:2px solid #46c5f1;">
           <div class="flexRow">
               <p>Device name</p>
@@ -70,7 +70,7 @@
     </ng-template>
 
     <ng-template pTemplate="body" let-device>
-      <tr>
+      <tr style="cursor:pointer !important;" [routerLink]="['/device', device.id]">
         <td><a [routerLink]="['/device', device.id]">{{ device.deviceName }}</a></td>
         <td><a [routerLink]="['/device', device.id]">{{device.room}}</a></td>
         <td *ngIf="isCurrentRoute('devices')"><a [routerLink]="['/device', device.id]">{{device.deviceType}}</a></td>

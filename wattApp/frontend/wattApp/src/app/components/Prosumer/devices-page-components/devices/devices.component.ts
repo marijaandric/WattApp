@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component, ElementRef, HostListener, Input, OnInit, 
 import { ActivatedRoute } from '@angular/router';
 import { DeviceDTO } from 'src/app/dtos/DeviceDTO';
 import { DeviceService } from 'src/app/services/device/device.service';
+import { UserService } from 'src/app/services/user/user.service';
 
 interface SwitchOption {
   label: string;
@@ -56,34 +57,23 @@ export class DevicesComponent implements OnInit{
     {label: 'Table', value: false}
   ];
 
-  ngOnInit():void {
-
-    this.hostElement = this.elementRef.nativeElement as HTMLElement;
-    const tabela = this.hostElement.querySelector('.tabela');
-    this.renderer.addClass(tabela, 'light-theme-background-white');
-    this.renderer.addClass(tabela, 'light-theme-bigger-shadow');
-
-    /*
-    innerElements.forEach((innerElement) => {
-      this.renderer.addClass(innerElement, 'light-theme-color-gray');
+  
+  async ngOnInit(): Promise<void> {
+    const token = localStorage.getItem('token');
+    this.userService.isDark$.subscribe(dark => {
+      this.hostElement = this.elementRef.nativeElement as HTMLElement;
+      this.lightMode = !dark;
+    
     });
-    this.hostElement.classList.forEach((DeviceCardComponent) => {
-      const dvc = DeviceCardComponent as HTMLElement;
-    })
-    console.log(deviceCard);
-    this.hostElement?.classList.toggle('light-theme-bigger-shadow', true);
-    this.hostElement?.classList.add('light-theme-background-white');
-*/
-    this.responsiveOptions = [
-      
-  ];
+
   }
 
   constructor(private deviceService: DeviceService,
               private cdr: ChangeDetectorRef,
               private elementRef: ElementRef, 
               private renderer: Renderer2,
-              private activatedRoute: ActivatedRoute) { }
+              private activatedRoute: ActivatedRoute,
+              private userService: UserService) { }
 
   ngOnChanges() {
     this.updateNumVisible(window.innerWidth);

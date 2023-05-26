@@ -1,5 +1,6 @@
 import { Component, OnInit,Input, SimpleChanges, OnChanges, ElementRef, Renderer2 } from '@angular/core';
 import {  ApexAxisChartSeries,ApexFill, ApexTooltip,ApexPlotOptions, ApexStroke,ApexLegend, ApexChart, ApexXAxis, ApexTitleSubtitle,ApexYAxis, ApexNonAxisChartSeries } from 'ng-apexcharts';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-area-bar-chart',
@@ -11,7 +12,7 @@ export class AreaBarChartComponent implements OnInit, OnChanges {
   hostElement: HTMLElement | undefined;
   colorTheme: string = "";
 
-  constructor(private elementRef: ElementRef, private renderer: Renderer2) {
+  constructor(private elementRef: ElementRef, private renderer: Renderer2, private userService: UserService) {
 
   }
   
@@ -22,6 +23,23 @@ export class AreaBarChartComponent implements OnInit, OnChanges {
     },
   ];
   ngOnChanges(changes: SimpleChanges): void {
+    this.hostElement = this.elementRef.nativeElement as HTMLElement;
+    const token = localStorage.getItem('token');
+    this.userService.isDark$.subscribe(dark => {
+      this.hostElement?.classList.toggle('dark-theme-bigger-shadow', dark);
+      this.hostElement?.classList.toggle('light-theme-bigger-shadow', !dark);
+      this.hostElement?.classList.toggle('dark-theme-background-gray-gradient-1', dark);
+      this.hostElement?.classList.toggle('light-theme-background-white', !dark);
+     if(dark) {
+      this.title = this.title3;
+      this.yaxis = this.yaxis3;
+     }
+     else {
+      this.title = this.title2;
+      this.yaxis = this.yaxis2;
+     }
+    });
+
     if ('seriesData' in changes) {
       this.ngOnInit();
       this.series = [
@@ -36,7 +54,7 @@ export class AreaBarChartComponent implements OnInit, OnChanges {
 
   public chart: ApexChart = {
     type: 'bar',
-    height: 250,
+    height: 245,
     width: '100%',
 
     
@@ -81,7 +99,22 @@ export class AreaBarChartComponent implements OnInit, OnChanges {
   public yaxis: ApexYAxis = {
     labels: {
       style: {
-        colors: [this.colorTheme],
+        colors: ['#000'],
+      },
+    },
+  };
+
+  public yaxis2: ApexYAxis = {
+    labels: {
+      style: {
+        colors: ['#000'],
+      },
+    },
+  };
+  public yaxis3: ApexYAxis = {
+    labels: {
+      style: {
+        colors: ['#FFF'],
       },
     },
   };
@@ -104,14 +137,41 @@ export class AreaBarChartComponent implements OnInit, OnChanges {
     }
   };
 
+  public title2: ApexTitleSubtitle = {
+    text: 'Devices comparison',
+    style: {
+      color: '#000',
+      fontSize: '19px',
+      fontFamily: 'Montserrat',
+    }
+  };
+
+  public title3: ApexTitleSubtitle = {
+    text: 'Devices comparison',
+    style: {
+      color: '#FFF',
+      fontSize: '19px',
+      fontFamily: 'Montserrat',
+    }
+  };
+
   ngOnInit(): void {
-    
     this.hostElement = this.elementRef.nativeElement as HTMLElement;
-    this.hostElement?.classList.toggle('light-theme-bigger-shadow', true);
-    this.hostElement?.classList.add('light-theme-background-white');
-
-    this.colorTheme = '#000';
-
+    const token = localStorage.getItem('token');
+    this.userService.isDark$.subscribe(dark => {
+      this.hostElement?.classList.toggle('dark-theme-bigger-shadow', dark);
+      this.hostElement?.classList.toggle('light-theme-bigger-shadow', !dark);
+      this.hostElement?.classList.toggle('dark-theme-background-gray-gradient-2', dark);
+      this.hostElement?.classList.toggle('light-theme-background-white', !dark);
+     if(dark) {
+      this.title = this.title3;
+      this.yaxis = this.yaxis3;
+     }
+     else {
+      this.title = this.title2;
+      this.yaxis = this.yaxis2;
+     }
+    });
     this.series = [
       {
         name: 'Resource',

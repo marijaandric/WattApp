@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { DeviceService } from 'src/app/services/device/device.service';
 import { ChartComponent } from 'ng-apexcharts';
 import { PieChartComponent } from 'src/app/components/global/pie-chart/pie-chart.component';
-import { UserService } from 'src/app/services/user.service';
+import { UserService } from 'src/app/services/user/user.service';
 import { LoaderService } from 'src/app/services/loader/loader.service';
 interface City {
   name: string,
@@ -341,13 +341,19 @@ export class StatisticComponent  implements OnInit {
   }
 
   
- ngOnInit(): void {
-   this.getDevicePerRoom();
-   this.getHistoryAndForecastByDayForAllDevices();
-   this.getHistoryAndForecastByDayForAllDevicesByMonth();
-   this.getHistoryAndForecastByDayForAllDevicesByYear();
-   this.getDeviceComparison();
-   this.getConsumergetMaxMinAvgTotalPowerUsageByTimeForAllDevicesByType();
+ 
+  async ngOnInit(): Promise<void> {
+    const token = localStorage.getItem('token');
+    this.userService.isDark$.subscribe(dark => {
+      this.lightMode = !dark;
+     
+    });
+    this.getDevicePerRoom();
+    this.getHistoryAndForecastByDayForAllDevices();
+    this.getHistoryAndForecastByDayForAllDevicesByMonth();
+    this.getHistoryAndForecastByDayForAllDevicesByYear();
+    this.getDeviceComparison();
+    this.getConsumergetMaxMinAvgTotalPowerUsageByTimeForAllDevicesByType();
 
   }
   total: any;

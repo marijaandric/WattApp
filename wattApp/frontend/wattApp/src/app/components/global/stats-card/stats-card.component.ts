@@ -1,4 +1,5 @@
 import { Component, ElementRef, HostBinding, Input, Renderer2} from '@angular/core';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-stats-card',
@@ -7,7 +8,7 @@ import { Component, ElementRef, HostBinding, Input, Renderer2} from '@angular/co
 })
 export class StatsCardComponent {
   hostElement: HTMLElement | undefined;
-
+  lightMode: Boolean = false;
   @Input() Title : String ="9,051 din/kWh";
   @Input() subTitle : String ="";
   @Input() value : String ="9,051 din/kWh";
@@ -19,25 +20,22 @@ export class StatsCardComponent {
   @Input() @HostBinding("bg-orange-color") public isBgOrange = false;
 
   
-  constructor (private elementRef: ElementRef, private renderer: Renderer2) {
+  constructor (private elementRef: ElementRef, private renderer: Renderer2, private userService: UserService) {
 
   }
 
 
-  ngOnInit(): void {
-    this.hostElement = this.elementRef.nativeElement as HTMLElement;
-    /*const innerElements = this.hostElement?.querySelectorAll('.main');
-    innerElements.forEach((innerElement) => {
-      this.renderer.addClass(innerElement, 'dark-theme-color-gray');
+  async ngOnInit(): Promise<void> {
+    
+    const token = localStorage.getItem('token');
+    this.userService.isDark$.subscribe(dark => {
+      this.hostElement = this.elementRef.nativeElement as HTMLElement;
+      this.lightMode = !dark;
+
+      this.hostElement?.classList.toggle('dark-theme-bigger-shadow', dark);
+      this.hostElement?.classList.toggle('light-theme-bigger-shadow', !dark);
+      this.hostElement?.classList.toggle('dark-theme-background-gray-gradient-1', dark);
+      this.hostElement?.classList.toggle('light-theme-background-white', !dark);
     });
-  */
-    this.hostElement?.classList.add('light-theme-background-white');
-    this.hostElement?.classList.toggle('light-theme-bigger-shadow', true);
-    const main_text = this.hostElement?.querySelector('.main-stat-card span');
-    const kwh_text = this.hostElement?.querySelector('.kwh-card span');
-    const sub_text = this.hostElement?.querySelector('.subtitle-2 span');
-    this.renderer.addClass(main_text, 'ligh-theme-text-color-gray');
-    this.renderer.addClass(kwh_text, 'ligh-theme-text-color-gray');
-    this.renderer.addClass(sub_text, 'ligh-theme-text-color-gray');
   }
 }
