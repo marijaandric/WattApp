@@ -11,13 +11,13 @@
     </div>
     <div style="width:100%; height:fit-content; position:relative;">
         <div class="main-stat-card">  
-            <span>{{value}}</span>
+            <span [ngClass]="{'ligh-theme-text-color-gray':lightMode,'color-white':!lightMode}">{{value}}</span>
         </div>
         <div class="kwh-card">
-            <span>kWh</span>
+            <span  [ngClass]="{'ligh-theme-text-color-gray':lightMode,'color-white':!lightMode}">kWh</span>
         </div>
     </div>
     <div class="subtitle-2">  
-        <span> {{subTitle}}</span> 
+        <span [ngClass]="{'ligh-theme-text-color-gray':lightMode,'color-white':!lightMode}"> {{subTitle}}</span> 
     </div>
 </div>
