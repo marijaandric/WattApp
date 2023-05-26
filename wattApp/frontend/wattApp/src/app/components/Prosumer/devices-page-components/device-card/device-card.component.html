@@ -1,5 +1,5 @@
 <a [routerLink]="['/device', device.id]"  style="display:flex;">
-<div id="device-card" class="device-card" >
+<div id="device-card" class="device-card" [ngClass]="{'dark-theme-bigger-shadow':!lightMode,'light-theme-bigger-shadow':lightMode,'dark-theme-background-gray-gradient-1':!lightMode,'light-theme-background-white':lightMode}" >
     <div class="flexRow">
         
 

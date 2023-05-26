@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DeviceDTO } from 'src/app/dtos/DeviceDTO';
 import { Router } from '@angular/router';
 import { DeviceService } from 'src/app/services/device/device.service';
-import { UserService } from 'src/app/services/user.service';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-devices-all',
@@ -64,7 +64,13 @@ export class DevicesAllComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
+  
+  async ngOnInit(): Promise<void> {
+    const token = localStorage.getItem('token');
+    this.userService.isDark$.subscribe(dark => {
+      this.lightMode = !dark;
+     
+    });
   this.GetNumberOfUserDevices();
   this.GetNumberOfActiveUserDevices();
   this.GetNumberOfDevicesForUserThatDSOCanSee();

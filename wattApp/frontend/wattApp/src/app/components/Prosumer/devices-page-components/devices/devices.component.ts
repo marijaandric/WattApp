@@ -2,6 +2,7 @@ import { ChangeDetectorRef, Component, ElementRef, HostListener, Input, OnInit, 
 import { ActivatedRoute } from '@angular/router';
 import { DeviceDTO } from 'src/app/dtos/DeviceDTO';
 import { DeviceService } from 'src/app/services/device/device.service';
+import { UserService } from 'src/app/services/user/user.service';
 
 interface SwitchOption {
   label: string;
@@ -56,12 +57,29 @@ export class DevicesComponent implements OnInit{
     {label: 'Table', value: false}
   ];
 
-  ngOnInit():void {
+  
+  async ngOnInit(): Promise<void> {
+    const token = localStorage.getItem('token');
+    this.userService.isDark$.subscribe(dark => {
+      this.hostElement = this.elementRef.nativeElement as HTMLElement;
+      this.lightMode = !dark;
+      const tabela = this.hostElement.querySelector('.tabela');
+      if(dark)
+      {
+        this.renderer.removeClass(tabela, 'light-theme-background-white');
+        this.renderer.removeClass(tabela, 'light-theme-bigger-shadow');
+        this.renderer.addClass(tabela, 'dark-theme-background-gray-gradient-2');
+        this.renderer.addClass(tabela, 'dark-theme-bigger-shadow');
 
-    this.hostElement = this.elementRef.nativeElement as HTMLElement;
-    const tabela = this.hostElement.querySelector('.tabela');
-    this.renderer.addClass(tabela, 'light-theme-background-white');
-    this.renderer.addClass(tabela, 'light-theme-bigger-shadow');
+      } else {
+        this.renderer.removeClass(tabela, 'dark-theme-background-gray-gradient-2');
+        this.renderer.removeClass(tabela, 'dark-theme-bigger-shadow');
+        this.renderer.addClass(tabela, 'light-theme-background-white');
+        this.renderer.addClass(tabela, 'light-theme-bigger-shadow');
+
+      }
+     
+    });
 
     /*
     innerElements.forEach((innerElement) => {
@@ -83,7 +101,8 @@ export class DevicesComponent implements OnInit{
               private cdr: ChangeDetectorRef,
               private elementRef: ElementRef, 
               private renderer: Renderer2,
-              private activatedRoute: ActivatedRoute) { }
+              private activatedRoute: ActivatedRoute,
+              private userService: UserService) { }
 
   ngOnChanges() {
     this.updateNumVisible(window.innerWidth);
