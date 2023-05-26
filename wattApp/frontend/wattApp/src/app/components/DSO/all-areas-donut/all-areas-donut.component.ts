@@ -322,8 +322,6 @@ export class AllAreasDonutComponent implements OnChanges{
 
     this.chartTitle.text=this.chartText;
 
-    this.chartTitle=this.chartTitle;
-
     this.chartDetails.height = '220px';
     this.chartSeries=this.Series;
   }
