@@ -12,6 +12,7 @@ import { url } from 'src/app/app.module';
   encapsulation: ViewEncapsulation.None
 })
 export class UsersOperatorsComponent implements OnInit {
+  hostElement: HTMLElement | undefined;
   lightMode: Boolean = true;
   @ViewChild('searchInput') searchInput!: ElementRef;
   baseUrl = url + "/api/Images/user/";
@@ -26,9 +27,18 @@ export class UsersOperatorsComponent implements OnInit {
   Myid : any;
 
   constructor(private userService: UserService,
-                private dsonew:DsonewsService) { }
+                private dsonew:DsonewsService,
+                private elementRef: ElementRef) { }
 
-  ngOnInit() {
+
+  async ngOnInit(): Promise<void> {
+
+    this.hostElement = this.elementRef.nativeElement as HTMLElement;
+    const token = localStorage.getItem('token');
+    this.userService.isDark$.subscribe(dark => {
+      this.lightMode = !dark;
+     
+    });
     this.userService.getCountDataByType("operator").subscribe(result => this.allUsersCount = result);
     this.refreshAllUsers();
     this.getNews();
