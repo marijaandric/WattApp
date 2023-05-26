@@ -3,7 +3,9 @@ p{
     font-size: 1.2em;
     color:rgb(255, 255, 255);
 }
-
+li .list-group-item {
+    border:none !important;
+}
 :host{
     display:flex;
     color: white;
@@ -84,7 +86,6 @@ h6 {
     background: #1e1e1e;
     box-shadow: 2px 2px 5px black;
     */
-    box-shadow: 2px 2px 5px rgb(139, 139, 139);
 }
 
 
