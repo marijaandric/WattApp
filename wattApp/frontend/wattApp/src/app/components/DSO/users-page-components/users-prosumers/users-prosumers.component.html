@@ -23,12 +23,12 @@
         <div style="display:flex;float:right; flex-direction:column;  width:48%; height:100%" class="pdd-div" >
           
   
-          <div [ngClass]="{'light-mode':lightMode}" ><p-dropdown [options]="type" (onChange)="onDropdownChange2()" [(ngModel)]="selectedType" optionLabel="name" >
+          <div [ngClass]="{'light-mode':lightMode,'dark-mode':!lightMode}" ><p-dropdown [options]="type" (onChange)="onDropdownChange2()" [(ngModel)]="selectedType" optionLabel="name" >
   </p-dropdown></div>
         </div>
         <div style="display:flex;float:right; flex-direction:column; margin-left:calc(3%); width:48%; height:100%" class="pdd-div">
           
-          <div [ngClass]="{'light-mode':lightMode}" ><p-dropdown [options]="options" (onChange)="onDropdownChange()"  [(ngModel)]="selectedOption" optionLabel="name"  >
+          <div [ngClass]="{'light-mode':lightMode,'dark-mode':!lightMode}" ><p-dropdown [options]="options" (onChange)="onDropdownChange()"  [(ngModel)]="selectedOption" optionLabel="name"  >
           </p-dropdown></div>
         </div>
       </div>
@@ -41,7 +41,7 @@
         </div>
       </div>
 
-      <div [ngClass]="{'light-mode': lightMode,'light-mode2': lightMode}">
+      <div [ngClass]="{'light-mode': lightMode,'light-mode2': lightMode,'dark-mode2':!lightMode,'dark-mode':!lightMode}">
       <div style="display:flex;float:right; flex-direction:row; width:100%; height:100%">
         <!-- [lazy]="true" -->
         <p-table class="d-table" #dtUsers class="ui-table-default" [value]="users" dataKey="id" [scrollable]="true" 
@@ -104,7 +104,7 @@
             </ng-template>
 
               <ng-template pTemplate="body" let-user>
-                <tr routerLink="/userDSO/{{user.id}}">
+                <tr routerLink="/userDSO/{{user.id}}" style="cursor:pointer !important;">
                   <!-- <tr routerLink="/admin-operator/{{user.id}}"> -->
                   <td><div style="width:20%;position:relative;float:left"><img src="{{ baseUrl + user.id }}" class="rounded-circle" width="25px" height="25px" style="margin-right: 10%"></div><div style="width:70%;position:relative;float:right">{{user.firstName}} {{user.lastName}}</div> </td>
                   <td>{{user.address}}</td>

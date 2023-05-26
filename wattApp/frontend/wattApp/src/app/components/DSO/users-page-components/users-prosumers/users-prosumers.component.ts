@@ -20,6 +20,7 @@ interface City {
 })
 
 export class UsersProsumersComponent implements OnInit {
+
   @ViewChild('searchInput') searchInput!: ElementRef;
   lightMode: Boolean = true;
   baseUrl = url + "/api/Images/user/";
@@ -44,7 +45,12 @@ export class UsersProsumersComponent implements OnInit {
     this.options = [];
   }
 
-  ngOnInit() {
+  async ngOnInit(): Promise<void> {
+    const token = localStorage.getItem('token');
+    this.userService.isDark$.subscribe(dark => {
+      this.lightMode = !dark;
+     
+    });
     this.userService.getCountDataByType("prosumer").subscribe(result => this.allUsersCount = result);
     this.refreshAllUsers();
   }

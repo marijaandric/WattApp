@@ -23,3 +23,12 @@
 .light-mode-title-bar h3{
   color:#323232;
 }
+
+
+
+.dark-mode2 {
+  background: linear-gradient(180deg, #1b1b1b 30%, #121212 100%) ;
+  box-shadow: 5px 5px 15px black !important; 
+  border-radius: 20px;
+  margin-bottom:32px;
+}
