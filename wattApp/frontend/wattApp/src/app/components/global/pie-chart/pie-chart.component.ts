@@ -11,6 +11,7 @@ import {
   ApexStroke,
   ApexTooltip,
 } from 'ng-apexcharts';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-pie-chart',
@@ -56,6 +57,29 @@ export class PieChartComponent implements OnInit {
     fontSize: '19px',
     fontFamily:'Montserrat',
     fontWeight:'bold' 
+    },
+    
+  };
+  
+  chartTitle2: ApexTitleSubtitle = {
+    text:  this.chartText,
+    align: 'left',
+    style: {
+      color: '#FFF',
+      fontSize:  '19px',
+      fontFamily:'Montserrat',
+      fontWeight:'bold'  
+    },
+    
+  };
+  chartTitle3: ApexTitleSubtitle = {
+    text:  this.chartText,
+    align: 'left',
+    style: {
+      color: '#000',
+      fontSize:  '19px',
+      fontFamily:'Montserrat',
+      fontWeight:'bold'  
     },
     
   };
@@ -112,33 +136,90 @@ export class PieChartComponent implements OnInit {
     }
   };
 
+  chartLegend2: ApexLegend = {
+    position: 'right',
+    offsetY: 50,
+    offsetX: -40,
+    
+    fontSize:'12px',
+    fontWeight:'bold',
+    fontFamily: 'Montserrat, sans-serif',
+    labels: {
+      colors:['#FFF'],
+    },
+    markers:{
+      fillColors:['#46c5f1', '#885ec0','#eb4886'
+    ]
+    }
+  };
+  
+  chartLegend3: ApexLegend = {
+    position: 'right',
+    offsetY: 50,
+    offsetX: -40,
+    
+    fontSize:'12px',
+    fontWeight:'bold',
+    fontFamily: 'Montserrat, sans-serif',
+    labels: {
+      colors:['#000'],
+    },
+    markers:{
+      fillColors:['#46c5f1', '#885ec0','#eb4886'
+    ]
+    }
+  };
+
   chartOptions: ApexOptions = {
     series: this.chartSeries,
     chart: this.chartDetails,
     labels: this.chartLabels,
-    title: this.chartTitle,
     dataLabels: this.chartDataLabels,
-    legend: this.chartLegend,
     colors: ['#46c5f1', '#885ec0','#eb4886', '#f5805a'],
     tooltip: this.tooltip
   };
 
-  constructor(private elementRef: ElementRef, private renderer: Renderer2) { }
+  constructor(private elementRef: ElementRef, private renderer: Renderer2, private userService: UserService) { }
 
-  ngOnInit(): void {
-    
+  async ngOnInit(): Promise<void> {
     this.hostElement = this.elementRef.nativeElement as HTMLElement;
-    this.hostElement?.classList.toggle('light-theme-bigger-shadow', true);
-    this.hostElement?.classList.add('light-theme-background-white');
-
-    this.colorTheme = '#000';
-
+    const token = localStorage.getItem('token');
+    this.userService.isDark$.subscribe(dark => {
+      this.hostElement?.classList.toggle('dark-theme-bigger-shadow', dark);
+      this.hostElement?.classList.toggle('light-theme-bigger-shadow', !dark);
+      this.hostElement?.classList.toggle('dark-theme-background-gray-gradient-1', dark);
+      this.hostElement?.classList.toggle('light-theme-background-white', !dark);
+     if(dark) {
+      this.chartLegend = this.chartLegend2;
+      this.chartTitle = this.chartTitle2;
+     }
+     else {
+      this.chartLegend = this.chartLegend3;
+      this.chartTitle = this.chartTitle3;
+     }
+    });
     this.chartDetails.height = '250px';
     this.chartTitle.text=this.chartText;
     this.chartSeries=this.Series;
   }
 
   ngOnChanges(changes: SimpleChanges) {
+    this.hostElement = this.elementRef.nativeElement as HTMLElement;
+    const token = localStorage.getItem('token');
+    this.userService.isDark$.subscribe(dark => {
+      this.hostElement?.classList.toggle('dark-theme-bigger-shadow', dark);
+      this.hostElement?.classList.toggle('light-theme-bigger-shadow', !dark);
+      this.hostElement?.classList.toggle('dark-theme-background-gray-gradient-1', dark);
+      this.hostElement?.classList.toggle('light-theme-background-white', !dark);
+     if(dark) {
+      this.chartLegend = this.chartLegend2;
+      this.chartTitle = this.chartTitle2;
+     }
+     else {
+      this.chartLegend = this.chartLegend3;
+      this.chartTitle = this.chartTitle3;
+     }
+    });
     if ('Series' in changes) {
       this.chartSeries = this.Series;
     }
