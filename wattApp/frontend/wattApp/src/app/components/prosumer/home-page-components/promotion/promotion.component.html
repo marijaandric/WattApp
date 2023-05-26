@@ -1,14 +1,14 @@
 <div class="item_bg"  [ngClass]="{'bg-blue-color' : isBgBlue, 'bg-yellow-color' : isBgYellow, 'bg-pink-color' : isBgPink}"></div>
 
 <div class="item_date-box" [ngClass]="{'blue-color' : isBlue, 'yellow-color' : isYellow, 'pink-color' : isPink}">
-    {{subTitle}}  <i class="fa-solid fa-circle-exclamation" *ngIf="Status === 'Important'"></i>
+    {{subTitle}}  <i class="fa-solid fa-circle-exclamation" *ngIf="Status === 'Important'" ></i>
 </div>
 
-<div class="item_title">{{Title}}
+<div class="item_title" [ngClass]="{'light-theme-text-color-dark-gray': !lightMode}">{{Title}}
 </div>
 
 <div style="display:flex; flex-direction:row; width:100%; height:30px;position:relative">
-    <div style="display:flex; width:100px; height:100%;position:relative" class="date">
+    <div style="display:flex; width:100px; height:100%;position:relative" class="date" [ngClass]="{'light-theme-text-color-dark-gray': !lightMode}">
         {{Datum}}
     </div>
 
