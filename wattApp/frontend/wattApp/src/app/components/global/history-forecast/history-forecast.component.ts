@@ -28,6 +28,7 @@ export class HistoryForecastComponent implements OnInit,OnChanges{
   menageUserForm! : FormGroup;
   cities: City[];
   selectedCity!: City;
+  dark: Boolean = true;
 
   @Input() array : any[]  = [null,null,null,null, null, null, null, null,null,null,null, null, null, null];
   @Input() array2 : any[] = [null,null,null,null, null, null, null, null,null,null,null, null, null, null];
@@ -58,13 +59,8 @@ export class HistoryForecastComponent implements OnInit,OnChanges{
       this.hostElement?.classList.toggle('light-theme-bigger-shadow', !dark);
       this.hostElement?.classList.toggle('dark-theme-background-gray-gradient-1', dark);
       this.hostElement?.classList.toggle('light-theme-background-white', !dark);
-     if(dark) {
-     }
-     else {
-      this.title = this.title;
-      this.yaxis = this.yaxis;
-      this.xaxis = this.xaxis;
-     }
+      this.dark = dark;
+    
     });
     
     /*
@@ -107,19 +103,9 @@ export class HistoryForecastComponent implements OnInit,OnChanges{
       this.hostElement?.classList.toggle('light-theme-bigger-shadow', !dark);
       this.hostElement?.classList.toggle('dark-theme-background-gray-gradient-1', dark);
       this.hostElement?.classList.toggle('light-theme-background-white', !dark);
-     if(dark) {
-      this.title = this.title;
-      this.yaxis = this.yaxis;
-      this.xaxis = this.xaxis;
-     }
-     else {
-      this.title = this.title;
-      this.yaxis = this.yaxis;
-      this.xaxis = this.xaxis;
-     }
-    });
+      this.dark = dark;
 
-
+      
     if(this.array[0] === null)
     {
       this.series = [
@@ -162,32 +148,104 @@ export class HistoryForecastComponent implements OnInit,OnChanges{
       ];
     }
     
+    
+    if(this.dark == true)
+    {
 
-    this.xaxis = {
-      title:{
-        text: this.Period,
-        style :{
-          fontFamily: 'Montserrat,sans-serif',
-          fontSize: '16px' 
+      this.xaxis = {
+        title:{
+          text: this.Period,
+          style :{
+            color: '#FFF',
+            fontFamily: 'Montserrat,sans-serif',
+            fontSize: '16px' 
+          }
+        },
+        categories: this.array3,
+        labels: {
+          style: {
+            colors: '#FFF',
+            fontSize: '16px',
+            fontFamily: 'Lato, sans-serif'
+          }
         }
-      },
-      categories: this.array3,
-      labels: {
+      };
+
+      this.yaxis = {
+        title:{
+          text:"Electric energy [kWh]",
+          style :{
+            color:'#FFF',
+            fontFamily: 'Montserrat,sans-serif',
+            fontSize: '14px' 
+          }
+        },
+        labels: {
+          style: {
+            colors: '#FFF',
+            fontSize:'16px',
+            fontFamily: 'Lato, sans-serif'
+          },
+        },
+      }
+      
+      this.title = {
+        text: this.Title,
         style: {
-          fontSize: '16px',
-          fontFamily: 'Lato, sans-serif'
+          color: '#FFF',
+          fontSize: '19px',
+          fontFamily: 'Montserrat'
         }
-      }
-    };
+      };
+    }
+    else {
 
-    this.title = {
-      text: this.Title,
-      style: {
-        color: this.titleColor,
-        fontSize: '19px',
-        fontFamily: 'Montserrat'
+      this.xaxis = {
+        title:{
+          text: this.Period,
+          style :{
+            color: '#000',
+            fontFamily: 'Montserrat,sans-serif',
+            fontSize: '16px' 
+          }
+        },
+        categories: this.array3,
+        labels: {
+          style: {
+            colors: '#000',
+            fontSize: '16px',
+            fontFamily: 'Lato, sans-serif'
+          }
+        }
+      };
+      
+      this.yaxis = {
+        title:{
+          text:"Electric energy [kWh]",
+          style :{
+            color:'#000',
+            fontFamily: 'Montserrat,sans-serif',
+            fontSize: '14px' 
+          }
+        },
+        labels: {
+          style: {
+            colors: '#000',
+            fontSize:'16px',
+            fontFamily: 'Lato, sans-serif'
+          },
+        },
       }
-    };
+      this.title = {
+        text: this.Title,
+        style: {
+          color: '#000',
+          fontSize: '19px',
+          fontFamily: 'Montserrat'
+        }
+      };
+    }
+
 
     const options = {
       series: this.series,
@@ -195,6 +253,8 @@ export class HistoryForecastComponent implements OnInit,OnChanges{
 
     const chart2 = new ApexCharts(document.querySelector("#chart2"), options);
     chart2.render();
+    });
+
 
   }
 
@@ -310,55 +370,22 @@ export class HistoryForecastComponent implements OnInit,OnChanges{
   }
 
   public xaxis: ApexXAxis = {
+   
     title:{
-      style :{
-        color:'white',
-        fontFamily: 'Montserrat,sans-serif',
-        fontSize: '16px' 
-      }
-    },
-    labels: {
-      style: {
-        colors: this.xAxisColors,
-        fontSize: '16px',
-        fontFamily: 'Lato, sans-serif'
-      }
-    }
-  };
-
-  public xaxis2: ApexXAxis = {
-    title:{
-      style :{
-        color:'#000',
-        fontFamily: 'Montserrat,sans-serif',
-        fontSize: '16px' 
-      }
-    },
-   labels: {
-      style: {
-        colors: '#000',
-        fontSize: '16px',
-        fontFamily: 'Lato, sans-serif'
-      }
-    }
-  };
-
-  public xaxis3: ApexXAxis = {
-    title:{
-      text:"period",
       style :{
         color:'#FFF',
         fontFamily: 'Montserrat,sans-serif',
         fontSize: '16px' 
       }
     },
-   labels: {
+    labels: {
       style: {
         colors: '#FFF',
         fontSize: '16px',
         fontFamily: 'Lato, sans-serif'
       }
     }
+      
   };
 
   public yaxis: ApexYAxis = {
@@ -378,64 +405,11 @@ export class HistoryForecastComponent implements OnInit,OnChanges{
       },
     },
   };
-  
-  public yaxis2: ApexYAxis = {
-    title:{
-      text:"Electric energy [kWh]",
-      style :{
-        color:'#000',
-        fontFamily: 'Montserrat,sans-serif',
-        fontSize: '14px' 
-      }
-    },
-    labels: {
-      style: {
-        colors: ['#000'],
-        fontSize:'16px',
-        fontFamily: 'Lato, sans-serif'
-      },
-    },
-  };
-  public yaxis3: ApexYAxis = {
-    title:{
-      text:"Electric energy [kWh]",
-      style :{
-        color:'#FFF',
-        fontFamily: 'Montserrat,sans-serif',
-        fontSize: '14px' 
-      }
-    },
-    labels: {
-      style: {
-        colors: ['#FFF'],
-        fontSize:'16px',
-        fontFamily: 'Lato, sans-serif'
-      },
-    },
-  };
 
   public title: ApexTitleSubtitle = {
     text: this.Title,
     style: {
       color: this.titleColor,
-      fontSize: '19px',
-      fontFamily: 'Montserrat'
-    }
-  };
-
-  public title2: ApexTitleSubtitle = {
-    text: this.Title,
-    style: {
-      color: '#000',
-      fontSize: '19px',
-      fontFamily: 'Montserrat'
-    }
-  };
-
-  public title3: ApexTitleSubtitle = {
-    text: this.Title,
-    style: {
-      color: '#FFF',
       fontSize: '19px',
       fontFamily: 'Montserrat'
     }
