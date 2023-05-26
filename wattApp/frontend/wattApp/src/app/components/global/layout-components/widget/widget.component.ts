@@ -36,19 +36,6 @@ export class WidgetComponent implements OnInit{
     const token = localStorage.getItem('token');
     this.userService.isDark$.subscribe(dark => {
       this.hostElement = this.elementRef.nativeElement as HTMLElement;
-      // if (dark) {
-      //   const innerElements = this.hostElement?.querySelectorAll('.main');
-      //   this.hostElement?.classList.toggle('dark-theme-bigger-shadow', true);
-      //   this.hostElement?.classList.add('dark-theme-background-gray-gradient-1');
-      //   innerElements?.forEach((innerElement: any) => {
-      //     this.renderer.addClass(innerElement, 'dark-theme-color-gray');
-      //   });
-      // } else {
-      //   this.hostElement?.classList.toggle('light-theme-bigger-shadow', true);
-      //   this.hostElement?.classList.add('light-theme-background-white');
-      //   const text = this.hostElement?.querySelector('.item_title');
-      //   this.renderer.addClass(text, 'light-theme-text-color-gray');
-      // }
       this.lightMode = dark
       this.hostElement?.classList.toggle('dark-theme-bigger-shadow', dark);
       this.hostElement?.classList.toggle('light-theme-bigger-shadow', !dark);

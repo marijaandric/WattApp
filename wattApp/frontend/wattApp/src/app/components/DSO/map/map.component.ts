@@ -4,6 +4,7 @@ import axios from 'axios';
 import * as L from 'leaflet';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { UserDTO } from 'src/app/dtos/UserDTO';
+import { UserService } from 'src/app/services/user/user.service';
 declare var $: any;
 @Component({
   selector: 'app-map',
@@ -21,16 +22,23 @@ export class MapComponent implements OnInit, OnChanges{
   private darkLayer!: L.TileLayer;
   private lightLayer!: L.TileLayer;
 
-  constructor(private http: HttpClient, private elementRef: ElementRef, private renderer: Renderer2){
+  constructor(private http: HttpClient, private elementRef: ElementRef, private renderer: Renderer2, private userService: UserService){
     
   }
 
-  ngOnInit(): void {
-    this.hostElement = this.elementRef.nativeElement as HTMLElement;
-    this.hostElement?.classList.toggle('light-theme-bigger-shadow', true);
-    this.hostElement?.classList.add('light-theme-background-white');
 
+  async ngOnInit(): Promise<void> {
     
+    const token = localStorage.getItem('token');
+    this.userService.isDark$.subscribe(dark => {
+      this.hostElement = this.elementRef.nativeElement as HTMLElement;
+      this.hostElement?.classList.toggle('dark-theme-bigger-shadow', dark);
+      this.hostElement?.classList.toggle('light-theme-bigger-shadow', !dark);
+      this.hostElement?.classList.toggle('dark-theme-background-gray-gradient-1', dark);
+      this.hostElement?.classList.toggle('light-theme-background-white', !dark);
+      
+    });
+
     this.map = L.map('map').setView([44.007247, 20.904429], 13);
     
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
