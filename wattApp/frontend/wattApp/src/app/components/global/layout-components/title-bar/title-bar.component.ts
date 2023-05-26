@@ -206,6 +206,7 @@ export class TitleBarComponent implements OnInit{
     this.newsForm = this.fb.group({
       title: ['', Validators.required],
       authorId :[0, Validators.required],
+      description : ['', Validators.required],
       content: ['', Validators.required],
       priority: ['Regular', Validators.required],
       created: ['', Validators.required],

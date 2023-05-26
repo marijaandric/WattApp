@@ -1,14 +1,15 @@
-<div class="item_bg"  [ngClass]="{'bg-blue-color' : isBgBlue, 'bg-yellow-color' : isBgYellow, 'bg-pink-color' : isBgPink}"></div>
 
-<div class="item_date-box" [ngClass]="{'blue-color' : isBlue, 'yellow-color' : isYellow, 'pink-color' : isPink}">
+<div (click)="showDialog3()" class="item_bg"  [ngClass]="{'bg-blue-color' : isBgBlue, 'bg-yellow-color' : isBgYellow, 'bg-pink-color' : isBgPink}"></div>
+
+<div (click)="showDialog3()" class="item_date-box" [ngClass]="{'blue-color' : isBlue, 'yellow-color' : isYellow, 'pink-color' : isPink}">
     {{subTitle}}  <i class="fa-solid fa-circle-exclamation" *ngIf="Status === 'Important'" ></i>
 </div>
 
-<div class="item_title" [ngClass]="{'light-theme-text-color-dark-gray': !lightMode}">{{Title}}
+<div (click)="showDialog3()" class="item_title" [ngClass]="{'light-theme-text-color-dark-gray': !lightMode}">{{Title}}
 </div>
 
 <div style="display:flex; flex-direction:row; width:100%; height:30px;position:relative">
-    <div style="display:flex; width:100px; height:100%;position:relative" class="date" [ngClass]="{'light-theme-text-color-dark-gray': !lightMode}">
+    <div (click)="showDialog3()" style="display:flex; width:100px; height:100%;position:relative" class="date" [ngClass]="{'light-theme-text-color-dark-gray': !lightMode}">
         {{Datum}}
     </div>
 
@@ -16,6 +17,31 @@
              <div class="remove-or-no"> <p-button *ngIf="permission" (click)="showDialog2()" label="Delete"></p-button></div>
            
 </div>
+
+
+<p-dialog [style]="{width:'40%'}" header="Title"  [transitionOptions]="'3ms'" 
+[draggable]="true" [keepInViewport]="true" [resizable]="false" 
+[blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true" 
+[modal]="true" [(visible)]="display3" [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
+[closable]="true" [ngClass]="{'light-mode':lightMode}" appendTo="body">
+<ng-template pTemplate="header" class="header-dialog">
+  <h2 style="text-align: center;">{{subTitle}}</h2>
+</ng-template>
+
+<ng-template pTemplate="content">
+  <div style="text-align: center; font-weight: bold;">{{Title}}</div>
+  <br>
+  <br>
+  <div style="text-align: justify;">{{desc}}</div>
+</ng-template>
+
+<ng-template pTemplate="footer" style="min-height:100px;" >
+  <p>{{Datum}}</p>
+</ng-template>
+</p-dialog>
+
+
+
 <!-- (click)="DeleteNews(ID) -->
 <!--
 <div class="bottom">

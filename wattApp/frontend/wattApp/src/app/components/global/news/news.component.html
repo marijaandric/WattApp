@@ -20,10 +20,11 @@
             <ng-template let-news pTemplate="new">
               <app-promotion [subTitle]="news.title"
               [authorId] = "news.authorId"
-              [Title]="news.content" 
+              [Title]="news.description" 
               [Status]="news.priority"
               [Datum]="news.created"
               [ID]="news.id"
+              [desc]="news.content"
               [isBlue]="true" [isBgBlue]="true" class="promotion" (valueEmitter2)="handleValue2(news)" (valueEmitter)="handleValue(news)">
               </app-promotion>
             </ng-template>
@@ -36,10 +37,11 @@
             <ng-template let-news pTemplate="new">
               <app-promotion [subTitle]="news.title"
               [authorId] = "news.authorId"
-              [Title]="news.content" 
+              [Title]="news.description" 
               [Status]="news.priority"
               [Datum]="news.created"
               [ID]="news.id"
+              [desc]="news.content"
               [isBlue]="true" [isBgBlue]="true" class="promotion" (valueEmitter2)="handleValue2(news)" (valueEmitter)="handleValue(news)">
               </app-promotion>
             </ng-template>
@@ -50,8 +52,9 @@
           <p-carousel [value] = "newsImportant" [circular]="false" [numVisible]="4" [autoplayInterval]="4000" [numScroll]="4" [responsiveOptions]="responsiveOptions">
             <ng-template let-news pTemplate="new">
               <app-promotion [subTitle]="news.title"
+              [desc]="news.content"
               [authorId] = "news.authorId"
-              [Title]="news.content" 
+              [Title]="news.description" 
               [Status]="news.priority"
               [Datum]="news.created"
               [ID]="news.id"
@@ -66,8 +69,9 @@
           <p-carousel [value] = "newsRegular" [circular]="false" [numVisible]="4"  [autoplayInterval]="4000" [numScroll]="4" [responsiveOptions]="responsiveOptions">
             <ng-template let-news pTemplate="new">
               <app-promotion [subTitle]="news.title"
+              [desc]="news.content"
               [authorId] = "news.authorId"
-              [Title]="news.content" 
+              [Title]="news.description" 
               [Status]="news.priority"
               [Datum]="news.created"
               [ID]="news.id"
