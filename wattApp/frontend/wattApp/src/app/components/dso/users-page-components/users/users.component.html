@@ -13,7 +13,7 @@
   <div  class="main-grid"> 
 
     <div style="display:flex;float:left; flex-direction:column; width:80%; height:100%">
-      <div [ngClass]="{'light-mode': lightMode,'light-mode2': lightMode,'dark-mode2':!lightMode}">
+      <div [ngClass]="{'light-mode': lightMode,'light-mode2': lightMode,'dark-mode2':!lightMode,'dark-mode':!lightMode}">
       <div style="display:flex;float:right; flex-direction:row; width:100%; height:100%">
 
           <p-table class="d-table" #dtUsers class="ui-table-default" [value]="users" dataKey="id" [scrollable]="true" 
