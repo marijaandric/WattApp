@@ -10,6 +10,7 @@ import { lastValueFrom, map, tap } from 'rxjs';
 import { HistoryLineChartComponent } from 'src/app/components/Prosumer/history-line-chart/history-line-chart.component';
 import { HistoryForecastComponent } from '../../history-forecast/history-forecast.component';
 import { ForecastLineChartComponent } from 'src/app/components/Prosumer/forecast-line-chart/forecast-line-chart.component';
+import { UserService } from 'src/app/services/user/user.service';
 
 interface Models{
   code: string;
@@ -145,7 +146,10 @@ export class DeviceDesktopComponent implements OnInit {
               private fromBuilder: FormBuilder,
               private roomTypesService: RoomTypesService,
               private modelTypesService: ModelTypesService,
-              private deviceTypesService: DeviceTypesService,private elementRef: ElementRef, private renderer: Renderer2) 
+              private deviceTypesService: DeviceTypesService,
+              private elementRef: ElementRef,
+              private renderer: Renderer2,
+              private userService: UserService)
               {
 
                 this.type = [
@@ -165,13 +169,13 @@ export class DeviceDesktopComponent implements OnInit {
 
                }
 
-  ngOnInit() {
-    
-    this.hostElement = this.elementRef.nativeElement as HTMLElement;
-    console.log(this.hostElement);
-    const pencnt = this.hostElement.querySelector('.device');
-    console.log(pencnt);
 
+  async ngOnInit(): Promise<void> {
+    const token = localStorage.getItem('token');
+    this.userService.isDark$.subscribe(dark => {
+      this.lightMode = !dark;
+      
+    });
     const id = this.route.snapshot.paramMap.get('id');
     this.getHistoryAndForecastByDayForDevice(id)
     this.getHistoryAndForecastByDayForAllDevicesByMonth(id)
