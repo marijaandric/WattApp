@@ -59,6 +59,7 @@ export class UsersProsumersComponent implements OnInit {
   clear(dtUsers: any) {
     this.searchInput.nativeElement.value = '';
     dtUsers.clear();
+    this.users2 = this.users
   }
 
   onSearch(value: string, dtUsers: any) {
@@ -71,6 +72,18 @@ export class UsersProsumersComponent implements OnInit {
       }
     }, 500);
   }
+
+  onFilter(event: any) {
+    const filteredValues = event.filteredValue;
+    setTimeout(() => {
+      this.users2 = filteredValues
+      if(this.users2 == undefined || this.users2 == null)
+      {
+        this.users2 = this.users
+      }
+    }, 500);
+  }
+  
 
   onPageChange(event: any) {
     this.rowsPerPage = this.rowsPerPage; // implement changing of page size
