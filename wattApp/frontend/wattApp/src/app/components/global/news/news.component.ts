@@ -46,6 +46,7 @@ export class NewsComponent implements OnInit{
       title: [value.title, Validators.required],
       authorId :[value.authorId, Validators.required],
       content: [value.content, Validators.required],
+      description:[value.description, Validators.required],
       priority: [value.priority, Validators.required],
       created: [new Date(), Validators.required],
     })
