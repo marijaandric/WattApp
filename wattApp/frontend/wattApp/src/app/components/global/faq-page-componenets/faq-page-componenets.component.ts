@@ -1,5 +1,6 @@
 import { Component, ElementRef, Renderer2 } from '@angular/core';
 import { NgToastService } from 'ng-angular-popup';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-faq-page-componenets',
@@ -31,7 +32,7 @@ export class FaqPageComponenetsComponent {
     }
   }
   constructor(
-    private toast: NgToastService,private elementRef: ElementRef, private renderer: Renderer2
+    private toast: NgToastService,private userService: UserService, private elementRef: ElementRef, private renderer: Renderer2
     ) {
   }
 
@@ -44,19 +45,11 @@ export class FaqPageComponenetsComponent {
 
   }
 
-  ngOnInit () {
-    
-    this.hostElement = this.elementRef.nativeElement as HTMLElement;
-    const text = this.hostElement?.querySelectorAll('.tab');
-    text.forEach((innerElement) => {
-      this.renderer.addClass(innerElement, 'light-theme-background-white');
-      this.renderer.addClass(innerElement, 'light-theme-bigger-shadow');
-      this.renderer.addClass(innerElement, 'light-theme-color-gray');
+  async ngOnInit(): Promise<void> {
+    const token = localStorage.getItem('token');
+    this.userService.isDark$.subscribe(dark => {
+      this.lightMode = !dark;
+     
     });
-    const contact = this.hostElement?.querySelector('.left');
-    this.renderer.addClass(contact, 'ligh-theme-text-color-gray');
-    this.renderer.addClass(contact, 'light-theme-bigger-shadow');
-    this.renderer.addClass(contact, 'light-theme-color-gray');
-    
   }
 }
