@@ -11,7 +11,7 @@ import { UserService } from 'src/app/services/user/user.service';
 })
 export class UserProfileComponentComponent implements OnInit,OnChanges{
   hostElement: HTMLElement | undefined;
-
+  lightMode: Boolean = false;
   map: any;
   user : any;
   private darkLayer!: L.TileLayer;
@@ -35,16 +35,13 @@ export class UserProfileComponentComponent implements OnInit,OnChanges{
     }
   }
 
-  async ngOnInit()
-  {
+  async ngOnInit(): Promise<void> {
     
-    this.hostElement = this.elementRef.nativeElement as HTMLElement;
-    const mapShadow = this.hostElement.querySelector('.mapaSHD');
-    this.renderer.addClass(mapShadow, 'light-theme-bigger-shadow')
-
-
     const token = localStorage.getItem('token');
-    
+    this.userService.isDark$.subscribe(dark => {
+      this.lightMode = !dark;
+    });      
+
     if(token)
     {
       const userId = this.userService.getUserIdFromToken(token);

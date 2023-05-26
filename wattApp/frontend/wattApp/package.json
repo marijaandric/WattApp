@@ -29,7 +29,7 @@
     "bootstrap": "^5.2.3",
     "cyrillic-to-latin": "^2.0.0",
     "jquery": "^3.6.3",
-    "leaflet": "^1.9.3",
+    "leaflet": "^1.9.4",
     "leaflet-bing-layer": "^3.3.1",
     "libphonenumber-js": "^1.10.30",
     "ng-angular-popup": "^0.2.0",

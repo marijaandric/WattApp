@@ -20,7 +20,7 @@
     <div class="bottom-card">
       <div class="bottom-left-card">
         <div class="bottom-left-top-card">
-            <div id="deviceInformation" class="flexColumn device-information" [ngClass]="{'light-mode-device-info': lightMode}">
+            <div id="deviceInformation" class="flexColumn device-information" [ngClass]="{'light-mode-device-info': lightMode,'dark-mode-device-info':!lightMode}">
               <div class="flexRow">
 
                 <img *ngIf="isPhone" src="../.../../../../../../assets/icons/images/icons8-iphone-14-50.png">
@@ -115,16 +115,16 @@
 
       <div class="bottom-right-card pdd-div">
         <div class="display:flex;position:relative; width:100%; height:fit-content;">
-          <div style="width:100%; height:fit-content; display:flex; flex-direction:row;margin-bottom:12px;" class="pdd-div">
-            <div [ngClass]="{'light-mode':lightMode}" ><p-dropdown [options]="type2" [(ngModel)]="selectedHF"  optionLabel="name" (onChange)="updateType3()" >
+          <div style="width:100%; height:fit-content; display:flex; flex-direction:row;margin-bottom:20px;" class="pdd-div">
+            <div [ngClass]="{'light-mode':lightMode,'dark-mode':!lightMode}" ><p-dropdown [options]="type2" [(ngModel)]="selectedHF"  optionLabel="name" (onChange)="updateType3()" >
             </p-dropdown></div>
-            <div [ngClass]="{'light-mode':lightMode}" ><p-dropdown [options]="type3" [(ngModel)]="selectedDate" optionLabel="name" (onChange)="dropdownChange()" >
+            <div [ngClass]="{'light-mode':lightMode,'dark-mode':!lightMode}" ><p-dropdown [options]="type3" [(ngModel)]="selectedDate" optionLabel="name" (onChange)="dropdownChange()" >
             </p-dropdown> </div>
           </div>
         </div>
         <app-history-forecast-table *ngIf="table"
         style="
-        margin-top:36px;
+        margin-top:45px;
         display: flex;
         position: relative;
         flex-direction: column;
@@ -132,10 +132,10 @@
         border-radius: 20px;
         transition: ease-in-out;
         padding:10px 20px 30px 20px;
-        " [name1]="name1" [name2]="name2" [hif]="hif" [ngClass]="{'light-mode':lightMode}" ></app-history-forecast-table>
+        " [name1]="name1" [name2]="name2" [hif]="hif" [ngClass]="{'light-mode':lightMode,'dark-mode':!lightMode,'dark-mode2':!lightMode}" ></app-history-forecast-table>
         <app-history-or-forecast-table  *ngIf="!table"
         style="
-          margin-top:36px;
+          margin-top:45px;
           display: flex;
           position: relative;
           flex-direction: column;
@@ -143,7 +143,7 @@
           width: 100%;
           border-radius: 20px;
           transition: ease-in-out;
-          padding:10px 20px 30px 20px;" [ngClass]="{'light-mode':lightMode}"   [name]="name" [History]="History" [Forecast]="Forecast" [dates]="dates" >
+          padding:10px 20px 30px 20px;" [ngClass]="{'light-mode':lightMode,'dark-mode':!lightMode,'dark-mode2':!lightMode}"   [name]="name" [History]="History" [Forecast]="Forecast" [dates]="dates" >
           </app-history-or-forecast-table>
       </div>
     </div>
