@@ -13,7 +13,9 @@ import { AuthService } from 'src/app/services/auth/auth.service';
   encapsulation: ViewEncapsulation.None
 })
 export class UsersComponent implements OnInit{
+  hostElement: HTMLElement | undefined;
   lightMode: Boolean = true;
+  darkMode:Boolean = false;
   @ViewChild('searchInput') searchInput!: ElementRef;
   baseUrl = url + "/api/Images/user/";
   users: UserDTO[] = [];
@@ -31,12 +33,24 @@ export class UsersComponent implements OnInit{
   constructor(private userService: UserService, 
               private aPIService: APIService,
               private authService: AuthService,
-              private paginationService: PaginationService) {
+              private paginationService: PaginationService,
+              private elementRef: ElementRef,) {
 
                
                }
 
-  ngOnInit() {
+
+  async ngOnInit(): Promise<void> {
+
+    this.hostElement = this.elementRef.nativeElement as HTMLElement;
+    const token = localStorage.getItem('token');
+    this.userService.isDark$.subscribe(dark => {
+      this.lightMode = !dark;
+      if(dark){
+        this.darkMode = true;
+      }
+    });
+                  
     this.getNumber();
     this.paginationService.getCountData("/api/UserPagination/users/pagination/count").subscribe(result => (this.loader = false, this.allUsersCount = result));
     this.refreshAllUsers();

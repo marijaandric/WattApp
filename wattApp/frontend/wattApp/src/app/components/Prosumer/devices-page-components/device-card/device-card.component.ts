@@ -4,6 +4,7 @@ import { DeviceDTO } from 'src/app/dtos/DeviceDTO';
 import { DeviceDataDTO } from 'src/app/dtos/DeviceDataDTO';
 import { DeviceDataService } from 'src/app/services/device-data/device-data.service';
 import { DeviceService } from 'src/app/services/device/device.service';
+import { UserService } from 'src/app/services/user/user.service';
 
 
 @Component({
@@ -53,17 +54,29 @@ export class DeviceCardComponent implements OnInit,OnChanges{
   isConsumer: boolean = false;
   isProducer: boolean = false;
   isStock: boolean = false;
+  constructor(private deviceService: DeviceService,private userService: UserService, private cdRef: ChangeDetectorRef, private elementRef: ElementRef, private renderer: Renderer2){ }
 
-  constructor(private deviceService: DeviceService,private cdRef: ChangeDetectorRef, private elementRef: ElementRef, private renderer: Renderer2){ }
-
-  ngOnInit(): void {
+  
+  async ngOnInit(): Promise<void> {
     
+    this.hostElement = this.elementRef.nativeElement as HTMLElement;
+    const token = localStorage.getItem('token');
+    this.userService.isDark$.subscribe(dark => {
+      this.lightMode = !dark;
+
+      
+      this.hostElement?.classList.toggle('dark-theme-bigger-shadow', dark);
+      this.hostElement?.classList.toggle('light-theme-bigger-shadow', !dark);
+      this.hostElement?.classList.toggle('dark-theme-background-gray-gradient-1', dark);
+      this.hostElement?.classList.toggle('light-theme-background-white', !dark);
+    });
     this.hostElement = this.elementRef.nativeElement as HTMLElement;
     console.log(this.hostElement);
     const dvcCard = this.hostElement.querySelector('.device-card');
     console.log(dvcCard);
     this.renderer.addClass(dvcCard, 'light-theme-bigger-shadow');
     this.renderer.addClass(dvcCard, 'light-theme-background-white');
+    
     
     if(!this.device.power)
     {
