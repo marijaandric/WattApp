@@ -17,7 +17,7 @@
 </div>
 
 <div *ngIf="switchValue == false">
-  <div [ngClass]="{'light-mode': lightMode,'light-mode2': lightMode}">
+  <div [ngClass]="{'light-mode': lightMode,'light-mode2': lightMode, 'dark-mode2': !lightMode}">
   <p-table #dtAllDevices class="ui-table-default" [value]="devices" dataKey="id" [scrollable]="true" 
     [rows]="10" [showCurrentPageReport]="true" [rowsPerPageOptions]="[10,25,50]"
     [globalFilterFields]="['userId','deviceName','room', 'deviceType']" [paginator]="true"

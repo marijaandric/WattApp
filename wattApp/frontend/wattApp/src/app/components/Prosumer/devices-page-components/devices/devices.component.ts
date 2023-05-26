@@ -63,38 +63,9 @@ export class DevicesComponent implements OnInit{
     this.userService.isDark$.subscribe(dark => {
       this.hostElement = this.elementRef.nativeElement as HTMLElement;
       this.lightMode = !dark;
-      const tabela = this.hostElement.querySelector('.tabela');
-      if(dark)
-      {
-        this.renderer.removeClass(tabela, 'light-theme-background-white');
-        this.renderer.removeClass(tabela, 'light-theme-bigger-shadow');
-        this.renderer.addClass(tabela, 'dark-theme-background-gray-gradient-2');
-        this.renderer.addClass(tabela, 'dark-theme-bigger-shadow');
-
-      } else {
-        this.renderer.removeClass(tabela, 'dark-theme-background-gray-gradient-2');
-        this.renderer.removeClass(tabela, 'dark-theme-bigger-shadow');
-        this.renderer.addClass(tabela, 'light-theme-background-white');
-        this.renderer.addClass(tabela, 'light-theme-bigger-shadow');
-
-      }
-     
+    
     });
 
-    /*
-    innerElements.forEach((innerElement) => {
-      this.renderer.addClass(innerElement, 'light-theme-color-gray');
-    });
-    this.hostElement.classList.forEach((DeviceCardComponent) => {
-      const dvc = DeviceCardComponent as HTMLElement;
-    })
-    console.log(deviceCard);
-    this.hostElement?.classList.toggle('light-theme-bigger-shadow', true);
-    this.hostElement?.classList.add('light-theme-background-white');
-*/
-    this.responsiveOptions = [
-      
-  ];
   }
 
   constructor(private deviceService: DeviceService,
