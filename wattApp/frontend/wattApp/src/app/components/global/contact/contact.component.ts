@@ -1,5 +1,6 @@
 import { Component, ElementRef, Renderer2 } from '@angular/core';
 import { NgToastService } from 'ng-angular-popup';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-contact',
@@ -20,19 +21,16 @@ export class ContactComponent {
   }
 
   
-  constructor (private elementRef: ElementRef, private renderer: Renderer2, private toast: NgToastService) {
+  constructor (private elementRef: ElementRef, private renderer: Renderer2, private toast: NgToastService, private userService: UserService) {
 
   }
 
 
-  ngOnInit(): void {
-  
-  this.hostElement = this.elementRef.nativeElement as HTMLElement;
-  const text = this.hostElement?.querySelector('.item_title');
-  this.renderer.addClass(text, 'ligh-theme-text-color-gray');
-  
-  const login_box = this.hostElement?.querySelector('.login_box');
-  this.renderer.addClass(login_box, 'light-theme-bigger-shadow');
-  console.log(login_box);
+  async ngOnInit(): Promise<void> {
+    const token = localStorage.getItem('token');
+    this.userService.isDark$.subscribe(dark => {
+      this.lightMode = !dark;
+     
+    });
   }
 }
