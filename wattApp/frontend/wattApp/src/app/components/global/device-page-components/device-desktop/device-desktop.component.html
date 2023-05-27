@@ -90,7 +90,7 @@
 
                 <div *ngIf="device.deviceType != 'Stock'" class="flexRow" style="margin-top:16px">
                   <span>Power:</span>
-                  <span class="margin-left__auto text-secondary">{{ device.power }}</span>
+                  <span class="margin-left__auto text-secondary">{{ device.power }} W</span>
                 </div>
 
                 <div *ngIf="device.deviceType == 'Stock'" class="flexRow" style="margin-top:16px">
@@ -193,7 +193,12 @@
   [modal]="true" [(visible)]="displayEditDeviceDialog" [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
   [closable]="true" >
   <ng-template pTemplate="header" class="header-dialog">
-    <span>Edit device</span>
+    <span>Edit device<i class="fa fa-info-circle" style="cursor:pointer" aria-hidden="true" (click)="op3.toggle($event)"></i> </span>
+    <p-overlayPanel #op3 >
+      <p style="width:350px">Dear user,</p> 
+      <p style="width:350px">You must fill in all fields. In the power or capacity field, enter only numbers.</p>
+      <p style="width:350px">If an error occurs while adding your device and you have followed the steps, please consult with your nearest operator for assistance.</p>
+    </p-overlayPanel>
   </ng-template>
   
   <ng-template pTemplate="content">
@@ -212,7 +217,8 @@
       <div class="half">
         <input formControlName="deviceName" name="deviceName"  type="text"   class="p-inputtext-lg"  placeholder="DEVICE NAME" style="margin-top:2px;">
         <input formControlName="model" name="model"  type="text"   class="p-inputtext-lg"  placeholder="DEVICE MODEL" style="margin-top:0px;">  
-        <input formControlName="power" name="power"  type="text"   class="p-inputtext-lg"  placeholder="POWER/CAPACITY" style="margin-top:0px;"> 
+        <input *ngIf="typeSelected.name == 'Stock'" formControlName="power" name="power"  type="text"   class="p-inputtext-lg"  placeholder="CAPACITY in Ah" style="margin-top:0px;"> 
+        <input *ngIf="typeSelected.name != 'Stock'" formControlName="power" name="power"  type="text"   class="p-inputtext-lg"  placeholder="POWER in W" style="margin-top:0px;"> 
         <input formControlName="manufacturer" name="manufacturer"  type="text"   class="p-inputtext-lg"  placeholder="MANUFACTURER" style="margin-top:0px;"> 
         <input formControlName="manufacturingYear" name="manufacturingYear"  type="text"   class="p-inputtext-lg"  placeholder="MANUFACTURING YEAR" style="margin-top:0px;">       
       </div>

@@ -64,7 +64,7 @@
   <span>Add Device <i class="fa fa-info-circle" style="cursor:pointer" aria-hidden="true" (click)="op3.toggle($event)"></i> </span>
   <p-overlayPanel #op3 >
     <p style="width:350px">Dear user,</p> 
-    <p style="width:350px">You must fill in all fields.</p>
+    <p style="width:350px">You must fill in all fields. In the power or capacity field, enter only numbers.</p>
     <p style="width:350px">If an error occurs while adding your device and you have followed the steps, please consult with your nearest operator for assistance.</p>
   </p-overlayPanel>
 </ng-template>
@@ -86,7 +86,8 @@
     <div class="half">
       <input formControlName="deviceName" name="name"  type="text"   class="p-inputtext-lg"  placeholder="DEVICE NAME" style="margin-top:2px;">
       <input formControlName="model" name="name"  type="text"   class="p-inputtext-lg"  placeholder="DEVICE MODEL" style="margin-top:0px;">  
-      <input formControlName="power" name="name"  type="text"   class="p-inputtext-lg"  placeholder="POWER/CAPACITY" style="margin-top:0px;"> 
+      <input *ngIf="typeSelected.name == 'Stock'" formControlName="power" name="power"  type="text"   class="p-inputtext-lg"  placeholder="CAPACITY in Ah" style="margin-top:0px;"> 
+      <input *ngIf="typeSelected.name != 'Stock'" formControlName="power" name="power"  type="text"   class="p-inputtext-lg"  placeholder="POWER in W" style="margin-top:0px;"> 
       <input formControlName="manufacturer" name="name"  type="text"   class="p-inputtext-lg"  placeholder="MANUFACTURER" style="margin-top:0px;"> 
       <input formControlName="Manufacturing year" name="name"  type="text"   class="p-inputtext-lg"  placeholder="MANUFACTURING YEAR" style="margin-top:0px;">       
     </div>
