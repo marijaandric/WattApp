@@ -106,19 +106,18 @@ export class TitleBarComponent implements OnInit{
     }
   }
 
+  
   async ngOnInit(): Promise<void> {
     
-    this.hostElement = this.elementRef.nativeElement as HTMLElement;
-    const innerElements = this.hostElement?.querySelectorAll('a, p,li, div');
-    innerElements.forEach((innerElement) => {
-      this.renderer.addClass(innerElement, 'ligh-theme-text-color-gray');
+    const token = localStorage.getItem('token');
+    this.userService.isDark$.subscribe(dark => {
+      this.hostElement = this.elementRef.nativeElement as HTMLElement;
+      this.lightMode = !dark
     });
     const dd = this.hostElement?.querySelector('.sub-menu');
     this.renderer.addClass(dd, 'light-theme-shadow');
     this.renderer.addClass(dd, 'light-theme-background-white');
 
-
-    const token = localStorage.getItem('token');
     if(token)
     {
       this.rola = this.userService.getUserRoleFromToken(token);
