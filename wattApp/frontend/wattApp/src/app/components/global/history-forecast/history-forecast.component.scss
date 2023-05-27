@@ -17,3 +17,12 @@
 .dark {
     background-color: red !important;
 }
+
+
+
+@media only screen and (max-width:980px) {
+    :host {
+        padding:10px 5px;
+    }
+
+}

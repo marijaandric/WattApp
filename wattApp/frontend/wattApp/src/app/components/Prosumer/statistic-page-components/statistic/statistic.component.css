@@ -131,6 +131,9 @@
 }
 
 @media only screen and (max-width:980px) {
+  .dpds { 
+    margin-bottom: 20px !important;
+  }
   .for-phone {
     display:flex;
   }
@@ -175,7 +178,6 @@
   .stats-cards {
     flex-direction: row;
     width:100%;
-    margin-top:32px;
     margin-left:0px !important;
   }
   .bottom-grid{
