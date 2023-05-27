@@ -3,18 +3,7 @@
 <div *ngIf="!loader" class="device" >
     <div class="top-card">
         
-    <div class="widgets">       
-        <app-widget [subTitle]="SubTitleToday" [Title]="Today +' kWh'" [isBlue]="true" [isBgBlue]="true" class="widget">
-        </app-widget>
-        <app-widget [subTitle]="SubTitleWeek" [Title]="Week+' kWh'" [isYellow]="true" [isBgYellow]="true" class="widget">
-        </app-widget>
-        <app-widget [subTitle]="SubTitleMonth" [Title]="Month+' kWh'" [isPink]="true" [isBgPink]="true" class="widget">
-        </app-widget>
-        <app-widget  [subTitle]="SubTitleYear" [Title]="Year+' kWh'" [isOrange]="true" [isBgOrange]="true" class="widget">
-        </app-widget>
-        <app-widget  [subTitle]="SubTitleAll" [Title]="Year+' kWh'" [isBlue]="true" [isBgBlue]="true" class="widget" >
-        </app-widget>
-      </div>
+    
     
       </div> 
     <div class="circles">
@@ -33,17 +22,17 @@
                     </div>
                 </div>
                 <div class="title1" style="margin-bottom:20px;">
-                    <h5>Consumption this hour</h5>
+                    <h5 [ngClass]="{'ligh-theme-text-color-gray':lightMode, 'color-white':!lightMode}">Consumption this hour</h5>
                 </div>
         
-                <div class=" circle circle-1">
-                    <div class="circle circle-2">
+                <div class=" circle circle-1"  [ngClass]="{'light-theme-bigger-shadow':lightMode , 'dark-theme-bigger-shadow':!lightMode}">
+                    <div class="circle circle-2" [ngClass]="{'dark-theme-background-gray-gradient-3':!lightMode, 'light-theme-background-white':lightMode}">
                         <div class="circle-icon">
-                            <i class="fa-solid fa-bolt"></i>
+                            <i class="fa-solid fa-bolt" ></i>
                         </div>
     
-                        <div class="main-stat">
-                            <span>{{power}}</span> 
+                        <div class="main-stat" >
+                            <span [ngClass]="{'ligh-theme-text-color-gray':lightMode, 'color-white':!lightMode}">{{power}}</span> 
                         </div>
     
                         <div class="kwh">
@@ -56,7 +45,7 @@
     </div>  
     
     <div class="info" >
-        <div id="deviceInformation" class="flexColumn device-information" >
+        <div id="deviceInformation" class="flexColumn device-information" [ngClass]="{'light-mode-device-info': lightMode,'dark-mode-device-info':!lightMode}">
             <div class="flexRow">
                 <div class="colored-text2" ><h5>Device description</h5></div>
             </div>
@@ -98,13 +87,24 @@
               </div> 
         </div>
     </div>
-
+    <div class="widgets">       
+        <app-widget [subTitle]="SubTitleToday" [Title]="Today +' kWh'" [isBlue]="true" [isBgBlue]="true" class="widget">
+        </app-widget>
+        <app-widget [subTitle]="SubTitleWeek" [Title]="Week+' kWh'" [isYellow]="true" [isBgYellow]="true" class="widget">
+        </app-widget>
+        <app-widget [subTitle]="SubTitleMonth" [Title]="Month+' kWh'" [isPink]="true" [isBgPink]="true" class="widget">
+        </app-widget>
+        <app-widget  [subTitle]="SubTitleYear" [Title]="Year+' kWh'" [isOrange]="true" [isBgOrange]="true" class="widget">
+        </app-widget>
+        <app-widget  [subTitle]="SubTitleAll" [Title]="Year+' kWh'" [isBlue]="true" [isBgBlue]="true" class="widget" >
+        </app-widget>
+      </div>
     <div class="display:flex;position:relative; width:100%; height:fit-content;flex-direction:row;">
         <div style="width:100%; height:fit-content; display:flex; flex-direction:row;margin-bottom:12px;">
-            <div class="pdd-div"><p-dropdown [options]="type2" appendTo="body" [(ngModel)]="selectedHF"  optionLabel="name" (onChange)="updateType3()">
-            </p-dropdown></div>
-            <div class="pdd-div"><p-dropdown [options]="type3" appendTo="body" [(ngModel)]="selectedDate" optionLabel="name" (onChange)="dropdownChange()" >
-            </p-dropdown></div>
+            <div class="pdd-div"><div [ngClass]="{'light-mode':lightMode,'dark-mode':!lightMode}" ><p-dropdown [options]="type2"  [(ngModel)]="selectedHF"  optionLabel="name" (onChange)="updateType3()">
+            </p-dropdown></div></div>
+            <div class="pdd-div"><div [ngClass]="{'light-mode':lightMode,'dark-mode':!lightMode}" ><p-dropdown [options]="type3"  [(ngModel)]="selectedDate" optionLabel="name" (onChange)="dropdownChange()" >
+            </p-dropdown></div></div>
           </div>
     </div>
 
@@ -112,7 +112,7 @@
     <div class="circles" >    
         <div class="card-2">
             <div class="card-2-1" >
-                <div class="stats">
+                <div class="stats" [ngClass]="{'light-theme-bigger-shadow':lightMode , 'dark-theme-bigger-shadow':!lightMode,'dark-theme-background-gray-gradient-3':!lightMode, 'light-theme-background-white':lightMode}">
                     <div style="width:100%; height:fit-content; position:relative;">
                         
                         <div class="subtitle-card">
@@ -121,11 +121,11 @@
                     </div>
                     <div style="width:100%; height:fit-content; position:relative;">
                         <div class="main-stat-card">
-                            <span>{{min}}</span> 
+                            <span [ngClass]="{'ligh-theme-text-color-gray':lightMode,'color-white':!lightMode}">{{min}}</span> 
                         </div>
 
                         <div class="kwh-card">  
-                            <span>kWh</span>
+                            <span [ngClass]="{'ligh-theme-text-color-gray':lightMode,'color-white':!lightMode}">kWh</span>
                         </div>
                     </div>
 
@@ -135,7 +135,7 @@
                 </div>
             </div>
             <div class="card-2-2" >
-                <div class="stats">
+                <div class="stats" [ngClass]="{'light-theme-bigger-shadow':lightMode , 'dark-theme-bigger-shadow':!lightMode,'dark-theme-background-gray-gradient-3':!lightMode, 'light-theme-background-white':lightMode}">
                     <div style="width:100%; height:fit-content; position:relative;">
                         
                         <div class="subtitle-card">
@@ -145,11 +145,11 @@
 
                     <div style="width:100%; height:fit-content; position:relative;">
                         <div class="main-stat-card">
-                            <span>{{max}}</span> 
+                            <span [ngClass]="{'ligh-theme-text-color-gray':lightMode,'color-white':!lightMode}">{{max}}</span> 
                         </div>
 
                         <div class="kwh-card">  
-                            <span>kWh</span>
+                            <span [ngClass]="{'ligh-theme-text-color-gray':lightMode,'color-white':!lightMode}">kWh</span>
                         </div>
                     </div>
 
@@ -162,7 +162,7 @@
         
         <div class="card-2 card-3" style="margin-bottom: 20px;">
             <div class="card-2-1" >
-                <div class="stats">
+                <div class="stats" [ngClass]="{'light-theme-bigger-shadow':lightMode , 'dark-theme-bigger-shadow':!lightMode,'dark-theme-background-gray-gradient-3':!lightMode, 'light-theme-background-white':lightMode}">
                     <div style="width:100%; height:fit-content; position:relative;">
                        
                         <div class="subtitle-card">
@@ -172,11 +172,11 @@
 
                     <div style="width:100%;  position:relative;">
                         <div class="main-stat-card">
-                            <span>{{average}}</span> 
+                            <span [ngClass]="{'ligh-theme-text-color-gray':lightMode,'color-white':!lightMode}">{{average}}</span> 
                         </div>
 
                         <div class="kwh-card">  
-                            <span>kWh</span>
+                            <span [ngClass]="{'ligh-theme-text-color-gray':lightMode,'color-white':!lightMode}">kWh</span>
                         </div>
                     </div>
 
@@ -185,7 +185,7 @@
             </div>
                 
             <div  class="card-2-2" >
-                <div class="stats">
+                <div class="stats" [ngClass]="{'light-theme-bigger-shadow':lightMode , 'dark-theme-bigger-shadow':!lightMode,'dark-theme-background-gray-gradient-3':!lightMode, 'light-theme-background-white':lightMode}">
                     <div style="width:100%; height:fit-content; position:relative;">
                       
 
@@ -196,11 +196,11 @@
 
                     <div style="width:100%; height:fit-content; position:relative;">
                         <div class="main-stat-card">
-                            <span>{{total}}</span> 
+                            <span [ngClass]="{'ligh-theme-text-color-gray':lightMode,'color-white':!lightMode}">{{total}}</span> 
                         </div>
 
                         <div class="kwh-card">  
-                            <span>kWh</span>
+                            <span [ngClass]="{'ligh-theme-text-color-gray':lightMode,'color-white':!lightMode}">kWh</span>
                         </div>
                     </div>
 
@@ -211,8 +211,8 @@
     </div>
     
     <div class="twoCharts" *ngIf="tableHiFWeek" style="position:relative">
-        <p-selectButton class="flexRow width__fit-content margin-left__auto" style="margin-bottom:20px;position:relative" [options]="switchOptions" [(ngModel)]="switchValue" optionLabel="label" optionValue="value"></p-selectButton>
-        <app-history-line-chart #myChart2 class="handf" *ngIf="switchValue == true" [array] = 'miniHistory' [array2] = 'miniarrayData1' [Period]="Period"></app-history-line-chart>
+        <div [ngClass]="{'light-mode':lightMode}"><p-selectButton class="flexRow width__fit-content margin-left__auto" style="margin-bottom:20px;position:relative" [options]="switchOptions" [(ngModel)]="switchValue" optionLabel="label" optionValue="value"></p-selectButton>
+        </div><app-history-line-chart #myChart2 class="handf" *ngIf="switchValue == true" [array] = 'miniHistory' [array2] = 'miniarrayData1' [Period]="Period"></app-history-line-chart>
         <app-forecast-line-chart #myChart1 class="handf" *ngIf="switchValue == false"  [array]="miniForecast" [array2] = 'miniarrayData2' [Period]="Period"></app-forecast-line-chart>
     </div>
     <div class="twoCharts" *ngIf="!tableHiFWeek">
@@ -229,11 +229,9 @@
         flex-direction: column;
         height: fit-content;
         border-radius: 20px;
-        background: linear-gradient(180deg, #1b1b1b 50%, #121212 100%) ;
-        box-shadow: 5px 5px 15px black;
         transition: ease-in-out;
         padding:10px 20px 30px 20px;
-        " [name1]="name" [name2]="name" [hif]="hif"></app-history-forecast-table>
+        " [name1]="name" [name2]="name" [hif]="hif"  [ngClass]="{'light-mode':lightMode,'dark-mode':!lightMode,'dark-mode2':!lightMode}"></app-history-forecast-table>
         <app-history-or-forecast-table  *ngIf="!table"
         style="
           margin-top:32px;
@@ -243,10 +241,8 @@
           height: fit-content;
           width: 100%;
           border-radius: 20px;
-          background: linear-gradient(180deg, #1b1b1b 50%, #121212 100%) ;
-          box-shadow: 5px 5px 15px black;
           transition: ease-in-out;
-          padding:10px 20px 30px 20px;"  [name]="name" [History]="History" [Forecast]="Forecast" [dates]="dates" >
+          padding:10px 20px 30px 20px;"  [name]="name" [History]="History" [Forecast]="Forecast" [dates]="dates"  [ngClass]="{'light-mode':lightMode,'dark-mode':!lightMode,'dark-mode2':!lightMode}">
           </app-history-or-forecast-table>
 
     <div style="margin-bottom:20px;"></div>
