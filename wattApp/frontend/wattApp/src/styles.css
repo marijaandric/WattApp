@@ -337,7 +337,10 @@
 .light-theme-background-color-white{
   background-color: white;
 }
-
+.dark-theme-background-1b1b1b-imp {
+  background: #151515 !important;
+  background-color: #151515 !important;
+}
 
 
 .light-theme-color-000{
