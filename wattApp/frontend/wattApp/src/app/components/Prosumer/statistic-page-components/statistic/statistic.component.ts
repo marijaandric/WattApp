@@ -380,6 +380,14 @@ export class StatisticComponent  implements OnInit {
 
 
     this.deviceService.getMaxMinAvgTotalPowerUsageByTimeForUserDevicesByType(this.id,deviceType,this.selectedDate.code).subscribe(data => {
+      if(data==null)
+    {
+      this.max=0;
+      this.min= 0;
+      this.average=0;
+      this.total=0;
+    }
+  
       const keys = Object.keys(data);
       this.dataMin = keys[1];
       this.dataMax = keys[0];
