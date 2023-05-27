@@ -391,8 +391,25 @@ dataMax: any;
   getConsumergetMaxMinAvgTotalPowerUsageByTimeForAllDevicesByType() {
     const deviceType = this.selectedType.code;
 
+   
     this.deviceService.getMaxMinAvgTotalPowerUsageByTimeForUserDevicesByType(this.id,deviceType,this.selectedDate.code).subscribe(data => {
       const keys = Object.keys(data);
+      console.log(data);
+
+      if(data==null)
+      {
+        this.max=0;
+        this.min= 0;
+        this.average=0;
+        this.total=0;
+        console.log("Nije usao");
+      }
+      else
+      {
+        console.log("usao");
+      }
+
+
 
       this.dataMin = keys[1];
       this.dataMax = keys[0];

@@ -373,6 +373,14 @@ dataMax: any;
       this.dataMin = keys[1];
       this.dataMax = keys[0];
 
+      if(data==null)
+      {
+        this.max=0;
+        this.min= 0;
+        this.average=0;
+        this.total=0;
+      }
+
 
       this.Consumermax = data[keys[0]].toFixed(2);
       this.Consumermin = data[keys[1]].toFixed(2);
