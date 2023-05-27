@@ -1,4 +1,5 @@
 import { Component, ElementRef, Renderer2 } from '@angular/core';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-about-us',
@@ -7,12 +8,19 @@ import { Component, ElementRef, Renderer2 } from '@angular/core';
 })
 export class AboutUsComponent {
   hostElement: HTMLElement | undefined;
-
-  constructor(private elementRef: ElementRef, private renderer: Renderer2) {
+  lightMode: Boolean = false;
+  constructor(private elementRef: ElementRef, private renderer: Renderer2, private userService:UserService) {
 
   }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    const token = localStorage.getItem('token');
+    this.userService.isDark$.subscribe(dark => {
+      this.lightMode = !dark;
+     
+    });
+  }
+    /*
     this.hostElement = this.elementRef.nativeElement as HTMLElement;
     const cards = this.hostElement?.querySelectorAll('.klasa .cont .card');
     cards.forEach((card) => {
@@ -30,4 +38,5 @@ export class AboutUsComponent {
     this.renderer.addClass(image,'light-theme-background-white');
     this.renderer.addClass(image,'light-theme-bigger-shadow');
   }
+  */
 }
