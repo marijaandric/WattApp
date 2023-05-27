@@ -12,6 +12,7 @@ import { HistoryForecastComponent } from '../../history-forecast/history-forecas
 import { ForecastLineChartComponent } from 'src/app/components/Prosumer/forecast-line-chart/forecast-line-chart.component';
 import { DeviceDataService } from 'src/app/services/device-data/device-data.service';
 import { NgToastService } from 'ng-angular-popup';
+import { UserService } from 'src/app/services/user/user.service';
 
 interface Models{
   code: string;
@@ -112,7 +113,8 @@ export class DevicePhoneComponent implements OnInit{
               private fb: FormBuilder,
               private roomTypesService: RoomTypesService,
               private modelTypesService: ModelTypesService,
-              private deviceTypesService: DeviceTypesService,private toast:NgToastService) 
+              private deviceTypesService: DeviceTypesService,private toast:NgToastService,
+              private userService: UserService) 
               {
                 this.type = [
                   {name: 'Consumption', code: 'Consumer'},
@@ -142,7 +144,12 @@ export class DevicePhoneComponent implements OnInit{
                 })
                }
 
-  ngOnInit() {
+  async ngOnInit(): Promise<void> {
+    const token = localStorage.getItem('token');
+    this.userService.isDark$.subscribe(dark => {
+      this.lightMode = !dark;
+      
+    });
     const id = this.route.snapshot.paramMap.get('id');
     this.getHistoryAndForecastByDayForDevice(id)
     this.getHistoryAndForecastByDayForAllDevicesByYear(id)
