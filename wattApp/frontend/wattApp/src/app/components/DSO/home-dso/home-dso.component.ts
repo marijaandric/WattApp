@@ -136,7 +136,13 @@ export class HomeDSOComponent {
     });
   }
 
-  ngOnInit() {
+ 
+  async ngOnInit(): Promise<void> {
+    const token = localStorage.getItem('token');
+    this.userService.isDark$.subscribe(dark => {
+      this.lightMode = !dark;
+     
+    });
     this.userService.getAllUsers().subscribe((result: UserDTO[]) => (this.users = result));
     this.getmonthPowerUsageConsumer();
     this.getmonthPowerUsageProducer();

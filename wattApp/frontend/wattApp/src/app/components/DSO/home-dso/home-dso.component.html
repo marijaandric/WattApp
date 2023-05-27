@@ -18,11 +18,11 @@
     </div>
     <div style="width:100%; height:fit-content; display:flex; flex-direction:row;margin-bottom:32px;" class="pdd-div">
 
-      <div [ngClass]="{'light-mode':lightMode}" ><p-dropdown id="p1" [options]="type" [(ngModel)]="selectedType" optionLabel="name" (onChange)="dropdownChange()" >
+      <div [ngClass]="{'light-mode':lightMode,'dark-mode':!lightMode}" ><p-dropdown id="p1" [options]="type" [(ngModel)]="selectedType" optionLabel="name" (onChange)="dropdownChange()" >
       </p-dropdown></div>
-      <div [ngClass]="{'light-mode':lightMode}" ><p-dropdown id="p2" [options]="type2"  [(ngModel)]="selectedHF"  optionLabel="name" (onChange)="updateType3()" >
+      <div [ngClass]="{'light-mode':lightMode,'dark-mode':!lightMode}" ><p-dropdown id="p2" [options]="type2"  [(ngModel)]="selectedHF"  optionLabel="name" (onChange)="updateType3()" >
       </p-dropdown></div>
-      <div [ngClass]="{'light-mode':lightMode}" ><p-dropdown id="p3" [options]="type3" [(ngModel)]="selectedDate" optionLabel="name" (onChange)="dropdownChange()" >
+      <div [ngClass]="{'light-mode':lightMode,'dark-mode':!lightMode}" ><p-dropdown id="p3" [options]="type3" [(ngModel)]="selectedDate" optionLabel="name" (onChange)="dropdownChange()" >
       </p-dropdown></div>
     </div>
     
@@ -60,7 +60,7 @@
           border-radius: 20px;
           transition: ease-in-out;
           padding:10px 20px 30px 20px;" 
-          [name1]="name1" [name2]="name2" [hif]="hif"  [ngClass]="{'light-mode':lightMode}">
+          [name1]="name1" [name2]="name2" [hif]="hif"  [ngClass]="{'light-mode':lightMode,'dark-mode2':!lightMode,'dark-mode':!lightMode}">
         </app-history-forecast-table>
         <app-history-or-forecast-table  *ngIf="!table"
         style="
@@ -72,7 +72,7 @@
           width: 49%;
           border-radius: 20px;
           transition: ease-in-out;
-          padding:10px 20px 30px 20px;"  [name]="name" [History]="History" [Forecast]="Forecast" [dates]="dates" [ngClass]="{'light-mode':lightMode}">
+          padding:10px 20px 30px 20px;"  [name]="name" [History]="History" [Forecast]="Forecast" [dates]="dates" [ngClass]="{'light-mode':lightMode,'dark-mode2':!lightMode,'dark-mode':!lightMode}">
           </app-history-or-forecast-table>
         <div class="bottom-right">
           <div class="map">
