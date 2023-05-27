@@ -2,6 +2,7 @@ import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import { DeviceDataService } from 'src/app/services/device-data/device-data.service';
 import { DeviceService } from 'src/app/services/device/device.service';
 import { lastValueFrom } from 'rxjs';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-table',
@@ -15,9 +16,15 @@ export class TableComponent implements OnInit{
   @Input() id : any;
   isChecked: boolean = true;
 
-  constructor(private deviceService:DeviceService){}
+  constructor(private deviceService:DeviceService, private userService: UserService){}
 
-  ngOnInit(): void {
+
+  async ngOnInit(): Promise<void> {
+    
+    const token = localStorage.getItem('token');
+    this.userService.isDark$.subscribe(dark => {
+      this.lightMode = !dark;
+    });
     this.deviceService.GetUserDevicesVisibleForDSO(this.id).subscribe(data=>{
       this.devices = data;
       console.log(data)

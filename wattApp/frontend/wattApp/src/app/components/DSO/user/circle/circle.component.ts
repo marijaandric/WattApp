@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { DeviceService } from 'src/app/services/device/device.service';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-circle',
@@ -13,11 +14,15 @@ export class CircleComponent implements OnInit{
   result :any;
   
 
-  constructor(private deviceService:DeviceService){}
+  constructor(private deviceService:DeviceService, private userService: UserService){}
 
-  ngOnInit()
-  { 
-
+  
+  async ngOnInit(): Promise<void> {
+    const token = localStorage.getItem('token');
+    this.userService.isDark$.subscribe(dark => {
+      this.lightMode = !dark;
+     
+    });
     const currentDate = new Date();
     const day = currentDate.getDate();
     const month = currentDate.getMonth() + 1;

@@ -141,7 +141,13 @@ export class UserDSOComponent implements OnInit{
   }
 
 
-  ngOnInit(): void {
+
+  async ngOnInit(): Promise<void> {
+    
+    const token = localStorage.getItem('token');
+    this.userService.isDark$.subscribe(dark => {
+      this.lightMode = !dark;
+    });
     this.getNews();
     this.getConsumergetMaxMinAvgTotalPowerUsageByTimeForAllDevicesByType();
    this.getHistoryAndForecastByDayForAllDevices();

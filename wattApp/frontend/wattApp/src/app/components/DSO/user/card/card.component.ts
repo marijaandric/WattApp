@@ -24,21 +24,20 @@ export class CardComponent implements OnInit{
     this.id = this.routers.snapshot.paramMap.get('id');
   }
 
-  ngOnInit(){
-    this.userImageUrlEndpoint = this.baseUrl + this.id;
+  async ngOnInit(): Promise<void> {
     
+    const token = localStorage.getItem('token');
+    this.userService.isDark$.subscribe(dark => {
+      this.lightMode = !dark;
+
+      
     this.hostElement = this.elementRef.nativeElement as HTMLElement;
-    this.hostElement?.classList.toggle('light-theme-bigger-shadow', true);
-    this.hostElement?.classList.add('light-theme-background-white');
-  
-
-    const usrTitle = this.hostElement.querySelector('.username-title');
-    this.renderer.addClass(usrTitle, 'text-color-blue')
-    const texts = this.hostElement.querySelectorAll('h6');
-    texts.forEach((innerElement) => {
-      this.renderer.addClass(innerElement, 'light-theme-text-color-black');
+      this.hostElement?.classList.toggle('dark-theme-bigger-shadow', dark);
+      this.hostElement?.classList.toggle('light-theme-bigger-shadow', !dark);
+      this.hostElement?.classList.toggle('dark-theme-background-gray-gradient-1', dark);
+      this.hostElement?.classList.toggle('light-theme-background-white', !dark);
     });
-
+    
   }
 
   showDialog()

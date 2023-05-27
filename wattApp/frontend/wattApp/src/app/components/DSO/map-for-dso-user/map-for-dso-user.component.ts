@@ -3,6 +3,7 @@ import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/cor
 import axios from 'axios';
 import * as L from 'leaflet';
 import { UserDTO } from 'src/app/dtos/UserDTO';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-map-for-dso-user',
@@ -20,11 +21,17 @@ export class MapForDsoUserComponent implements OnInit, OnChanges{
   private darkLayer!: L.TileLayer;
   private lightLayer!: L.TileLayer;
 
-  constructor(private http: HttpClient){
+  constructor(private http: HttpClient, private userService: UserService){
     
   }
 
-  ngOnInit(): void {
+ 
+  async ngOnInit(): Promise<void> {
+    const token = localStorage.getItem('token');
+    this.userService.isDark$.subscribe(dark => {
+      this.lightMode = !dark;
+     
+    });
     this.map = L.map('map4').setView([44.007247, 20.904429], 12.6);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: ''

@@ -5,6 +5,12 @@
     flex-direction:row;
 }
 
+
+.dark-mode7 {
+  background: linear-gradient(180deg, #1b1b1b 30%, #121212 100%) ;
+  box-shadow: 5px 5px 15px black !important; 
+}
+
 .stats-cards{
   display: flex;
   flex-direction: row;

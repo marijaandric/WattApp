@@ -32,11 +32,11 @@
         <div style="display:flex;float:right; flex-direction:column; width:52%;padding: 0 2% 30px 2%;">
           <div style="width:100%; height:fit-content; display:flex; flex-direction:row;margin-bottom:12px;">
 
-            <div class="pdd-div"><div [ngClass]="{'light-mode':lightMode}" ><p-dropdown [options]="type" [(ngModel)]="selectedType" optionLabel="name" (onChange)="dropdownChange()" >
+            <div class="pdd-div"><div [ngClass]="{'light-mode':lightMode,'dark-mode':!lightMode}" ><p-dropdown [options]="type" [(ngModel)]="selectedType" optionLabel="name" (onChange)="dropdownChange()" >
             </p-dropdown></div></div>
-            <div class="pdd-div"><div [ngClass]="{'light-mode':lightMode}" ><p-dropdown [options]="type2" [(ngModel)]="selectedHF"  optionLabel="name" (onChange)="updateType3()" >
+            <div class="pdd-div"><div [ngClass]="{'light-mode':lightMode,'dark-mode':!lightMode}" ><p-dropdown [options]="type2" [(ngModel)]="selectedHF"  optionLabel="name" (onChange)="updateType3()" >
             </p-dropdown></div></div>
-            <div class="pdd-div"><div [ngClass]="{'light-mode':lightMode}" ><p-dropdown [options]="type3" [(ngModel)]="selectedDate" optionLabel="name" (onChange)="dropdownChange()" >
+            <div class="pdd-div"><div [ngClass]="{'light-mode':lightMode,'dark-mode':!lightMode}" ><p-dropdown [options]="type3" [(ngModel)]="selectedDate" optionLabel="name" (onChange)="dropdownChange()" >
             </p-dropdown></div></div>
           </div>
           <app-history-forecast style="width:100%;margin-top:20px" [boja1]="color1" [boja2]="color2" [naziv1]="name1" [naziv2]="name2" [array] = "History" [array2]="Forecast" [array3] = "dates" [Title]="Title" [Period]="Period"></app-history-forecast>
@@ -54,7 +54,7 @@
           border-radius: 20px;
           transition: ease-in-out;
           padding:10px 20px 20px 20px;
-          " [name1]="name1" [name2]="name2" [hif]="hif" *ngIf="switchValue == true && table" [ngClass]="{'light-mode':lightMode}"></app-history-forecast-table>
+          " [name1]="name1" [name2]="name2" [hif]="hif" *ngIf="switchValue == true && table"  [ngClass]="{'light-mode':lightMode,'dark-mode7':!lightMode,'dark-mode':!lightMode}"></app-history-forecast-table>
           <app-history-or-forecast-table  *ngIf="switchValue == true && !table"
           style="
             margin-top:calc(2.8%);
@@ -69,7 +69,7 @@
         </div>
         
         <div style="display:flex;float:right; flex-direction:column; width:20%; height:100%">
-        <app-map-for-dso-user [user]="user" style=" min-height:350px;" [ngClass]="{'light-mode':lightMode}"></app-map-for-dso-user>
+        <app-map-for-dso-user [user]="user" style=" min-height:350px;"  [ngClass]="{'light-mode':lightMode,'dark-mode7':!lightMode,'dark-mode':!lightMode}"></app-map-for-dso-user>
         <div class="donuts" style="margin-top:calc(3vh);"  [ngClass]="{'light-mode-circles':lightMode}">
           <h5>Monthly power usage</h5>
           <p>in kWh</p>
