@@ -11,6 +11,7 @@ import { HistoryLineChartComponent } from 'src/app/components/Prosumer/history-l
 import { HistoryForecastComponent } from '../../history-forecast/history-forecast.component';
 import { ForecastLineChartComponent } from 'src/app/components/Prosumer/forecast-line-chart/forecast-line-chart.component';
 import { UserService } from 'src/app/services/user/user.service';
+import { NgToastService } from 'ng-angular-popup';
 
 interface Models{
   code: string;
@@ -151,7 +152,7 @@ export class DeviceDesktopComponent implements OnInit {
               private elementRef: ElementRef,
               private renderer: Renderer2,
               private userService: UserService,
-              private fb: FormBuilder)
+              private fb: FormBuilder, private toast: NgToastService)
               {
 
                 this.type = [
@@ -430,6 +431,7 @@ export class DeviceDesktopComponent implements OnInit {
     // this.device.room = this.roomSelected.name;
     // this.device.deviceName = this.nameSelected;
 
+    
     this.addDeviceForm.patchValue({
       deviceModel: this.modelSelected.code
     });
@@ -439,6 +441,18 @@ export class DeviceDesktopComponent implements OnInit {
     this.addDeviceForm.patchValue({
       room: this.roomSelected.code
     });
+
+    if (!this.addDeviceForm.valid) {
+      this.toast.error({detail:"ERROR",summary:"Please fill in all fields.",duration:4000});
+      return
+    }
+
+    if (!(/^\d+$/.test(this.addDeviceForm.value.power))) {
+      this.toast.error({detail:"ERROR",summary:"Please enter numbers only.",duration:4000});
+      return
+    }
+
+
 
     this.deviceService.updateDevice(this.addDeviceForm.value).subscribe(
       (updatedDevice: DeviceDTO) => {
