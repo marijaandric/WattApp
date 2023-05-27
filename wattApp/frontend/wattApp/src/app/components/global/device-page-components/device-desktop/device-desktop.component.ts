@@ -1053,4 +1053,25 @@ async handleRunningSwitchChange2(){
   this.display2 = false; // za alert izbrisati ovo
 }
 
+calculateBatteryLife(power: number, consumption: number, efficiency: number): { hours: number, minutes: number } {
+  const batteryLifeInHours = (power / consumption) * efficiency;
+  const batteryLifeInMinutes = Math.round(batteryLifeInHours * 60);
+  const hours = Math.floor(batteryLifeInMinutes / 60);
+  const minutes = batteryLifeInMinutes % 60;
+  return { hours, minutes };
+}
+
+formatBatteryLife(batteryLife: { hours: number, minutes: number }): string {
+  const formattedHours = batteryLife.hours.toString().padStart(2, '0');
+  const formattedMinutes = batteryLife.minutes.toString().padStart(2, '0');
+  if(formattedMinutes == '00')
+  {
+    return `${formattedHours} hours`
+  }
+  else{
+    return `${formattedHours} hours and ${formattedMinutes} minutes`;
+  }
+  
+}
+
 }

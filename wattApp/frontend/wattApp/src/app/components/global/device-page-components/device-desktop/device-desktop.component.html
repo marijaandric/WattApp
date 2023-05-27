@@ -95,7 +95,7 @@
 
                 <div *ngIf="device.deviceType == 'Stock'" class="flexRow" style="margin-top:16px">
                   <span>Capacity:</span>
-                  <span class="margin-left__auto text-secondary">{{ device.power }}</span>
+                  <span class="margin-left__auto text-secondary">{{ device.power }} Ah</span>
                 </div><br>
                 
 
@@ -103,7 +103,7 @@
                   <div *ngIf="device.deviceType == 'Stock'" style="height:100% ;justify-content:center"></div>
                   <div class="flexRow" style="margin-top:20px">
                     <span>Battery lifespan:</span>
-                    <div class="margin-left__auto width__fit-content"> 21h 30min</div>
+                    <div class="margin-left__auto width__fit-content"> {{ formatBatteryLife(calculateBatteryLife(device.power, 200, 0.7)) }} </div>
                   </div>
 
                   <div class="flexRow"style="margin-top:20px">

@@ -13,7 +13,7 @@ namespace backend.Models
         public string Model { get; set; }
         public string Manufacturer { get; set; }
         public string ManufacturingYear { get; set; }
-        public string Power { get; set; }
+        public float Power { get; set; }
         public List<Devices> ConnectedDevices { get; set; }
         public string Room { get; set; }
         public string DeviceType { get; set; }
