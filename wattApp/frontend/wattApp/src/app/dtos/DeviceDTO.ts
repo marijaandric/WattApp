@@ -10,6 +10,10 @@ export class DeviceDTO {
     public allowOperatorControll: boolean,
     public allowOperatorVisibility: boolean,
     public imageId: number,
-    public power:any
+    public power:any,
+    public model:any,
+    public manufacturer:any,
+    public manufacturingYear:any,
+    public connectedDevices: any[]
   ) { }
 }

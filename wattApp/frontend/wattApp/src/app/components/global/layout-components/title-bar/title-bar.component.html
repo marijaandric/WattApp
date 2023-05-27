@@ -76,14 +76,19 @@
       <span>Device category</span> 
       <div class="dropdown-div" style="margin-bottom:20px;" [ngClass]="{'light-mode':lightMode}"> <p-dropdown [options]="types" appendTo="body" optionLabel="name" (onChange)="onTypeChange($event)" [ngClass]="{'light-mode':lightMode}" /></div>
       <span >Device type </span>
-      <div class="dropdown-div" style="margin-top:0px;" [ngClass]="{'light-mode':lightMode}"><p-dropdown [options]="models" appendTo="body" optionLabel="name" (onChange)="onModelChange($event)" [ngClass]="{'light-mode':lightMode}" />
-    </div></div>
-    
-    <div class="half">       
+      <div class="dropdown-div" style="margin-bottom:20px;" [ngClass]="{'light-mode':lightMode}"><p-dropdown [options]="models" appendTo="body" optionLabel="name" (onChange)="onModelChange($event)" [ngClass]="{'light-mode':lightMode}" /></div>
       <span>Location</span>
-       <div class="dropdown-div" style="margin-bottom:20px;" [ngClass]="{'light-mode':lightMode}"><p-dropdown [options]="rooms" appendTo="body" optionLabel="name" (onChange)="onRoomChange($event)" [ngClass]="{'light-mode':lightMode}" /></div>
-       <span> Device name </span>
-       <input formControlName="deviceName" name="name"  type="text"   class="p-inputtext-lg"  placeholder="DEVICE NAME" style="margin-top:0px;"> 
+      <div class="dropdown-div" style="margin-bottom:20px;" [ngClass]="{'light-mode':lightMode}"><p-dropdown [options]="rooms" appendTo="body" optionLabel="name" (onChange)="onRoomChange($event)" [ngClass]="{'light-mode':lightMode}" /></div>
+      <!-- <span> Device name </span>
+      <input formControlName="deviceName" name="name"  type="text"   class="p-inputtext-lg"  placeholder="DEVICE NAME" style="margin-top:0px;">  -->
+    </div>
+    
+    <div class="half">
+      <input formControlName="deviceName" name="name"  type="text"   class="p-inputtext-lg"  placeholder="DEVICE NAME" style="margin-top:2px;">
+      <input formControlName="model" name="name"  type="text"   class="p-inputtext-lg"  placeholder="DEVICE MODEL" style="margin-top:0px;">  
+      <input formControlName="power" name="name"  type="text"   class="p-inputtext-lg"  placeholder="POWER/CAPACITY" style="margin-top:0px;"> 
+      <input formControlName="manufacturer" name="name"  type="text"   class="p-inputtext-lg"  placeholder="MANUFACTURER" style="margin-top:0px;"> 
+      <input formControlName="Manufacturing year" name="name"  type="text"   class="p-inputtext-lg"  placeholder="MANUFACTURING YEAR" style="margin-top:0px;">       
     </div>
   </div> 
   </form>

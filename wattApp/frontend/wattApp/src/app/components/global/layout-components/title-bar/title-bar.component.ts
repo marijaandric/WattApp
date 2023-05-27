@@ -200,6 +200,11 @@ export class TitleBarComponent implements OnInit{
       deviceName:['', Validators.required],
       deviceModel: ['', Validators.required],
       room: ['', Validators.required],
+      model:['', Validators.required],
+      manufacturer:['', Validators.required],
+      manufacturingYear:['', Validators.required],
+      power:['', Validators.required],
+      connectedDevices: null,
       deviceType: ['', Validators.required],
     })
 
@@ -355,6 +360,11 @@ export class TitleBarComponent implements OnInit{
     this.addDeviceForm.patchValue({
       room : this.roomSelected.name
     })
+    this.addDeviceForm.patchValue({
+      manufacturingYear : this.addDeviceForm.get('manufacturingYear')?.value + " "
+    })
+    
+    
 
     if(!this.addDeviceForm.value.deviceName)
     {
