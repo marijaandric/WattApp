@@ -217,6 +217,12 @@ export class DeviceDesktopComponent implements OnInit {
             tap(() => this.typeSelected = { code: this.device.deviceType, name: this.device.deviceType }),
             ).subscribe(mappedDeviceTypes => {
               this.types = mappedDeviceTypes;
+              const selectedIndex = this.types.findIndex(type => type.name === this.typeSelected.code);
+              if (selectedIndex !== -1) {
+                const selectedType = this.types.splice(selectedIndex, 1)[0];
+                this.types.unshift(selectedType);
+              }
+              console.log(this.types)
 
               this.modelTypesService.getAllModelTypes(this.typeSelected.code).pipe(
                 map(modelTypes => {
@@ -225,6 +231,11 @@ export class DeviceDesktopComponent implements OnInit {
                 tap(() => this.modelSelected = { code: this.device.deviceModel, name: this.device.deviceModel }),
               ).subscribe(mappedModelTypes => {
                 this.models = mappedModelTypes;
+                const selectedIndex = this.models.findIndex(model => model.name === this.modelSelected.code);
+                if (selectedIndex !== -1) {
+                  const selectedModel = this.models.splice(selectedIndex, 1)[0];
+                  this.models.unshift(selectedModel);
+                }
               });
           });
           
@@ -235,6 +246,11 @@ export class DeviceDesktopComponent implements OnInit {
             tap(() => this.roomSelected = { code: this.device.room, name: this.device.room }),
           ).subscribe(mappedRoomTypes => {
             this.rooms = mappedRoomTypes;
+            const selectedIndex = this.rooms.findIndex(room => room.name === this.roomSelected.code);
+            if (selectedIndex !== -1) {
+              const selectedRoom = this.rooms.splice(selectedIndex, 1)[0];
+              this.rooms.unshift(selectedRoom);
+            }
           });
           
           this.nameSelected = this.device.deviceName;
@@ -243,9 +259,7 @@ export class DeviceDesktopComponent implements OnInit {
           this.getUsageMonth();
           this.getUsageYear();
           this.getMaxMinAvgTotalPowerUsageByTimeForDevice();
-
           
-    
       });
 
     } else{
@@ -389,6 +403,7 @@ export class DeviceDesktopComponent implements OnInit {
       connectedDevices: this.device.connectedDevices,
       deviceType: [this.device.deviceType, Validators.required],
     })
+
     this.displayEditDeviceDialog = true;
   }
 
@@ -410,11 +425,22 @@ export class DeviceDesktopComponent implements OnInit {
   }
 
   save(){
-    this.device.deviceModel = this.modelSelected.name;
-    this.device.deviceType = this.typeSelected.name;
-    this.device.room = this.roomSelected.name;
-    this.device.deviceName = this.nameSelected;
-    this.deviceService.updateDevice(this.device).subscribe(
+    // this.device.deviceModel = this.modelSelected.name;
+    // this.device.deviceType = this.typeSelected.name;
+    // this.device.room = this.roomSelected.name;
+    // this.device.deviceName = this.nameSelected;
+
+    this.addDeviceForm.patchValue({
+      deviceModel: this.modelSelected.code
+    });
+    this.addDeviceForm.patchValue({
+      deviceType: this.typeSelected.code
+    });
+    this.addDeviceForm.patchValue({
+      room: this.roomSelected.code
+    });
+
+    this.deviceService.updateDevice(this.addDeviceForm.value).subscribe(
       (updatedDevice: DeviceDTO) => {
         this.displayEditDeviceDialog = false;
       },
@@ -1072,6 +1098,28 @@ formatBatteryLife(batteryLife: { hours: number, minutes: number }): string {
     return `${formattedHours} hours and ${formattedMinutes} minutes`;
   }
   
+}
+
+onTypeChange(event:any){
+  this.typeSelected = event.value;
+
+  this.modelTypesService.getAllModelTypes(this.typeSelected.code)
+    .pipe(
+      map(modelTypes => Object.entries(modelTypes).map(([code, name]) => ({ code, name })))
+    )
+    .subscribe(mappedModelTypes => {
+      this.models = mappedModelTypes;
+      this.modelSelected = this.models[0];
+  });
+}
+
+onModelChange(event:any){
+  this.modelSelected = event.value;
+}
+
+onRoomChange(event:any)
+{
+  this.roomSelected = event.value;
 }
 
 }

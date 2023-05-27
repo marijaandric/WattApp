@@ -100,10 +100,11 @@
                 
 
                 <p-overlayPanel #op [style]="{'width': '300px'}" [showCloseIcon]="true">
-                  <div *ngIf="device.deviceType == 'Stock'" style="height:100% ;justify-content:center"></div>
+                  <div *ngIf="device.deviceType == 'Stock'">
                   <div class="flexRow" style="margin-top:20px">
                     <span>Battery lifespan:</span>
                     <div class="margin-left__auto width__fit-content"> {{ formatBatteryLife(calculateBatteryLife(device.power, 200, 0.7)) }} </div>
+                  </div>
                   </div>
 
                   <div class="flexRow"style="margin-top:20px">
@@ -196,24 +197,24 @@
   </ng-template>
   
   <ng-template pTemplate="content">
-    <form id="editDeviceDialogForm" form [formGroup]="addDeviceForm"> 
+    <form id="editDeviceDialogForm" [formGroup]="addDeviceForm"> 
       <div class="p-inputgroup p-inputtext-lg p-input-filled"> 
       <div class="half"> 
         <span>Device category</span>
-        <div class="dropdown-div" style="margin-bottom:20px" [ngClass]="{'light-mode':lightMode}"><p-dropdown [options]="types" [(ngModel)]="typeSelected" name="typeSelected" appendTo="body" optionLabel="name" [ngClass]="{'light-mode':lightMode}"/>
+        <div class="dropdown-div" style="margin-bottom:20px" [ngClass]="{'light-mode':lightMode}"><p-dropdown [options]="types"  (onChange)="onTypeChange($event)"  name="typeSelected" appendTo="body" optionLabel="name" [ngClass]="{'light-mode':lightMode}" />
         </div><span>Device type</span>
-        <div class="dropdown-div" style="margin-bottom:20px" [ngClass]="{'light-mode':lightMode}"><p-dropdown [options]="models" [(ngModel)]="modelSelected" name="modelSelected" appendTo="body" optionLabel="name" [ngClass]="{'light-mode':lightMode}" /></div>
+        <div class="dropdown-div" style="margin-bottom:20px" [ngClass]="{'light-mode':lightMode}"><p-dropdown [options]="models" (onChange)="onModelChange($event)" name="modelSelected" appendTo="body" optionLabel="name" [ngClass]="{'light-mode':lightMode}" /></div>
         <span>Location</span>
-        <div class="dropdown-div" style="margin-bottom:20px" [ngClass]="{'light-mode':lightMode}"><p-dropdown [options]="rooms" [(ngModel)]="roomSelected" name="roomSelected" appendTo="body" optionLabel="name" [ngClass]="{'light-mode':lightMode}"/>
+        <div class="dropdown-div" style="margin-bottom:20px" [ngClass]="{'light-mode':lightMode}"><p-dropdown [options]="rooms" (onChange)="onRoomChange($event)"  name="roomSelected" appendTo="body" optionLabel="name" [ngClass]="{'light-mode':lightMode}"/>
         </div>
       </div>
       
       <div class="half">
-        <input formControlName="deviceName" name="name"  type="text"   class="p-inputtext-lg"  placeholder="DEVICE NAME" style="margin-top:2px;">
-        <input formControlName="model" name="name"  type="text"   class="p-inputtext-lg"  placeholder="DEVICE MODEL" style="margin-top:0px;">  
-        <input formControlName="power" name="name"  type="text"   class="p-inputtext-lg"  placeholder="POWER/CAPACITY" style="margin-top:0px;"> 
-        <input formControlName="manufacturer" name="name"  type="text"   class="p-inputtext-lg"  placeholder="MANUFACTURER" style="margin-top:0px;"> 
-        <input formControlName="Manufacturing year" name="name"  type="text"   class="p-inputtext-lg"  placeholder="MANUFACTURING YEAR" style="margin-top:0px;">       
+        <input formControlName="deviceName" name="deviceName"  type="text"   class="p-inputtext-lg"  placeholder="DEVICE NAME" style="margin-top:2px;">
+        <input formControlName="model" name="model"  type="text"   class="p-inputtext-lg"  placeholder="DEVICE MODEL" style="margin-top:0px;">  
+        <input formControlName="power" name="power"  type="text"   class="p-inputtext-lg"  placeholder="POWER/CAPACITY" style="margin-top:0px;"> 
+        <input formControlName="manufacturer" name="manufacturer"  type="text"   class="p-inputtext-lg"  placeholder="MANUFACTURER" style="margin-top:0px;"> 
+        <input formControlName="manufacturingYear" name="manufacturingYear"  type="text"   class="p-inputtext-lg"  placeholder="MANUFACTURING YEAR" style="margin-top:0px;">       
       </div>
     </div>
     </form>
