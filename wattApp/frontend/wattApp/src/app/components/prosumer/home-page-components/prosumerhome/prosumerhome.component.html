@@ -70,30 +70,24 @@
   </div>
   <h3 class="hello"  [ngClass]="{'light-theme-color-gray-323232':lightMode}" style="margin-top:20px;">News and fun</h3>
   <div class="promotions" >
-    <app-promotion (click)="showDisplay2(1)" [subTitle]="naslov1"
+    <app-promotion [subTitle]="naslov1"
      [Title]="sadrzaj1" 
      [Status]="status1"
      [Datum]="datum1"
-     [ID]="id1"
-     [desc] = "desc1"
      [isBlue]="true" [isBgBlue]="true" class="promotion">
     </app-promotion>
-    <app-promotion (click)="showDisplay2(2)"
+    <app-promotion
     [subTitle]="naslov2"
     [Datum]="datum2"
     [Status]="status2"
     [Title]="sadrzaj2"
-    [ID]="id2"
-    [desc] = "desc2"
     [isYellow]="true" [isBgYellow]="true" class="promotion1">
     </app-promotion>
-    <app-promotion (click)="showDisplay2(3)"
+    <app-promotion
     [subTitle]="naslov3"
     [Datum]="datum3"
     [Status]="status3"
     [Title]="sadrzaj3"
-    [desc] = "desc3"
-    [ID]="id3"
     [isPink]="true" [isBgPink]="true" class="promotion1">
     </app-promotion> 
   </div>
@@ -103,25 +97,6 @@
   </app-center-bar>
 
   </standard-template>
-
-
-  <p-dialog [style]="{width:'40%'}" header="Title"  [transitionOptions]="'3ms'" 
-[draggable]="true" [keepInViewport]="true" [resizable]="false" 
-[blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true" 
-[modal]="true" [(visible)]="display2" [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
-[closable]="true" [ngClass]="{'light-mode':lightMode}" appendTo="body">
-<ng-template pTemplate="header" class="header-dialog">
-  <h2 style="text-align: center;">{{naslov}}</h2>
-</ng-template>
-
-<ng-template pTemplate="content">
-  <div style="text-align: center; font-weight: bold;">{{opis}}</div>
-  <br>
-  <br>
-  <div style="text-align: justify;">{{desc}}</div>
-</ng-template>
-</p-dialog>
-
   
 
   

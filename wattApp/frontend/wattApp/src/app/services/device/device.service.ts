@@ -26,11 +26,7 @@ export class DeviceService {
           device.allowOperatorControll,
           device.allowOperatorVisibility,
           device.imageId,
-          device.power,
-          device.manufacturer,
-          device.manufacturingYear,
-          device.connectedDevices,
-          device.model
+          device.power
         ));
       })
     );
@@ -50,11 +46,7 @@ export class DeviceService {
           device.allowOperatorControll,
           device.allowOperatorVisibility,
           device.imageId,
-          device.power,
-          device.manufacturer,
-          device.manufacturingYear,
-          device.connectedDevices,
-          device.model
+          device.power
         ));
       })
     );

@@ -68,8 +68,8 @@ namespace backend.BAL
             Dictionary<string, int> users = new Dictionary<string, int>();
             users.Add("All", _contextDAL.GetNumberOfUsersByType("all"));
             users.Add("Prosumer", _contextDAL.GetNumberOfUsersByType("prosumer"));
-            users.Add("Operator", _contextDAL.GetNumberOfUsersByType("operator"));
-            users.Add("Admin", _contextDAL.GetNumberOfUsersByType("admin"));
+            users.Add("Other", _contextDAL.GetNumberOfUsersByType("other"));
+
             return users;
         }
 

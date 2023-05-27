@@ -32,26 +32,11 @@ namespace backend.Migrations
                     b.Property<string>("DeviceType")
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("DevicesId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<int>("FakeID")
                         .HasColumnType("INTEGER");
 
                     b.Property<int?>("ImageId")
                         .HasColumnType("INTEGER");
-
-                    b.Property<string>("Manufacturer")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("ManufacturingYear")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Model")
-                        .HasColumnType("TEXT");
-
-                    b.Property<float>("Power")
-                        .HasColumnType("REAL");
 
                     b.Property<string>("Room")
                         .HasColumnType("TEXT");
@@ -70,8 +55,6 @@ namespace backend.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("DevicesId");
-
                     b.ToTable("devices", (string)null);
                 });
 
@@ -88,9 +71,6 @@ namespace backend.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("Created")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Description")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Priority")
@@ -216,18 +196,6 @@ namespace backend.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("weather", (string)null);
-                });
-
-            modelBuilder.Entity("backend.Models.Devices", b =>
-                {
-                    b.HasOne("backend.Models.Devices", null)
-                        .WithMany("ConnectedDevices")
-                        .HasForeignKey("DevicesId");
-                });
-
-            modelBuilder.Entity("backend.Models.Devices", b =>
-                {
-                    b.Navigation("ConnectedDevices");
                 });
 #pragma warning restore 612, 618
         }
