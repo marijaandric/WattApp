@@ -57,14 +57,15 @@
               </div>
         
               <div style="height:100% ;justify-content:center">
-                <div class="flexRow" style="margin-top:16px">
-                  <span>ID:</span>
-                  <span class="margin-left__auto text-secondary">{{ device.id }}</span>
-                </div>
-          
+                
                 <div class="flexRow" style="margin-top:10px">
                   <span >Type:</span>
                   <span class="margin-left__auto text-secondary">{{ device.deviceModel }}</span>
+                </div>
+
+                <div class="flexRow" style="margin-top:16px">
+                  <span>Model:</span>
+                  <span class="margin-left__auto text-secondary">{{ device.model }}</span>
                 </div>
           
                 <div class="flexRow"style="margin-top:10px" >
@@ -76,26 +77,60 @@
                   <span>Location:</span>
                   <span class="margin-left__auto text-secondary">{{ device.room }}</span>
                 </div>
-          
-                <div class="flexRow"style="margin-top:20px">
-                  <span>Visible to operators:</span>
-                  <p-inputSwitch [(ngModel)]="device.allowOperatorVisibility " (ngModelChange)="promijeniStanjeprviPrekidac()"  (onChange)="handleVisibilitySwitchChange()" class="margin-left__auto width__fit-content"/>
+
+                <div class="flexRow" style="margin-top:16px">
+                  <span>Manufacturer:</span>
+                  <span class="margin-left__auto text-secondary">{{ device.manufacturer }}</span>
                 </div>
           
-                <div class="flexRow margin-top__8px">
-                  <span >Managed by operators:</span>
-                  <p-inputSwitch [(ngModel)]="device.allowOperatorControll" (ngModelChange)="promijeniStanjeDrugiPrekidac()" (onChange)="handleManagementSwitchChange()" class="margin-left__auto width__fit-content"/>
+                <div class="flexRow" style="margin-top:16px">
+                  <span>Manufacturing Year:</span>
+                  <span class="margin-left__auto text-secondary">{{ device.manufacturingYear }}</span>
                 </div>
+
+                <div *ngIf="device.deviceType != 'Stock'" class="flexRow" style="margin-top:16px">
+                  <span>Power:</span>
+                  <span class="margin-left__auto text-secondary">{{ device.power }}</span>
+                </div>
+
+                <div *ngIf="device.deviceType == 'Stock'" class="flexRow" style="margin-top:16px">
+                  <span>Capacity:</span>
+                  <span class="margin-left__auto text-secondary">{{ device.power }} Ah</span>
+                </div><br>
+                
+
+                <p-overlayPanel #op [style]="{'width': '300px'}" [showCloseIcon]="true">
+                  <div *ngIf="device.deviceType == 'Stock'" style="height:100% ;justify-content:center"></div>
+                  <div class="flexRow" style="margin-top:20px">
+                    <span>Battery lifespan:</span>
+                    <div class="margin-left__auto width__fit-content"> {{ formatBatteryLife(calculateBatteryLife(device.power, 200, 0.7)) }} </div>
+                  </div>
+
+                  <div class="flexRow"style="margin-top:20px">
+                    <span>Visible to operators:</span>
+                    <p-inputSwitch [(ngModel)]="device.allowOperatorVisibility " (ngModelChange)="promijeniStanjeprviPrekidac()"  (onChange)="handleVisibilitySwitchChange()" class="margin-left__auto width__fit-content"/>
+                  </div>
+            
+                  <div class="flexRow margin-top__8px">
+                    <span >Managed by operators:</span>
+                    <p-inputSwitch [(ngModel)]="device.allowOperatorControll" (ngModelChange)="promijeniStanjeDrugiPrekidac()" (onChange)="handleManagementSwitchChange()" class="margin-left__auto width__fit-content"/>
+                  </div>
+                  
+                </p-overlayPanel>
+
                 <div class="flexRow margin-top__8px ">
+                  <div class="button-div">
+                    <p-button (click)="op.toggle($event)" label="Manage"/>
+                  </div>
                   <div class="button-div">
                   <p-button label="Edit" (click)="showEditDeviceDialog()" />
                   </div>
-                  <div class="button-div">
-                  <p-button label="Schedule"/>
-                  </div>
                   <div class="remove-or-no"><p-button label="Delete" (onClick)="showDialog()" /></div>
                 </div>  
+                
+            
               </div>
+              
             </div>
 
             <div class="stats-cards">
@@ -161,22 +196,26 @@
   </ng-template>
   
   <ng-template pTemplate="content">
-    <form id="editDeviceDialogForm" >  
-      <div class="p-inputgroup p-inputtext-lg p-input-filled">
-        <div class="half">
-          <span>Device category</span>
-          <div class="dropdown-div" style="margin-bottom:20px"><p-dropdown [options]="types" [(ngModel)]="typeSelected" name="typeSelected" appendTo="body" optionLabel="name" />
-          </div><span>Device type</span>
-          <div class="dropdown-div"><p-dropdown [options]="models" [(ngModel)]="modelSelected" name="modelSelected" appendTo="body" optionLabel="name" />
-        </div></div> 
-        
-        <div class="half">
-          <span>Location</span>
-            <div class="dropdown-div" style="margin-bottom:20px"><p-dropdown [options]="rooms" [(ngModel)]="roomSelected" name="roomSelected" appendTo="body" optionLabel="name" />
-            </div><span>Name</span>
-            <input style="margin-top:0px;" [(ngModel)]="nameSelected" name="nameSelected" appendTo="body" type="text" class="p-inputtext-lg" placeholder="DEVICE NAME"> 
+    <form id="editDeviceDialogForm" form [formGroup]="addDeviceForm"> 
+      <div class="p-inputgroup p-inputtext-lg p-input-filled"> 
+      <div class="half"> 
+        <span>Device category</span>
+        <div class="dropdown-div" style="margin-bottom:20px" [ngClass]="{'light-mode':lightMode}"><p-dropdown [options]="types" [(ngModel)]="typeSelected" name="typeSelected" appendTo="body" optionLabel="name" [ngClass]="{'light-mode':lightMode}"/>
+        </div><span>Device type</span>
+        <div class="dropdown-div" style="margin-bottom:20px" [ngClass]="{'light-mode':lightMode}"><p-dropdown [options]="models" [(ngModel)]="modelSelected" name="modelSelected" appendTo="body" optionLabel="name" [ngClass]="{'light-mode':lightMode}" /></div>
+        <span>Location</span>
+        <div class="dropdown-div" style="margin-bottom:20px" [ngClass]="{'light-mode':lightMode}"><p-dropdown [options]="rooms" [(ngModel)]="roomSelected" name="roomSelected" appendTo="body" optionLabel="name" [ngClass]="{'light-mode':lightMode}"/>
         </div>
-      </div> 
+      </div>
+      
+      <div class="half">
+        <input formControlName="deviceName" name="name"  type="text"   class="p-inputtext-lg"  placeholder="DEVICE NAME" style="margin-top:2px;">
+        <input formControlName="model" name="name"  type="text"   class="p-inputtext-lg"  placeholder="DEVICE MODEL" style="margin-top:0px;">  
+        <input formControlName="power" name="name"  type="text"   class="p-inputtext-lg"  placeholder="POWER/CAPACITY" style="margin-top:0px;"> 
+        <input formControlName="manufacturer" name="name"  type="text"   class="p-inputtext-lg"  placeholder="MANUFACTURER" style="margin-top:0px;"> 
+        <input formControlName="Manufacturing year" name="name"  type="text"   class="p-inputtext-lg"  placeholder="MANUFACTURING YEAR" style="margin-top:0px;">       
+      </div>
+    </div>
     </form>
   </ng-template>
 

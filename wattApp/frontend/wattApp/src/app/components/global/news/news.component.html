@@ -20,10 +20,11 @@
             <ng-template let-news pTemplate="new">
               <app-promotion [subTitle]="news.title"
               [authorId] = "news.authorId"
-              [Title]="news.content" 
+              [Title]="news.description" 
               [Status]="news.priority"
               [Datum]="news.created"
               [ID]="news.id"
+              [desc]="news.content"
               [isBlue]="true" [isBgBlue]="true" class="promotion" (valueEmitter2)="handleValue2(news)" (valueEmitter)="handleValue(news)">
               </app-promotion>
             </ng-template>
@@ -36,10 +37,11 @@
             <ng-template let-news pTemplate="new">
               <app-promotion [subTitle]="news.title"
               [authorId] = "news.authorId"
-              [Title]="news.content" 
+              [Title]="news.description" 
               [Status]="news.priority"
               [Datum]="news.created"
               [ID]="news.id"
+              [desc]="news.content"
               [isBlue]="true" [isBgBlue]="true" class="promotion" (valueEmitter2)="handleValue2(news)" (valueEmitter)="handleValue(news)">
               </app-promotion>
             </ng-template>
@@ -50,8 +52,9 @@
           <p-carousel [value] = "newsImportant" [circular]="false" [numVisible]="4" [autoplayInterval]="4000" [numScroll]="4" [responsiveOptions]="responsiveOptions">
             <ng-template let-news pTemplate="new">
               <app-promotion [subTitle]="news.title"
+              [desc]="news.content"
               [authorId] = "news.authorId"
-              [Title]="news.content" 
+              [Title]="news.description" 
               [Status]="news.priority"
               [Datum]="news.created"
               [ID]="news.id"
@@ -66,8 +69,9 @@
           <p-carousel [value] = "newsRegular" [circular]="false" [numVisible]="4"  [autoplayInterval]="4000" [numScroll]="4" [responsiveOptions]="responsiveOptions">
             <ng-template let-news pTemplate="new">
               <app-promotion [subTitle]="news.title"
+              [desc]="news.content"
               [authorId] = "news.authorId"
-              [Title]="news.content" 
+              [Title]="news.description" 
               [Status]="news.priority"
               [Datum]="news.created"
               [ID]="news.id"
@@ -98,23 +102,26 @@
 <ng-template pTemplate="content">
   <form [formGroup]="updataNewsForm" > 
   
-  <div class="p-inputgroup p-inputtext-lg p-input-filled">
-    <div class="half">
-      <input formControlName="title" name="name" appendTo="body" type="text" class="p-inputtext-lg" placeholder="TITLE"> 
-      <textarea id="text" formControlName="content" name="name" appendTo="body" type="text" class="p-inputtext-lg" style="width:100%;height: 250px;"></textarea>
-      <div style="display: flex;flex-direction: column; align-items: center;margin-right: 4%;">
-        <span style="font-size: 19px;color:grey">Priority:</span>
-        <div style="display: inline-flex;">
-          <input formControlName="priority" id="regular" type="radio"  value="Regular">
-          <label for="regular" style="margin-top: 15px; margin-left: 5px;">Regular</label>
-        </div>
-        <div style="display: inline-flex;">
-          <input formControlName="priority" id="important" type="radio"  value="Important">
-          <label for="important" style="margin-top: 15px; margin-left: 5px;">Important</label>
+    <div class="p-inputgroup p-inputtext-lg p-input-filled">
+      <div class="half">
+        <input formControlName="title" name="name" appendTo="body" type="text" class="p-inputtext-lg" placeholder="TITLE"> 
+        <textarea id="text" formControlName="description" name="name" appendTo="body" type="text" class="p-inputtext-lg" style="width:100%;height: 250px;"  placeholder="Short description"></textarea>
+        <div style="display: flex;flex-direction: column; align-items: center;margin-right: 4%;">
+          <span style="font-size: 19px;color:gray">Priority:</span>
+          <div style="display: inline-flex;">
+            <input formControlName="priority" id="regular" type="radio"  value="Regular">
+            <label for="regular" style="margin-top: 15px; margin-left: 5px;">Regular</label>
+          </div>
+          <div style="display: inline-flex;">
+            <input formControlName="priority" id="important" type="radio"  value="Important">
+            <label for="important" style="margin-top: 15px; margin-left: 5px;">Important</label>
+          </div>
         </div>
       </div>
-    </div>
-  </div> 
+      <div class="half">
+        <textarea formControlName="content" placeholder="Description" id="text" formControlName="content" name="name" appendTo="body" type="text" class="p-inputtext-lg" style="width:100%;height: 100%;"></textarea>
+      </div>
+    </div> 
   </form>
   
 </ng-template>
