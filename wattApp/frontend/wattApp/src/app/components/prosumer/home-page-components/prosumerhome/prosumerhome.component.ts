@@ -64,6 +64,7 @@ roomSelected! : Rooms;
 
   addDeviceForm! : FormGroup;
   display = false;
+  display2 = false;
 
   @Input() device:any={id:1,deviceName: "default", deviceType:"Consumer",power: 10}
   @Input() device1:any={id:1,deviceName: "default", deviceType:"Producer",power: 10}
@@ -236,6 +237,14 @@ roomSelected! : Rooms;
   status1 : any;
   status2 : any;
   status3 : any;
+
+  desc1 :any;
+  desc2 :any;
+  desc3 :any;
+
+  id1!:number;
+  id2!:number;
+  id3!:number;
   getNews() {
   
     this.dsonew.getnew().subscribe((data: any) => {
@@ -243,14 +252,21 @@ roomSelected! : Rooms;
       this.news.sort((a, b) => b.id - a.id);
       //console.log(data);
 
+      this.id1 = this.news[0].id
+      this.id2 = this.news[2].id
+      this.id3 = this.news[3].id
 
      this.naslov1 = this.news[0].title;
      this.naslov2 = this.news[1].title;
      this.naslov3 = this.news[2].title;
 
-     this.sadrzaj1 = this.news[0].content;
-     this.sadrzaj2 = this.news[1].content;
-     this.sadrzaj3 = this.news[2].content;
+     this.desc1 = this.news[0].content;
+     this.desc2 = this.news[1].content;
+     this.desc3 = this.news[2].content;
+
+     this.sadrzaj1 = this.news[0].description;
+     this.sadrzaj2 = this.news[1].description;
+     this.sadrzaj3 = this.news[2].description;
 
      this.datum1 = new Date(this.news[0].created).toLocaleDateString();
      this.datum2 = new Date(this.news[1].created).toLocaleDateString();
@@ -331,6 +347,17 @@ roomSelected! : Rooms;
   showDisplay()
   {
     this.display = !this.display;
+  }
+
+  naslov:any;
+  opis:any;
+  desc:any;
+  date:any;
+  priority:any;
+
+  showDisplay2(id:number)
+  {
+    //this.display2 = !this.display2;
   }
 
   onTypeChange(event:any){

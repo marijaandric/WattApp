@@ -19,6 +19,7 @@ export class PromotionComponent implements OnInit,OnChanges{
   @Input() Status : String ="Nista";
   @Input() ID : number =0;
   @Input() authorId: any;
+  @Input() desc: any;
   @Output() public valueEmitter = new EventEmitter<string>();
   @Output() public valueEmitter2 = new EventEmitter<string>();
 
@@ -26,7 +27,7 @@ export class PromotionComponent implements OnInit,OnChanges{
   id:number = 0;
 
   display2 : Boolean = false;
-
+  display3 = false;
   display: boolean = false;
   updataNewsForm! : FormGroup;
 
@@ -102,12 +103,12 @@ export class PromotionComponent implements OnInit,OnChanges{
 
 
   ngOnChanges(changes: SimpleChanges): void {
-    //console.log("USLO")
     this.subTitle = this.subTitle;
     this.Title = this.Title;
     this.Datum = this.Datum;
     this.Status = this.Status;
     this.ID = this.ID
+    this.desc = this.desc
 
     const token = localStorage.getItem('token')
     if(token)
@@ -144,7 +145,11 @@ export class PromotionComponent implements OnInit,OnChanges{
     return userRole === 'operator';
   }
 
-
+  
+  showDialog3()
+  {
+    this.display3 = !this.display3
+  }
 
  
   async ngOnInit(): Promise<void> {

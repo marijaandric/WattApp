@@ -133,6 +133,7 @@ export class DeviceDesktopComponent implements OnInit {
   name2="Forecast"
 
   switchValue: boolean = true;
+  addDeviceForm! : FormGroup;
 
   switchOptions: SwitchOption[] = [
     {label: 'History', value: true},
@@ -149,7 +150,8 @@ export class DeviceDesktopComponent implements OnInit {
               private deviceTypesService: DeviceTypesService,
               private elementRef: ElementRef,
               private renderer: Renderer2,
-              private userService: UserService)
+              private userService: UserService,
+              private fb: FormBuilder)
               {
 
                 this.type = [
@@ -166,6 +168,19 @@ export class DeviceDesktopComponent implements OnInit {
                   {name: '3 days', code: '3 days'},
                   {name: 'Week', code: 'week'}
                 ];
+
+                this.addDeviceForm = this.fb.group({
+                  userID :[0, Validators.required],
+                  deviceName:['', Validators.required],
+                  deviceModel: ['', Validators.required],
+                  room: ['', Validators.required],
+                  model:['', Validators.required],
+                  manufacturer:['', Validators.required],
+                  manufacturingYear:['', Validators.required],
+                  power:['', Validators.required],
+                  connectedDevices: null,
+                  deviceType: ['', Validators.required],
+                })
 
                }
 
@@ -362,6 +377,18 @@ export class DeviceDesktopComponent implements OnInit {
   }
 
   showEditDeviceDialog() {
+    this.addDeviceForm = this.fb.group({
+      userID :[this.device.id, Validators.required],
+      deviceName:[this.device.deviceName, Validators.required],
+      deviceModel: [this.device.deviceModel, Validators.required],
+      room: [this.device.room, Validators.required],
+      model:[this.device.model, Validators.required],
+      manufacturer:[this.device.manufacturer, Validators.required],
+      manufacturingYear:[this.device.manufacturingYear, Validators.required],
+      power:[this.device.power, Validators.required],
+      connectedDevices: this.device.connectedDevices,
+      deviceType: [this.device.deviceType, Validators.required],
+    })
     this.displayEditDeviceDialog = true;
   }
 
@@ -1024,6 +1051,27 @@ async handleRunningSwitchChange2(){
   this.device.isActive = this.isChecked 
   await lastValueFrom(this.deviceService.updateDevice(this.device));
   this.display2 = false; // za alert izbrisati ovo
+}
+
+calculateBatteryLife(power: number, consumption: number, efficiency: number): { hours: number, minutes: number } {
+  const batteryLifeInHours = (power / consumption) * efficiency;
+  const batteryLifeInMinutes = Math.round(batteryLifeInHours * 60);
+  const hours = Math.floor(batteryLifeInMinutes / 60);
+  const minutes = batteryLifeInMinutes % 60;
+  return { hours, minutes };
+}
+
+formatBatteryLife(batteryLife: { hours: number, minutes: number }): string {
+  const formattedHours = batteryLife.hours.toString().padStart(2, '0');
+  const formattedMinutes = batteryLife.minutes.toString().padStart(2, '0');
+  if(formattedMinutes == '00')
+  {
+    return `${formattedHours} hours`
+  }
+  else{
+    return `${formattedHours} hours and ${formattedMinutes} minutes`;
+  }
+  
 }
 
 }
