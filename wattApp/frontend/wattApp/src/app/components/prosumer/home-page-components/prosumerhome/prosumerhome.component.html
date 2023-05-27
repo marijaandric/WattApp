@@ -25,7 +25,7 @@
     <div style="display: flex;
     flex-direction: row;
     flex-wrap: wrap;">
-    <div class="crsl" style="width: 40%;">
+    <div class="crsl" style="width: 30%;">
         <p-carousel *ngIf="devices[0].deviceName != 'default'" [value] = "devices" [circular]="false" [numScroll]="1">
           <ng-template let-device pTemplate="device">
               <h6 style="text-align: center;" [ngClass]="{'light-theme-color-gray-323232':lightMode}">The biggest {{device.deviceType}}</h6>
