@@ -137,6 +137,18 @@
       </div>
     <div class="display:flex;position:relative; width:100%; height:fit-content;flex-direction:row;">
         <div style="width:100%; height:fit-content; display:flex; flex-direction:row;margin-bottom:12px;">
+          <span><i [ngClass]="{'light-theme-color-gray-323232':lightMode}" class="fa fa-info-circle" style="cursor:pointer; padding-top: 10px; width: 30px;" aria-hidden="true" (click)="op2.toggle($event)"></i></span>
+          <p-overlayPanel #op2 >
+            <p style="width:350px">In this application, you can analyze different aspects of energy usage.</p>
+            <p style="width:350px">
+              The first dropdown allows you to choose the data type you want to analyze. Select the appropriate option based on the aspect you are interested in, such as historical data, forecasted data, or a combination of both.
+
+              The second dropdown enables you to specify the time range for your analysis. Choose from options like 'History', 'Forecast', or 'History & Forecast' to focus on the desired timeframe for your data analysis.
+
+              Lastly, the third dropdown lets you select the duration or period you want to analyze. You can choose predefined time periods like 'Last week', 'Last month', or specify a custom range.
+
+              By utilizing these dropdowns effectively, you can gain valuable insights into energy usage patterns and trends within the selected timeframe.</p>
+          </p-overlayPanel>
             <div class="pdd-div"><div [ngClass]="{'light-mode':lightMode,'dark-mode':!lightMode}" ><p-dropdown [options]="type2"  [(ngModel)]="selectedHF"  optionLabel="name" (onChange)="updateType3()">
             </p-dropdown></div></div>
             <div class="pdd-div"><div [ngClass]="{'light-mode':lightMode,'dark-mode':!lightMode}" ><p-dropdown [options]="type3"  [(ngModel)]="selectedDate" optionLabel="name" (onChange)="dropdownChange()" >

@@ -80,9 +80,9 @@
 
     <ng-template pTemplate="body" let-device>
       <tr style="cursor:pointer !important;" [routerLink]="['/device', device.id]">
-        <td><a [routerLink]="['/device', device.id]">{{ device.deviceName }}</a></td>
-        <td><a [routerLink]="['/device', device.id]">{{device.room}}</a></td>
-        <td *ngIf="isCurrentRoute('devices')"><a [routerLink]="['/device', device.id]">{{device.deviceType}}</a></td>
+        <td><a [routerLink]="['/device', device.id]">{{ device?.deviceName }}</a></td>
+        <td><a [routerLink]="['/device', device.id]">{{device?.room}}</a></td>
+        <td *ngIf="isCurrentRoute('devices')"><a [routerLink]="['/device', device.id]">{{device?.deviceType}}</a></td>
       </tr>
     </ng-template>
 
