@@ -17,6 +17,14 @@
       width:100%;
     }
   }
+  
+  @media only screen and (min-width: 639px) {
+    .ovrplnl .p-overlaypanel{
+      margin-left:-120px;
+      display:block;
+      margin-top:-70px;
+    }
+  }
 
   .light-mode textarea {
     background:white !important;
