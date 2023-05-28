@@ -122,7 +122,7 @@ export class DevicePhoneComponent implements OnInit{
                   {name: 'Stock', code: 'Stock'},
                 ];
                 this.type2 = [
-                  {name: 'Both', code: 'both'},
+                  {name: 'History & forecast', code: 'both'},
                   {name: 'History', code: 'history'},
                   {name: 'Forecast', code: 'forecast'}
                 ];

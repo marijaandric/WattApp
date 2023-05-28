@@ -178,9 +178,6 @@ export class NewsComponent implements OnInit{
       });
       this.MynewsImportant.sort((a, b) => b.id - a.id);
 
-      console.log(this.news);
-      console.log(this.MynewsRegular);
-      console.log(this.MynewsImportant);
       this.loader = false;
      // console.log(this.id);
 

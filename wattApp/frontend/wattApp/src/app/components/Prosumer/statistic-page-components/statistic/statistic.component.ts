@@ -125,7 +125,7 @@ export class StatisticComponent  implements OnInit {
       });
     }
     this.type2 = [
-      {name: 'Both', code: 'both'},
+      {name: 'History & forecast', code: 'both'},
       {name: 'History', code: 'history'},
       {name: 'Forecast', code: 'forecast'}
     ];

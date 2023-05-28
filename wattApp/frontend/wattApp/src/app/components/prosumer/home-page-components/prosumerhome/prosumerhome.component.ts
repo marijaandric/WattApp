@@ -310,6 +310,10 @@ roomSelected! : Rooms;
       deviceName:['', Validators.required],
       deviceModel: ['', Validators.required],
       room: ['', Validators.required],
+      model:['', Validators.required],
+      manufacturer:['', Validators.required],
+      manufacturingYear:['', Validators.required],
+      power:['', Validators.required],
       deviceType: ['', Validators.required],
     })
 
@@ -348,6 +352,7 @@ roomSelected! : Rooms;
   {
     this.display = !this.display;
   }
+  
 
   naslov:any;
   opis:any;
@@ -397,16 +402,30 @@ roomSelected! : Rooms;
     this.addDeviceForm.patchValue({
       room : this.roomSelected.name
     })
+    this.addDeviceForm.patchValue({
+      manufacturingYear : this.addDeviceForm.get('manufacturingYear')?.value + " "
+    })
+    
+    
+
+    if(!this.addDeviceForm.value.deviceName)
+    {
+      this.toast.error({detail:"ERROR",summary:"Please fill in all fields.",duration:4000});
+      return
+    }
     
     this.deviceService.AddDevice(this.addDeviceForm.value).subscribe({
       next:(res => {
         this.addDeviceForm.reset()
-        this.toast.success({detail:"SUCCESS",summary:"You have successfully added device",duration:4000});
-        this.display = false;
-        location.reload()
+        this.toast.success({detail:"SUCCESS",summary:"You have successfully added device",duration:5000});
+        this.display2 = false;
+      setTimeout(() => {
+        location.reload();
+      }, 1350)
+
       }),
       error:(err => {
-        this.toast.error({detail:"ERROR",summary:"Error",duration:4000});
+        this.toast.error({detail:"ERROR",summary:"Our team is working diligently to resolve the issue and get everything back up and running smoothly!",duration:4000});
       })
     }) 
   }
