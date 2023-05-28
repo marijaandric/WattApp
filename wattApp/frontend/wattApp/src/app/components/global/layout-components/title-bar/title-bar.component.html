@@ -1,8 +1,8 @@
-<ng-content></ng-content>
+<ng-content ></ng-content>
 
 <p-dialog [style]="{width:'40%'}" header="Title2"  [transitionOptions]="'3ms'" 
-[draggable]="true" [keepInViewport]="true" [resizable]="false" 
-[blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true"  [ngClass]="{'light-mode':lightMode}" 
+[draggable]="true" [keepInViewport]="true" [resizable]="false" #reg
+[blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true"  [ngClass]="{'light-mode':lightMode, 'dark-mode':!lightMode                                                                 }" 
 [modal]="true" [(visible)]="display" [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
 [closable]="true">
 <ng-template pTemplate="header" class="header-dialog">
@@ -32,7 +32,7 @@
       <input formControlName="email" name="email" appendTo="body" type="text"   class="p-inputtext-lg"  placeholder="EMAIL"> 
 
       <small class="text-danger" *ngIf="signUpForm.controls['email'].dirty && signUpForm.hasError('required','email')">Email is required</small>
-      <div class="dropdown-div"><p-dropdown  [options]="roles" appendTo="body" optionLabel="name" (onChange)="onRoleChange($event)"></p-dropdown></div>
+      <div class="dropdown-div" ><div [ngClass]="{'light-mode':lightMode,'dark-mode':!lightMode}" ><p-dropdown  [options]="roles" [appendTo]="reg" optionLabel="name" (onChange)="onRoleChange($event)"></p-dropdown></div></div>
       <input formControlName="phoneNumber" name="phone" appendTo="body" type="text"   class="p-inputtext-lg"  placeholder="PHONE NUMBER"> 
       <small class="text-danger" *ngIf="signUpForm.controls['phoneNumber'].dirty && signUpForm.hasError('required','phoneNumber')">Phone number is required</small>
       

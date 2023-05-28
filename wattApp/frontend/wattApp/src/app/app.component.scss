@@ -4,8 +4,20 @@
   height: 100vh;
 }
 
+.p-dialog .p-overlay {
+  position:fixed !important;
+}
+
 :host ::ng-deep {
 
+  @media only screen and (min-width: 639px) {
+    p-dialog .p-overlay-content{
+      margin-left:-70px;
+      display:block;
+      width:100%;
+    }
+  }
+  
   .dark-mode .p-dropdown {
     position:relative!important;
     border-radius: 20px!important;
@@ -22,7 +34,10 @@
     box-shadow: 5px 5px 15px black;
   }
 
-  
+  .light-mode .p-dialog .p-dropdown-panel {
+    position: relative !important;
+    left:-150px !important;
+  }
   .light-mode .p-dropdown {
     position:relative!important;
     border-radius: 20px!important;
@@ -44,7 +59,20 @@
 
     }
   }
+  .dropdown-div .light-mode .p-dropdown-panel  {
+    min-width:150.953px!important;
+    width:fit-content !important;
+    margin-right:20px !important;
+    padding:0px 10px;
+    box-shadow: 5px 5px 15px rgb(233, 233, 233);
 
+    span {
+      color:#e91414 !important ;
+
+    }
+  }
+
+  
   .button-div .p-button {
     position:relative!important;
     border-radius: 2px!important;
@@ -125,13 +153,6 @@
     border-radius: 32px;;
   }
 
-
-  .p-overlay-content{
-    border-radius: 30px;
-    background-color: #d90372;
-    border:none;
-
-  }
 
   .p-inputtext{
     background-color: none;
