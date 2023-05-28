@@ -126,7 +126,7 @@ export class DatasComponent implements OnInit{
     {
       name: "Consumption",
       data: this.niz2,
-      color: '#ab36ff'
+      color: '#885ec0'
     }
   ];
 
