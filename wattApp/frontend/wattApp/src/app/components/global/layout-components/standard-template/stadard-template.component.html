@@ -1,4 +1,4 @@
-<app-sidebar-new (toggleEventEmitter)="showSidebar($event)" class="sidebar"></app-sidebar-new>
+<app-sidebar-new (toggleEventEmitter)="showSidebar($event)" class="sidebar" [ngClass]="{'dark-theme-bigger-shadow':!lightMode, 'light-theme-bigger-shadow':lightMode}"></app-sidebar-new>
 <div class="content">
   <ng-content select="app-title-bar"></ng-content>
   <div class="flexRow centerContent">
