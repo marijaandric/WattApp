@@ -29,6 +29,7 @@ import { AboutUsComponent } from './components/global/about-us/about-us.componen
 import { NewsComponent } from './components/global/news/news.component';
 import { LoginGuard } from './guards/login.guard';
 import { AdminPageComponent } from './components/DSO/admin-page/admin-page.component';
+import { DatasComponent } from './components/Prosumer/data/data.component';
 
 
 const routes: Routes = [
@@ -56,6 +57,7 @@ const routes: Routes = [
   { path: 'PageNotFound', component:PageNotFoundComponent },
   { path: 'faq', component:FaqPageComponenetsComponent , canActivate:[AuthGuard]},
   { path: 'sidebar-new', component: SidebarNewComponent},
+  { path: 'dataInSerbia', component: DatasComponent},
   { path: '**', redirectTo: '/PageNotFound' },
 ];
 

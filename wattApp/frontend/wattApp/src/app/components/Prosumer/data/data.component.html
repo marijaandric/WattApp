@@ -1,0 +1,55 @@
+<standard-template>
+    <app-title-bar [ngClass]="{'light-mode-title-bar': lightMode}">
+      <h3>Data in Serbia</h3>
+    </app-title-bar>
+  
+    <app-center-bar>
+        <div class="widgets">
+    
+            <app-widget [subTitle]="'Imports in 2021'" [Title]="datas3[0].value.toFixed(2) + ' billion kilowatthours'" [isBlue]="true" [isBgBlue]="true" class="widget">
+            </app-widget>
+            <app-widget [subTitle]="'Exports in 2021'" [Title]="datas4[0].value.toFixed(2) + ' billion kilowatthours'" [isYellow]="true" [isYellow]="true" class="widget">
+            </app-widget>
+            <app-widget [subTitle]="'Energy intensity in 2021'" [Title]="datas5[0].value.toFixed(2) + ' million Btu per person'" [isPink]="true" [isPink]="true" class="widget">
+            </app-widget>
+            <app-widget [subTitle]="'CO2 emission in 2021'" [Title]="datas6[0].value.toFixed(2) +' MMTCD'" [isOrange]="true" [isOrange]="true" class="widget">
+            </app-widget>
+            
+          </div>
+        <div style="width: 100%;border-radius: 20px;" [ngClass]="{'light-theme-background-white':lightMode,'dark-theme-background-gray-gradient-1':!lightMode,'light-theme-bigger-shadow':lightMode,'dark-theme-bigger-shadow':!lightMode}">
+            <apx-chart class="chart" #chart2 [series]="series" [markers]="marker"[legend]="legend" [chart]="chart" [tooltip]="tooltip" [xaxis]="xaxis" [yaxis]="yaxis" [title]="title" [stroke]="stroke" [dataLabels]="dataLabels"  ></apx-chart>
+        </div>
+        <div class="flexRow">
+            <div style="width:50%;">
+                <app-datas-table
+                style="
+                margin-top:calc(2.8%);
+                display: flex;
+                position: relative;
+                flex-direction: column;
+                height: fit-content;
+                border-radius: 20px;
+                transition: ease-in-out;
+                padding:10px 20px 20px 20px;
+                " [ngClass]="{'light-mode':lightMode,'dark-mode':!lightMode}"
+                 [hif]="datas"></app-datas-table>
+            </div>
+            <div style="width:50%">
+                <app-datas-table
+                style="
+                margin-top:calc(2.8%);
+                display: flex;
+                position: relative;
+                flex-direction: column;
+                height: fit-content;
+                border-radius: 20px;
+                transition: ease-in-out;
+                padding:10px 20px 20px 20px;
+                " [ngClass]="{'light-mode':lightMode,'dark-mode':!lightMode}"
+                [hif]="datas2"></app-datas-table>
+            </div>
+        </div>
+
+    </app-center-bar>
+      
+</standard-template>

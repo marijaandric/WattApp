@@ -107,6 +107,8 @@ import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { AdminPageComponent } from './components/DSO/admin-page/admin-page.component';
 import { AdminCardComponent } from './components/DSO/admin-card/admin-card.component';
 import { TagModule } from 'primeng/tag';
+import { DatasComponent } from './components/Prosumer/data/data.component';
+import { DatasTableComponent } from './components/Prosumer/datas-table/datas-table.component';
 
 export const url = 'https://localhost:7158';
 export const deviceFakerUrl = "https://localhost:7233";
@@ -189,7 +191,9 @@ export const deviceFakerUrl = "https://localhost:7233";
     HistoryOrForecastTableComponent,
     MapForUserProfileComponent,
     AdminPageComponent,
-    AdminCardComponent
+    AdminCardComponent,
+    DatasComponent,
+    DatasTableComponent
   ],
   imports: [
     CommonModule,

@@ -1,0 +1,56 @@
+<p-table class="d-table" #dtUsers class="ui-table-default" [value]="hif"  dataKey="id" [scrollable]="true" 
+      [rows]="5" [paginator]="true"
+      [globalFilterFields]="['date1','history','date2','forecast']" [ngClass]="{'light-mode': lightMode,'light-mode2': lightMode, 'dark-mode2': !lightMode,'dark-mode': !lightMode}"
+      >
+      <ng-template pTemplate="caption">
+        <div class="flexRow">
+            <h3 class="for-pc">
+            {{hif[0].activityName}}</h3>
+            <!-- <h3 class="for-phone">Production</h3> -->
+            <!-- <span class="p-input-icon-left margin-left__auto margin-right__16px">
+                <i class="pi pi-search"></i>
+                <input #searchInput pInputText type="text" (input)="dtUsers.filterGlobal($any($event.target).value, 'contains')" placeholder="Search keyword" />
+            </span> -->
+            <button pButton label="Clear" class="p-button-outlined margin-left__auto margin-right__16px" icon="pi pi-filter-slash" (click)="clear(dtUsers)"></button>
+        </div>
+      </ng-template>
+  
+      <ng-template pTemplate="header">
+        <tr>
+          <th pSortableColumn="period" style="width:50%; border-top:2px solid #46c5f1; border-bottom:2px solid #46c5f1;">
+            <div class="flexRow">
+                <p style=" font-size: 15px !important;margin-left:10px;  ">Year</p>
+                <p-sortIcon field="period"></p-sortIcon>
+                <p-columnFilter class="ml-auto" type="numeric" field="period" display="menu"></p-columnFilter>
+            </div>
+          </th>
+          <th pSortableColumn="value" style="width:50%; border-top:2px  solid #46c5f1; border-bottom:2px solid #46c5f1;">
+            <div class="flexRow">
+                <p style=" font-size: 15px !important; margin-left:10px;  "> Value [quadrillion Btu]</p>
+                <p-sortIcon field="value"></p-sortIcon>
+                <p-columnFilter class="ml-auto" type="numeric" field="value" display="menu"></p-columnFilter>
+            </div>
+          </th>
+        </tr>
+      </ng-template>
+  
+<!-- LIGHT VERZIJA - ne brisati
+  <tr style="border-bottom:2px solid rgb(156, 156, 156) !important;">
+-->      
+      <ng-template pTemplate="body" let-hif>
+        <tr >
+          <td>{{hif.period}}</td>
+          <td>
+            {{hif.value}}
+          </td>
+          
+        </tr>
+      </ng-template>
+  
+      <ng-template pTemplate="emptymessage">
+        <tr>
+            <td colspan="5">No info found.</td>
+        </tr>
+    </ng-template>
+  
+    </p-table>

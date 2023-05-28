@@ -1,0 +1,141 @@
+.widgets {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 0px 0;
+    justify-content:space-between;
+    position:relative;
+  }
+.widget {
+    flex-basis: calc(23.5%);
+    margin-bottom: 30px;
+    display: inline-block;
+    position: relative;
+    flex-direction: row;
+    min-width: 240px;
+    width:20%;
+    /*
+    box-shadow: 5px 5px 15px black;*/
+    /*  box-shadow: 5px 5px 10px rgb(198, 198, 198); */
+  }
+  
+  .iframe-div {
+    position: relative;
+    display:flex;
+    overflow: hidden;
+    flex-direction: row;
+    border-radius: 32px; 
+    z-index:1;  
+    width:100%;
+    height: 90%;
+  }
+  
+  :host>.filter-div {
+    position: absolute;
+    right:30px;
+    top :30px;
+    width:120px;
+    height:50px;
+    font-size: 20px;
+    z-index:2;
+    background-color: #222222;
+    border-radius: 32px;
+  }
+
+  .main-grid {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin-bottom:32px;
+  }
+
+.marginLeft {
+  margin-left:2.8%;
+}
+
+@media only screen and (max-width: 979px) {
+  .widget {
+    -ms-flex-preferred-size: calc(50% - 30px);
+    flex-basis: calc(50% - 30px);
+  }
+}
+
+@media only screen and (max-width: 639px) {
+  .widget {
+    -ms-flex-preferred-size: 100%;
+    flex-basis: 100%;
+  }
+}
+
+
+@media only screen and (max-width: 500px) {
+  .promotions {
+    overflow-x: scroll;
+    white-space: nowrap;
+    display: flex;
+    flex-wrap: nowrap;
+  }
+
+  .promotion, .promotion1{
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  .widgets{
+    overflow-x: scroll;
+    white-space: nowrap;
+    display: flex;
+    flex-wrap: nowrap;
+  }
+  .widget{
+    margin-right: 10px;
+    margin-left: 10px;
+    display: inline-block;
+    vertical-align: top;
+  }
+
+  .widgets::-webkit-scrollbar {
+    width: 10px; /* adjust to your desired width */
+  }
+
+  .widgets::-webkit-scrollbar-thumb {
+    background-color: rgba(214, 214, 214, 0.212); /* adjust to your desired color */
+    border-radius: 10px; /* adjust to your desired radius */
+  }
+}
+
+.dark-mode7 {
+  background: linear-gradient(180deg, #1b1b1b 30%, #121212 100%) ;
+  box-shadow: 5px 5px 15px black !important; 
+}
+
+.chart{
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  height: 300;
+  border-radius: 20px;
+  padding:  20px 40px 20px 20px;
+  /*
+  background: linear-gradient(180deg, #151515 50%, #121212 100%) ;
+ 
+  box-shadow: 5px 5px 15px black; */
+  transition: ease-in-out;
+  
+}
+
+
+
+
+.light-mode-circles {
+  
+    box-shadow: 12px 12px 40px -5px rgb(200, 200, 200) !important;
+    background:white !important;
+    h5,p {
+      color:#323232;
+    }
+  }
+
+  .light-mode-title-bar h3{
+    color:#323232;
+  }
