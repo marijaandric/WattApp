@@ -8,7 +8,7 @@ import { UserService } from 'src/app/services/user/user.service';
 })
 export class StadardTemplateComponent {
   hostElement: HTMLElement | undefined;
-
+  lightMode: Boolean = false;
   constructor(private elementRef: ElementRef, private renderer: Renderer2, private userService: UserService) { }
 
   async ngOnInit(): Promise<void> {
@@ -16,14 +16,13 @@ export class StadardTemplateComponent {
     
     const token = localStorage.getItem('token');
     this.userService.isDark$.subscribe(dark => {
+      this.lightMode = !dark;
       this.hostElement?.classList.toggle('dark-theme-application-background', dark);
       this.hostElement?.classList.toggle('light-theme-application-background', !dark);
     });
 
     this.hostElement = this.elementRef.nativeElement as HTMLElement;
     console.log(':host selector:', this.hostElement.tagName.toLowerCase());
-    const sidebar = this.hostElement?.querySelector('.sidebar');
-    this.renderer.addClass(sidebar, 'light-theme-bigger-shadow');
   }
 
   showSidebar(isShown: boolean): void {

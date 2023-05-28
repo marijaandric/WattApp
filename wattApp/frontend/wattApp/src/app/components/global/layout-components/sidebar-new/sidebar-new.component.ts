@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Output, ElementRef, OnInit, Renderer2 } from '@angular/core';
 import { APIService } from 'src/app/services/api/api.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
-import { UserService } from 'src/app/services/user.service';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-sidebar-new',
@@ -22,12 +22,21 @@ export class SidebarNewComponent {
   constructor(private elementRef: ElementRef, private api : APIService, private auth:AuthService, private renderer: Renderer2,private authService:AuthService,private userService:UserService) {
   }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    
+    const token = localStorage.getItem('token');
+    this.userService.isDark$.subscribe(dark => {
+      this.hostElement = this.elementRef.nativeElement as HTMLElement;
+      this.lightMode = !dark;
+      this.hostElement?.classList.toggle('dark-theme-background-gray-gradient-1', dark);
+      this.hostElement?.classList.toggle('light-theme-background-white', !dark);
+    });
+
     this.role()
     this.hostElement = this.elementRef.nativeElement as HTMLElement;
     this.hostElement?.classList.toggle('close', !this.isSideBarExpanded);
     //light mode
-    
+    /*
     const innerElements = this.hostElement?.querySelectorAll('.main');
     
     const hostClose = this.hostElement?.querySelector('close');

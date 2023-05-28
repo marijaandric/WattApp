@@ -12,14 +12,14 @@
 
 <!--        SIDEBAR ARROW       -->
 
-<div class="sidebar-arrow">
+<div class="sidebar-arrow" [ngClass]="{'light-theme-background-white':lightMode, 'text-color-blue':lightMode,'dark-theme-background-1b1b1b':!lightMode}">
     <i class="fa-solid fa-angle-right"  [ngClass]="isSideBarExpanded? 'arrow-right' : 'arrow-left'" (click)="expandSidebar()"></i>
 </div>
 
 <!--        HOME        -->
 
-<div class="main"  style="margin-top:20px;" routerLinkActive="active">
-    <div class="left " [ngClass]="{'light-theme':lightMode}">
+<div class="main"  style="margin-top:20px;" routerLinkActive="active" [ngClass]="{'light-theme':lightMode,'light-theme-color-gray':lightMode,'dark-theme-color-blue':!lightMode}">
+    <div class="left " [ngClass]="{'light-theme':lightMode,'light-theme-color-gray':lightMode,'dark-theme-color-blue':!lightMode}" >
         <a routerLink="/home" >
             <i class="fa-solid fa-house"></i>
         </a>
@@ -35,8 +35,8 @@
 
 <!--        USERS       -->
 
-<div class="main" [ngClass]="{'margin-100': !isSubMenuShown}" routerLinkActive="active" >
-    <div class="left" [ngClass]="{'light-theme':lightMode}">
+<div class="main" [ngClass]="{'margin-100': !isSubMenuShown,'light-theme':lightMode,'light-theme-color-gray':lightMode,'dark-theme-color-blue':!lightMode}" routerLinkActive="active" >
+    <div class="left" [ngClass]="{'light-theme':lightMode,'light-theme-color-gray':lightMode,'dark-theme-color-blue':!lightMode}">
         <a routerLink="/users">
             <i class="fa-solid fa-users"></i>
         </a>
@@ -63,9 +63,9 @@
 </div>
 
 <div  [ngClass]="{'hidden': isSubMenuShown, 'submenu': !isSubMenuShown}" >
-    <div class="main submain" routerLinkActive="active">
+    <div class="main submain" routerLinkActive="active"[ngClass]="{'light-theme':lightMode,'light-theme-color-gray':lightMode,'dark-theme-color-blue':!lightMode}" >
         <a  href="users/prosumers">      
-            <div class="left" [ngClass]="{'light-theme':lightMode}">
+            <div class="left" [ngClass]="{'light-theme':lightMode,'light-theme-color-gray':lightMode,'dark-theme-color-blue':!lightMode}">
                 <div [ngClass]="{'icon-hidden': isSideBarExpanded, 'icon-displayed': !isSideBarExpanded}">
                     <a  href="users/prosumers"><i class="fa-solid fa-user-group"></i> </a>           
                 </div>
@@ -79,9 +79,9 @@
 
     </div> 
 
-    <div class="main submain" routerLinkActive="active" >
+    <div class="main submain" routerLinkActive="active" [ngClass]="{'light-theme':lightMode,'light-theme-color-gray':lightMode,'dark-theme-color-blue':!lightMode}" >
         <a  href="users/operators">
-            <div class="left" [ngClass]="{'light-theme':lightMode}">
+            <div class="left" [ngClass]="{'light-theme':lightMode,'light-theme-color-gray':lightMode,'dark-theme-color-blue':!lightMode}">
                 <div [ngClass]="{'icon-hidden': isSideBarExpanded, 'icon-displayed': !isSideBarExpanded}">
                     <a  href="users/operators"><i class="fa-solid fa-users-gear"></i></a>
                     
@@ -98,9 +98,9 @@
 
 
 <!--        DEVICES       -->
-<div *ngIf="!isAdmin()">
+<div *ngIf="!isAdmin()" [ngClass]="{'light-theme':lightMode,'light-theme-color-gray':lightMode,'dark-theme-color-blue':!lightMode}" >
 <div class="main" [ngClass]="{'margin-150': !isSubMenuShown}" routerLinkActive="active" >
-    <div class="left" [ngClass]="{'light-theme':lightMode}">
+    <div class="left" [ngClass]="{'light-theme':lightMode,'light-theme-color-gray':lightMode,'dark-theme-color-blue':!lightMode}">
         <a routerLink="/devices">
             <i class='fa-solid fa-computer'></i>
         </a>
@@ -129,10 +129,10 @@
     </div>
 </div>
 
-<div  [ngClass]="{'hidden': isSubMenuShown, 'submenu': !isSubMenuShown}">
-    <div class="main submain" routerLinkActive="active">
+<div  [ngClass]="{'hidden': isSubMenuShown, 'submenu': !isSubMenuShown,'dark-theme-color-blue':!lightMode}">
+    <div class="main submain" routerLinkActive="active" [ngClass]="{'light-theme':lightMode,'light-theme-color-gray':lightMode,'dark-theme-color-blue':!lightMode}" >
         <a routerLink="/devices/consumption">
-            <div class="left" [ngClass]="{'light-theme':lightMode}">
+            <div class="left" [ngClass]="{'light-theme':lightMode,'light-theme-color-gray':lightMode,'dark-theme-color-blue':!lightMode}">
                 <div [ngClass]="{'icon-hidden': isSideBarExpanded, 'icon-displayed': !isSideBarExpanded}">
                     <i class="fa-solid fa-bolt"></i>
                 </div>
@@ -145,9 +145,9 @@
         </div>
     </div> 
 
-    <div class="main submain" routerLinkActive="active">
+    <div class="main submain" routerLinkActive="active"[ngClass]="{'light-theme':lightMode,'light-theme-color-gray':lightMode,'dark-theme-color-blue':!lightMode}" >
         <a routerLink="/devices/production">
-            <div class="left" [ngClass]="{'light-theme':lightMode}">
+            <div class="left" [ngClass]="{'light-theme':lightMode,'light-theme-color-gray':lightMode,'dark-theme-color-blue':!lightMode}">
                 <div [ngClass]="{'icon-hidden': isSideBarExpanded, 'icon-displayed': !isSideBarExpanded}">
                     <i class="fa-solid  fa-solar-panel"></i>
                 </div>
@@ -160,9 +160,9 @@
         </div>
     </div> 
 
-    <div class="main submain" routerLinkActive="active" >
+    <div class="main submain" routerLinkActive="active" [ngClass]="{'light-theme':lightMode,'light-theme-color-gray':lightMode,'dark-theme-color-blue':!lightMode}" >
         <a routerLink="/devices/stock">
-            <div class="left" [ngClass]="{'light-theme':lightMode}">
+            <div class="left" [ngClass]="{'light-theme':lightMode,'light-theme-color-gray':lightMode,'dark-theme-color-blue':!lightMode}">
                 <div [ngClass]="{'icon-hidden': isSideBarExpanded, 'icon-displayed': !isSideBarExpanded}">
                     <i class="fa-solid fa-car-battery"></i>
                 </div>
@@ -177,9 +177,9 @@
 </div>
 
 
-<div class="main" routerLinkActive="active" >
+<div class="main" routerLinkActive="active" [ngClass]="{'light-theme':lightMode,'light-theme-color-gray':lightMode,'dark-theme-color-blue':!lightMode}" >
     <a routerLink="/statistics" >
-        <div class="left " [ngClass]="{'light-theme':lightMode}">
+        <div class="left " [ngClass]="{'light-theme':lightMode,'light-theme-color-gray':lightMode,'dark-theme-color-blue':!lightMode}">
             <i class='fa-solid fa-chart-pie' ></i>
         </div>
     </a>
@@ -192,8 +192,8 @@
     </div>
 </div>
 </div>
-<div class="main" routerLinkActive="active">
-    <div class="left " [ngClass]="{'light-theme':lightMode}">
+<div class="main" routerLinkActive="active" [ngClass]="{'light-theme':lightMode,'light-theme-color-gray':lightMode,'dark-theme-color-blue':!lightMode}" >
+    <div class="left " [ngClass]="{'light-theme':lightMode,'light-theme-color-gray':lightMode,'dark-theme-color-blue':!lightMode}">
         <a routerLink="/faq">
             <i class=' fa-solid fa-question' ></i>
         </a>
@@ -207,8 +207,8 @@
     </div>
 </div>
 
-<div class="main" routerLinkActive="active">
-    <div class="left " [ngClass]="{'light-theme':lightMode}">
+<div class="main" routerLinkActive="active" [ngClass]="{'light-theme':lightMode,'light-theme-color-gray':lightMode,'dark-theme-color-blue':!lightMode}" >
+    <div class="left " [ngClass]="{'light-theme':lightMode,'light-theme-color-gray':lightMode,'dark-theme-color-blue':!lightMode}">
         <a routerLink="/news">
             <i class="fa fa-newspaper-o" ></i>
         </a>
@@ -222,8 +222,8 @@
     </div>
 </div>
 
-<div class="main last-main" routerLinkActive="active">
-    <div class="left " [ngClass]="{'light-theme':lightMode}" (click)="logout()">
+<div class="main last-main" routerLinkActive="active" [ngClass]="{'light-theme':lightMode,'light-theme-color-gray':lightMode,'dark-theme-color-blue':!lightMode}" >
+    <div class="left " [ngClass]="{'light-theme':lightMode,'light-theme-color-gray':lightMode,'dark-theme-color-blue':!lightMode}" (click)="logout()">
         <a >
             <i class='fa-solid fa-right-from-bracket' ></i>
         </a>

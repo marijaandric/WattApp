@@ -155,7 +155,6 @@
 
 .right {
     display: flex;
-    transition: all 0.5s ease-in-out;
     align-items: center;
    
       .title {
@@ -174,6 +173,7 @@
 
 .arrow {
   display: none;
+  border-radius: 10px;
 }
 
 .sidebar-arrow {
@@ -204,7 +204,6 @@
 
 a {  
   text-decoration: none;
-  color: #fff;
 }
 .light-theme .arrow i {
   color:#46c5f1 ;
@@ -300,9 +299,7 @@ a {
   z-index: 4;
 
   .left {
-    background:  #46c5f1 !important;
     a {
-      color:white;
     }
   }
 
@@ -311,11 +308,10 @@ a {
     display:flex;
     z-index:3;
     flex-direction: column;
+    transition: all 0.5s ease-in-out;
     width:162px;
     border-radius: 10px;
-    background: white;
     a {
-      color:#46c5f1 !important;
     }
     .title {
       display: flex;
@@ -334,9 +330,7 @@ a {
       }
     }
     .title:hover, .submain-title:hover{
-      background: #46c5f1 !important;
       a {
-        color:white !important;
       }
     }
     .submain-title {
@@ -363,7 +357,6 @@ a {
   /*
   background: #323232 ;
   */
-  background: #46c5f1;
 }
 
 .last-main {
