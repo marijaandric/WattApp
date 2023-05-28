@@ -1,8 +1,8 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, ElementRef, OnInit, SimpleChanges } from '@angular/core';
+import { Component, ElementRef, OnInit, SimpleChanges, ViewChild } from '@angular/core';
 import * as L from 'leaflet';
 import { UserService } from 'src/app/services/user/user.service';
-import {  ApexAxisChartSeries,ApexDataLabels,ApexLegend,ApexMarkers, ApexTooltip, ApexStroke, ApexFill, ApexChart, ApexXAxis, ApexTitleSubtitle,ApexYAxis, ApexNonAxisChartSeries } from 'ng-apexcharts';
+import {  ApexAxisChartSeries,ApexDataLabels,ApexLegend,ApexMarkers, ApexTooltip, ApexStroke, ApexFill, ApexChart, ApexXAxis, ApexTitleSubtitle,ApexYAxis, ApexNonAxisChartSeries, ChartComponent } from 'ng-apexcharts';
 
 @Component({
   selector: 'app-data',
@@ -10,6 +10,8 @@ import {  ApexAxisChartSeries,ApexDataLabels,ApexLegend,ApexMarkers, ApexTooltip
   styleUrls: ['./data.component.scss']
 })
 export class DatasComponent implements OnInit{
+  @ViewChild('chart2') chart2!: ChartComponent;
+  loader=true;
   datas! :any[];
   datas2! :any[];
   datas3! :any[];
@@ -59,9 +61,11 @@ export class DatasComponent implements OnInit{
      
        this.series[0].data = this.niz1;
        this.xaxis.categories = this.category
-       console.log(this.category)
+       this.ngOnChanges()
+       this.loader = false
      }, (error) => {
        console.error(error); 
+       this.loader = false
     });
     this.http.get(apiUrl2).subscribe(
       (data: any) => {
@@ -70,9 +74,12 @@ export class DatasComponent implements OnInit{
         .slice(0, 15) 
         .map(obj => obj.value === "--" ? null : parseFloat(obj.value).toFixed(2));
         this.series[1].data = this.niz2;
+        this.ngOnChanges()
+        this.loader = false
       },
       (error) => {
         console.error(error);
+        this.loader = false
       }
     );
     this.http.get(apiUrl3).subscribe(
@@ -103,6 +110,7 @@ export class DatasComponent implements OnInit{
       (data: any) => {
         this.datas6 = data.response.data;
         console.log(this.datas6);
+        
       },
       (error) => {
         console.error(error);
@@ -308,10 +316,10 @@ export class DatasComponent implements OnInit{
       this.hostElement?.classList.toggle('light-theme-background-white', !dark);
       this.dark = dark;
 
-    
       if(this.dark == true)
       {
 
+        this.series = this.series
         this.xaxis = {
           title:{
             text: "15 years",
@@ -359,7 +367,7 @@ export class DatasComponent implements OnInit{
         };
       }
       else {
-
+        this.series = this.series
         this.xaxis = {
           title:{
             text: "15 years",

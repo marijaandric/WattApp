@@ -180,7 +180,7 @@
 <div  *ngIf="!isAdmin()" class="main" routerLinkActive="active" [ngClass]="{'light-theme':lightMode,'light-theme-color-gray':lightMode,'dark-theme-color-blue':!lightMode}" >
     <a routerLink="/statistics" >
         <div class="left " [ngClass]="{'light-theme':lightMode,'light-theme-color-gray':lightMode,'dark-theme-color-blue':!lightMode}">
-            <a routerLink="/faq">
+            <a routerLink="/statistics">
                 <i class='fa-solid fa-chart-pie' ></i></a>
         </div>
     </a>
@@ -188,6 +188,23 @@
         <div class="title">
             <a routerLink="/statistics">
                 Statistics
+            </a>
+        </div>
+    </div>
+</div>
+
+
+<div  *ngIf="isAdmin()" class="main" routerLinkActive="active" [ngClass]="{'light-theme':lightMode,'light-theme-color-gray':lightMode,'dark-theme-color-blue':!lightMode}" >
+    <a routerLink="/dataInSerbia" >
+        <div class="left " [ngClass]="{'light-theme':lightMode,'light-theme-color-gray':lightMode,'dark-theme-color-blue':!lightMode}">
+            <a routerLink="/dataInSerbia">
+                <i class='fa-solid fa-chart-pie' ></i></a>
+        </div>
+    </a>
+    <div class="right" >
+        <div class="title">
+            <a routerLink="/dataInSerbia">
+                Data in Serbia
             </a>
         </div>
     </div>
@@ -223,7 +240,7 @@
     </div>
 </div>
 
-<div class="main last-main" routerLinkActive="active" [ngClass]="{'light-theme':lightMode,'light-theme-color-gray':lightMode,'dark-theme-color-blue':!lightMode}" >
+<div class="main last-main" [ngClass]="{'light-theme':lightMode,'light-theme-color-gray':lightMode,'dark-theme-color-blue':!lightMode}" >
     <div class="left " [ngClass]="{'light-theme':lightMode,'light-theme-color-gray':lightMode,'dark-theme-color-blue':!lightMode}" (click)="logout()">
         <a >
             <i class='fa-solid fa-right-from-bracket' ></i>
