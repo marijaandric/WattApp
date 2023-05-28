@@ -84,7 +84,7 @@ export class UsersComponent implements OnInit{
     this.aPIService.getNumber().subscribe((response: any) => {
       this.numberOFAllUsers=response.All;
       this.numberOFProsumer=response.Prosumer;
-      this.numberOFOperator=response.Other;
+      this.numberOFOperator=response.Operator;
     });
   }
 

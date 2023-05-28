@@ -60,13 +60,17 @@ export class SingleAreaPieComponent implements OnChanges{
     });
     if ('Series' in changes) {
       const hasData = this.Series.some((val) => val !== 0);
+
       if (!hasData) {
+        console.log('usao');
+        console.log(hasData);
         this.chartSeries = [];
         this.noData.text = "There are no devices yet!";
       }
       else{
          
         this.chartSeries = this.Series;
+        console.log('Nisam');
       }
     }
     
@@ -282,12 +286,11 @@ export class SingleAreaPieComponent implements OnChanges{
      if(dark) {
       this.chartLegend = this.chartLegend2;
       this.chartTitle = this.chartTitle2;
-      this.noData = this.noData2;
+
      }
      else {
       this.chartLegend = this.chartLegend3;
       this.chartTitle = this.chartTitle3;
-      this.noData = this.noData3;
      }
     });
 

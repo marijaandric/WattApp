@@ -1,6 +1,6 @@
 
 <div class="d-flex flex-column align-items-center text-center" style="width:100%;">
-  <img [src]="userImageUrlEndpoint" class="rounded-circle" style="background-color: white;" width="110" height="110">
+  <img [src]="userImageUrlEndpoint" class="rounded-circle"  width="110" height="110">
   <div class="pen-container" (click)="showDialog3()" [ngClass]="{'light-theme-text-color-black':!lightMode,'light-theme-background-white':!lightMode,'dark-theme-smaller-shadow':lightMode,'light-theme-smaller-shadow':!lightMode,'dark-theme-background-1b1b1b':lightMode,'color-white':lightMode}">
     <i class="pen fa-solid fa-pen"></i>
   </div>  
@@ -13,14 +13,14 @@
         </div>
 
         <!--Dialog-->
-        <p-dialog header="Title" [style]="{width:'40%'}"  [transitionOptions]="'3ms'" 
+        <p-dialog header="Title" [style]="{width:'40%'}"  [transitionOptions]="'3ms'" #edProfile
           [draggable]="false" [keepInViewport]="true" [resizable]="false" 
-          [blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true" [ngClass]="{'light-mode':lightMode}"
+          [blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true"  [ngClass]="{'light-mode':!lightMode, 'dark-mode':lightMode}" 
           [modal]="true" [(visible)]="display" [breakpoints]="{'1360px': '85vw', '740px': '100vw'}"
           [closable]="true">
           <ng-template pTemplate="header" class="header-dialog">
             <span>Manage user <i class="fa fa-info-circle" style="cursor:pointer" aria-hidden="true" (click)="op.toggle($event)"></i> </span>
-            <p-overlayPanel #op >
+            <p-overlayPanel #op [ngClass]="{'light-mode':lightMode, 'dark-mode':!lightMode}" [appendTo]="edProfile">
               <p style="width:350px">Dear user,</p> 
               <p style="width:350px">Please make sure to fill out all the required fields when editing your profile. The email must be in the format firstPart@secondPart.thirdPart, with the firstPart containing at least 4 letters, and the secondPart and thirdPart having a minimum of 2 and a maximum of 4 letters.</p>
               <p style="width:350px">Additionally, we kindly ask you to include the city name in the location field when updating it. Once you've made the changes, pressing Enter will display the updated location on the map. You can also click on the map to navigate to the specific location you clicked on.</p>
@@ -92,8 +92,8 @@
 
 
 <p-dialog [style]="{width:'300px'}" header="Title"  [transitionOptions]="'3ms'" 
-[draggable]="true" [keepInViewport]="true" [resizable]="false" 
-[blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true" [ngClass]="{'light-mode':lightMode}"
+[draggable]="true" [keepInViewport]="true" [resizable]="false" #edImg 
+[blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true" [ngClass]="{'light-mode':!lightMode, 'dark-mode':lightMode}" 
 [modal]="true" [(visible)]="display3" [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
 [closable]="true" >
 <ng-template pTemplate="header" class="header-dialog">

@@ -1,4 +1,4 @@
-import { Component, OnInit,Input, SimpleChanges, ElementRef, Renderer2} from '@angular/core';
+import { Component, OnChanges,OnInit,Input, SimpleChanges, ElementRef, Renderer2, ChangeDetectorRef} from '@angular/core';
 import {
   ApexChart,
   ApexDataLabels,
@@ -10,6 +10,7 @@ import {
   ApexFill,
   ApexStroke,
   ApexTooltip,
+  ApexNoData,
 } from 'ng-apexcharts';
 import { UserService } from 'src/app/services/user/user.service';
 
@@ -18,7 +19,7 @@ import { UserService } from 'src/app/services/user/user.service';
   templateUrl: './pie-chart.component.html',
   styleUrls: ['./pie-chart.component.css']
 })
-export class PieChartComponent implements OnInit {
+export class PieChartComponent implements OnChanges {
   
   hostElement: HTMLElement | undefined;
   colorTheme: string = "";
@@ -179,7 +180,7 @@ export class PieChartComponent implements OnInit {
     tooltip: this.tooltip
   };
 
-  constructor(private elementRef: ElementRef, private renderer: Renderer2, private userService: UserService) { }
+  constructor(private cdr: ChangeDetectorRef,private elementRef: ElementRef, private renderer: Renderer2, private userService: UserService) { }
 
   async ngOnInit(): Promise<void> {
     this.hostElement = this.elementRef.nativeElement as HTMLElement;
@@ -202,6 +203,39 @@ export class PieChartComponent implements OnInit {
     this.chartTitle.text=this.chartText;
     this.chartSeries=this.Series;
   }
+  noData: ApexNoData = {
+    text: 'No data available',
+    align: 'left',
+    verticalAlign: 'middle',
+    offsetX: 0,
+    offsetY: 0,
+    style: {
+      fontSize: '12px',
+      color: this.colorTheme
+    }
+  }
+  noData2: ApexNoData = {
+    text: 'No data available',
+    align: 'left',
+    verticalAlign: 'middle',
+    offsetX: 0,
+    offsetY: 0,
+    style: {
+      fontSize: '12px',
+      color: '#FFF'
+    }
+  }
+  noData3: ApexNoData = {
+    text: 'No data available',
+    align: 'left',
+    verticalAlign: 'middle',
+    offsetX: 0,
+    offsetY: 0,
+    style: {
+      fontSize: '12px',
+      color: '#000'
+    }
+  }
 
   ngOnChanges(changes: SimpleChanges) {
     this.hostElement = this.elementRef.nativeElement as HTMLElement;
@@ -214,15 +248,29 @@ export class PieChartComponent implements OnInit {
      if(dark) {
       this.chartLegend = this.chartLegend2;
       this.chartTitle = this.chartTitle2;
+      this.noData = this.noData2;
      }
      else {
       this.chartLegend = this.chartLegend3;
       this.chartTitle = this.chartTitle3;
+      this.noData = this.noData3;
      }
     });
     if ('Series' in changes) {
-      this.chartSeries = this.Series;
-    }
-  }
+      console.log(this.Series);
+      const hasData = this.Series.some((val) => val !== 0);
+      if (!hasData || this.Series.length == 0) {
 
+        this.chartSeries = [];
+        this.noData.text = "There are no devices yet!";
+        console.log('usao2');
+      }
+      else{
+         
+        this.chartSeries = this.Series;
+   
+      }
+    }
+    this.cdr.detectChanges();
+  }
 }

@@ -1,14 +1,14 @@
 <ng-content ></ng-content>
 
 <p-dialog [style]="{width:'40%'}" header="Title2"  [transitionOptions]="'3ms'" 
-[draggable]="true" [keepInViewport]="true" [resizable]="false" #reg
+[draggable]="true" [keepInViewport]="true" [resizable]="false" #reg 
 [blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true"  [ngClass]="{'light-mode':lightMode, 'dark-mode':!lightMode                                                                 }" 
 [modal]="true" [(visible)]="display" [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
 [closable]="true">
 <ng-template pTemplate="header" class="header-dialog">
 
   
-<span>Registration <i class="fa fa-info-circle" style="cursor:pointer" aria-hidden="true" (click)="op.toggle($event)"></i> </span>
+<span>Add prosumer <i class="fa fa-info-circle" style="cursor:pointer" aria-hidden="true" (click)="op.toggle($event)"></i> </span>
 <p-overlayPanel #op  [ngClass]="{'light-mode':lightMode, 'dark-mode':!lightMode}" [appendTo]="reg">
   <p style="width:370px">Dear user,</p> 
   <p style="width:370px">All fields are required to be filled out. The email must be in the format firstPart@secondPart.thirdPart. The firstPart must contain at least 3 letters, while the secondPart and thirdPart should have a minimum of 2 and a maximum of 6 letters.</p>
@@ -55,14 +55,14 @@
 </p-dialog>
 
 <div >
-<p-dialog [style]="{width:'40%'}" header="Title"  [transitionOptions]="'3ms'" 
-[draggable]="true" [keepInViewport]="true" [resizable]="false" 
+<p-dialog [style]="{width:'40%'}" header="Title"  [transitionOptions]="'3ms'" #adddv
+[draggable]="true" [keepInViewport]="true" [resizable]="false" [ngClass]="{'light-mode':lightMode, 'dark-mode':!lightMode}"
 [blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true" 
 [modal]="true" [(visible)]="display2" [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
-[closable]="true" [ngClass]="{'light-mode':lightMode}" >
+[closable]="true"  >
 <ng-template pTemplate="header" class="header-dialog">
   <span>Add Device <i class="fa fa-info-circle" style="cursor:pointer" aria-hidden="true" (click)="op3.toggle($event)"></i> </span>
-  <p-overlayPanel #op3 >
+  <p-overlayPanel #op3  [ngClass]="{'light-mode':lightMode, 'dark-mode':!lightMode}" [appendTo]="adddv">
     <p style="width:350px">Dear user,</p> 
     <p style="width:350px">You must fill in all fields. In the power or capacity field, enter only numbers.</p>
     <p style="width:350px">If an error occurs while adding your device and you have followed the steps, please consult with your nearest operator for assistance.</p>
@@ -74,11 +74,11 @@
   <div class="p-inputgroup p-inputtext-lg p-input-filled">
     <div class="half">  
       <span>Device category</span> 
-      <div class="dropdown-div" style="margin-bottom:20px;" [ngClass]="{'light-mode':lightMode}"> <p-dropdown [options]="types" appendTo="body" optionLabel="name" (onChange)="onTypeChange($event)" [ngClass]="{'light-mode':lightMode}" /></div>
+      <div class="dropdown-div" style="margin-bottom:20px;"><div [ngClass]="{'light-mode':lightMode,'dark-mode':!lightMode}" > <p-dropdown [options]="types" [appendTo]="adddv" optionLabel="name" (onChange)="onTypeChange($event)" /></div></div>
       <span >Device type </span>
-      <div class="dropdown-div" style="margin-bottom:20px;" [ngClass]="{'light-mode':lightMode}"><p-dropdown [options]="models" appendTo="body" optionLabel="name" (onChange)="onModelChange($event)" [ngClass]="{'light-mode':lightMode}" /></div>
+      <div class="dropdown-div" style="margin-bottom:20px;"><div [ngClass]="{'light-mode':lightMode,'dark-mode':!lightMode}" ><p-dropdown [options]="models" [appendTo]="adddv" optionLabel="name" (onChange)="onModelChange($event)"  /></div></div>
       <span>Location</span>
-      <div class="dropdown-div" style="margin-bottom:20px;" [ngClass]="{'light-mode':lightMode}"><p-dropdown [options]="rooms" appendTo="body" optionLabel="name" (onChange)="onRoomChange($event)" [ngClass]="{'light-mode':lightMode}" /></div>
+      <div class="dropdown-div" style="margin-bottom:20px;"><div [ngClass]="{'light-mode':lightMode,'dark-mode':!lightMode}" ><p-dropdown [options]="rooms" [appendTo]="adddv" optionLabel="name" (onChange)="onRoomChange($event)" /></div></div>
       <!-- <span> Device name </span>
       <input formControlName="deviceName" name="name"  type="text"   class="p-inputtext-lg"  placeholder="DEVICE NAME" style="margin-top:0px;">  -->
     </div>
@@ -105,14 +105,14 @@
 
 
 
-<p-dialog [style]="{width:'40%'}" header="Title"  [transitionOptions]="'3ms'" 
-    [draggable]="true" [keepInViewport]="true" [resizable]="false" 
-    [blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true"  [ngClass]="{'light-mode':lightMode}"
+<p-dialog [style]="{width:'40%'}" header="Title"  [transitionOptions]="'3ms'"[ngClass]="{'light-mode':lightMode, 'dark-mode':!lightMode}"
+    [draggable]="true" [keepInViewport]="true" [resizable]="false"  #addn
+    [blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true"  
     [modal]="true" [(visible)]="display3" [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
     [closable]="true" >
     <ng-template pTemplate="header" class="header-dialog">
       <span>Add news <i class="fa fa-info-circle" style="cursor:pointer" aria-hidden="true" (click)="op2.toggle($event)"></i> </span>
-      <p-overlayPanel #op2 >
+      <p-overlayPanel #op2  [ngClass]="{'light-mode':lightMode, 'dark-mode':!lightMode}" [appendTo]="addn">
         <p style="width:350px">Dear user,</p> 
         <p style="width:350px">You must fill in all fields. If you don't select a news priority, it will be set as regular.</p>
       </p-overlayPanel>
@@ -154,13 +154,13 @@
 
   
 <p-dialog [style]="{width:'30%'}" header="Title"  [transitionOptions]="'3ms'" 
-[draggable]="true" [keepInViewport]="true" [resizable]="false" 
-[blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true"  [ngClass]="{'light-mode':lightMode}"
+[draggable]="true" [keepInViewport]="true" [resizable]="false" #cng
+[blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true"  [ngClass]="{'light-mode':lightMode, 'dark-mode':!lightMode}"
 [modal]="true" [(visible)]="display4" [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
 [closable]="true" >
 <ng-template pTemplate="header" class="header-dialog">
   <span>Change password <i class="fa fa-info-circle" style="cursor:pointer" aria-hidden="true" (click)="op4.toggle($event)"></i> </span>
-  <p-overlayPanel #op4 >
+  <p-overlayPanel #op4  [ngClass]="{'light-mode':lightMode, 'dark-mode':!lightMode}" [appendTo]="cng">
     <p style="width:350px">Dear user,</p> 
     <p style="width:350px">You must fill in all fields.</p>
     <p style="width:350px">Password must have at least one uppercase letter, lowercase letter, number and special character.</p>
