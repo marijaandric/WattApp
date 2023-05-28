@@ -214,7 +214,7 @@
                 <a class="sub-menu-link" style="cursor: default;">
                   <i class="fa-sharp fa-regular fa-sun" [ngClass]="{'ligh-theme-text-color-gray':lightMode, 'color-white':!lightMode}"></i>
                   <p [ngClass]="{'ligh-theme-text-color-gray':lightMode, 'color-white':!lightMode}">Light theme</p>
-                  <p-inputSwitch [(ngModel)]="user.isDarkTheme" class="margin-left__auto width__fit-content" style="margin-left:-5px;margin-top: -7px;" (click)="changeTheme()"/>
+                  <p-inputSwitch [(ngModel)]="!isDark" class="margin-left__auto width__fit-content" style="margin-left:-5px;margin-top: -7px;" (click)="changeTheme()"/>
                 </a>
                 <a class="sub-menu-link">
                   <i class="fa-sharp fa-solid fa fa-key" [ngClass]="{'ligh-theme-text-color-gray':lightMode, 'color-white':!lightMode}"></i>

@@ -71,6 +71,8 @@ export class TitleBarComponent implements OnInit{
 
   isMenuOpen = false;
   user : any;
+  isDark = true;
+
   @ViewChild('subMenu') subMenu: ElementRef | undefined;
 
   toggleMenu() {
@@ -90,7 +92,7 @@ export class TitleBarComponent implements OnInit{
               private fb: FormBuilder,
               private authService: AuthService,
               private toast: NgToastService,
-              private userService: UserService,
+              public userService: UserService,
               private deviceService: DeviceService, 
               private deviceTypesService: DeviceTypesService, 
               private roomTypesService: RoomTypesService, 
@@ -111,6 +113,7 @@ export class TitleBarComponent implements OnInit{
     
     const token = localStorage.getItem('token');
     this.userService.isDark$.subscribe(dark => {
+      this.isDark = dark
       this.hostElement = this.elementRef.nativeElement as HTMLElement;
       this.lightMode = !dark
     });
@@ -473,7 +476,7 @@ export class TitleBarComponent implements OnInit{
 
   async changeTheme()
   {
-    console.log(this.userService.isDark)
+    this.isDark = !this.isDark
     this.userService.changeTheme(this.id).subscribe({
       next:(res => {
         //this.toast.success({detail:"SUCCESS",summary:"You have successfully changed theme",duration:4000});
