@@ -1,5 +1,6 @@
 import { Component, ElementRef, HostBinding, Input, Renderer2 } from '@angular/core';
 import * as L from 'leaflet';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -21,15 +22,18 @@ export class UserProfileComponent {
   @Input() @HostBinding("pink-color") public isPink = false;
   @Input() @HostBinding("bg-pink-color") public isBgPink = false;
 
-  constructor(private elementRef: ElementRef, private renderer: Renderer2) {
+  lightMode: Boolean = false;
+
+  constructor(private elementRef: ElementRef, private renderer: Renderer2, private userService: UserService) {
 
   }
 
-  ngOnInit():void {
-    
-    this.hostElement = this.elementRef.nativeElement as HTMLElement;
-    const mapShadow = this.hostElement.querySelector('.slika');
-    this.renderer.addClass(mapShadow, 'light-theme-bigger-shadow')
-
+  
+  async ngOnInit(): Promise<void> {
+    const token = localStorage.getItem('token');
+    this.userService.isDark$.subscribe(dark => {
+      this.lightMode = !dark;
+      
+    });
   }
 }
