@@ -49,7 +49,7 @@ export class DatasComponent implements OnInit{
     let apiUrl6 = 'https://api.eia.gov/v2/international/data/?frequency=annual&data[0]=value&facets[activityId][]=8&facets[productId][]=4008&facets[countryRegionId][]=SRB&facets[unit][]=MMTCD&sort[0][column]=period&sort[0][direction]=desc&offset=0&length=5000&start=2020&end=2021&api_key=' + apiKey;
 
     this.http.get(apiUrl).subscribe((data:any) => {
-       this.datas = data.response.data
+       this.datas = data.response.data.slice(0, 15) 
        this.niz1 = this.datas
       .slice(0, 15) 
       .map(obj => obj.value === "--" ? null : parseFloat(obj.value).toFixed(2));
@@ -66,7 +66,7 @@ export class DatasComponent implements OnInit{
     });
     this.http.get(apiUrl2).subscribe(
       (data: any) => {
-        this.datas2 = data.response.data;
+        this.datas2 = data.response.data.slice(0, 15) ;
         this.niz2 = this.datas2
         .slice(0, 15) 
         .map(obj => obj.value === "--" ? null : parseFloat(obj.value).toFixed(2));
