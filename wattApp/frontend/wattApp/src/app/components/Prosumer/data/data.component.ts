@@ -55,7 +55,7 @@ export class DatasComponent implements OnInit{
 
        this.category = this.datas
        .slice(0, 15) 
-       .map(obj => obj.period === "--" ? null : parseFloat(obj.period).toFixed(2));
+       .map(obj => obj.period === "--" ? null : parseFloat(obj.period));
      
        this.series[0].data = this.niz1;
        this.xaxis.categories = this.category
@@ -350,7 +350,7 @@ export class DatasComponent implements OnInit{
         }
         
         this.title = {
-          text: "15 years",
+          text: "Consumption and production in Serbia",
           style: {
             color: '#FFF',
             fontSize: '19px',
