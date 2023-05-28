@@ -22,6 +22,7 @@ export class CardComponent implements OnInit{
 
   constructor(private routers:ActivatedRoute,private userService:UserService,private fb:FormBuilder,private toast:NgToastService,private router:Router,private elementRef: ElementRef, private renderer: Renderer2){
     this.id = this.routers.snapshot.paramMap.get('id');
+    this.userImageUrlEndpoint = this.baseUrl + this.id;
   }
 
   async ngOnInit(): Promise<void> {

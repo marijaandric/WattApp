@@ -103,6 +103,7 @@ export class UsersProsumersComponent implements OnInit {
 
   getAreas() {
     this.aPIService.getAreas().subscribe((response: any) => {
+      console.log(response);
       this.options = response.map((option: string) => {
         return {
           name: option,

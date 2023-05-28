@@ -175,7 +175,7 @@ export class DatasComponent implements OnInit{
   formatNumberWithUnit(value: number): string {
     if(value!=null)
     {
-      return value.toFixed(2) + " kWh";
+      return value.toFixed(2) + " BkWh";
     }
     else
     {

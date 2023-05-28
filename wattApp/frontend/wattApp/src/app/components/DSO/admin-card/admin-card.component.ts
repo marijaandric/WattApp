@@ -33,6 +33,7 @@ export class AdminCardComponent {
     private routers:Router,
     private fileUploadService: FileUploadService, private toast:NgToastService,private elementRef: ElementRef, private renderer: Renderer2) {
       this.id = this.router.snapshot.paramMap.get('id');
+
     }
 
     
@@ -68,6 +69,7 @@ export class AdminCardComponent {
       this.userService.GetUser(this.id,token).subscribe((data) => {
         this.userInfo = data;
       });
+      
       this.userImageUrlEndpoint = this.baseUrl + this.id;
     }
   }
