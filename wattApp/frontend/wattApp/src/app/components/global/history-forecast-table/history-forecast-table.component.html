@@ -27,7 +27,7 @@
           </th>
           <th pSortableColumn="history" style="min-width:14rem;  border-top:2px  solid #46c5f1; border-bottom:2px solid #46c5f1;">
             <div class="flexRow">
-                <p style=" font-size: 15px !important;">{{this.name1}}</p>
+                <p style=" font-size: 15px !important;">{{this.name1}} [kWh]</p>
                 <p-sortIcon field="this.history"></p-sortIcon>
                 <p-columnFilter class="ml-auto" type="numeric" field="history" display="menu"></p-columnFilter>
             </div>
@@ -41,7 +41,7 @@
           </th>
           <th pSortableColumn="forecast" style="min-width:16rem; border-top:2px  solid #46c5f1;; border-bottom:2px solid #46c5f1;">
             <div class="flexRow">
-                <p style=" font-size: 15px !important;">{{this.name2}}</p>
+                <p style=" font-size: 15px !important;">{{this.name2}} [kWh]</p>
                 <p-sortIcon field="forecast"></p-sortIcon>
                 <p-columnFilter class="ml-auto" type="numeric" field="forecast" display="menu"></p-columnFilter>
             </div>
@@ -56,13 +56,13 @@
         <tr>
           <td>{{hif.date1}}</td>
           <td>
-            <b>{{hif.history}} kWh</b>
+            <b>{{hif.history}}</b>
           </td>
           <td>{{hif.date2}}</td>
           <td>
-            <b>{{hif.forecast}} kWh</b> <br>
+            <b>{{hif.forecast}} </b> <br>
             <span [style.color]="(hif.forecast - hif.history > 0) ? '#eb4886' : '#46c5f1'">
-              {{(hif.forecast - hif.history).toFixed(2)}}{{(hif.forecast - hif.history > 0) ? ' kWh more' : ' kWh less'}} 
+              {{ calculatePositiveDifference(hif.forecast, hif.history).toFixed(2) }}{{(hif.forecast - hif.history > 0) ? ' kWh more' : ' kWh less'}} 
             </span> than last week
           </td>
         </tr>

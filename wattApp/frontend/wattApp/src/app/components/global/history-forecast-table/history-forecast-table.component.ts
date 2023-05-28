@@ -48,4 +48,9 @@ export class HistoryForecastTableComponent {
   onSearch(value: string, dtUsers: any) {
     dtUsers.filterGlobal(value, 'contains');
   }
+
+  calculatePositiveDifference(a: number, b: number): number {
+    return Math.abs(a - b);
+  }
+  
 }
