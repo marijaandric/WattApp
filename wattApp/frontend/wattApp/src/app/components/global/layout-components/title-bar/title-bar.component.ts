@@ -203,7 +203,8 @@ export class TitleBarComponent implements OnInit{
       manufacturer:['', Validators.required],
       manufacturingYear:['', Validators.required],
       power:['', Validators.required],
-      connectedDevices: null,
+      idConnectedDevice :[0, Validators.required],
+      nameOfConnectedDevice :['', Validators.required],
       deviceType: ['', Validators.required],
     })
 

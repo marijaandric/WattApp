@@ -14,7 +14,8 @@ namespace backend.Models
         public string Manufacturer { get; set; }
         public string ManufacturingYear { get; set; }
         public float Power { get; set; }
-        public List<Devices> ConnectedDevices { get; set; }
+        public int idConnectedDevice { get; set; }
+        public string NameOfConnectedDevice { get; set; }
         public string Room { get; set; }
         public string DeviceType { get; set; }
         public bool isActive { get; set; }

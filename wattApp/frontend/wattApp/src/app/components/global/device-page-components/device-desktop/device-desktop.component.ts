@@ -28,6 +28,11 @@ interface Types{
   name: string;
 }
 
+interface Types2{
+  id: number;
+  deviceName: string;
+}
+
 interface City {
   name: string,
   code: string
@@ -63,11 +68,14 @@ export class DeviceDesktopComponent implements OnInit {
   types!: Types[];
   rooms!: Rooms[];
   models! : Models[];
+  stockDevices!: DeviceDTO[] & Types2[];
+  stockSelected!: DeviceDTO | Types2;
   typeSelected! : Types;
   roomSelected! : Rooms;
   modelSelected! : Models;
   display3 : Boolean = false;
   display2 : Boolean = false;
+  
 
   isPhone: boolean = false;
   isTablet: boolean = false;
@@ -179,9 +187,13 @@ export class DeviceDesktopComponent implements OnInit {
                   manufacturer:['', Validators.required],
                   manufacturingYear:['', Validators.required],
                   power:['', Validators.required],
-                  connectedDevices: null,
+                  idConnectedDevice :['', Validators.required],
+                  nameOfConnectedDevice :['', Validators.required],
                   deviceType: ['', Validators.required],
                 })
+
+                
+                
 
                }
 
@@ -205,6 +217,7 @@ export class DeviceDesktopComponent implements OnInit {
       this.deviceService.getDeviceById(id)
         .subscribe(device => {
           this.device = device;
+          
           this.setIcons()
           this.isChecked = this.device.isActive
           if(!this.device){
@@ -253,6 +266,16 @@ export class DeviceDesktopComponent implements OnInit {
               this.rooms.unshift(selectedRoom);
             }
           });
+
+          const token = localStorage.getItem('token')
+                if(token)
+                {
+                  const id = this.userService.getUserIdFromToken(token)
+                  this.deviceService.getDevicesForUserByType(id, 'Stock').subscribe(data=>{
+                    this.stockDevices = data
+                    this.stockDevices.push({deviceName:"System",id:-1})
+                   })
+                }
           
           this.nameSelected = this.device.deviceName;
           this.getUsageToday();
@@ -401,7 +424,8 @@ export class DeviceDesktopComponent implements OnInit {
       manufacturer:[this.device.manufacturer, Validators.required],
       manufacturingYear:[this.device.manufacturingYear, Validators.required],
       power:[this.device.power, Validators.required],
-      connectedDevices: this.device.connectedDevices,
+      idConnectedDevice :[this.device.idConnectedDevice, Validators.required],
+      nameOfConnectedDevice :[this.device.nameOfConnectedDevice, Validators.required],
       deviceType: [this.device.deviceType, Validators.required],
     })
 
@@ -1134,6 +1158,20 @@ onModelChange(event:any){
 onRoomChange(event:any)
 {
   this.roomSelected = event.value;
+}
+
+updateType4(event: any)
+{
+  const id = event.value;
+  const deviceValue = this.stockDevices.find(device => device.id === id);
+  console.log(id)
+  
+}
+
+navigateToDevice(deviceId: number) {
+  this.router.navigate(['/device', deviceId]).then(() => {
+    window.location.reload();
+  });
 }
 
 }

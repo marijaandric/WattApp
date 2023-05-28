@@ -14,6 +14,7 @@ export class DeviceDTO {
     public model:any,
     public manufacturer:any,
     public manufacturingYear:any,
-    public connectedDevices: any[]
+    public idConnectedDevice: number,
+    public nameOfConnectedDevice: string
   ) { }
 }
