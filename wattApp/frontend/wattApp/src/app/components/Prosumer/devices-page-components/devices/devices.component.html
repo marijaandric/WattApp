@@ -63,7 +63,16 @@
           <div class="flexRow">
               <p>Category</p>
               <p-sortIcon field="deviceType"></p-sortIcon>
-              <p-columnFilter class="ml-auto" type="text" field="deviceType" display="menu"></p-columnFilter>
+              <!-- <p-columnFilter class="ml-auto" type="text" field="deviceType" display="menu"></p-columnFilter> -->
+              <p-columnFilter field="deviceType" matchMode="equals" display="menu">
+                <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+                  <p-dropdown [(ngModel)]="selectedStatusFilter" [options]="statusFilterOptions" (onChange)="filterStatus($event.value)" placeholder="Any">
+                    <ng-template let-option pTemplate="item">
+                      <p-tag [value]="option.value" [severity]="getSeverity(option.label)"></p-tag>
+                    </ng-template>
+                  </p-dropdown>                  
+                </ng-template>
+            </p-columnFilter>
           </div>
         </th>
       </tr>

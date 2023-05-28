@@ -106,6 +106,7 @@ import { MapForUserProfileComponent } from './components/global/user-profile/map
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { AdminPageComponent } from './components/DSO/admin-page/admin-page.component';
 import { AdminCardComponent } from './components/DSO/admin-card/admin-card.component';
+import { TagModule } from 'primeng/tag';
 
 export const url = 'https://localhost:7158';
 export const deviceFakerUrl = "https://localhost:7233";
@@ -216,6 +217,7 @@ export const deviceFakerUrl = "https://localhost:7233";
     FileUploadModule,
     ImageModule,
     OverlayPanelModule,
+    TagModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: () => localStorage.getItem('access_token'),

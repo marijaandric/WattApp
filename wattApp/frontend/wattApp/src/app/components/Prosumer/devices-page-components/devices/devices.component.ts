@@ -1,5 +1,7 @@
 import { ChangeDetectorRef, Component, ElementRef, HostListener, Input, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { SelectItem } from 'primeng/api';
+import { Table } from 'primeng/table';
 import { DeviceDTO } from 'src/app/dtos/DeviceDTO';
 import { DeviceService } from 'src/app/services/device/device.service';
 import { UserService } from 'src/app/services/user/user.service';
@@ -16,12 +18,19 @@ interface SwitchOption {
 })
 export class DevicesComponent implements OnInit{
   @ViewChild('searchInput') searchInput!: ElementRef;
+  @ViewChild('dtAllDevices', { static: false }) table!: Table;
+
   hostElement: HTMLElement | undefined;
   lightMode: boolean = true;
   @Input() devices: any;
   numVisible: number = 5;
   devicesByRoomType: {[key: string]: DeviceDTO[]} = {};
   switchValue: boolean = true;
+  
+  statusFilterOptions: SelectItem[];
+  selectedStatusFilter: any;
+
+ 
 
   responsiveOptions: any[] = [{breakpoint: '2300px',
   numVisible: 6,
@@ -73,7 +82,14 @@ export class DevicesComponent implements OnInit{
               private elementRef: ElementRef, 
               private renderer: Renderer2,
               private activatedRoute: ActivatedRoute,
-              private userService: UserService) { }
+              private userService: UserService) 
+              { 
+                this.statusFilterOptions = [
+                  { label: 'Consumer', value: 'Consumer' },
+                  { label: 'Producer', value: 'Producer' },
+                  { label: 'Stock', value: 'Stock' }
+                ];
+              }
 
   ngOnChanges() {
     this.updateNumVisible(window.innerWidth);
@@ -118,5 +134,21 @@ export class DevicesComponent implements OnInit{
 
   isCurrentRoute(route: string): boolean {
     return this.activatedRoute.snapshot.routeConfig?.path === route;
+  }
+
+  filterStatus(value: any) {
+    this.table.filter(value, 'deviceType', 'equals');
+  }
+
+  getSeverity(label: string):string {
+    if (label === 'Consumer') {
+      return 'Consumer';
+    } else if (label === 'Producer') {
+      return 'Producer';
+    } else if (label === 'Stock') {
+      return 'Stock';
+    } else {
+      return 'All';
+    }
   }
 }
