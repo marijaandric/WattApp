@@ -1,7 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, OnInit, SimpleChanges } from '@angular/core';
 import * as L from 'leaflet';
-import 'leaflet-geojson-selector';
 import { UserService } from 'src/app/services/user/user.service';
 import {  ApexAxisChartSeries,ApexDataLabels,ApexLegend,ApexMarkers, ApexTooltip, ApexStroke, ApexFill, ApexChart, ApexXAxis, ApexTitleSubtitle,ApexYAxis, ApexNonAxisChartSeries } from 'ng-apexcharts';
 
