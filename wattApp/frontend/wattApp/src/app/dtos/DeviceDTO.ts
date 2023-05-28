@@ -13,8 +13,6 @@ export class DeviceDTO {
     public power:any,
     public model:any,
     public manufacturer:any,
-    public manufacturingYear:any,
-    public idConnectedDevice: number,
-    public nameOfConnectedDevice: string
+    public manufacturingYear:any
   ) { }
 }

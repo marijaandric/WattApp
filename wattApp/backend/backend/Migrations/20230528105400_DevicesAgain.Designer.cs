@@ -11,8 +11,8 @@ using backend.Context;
 namespace backend.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20230528000211_NewsAndDevices2")]
-    partial class NewsAndDevices2
+    [Migration("20230528105400_DevicesAgain")]
+    partial class DevicesAgain
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -50,9 +50,6 @@ namespace backend.Migrations
                     b.Property<string>("Model")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("NameOfConnectedDevice")
-                        .HasColumnType("TEXT");
-
                     b.Property<float>("Power")
                         .HasColumnType("REAL");
 
@@ -66,9 +63,6 @@ namespace backend.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<bool>("allowOperatorVisibility")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("idConnectedDevice")
                         .HasColumnType("INTEGER");
 
                     b.Property<bool>("isActive")

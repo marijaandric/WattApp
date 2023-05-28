@@ -29,9 +29,7 @@ export class DeviceService {
           device.power,
           device.model,
           device.manufacturer,
-          device.manufacturingYear,
-          device.idConnectedDevice,
-          device.nameOfConnectedDevice,
+          device.manufacturingYear
         ));
       })
     );
@@ -54,9 +52,7 @@ export class DeviceService {
           device.power,
           device.model,
           device.manufacturer,
-          device.manufacturingYear,
-          device.idConnectedDevice,
-          device.nameOfConnectedDevice,
+          device.manufacturingYear
         ));
       })
     );

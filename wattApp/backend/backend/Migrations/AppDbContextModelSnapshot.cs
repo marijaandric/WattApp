@@ -47,9 +47,6 @@ namespace backend.Migrations
                     b.Property<string>("Model")
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("NameOfConnectedDevice")
-                        .HasColumnType("TEXT");
-
                     b.Property<float>("Power")
                         .HasColumnType("REAL");
 
@@ -63,9 +60,6 @@ namespace backend.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<bool>("allowOperatorVisibility")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<int>("idConnectedDevice")
                         .HasColumnType("INTEGER");
 
                     b.Property<bool>("isActive")

@@ -68,8 +68,6 @@ export class DeviceDesktopComponent implements OnInit {
   types!: Types[];
   rooms!: Rooms[];
   models! : Models[];
-  stockDevices!: DeviceDTO[] & Types2[];
-  stockSelected!: DeviceDTO | Types2;
   typeSelected! : Types;
   roomSelected! : Rooms;
   modelSelected! : Models;
@@ -187,8 +185,6 @@ export class DeviceDesktopComponent implements OnInit {
                   manufacturer:['', Validators.required],
                   manufacturingYear:['', Validators.required],
                   power:['', Validators.required],
-                  idConnectedDevice :['', Validators.required],
-                  nameOfConnectedDevice :['', Validators.required],
                   deviceType: ['', Validators.required],
                 })
 
@@ -267,16 +263,6 @@ export class DeviceDesktopComponent implements OnInit {
             }
           });
 
-          const token = localStorage.getItem('token')
-                if(token)
-                {
-                  const id = this.userService.getUserIdFromToken(token)
-                  this.deviceService.getDevicesForUserByType(id, 'Stock').subscribe(data=>{
-                    this.stockDevices = data
-                    this.stockDevices.push({deviceName:"System",id:-1})
-                   })
-                }
-          
           this.nameSelected = this.device.deviceName;
           this.getUsageToday();
           this.getUsageWeek();
@@ -424,8 +410,6 @@ export class DeviceDesktopComponent implements OnInit {
       manufacturer:[this.device.manufacturer, Validators.required],
       manufacturingYear:[this.device.manufacturingYear, Validators.required],
       power:[this.device.power, Validators.required],
-      idConnectedDevice :[this.device.idConnectedDevice, Validators.required],
-      nameOfConnectedDevice :[this.device.nameOfConnectedDevice, Validators.required],
       deviceType: [this.device.deviceType, Validators.required],
     })
 
@@ -1158,14 +1142,6 @@ onModelChange(event:any){
 onRoomChange(event:any)
 {
   this.roomSelected = event.value;
-}
-
-updateType4(event: any)
-{
-  const id = event.value;
-  const deviceValue = this.stockDevices.find(device => device.id === id);
-  console.log(id)
-  
 }
 
 navigateToDevice(deviceId: number) {

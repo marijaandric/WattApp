@@ -139,8 +139,6 @@ export class DevicePhoneComponent implements OnInit{
                   manufacturer:['', Validators.required],
                   manufacturingYear:['', Validators.required],
                   power:['', Validators.required],
-                  idConnectedDevice :[this.device.idConnectedDevice, Validators.required],
-                  nameOfConnectedDevice :[this.device.nameOfConnectedDevice, Validators.required],
                   deviceType: ['', Validators.required],
                 })
                }
@@ -230,8 +228,6 @@ export class DevicePhoneComponent implements OnInit{
       manufacturer:[this.device.manufacturer, Validators.required],
       manufacturingYear:[this.device.manufacturingYear, Validators.required],
       power:[this.device.power, Validators.required],
-      idConnectedDevice :[this.device.idConnectedDevice, Validators.required],
-      nameOfConnectedDevice :[this.device.nameOfConnectedDevice, Validators.required],
       deviceType: [this.device.deviceType, Validators.required],
     })
     this.displayEditDeviceDialog = true;
