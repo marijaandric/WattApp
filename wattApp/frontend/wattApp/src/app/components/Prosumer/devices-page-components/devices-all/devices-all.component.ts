@@ -30,6 +30,7 @@ export class DevicesAllComponent implements OnInit {
         this.ngOnInit()
       });
     }
+    
   }
 
   NumberOfUserDevices: any;

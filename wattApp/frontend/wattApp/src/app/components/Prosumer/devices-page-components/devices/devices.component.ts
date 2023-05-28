@@ -89,6 +89,14 @@ export class DevicesComponent implements OnInit{
                   { label: 'Producer', value: 'Producer' },
                   { label: 'Stock', value: 'Stock' }
                 ];
+
+                const storedValue = localStorage.getItem('switchValue');
+                if (storedValue !== null) {
+                  this.switchValue = JSON.parse(storedValue);
+                } else {
+                  localStorage.setItem('switchValue', JSON.stringify(this.switchValue));
+                  this.switchValue = true; 
+                }
               }
 
   ngOnChanges() {
@@ -125,6 +133,7 @@ export class DevicesComponent implements OnInit{
   }
 
   updateView() {
+    localStorage.setItem('switchValue', JSON.stringify(this.switchValue));
     this.cdr.detectChanges();
   }
   
