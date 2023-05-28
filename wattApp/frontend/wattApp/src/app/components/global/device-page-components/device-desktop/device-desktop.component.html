@@ -99,7 +99,7 @@
                 </div><br>
                 
 
-                <p-overlayPanel #op [style]="{'width': '300px'}" [showCloseIcon]="true">
+                <p-overlayPanel #op [style]="{'width': '350px'}" [showCloseIcon]="true">
                   <div *ngIf="device.deviceType == 'Stock'">
                   <div class="flexRow" style="margin-top:20px">
                     <span>Battery lifespan:</span>
@@ -107,6 +107,7 @@
                   </div>
                   </div>
 
+                  <h5>DSO control</h5>
                   <div class="flexRow"style="margin-top:20px">
                     <span>Visible to operators:</span>
                     <p-inputSwitch [(ngModel)]="device.allowOperatorVisibility " (ngModelChange)="promijeniStanjeprviPrekidac()"  (onChange)="handleVisibilitySwitchChange()" class="margin-left__auto width__fit-content"/>
@@ -115,6 +116,17 @@
                   <div class="flexRow margin-top__8px">
                     <span >Managed by operators:</span>
                     <p-inputSwitch [(ngModel)]="device.allowOperatorControll" (ngModelChange)="promijeniStanjeDrugiPrekidac()" (onChange)="handleManagementSwitchChange()" class="margin-left__auto width__fit-content"/>
+                  </div>
+
+                  <div *ngIf="device.deviceType == 'Consumer'">
+                    <div style="margin-top:20px">
+                      <h5>Power Source: </h5>
+                      <div class="margin-right__auto width__fit-content">Powered by the system </div>
+                      </div>
+                    <div style="margin-top:20px">
+                      <h5 style="margin-top:10px">Change Power Source: </h5>
+                      <p-dropdown [options]="stockDevices" [(ngModel)]="stockSelected" optionLabel="deviceName" optionValue="id" (onChange)="updateType4($event)"></p-dropdown>
+                    </div>
                   </div>
                   
                 </p-overlayPanel>
