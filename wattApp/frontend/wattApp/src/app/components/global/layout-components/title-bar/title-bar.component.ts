@@ -195,17 +195,7 @@ export class TitleBarComponent implements OnInit{
       isDarkTheme: true
     });
 
-    this.addDeviceForm = this.fb.group({
-      userID :[0, Validators.required],
-      deviceName:['', Validators.required],
-      deviceModel: ['', Validators.required],
-      room: ['', Validators.required],
-      model:['', Validators.required],
-      manufacturer:['', Validators.required],
-      manufacturingYear:['', Validators.required],
-      power:['', Validators.required],
-      deviceType: ['', Validators.required],
-    })
+    this.resetDeviceDialogValues();
 
     this.newsForm = this.fb.group({
       title: ['', Validators.required],
@@ -225,6 +215,21 @@ export class TitleBarComponent implements OnInit{
 
 
   }
+
+  resetDeviceDialogValues(){
+    this.addDeviceForm = this.fb.group({
+      userID :[0, Validators.required],
+      deviceName:['', Validators.required],
+      deviceModel: ['', Validators.required],
+      room: ['', Validators.required],
+      model:['', Validators.required],
+      manufacturer:['', Validators.required],
+      manufacturingYear:['', Validators.required],
+      power:['', Validators.required],
+      deviceType: ['', Validators.required],
+    })
+  }
+
   logout()
   {
     this.auth.logout();
@@ -236,6 +241,9 @@ export class TitleBarComponent implements OnInit{
   }
 
   showDialog2(){
+    this.resetDeviceDialogValues();
+    this.typeSelected = this.types[0];
+    this.reloadModels(this.typeSelected.code);
     this.display2 = true;
   }
 
@@ -279,8 +287,11 @@ export class TitleBarComponent implements OnInit{
 
   onTypeChange(event:any){
     this.typeSelected = event.value;
+    this.reloadModels(this.typeSelected.code);
+  }
 
-    this.modelTypesService.getAllModelTypes(this.typeSelected.code)
+  reloadModels(code:string){
+    this.modelTypesService.getAllModelTypes(code)
       .pipe(
         map(modelTypes => Object.entries(modelTypes).map(([code, name]) => ({ code, name })))
       )
