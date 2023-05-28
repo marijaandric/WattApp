@@ -18,6 +18,19 @@
     }
   }
 
+  .light-mode textarea {
+    background:white !important;
+    color: #323232;
+    border-color: #46c5f1 !important;
+    border-radius: 5px;
+  }
+  
+  .dark-mode textarea {
+    background:rgb(31, 31, 31) !important;
+    color: white;
+    border-color: #46c5f1 !important;
+    border-radius: 5px;
+  }
   
   .dark-mode .p-dropdown {
     position:relative!important;

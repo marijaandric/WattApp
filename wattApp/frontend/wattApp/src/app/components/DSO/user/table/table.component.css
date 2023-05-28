@@ -1,6 +1,6 @@
 
 .light-mode2 {
-    box-shadow: 8px 8px 32px -5px rgb(200, 200, 200); 
+  box-shadow: 8px 8px 35px -15px rgb(200, 200, 200) !important;
     border-radius: 20px;
     margin-bottom:32px;
   }
