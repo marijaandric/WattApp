@@ -101,11 +101,20 @@
 
                 <p-overlayPanel #op [style]="{'width': '350px'}" [showCloseIcon]="true">
                   <div *ngIf="device.deviceType == 'Stock'">
-                  <div class="flexRow" style="margin-top:20px">
-                    <span>Battery lifespan:</span>
-                    <div class="margin-left__auto width__fit-content"> {{ formatBatteryLife(calculateBatteryLife(device.power, 200, 0.7)) }} </div>
+                  <div style="margin-top:20px">
+                    <h5>Battery lifespan:</h5>
+                    <div class="margin-right__auto width__fit-content"> {{ formatBatteryLife(calculateBatteryLife(device.power, 200, 0.7)) }} </div>
                   </div>
+                  <br>
                   </div>
+
+                  <div *ngIf="device.deviceType != 'Stock'">
+                    <div style="margin-top:20px">
+                      <h5>Estimated CO2 Emission:</h5>
+                      <div class="margin-right__auto width__fit-content">{{ (device.power * 24 * 0.0550) / 1000 }} kg</div>
+                    </div>
+                    <br>
+                    </div>
 
                   <h5>DSO control</h5>
                   <div class="flexRow"style="margin-top:20px">
