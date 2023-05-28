@@ -379,6 +379,23 @@
   box-shadow: 8px 8px 35px -15px rgb(200, 200, 200) !important;
 }
 
+.light-mode .p-overlaypanel p {
+
+  color:#323232 !important;
+}
+
+.light-mode .p-overlaypanel {
+  background: white !important;
+  border:none !important;
+box-shadow: 2px 2px 15px -5px rgb(200, 200, 200); 
+}
+
+.dark-mode  .p-overlaypanel{
+  background: #1b1b1b !important;
+  color:white !important;
+  border:none !important;
+box-shadow: 2px 2px 15px black; 
+}
 
 .light-theme-shadow {
   box-shadow: 2px 2px 15px -5px rgb(200, 200, 200); 
