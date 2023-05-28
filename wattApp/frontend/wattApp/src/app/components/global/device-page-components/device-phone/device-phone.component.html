@@ -252,14 +252,13 @@
         <app-forecast-line-chart #myChart1 class="handf" *ngIf="switchValue == false"  [array]="miniForecast" [array2] = 'miniarrayData2' [Period]="Period"></app-forecast-line-chart>
     </div>
     <div class="twoCharts" *ngIf="!tableHiFWeek">
-        <app-history-forecast style="width: 100%;
-        background: linear-gradient(180deg, #1b1b1b 50%, #121212 100%)  !important;" [boja1]="color1" [boja2]="color2" [naziv1]="name" [naziv2]="name" [array] = "History" [array2]="Forecast" [array3] = "dates" [Title]="Title" class="chart" [Period]="Period"></app-history-forecast>
+        <app-history-forecast style="width: 100%;" [boja1]="color1" [boja2]="color2" [naziv1]="name" [naziv2]="name" [array] = "History" [array2]="Forecast" [array3] = "dates" [Title]="Title" class="chart" [Period]="Period"></app-history-forecast>
     </div>
 
     
     <app-history-forecast-table *ngIf="table"
         style="
-        margin-top:32px;
+        margin-top:20px;
         display: flex;
         position: relative;
         flex-direction: column;
@@ -270,7 +269,7 @@
         " [name1]="name" [name2]="name" [hif]="hif"  [ngClass]="{'light-mode':lightMode,'dark-mode':!lightMode,'dark-mode2':!lightMode}"></app-history-forecast-table>
         <app-history-or-forecast-table  *ngIf="!table"
         style="
-          margin-top:32px;
+          margin-top:20px;
           display: flex;
           position: relative;
           flex-direction: column;

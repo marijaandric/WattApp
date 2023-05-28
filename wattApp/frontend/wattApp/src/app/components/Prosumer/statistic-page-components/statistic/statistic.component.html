@@ -5,7 +5,7 @@
 
   <app-center-bar *ngIf="loader"><app-loader></app-loader></app-center-bar>
     <app-center-bar *ngIf="!loader">
-      <div style="width:100%; height:fit-content; display:flex; flex-direction:row;margin-bottom:32px;">
+      <div class="dpds" style="width:100%; height:fit-content; display:flex; flex-direction:row;margin-bottom:32px;">
           <div class="pdd-div"> <div [ngClass]="{'light-mode':lightMode,'dark-mode':!lightMode}" ><p-dropdown [options]="type" [(ngModel)]="selectedType" optionLabel="name" (onChange)="dropdownChange()" >
           </p-dropdown></div></div>
           <div class="pdd-div"> <div [ngClass]="{'light-mode':lightMode,'dark-mode':!lightMode}" ><p-dropdown [options]="type2"  [(ngModel)]="selectedHF"  optionLabel="name" (onChange)="updateType3()" >
@@ -15,8 +15,8 @@
       </div>
   <div class="main-grid">
     <div class="twoCharts" *ngIf="tableHiFWeek">
-      <p-selectButton class="flexRow width__fit-content margin-left__auto margin-bottom__16px" [options]="switchOptions" [(ngModel)]="switchValue" optionLabel="label" optionValue="value"></p-selectButton>
-      <app-history-line-chart [boja1]="color1" [array] = "miniHistory" [array2] = "miniarrayData1" class="handf" *ngIf="switchValue == true" [Period] = "Period"></app-history-line-chart>
+      <div [ngClass]="{'light-mode':lightMode}"><p-selectButton class="flexRow width__fit-content margin-left__auto" style="margin-bottom:20px;" [options]="switchOptions" [(ngModel)]="switchValue" optionLabel="label" optionValue="value"></p-selectButton>
+      </div><app-history-line-chart [boja1]="color1" [array] = "miniHistory" [array2] = "miniarrayData1" class="handf" *ngIf="switchValue == true" [Period] = "Period"></app-history-line-chart>
       <app-forecast-line-chart  [boja1]="color1" [array] = "miniForecast" [array2] = "miniarrayData2" class="handf" *ngIf="switchValue == false" [Period] = "Period"></app-forecast-line-chart>
     </div>
     <div class="twoCharts" *ngIf="!tableHiFWeek">
