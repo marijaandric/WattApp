@@ -216,3 +216,68 @@
 
 
 
+@media only screen and (min-width: 768px) {
+  .login_box {
+    max-width: 100%;
+  }
+
+
+  .left input {
+    max-width: 100%;
+  }
+
+  .right-text h2 {
+    font-size: 2.5rem;
+  }
+
+  .right-text h5 {
+    font-size: 1.5rem;
+  }
+}
+
+
+@media (max-width: 748px) {
+  body{
+    display: flex;
+    justify-content: center; /* new CSS */
+    align-items: center; 
+    background: -webkit-linear-gradient(45deg, #46c5f1 10%, #5245b7 100%);
+  }
+
+  .right{
+    display: none;
+  }
+
+  .login_box{
+    flex-direction: column;
+    height: auto;
+    width: 100%;
+    padding: 25px;
+    justify-content: center; /* new CSS */
+    align-items: center; 
+    top:35%;
+    left: 58%;
+  }
+
+  .login{
+    width: 85%;
+  }
+
+  .left {
+    height: auto;
+    padding-right: 0;
+    margin: 0px auto;
+  }
+
+  .left input {
+    
+    width:230px;
+  }
+
+  .submit {
+    padding: 7px 40px;
+    margin-top: 50px;
+  }
+
+  
+}

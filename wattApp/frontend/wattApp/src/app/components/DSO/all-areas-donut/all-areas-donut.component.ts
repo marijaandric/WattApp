@@ -43,6 +43,8 @@ export class AllAreasDonutComponent implements OnChanges{
       this.hostElement?.classList.toggle('light-theme-bigger-shadow', !dark);
       this.hostElement?.classList.toggle('dark-theme-background-gray-gradient-1', dark);
       this.hostElement?.classList.toggle('light-theme-background-white', !dark);
+      this.chartTitle2.text=this.chartTitle.text;
+      this.chartTitle3.text=this.chartTitle.text;
      if(dark) {
       console.log(dark);
       this.chartLegend = this.chartLegend2;
@@ -57,7 +59,7 @@ export class AllAreasDonutComponent implements OnChanges{
      }
     });
 
-    this.chartTitle.text=this.chartText;
+    this.chartTitle.text='Weekly report for: ' + this.chartText;
 
     this.chartTitle=this.chartTitle;
 
@@ -80,6 +82,7 @@ export class AllAreasDonutComponent implements OnChanges{
     }
       
     if ('chartText' in changes) {
+      console.log('Usao sam');
       this.chartTitle = { text: 'Weekly report for: ' + this.chartText,
         style: {
           color: this.colorTheme,
@@ -128,7 +131,7 @@ export class AllAreasDonutComponent implements OnChanges{
   }
 
   chartTitle: ApexTitleSubtitle = {
-    text:  this.chartText,
+    text: 'Weekly report for: ' +  this.chartText,
     align: 'left',
     style: {
       color: 'red',
@@ -140,7 +143,7 @@ export class AllAreasDonutComponent implements OnChanges{
   };
   
   chartTitle2: ApexTitleSubtitle = {
-    text:  this.chartText,
+    text: 'Weekly report for: ' +  this.chartText,
     align: 'left',
     style: {
       color: '#FFF',
@@ -151,7 +154,7 @@ export class AllAreasDonutComponent implements OnChanges{
     
   };
   chartTitle3: ApexTitleSubtitle = {
-    text:  this.chartText,
+    text:  'Weekly report for: ' + this.chartText,
     align: 'left',
     style: {
       color: '#000',
@@ -320,7 +323,7 @@ export class AllAreasDonutComponent implements OnChanges{
      }
     });
 
-    this.chartTitle.text=this.chartText;
+    this.chartTitle.text='Weekly report for: ' + this.chartText;
 
     this.chartDetails.height = '220px';
     this.chartSeries=this.Series;

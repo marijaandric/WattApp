@@ -220,7 +220,7 @@
                   <i class="fa-sharp fa-solid fa fa-key" [ngClass]="{'ligh-theme-text-color-gray':lightMode, 'color-white':!lightMode}"></i>
                   <p (click)="showDialog4()" (click)="setMenuClose()" [ngClass]="{'ligh-theme-text-color-gray':lightMode, 'color-white':!lightMode}">Change password</p>
                 </a>
-                <a class="sub-menu-link">
+                <a class="sub-menu-link" *ngIf="!isAdmin()">
                   <i class="fa-sharp fa-solid fa-headset" [ngClass]="{'ligh-theme-text-color-gray':lightMode, 'color-white':!lightMode}"></i>
                   <p routerLink="/contact" [ngClass]="{'ligh-theme-text-color-gray':lightMode, 'color-white':!lightMode}">Contact us</p>
                 </a>
