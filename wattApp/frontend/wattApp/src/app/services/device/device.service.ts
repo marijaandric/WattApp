@@ -58,8 +58,8 @@ export class DeviceService {
     );
   }
 
-  getDeviceById(id: any): Observable<DeviceDTO>{
-    return this.http.get<DeviceDTO>(this.baseUrl + "device/" + id);
+  getDeviceById(id: any): Observable<any>{
+    return this.http.get<any>(this.baseUrl + "device/" + id);
   }
 
   getDevicesByUserId(id: number){
@@ -104,13 +104,13 @@ export class DeviceService {
     return this.http.get<any>(this.baseUrl + "price");
   }
 
-  updateDevice(device: DeviceDTO): Observable<DeviceDTO>{
-    return this.http.put<DeviceDTO>(this.baseUrl + device.id, device);
+  updateDevice(device: any): Observable<any>{
+    return this.http.put<any>(this.baseUrl + device.id, device);
   }
 
   updateUserDSODevice(device:any, id:number)
   {
-    return this.http.put<DeviceDTO>(this.baseUrl + device.id, device);
+    return this.http.put<any>(this.baseUrl + device.id, device);
   }
 
   getHistoryAndForecastByDayForDevice(id :number, type:string)
