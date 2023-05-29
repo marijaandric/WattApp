@@ -1,5 +1,6 @@
 <p-table class="d-table" #dtUsers class="ui-table-default" [value]="hif"  dataKey="id" [scrollable]="true" 
-      [rows]="5" [paginator]="true"
+      [rows]="5" [paginator]="true" style="
+      padding:10px 20px 10px 20px;"
       [globalFilterFields]="['date1','history','date2','forecast']" [ngClass]="{'light-mode': lightMode,'light-mode2': lightMode, 'dark-mode2': !lightMode,'dark-mode': !lightMode}"
       >
       <ng-template pTemplate="caption">
