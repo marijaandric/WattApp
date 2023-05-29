@@ -54,7 +54,8 @@ export class DevicePhoneComponent implements OnInit{
   device!: DeviceDTO;
   loader = true;
   isChecked!:boolean;
-  lightMode : Boolean = true
+  lightMode : Boolean = true;
+  @Input() idDeviceComp : any;
 
   displayEditDeviceDialog: boolean = false;
   isRunning: boolean = true;
