@@ -2,10 +2,9 @@
     <app-title-bar >
       <h3  [ngClass]="{'light-theme-color-gray-323232':lightMode}">Home</h3>
     </app-title-bar>
-  
     <app-center-bar *ngIf="loader"><app-loader></app-loader></app-center-bar>
-    <app-center-bar *ngIf="!loader" #idComponent [ngClass]="{'light-mode':lightMode, 'dark-mode':!lightMode}">
-        
+    <app-center-bar *ngIf="!loader">
+        <div  #idComponent [ngClass]="{'light-mode':lightMode, 'dark-mode':!lightMode}">
     <h3 class="hello"  [ngClass]="{'light-theme-color-gray-323232':lightMode}">Hello, {{user?.firstName}} {{user?.lastName}}</h3>
     <h6 style="margin-bottom: -10px;font-size:14px !important;"  [ngClass]="{'light-theme-color-gray-323232':lightMode}">{{quote}}</h6>
     <div class="prviDeoPrognoza">
@@ -21,7 +20,7 @@
       <app-widget  [subTitle]="'Current price of electricity'" [Title]="dayPowerPrice+ ' RSD kWh'" [isOrange]="true" [isBgOrange]="true" class="widget">
       </app-widget>
         
-    </div><div #idComponent [ngClass]="{'light-mode':lightMode, 'dark-mode':!lightMode}" ></div>
+    </div>
     <h3 class="hello"  [ngClass]="{'light-theme-color-gray-323232':lightMode}"  > Top Devices</h3>
     <div style="display: flex;
     flex-direction: row;
@@ -59,9 +58,10 @@
         <div class="slika" [ngClass]="{'light-theme-bigger-shadow':lightMode,'dark-theme-bigger-shadow':!lightMode}" >
           
         </div>
+    </div>
+  
 
     </div>
-</div>
     <div class="divVreme">
       <div class="vreme">
         <app-weather-forecast></app-weather-forecast>
@@ -99,9 +99,9 @@
   </div>
 
     
+</div>  
     <!--<div class="filter-div"><span>filter</span></div>-->
   </app-center-bar>
-
   </standard-template>
 
 
