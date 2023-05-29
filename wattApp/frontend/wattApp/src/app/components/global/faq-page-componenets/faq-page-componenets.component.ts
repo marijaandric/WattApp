@@ -1,6 +1,8 @@
 import { Component, ElementRef, Renderer2 } from '@angular/core';
 import { NgToastService } from 'ng-angular-popup';
 import { UserService } from 'src/app/services/user/user.service';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-faq-page-componenets',
@@ -10,6 +12,9 @@ import { UserService } from 'src/app/services/user/user.service';
 export class FaqPageComponenetsComponent {
   hostElement: HTMLElement | undefined;
   lightMode: Boolean = true;
+  contactForm! : FormGroup;
+  isValidEmail: boolean = true;
+
   tabs = [
     { title: 'How does your energy management application work?', content: 'Our energy management application uses the Internet of Things (IoT) and artificial intelligence (AI) to collect, analyze and predict electricity consumption and production within a customers microgrid. Network managers will be able to monitor the behavior of all system users and analyze consumption and production, as well as the state of system components.' },
     { title: 'Who can use your app?', content: 'Our electricity app can be used by anyone who wants to keep track of their energy usage and costs. It is particularly useful for individuals or households who want to monitor their energy consumption and take steps towards reducing their carbon footprint. The app is also suitable for businesses that want to manage and optimize their energy usage for cost savings and sustainability. It is also used by electricity distribution operators' },
@@ -32,17 +37,53 @@ export class FaqPageComponenetsComponent {
     }
   }
   constructor(
-    private toast: NgToastService,private userService: UserService, private elementRef: ElementRef, private renderer: Renderer2
+    private toast: NgToastService,
+    private userService: UserService, 
+    private elementRef: ElementRef,
+     private renderer: Renderer2,
+     private fb: FormBuilder,
+     private authService:AuthService,
     ) {
+      this.contactForm = this.fb.group({
+        name:['', Validators.required],
+        email: ['', Validators.required],
+        subject: ['', Validators.required],
+        message:['', Validators.required]
+      })
+  }
+
+  checkValidEmail(event: string)
+  {
+    const value = event;
+    const pattern = /^[\w-\.]+@([\w-]+\.)+[\w-]{2,3}$/;
+    this.isValidEmail = pattern.test(value);
+    return this.isValidEmail;
   }
 
   SendMessage() {
-    this.toast.success({detail:"SUCCESS",summary:"You have successfully send message",duration:5000});
-     
-      setTimeout(() => {
-        location.reload();
-      }, 1500);
-
+    if(this.isValidEmail != undefined && this.isValidEmail == true)
+    {
+    console.log(this.contactForm.value)
+        this.authService.contactUs(this.contactForm.value).subscribe({
+          next:(res)=>{
+            this.toast.success({detail:"SUCCESS",summary:"You have successfully send message",duration:5000});
+        setTimeout(() => {
+       location.reload();
+     }, 1350)
+          },
+          error:(err)=>{
+            this.toast.error({
+              detail:"Error",
+              summary:"Please complete all fields",
+              duration:3000,
+            })
+          }
+        }) 
+      }
+      else
+      {
+        this.toast.error({detail:"ERROR",summary:"Please enter a valid email format.",duration:4000});
+      }
   }
 
   async ngOnInit(): Promise<void> {

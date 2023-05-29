@@ -383,12 +383,17 @@
 .light-theme-bigger-shadow {
   box-shadow: 8px 8px 35px -15px rgb(200, 200, 200) !important;
 }
+.filter-shadow {
+  box-shadow: 4px 4px 20px -5px rgb(193, 193, 193) !important;
 
+}
 .light-mode .p-overlaypanel p {
 
   color:#323232 !important;
 }
-
+.apexcharts-toolbar {
+  z-index:1 !important;
+}
 
 
 .light-mode .p-overlaypanel {
