@@ -1,7 +1,8 @@
 export class DeviceDTO {
   constructor(
     public id: number,
-    public userId: number,
+    public userID: number,
+    public fakeID: number,
     public deviceName: string,
     public deviceModel: string,
     public room: string,
