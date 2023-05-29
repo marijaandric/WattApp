@@ -76,18 +76,37 @@ export class HistoryLineChartComponent implements OnChanges{
       this.hostElement?.classList.toggle('light-theme-background-white', !dark);
       this.dark = dark;
 
-      this.series = [
-        {
-          name: 'History',
-          data: this.array,
-          color: this.boja1
-        },
-        {
-          name: 'Forecast',
-          data: this.forecastArray(this.array),
-          color: this.boja1
-        }
-      ];
+      if(this.array[0] === null || this.array[0] === 0)
+      {
+        this.series = [
+          {
+            name: 'History',
+            data: this.array,
+            color: this.boja1,
+          },
+          {
+            name: 'Forecast',
+            data: this.array,
+            color: this.boja1,
+          }
+        ]
+      }
+      else{
+        this.series = [
+          {
+            name: 'History',
+            data: this.array,
+            color: this.boja1
+          },
+          {
+            name: 'Forecast',
+            data: this.forecastArray(this.array),
+            color: this.boja1
+          }
+        ];
+      }
+
+      
       
       if(this.dark)
       {

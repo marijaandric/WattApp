@@ -5,6 +5,8 @@ import { url } from 'src/app/app.module';
 import { APIService } from 'src/app/services/api/api.service';
 import { PaginationService } from 'src/app/services/pagination/pagination.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { Router } from '@angular/router';
+import { NgToastService } from 'ng-angular-popup';
 
 @Component({
   selector: 'users',
@@ -34,6 +36,8 @@ export class UsersComponent implements OnInit{
   constructor(private userService: UserService, 
               private aPIService: APIService,
               private authService: AuthService,
+              private toast:NgToastService,
+              private routers:Router,
               private paginationService: PaginationService,
               private elementRef: ElementRef,) {
 
@@ -80,6 +84,16 @@ export class UsersComponent implements OnInit{
   onSearch(value: string, dtUsers: any) {
     dtUsers.filterGlobal(value, 'contains');
   }
+ 
+
+  showDialog(event: MouseEvent) {
+    event.stopPropagation();
+    this.display = !this.display;
+  }
+  deleteid:any;
+  setID(userId: any) {
+    this.deleteid=userId;
+  }
 
   getNumber() {
     this.aPIService.getNumber().subscribe((response: any) => {
@@ -87,6 +101,17 @@ export class UsersComponent implements OnInit{
       this.numberOFProsumer=response.Prosumer;
       this.numberOFOperator=response.Operator;
     });
+  }
+
+  deleteUser(deleteId: any)
+  {
+    this.userService.deleteUser(deleteId).subscribe(data=>{
+      this.toast.success({detail:"SUCCESS",summary:"You have successfully added device",duration:5000});
+        this.display = false;
+      setTimeout(() => {
+        location.reload();
+      }, 1350)
+    })
   }
 
   isAdmin(): boolean {

@@ -116,6 +116,7 @@ export class MapForUserProfileComponent implements OnInit{
         const coordinates = response.data.resourceSets[0].resources[0].point.coordinates;
         const lat = coordinates[0];
         const lon = coordinates[1];
+        this.map.setView([lat, lon], 13);
         console.log(response.data)
         if (this.marker) {
           // If a marker already exists, update its position
