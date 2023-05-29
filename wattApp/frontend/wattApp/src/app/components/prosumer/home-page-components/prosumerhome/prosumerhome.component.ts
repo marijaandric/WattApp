@@ -66,9 +66,9 @@ roomSelected! : Rooms;
   display = false;
   display2 = false;
 
-  @Input() device:any={id:1,deviceName: "default", deviceType:"Consumer",power: 10}
-  @Input() device1:any={id:1,deviceName: "default", deviceType:"Producer",power: 10}
-  @Input() device2:any={id:1,deviceName: "default", deviceType:"Stock",power: 10}
+  @Input() device:any={id:1,deviceName: "default", deviceType:"Consumer",power: 10,power2:12}
+  @Input() device1:any={id:1,deviceName: "default", deviceType:"Producer",power: 10,power2:2}
+  @Input() device2:any={id:1,deviceName: "default", deviceType:"Stock",power: 10,power2:20}
 
   constructor(private fb: FormBuilder,private userService:UserService,private http: HttpClient,private deviceService : DeviceService,private dsonew : DsonewsService,private roomTypesService: RoomTypesService, 
     private roleTypesService: RoleTypesService,
@@ -101,9 +101,9 @@ roomSelected! : Rooms;
     
     this.deviceService.getBiggest(this.id,year,month,day,consumer,max).subscribe((response: any) => {
        this.PowerUsageBiggestConsumer=response.averagePowerUsage.toFixed(2);
-       this.device.power2 = this.PowerUsageBiggestConsumer
        this.device = response.device
        this.devices[0] = this.device
+       this.device.power2 = this.PowerUsageBiggestConsumer
        this.cdRef.markForCheck()
        this.loader = false;
     },(error: any) => {
@@ -127,8 +127,8 @@ roomSelected! : Rooms;
 
     this.deviceService.getBiggest(this.id,year,month,day,consumer,max).subscribe((response: any) => {
       this.PowerUsageBiggestProducer=response.averagePowerUsage.toFixed(2);
-       this.device1.power2 = this.PowerUsageBiggestProducer
        this.device1 = response.device
+       this.device1.power2 = this.PowerUsageBiggestProducer
        this.devices[1] = this.device1
        this.cdRef.markForCheck()
        //this.loader = false;

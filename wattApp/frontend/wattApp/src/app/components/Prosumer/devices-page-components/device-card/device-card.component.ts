@@ -80,9 +80,10 @@ export class DeviceCardComponent implements OnInit,OnChanges{
     
     if(!this.device.power2)
     {
-      const min = 0;
-      const max = 15;
-      this.device.power2 = (Math.random() * (max - min) + min).toFixed(2);
+      // const min = 0;
+      // const max = 15;
+      // this.device.power2 = (Math.random() * (max - min) + min).toFixed(2);
+      this.device.power2 = this.device.power
       this.isChecked = this.device.isActive;
     }
     
