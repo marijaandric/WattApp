@@ -101,7 +101,7 @@ roomSelected! : Rooms;
     
     this.deviceService.getBiggest(this.id,year,month,day,consumer,max).subscribe((response: any) => {
        this.PowerUsageBiggestConsumer=response.averagePowerUsage.toFixed(2);
-       this.device.power = this.PowerUsageBiggestConsumer
+       this.device.power2 = this.PowerUsageBiggestConsumer
        this.device = response.device
        this.devices[0] = this.device
        this.cdRef.markForCheck()
@@ -127,9 +127,9 @@ roomSelected! : Rooms;
 
     this.deviceService.getBiggest(this.id,year,month,day,consumer,max).subscribe((response: any) => {
       this.PowerUsageBiggestProducer=response.averagePowerUsage.toFixed(2);
-       this.device.power = this.PowerUsageBiggestProducer
-       this.device = response.device
-       this.devices[1] = this.device
+       this.device1.power2 = this.PowerUsageBiggestProducer
+       this.device1 = response.device
+       this.devices[1] = this.device1
        this.cdRef.markForCheck()
        //this.loader = false;
     },(error: any) => {
@@ -155,7 +155,7 @@ roomSelected! : Rooms;
     this.deviceService.getBiggest(this.id,year,month,day,consumer,max).subscribe((response: any) => {
        this.PowerUsageBiggestStorage=response.averagePowerUsage.toFixed(2);
        this.device2 = response.device
-       this.device2.power = this.PowerUsageBiggestStorage
+       this.device2.power2 = this.PowerUsageBiggestStorage
        this.devices[2] = this.device2
        this.cdRef.markForCheck()
       },(error: any) => {

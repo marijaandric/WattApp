@@ -21,7 +21,6 @@ export class UserService {
       this.isDark$.next(JSON.parse(storedValue));
     }
     else{
-      console.log(String(this.isDark$.value))
       this.isDark$.next(true);
     }
   }
@@ -72,7 +71,7 @@ export class UserService {
 
   PutUser(id : number,user : any): Observable<any>
   {
-    const url = this.baseUrl+`/${id}`;
+    const url = this.baseUrl+`${id}`;
     return this.http.put(url,user);
   }
   

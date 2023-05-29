@@ -27,6 +27,7 @@ export class UsersComponent implements OnInit{
   numberOFProsumer: any;
   numberOFOperator: any;
   token = localStorage.getItem('token');
+  display=false;
 
   Myid : any;
 

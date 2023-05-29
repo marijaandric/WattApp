@@ -2,9 +2,9 @@ import { Component, ElementRef, EventEmitter, OnInit, Output, Renderer2 } from '
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { FileUploadService } from 'src/app/services/file-upload/file-upload.service';
-import { UserService } from 'src/app/services/user/user.service';
 import { url } from 'src/app/app.module';
 import { NgToastService } from 'ng-angular-popup';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-user-card',
@@ -13,7 +13,6 @@ import { NgToastService } from 'ng-angular-popup';
 })
 export class UserCardComponent implements OnInit {
   hostElement: HTMLElement | undefined;
-  lightMode: Boolean = true;
   display3: boolean = false;
   baseUrl = url + "/api/Images/user/";
   userInfo: any;
@@ -22,6 +21,7 @@ export class UserCardComponent implements OnInit {
   userImageUrlEndpoint!: string;
   value!:string;
   address!:string;
+  lightMode=true;
 
   constructor(private router:Router,
     private userService: UserService,
@@ -30,28 +30,31 @@ export class UserCardComponent implements OnInit {
 
     async ngOnInit(): Promise<void> {
     
-      const token = localStorage.getItem('token');
-      this.userService.isDark$.subscribe(dark => {
-        this.hostElement = this.elementRef.nativeElement as HTMLElement;
-        this.lightMode = dark
-        this.hostElement?.classList.toggle('dark-theme-bigger-shadow', dark);
-        this.hostElement?.classList.toggle('light-theme-bigger-shadow', !dark);
-        this.hostElement?.classList.toggle('dark-theme-background-gray-gradient-1', dark);
-        this.hostElement?.classList.toggle('light-theme-background-white', !dark);
-        
-      });
-      /*
-    const pencnt = this.hostElement.querySelector('.pen-container');
-    this.renderer.addClass(pencnt, 'light-theme-text-color-black')
-    this.renderer.addClass(pencnt, 'light-theme-background-white')
+    // this.hostElement = this.elementRef.nativeElement as HTMLElement;
+    // this.hostElement?.classList.toggle('light-theme-bigger-shadow', true);
+    // this.hostElement?.classList.add('light-theme-background-white');
+    
+    // const pencnt = this.hostElement.querySelector('.pen-container');
+    // this.renderer.addClass(pencnt, 'light-theme-text-color-black')
+    // this.renderer.addClass(pencnt, 'light-theme-background-white')
 
-    const usrTitle = this.hostElement.querySelector('.username-title');
-    this.renderer.addClass(usrTitle, 'text-color-blue')
-    const texts = this.hostElement.querySelectorAll('h6');
-    texts.forEach((innerElement) => {
-      this.renderer.addClass(innerElement, 'light-theme-text-color-black');
+    // const usrTitle = this.hostElement.querySelector('.username-title');
+    // this.renderer.addClass(usrTitle, 'text-color-blue')
+    // const texts = this.hostElement.querySelectorAll('h6');
+    // texts.forEach((innerElement) => {
+    //   this.renderer.addClass(innerElement, 'light-theme-text-color-black');
+    // });
+
+    const token = localStorage.getItem('token');
+    this.userService.isDark$.subscribe(dark => {
+      this.hostElement = this.elementRef.nativeElement as HTMLElement;
+      this.lightMode = dark
+      this.hostElement?.classList.toggle('dark-theme-bigger-shadow', dark);
+      this.hostElement?.classList.toggle('light-theme-bigger-shadow', !dark);
+      this.hostElement?.classList.toggle('dark-theme-background-gray-gradient-1', dark);
+      this.hostElement?.classList.toggle('light-theme-background-white', !dark);
+      
     });
-*/
     this.getUser();
      
   }
@@ -112,7 +115,20 @@ export class UserCardComponent implements OnInit {
       imageId: this.userInfo.imageId
     })
 
-    console.log(this.menageUserForm.value)
+    const emailRegex: RegExp = /^[a-zA-Z0-9]{3,}@[a-zA-Z]{2,6}\.[a-zA-Z]{2,4}$/;
+
+    if (this.menageUserForm.value.email.trim() === '' || !emailRegex.test(this.menageUserForm.value.email)) {
+      this.toast.error({detail:"ERROR",summary:"Please enter a valid email format.",duration:4000});
+      return
+    } 
+
+    const phoneNumberRegexWithPrefix = /^\+381-\d{3,14}$/;
+    const phoneNumberRegexWithoutPrefix = /^06\d{7,15}$/;
+    if (!phoneNumberRegexWithPrefix.test(this.menageUserForm.value.phoneNumber ) && !phoneNumberRegexWithoutPrefix.test(this.menageUserForm.value.phoneNumber)) {
+      this.toast.error({detail:"ERROR",summary:"Please enter a valid phone number format.",duration:4000});
+      return
+    }
+
       if(token){
       this.userService.PutUser(this.userService.getUserIdFromToken(token),this.menageUserForm.value)
       .subscribe(
