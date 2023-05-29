@@ -18,7 +18,7 @@
             
           </div>
         <div class="flexRow">
-            <div style="width: 25.3%;border-radius: 20px;margin-right:40px" [ngClass]="{'light-theme-background-white':lightMode,'dark-theme-background-gray-gradient-1':!lightMode,'light-theme-bigger-shadow':lightMode,'dark-theme-bigger-shadow':!lightMode}">
+            <div style="width: 24.035%;border-radius: 20px;margin-right:40px" [ngClass]="{'light-theme-background-white':lightMode,'dark-theme-background-gray-gradient-1':!lightMode,'light-theme-bigger-shadow':lightMode,'dark-theme-bigger-shadow':!lightMode}">
                 <div style="height:100% ;justify-content:center;padding: 15px;">
                 
                     <h4 style="color:#46c5f1">Serbia</h4>
@@ -29,7 +29,7 @@
                       <span [ngClass]="{'light-theme-text-color-dark-gray': lightMode}" class="margin-left__auto text-secondary">0.285</span>
                     </div>
                     <div class="flexRow" >
-                     <span style="color:#885ec0">Consumption</span>
+                     <span style="color:#46c5f1">Consumption</span>
                      <span [ngClass]="{'light-theme-text-color-dark-gray': lightMode}" class="margin-left__auto text-secondary">0.301</span>
                     </div>
                     <h5 [ngClass]="{'light-theme-text-color-dark-gray': lightMode}" style="margin-top:5px;">Dry natural gas:</h5>
@@ -38,7 +38,7 @@
                       <span [ngClass]="{'light-theme-text-color-dark-gray': lightMode}" class="margin-left__auto text-secondary">0.014</span>
                     </div>
                     <div class="flexRow" >
-                     <span style="color:#885ec0">Consumption</span>
+                     <span style="color:#46c5f1">Consumption</span>
                      <span [ngClass]="{'light-theme-text-color-dark-gray': lightMode}" class="margin-left__auto text-secondary">0.105</span>
                     </div>
                     <h5 [ngClass]="{'light-theme-text-color-dark-gray': lightMode}" style="margin-top:5px;">Petroleum & other liquids:</h5>
@@ -47,43 +47,41 @@
                       <span [ngClass]="{'light-theme-text-color-dark-gray': lightMode}"  class="margin-left__auto text-secondary">0.032</span>
                     </div>
                     <div class="flexRow" >
-                     <span style="color:#885ec0">Consumption</span>
+                     <span style="color:#46c5f1">Consumption</span>
                      <span [ngClass]="{'light-theme-text-color-dark-gray': lightMode}" class="margin-left__auto text-secondary">0.153</span>
                     </div>
     
                 
                   </div>
             </div>
-            <div style="width: 75.7%;border-radius: 20px;" [ngClass]="{'light-theme-background-white':lightMode,'dark-theme-background-gray-gradient-1':!lightMode,'light-theme-bigger-shadow':lightMode,'dark-theme-bigger-shadow':!lightMode}">  
+            <div style="width: calc(100% - 24.035%);border-radius: 20px;" [ngClass]="{'light-theme-background-white':lightMode,'dark-theme-background-gray-gradient-1':!lightMode,'light-theme-bigger-shadow':lightMode,'dark-theme-bigger-shadow':!lightMode}">  
               <apx-chart class="chart" #chart2 [series]="series" [markers]="marker"[legend]="legend" [chart]="chart" [tooltip]="tooltip" [xaxis]="xaxis" [yaxis]="yaxis" [title]="title" [stroke]="stroke" [dataLabels]="dataLabels"  ></apx-chart>
             </div>
         </div>
-        <div class="flexRow">
-            <div style="width:50%;">
+        <div class="flexRow" >
+            <div style="width:calc(50% - 16px);">
                 <app-datas-table
                 style="
-                margin-top:calc(2.8%);
+                margin-top:32px;
                 display: flex;
                 position: relative;
                 flex-direction: column;
                 height: fit-content;
                 border-radius: 20px;
                 transition: ease-in-out;
-                padding:10px 20px 20px 20px;
                 " [ngClass]="{'light-mode':lightMode,'dark-mode':!lightMode}"
                  [hif]="datas"></app-datas-table>
             </div>
-            <div style="width:50%">
+            <div style="width:calc(50% - 16px);margin-left:32px">
                 <app-datas-table
                 style="
-                margin-top:calc(2.8%);
+                margin-top:32px;
                 display: flex;
                 position: relative;
                 flex-direction: column;
                 height: fit-content;
                 border-radius: 20px;
                 transition: ease-in-out;
-                padding:10px 20px 20px 20px;
                 " [ngClass]="{'light-mode':lightMode,'dark-mode':!lightMode}"
                 [hif]="datas2"></app-datas-table>
             </div>
