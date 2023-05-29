@@ -35,9 +35,9 @@
 
 <!--        USERS       -->
 
-<div *ngIf="isAdmin()" class="main" [ngClass]="{'margin-100': !isSubMenuShown,'light-theme':lightMode,'light-theme-color-gray':lightMode,'dark-theme-color-blue':!lightMode}" routerLinkActive="active" >
+<div *ngIf="isAdmin()" class="main" [ngClass]="{'margin-100': !isSubMenuShown,'light-theme':lightMode,'light-theme-color-gray':lightMode,'dark-theme-color-blue':!lightMode, 'active': usersPath}"  >
     <div *ngIf="isAdmin()"  class="left" [ngClass]="{'light-theme':lightMode,'light-theme-color-gray':lightMode,'dark-theme-color-blue':!lightMode}">
-        <a routerLink="/users">
+        <a href="/users">
             <i class="fa-solid fa-users"></i>
         </a>
     </div>
@@ -47,11 +47,11 @@
             <a href="/users">Users</a>
         </div>
         
-        <div *ngIf="!isSubMenuShown" class="submain-title" routerLinkActive="active" >
+        <div *ngIf="!isSubMenuShown" class="submain-title" [ngClass]="{'active': prosumersPath}" >
             <a href="/users/prosumers">Prosumers</a>
         </div>
 
-        <div *ngIf="!isSubMenuShown" class="submain-title" routerLinkActive="active" >
+        <div *ngIf="!isSubMenuShown" class="submain-title"[ngClass]="{'active': consumersPath}">
             <a href="/users/operators">Operators</a>
         </div>
         <div [ngClass]="{'light-theme':lightMode}">
@@ -63,7 +63,7 @@
 </div>
 
 <div *ngIf="isAdmin()"   [ngClass]="{'hidden': isSubMenuShown, 'submenu': !isSubMenuShown}" >
-    <div  *ngIf="isAdmin()" class="main submain" routerLinkActive="active"[ngClass]="{'light-theme':lightMode,'light-theme-color-gray':lightMode,'dark-theme-color-blue':!lightMode}" >
+    <div  *ngIf="isAdmin()" class="main submain" [ngClass]="{'light-theme':lightMode, 'active': prosumersPath,'light-theme-color-gray':lightMode,'dark-theme-color-blue':!lightMode}" >
         <a  href="users/prosumers">      
             <div class="left" [ngClass]="{'light-theme':lightMode,'light-theme-color-gray':lightMode,'dark-theme-color-blue':!lightMode}">
                 <div [ngClass]="{'icon-hidden': isSideBarExpanded, 'icon-displayed': !isSideBarExpanded}">
@@ -71,7 +71,7 @@
                 </div>
             </div>
         </a>
-        <div *ngIf="isAdmin()"  class="right">
+        <div *ngIf="isAdmin()"  class="right"  [ngClass]="{'active': prosumersPath}">
             <div class="title">
                 <a href="users/prosumers">Prosumers</a>
             </div>
@@ -79,7 +79,7 @@
 
     </div> 
 
-    <div *ngIf="isAdmin()"  class="main submain" routerLinkActive="active" [ngClass]="{'light-theme':lightMode,'light-theme-color-gray':lightMode,'dark-theme-color-blue':!lightMode}" >
+    <div *ngIf="isAdmin()"  class="main submain"  [ngClass]="{'light-theme':lightMode,'light-theme-color-gray':lightMode,'dark-theme-color-blue':!lightMode, 'active': consumersPath}" >
         <a  href="users/operators">
             <div *ngIf="isAdmin()"   class="left" [ngClass]="{'light-theme':lightMode,'light-theme-color-gray':lightMode,'dark-theme-color-blue':!lightMode}">
                 <div [ngClass]="{'icon-hidden': isSideBarExpanded, 'icon-displayed': !isSideBarExpanded}">
@@ -88,7 +88,7 @@
                 </div>
             </div> 
         </a>
-        <div *ngIf="isAdmin()"  class="right" routerLinkActive="active" >
+        <div *ngIf="isAdmin()"  class="right"  [ngClass]="{'active': prosumersPath}">
             <div class="title">
                 <a  href="users/operators">Operators</a>
             </div>
@@ -98,7 +98,7 @@
 
 
 <!--        DEVICES       -->
-<div *ngIf="!isAdmin()" class="main" [ngClass]="{'margin-150': !isSubMenuShown,'light-theme':lightMode,'light-theme-color-gray':lightMode,'dark-theme-color-blue':!lightMode}" routerLinkActive="active" >
+<div *ngIf="!isAdmin()" class="main" [ngClass]="{'margin-150': !isSubMenuShown,'light-theme':lightMode,'light-theme-color-gray':lightMode,'dark-theme-color-blue':!lightMode, 'active': devicesPath}"  >
     <div *ngIf="!isAdmin()" class="left" [ngClass]="{'light-theme':lightMode,'light-theme-color-gray':lightMode,'dark-theme-color-blue':!lightMode}">
         <a routerLink="/devices">
             <i class='fa-solid fa-computer'></i>
@@ -110,15 +110,15 @@
             <a routerLink="/devices">Devices</a>
         </div>
         
-        <div *ngIf="!isSubMenuShown" class="submain-title" routerLinkActive="active" [ngClass]="{'light-theme':lightMode}">
+        <div *ngIf="!isSubMenuShown" class="submain-title"  [ngClass]="{'light-theme':lightMode, 'active': consPath }">
             <a routerLink="/devices/consumption">Consumption</a>
         </div>
 
-        <div *ngIf="!isSubMenuShown" class="submain-title" routerLinkActive="active" [ngClass]="{'light-theme':lightMode}">
+        <div *ngIf="!isSubMenuShown" class="submain-title" [ngClass]="{'light-theme':lightMode, 'active': prodPath}">
             <a routerLink="/devices/production">Production</a>
         </div>
 
-        <div *ngIf="!isSubMenuShown" class="submain-title" routerLinkActive="active" [ngClass]="{'light-theme':lightMode}">
+        <div *ngIf="!isSubMenuShown" class="submain-title"  [ngClass]="{'light-theme':lightMode, 'active': stockPath}">
             <a routerLink="/devices/stock">Stock</a>
         </div>
 
@@ -212,7 +212,7 @@
     </div>
 </div>
 
-<div class="main" routerLinkActive="active" [ngClass]="{'light-theme':lightMode,'light-theme-color-gray':lightMode,'dark-theme-color-blue':!lightMode}" >
+<div *ngIf="!isAdmin()" class="main" routerLinkActive="active" [ngClass]="{'light-theme':lightMode,'light-theme-color-gray':lightMode,'dark-theme-color-blue':!lightMode}" >
     <div class="left " [ngClass]="{'light-theme':lightMode,'light-theme-color-gray':lightMode,'dark-theme-color-blue':!lightMode}">
         <a routerLink="/faq">
             <i class=' fa-solid fa-question' ></i>

@@ -1,8 +1,8 @@
-import { Component, EventEmitter, Output, ElementRef, OnInit, Renderer2 } from '@angular/core';
+import { Component, EventEmitter, Output, ElementRef, OnInit, Renderer2, ɵsetCurrentInjector } from '@angular/core';
 import { APIService } from 'src/app/services/api/api.service';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { UserService } from 'src/app/services/user/user.service';
-
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-sidebar-new',
   templateUrl: './sidebar-new.component.html',
@@ -15,19 +15,48 @@ export class SidebarNewComponent {
   roles:any;
   lightMode: Boolean = true;
   isAdminRole: Boolean = false;
-
+  usersPath : Boolean = false;
+  prosumersPath : Boolean = false;
+  consumersPath : Boolean = false;
+  devicesPath : Boolean = false;
+  consPath : Boolean = false;
+  prodPath : Boolean = false;
+  stockPath : Boolean = false;
   hostElement: HTMLElement | undefined;
   @Output() toggleEventEmitter = new EventEmitter<boolean>();
 
-  constructor(private elementRef: ElementRef, private api : APIService, private auth:AuthService, private renderer: Renderer2,private authService:AuthService,private userService:UserService) {
+  constructor(private elementRef: ElementRef,private location: Location, private api : APIService, private auth:AuthService, private renderer: Renderer2,private authService:AuthService,private userService:UserService) {
   }
 
   async ngOnInit(): Promise<void> {
-    
+    const currentPath = this.location.path();
+    if(currentPath == "/users") {
+      this.usersPath = true;
+    } else if (currentPath == "/users/prosumers") {
+      this.prosumersPath = true;
+    } else if (currentPath == "/users/operators") {
+      this.consumersPath = true;
+    }else if (currentPath == "/devices") {
+      this.devicesPath = true;
+    } else if (currentPath == "/devices/consumption") {
+      this.consPath = true;
+    }else if (currentPath == "/devices/production") {
+      this.prodPath = true;
+    } else if (currentPath == "/devices/stock") {
+      this.stockPath = true;
+    }
+
     const token = localStorage.getItem('token');
     this.userService.isDark$.subscribe(dark => {
       this.hostElement = this.elementRef.nativeElement as HTMLElement;
       this.lightMode = !dark;
+      if (currentPath == "/users/prosumers" || currentPath == "/users/operators" 
+        || currentPath == "/devices/consumption" || currentPath == "/devices/production"
+         || currentPath == "/devices/stock") {
+        this.isSubMenu2Shown = true;
+        this.isSubMenuShown = true;
+
+      }
       this.hostElement?.classList.toggle('dark-theme-background-gray-gradient-1', dark);
       this.hostElement?.classList.toggle('light-theme-background-white', !dark);
     });
