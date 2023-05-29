@@ -5,9 +5,9 @@
 
   <app-center-bar *ngIf="loader"><app-loader></app-loader></app-center-bar>
     <app-center-bar *ngIf="!loader">
-      <div class="dpds" style="width:100%; height:fit-content; display:flex; flex-direction:row;margin-bottom:32px;">
-        <span><i [ngClass]="{'light-theme-color-gray-323232':lightMode}" class="fa fa-info-circle" style="cursor:pointer; padding-top: 10px; width: 30px;" aria-hidden="true" (click)="op.toggle($event)"></i></span>
-        <p-overlayPanel #op >
+      <div class="dpds" style="width:100%; height:fit-content; display:flex; flex-direction:row;margin-bottom:32px;" class="pdd-div ovrplnl">
+        <span><i [ngClass]="{'light-theme-color-gray-323232':lightMode}" class="fa fa-info-circle" style="cursor:pointer; padding-top: 10px; width: 30px;font-size:20px" aria-hidden="true" (click)="op.toggle($event)"></i></span>
+        <p-overlayPanel #op  [ngClass]="{'light-mode':lightMode, 'dark-mode':!lightMode}"  [appendTo]="op">
           <p style="width:350px">In this application, you can analyze different aspects of energy usage.</p>
           <p style="width:350px">
             The first dropdown allows you to select the type of data you want to analyze, such as 'Consumption', 'Production', or 'Stock'. Choose the option that corresponds to the specific aspect you are interested in.

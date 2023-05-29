@@ -29,10 +29,10 @@
             </p-carousel>
           </div> -->
         </div> 
-        <div style="display:flex;float:right; flex-direction:column; width:52%;padding: 0 2% 30px 2%;">
-          <div style="width:100%; height:fit-content; display:flex; flex-direction:row;margin-bottom:12px;">
-            <span><i [ngClass]="{'light-theme-color-gray-323232':lightMode}" class="fa fa-info-circle" style="cursor:pointer; padding-top: 10px; width: 30px;" aria-hidden="true" (click)="op.toggle($event)"></i></span>
-            <p-overlayPanel #op >
+        <div style="display:flex;float:right; flex-direction:column; width:52%;padding: 0 2% 30px 2%;"class="pdd-div ovrplnl">
+          <div style="width:100%; height:fit-content; display:flex; flex-direction:row;margin-bottom:12px;" >
+            <span><i [ngClass]="{'light-theme-color-gray-323232':lightMode}" class="fa fa-info-circle" style="cursor:pointer;font-size:20px; padding-top: 10px; width: 30px;" aria-hidden="true" (click)="op.toggle($event)"></i></span>
+            <p-overlayPanel #op [ngClass]="{'light-mode':lightMode, 'dark-mode':!lightMode}"  [appendTo]="op">
               <p style="width:350px">In this application, you can analyze different aspects of energy usage.</p>
               <p style="width:350px">
                 The first dropdown allows you to select the type of data you want to analyze, such as 'Consumption', 'Production', or 'Stock'. Choose the option that corresponds to the specific aspect you are interested in.
