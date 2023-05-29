@@ -48,7 +48,7 @@
           </div>
   <div class="main-grid" >
     <div class="twoCharts" *ngIf="tableHiFWeek">
-      <div [ngClass]="{'light-mode':lightMode}"><p-selectButton class="flexRow width__fit-content margin-left__auto" style="margin-bottom:20px;" [options]="switchOptions" [(ngModel)]="switchValue" optionLabel="label" optionValue="value"></p-selectButton>
+      <div [ngClass]="{'light-mode':lightMode}"><p-selectButton class="sw-b flexRow width__fit-content margin-left__auto" style="margin-bottom:20px;" [options]="switchOptions" [(ngModel)]="switchValue" optionLabel="label" optionValue="value"></p-selectButton>
       </div><app-history-line-chart [boja1]="color1" [array] = "miniHistory" [array2] = "miniarrayData1" class="handf" *ngIf="switchValue == true" [Period] = "Period"></app-history-line-chart>
       <app-forecast-line-chart  [boja1]="color1" [array] = "miniForecast" [array2] = "miniarrayData2" class="handf" *ngIf="switchValue == false" [Period] = "Period"></app-forecast-line-chart>
     </div>
