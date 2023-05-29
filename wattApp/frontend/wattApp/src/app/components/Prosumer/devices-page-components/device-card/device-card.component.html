@@ -48,12 +48,19 @@
         <span [ngClass]="{'light-mode-left-span':lightMode}">Type:</span>
         <span class="margin-left__auto" [ngClass]="{'color-blue': isConsumer, 'color-purple': isProducer, 'color-pink': isStock}">{{ device.deviceType }}</span>
     </div>
-    <div class="flexRow" style="margin-top: 6px;">
-        <span *ngIf="device.deviceType === 'Consumer'" [ngClass]="{'light-mode-left-span':lightMode}" >Power consumed:</span>
-        <span *ngIf="device.deviceType === 'Producer'"  [ngClass]="{'light-mode-left-span':lightMode}">Power produced:</span>
-        <span *ngIf="device.deviceType !== 'Consumer' && device.deviceType !== 'Producer'" [ngClass]="{'light-mode-left-span':lightMode}">Power stored:</span>
+    <div class="flexRow" style="margin-top: 6px;" *ngIf="device.power2">
+        <span *ngIf="device.deviceType === 'Consumer'" [ngClass]="{'light-mode-left-span':lightMode}" >Today's consumption:</span>
+        <span *ngIf="device.deviceType === 'Producer'"  [ngClass]="{'light-mode-left-span':lightMode}">Today's production:</span>
+        <span *ngIf="device.deviceType !== 'Consumer' && device.deviceType !== 'Producer'" [ngClass]="{'light-mode-left-span':lightMode}">Today's storage:</span>
         <span class="margin-left__auto color-gray" [ngClass]="{'light-mode-left-span-run':lightMode}">{{ device.power2 }} kWh</span>
     </div>
+    <div class="flexRow" style="margin-top: 6px;" *ngIf="!device.power2">
+      <span *ngIf="device.deviceType === 'Consumer'" [ngClass]="{'light-mode-left-span':lightMode}" >Power:</span>
+      <span *ngIf="device.deviceType === 'Producer'"  [ngClass]="{'light-mode-left-span':lightMode}">Power:</span>
+      <span *ngIf="device.deviceType !== 'Consumer' && device.deviceType !== 'Producer'" [ngClass]="{'light-mode-left-span':lightMode}">Power:</span>
+      <span *ngIf="device.deviceType === 'Stock'" class="margin-left__auto color-gray" [ngClass]="{'light-mode-left-span-run':lightMode}">{{ device.power }} Ah</span>
+      <span *ngIf="device.deviceType !== 'Stock'" class="margin-left__auto color-gray" [ngClass]="{'light-mode-left-span-run':lightMode}">{{ device.power }} W</span>
+  </div>
 </div>
 
 </a>
@@ -69,7 +76,7 @@
 <ng-template pTemplate="content">
   <div style="width:100%;height:fit-content;display:flex;padding:0px 15px 0px 15px">
     <span *ngIf="isChecked" >Are you sure you want to turn off the {{device?.deviceName}}?</span>
-    <span *ngIf="!isChecked" >Are you sure you want to turn on the {{device?.deviceName}}</span>
+    <span *ngIf="!isChecked" >Are you sure you want to turn on the {{device?.deviceName}}?</span>
 
   </div>
   </ng-template>

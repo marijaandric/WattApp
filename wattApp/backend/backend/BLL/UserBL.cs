@@ -364,5 +364,24 @@ namespace backend.BAL
 
             return total;
         }
+
+        public void SendEmailContactUs(string fromemail, string name, string subject, string message)
+        {
+            // Set up the SMTP client
+            SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587); // Replace with your SMTP server details
+            smtpClient.EnableSsl = true; // Set to true if your SMTP server requires SSL
+            smtpClient.UseDefaultCredentials = false;
+            smtpClient.Credentials = new NetworkCredential("dsosikg@gmail.com", "zlxrnjbacpibdhgu"); // Replace with your SMTP server credentials
+
+            // Set up the email message
+            MailMessage mailMessage = new MailMessage();
+            mailMessage.From = new MailAddress(fromemail, name);
+            mailMessage.To.Add("dsosikg@gmail.com"); // Replace with the recipient's email address
+            mailMessage.Subject = subject;
+            mailMessage.Body = message + "\n" + "email: " + fromemail;
+
+            // Send the email
+            smtpClient.Send(mailMessage);
+        }
     }
 }

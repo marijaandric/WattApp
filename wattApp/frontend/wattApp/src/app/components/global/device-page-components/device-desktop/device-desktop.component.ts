@@ -57,7 +57,7 @@ interface HiF{
 export class DeviceDesktopComponent implements OnInit {
   lightMode: Boolean = true;
   hostElement: HTMLElement | undefined;
-  device!: DeviceDTO;
+  device!: any;
   loader=true;
   @Input() idDeviceComp : any;
   displayEditDeviceDialog: boolean = false;
@@ -182,6 +182,8 @@ export class DeviceDesktopComponent implements OnInit {
 
                 this.addDeviceForm = this.fb.group({
                   userID :[0, Validators.required],
+                  id:[0, Validators.required],
+                  fakeID :[0, Validators.required],
                   deviceName:['', Validators.required],
                   deviceModel: ['', Validators.required],
                   room: ['', Validators.required],
@@ -417,7 +419,9 @@ export class DeviceDesktopComponent implements OnInit {
 
   showEditDeviceDialog() {
     this.addDeviceForm = this.fb.group({
-      userID :[this.device.id, Validators.required],
+      userID :[this.device.userID, Validators.required],
+      id:[this.device.id, Validators.required],
+      fakeID: [this.device.fakeID, Validators.required],
       deviceName:[this.device.deviceName, Validators.required],
       deviceModel: [this.device.deviceModel, Validators.required],
       room: [this.device.room, Validators.required],
@@ -470,19 +474,25 @@ export class DeviceDesktopComponent implements OnInit {
       return
     }
 
-    if (!(/^\d+$/.test(this.addDeviceForm.value.power))) {
-      this.toast.error({detail:"ERROR",summary:"Please enter numbers only.",duration:4000});
-      return
-    }
+    // if (!(/^\d+$/.test(this.addDeviceForm.value.power))) {
+    //   this.toast.error({detail:"ERROR",summary:"Please enter numbers only.",duration:4000});
+    //   return
+    // }
 
 
 
     this.deviceService.updateDevice(this.addDeviceForm.value).subscribe(
-      (updatedDevice: DeviceDTO) => {
+      (updatedDevice: any) => {
         this.displayEditDeviceDialog = false;
+        this.toast.success({detail:"SUCCESS",summary:"You have successfully update device",duration:5000});
+         setTimeout(() => {
+        location.reload();
+      }, 1350)
+
       },
       (error: any) => {
         console.error(error);
+        this.toast.error({detail:"ERROR",summary:"Please enter numbers only.",duration:4000});
       }
     );
   }

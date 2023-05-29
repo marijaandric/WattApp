@@ -10,7 +10,7 @@ import { UserService } from 'src/app/services/user/user.service';
   styleUrls: ['./devices-all.component.css']
 })
 export class DevicesAllComponent implements OnInit {
-  allDevices: DeviceDTO[] = [];
+  allDevices: any[] = [];
   token = localStorage.getItem('token');
   id : any;
   user:any;
@@ -77,7 +77,7 @@ export class DevicesAllComponent implements OnInit {
   this.GetNumberOfDevicesForUserThatDSOCanSee();
   this.GetNumberOfDevicesForUserThatDSOCanManage();
 
-    this.deviceService.getDevicesByUserId(this.id).subscribe((result: DeviceDTO[]) => {
+    this.deviceService.getDevicesByUserId(this.id).subscribe((result: any[]) => {
       this.loader = false;
       this.allDevices = result;
     });
