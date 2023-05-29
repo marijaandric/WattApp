@@ -58,7 +58,7 @@ export class DeviceCardComponent implements OnInit,OnChanges{
   isConsumer: boolean = false;
   isProducer: boolean = false;
   isStock: boolean = false;
-  constructor(private deviceService: DeviceService, private devicesComp: DevicesComponent ,private userService: UserService, private cdRef: ChangeDetectorRef, private elementRef: ElementRef, private renderer: Renderer2){ }
+  constructor(private deviceService: DeviceService,private userService: UserService, private cdRef: ChangeDetectorRef, private elementRef: ElementRef, private renderer: Renderer2){ }
 
   
   async ngOnInit(): Promise<void> {

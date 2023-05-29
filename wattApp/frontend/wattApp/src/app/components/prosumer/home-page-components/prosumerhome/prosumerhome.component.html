@@ -4,7 +4,8 @@
     </app-title-bar>
   
     <app-center-bar *ngIf="loader"><app-loader></app-loader></app-center-bar>
-    <app-center-bar *ngIf="!loader" #idComponent>
+    <app-center-bar *ngIf="!loader" #idComponent [ngClass]="{'light-mode':lightMode, 'dark-mode':!lightMode}">
+        
     <h3 class="hello"  [ngClass]="{'light-theme-color-gray-323232':lightMode}">Hello, {{user?.firstName}} {{user?.lastName}}</h3>
     <h6 style="margin-bottom: -10px;font-size:14px !important;"  [ngClass]="{'light-theme-color-gray-323232':lightMode}">{{quote}}</h6>
     <div class="prviDeoPrognoza">
@@ -20,7 +21,7 @@
       <app-widget  [subTitle]="'Current price of electricity'" [Title]="dayPowerPrice+ ' RSD kWh'" [isOrange]="true" [isBgOrange]="true" class="widget">
       </app-widget>
         
-    </div>
+    </div><div #idComponent [ngClass]="{'light-mode':lightMode, 'dark-mode':!lightMode}" ></div>
     <h3 class="hello"  [ngClass]="{'light-theme-color-gray-323232':lightMode}"  > Top Devices</h3>
     <div style="display: flex;
     flex-direction: row;
@@ -30,7 +31,7 @@
           <ng-template let-device pTemplate="device">
               <h6 style="text-align: center;" [ngClass]="{'light-theme-color-gray-323232':lightMode}">The biggest {{device.deviceType}}</h6>
               <div *ngIf ="device?.deviceName != 'default'"  style="margin-bottom:20px;">
-              <app-device-card [device]="device" [devices]="devices" ></app-device-card>
+              <app-device-card [device]="device" [devices]="devices" [idComponent]="idComponent"></app-device-card>
               </div>
               <div *ngIf ="device?.deviceName == 'default'" >
                 <div style="cursor: pointer;margin-top:20px" (click)="showDisplay()">
@@ -58,10 +59,9 @@
         <div class="slika" [ngClass]="{'light-theme-bigger-shadow':lightMode,'dark-theme-bigger-shadow':!lightMode}" >
           
         </div>
-    </div>
-  
 
     </div>
+</div>
     <div class="divVreme">
       <div class="vreme">
         <app-weather-forecast></app-weather-forecast>
