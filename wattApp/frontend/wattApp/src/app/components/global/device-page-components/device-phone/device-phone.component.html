@@ -90,16 +90,24 @@
                 <span class="margin-left__auto text-secondary">{{ device.power }} Ah</span>
               </div><br>
               
-
-              <p-overlayPanel #op [style]="{'width': '350px'}" [showCloseIcon]="false" [ngClass]="{'light-mode':lightMode, 'dark-mode':!lightMode}">
+              <p-overlayPanel id="opis-dijalog" #op [style]="{'width': '350px'}" [showCloseIcon]="false"  [ngClass]="{'light-mode':lightMode, 'dark-mode':!lightMode}" [appendTo]="op">
                 <div *ngIf="device.deviceType == 'Stock'">
-                  <div class="flexRow" style="margin-top:20px">
-                    <span>Battery lifespan:</span>
-                    <div class="margin-left__auto width__fit-content"> {{ formatBatteryLife(calculateBatteryLife(device.power, 200, 0.7)) }} </div>
-                  </div>
+                <div style="margin-top:20px">
+                  <span>Battery lifespan:</span>
+                  <span class="margin-right__auto width__fit-content"> {{ formatBatteryLife(calculateBatteryLife(device.power, 200, 0.7)) }} </span>
+                </div>
+                <br>
                 </div>
 
-                
+                <div *ngIf="device.deviceType != 'Stock'">
+                  <div style="margin-top:20px">
+                    <h5><span>Estimated CO2 Emission:</span></h5>
+                    <span class="margin-right__auto width__fit-content">{{ (device.power * 24 * 0.0550) / 1000 }} kg</span>
+                  </div>
+                  <br>
+                  </div>
+
+                <h5><span>DSO control</span></h5>
                 <div class="flexRow"style="margin-top:20px">
                   <span>Visible to operators:</span>
                   <p-inputSwitch [(ngModel)]="device.allowOperatorVisibility " (ngModelChange)="promijeniStanjeprviPrekidac()"  (onChange)="handleVisibilitySwitchChange()" class="margin-left__auto width__fit-content"/>
@@ -109,8 +117,10 @@
                   <span >Managed by operators:</span>
                   <p-inputSwitch [(ngModel)]="device.allowOperatorControll" (ngModelChange)="promijeniStanjeDrugiPrekidac()" (onChange)="handleManagementSwitchChange()" class="margin-left__auto width__fit-content"/>
                 </div>
-                
+
               </p-overlayPanel>
+             
+             
 
               <div class="flexRow margin-top__8px ">
                 <div class="button-div">
@@ -136,8 +146,7 @@
         </app-widget>
       </div>
     <div class="display:flex;position:relative; width:100%; height:fit-content;flex-direction:row;">
-        <div style="width:100%; height:fit-content; display:flex; flex-direction:row;margin-bottom:12px;" class="pdd-div ovrplnl">
-          <span><i [ngClass]="{'light-theme-color-gray-323232':lightMode}" class="fa fa-info-circle" style="cursor:pointer; padding-top: 10px; width: 30px;" aria-hidden="true" (click)="op2.toggle($event)"></i></span>
+      <span><i [ngClass]="{'light-theme-color-gray-323232':lightMode}" class="fa fa-info-circle" style="cursor:pointer; padding-top: 10px; width: 30px;" aria-hidden="true" (click)="op2.toggle($event)"></i></span>
           <p-overlayPanel #op2  >
             <p style="width:350px">In this application, you can analyze different aspects of energy usage.</p>
             <p style="width:350px">
@@ -148,7 +157,9 @@
               Lastly, the third dropdown lets you select the duration or period you want to analyze. You can choose predefined time periods like 'Last week', 'Last month', or specify a custom range.
 
               By utilizing these dropdowns effectively, you can gain valuable insights into energy usage patterns and trends within the selected timeframe.</p>
-          </p-overlayPanel>
+          </p-overlayPanel> 
+      <div style="width:100%; height:fit-content; display:flex; flex-direction:row;margin-bottom:12px;" class="pdd-div ovrplnl">
+          
             <div class="pdd-div"><div [ngClass]="{'light-mode':lightMode,'dark-mode':!lightMode}" ><p-dropdown [options]="type2"  [(ngModel)]="selectedHF"  optionLabel="name" (onChange)="updateType3()">
             </p-dropdown></div></div>
             <div class="pdd-div"><div [ngClass]="{'light-mode':lightMode,'dark-mode':!lightMode}" ><p-dropdown [options]="type3"  [(ngModel)]="selectedDate" optionLabel="name" (onChange)="dropdownChange()" >
