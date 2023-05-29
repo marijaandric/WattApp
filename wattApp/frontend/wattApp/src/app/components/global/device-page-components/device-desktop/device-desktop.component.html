@@ -50,6 +50,11 @@
                 <img *ngIf="isIron" src="../.../../../../../../assets/icons/images/icons8-iron-high-temperature-50.png">
                 <img *ngIf="isLamp" src="../.../../../../../../assets/icons/images/icons8-lamp-50.png">
                 <img *ngIf="isBulb" src="../.../../../../../../assets/icons/images/icons8-bulb-50.png">
+                <img *ngIf="isSmallWindTurbine" src="../.../../../../../../assets/icons/images/icons8-wind-turbine-50.png">
+                <img *ngIf="isPortableGenerator" src="../.../../../../../../assets/icons/images/icons8-generator-60.png">
+                <img *ngIf="isBicycleGenerator" src="../.../../../../../../assets/icons/images/icons8-automotive-generator-50.png">
+                <img *ngIf="isPowerBank" src="../.../../../../../../assets/icons/images/icons8-charging-battery-48.png">
+               
                 <img *ngIf="isOther" src="../.../../../../../../assets/icons/images/icons8-multiple-devices-50.png">
           
                   <div class="colored-text" ><h5 style="margin-top:10px" [ngClass]="{'color-blue': isConsumer, 'color-purple': isProducer, 'color-pink': isStock}">{{device.deviceName}}</h5></div>
@@ -161,9 +166,9 @@
 
       <div class="bottom-right-card pdd-div">
         <div class="display:flex;position:relative; width:100%; height:fit-content;">
-          <div style="width:100%; height:fit-content; display:flex; flex-direction:row;margin-bottom:20px;" class="pdd-div">
-            <span><i [ngClass]="{'light-theme-color-gray-323232':lightMode}" class="fa fa-info-circle" style="cursor:pointer; padding-top: 10px; width: 30px;" aria-hidden="true" (click)="op2.toggle($event)"></i></span>
-            <p-overlayPanel #op2 >
+          <div style="width:100%; height:fit-content; display:flex; flex-direction:row;margin-bottom:20px;" class="pdd-div ovrplnl">
+            <span><i [ngClass]="{'light-theme-color-gray-323232':lightMode}" class="fa fa-info-circle" style="cursor:pointer; padding-top: 10px; width: 30px;font-size:20px" aria-hidden="true" (click)="op2.toggle($event)"></i></span>
+            <p-overlayPanel #op2 [ngClass]="{'light-mode':lightMode, 'dark-mode':!lightMode}"  [appendTo]="op2">
               <p style="width:350px">In this application, you can analyze different aspects of energy usage.</p>
               <p style="width:350px">
                 The first dropdown allows you to choose the data type you want to analyze. Select the appropriate option based on the aspect you are interested in, such as historical data, forecasted data, or a combination of both.

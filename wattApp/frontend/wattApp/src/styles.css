@@ -225,19 +225,24 @@
 .light-mode .p-datatable .p-paginator .pi{
   color: #323232 !important;
 }
-
 .light-mode .p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
-  color: white;
+  color: white !important;
+  background-color:#46c5f1 !important;
+  border:none !important;
 }
 
+.light-mode .p-paginator .p-paginator-pages .p-paginator-page:not(.p-highlight):hover {
+  color: white !important;
+  background-color:#46c5f1 !important;
+  border:none !important;
+}
 .light-mode .p-paginator .p-paginator-pages .p-paginator-page{
   color: #323232 ;
-  border: 1px solid #323232;
+  border: 1px solid #46c5f1;
 }
 
-.light-mode .p-paginator .p-paginator-pages .p-paginator-page:hover{
-  color: red ;
-  border: 1px solid #323232;
+.light-mode .p-paginator-rpp-options .p-inputtext {
+  color:#323232 !important;
 }
 
 .leaflet-control-zoom-in span, .leaflet-control-zoom-out span {

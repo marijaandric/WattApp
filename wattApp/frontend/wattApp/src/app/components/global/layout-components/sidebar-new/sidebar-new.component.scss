@@ -281,6 +281,9 @@ a {
   .right {
     transform: translateX(0px);
   }
+  .logo-title {
+    display: none;
+  }
 }
 
 :host.close .margin-100:hover {
@@ -377,5 +380,6 @@ a {
       .main, .logo {
         display: none;
       }
+      
   }
 }

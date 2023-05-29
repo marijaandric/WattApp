@@ -7,7 +7,7 @@
   }
   
   .clock-loader {
-    --clock-color: var(--primary-color);
+    --clock-color: #46c5f1;
     --clock-width: 4rem;
     --clock-radius: calc(var(--clock-width) / 2);
     --clock-minute-length: calc(var(--clock-width) * 0.4);
@@ -34,6 +34,7 @@
       border-radius: 10px;
       transform-origin: center calc(100% - calc(var(--clock-thickness) / 2));
       animation: spin infinite linear;
+      color:red;
     }
   
     &::before {

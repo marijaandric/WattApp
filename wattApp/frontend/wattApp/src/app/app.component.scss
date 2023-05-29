@@ -16,6 +16,13 @@
       display:block;
       width:100%;
     }
+
+    p-dialog.dijalog .p-overlay-content{
+      margin-left:0px !important;
+      display:block;
+      width:100%;
+    }
+
   }
   
   @media only screen and (min-width: 639px) {
@@ -436,6 +443,7 @@
         margin:auto;
       }
     }
+    /*Cy2.PckR3Ni*/
     @media only screen and (max-width: 979px) {
       .p-inputgroup {
         flex-basis: 100%;

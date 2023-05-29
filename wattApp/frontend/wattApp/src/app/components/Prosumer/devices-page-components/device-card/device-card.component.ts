@@ -49,6 +49,11 @@ export class DeviceCardComponent implements OnInit,OnChanges{
   isIron: boolean = false;
   isLamp: boolean = false;
   isBulb: boolean = false;
+  isSmallWindTurbine: boolean = false;
+  isPortableGenerator: boolean = false
+  isPowerBank : boolean = false;
+  isBicycleGenerator: boolean = false;
+
   isOther: boolean = false;
 
   isConsumer: boolean = false;
@@ -178,6 +183,19 @@ export class DeviceCardComponent implements OnInit,OnChanges{
       case "Bulb":
         this.isBulb = true;
         break;
+        case "Small Wind Turbine":
+          this.isSmallWindTurbine = true;
+          break;
+          case "Portable Generator":
+            this.isPortableGenerator = true;
+            break;
+            case "Bicycle Generator":
+              this.isBicycleGenerator = true;
+              break;
+              case "Power Bank":
+                this.isPowerBank = true;
+                break;
+                          
       default:
         this.isOther = true;
         break;

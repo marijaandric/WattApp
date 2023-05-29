@@ -1,10 +1,10 @@
-<standard-template>
+<standard-template >
     <app-title-bar >
       <h3  [ngClass]="{'light-theme-color-gray-323232':lightMode}">Home</h3>
     </app-title-bar>
   
     <app-center-bar *ngIf="loader"><app-loader></app-loader></app-center-bar>
-    <app-center-bar *ngIf="!loader">
+    <app-center-bar *ngIf="!loader" #sgf>
     <h3 class="hello"  [ngClass]="{'light-theme-color-gray-323232':lightMode}">Hello, {{user?.firstName}} {{user?.lastName}}</h3>
     <h6 style="margin-bottom: -10px;font-size:14px !important;"  [ngClass]="{'light-theme-color-gray-323232':lightMode}">{{quote}}</h6>
     <div class="prviDeoPrognoza">
@@ -25,12 +25,12 @@
     <div style="display: flex;
     flex-direction: row;
     flex-wrap: wrap;">
-    <div class="crsl" style="width: 30%;">
+    <div class="crsl" style="width: 30%;" >
         <p-carousel *ngIf="devices[0]?.deviceName != 'default'" [value] = "devices" [circular]="false" [numScroll]="1">
           <ng-template let-device pTemplate="device">
               <h6 style="text-align: center;" [ngClass]="{'light-theme-color-gray-323232':lightMode}">The biggest {{device.deviceType}}</h6>
               <div *ngIf ="device?.deviceName != 'default'"  style="margin-bottom:20px;">
-              <app-device-card [device]="device" [devices]="devices"></app-device-card>
+              <app-device-card [device]="device" [devices]="devices" ></app-device-card>
               </div>
               <div *ngIf ="device?.deviceName == 'default'" >
                 <div style="cursor: pointer;margin-top:20px" (click)="showDisplay()">
@@ -69,7 +69,7 @@
     </div>
   </div>
   <h3 class="hello"  [ngClass]="{'light-theme-color-gray-323232':lightMode}" style="margin-top:20px;">News and fun</h3>
-  <div class="promotions" >
+  <div class="promotions" #newsop>
     <app-promotion (click)="showDisplay2(1)" [subTitle]="naslov1"
      [Title]="sadrzaj1" 
      [Status]="status1"
@@ -98,18 +98,11 @@
     </app-promotion> 
   </div>
 
-    
-    <!--<div class="filter-div"><span>filter</span></div>-->
-  </app-center-bar>
-
-  </standard-template>
-
-
   <p-dialog [style]="{width:'40%'}" header="Title"  [transitionOptions]="'3ms'" 
 [draggable]="true" [keepInViewport]="true" [resizable]="false" 
-[blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true" 
+[blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true" [appendTo]="newsop"
 [modal]="true" [(visible)]="display2" [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
-[closable]="true" [ngClass]="{'light-mode':lightMode}" appendTo="body">
+[closable]="true"  [ngClass]="{'light-mode':!lightMode, 'dark-mode':lightMode}" >
 <ng-template pTemplate="header" class="header-dialog">
   <h2 style="text-align: center;">{{naslov}}</h2>
 </ng-template>
@@ -121,18 +114,25 @@
   <div style="text-align: justify;">{{desc}}</div>
 </ng-template>
 </p-dialog>
+    
+    <!--<div class="filter-div"><span>filter</span></div>-->
+  </app-center-bar>
+
+  </standard-template>
+
+
 
   
 
   
 <p-dialog [style]="{width:'40%'}" header="Title"  [transitionOptions]="'3ms'" 
-[draggable]="true" [keepInViewport]="true" [resizable]="false" 
+[draggable]="true" [keepInViewport]="true" [resizable]="false" #reg
 [blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true" 
 [modal]="true" [(visible)]="display" [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
-[closable]="true" [ngClass]="{'light-mode':lightMode}" >
+[closable]="true" [ngClass]="{'light-mode':lightMode, 'dark-mode':!lightMode}" class="dijalog">
 <ng-template pTemplate="header" class="header-dialog">
   <span>Add Device <i class="fa fa-info-circle" style="cursor:pointer" aria-hidden="true" (click)="op3.toggle($event)"></i> </span>
-  <p-overlayPanel #op3 >
+  <p-overlayPanel #op3 [ngClass]="{'light-mode':lightMode, 'dark-mode':!lightMode}" [appendTo]="reg">
     <p style="width:350px">Dear user,</p> 
     <p style="width:350px">You must fill in all fields.</p>
     <p style="width:350px">If an error occurs while adding your device and you have followed the steps, please consult with your nearest operator for assistance.</p>
@@ -144,11 +144,11 @@
   <div class="p-inputgroup p-inputtext-lg p-input-filled">
     <div class="half">  
       <span>Device category</span> 
-      <div class="dropdown-div" style="margin-bottom:20px;" [ngClass]="{'light-mode':lightMode}"> <p-dropdown [options]="types" appendTo="body" optionLabel="name" (onChange)="onTypeChange($event)" [ngClass]="{'light-mode':lightMode}" /></div>
+      <div class="dropdown-div" style="margin-bottom:20px;"><div [ngClass]="{'light-mode':lightMode,'dark-mode':!lightMode}" > <p-dropdown [options]="types" [appendTo]="reg" optionLabel="name" (onChange)="onTypeChange($event)"  /></div></div>
       <span >Device type </span>
-      <div class="dropdown-div" style="margin-bottom:20px;" [ngClass]="{'light-mode':lightMode}"><p-dropdown [options]="models" appendTo="body" optionLabel="name" (onChange)="onModelChange($event)" [ngClass]="{'light-mode':lightMode}" /></div>
+      <div class="dropdown-div" style="margin-bottom:20px;"><div [ngClass]="{'light-mode':lightMode,'dark-mode':!lightMode}" > <p-dropdown [options]="models"[appendTo]="reg"  optionLabel="name" (onChange)="onModelChange($event)"  /></div></div>
       <span>Location</span>
-      <div class="dropdown-div" style="margin-bottom:20px;" [ngClass]="{'light-mode':lightMode}"><p-dropdown [options]="rooms" appendTo="body" optionLabel="name" (onChange)="onRoomChange($event)" [ngClass]="{'light-mode':lightMode}" /></div>
+      <div class="dropdown-div" style="margin-bottom:20px;"><div [ngClass]="{'light-mode':lightMode,'dark-mode':!lightMode}" > <p-dropdown [options]="rooms"[appendTo]="reg" optionLabel="name" (onChange)="onRoomChange($event)"  /></div></div>
       <!-- <span> Device name </span>
       <input formControlName="deviceName" name="name"  type="text"   class="p-inputtext-lg"  placeholder="DEVICE NAME" style="margin-top:0px;">  -->
     
@@ -174,13 +174,13 @@
 
 
 <p-dialog [style]="{width:'40%'}" header="Title"  [transitionOptions]="'3ms'" 
-[draggable]="true" [keepInViewport]="true" [resizable]="false" 
+[draggable]="true" [keepInViewport]="true" [resizable]="false" #reg2
 [blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true" 
 [modal]="true"  [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
-[closable]="true" [ngClass]="{'light-mode':lightMode}" >
+[closable]="true" [ngClass]="{'light-mode':lightMode, 'dark-mode':!lightMode}" >
 <ng-template pTemplate="header" class="header-dialog">
   <span>Add Device <i class="fa fa-info-circle" style="cursor:pointer" aria-hidden="true" (click)="op3.toggle($event)"></i> </span>
-  <p-overlayPanel #op3 >
+  <p-overlayPanel #op3 [ngClass]="{'light-mode':lightMode, 'dark-mode':!lightMode}" [appendTo]="reg2">
     <p style="width:350px">Dear user,</p> 
     <p style="width:350px">You must fill in all fields. In the power or capacity field, enter only numbers.</p>
     <p style="width:350px">If an error occurs while adding your device and you have followed the steps, please consult with your nearest operator for assistance.</p>
@@ -192,11 +192,11 @@
   <div class="p-inputgroup p-inputtext-lg p-input-filled">
     <div class="half">  
       <span>Device category</span> 
-      <div class="dropdown-div" style="margin-bottom:20px;" [ngClass]="{'light-mode':lightMode}"> <p-dropdown [options]="types" appendTo="body" optionLabel="name" (onChange)="onTypeChange($event)" [ngClass]="{'light-mode':lightMode}" /></div>
+      <div class="dropdown-div" style="margin-bottom:20px;"><div [ngClass]="{'light-mode':lightMode,'dark-mode':!lightMode}" ><p-dropdown [options]="types" [appendTo]="reg2" optionLabel="name" (onChange)="onTypeChange($event)"  /></div></div>
       <span >Device type </span>
-      <div class="dropdown-div" style="margin-bottom:20px;" [ngClass]="{'light-mode':lightMode}"><p-dropdown [options]="models" appendTo="body" optionLabel="name" (onChange)="onModelChange($event)" [ngClass]="{'light-mode':lightMode}" /></div>
+      <div class="dropdown-div" style="margin-bottom:20px;"><div [ngClass]="{'light-mode':lightMode,'dark-mode':!lightMode}" ><p-dropdown [options]="models"[appendTo]="reg2" optionLabel="name" (onChange)="onModelChange($event)" /></div></div>
       <span>Location</span>
-      <div class="dropdown-div" style="margin-bottom:20px;" [ngClass]="{'light-mode':lightMode}"><p-dropdown [options]="rooms" appendTo="body" optionLabel="name" (onChange)="onRoomChange($event)" [ngClass]="{'light-mode':lightMode}" /></div>
+      <div class="dropdown-div" style="margin-bottom:20px;"><div [ngClass]="{'light-mode':lightMode,'dark-mode':!lightMode}" ><p-dropdown [options]="rooms" [appendTo]="reg2" optionLabel="name" (onChange)="onRoomChange($event)" /></div></div>
       <!-- <span> Device name </span>
       <input formControlName="deviceName" name="name"  type="text"   class="p-inputtext-lg"  placeholder="DEVICE NAME" style="margin-top:0px;">  -->
     </div>

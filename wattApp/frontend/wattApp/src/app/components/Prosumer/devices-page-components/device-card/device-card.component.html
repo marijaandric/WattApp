@@ -29,7 +29,11 @@
           <img *ngIf="isVacuumCleaner" src="../.../../../../../../assets/icons/images/icons8-vacuum-cleaner-50.png">
           <img *ngIf="isIron" src="../.../../../../../../assets/icons/images/icons8-iron-high-temperature-50.png">
           <img *ngIf="isLamp" src="../.../../../../../../assets/icons/images/icons8-lamp-50.png">
-          <img *ngIf="isBulb" src="../.../../../../../../assets/icons/images/icons8-bulb-50.png">
+          <img *ngIf="isSmallWindTurbine" src="../.../../../../../../assets/icons/images/icons8-wind-turbine-50.png">
+          <img *ngIf="isPortableGenerator" src="../.../../../../../../assets/icons/images/icons8-generator-60.png">
+          <img *ngIf="isBicycleGenerator" src="../.../../../../../../assets/icons/images/icons8-automotive-generator-50.png">
+          <img *ngIf="isPowerBank" src="../.../../../../../../assets/icons/images/icons8-charging-battery-48.png">
+         
           <img *ngIf="isOther" src="../.../../../../../../assets/icons/images/icons8-multiple-devices-50.png">
      
         <a [routerLink]="['/device', device.id]" class="device-name abbreviate-text" style="padding-top:6px" [ngClass]="{'color-blue': isConsumer, 'color-purple': isProducer, 'color-pink': isStock}">{{ device.deviceName }}</a>
