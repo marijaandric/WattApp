@@ -1,5 +1,5 @@
-<a [routerLink]="['/device', device.id]"  style="display:flex;">
-<div id="device-card" class="device-card" [ngClass]="{'dark-theme-bigger-shadow':!lightMode,'light-theme-bigger-shadow':lightMode,'dark-theme-background-gray-gradient-1':!lightMode,'light-theme-background-white':lightMode}" >
+<a style="display:flex;">
+<div style="cursor:pointer" [routerLink]="['/device', device.id]" id="device-card" class="device-card" [ngClass]="{'dark-theme-bigger-shadow':!lightMode,'light-theme-bigger-shadow':lightMode,'dark-theme-background-gray-gradient-1':!lightMode,'light-theme-background-white':lightMode}" >
     <div class="flexRow">
         
 
@@ -52,7 +52,7 @@
         <span *ngIf="device.deviceType === 'Consumer'" [ngClass]="{'light-mode-left-span':lightMode}" >Power consumed:</span>
         <span *ngIf="device.deviceType === 'Producer'"  [ngClass]="{'light-mode-left-span':lightMode}">Power produced:</span>
         <span *ngIf="device.deviceType !== 'Consumer' && device.deviceType !== 'Producer'" [ngClass]="{'light-mode-left-span':lightMode}">Power stored:</span>
-        <span class="margin-left__auto color-gray" [ngClass]="{'light-mode-left-span-run':lightMode}">{{ device.power }} kWh</span>
+        <span class="margin-left__auto color-gray" [ngClass]="{'light-mode-left-span-run':lightMode}">{{ device.power2 }} kWh</span>
     </div>
 </div>
 

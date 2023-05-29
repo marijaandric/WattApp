@@ -293,7 +293,7 @@ export class StatisticComponent  implements OnInit {
   arrayDataM = [];
 
   getHistoryAndForecastByDayForAllDevicesByMonth() {
-    this.deviceService.GetHistoryAndForecastByDayForAllDevices("monthhistory").subscribe(data => {
+    this.deviceService.GetHistoryAndForecastByDayForAllUserDevices(this.id,"monthhistory").subscribe(data => {
       this.arrayDataM = data.dates; //.slice(0, 7).concat(data.dates.slice(8));
       this.HistoryConM = data.totaldatasConsumer.map((val: number) => +val.toFixed(2));
       this.HistoryProM = data.totaldatasProducer.map((val: number) => +val.toFixed(2));
@@ -321,7 +321,7 @@ export class StatisticComponent  implements OnInit {
   arrayDataY:any = [];
 
   getHistoryAndForecastByDayForAllDevicesByYear() {
-    this.deviceService.GetHistoryAndForecastByDayForAllDevices("year").subscribe(data => { 
+    this.deviceService.GetHistoryAndForecastByDayForAllUserDevices(this.id,"year").subscribe(data => { 
       this.HistoryConY = data.totaldatasConsumer.map((val: number) => +val.toFixed(2));
       this.HistoryProY = data.totaldatasProducer.map((val: number) => +val.toFixed(2));
       this.HistoryStockY = data.totaldatasStock.map((val: number) => +val.toFixed(2));

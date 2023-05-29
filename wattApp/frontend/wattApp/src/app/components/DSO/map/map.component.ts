@@ -135,6 +135,7 @@ export class MapComponent implements OnInit, OnChanges{
         const id = this.users[i].id
         if (lan != undefined && lon != undefined) {
           const marker = L.marker([lan, lon], {icon : markerIcon}).addTo(this.map);
+          this.map.setView([lan, lon], 13);
           marker.bindPopup("<div class='black-popup' style='color:black'>"+this.users[i].firstName+" "+this.users[i].lastName+"<br>"+this.users[i].address+"</div>");
   
           marker.on('mouseover', function (e) {

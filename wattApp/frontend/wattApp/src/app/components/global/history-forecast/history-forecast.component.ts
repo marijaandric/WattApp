@@ -117,6 +117,21 @@ export class HistoryForecastComponent implements OnInit,OnChanges{
         }
       ]
     }
+    else if(this.array2[0] === null && this.array[0] === 0)
+    {
+      this.series = [
+        {
+          name: this.naziv1,
+          data: this.array,
+          color: this.boja1,
+        },
+        {
+          name: this.naziv2,
+          data: this.array,
+          color: this.boja1,
+        }
+      ]
+    }
     else if(this.array2[0] === null)
     {
         this.series = [
