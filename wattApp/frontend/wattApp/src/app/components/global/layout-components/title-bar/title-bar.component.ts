@@ -370,10 +370,6 @@ export class TitleBarComponent implements OnInit{
     this.addDeviceForm.patchValue({
       room : this.roomSelected.name
     })
-    this.addDeviceForm.patchValue({
-      manufacturingYear : this.addDeviceForm.get('manufacturingYear')?.value + " "
-    })
-    
     
 
     if(!this.addDeviceForm.value.deviceName)
