@@ -135,8 +135,33 @@ export class StatisticComponent  implements OnInit {
     ];
     this.selectedType = {name: 'Consumption', code: 'Consumer'}
   }
+  myFunction() {
+    var popup = document.getElementById("myPopup");
+    popup?.classList.toggle("show");
+    console.log("ddp");
+  }
 
+  expandFilter() {
+    var popup = document.getElementsByClassName("main-content")[0];
 
+  }
+
+  collapseFilter() {
+    var popup = document.getElementsByClassName("blocker")[0];
+    popup?.classList.toggle('class-bottom-0');
+    popup?.setAttribute('style','height:100px !important;');
+    popup?.setAttribute('style','position:fixed;');
+    popup?.setAttribute('style','background:red !important;');
+    
+  }
+  showPopup() {const popup = document.querySelector('.popup');
+  
+    popup?.classList.add('open');
+  }
+  hidePopup() {const popup = document.querySelector('.popup');
+  
+    popup?.classList.remove('open');
+  }
   getDevicePerRoom(){
     const type = this.selectedType.code;
     const number = 4;
