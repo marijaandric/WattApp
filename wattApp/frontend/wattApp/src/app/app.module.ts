@@ -110,6 +110,7 @@ import { TagModule } from 'primeng/tag';
 import { DatasComponent } from './components/Prosumer/data/data.component';
 import { DatasTableComponent } from './components/Prosumer/datas-table/datas-table.component';
 import { AdminMapComponent } from './components/DSO/admin-map/admin-map.component';
+import { WhiteDeviceComponent } from './components/Prosumer/devices-page-components/white-device/white-device.component';
 
 export const url = 'https://localhost:7158';
 export const deviceFakerUrl = "https://localhost:7233";
@@ -195,7 +196,8 @@ export const deviceFakerUrl = "https://localhost:7233";
     AdminCardComponent,
     DatasComponent,
     DatasTableComponent,
-    AdminMapComponent
+    AdminMapComponent,
+    WhiteDeviceComponent
   ],
   imports: [
     CommonModule,

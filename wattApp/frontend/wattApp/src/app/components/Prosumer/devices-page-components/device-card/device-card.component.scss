@@ -25,7 +25,9 @@ img {
     width:auto;
     padding-right:10px;
 }
-
+:host ::ng-deep .p-dialog-header {
+  margin-bottom: 20px;
+} 
 
 .device-name{
     max-width: 50%;

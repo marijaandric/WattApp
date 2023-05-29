@@ -57,18 +57,24 @@
 </div>
 
 </a>
-<p-dialog [style]="{width:'300px',height:'200px'}" header="Title"  [transitionOptions]="'3ms'" 
+<p-dialog [style]="{width:'330px',height:'250px'}" header="Turn on/off"  [transitionOptions]="'3ms'" 
 [draggable]="true" [keepInViewport]="true" [resizable]="false" 
 [blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true" 
 [modal]="true" [(visible)]="display" [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
-[closable]="true" appendTo="body">
-<ng-template pTemplate="header" class="header-dialog">
-  <span *ngIf="isChecked">Are you sure you want to turn off the {{device?.deviceName}}?</span>
-  <span *ngIf="!isChecked">Are you sure you want to turn on the {{device?.deviceName}}</span>
+[closable]="true" [appendTo]="idComponent">
+<ng-template pTemplate="header" class="header-dialog2">
+  <span>Turn on/off</span>
 </ng-template>
 
+<ng-template pTemplate="content">
+  <div style="width:100%;height:fit-content;display:flex;padding:0px 15px 0px 15px">
+    <span *ngIf="isChecked" >Are you sure you want to turn off the {{device?.deviceName}}?</span>
+    <span *ngIf="!isChecked" >Are you sure you want to turn on the {{device?.deviceName}}</span>
+
+  </div>
+  </ng-template>
 <ng-template pTemplate="footer">
-  <div class="flexRow" style="margin-top:20px;">
+  <div class="flexRow" >
     <div class="button-div" style="padding-right: 20px;"><p-button  (click)="handleRunningSwitchChange()" label="Yes"> </p-button>
     </div>
     <div class="remove-or-no"><p-button  (click)="display=false" label="No"></p-button>

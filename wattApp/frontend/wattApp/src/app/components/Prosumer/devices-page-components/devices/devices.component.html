@@ -1,3 +1,4 @@
+<div #idComponent [ngClass]="{'light-mode':lightMode, 'dark-mode':!lightMode}">
 <div [ngClass]="{'light-mode':lightMode}"><p-selectButton class="flexRow width__fit-content margin-left__auto margin-bottom__16px" [options]="switchOptions" [(ngModel)]="switchValue" optionLabel="label" optionValue="value" (onChange)="updateView()"></p-selectButton>
 </div>
 <div *ngIf="switchValue == true">
@@ -10,7 +11,8 @@
       </div>
     <p-carousel [value]="devices.value"  [circular]="false" [responsiveOptions]="responsiveOptions" [ngClass]="{'hidden': carousel[i]}">
      <ng-template let-device pTemplate="device" >
-          <app-device-card [device]="device" ></app-device-card>
+          <app-device-card [device]="device" [idComponent]="idComponent"></app-device-card>
+
       </ng-template>
     </p-carousel>
   </div>
@@ -93,3 +95,4 @@
     </ng-template>
   </p-table>
 </div></div>
+</div>

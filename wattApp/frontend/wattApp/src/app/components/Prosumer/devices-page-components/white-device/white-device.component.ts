@@ -7,18 +7,19 @@ import { DeviceService } from 'src/app/services/device/device.service';
 import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
-  selector: 'app-device-card',
-  templateUrl: './device-card.component.html',
-  styleUrls: ['./device-card.component.scss']
+  selector: 'app-white-device',
+  templateUrl: './white-device.component.html',
+  styleUrls: ['./white-device.component.scss']
 })
-export class DeviceCardComponent implements OnInit,OnChanges{
+
+export class WhiteDeviceComponent implements OnInit,OnChanges{
   hostElement: HTMLElement | undefined;
   lightMode: Boolean = true;
   @Input() device: any;
   @Input() devices: any;
   isChecked: boolean = true;
   display: boolean = false;
-  @Input() idComponent: any;
+
   //za ikonice
   isPhone: boolean = false;
   isTablet: boolean = false;
@@ -58,7 +59,7 @@ export class DeviceCardComponent implements OnInit,OnChanges{
   isConsumer: boolean = false;
   isProducer: boolean = false;
   isStock: boolean = false;
-  constructor(private deviceService: DeviceService, private devicesComp: DevicesComponent ,private userService: UserService, private cdRef: ChangeDetectorRef, private elementRef: ElementRef, private renderer: Renderer2){ }
+  constructor(private deviceService: DeviceService,private userService: UserService, private cdRef: ChangeDetectorRef, private elementRef: ElementRef, private renderer: Renderer2){ }
 
   
   async ngOnInit(): Promise<void> {
@@ -260,5 +261,4 @@ export class DeviceCardComponent implements OnInit,OnChanges{
   }
 
 
-}import { DevicesComponent } from '../devices/devices.component';
-
+}

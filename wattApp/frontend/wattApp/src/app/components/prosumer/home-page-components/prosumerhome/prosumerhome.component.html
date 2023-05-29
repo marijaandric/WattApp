@@ -1,10 +1,10 @@
-<standard-template>
+<standard-template >
     <app-title-bar >
       <h3  [ngClass]="{'light-theme-color-gray-323232':lightMode}">Home</h3>
     </app-title-bar>
   
     <app-center-bar *ngIf="loader"><app-loader></app-loader></app-center-bar>
-    <app-center-bar *ngIf="!loader">
+    <app-center-bar *ngIf="!loader" #idComponent>
     <h3 class="hello"  [ngClass]="{'light-theme-color-gray-323232':lightMode}">Hello, {{user?.firstName}} {{user?.lastName}}</h3>
     <h6 style="margin-bottom: -10px;font-size:14px !important;"  [ngClass]="{'light-theme-color-gray-323232':lightMode}">{{quote}}</h6>
     <div class="prviDeoPrognoza">
@@ -30,7 +30,7 @@
           <ng-template let-device pTemplate="device">
               <h6 style="text-align: center;" [ngClass]="{'light-theme-color-gray-323232':lightMode}">The biggest {{device.deviceType}}</h6>
               <div *ngIf ="device?.deviceName != 'default'"  style="margin-bottom:20px;">
-              <app-device-card [device]="device" [devices]="devices"></app-device-card>
+              <app-device-card [device]="device" [devices]="devices" ></app-device-card>
               </div>
               <div *ngIf ="device?.deviceName == 'default'" >
                 <div style="cursor: pointer;margin-top:20px" (click)="showDisplay()">
