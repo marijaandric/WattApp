@@ -230,7 +230,13 @@ export class HistoryLineChartComponent implements OnChanges{
   ];
 
   public marker: ApexMarkers = {
-    
+    size:[8,8],
+    strokeWidth: 0,
+    fillOpacity: 1,
+    radius: 10,
+    hover: {
+      size:8
+    }
   };
   public chart: ApexChart = {
     type: 'area',
