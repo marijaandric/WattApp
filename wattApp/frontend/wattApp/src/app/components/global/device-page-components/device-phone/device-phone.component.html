@@ -318,7 +318,8 @@
 <ng-template pTemplate="center" >
   <div class="delete-device-content">
   
-  <span >Are you sure you want to change the device activity?</span>
+    <span *ngIf="isChecked">Are you sure you want to turn off the {{device?.deviceName}}?</span>
+    <span *ngIf="!isChecked">Are you sure you want to turn on the {{device?.deviceName}}?</span>
   </div>
 </ng-template>
 
