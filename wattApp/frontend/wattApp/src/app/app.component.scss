@@ -13,6 +13,33 @@
     margin-bottom:20px;
   }
   @media only screen and (min-width: 639px) {
+    p-dialog#editDeviceDialogId .p-overlay-content{
+        margin-left:-100px;
+        display:block;
+        margin-top:-100px;
+        width:100%;
+      }
+
+      p-dialog#editDeviceDialogId .p-overlaypanel{
+      margin-left:-120px;
+      display:block;
+      margin-top:-70px;
+    }
+
+    #opis-dijalog .p-overlaypanel  {
+      margin-top:-230px !important;
+      margin-left:-100px !important;
+    }
+
+    #opis-dijalog.light-mode {
+      h5,div {
+        color: #323232 !important;  
+      }
+    }
+
+    #opis-dijalog.dark-mode {
+    }
+
     p-dialog .p-overlay-content{
       margin-left:-70px;
       display:block;
@@ -129,7 +156,11 @@
       color:#1e1e1e !important;
     }
   }
-
+p-overlaypanel #zib {
+  position: sticky ;
+  left:60px !important;
+  top:100px !important;
+}
   .remove-or-no .p-button {
     position:relative!important;
     border-radius: 2px!important;
@@ -471,7 +502,7 @@
       }
 
       .p-dialog-content {
-        padding:0px 32px 32px 32px;
+        padding:0px 10px 10px 10px;
       }
     }
 

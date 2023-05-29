@@ -61,7 +61,7 @@
                   <p-inputSwitch [(ngModel)]="isChecked" (click)="showDialog2()" class="margin-left__auto width__fit-content" style="padding-top:10px;"></p-inputSwitch>
               </div>
         
-              <div style="height:100% ;justify-content:center">
+              <div style="height:100% ;justify-content:center" #adddv7>
                 
                 <div class="flexRow" style="margin-top:10px">
                   <span >Type:</span>
@@ -104,7 +104,7 @@
                 </div><br>
                 
 
-                <p-overlayPanel #op [style]="{'width': '350px'}" [showCloseIcon]="true">
+                <p-overlayPanel id="opis-dijalog" #op [style]="{'width': '350px'}" [showCloseIcon]="false"  [ngClass]="{'light-mode':lightMode, 'dark-mode':!lightMode}" [appendTo]="op">
                   <div *ngIf="device.deviceType == 'Stock'">
                   <div style="margin-top:20px">
                     <h5>Battery lifespan:</h5>
@@ -214,14 +214,14 @@
 </div>
 
 
-<p-dialog id="editDeviceDialogId" [style]="{width:'40%'}"
+<p-dialog id="editDeviceDialogId" [style]="{width:'40%'}" #adddv3
   [draggable]="false" [keepInViewport]="true" [resizable]="false" 
-  [blockScroll]="true" [closeOnEscape]="true"  [ngClass]="{'light-mode':lightMode}"
+  [blockScroll]="true" [closeOnEscape]="true"  [ngClass]="{'light-mode':lightMode, 'dark-mode':!lightMode}"
   [modal]="true" [(visible)]="displayEditDeviceDialog" [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
   [closable]="true" >
   <ng-template pTemplate="header" class="header-dialog">
     <span>Edit device<i class="fa fa-info-circle" style="cursor:pointer" aria-hidden="true" (click)="op3.toggle($event)"></i> </span>
-    <p-overlayPanel #op3 >
+    <p-overlayPanel #op3 [ngClass]="{'light-mode':lightMode, 'dark-mode':!lightMode}" [appendTo]="adddv3">
       <p style="width:350px">Dear user,</p> 
       <p style="width:350px">You must fill in all fields. In the power or capacity field, enter only numbers.</p>
       <p style="width:350px">If an error occurs while adding your device and you have followed the steps, please consult with your nearest operator for assistance.</p>
@@ -233,12 +233,12 @@
       <div class="p-inputgroup p-inputtext-lg p-input-filled"> 
       <div class="half"> 
         <span>Device category</span>
-        <div class="dropdown-div" style="margin-bottom:20px" [ngClass]="{'light-mode':lightMode}"><p-dropdown [options]="types"  (onChange)="onTypeChange($event)"  name="typeSelected" appendTo="body" optionLabel="name" [ngClass]="{'light-mode':lightMode}" />
-        </div><span>Device type</span>
-        <div class="dropdown-div" style="margin-bottom:20px" [ngClass]="{'light-mode':lightMode}"><p-dropdown [options]="models" (onChange)="onModelChange($event)" name="modelSelected" appendTo="body" optionLabel="name" [ngClass]="{'light-mode':lightMode}" /></div>
+        <div class="dropdown-div" style="margin-bottom:20px;"><div [ngClass]="{'light-mode':lightMode,'dark-mode':!lightMode}" ><p-dropdown [options]="types"  (onChange)="onTypeChange($event)"  name="typeSelected" [appendTo]="adddv3" optionLabel="name"  /></div></div>
+        <span>Device type</span>
+        <div class="dropdown-div" style="margin-bottom:20px;"><div [ngClass]="{'light-mode':lightMode,'dark-mode':!lightMode}" ><p-dropdown [options]="models" (onChange)="onModelChange($event)" name="modelSelected"  [appendTo]="adddv3" optionLabel="name"  /></div></div>
         <span>Location</span>
-        <div class="dropdown-div" style="margin-bottom:20px" [ngClass]="{'light-mode':lightMode}"><p-dropdown [options]="rooms" (onChange)="onRoomChange($event)"  name="roomSelected" appendTo="body" optionLabel="name" [ngClass]="{'light-mode':lightMode}"/>
-        </div>
+        <div class="dropdown-div" style="margin-bottom:20px;"><div [ngClass]="{'light-mode':lightMode,'dark-mode':!lightMode}" ><p-dropdown [options]="rooms" (onChange)="onRoomChange($event)"  name="roomSelected"  [appendTo]="adddv3" optionLabel="name" /></div></div>
+        
       </div>
       
       <div class="half">
@@ -266,7 +266,7 @@
 
 <p-dialog [style]="{width:'20%'}" header="Title"  [transitionOptions]="'3ms'" 
 [draggable]="false" [keepInViewport]="true" [resizable]="false" 
-[blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true"  [ngClass]="{'light-mode':lightMode}"
+[blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true"  [ngClass]="{'light-mode':lightMode, 'dark-mode':!lightMode}"
 [modal]="true" [(visible)]="display3" [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
 [closable]="true" >
 <ng-template pTemplate="header" class="header-dialog">
@@ -292,9 +292,9 @@
 </ng-template>
 </p-dialog>
 
-<p-dialog [style]="{width:'300px',height:'260px'}" header="Title"  [transitionOptions]="'3ms'" 
+<p-dialog [style]="{width:'300px',height:'360px'}" header="Title"  [transitionOptions]="'3ms'" 
 [draggable]="true" [keepInViewport]="true" [resizable]="false" 
-[blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true"  [ngClass]="{'light-mode':lightMode}"
+[blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true" [ngClass]="{'light-mode':lightMode, 'dark-mode':!lightMode}"
 [modal]="true" [(visible)]="display2" [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
 [closable]="true" >
 <ng-template pTemplate="header" class="header-dialog">

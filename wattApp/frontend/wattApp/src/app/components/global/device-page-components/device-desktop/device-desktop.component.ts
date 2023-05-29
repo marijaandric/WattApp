@@ -59,7 +59,7 @@ export class DeviceDesktopComponent implements OnInit {
   hostElement: HTMLElement | undefined;
   device!: DeviceDTO;
   loader=true;
-
+  @Input() idDeviceComp : any;
   displayEditDeviceDialog: boolean = false;
   isRunning: boolean = true;
 
