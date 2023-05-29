@@ -132,8 +132,6 @@ export class DevicePhoneComponent implements OnInit{
                   {name: 'Week', code: 'week'}
                 ];
                 this.addDeviceForm = this.fb.group({
-                  id:[this.device.id, Validators.required],
-                  fakeID: [this.device.fakeID, Validators.required],
                   userID :[0, Validators.required],
                   deviceName:['', Validators.required],
                   deviceModel: ['', Validators.required],
@@ -223,9 +221,7 @@ export class DevicePhoneComponent implements OnInit{
 
   showEditDeviceDialog() {
     this.addDeviceForm = this.fb.group({
-      id:[this.device.id, Validators.required],
-      fakeID: [this.device.fakeID, Validators.required],
-      userID :[this.device.userID, Validators.required],
+      userID :[this.device.id, Validators.required],
       deviceName:[this.device.deviceName, Validators.required],
       deviceModel: [this.device.deviceModel, Validators.required],
       room: [this.device.room, Validators.required],
@@ -278,7 +274,6 @@ export class DevicePhoneComponent implements OnInit{
     this.deviceService.updateDevice(this.addDeviceForm.value).subscribe(
       (updatedDevice: DeviceDTO) => {
         this.displayEditDeviceDialog = false;
-        this.toast.error({detail:"SUCCESS",summary:"You have changed the device.",duration:4000});
       },
       (error: any) => {
         console.error(error);

@@ -65,42 +65,42 @@
                 
                 <div class="flexRow" style="margin-top:10px">
                   <span >Type:</span>
-                  <span class="margin-left__auto text-secondary">{{ device?.deviceModel }}</span>
+                  <span class="margin-left__auto text-secondary">{{ device.deviceModel }}</span>
                 </div>
 
                 <div class="flexRow" style="margin-top:16px">
                   <span>Model:</span>
-                  <span class="margin-left__auto text-secondary">{{ device?.model }}</span>
+                  <span class="margin-left__auto text-secondary">{{ device.model }}</span>
                 </div>
           
                 <div class="flexRow"style="margin-top:10px" >
                   <span>Category:</span>
-                  <span class="margin-left__auto text-secondary">{{ device?.deviceType }}</span>
+                  <span class="margin-left__auto text-secondary">{{ device.deviceType }}</span>
                 </div>
           
                 <div class="flexRow"style="margin-top:10px">
                   <span>Location:</span>
-                  <span class="margin-left__auto text-secondary">{{ device?.room }}</span>
+                  <span class="margin-left__auto text-secondary">{{ device.room }}</span>
                 </div>
 
                 <div class="flexRow" style="margin-top:16px">
                   <span>Manufacturer:</span>
-                  <span class="margin-left__auto text-secondary">{{ device?.manufacturer }}</span>
+                  <span class="margin-left__auto text-secondary">{{ device.manufacturer }}</span>
                 </div>
           
                 <div class="flexRow" style="margin-top:16px">
                   <span>Manufacturing Year:</span>
-                  <span class="margin-left__auto text-secondary">{{ device?.manufacturingYear }}</span>
+                  <span class="margin-left__auto text-secondary">{{ device.manufacturingYear }}</span>
                 </div>
 
                 <div *ngIf="device.deviceType != 'Stock'" class="flexRow" style="margin-top:16px">
                   <span>Power:</span>
-                  <span class="margin-left__auto text-secondary">{{ device?.power }} W</span>
+                  <span class="margin-left__auto text-secondary">{{ device.power }} W</span>
                 </div>
 
                 <div *ngIf="device.deviceType == 'Stock'" class="flexRow" style="margin-top:16px">
                   <span>Capacity:</span>
-                  <span class="margin-left__auto text-secondary">{{ device?.power }} Ah</span>
+                  <span class="margin-left__auto text-secondary">{{ device.power }} Ah</span>
                 </div><br>
                 
 

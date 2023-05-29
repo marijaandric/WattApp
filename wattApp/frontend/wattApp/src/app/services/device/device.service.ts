@@ -17,8 +17,7 @@ export class DeviceService {
       map(devices => {
         return devices.map(device => new DeviceDTO(
           device.id,
-          device.userID,
-          device.fakeID,
+          device.userId,
           device.deviceName,
           device.deviceModel,
           device.room,
@@ -41,8 +40,7 @@ export class DeviceService {
       map(devices => {
         return devices.map(device => new DeviceDTO(
           device.id,
-          device.userID,
-          device.fakeID,
+          device.userId,
           device.deviceName,
           device.deviceModel,
           device.room,
