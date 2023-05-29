@@ -37,6 +37,9 @@ namespace backend.DAL
                 return new StatusCodeResult(404);
             }
 
+            List<Devices> devices = _context.Devices.Where(e => e.UserID == id).ToList();
+
+            _context.Devices.RemoveRange(devices);
             _context.Users.Remove(user);
             _context.SaveChangesAsync();
 
