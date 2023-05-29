@@ -3,11 +3,9 @@
     <h3 ><a [routerLink]="['/devices']" [ngClass]="{'color-white-imp':!lightMode}">Devices</a> > {{device!.deviceName}}</h3>
   </app-title-bar>
 
-  <app-center-bar>
-    
-    <app-device-desktop class="desktop"></app-device-desktop>
-    <app-device-phone class="phone"></app-device-phone>
-
+  <app-center-bar >
+    <app-device-desktop class="desktop" [idDeviceComp]="idDeviceComp"  #idDeviceComp [ngClass]="{'light-mode':lightMode, 'dark-mode':!lightMode}"></app-device-desktop>
+    <app-device-phone class="phone" [idDeviceComp]="idDeviceComp"  #idDeviceComp [ngClass]="{'light-mode':lightMode, 'dark-mode':!lightMode}"></app-device-phone>
   </app-center-bar>
 
 </standard-template>

@@ -91,7 +91,7 @@
               </div><br>
               
 
-              <p-overlayPanel #op [style]="{'width': '350px'}" [showCloseIcon]="true">
+              <p-overlayPanel #op [style]="{'width': '350px'}" [showCloseIcon]="false" [ngClass]="{'light-mode':lightMode, 'dark-mode':!lightMode}">
                 <div *ngIf="device.deviceType == 'Stock'">
                   <div class="flexRow" style="margin-top:20px">
                     <span>Battery lifespan:</span>
@@ -136,9 +136,9 @@
         </app-widget>
       </div>
     <div class="display:flex;position:relative; width:100%; height:fit-content;flex-direction:row;">
-        <div style="width:100%; height:fit-content; display:flex; flex-direction:row;margin-bottom:12px;">
+        <div style="width:100%; height:fit-content; display:flex; flex-direction:row;margin-bottom:12px;" class="pdd-div ovrplnl">
           <span><i [ngClass]="{'light-theme-color-gray-323232':lightMode}" class="fa fa-info-circle" style="cursor:pointer; padding-top: 10px; width: 30px;" aria-hidden="true" (click)="op2.toggle($event)"></i></span>
-          <p-overlayPanel #op2 >
+          <p-overlayPanel #op2  >
             <p style="width:350px">In this application, you can analyze different aspects of energy usage.</p>
             <p style="width:350px">
               The first dropdown allows you to choose the data type you want to analyze. Select the appropriate option based on the aspect you are interested in, such as historical data, forecasted data, or a combination of both.
@@ -295,14 +295,20 @@
     <div style="margin-bottom:20px;"></div>
 
 
-<p-dialog [style]="{width:'300px',height:'200px'}" header="Title"  [transitionOptions]="'3ms'" 
-[draggable]="true" [keepInViewport]="true" [resizable]="false" 
-[blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true" 
-[modal]="true" [(visible)]="display" [breakpoints]="{'960px': '75vw', '640px': '90vw'}" [ngClass]="{'light-mode':lightMode}"
+    <p-dialog [style]="{width:'300px',height:'360px'}" header="Title"  [transitionOptions]="'3ms'" 
+    [draggable]="true" [keepInViewport]="true" [resizable]="false" 
+    [blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true" [ngClass]="{'light-mode':lightMode, 'dark-mode':!lightMode}"
+    [modal]="true" [(visible)]="display" [breakpoints]="{'960px': '75vw', '640px': '90vw'}" [ngClass]="{'light-mode':lightMode, 'dark-mode':!lightMode}"
 [closable]="true" >
 <ng-template pTemplate="header" class="header-dialog">
-  <span *ngIf="isChecked">Are you sure you want to turn off the {{device?.deviceName}}?</span>
-  <span *ngIf="!isChecked">Are you sure you want to turn on the {{device?.deviceName}}</span>
+  <span >Turn on/off</span>
+</ng-template>
+
+<ng-template pTemplate="center" >
+  <div class="delete-device-content">
+  
+  <span >Are you sure you want to change the device activity?</span>
+  </div>
 </ng-template>
 
 <ng-template pTemplate="footer">
@@ -316,14 +322,14 @@
 </p-dialog>
 
 
-<p-dialog id="editDeviceDialogId" [style]="{width:'40%'}"
+<p-dialog id="editDeviceDialogId" [style]="{width:'40%'}" #adddv3
   [draggable]="false" [keepInViewport]="true" [resizable]="false" 
-  [blockScroll]="true" [closeOnEscape]="true" 
+  [blockScroll]="true" [closeOnEscape]="true"  [ngClass]="{'light-mode':lightMode, 'dark-mode':!lightMode}"
   [modal]="true" [(visible)]="displayEditDeviceDialog" [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
-  [closable]="true" [ngClass]="{'light-mode':lightMode}">
+  [closable]="true" >
   <ng-template pTemplate="header" class="header-dialog">
     <span>Edit device<i class="fa fa-info-circle" style="cursor:pointer" aria-hidden="true" (click)="op3.toggle($event)"></i> </span>
-    <p-overlayPanel #op3 >
+    <p-overlayPanel #op3 [ngClass]="{'light-mode':lightMode, 'dark-mode':!lightMode}" >
       <p style="width:350px">Dear user,</p> 
       <p style="width:350px">You must fill in all fields. In the power or capacity field, enter only numbers.</p>
       <p style="width:350px">If an error occurs while adding your device and you have followed the steps, please consult with your nearest operator for assistance.</p>
@@ -332,29 +338,28 @@
   
   <ng-template pTemplate="content">
     <form id="editDeviceDialogForm" [formGroup]="addDeviceForm"> 
-        <div class="p-inputgroup p-inputtext-lg p-input-filled"> 
-        <div class="half"> 
-          <span>Device category</span>
-          <div class="dropdown-div" style="margin-bottom:20px" [ngClass]="{'light-mode':lightMode}"><p-dropdown [options]="types"  (onChange)="onTypeChange($event)"  name="typeSelected" appendTo="body" optionLabel="name" [ngClass]="{'light-mode':lightMode}" />
-          </div><span>Device type</span>
-          <div class="dropdown-div" style="margin-bottom:20px" [ngClass]="{'light-mode':lightMode}"><p-dropdown [options]="models" (onChange)="onModelChange($event)" name="modelSelected" appendTo="body" optionLabel="name" [ngClass]="{'light-mode':lightMode}" /></div>
-          <span>Location</span>
-          <div class="dropdown-div" style="margin-bottom:20px" [ngClass]="{'light-mode':lightMode}"><p-dropdown [options]="rooms" (onChange)="onRoomChange($event)"  name="roomSelected" appendTo="body" optionLabel="name" [ngClass]="{'light-mode':lightMode}"/>
-          </div>
-        </div>
+      <div class="p-inputgroup p-inputtext-lg p-input-filled"> 
+      <div class="half"> 
+        <span>Device category</span>
+        <div class="dropdown-div" style="margin-bottom:20px;"><div [ngClass]="{'light-mode':lightMode,'dark-mode':!lightMode}" ><p-dropdown [options]="types"  (onChange)="onTypeChange($event)"  name="typeSelected" appendTo="body" optionLabel="name"  /></div></div>
+        <span>Device type</span>
+        <div class="dropdown-div" style="margin-bottom:20px;"><div [ngClass]="{'light-mode':lightMode,'dark-mode':!lightMode}" ><p-dropdown [options]="models" (onChange)="onModelChange($event)" name="modelSelected"  appendTo="body" optionLabel="name"  /></div></div>
+        <span>Location</span>
+        <div class="dropdown-div" style="margin-bottom:20px;"><div [ngClass]="{'light-mode':lightMode,'dark-mode':!lightMode}" ><p-dropdown [options]="rooms" (onChange)="onRoomChange($event)"  name="roomSelected" appendTo="body" optionLabel="name" /></div></div>
         
-        <div class="half">
-          <input formControlName="deviceName" name="deviceName"  type="text"   class="p-inputtext-lg"  placeholder="DEVICE NAME" style="margin-top:2px;">
-          <input formControlName="model" name="model"  type="text"   class="p-inputtext-lg"  placeholder="DEVICE MODEL" style="margin-top:0px;">  
-          <input *ngIf="typeSelected.name == 'Stock'" formControlName="power" name="power"  type="text"   class="p-inputtext-lg"  placeholder="CAPACITY in Ah" style="margin-top:0px;"> 
-          <input *ngIf="typeSelected.name != 'Stock'" formControlName="power" name="power"  type="text"   class="p-inputtext-lg"  placeholder="POWER in W" style="margin-top:0px;"> 
-          <input formControlName="manufacturer" name="manufacturer"  type="text"   class="p-inputtext-lg"  placeholder="MANUFACTURER" style="margin-top:0px;"> 
-          <input formControlName="manufacturingYear" name="manufacturingYear"  type="text"   class="p-inputtext-lg"  placeholder="MANUFACTURING YEAR" style="margin-top:0px;">       
-        </div>
       </div>
-      </form>
+      
+      <div class="half">
+        <input formControlName="deviceName" name="deviceName"  type="text"   class="p-inputtext-lg"  placeholder="DEVICE NAME" style="margin-top:2px;">
+        <input formControlName="model" name="model"  type="text"   class="p-inputtext-lg"  placeholder="DEVICE MODEL" style="margin-top:0px;">  
+        <input *ngIf="typeSelected.name == 'Stock'" formControlName="power" name="power"  type="text"   class="p-inputtext-lg"  placeholder="CAPACITY in Ah" style="margin-top:0px;"> 
+        <input *ngIf="typeSelected.name != 'Stock'" formControlName="power" name="power"  type="text"   class="p-inputtext-lg"  placeholder="POWER in W" style="margin-top:0px;"> 
+        <input formControlName="manufacturer" name="manufacturer"  type="text"   class="p-inputtext-lg"  placeholder="MANUFACTURER" style="margin-top:0px;"> 
+        <input formControlName="manufacturingYear" name="manufacturingYear"  type="text"   class="p-inputtext-lg"  placeholder="MANUFACTURING YEAR" style="margin-top:0px;">       
+      </div>
+    </div>
+    </form>
   </ng-template>
-
   <ng-template pTemplate="footer" >
     <div class="remove-or-no" style="float:right">
     <p-button class="margin-left__16px" (click)="cancel()" type="submit" label="Cancel"></p-button>
@@ -366,20 +371,21 @@
 </p-dialog>
 
 
-<p-dialog [style]="{width:'20%'}" header="Title"  [transitionOptions]="'3ms'" 
-[draggable]="false" [keepInViewport]="true" [resizable]="false" 
-[blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true" 
-[modal]="true" [(visible)]="display3" [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
-[closable]="true" [ngClass]="{'light-mode':lightMode}">
-<ng-template pTemplate="header" class="header-dialog">
+  <p-dialog [style]="{width:'20%'}" header="Title"  [transitionOptions]="'3ms'" 
+  [draggable]="false" [keepInViewport]="true" [resizable]="false" 
+  [blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true"  [ngClass]="{'light-mode':lightMode, 'dark-mode':!lightMode}"
+  [modal]="true" [(visible)]="display3" [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
+  [closable]="true" >
+  <ng-template pTemplate="header" class="header-dialog">
     <span>Delete device</span>
   </ng-template>
   
   <ng-template pTemplate="center">
     <div class="delete-device-content">
+      <span>
       Are you sure you want to delete the device?
       All data will be deleted and you will not be able to recover it.
-  
+    </span>
     </div>
   </ng-template>
   
@@ -391,11 +397,8 @@
         <p-button type="button" label="Yes" (click)="deleteDevice(device.id)"></p-button>
       </div>
   </ng-template>
-</p-dialog>
+  </p-dialog>
 
-
-</div>
-   
 
 
 
