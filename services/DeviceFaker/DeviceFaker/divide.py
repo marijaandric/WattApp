@@ -1,8 +1,8 @@
 from pymongo import MongoClient
 
 # MongoDB connection settings
-mongodb_host = 'localhost'
-mongodb_port = 27017
+mongodb_host = 'softeng.pmf.kg.ac.rs'
+mongodb_port = 10015
 database_name = 'Devices'
 collection_name = 'DevicesData'
 
@@ -16,6 +16,7 @@ documents = collection.find()
 
 # Iterate over the documents and update the PowerUsage field
 for document in documents:
+    print(document)
     power_usage = document['PowerUsage']
     new_power_usage = power_usage / 4
 

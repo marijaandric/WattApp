@@ -167,18 +167,12 @@ const LegendControl = L.Control.extend({
     <div style='
     background: white ;color:black; box-shadow: 2px 2px 10px #BBB;border-radius: 20px;padding:10px'>
       <h5 style="font-weight:bold; font-size:15px;color:black;">Legend</h5>
-      <div>
-        <span><img style='width:20px;height:auto;padding-top:10px;padding-bottom:10px;' src='/assets/icons/images/marker-red.png'>  </span>
-        <span style="color:black;">More than 200kwh per month</span>
-      </div>
+      
       <div>
       <span><img style='width:20px;height:auto;padding-bottom:10px;' src='/assets/icons/images/marker-pink.png'>  </span>
-        <span style="color:black;">Average prosumer</span>
+        <span style="color:black;">Prosumer</span>
       </div>
-      <div>
-      <span><img style='width:20px;height:auto;padding-bottom:10px;' src='/assets/icons/images/marker-green.png'>  </span>
-      <span style="color:black;">Less than 100kwh per month</span>
-      </div>
+      
       </div>
     `;
     return div;

@@ -93,13 +93,7 @@
                       <p-columnFilter class="ml-auto" type="text" field="email" display="menu"></p-columnFilter>
                   </div>
                 </th>
-                <th pSortableColumn="role" style="min-width:8rem; border-top:2px solid #46c5f1; border-bottom:2px solid #46c5f1;">
-                  <div class="flexRow">
-                      <p style=" font-size: 18px !important;">Role</p>
-                      <p-sortIcon field="role"></p-sortIcon>
-                      <p-columnFilter class="ml-auto" type="text" field="role" display="menu"></p-columnFilter>
-                  </div>
-                </th>
+                
               </tr>
             </ng-template>
 
@@ -109,7 +103,6 @@
                   <td><div style="width:20%;position:relative;float:left"><img src="{{ baseUrl + user.id }}" class="rounded-circle" width="25px" height="25px" style="margin-right: 10%"></div><div style="width:70%;position:relative;float:right">{{user.firstName}} {{user.lastName}}</div> </td>
                   <td>{{user.address}}</td>
                   <td>{{user.email}}</td>
-                  <td>{{user.role}}</td>
                 </tr>
               </ng-template>
 
