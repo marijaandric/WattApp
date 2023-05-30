@@ -47,18 +47,39 @@ export class HistoryOrForecastTableComponent implements OnChanges {
       {
         if(this.History.length == 12)
         {
-          this.hif.push({
-            date: this.dates[i],
-            values: this.History[i],
-            values2 : (this.History[i] + niz2[i]).toFixed(2)
-          })
+          if(this.History[0] != 0)
+          {
+            this.hif.push({
+              date: this.dates[i],
+              values: this.History[i],
+              values2 : (this.History[i] + niz2[i]).toFixed(2)
+            })
+          }
+          else{
+            this.hif.push({
+              date: this.dates[i],
+              values: this.History[i],
+              values2 : this.History[i]
+            })
+          }
+          
         }
         else{
-          this.hif.push({
-            date: this.dates[i],
-            values: this.History[i],
-            values2 : (this.History[i] + niz[i]).toFixed(2)
-          })
+          if(this.History[0] != 0)
+          {
+            this.hif.push({
+              date: this.dates[i],
+              values: this.History[i],
+              values2 : (this.History[i] + niz[i]).toFixed(2)
+            })
+          }
+          else{
+            this.hif.push({
+              date: this.dates[i],
+              values: this.History[i],
+              values2 : this.History[i]
+            })
+          }
         }
           
       }
