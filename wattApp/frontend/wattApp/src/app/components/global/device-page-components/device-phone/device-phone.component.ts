@@ -851,7 +851,7 @@ Title = "History & Forecast"
         }
         
 
-        this.SubTitleToday='Stock Today';
+        this.SubTitleToday='Stock today';
         this.SubTitleWeek='Stock this week';
         this.SubTitleMonth='Stock this month';
         this.SubTitleYear='Stock this year';
@@ -892,7 +892,7 @@ Title = "History & Forecast"
           this.theDay = "On the month: ";
         }
 
-        this.SubTitleToday='Consumption Today';
+        this.SubTitleToday='Consumption today';
         this.SubTitleWeek='Consumption this week';
         this.SubTitleMonth='Consumption this month';
         this.SubTitleYear='Consumption this year';
@@ -933,7 +933,7 @@ Title = "History & Forecast"
         this.theDay = "On the month: ";
         }
 
-        this.SubTitleToday='Production Today';
+        this.SubTitleToday='Production today';
         this.SubTitleWeek='Production this week';
         this.SubTitleMonth='Production this month';
         this.SubTitleYear='Production this year';
