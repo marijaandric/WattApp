@@ -565,7 +565,7 @@ export class DevicePhoneComponent implements OnInit{
     while (now < next) {
       months.push(monthNames[now.getMonth()]);
       now.setMonth(now.getMonth() + 1);
-      months.push(months[0])
+      
     }
     months.push(months[0])
   
