@@ -5,7 +5,7 @@
     color: #fff;
     padding: 40px 60px;
     width: 100%;
-    height: 370px;
+    height: 270px;
     margin-bottom: -100px;
 }
 
@@ -17,11 +17,19 @@
 .logo{
     height: fit-content;
     width: fit-content;
-    max-height: 300px;
-    max-width: 300px;
+    max-height: 100px;
+    max-width: 100px;
     margin-top: -20px;
 }
 
+
+.logo2{
+    height: fit-content;
+    width: fit-content;
+    max-height: 100px;
+    width:auto;
+    margin-top: -20px;
+}
 .links{
     margin-left: auto;
     font-size: 1.1rem;

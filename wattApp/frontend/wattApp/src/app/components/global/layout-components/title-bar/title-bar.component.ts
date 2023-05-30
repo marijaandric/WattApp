@@ -345,8 +345,12 @@ export class TitleBarComponent implements OnInit{
     this.authService.signUp(this.signUpForm.value).subscribe({
         next:(res => {
           this.signUpForm.reset()
-          this.toast.success({detail:"SUCCESS",summary:"You have successfully registered",duration:4000});
+          this.toast.success({detail:"SUCCESS",summary:"You have successfully registered",duration:5000});
           this.display = false;
+        setTimeout(() => {
+          location.reload();
+        }, 1350)
+          
         }),
         error:(err => {
           this.toast.error({detail:"ERROR",summary:"Please complete all fields or check if you have already used your mail",duration:4000});
