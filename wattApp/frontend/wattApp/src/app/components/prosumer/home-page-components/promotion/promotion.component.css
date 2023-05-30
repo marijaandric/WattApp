@@ -2,13 +2,15 @@
     display: flex;
     flex-direction: column;
     overflow: hidden;
-    background-color: #1b1b1b;
     min-height: 120px;
     /*min-width: 340px;*/
     border-radius: 20px;
     padding:  20px 20px 20px 20px;
     flex-basis: calc(33.33333% - 30px);
-    box-shadow: 5px 5px 15px black; 
+    /*
+    background-color: #1b1b1b;
+    box-shadow: 5px 5px 15px black; */
+    cursor: pointer;
 }
 
 
@@ -17,9 +19,11 @@
   height: 150px;
   overflow: hidden;
   font-size: 16px;
+  /*
   color: #FFF;
+  */
   align-items: end;
-  cursor: default;
+  /* cursor: default; */
   bottom:0;
   z-index: 2;
   position: relative;
@@ -30,7 +34,7 @@
 :host>.item_date-box {
   z-index: 2;
   position: relative;
-  cursor: default;
+  /* cursor: default; */
   font-weight: bold;
   font-size: 24px;
   -webkit-transition: color .5s ease;
@@ -42,7 +46,7 @@
 
 :host>.item_date {
   font-weight: bold;
-  cursor: default;
+  /* cursor: default; */
   font-size: 25px;
   padding-right: 10px;
   -webkit-transition: color .5s ease;
@@ -101,7 +105,9 @@
   font-weight: bold;
   width:100px;
    /* padding-left: 80%; */
+   /*
   color:grey;
+  */
   display: inline-block;
   height:30px;
 }

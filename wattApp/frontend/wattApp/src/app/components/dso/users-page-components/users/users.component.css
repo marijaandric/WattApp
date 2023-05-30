@@ -23,7 +23,6 @@
   margin-bottom: 30px;
   position: relative;
   width:90%;
-  box-shadow: 5px 5px 15px black;
   
 }
 .widget-users:last-of-type {
@@ -36,4 +35,26 @@
 .widgets-users::-webkit-scrollbar-thumb {
   background-color: rgba(214, 214, 214, 0.212); /* adjust to your desired color */
   border-radius: 10px; /* adjust to your desired radius */
+}
+
+.light-mode2 {
+  box-shadow: 8px 8px 32px -5px rgb(200, 200, 200); 
+  border-radius: 20px;
+  margin-bottom:32px;
+}
+
+
+.light-mode {
+  color:#323232 !important;
+}
+
+.light-mode-title-bar h3{
+  color:#323232;
+}
+
+.dark-mode2 {
+  background: linear-gradient(180deg, #1b1b1b 30%, #121212 100%) ;
+  box-shadow: 5px 5px 15px black !important; 
+  border-radius: 20px;
+  margin-bottom:32px;
 }

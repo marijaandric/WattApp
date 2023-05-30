@@ -6,8 +6,10 @@
     width:100%;
     height:100%;
     border-radius: 20px;
+    /*
     background: linear-gradient(180deg, #151515 50%, #121212 100%) ;
     box-shadow: 5px 5px 15px black;
+    */
     transition: ease-in-out;
     
     padding:  20px 40px 20px 20px;

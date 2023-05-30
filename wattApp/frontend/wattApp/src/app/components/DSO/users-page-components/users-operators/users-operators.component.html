@@ -1,5 +1,5 @@
 <standard-template>
-    <app-title-bar>
+    <app-title-bar [ngClass]="{'light-mode-title-bar': lightMode}">
       <h3>Operators</h3>
     </app-title-bar>
   
@@ -12,6 +12,8 @@
     <app-center-bar *ngIf="!loader">
     
       <div style="display:flex;float:right; flex-direction:column; width:100%; height:100%">
+        <div [ngClass]="{'light-mode': lightMode,'light-mode2': lightMode,'dark-mode2':!lightMode,'dark-mode':!lightMode}">
+      
         <div style="display:flex;float:right; flex-direction:row; width:100%; height:100%">
           <!-- [lazy]="true" -->
           <p-table class="d-table" #dtUsers class="ui-table-default" [value]="users" dataKey="id" [scrollable]="true" 
@@ -24,8 +26,6 @@
               height: fit-content;
               width: 100%;
               border-radius: 20px;
-              background: linear-gradient(180deg, #151515 50%, #121212 100%) ;
-              box-shadow: 5px 5px 15px black;
               transition: ease-in-out;
               padding:10px 20px;
               " >
@@ -33,10 +33,10 @@
               <ng-template pTemplate="caption">
                 <div class="flexRow">
                     <h3 >
-                    Prosumers</h3>
+                    Operators</h3>
                     <span class="p-input-icon-left margin-left__auto margin-right__16px">
                         <i class="pi pi-search"></i>
-                        <input pInputText type="text" (input)="dtUsers.filterGlobal($any($event.target).value, 'contains')" placeholder="Search keyword" />
+                        <input #searchInput pInputText type="text" (input)="dtUsers.filterGlobal($any($event.target).value, 'contains')" placeholder="Search keyword" />
                     </span>
                     <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash" (click)="clear(dtUsers)"></button>
                 </div>
@@ -65,22 +65,15 @@
                         <p-columnFilter class="ml-auto" type="text" field="email" display="menu"></p-columnFilter>
                     </div>
                   </th>
-                  <th pSortableColumn="role" style="min-width:8rem; border-top:2px solid #46c5f1; border-bottom:2px solid #46c5f1;">
-                    <div class="flexRow">
-                        <p style=" font-size: 18px !important;">Role</p>
-                        <p-sortIcon field="role"></p-sortIcon>
-                        <p-columnFilter class="ml-auto" type="text" field="role" display="menu"></p-columnFilter>
-                    </div>
-                  </th>
+                  
                 </tr>
               </ng-template>
   
                 <ng-template pTemplate="body" let-user>
-                  <tr >
+                  <tr *ngIf="user.id != Myid" routerLink="/admin-operator/{{user.id}}">
                     <td class="flexRow"><img src="{{ baseUrl + user.id }}" class="rounded-circle" width="25px" height="25px" style="margin-right: 8px;"> {{user.firstName}} {{user.lastName}}</td>
                     <td>{{user.address}}</td>
                     <td>{{user.email}}</td>
-                    <td>{{user.role}}</td>
                   </tr>
                 </ng-template>
   
@@ -91,6 +84,7 @@
               </ng-template>
   
             </p-table>
+          </div>
           </div>
         </div>
     </app-center-bar>

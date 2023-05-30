@@ -9,25 +9,24 @@
   margin-top:0px;
   border-radius: 20px;
   float:right;
-  height: 300px; 
+  height: 320px;
   width: 68.2%;
   background-image: url('/assets/images/application-images/blue.jpg');
   background-size: cover;
 }
+
 
 .hello {
   position:relative;
   position: relative;
   display: inline-block;
   flex-direction: column;
-  color:white;
 }
 
 .widgets {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  padding: 20px 0;
   min-height: 120px;
   justify-content:space-between;
   
@@ -39,6 +38,17 @@ flex-direction: row;
 flex-wrap: wrap;
 padding-top: 25px;
 
+}
+
+.light-mode {
+  color: #323232 !important;
+}
+
+.light-mode-card {
+  box-shadow: 8px 8px 35px -15px rgb(200, 200, 200);
+}
+.light-mode-card div {
+  color:#323232 !important;
 }
 
 .prviDeoPrognoza{
@@ -86,7 +96,6 @@ margin-left: 2%;
   /*max-width: 23%;*/
   min-width: 240px;
   width:20%;
-  box-shadow: 5px 5px 15px black;
 }
 .iframe-div {
   position: relative;
@@ -107,7 +116,9 @@ margin-left: 2%;
   height:50px;
   font-size: 20px;
   z-index:2;
+  /*
   background-color: #222222;
+  */
   border-radius: 32px;
 }
 
@@ -128,7 +139,9 @@ padding-top: 10px;
 margin-top: 20px;
 margin-left: 40px;
 }
-
+.crsl {
+  
+}
 .line2{
 float:left;
 }
@@ -142,7 +155,7 @@ padding:10px;
 }
 
 .divVreme{
-margin:20px 0 0 2.2%;
+margin:0px 0 0 2.2%;
 width: 19.8%; 
 display: inline;
 }

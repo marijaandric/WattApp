@@ -1,16 +1,20 @@
 :host {
+    /*
     background: linear-gradient(180deg, #1e1e1e 50%, #121212 100%) ;
+    */
     display: flex;
     flex-direction: column;
     overflow: hidden;
     border-radius: 20px;
     flex-basis:50%;
+    border:none;
 }
 
 .card {
     width:100%;
     height:100%;
     background-color: transparent;
+    border:none;
 }
 
 .item_date-box {
@@ -76,7 +80,9 @@
     padding-bottom:10px;
     font-size:14px;
     span {
+        /*
         color:#c7c7c7;
+        */
     }
     padding-left:10px;
     font-weight:bold;
@@ -89,7 +95,8 @@
 
     span {
         font-weight: bolder;
-        color:white;
+        /*
+        color:white;*/
     }
     float:left;
     padding-top:8px;
@@ -128,10 +135,14 @@
 @media only screen and (max-width:980px) {
 
   .main-stat-card {
-    padding-top:0px !important;
+    padding-top:10px !important;
+    font-size:20px;
+    font-weight: bold;
   }
   .kwh-card {
-    padding-top:16px;
+    font-weight: normal;
+    padding-top:10px;
+    font-size:12px;
   }
 
   .subtitle-2 {
@@ -146,7 +157,10 @@
     width:100%;
   }
 
-  
+  .subtitle-card, .main-stat-card, .subtitle-2{
+    padding-left:7px;
+    padding-right:0px;
+  }
   .slika{
     display: none;
   }

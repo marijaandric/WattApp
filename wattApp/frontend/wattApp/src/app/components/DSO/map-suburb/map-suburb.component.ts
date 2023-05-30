@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
+import { Component, ElementRef, Input, OnChanges, OnInit, Renderer2, SimpleChanges } from '@angular/core';
 import * as L from 'leaflet';
 import { Observable } from 'rxjs';
 import { AreasService } from 'src/app/services/areas/areas.service';
+import { UserService } from 'src/app/services/user/user.service';
 
 interface City {
   name: string,
@@ -15,6 +16,8 @@ interface City {
   styleUrls: ['./map-suburb.component.css']
 })
 export class MapSuburbComponent implements OnInit,OnChanges {
+  hostElement: HTMLElement | undefined;
+ lightMode: Boolean = true;
   @Input() type : City = {name: 'Consumption', code: 'Consumer'};
   @Input() date : City= {name: 'Week', code: 'Week'};
   map: any;
@@ -30,7 +33,7 @@ export class MapSuburbComponent implements OnInit,OnChanges {
   usageMin:any;
   usageMax:any;
 
-  constructor(private areaService:AreasService,private http:HttpClient){}
+  constructor(private areaService:AreasService,private http:HttpClient,private userService: UserService, private elementRef: ElementRef, private renderer: Renderer2){}
 
   ngOnChanges(changes: SimpleChanges): void {
     if ('type' in changes) {
@@ -41,6 +44,8 @@ export class MapSuburbComponent implements OnInit,OnChanges {
       this.date = this.date;
       this.create();
     }
+
+
   }
 
   async getCoordinates(district: string): Promise<[number, number,string] | undefined> {
@@ -82,11 +87,29 @@ export class MapSuburbComponent implements OnInit,OnChanges {
   }
 
   async ngOnInit(): Promise<void> {
+    
+    const token = localStorage.getItem('token');
+    this.userService.isDark$.subscribe(dark => {
+      this.hostElement = this.elementRef.nativeElement as HTMLElement;
+      this.lightMode = !dark
+      /*
+      this.hostElement?.classList.toggle('dark-theme-bigger-shadow', dark);
+      this.hostElement?.classList.toggle('light-theme-bigger-shadow', !dark);
+    */
+    });
+
     this.map = L.map('map1').setView([44.01761719631536, 20.900995763392213], 12);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; OpenStreetMap contributors'
       }).addTo(this.map);
     this.create();
+
+    
+    this.hostElement = this.elementRef.nativeElement as HTMLElement;
+    const main_text = this.hostElement?.querySelector(".map");
+    this.renderer.addClass(main_text, '');
+    const h5text = this.hostElement?.querySelector("h5");
+    this.renderer.addClass(h5text, '');
   }
 
   async create()

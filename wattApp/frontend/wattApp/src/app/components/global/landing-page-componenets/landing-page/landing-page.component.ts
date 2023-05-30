@@ -62,6 +62,7 @@ export class LandingPageComponent implements OnInit{
       }
       
       const textElement = this.parallaxcon.nativeElement.querySelector('h2');
+      const textElement2 = this.parallaxcon.nativeElement.querySelector('h3');
       const btn = this.parallaxcon.nativeElement.querySelector('button');
       const marginTop = window.scrollY/3;
       const marginLeft = -window.scrollY/3;
@@ -71,6 +72,8 @@ export class LandingPageComponent implements OnInit{
       
       this.renderer.setStyle(textElement, 'marginTop', `${marginTop}px`);
       this.renderer.setStyle(textElement, 'marginRight', `${marginLeft}px`);
+      this.renderer.setStyle(textElement2, 'marginTop', `${marginTop}px`);
+      this.renderer.setStyle(textElement2, 'marginRight', `${marginLeft}px`);
       this.renderer.setStyle(btn, 'marginTop', `${marginTop}px`);
       this.renderer.setStyle(btn, 'marginRight', `${marginLeft}px`);
   }  

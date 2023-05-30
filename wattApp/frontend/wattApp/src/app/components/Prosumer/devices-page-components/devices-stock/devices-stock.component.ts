@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { DeviceDTO } from 'src/app/dtos/DeviceDTO';
 import { DeviceService } from 'src/app/services/device/device.service';
-import { UserService } from 'src/app/services/user.service';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-devices-stock',
@@ -11,12 +11,17 @@ import { UserService } from 'src/app/services/user.service';
 export class DevicesStockComponent {
   stockDevices: DeviceDTO[] = [];
   loader = true;
+  lightMode: Boolean = true;
 
   constructor(private deviceService: DeviceService,
     private userService: UserService) { }
 
-  ngOnInit() {
+  async ngOnInit(): Promise<void> {
     const token = localStorage.getItem('token');
+    this.userService.isDark$.subscribe(dark => {
+      this.lightMode = !dark;
+      
+    });   
     if(token)
     {
       const userId = this.userService.getUserIdFromToken(token);

@@ -105,6 +105,11 @@ namespace backend.DAL
             _context.Devices.Remove(device);
         }
 
+        public void RemoveUserDevices(int userid)
+        {
+            _context.Devices.RemoveRange(GetDevicesForUser(userid));
+        }
+
         public void SaveChanges()
         {
             _context.SaveChangesAsync();

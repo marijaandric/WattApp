@@ -1,10 +1,10 @@
-import { ChangeDetectorRef, Component, Input, OnChanges, OnInit, SimpleChange, SimpleChanges } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, Input, OnChanges, OnInit, Renderer2, SimpleChange, SimpleChanges } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
 import { DeviceDTO } from 'src/app/dtos/DeviceDTO';
 import { DeviceDataDTO } from 'src/app/dtos/DeviceDataDTO';
 import { DeviceDataService } from 'src/app/services/device-data/device-data.service';
 import { DeviceService } from 'src/app/services/device/device.service';
-
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-device-card',
@@ -12,11 +12,13 @@ import { DeviceService } from 'src/app/services/device/device.service';
   styleUrls: ['./device-card.component.scss']
 })
 export class DeviceCardComponent implements OnInit,OnChanges{
+  hostElement: HTMLElement | undefined;
+  lightMode: Boolean = true;
   @Input() device: any;
   @Input() devices: any;
   isChecked: boolean = true;
   display: boolean = false;
-
+  @Input() idComponent: any;
   //za ikonice
   isPhone: boolean = false;
   isTablet: boolean = false;
@@ -46,20 +48,42 @@ export class DeviceCardComponent implements OnInit,OnChanges{
   isIron: boolean = false;
   isLamp: boolean = false;
   isBulb: boolean = false;
+  isSmallWindTurbine: boolean = false;
+  isPortableGenerator: boolean = false
+  isPowerBank : boolean = false;
+  isBicycleGenerator: boolean = false;
+
   isOther: boolean = false;
 
   isConsumer: boolean = false;
   isProducer: boolean = false;
   isStock: boolean = false;
+  constructor(private deviceService: DeviceService,private userService: UserService, private cdRef: ChangeDetectorRef, private elementRef: ElementRef, private renderer: Renderer2){ }
 
-  constructor(private deviceService: DeviceService,private cdRef: ChangeDetectorRef){ }
+  
+  async ngOnInit(): Promise<void> {
+    
+    const token = localStorage.getItem('token');
+    this.userService.isDark$.subscribe(dark => {
+      this.lightMode = !dark;
 
-  ngOnInit(): void {
-    if(!this.device.power)
+      
+    this.hostElement = this.elementRef.nativeElement as HTMLElement;
+      this.hostElement?.classList.toggle('dark-theme-bigger-shadow', dark);
+      this.hostElement?.classList.toggle('light-theme-bigger-shadow', !dark);
+      this.hostElement?.classList.toggle('dark-theme-background-gray-gradient-1', dark);
+      this.hostElement?.classList.toggle('light-theme-background-white', !dark);
+    });
+    
+    
+    console.log(this.devices)
+    
+    if(!this.device.power2)
     {
-      const min = 0;
-      const max = 15;
-      this.device.power = (Math.random() * (max - min) + min).toFixed(2);
+      // const min = 0;
+      // const max = 15;
+      // this.device.power2 = (Math.random() * (max - min) + min).toFixed(2);
+      //this.device.power2 = this.device.power
       this.isChecked = this.device.isActive;
     }
     
@@ -161,6 +185,19 @@ export class DeviceCardComponent implements OnInit,OnChanges{
       case "Bulb":
         this.isBulb = true;
         break;
+        case "Small Wind Turbine":
+          this.isSmallWindTurbine = true;
+          break;
+          case "Portable Generator":
+            this.isPortableGenerator = true;
+            break;
+            case "Bicycle Generator":
+              this.isBicycleGenerator = true;
+              break;
+              case "Power Bank":
+                this.isPowerBank = true;
+                break;
+                          
       default:
         this.isOther = true;
         break;
@@ -181,7 +218,8 @@ export class DeviceCardComponent implements OnInit,OnChanges{
     this.isChecked = this.device.isActive
   }
 
-  showDialog() {
+  showDialog(event: MouseEvent) {
+    event.stopPropagation();
     this.isChecked = !this.isChecked
     this.display = !this.display;
   }
@@ -223,4 +261,5 @@ export class DeviceCardComponent implements OnInit,OnChanges{
   }
 
 
-}
+}import { DevicesComponent } from '../devices/devices.component';
+

@@ -1,4 +1,4 @@
-import { Component, OnChanges, OnInit, SimpleChanges, ViewChild, ViewEncapsulation  } from '@angular/core';
+import { Component, ElementRef, OnChanges, OnInit, SimpleChanges, ViewChild, ViewEncapsulation  } from '@angular/core';
 import { UserDTO } from '../../../../dtos/UserDTO';
 import { UserService } from '../../../../services/user/user.service';
 import { DeviceService } from 'src/app/services/device/device.service';
@@ -21,8 +21,11 @@ interface City {
 
 export class UsersProsumersComponent implements OnInit {
 
+  @ViewChild('searchInput') searchInput!: ElementRef;
+  lightMode: Boolean = true;
   baseUrl = url + "/api/Images/user/";
   users: UserDTO[] = [];
+  users2:UserDTO[] = []
   type: City[];
   selectedType!: City;
   currentPage :any = 0;
@@ -43,18 +46,44 @@ export class UsersProsumersComponent implements OnInit {
     this.options = [];
   }
 
-  ngOnInit() {
+  async ngOnInit(): Promise<void> {
+    const token = localStorage.getItem('token');
+    this.userService.isDark$.subscribe(dark => {
+      this.lightMode = !dark;
+     
+    });
     this.userService.getCountDataByType("prosumer").subscribe(result => this.allUsersCount = result);
     this.refreshAllUsers();
   }
 
   clear(dtUsers: any) {
+    this.searchInput.nativeElement.value = '';
     dtUsers.clear();
+    this.users2 = this.users
   }
 
   onSearch(value: string, dtUsers: any) {
     dtUsers.filterGlobal(value, 'contains');
+    setTimeout(() => {
+      this.users2 = dtUsers.filteredValue;
+      if(this.users2 == undefined || this.users2 == null)
+      {
+        this.users2 = this.users
+      }
+    }, 500);
   }
+
+  onFilter(event: any) {
+    const filteredValues = event.filteredValue;
+    setTimeout(() => {
+      this.users2 = filteredValues
+      if(this.users2 == undefined || this.users2 == null)
+      {
+        this.users2 = this.users
+      }
+    }, 500);
+  }
+  
 
   onPageChange(event: any) {
     this.rowsPerPage = this.rowsPerPage; // implement changing of page size
@@ -63,7 +92,7 @@ export class UsersProsumersComponent implements OnInit {
   }
 
   private refreshAllUsers(){
-    this.userService.getUsersPaginationByRole("prosumer",this.currentPage,this.rowsPerPage).subscribe((result: UserDTO[])=>(this.loader=false,this.users = result));
+    this.userService.getUsersPaginationByRole("prosumer",this.currentPage,this.rowsPerPage).subscribe((result: UserDTO[])=>(this.loader=false,this.users = result,this.users2=result));
     this.getAreas();
     //this.getPowerUsageForAllTypesForArea();
     this.getChartArea();
@@ -74,6 +103,7 @@ export class UsersProsumersComponent implements OnInit {
 
   getAreas() {
     this.aPIService.getAreas().subscribe((response: any) => {
+      console.log(response);
       this.options = response.map((option: string) => {
         return {
           name: option,

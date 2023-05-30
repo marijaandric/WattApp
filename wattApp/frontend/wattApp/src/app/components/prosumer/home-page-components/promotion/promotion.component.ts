@@ -1,4 +1,4 @@
-import { Component, OnInit, HostBinding, Input, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, HostBinding, Input, OnChanges, SimpleChanges, Output, EventEmitter, ElementRef, Renderer2 } from '@angular/core';
 import { NgToastService } from 'ng-angular-popup';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth/auth.service';
@@ -11,12 +11,15 @@ import { UserService } from 'src/app/services/user/user.service';
   styleUrls: ['./promotion.component.css']
 })
 export class PromotionComponent implements OnInit,OnChanges{
+  lightMode : Boolean = false;
+  hostElement: HTMLElement | undefined;
   @Input() subTitle : String ="Get a discount!";
   @Input() Title : String ="Show us all your device, get a 10% discount! For more information, contact our operators! Dear consumers, we inform you that the price of electricity will decrease by 5% in the coming period.";
   @Input() Datum : String ="01.01.2023.";
   @Input() Status : String ="Nista";
   @Input() ID : number =0;
   @Input() authorId: any;
+  @Input() desc: any;
   @Output() public valueEmitter = new EventEmitter<string>();
   @Output() public valueEmitter2 = new EventEmitter<string>();
 
@@ -24,7 +27,7 @@ export class PromotionComponent implements OnInit,OnChanges{
   id:number = 0;
 
   display2 : Boolean = false;
-
+  display3 = false;
   display: boolean = false;
   updataNewsForm! : FormGroup;
 
@@ -48,7 +51,9 @@ export class PromotionComponent implements OnInit,OnChanges{
     private userService: UserService,
     private fb: FormBuilder,
     private dsonewsService: DsonewsService,
-    private toast: NgToastService
+    private toast: NgToastService,
+    private elementRef: ElementRef, 
+    private renderer: Renderer2
     ) {
   }
 
@@ -98,12 +103,12 @@ export class PromotionComponent implements OnInit,OnChanges{
 
 
   ngOnChanges(changes: SimpleChanges): void {
-    //console.log("USLO")
     this.subTitle = this.subTitle;
     this.Title = this.Title;
     this.Datum = this.Datum;
     this.Status = this.Status;
     this.ID = this.ID
+    this.desc = this.desc
 
     const token = localStorage.getItem('token')
     if(token)
@@ -140,11 +145,30 @@ export class PromotionComponent implements OnInit,OnChanges{
     return userRole === 'operator';
   }
 
+  
+  showDialog3()
+  {
+    this.display3 = !this.display3
+  }
+
+ 
+  async ngOnInit(): Promise<void> {
+    
+    this.hostElement = this.elementRef.nativeElement as HTMLElement;
+    const token = localStorage.getItem('token');
+    this.userService.isDark$.subscribe(dark => {
+      this.lightMode = dark;
+            
+      this.hostElement?.classList.toggle('dark-theme-bigger-shadow', dark);
+      this.hostElement?.classList.toggle('light-theme-bigger-shadow', !dark);
+      this.hostElement?.classList.toggle('dark-theme-background-gray-gradient-3', dark);
+      this.hostElement?.classList.toggle('light-theme-background-white', !dark);
+      
+      
+    });
 
 
-  ngOnInit(): void {
-    console.log(this.isBlue);
-    console.log(this.isBgBlue);
+
 
     this.updataNewsForm = this.fb.group({
       id: [this.ID, Validators.required],
@@ -156,7 +180,6 @@ export class PromotionComponent implements OnInit,OnChanges{
     })
      
 
-      const token = localStorage.getItem('token');
     if(token)
     {
       this.id = this.userService.getUserIdFromToken(token)

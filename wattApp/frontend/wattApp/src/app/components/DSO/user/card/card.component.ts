@@ -1,59 +1,65 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
 import { UserService } from 'src/app/services/user/user.service';
 import { url } from 'src/app/app.module';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgToastComponent, NgToastService } from 'ng-angular-popup';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-card',
   templateUrl: './card.component.html',
-  styleUrls: ['./card.component.css']
+  styleUrls: ['./card.component.scss']
 })
 export class CardComponent implements OnInit{
+  hostElement: HTMLElement | undefined;
+  lightMode: Boolean = true;
   baseUrl = url + "/api/Images/user/";
   @Input() user : any;
   userImageUrlEndpoint!: string;
   display = false;
   menageUserForm!:FormGroup;
+  id: any;
 
-  constructor(private userService:UserService,private fb:FormBuilder,private toast:NgToastService,private router:Router){}
+  constructor(private routers:ActivatedRoute,private userService:UserService,private fb:FormBuilder,private toast:NgToastService,private router:Router,private elementRef: ElementRef, private renderer: Renderer2){
+    this.id = this.routers.snapshot.paramMap.get('id');
+    this.userImageUrlEndpoint = this.baseUrl + this.id;
+  }
 
-  ngOnInit(){
-    this.userImageUrlEndpoint = this.baseUrl + this.user.id;
-    this.menageUserForm = this.fb.group({
-      id: [this.user.id, Validators.required],
-      firstName: [this.user.firstName, Validators.required],
-      lastName: [this.user.lastName, Validators.required],
-      username: [this.user.username, Validators.required],
-      email: [this.user.email, Validators.required],
-      phoneNumber: [this.user.phoneNumber, Validators.required],
-      address: [this.user.address, Validators.required],
-      password: [this.user.password, Validators.required],
-      role: [this.user.role, Validators.required],
-      token: ['', Validators.required],
-      x :  [this.user.x, Validators.required],
-      y :  [this.user.y, Validators.required],
-      area :  [this.user.area, Validators.required],
+  async ngOnInit(): Promise<void> {
+    
+    const token = localStorage.getItem('token');
+    this.userService.isDark$.subscribe(dark => {
+      this.lightMode = !dark;
+
+      
+    this.hostElement = this.elementRef.nativeElement as HTMLElement;
+      this.hostElement?.classList.toggle('dark-theme-bigger-shadow', dark);
+      this.hostElement?.classList.toggle('light-theme-bigger-shadow', !dark);
+      this.hostElement?.classList.toggle('dark-theme-background-gray-gradient-1', dark);
+      this.hostElement?.classList.toggle('light-theme-background-white', !dark);
     });
+    
   }
 
   showDialog()
   {
     this.display = !this.display;
   }
+  
 
-  edit()
-  {
 
+
+  navigateToProsumers(): void {
+    this.router.navigateByUrl("users/prosumers");
   }
 
   deleteUser()
   {
     this.userService.deleteUser(this.user.id).subscribe(data=>{
       this.toast.success({detail:"SUCCESS",summary:"You have successfully delete user" ,duration:3000});
-      this.router.navigate(['/users/prosumers'])
+      this.router.navigate(['/users'])
     })
+
   }
   
 }

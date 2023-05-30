@@ -68,8 +68,8 @@ namespace backend.BAL
             Dictionary<string, int> users = new Dictionary<string, int>();
             users.Add("All", _contextDAL.GetNumberOfUsersByType("all"));
             users.Add("Prosumer", _contextDAL.GetNumberOfUsersByType("prosumer"));
-            users.Add("Other", _contextDAL.GetNumberOfUsersByType("other"));
-
+            users.Add("Operator", _contextDAL.GetNumberOfUsersByType("operator"));
+            users.Add("Admin", _contextDAL.GetNumberOfUsersByType("admin"));
             return users;
         }
 
@@ -134,7 +134,11 @@ namespace backend.BAL
             string psw = userObj.Password;
             userObj.Password = PasswordHasher.HashPassword(userObj.Password);
             userObj.Token = "";
-            SendEmailAsync(userObj.Email, "CodeSpark Energy", "Hi, "+ userObj.FirstName + "\nThis is your password: "+ psw + "\nYou can change your password in our application at any time. Your password is unique and only you can know it.\r\nThank you for your trust! Enjoy using the application!\r\n\r\nSincerely, Your Distribution");
+            var tokenBytes = RandomNumberGenerator.GetBytes(64);
+            var emailToken = Convert.ToBase64String(tokenBytes);
+            userObj.ResetPasswordExpiryTime = DateTime.Now.AddDays(15);
+            userObj.ResetPasswordToken = emailToken;
+            SendEmailAsync(userObj.Email, "CodeSpark Energy", "Hi, "+ userObj.FirstName + "\nThis is your password: "+ psw + "\nYou can change your password in our application at any time. Your password is unique and only you can know it.\r\nThe link that leads to our application login is: http://softeng.pmg.kg.ac.rs:10011/login\r\nIf you want to reset your password immediately, you can do so by clicking on the following link:http://softeng.pmg.kg.ac.rs:10011/reset?email=" + userObj.Email + "&code=" + emailToken + "\nDo not forget that the password should have at least 8 letters, at least one uppercase letter, at least one lowercase letter, a special character and a number\nThank you for your trust! Enjoy using the application!\r\n\r\nSincerely, CodeSpark Energy");
             return _contextDAL.addUser(userObj);
         }
 
@@ -359,6 +363,25 @@ namespace backend.BAL
             }
 
             return total;
+        }
+
+        public void SendEmailContactUs(string fromemail, string name, string subject, string message)
+        {
+            // Set up the SMTP client
+            SmtpClient smtpClient = new SmtpClient("smtp.gmail.com", 587); // Replace with your SMTP server details
+            smtpClient.EnableSsl = true; // Set to true if your SMTP server requires SSL
+            smtpClient.UseDefaultCredentials = false;
+            smtpClient.Credentials = new NetworkCredential("dsosikg@gmail.com", "zlxrnjbacpibdhgu"); // Replace with your SMTP server credentials
+
+            // Set up the email message
+            MailMessage mailMessage = new MailMessage();
+            mailMessage.From = new MailAddress(fromemail, name);
+            mailMessage.To.Add("dsosikg@gmail.com"); // Replace with the recipient's email address
+            mailMessage.Subject = subject;
+            mailMessage.Body = message + "\n" + "email: " + fromemail;
+
+            // Send the email
+            smtpClient.Send(mailMessage);
         }
     }
 }

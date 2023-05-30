@@ -10,5 +10,5 @@ import { LandingPageComponent } from './components/global/landing-page-componene
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent   {
-
+  public lightMode: Boolean = true;
 }

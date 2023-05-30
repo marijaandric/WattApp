@@ -1,11 +1,11 @@
-.tab.active7 .tab-icon {
+.tab.active7 .tab-icon i{
   color: #46c5f1 !important;
 }
 
 .tab.active7 .tab-title {
   color: #46c5f1 !important;
 }
-
+/*
 .tab.active5 .tab-icon {
   color: #fff !important;
 }
@@ -13,27 +13,27 @@
 .tab.active5 .tab-title {
   color: #fff !important;
 }
+*/
 
 
-.promotions {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  grid-gap: 20px;
-  width: 48%;
-  margin-right: 3%;
-  min-height: 900px;
+.light-mode2 {
+  box-shadow: 8px 8px 32px -5px rgb(200, 200, 200); 
+  border-radius: 20px;
+  margin-bottom:32px;
 }
 
-.promo {
-  margin: 0px;
+.light-mode {
+  color:#323232 !important;
 }
 
-.card {
-  background: none;
+.light-mode-title-bar h3{
+  color:#323232;
 }
 
-.promotion{
-  min-width: 100%;
-  height: 350px;
-}
 
+.dark-mode2 {
+  background: linear-gradient(180deg, #1b1b1b 30%, #121212 100%) ;
+  box-shadow: 5px 5px 15px black !important; 
+  border-radius: 20px;
+  margin-bottom:32px;
+}

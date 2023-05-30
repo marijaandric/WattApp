@@ -1,21 +1,21 @@
 
 <standard-template>
-    <app-title-bar>
-      <h3 class="title">Conatct us</h3>
+    <app-title-bar [ngClass]="{'light-mode-title-bar':lightMode}">
+      <h3 class="title" >Conatct us</h3>
     </app-title-bar>
   
     <app-center-bar>
 			<section class="login">
-				<div class="login_box">
+				<div class="login_box"  [ngClass]="{'light-mode':lightMode,'dark-mode3':!lightMode}">
 					<div class="left">
 						<div class="contact">
-							<form action="">
+							<form  [formGroup]="contactForm" action="">
 								<h3>Send us a message</h3>
-								<input type="text" placeholder="Name" name="Name">
-								<input type="text" placeholder="Email" name="Email">
-								<input type="text" placeholder="Subject" name="subject">
-								<input type="text" placeholder="Message" name="message">
-								<button class="submit"><span>Send Message</span></button>
+								<input type="text"formControlName="name"  placeholder="Name" name="Name">
+								<input type="text" (ngModelChange)="checkValidEmail($event)" formControlName="email" placeholder="Email" name="Email">
+								<input type="text" formControlName="subject" placeholder="Subject" name="subject">
+								<input type="text" formControlName="message" placeholder="Message" name="message">
+								<button (click)="SendMessage()" class="submit"><span>Send Message</span></button>
 							</form>
 						</div>
 					</div>
@@ -36,12 +36,12 @@
 						<div class="info">
 							<i class="fa-solid fa-envelope"></i>
 							<p class="bold">Email:</p>
-							<p class="naziv">contact@codesparkyenergy.com</p>
+							<p class="naziv">dsosikg@gmail.com</p>
 						</div>
 						<div class="info">
 							<i class="fa-solid fa-earth-americas"></i>
 							<p class="bold">Website:</p>
-							<p class="naziv">codesparkyenergy.com</p>
+							<p class="naziv">softeng.pmg.kg.ac:10011</p>
 						</div>
 					</div>
 				</div>

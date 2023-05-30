@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { DeviceService } from 'src/app/services/device/device.service';
 import { ChartComponent } from 'ng-apexcharts';
 import { PieChartComponent } from 'src/app/components/global/pie-chart/pie-chart.component';
-import { UserService } from 'src/app/services/user.service';
+import { UserService } from 'src/app/services/user/user.service';
 import { LoaderService } from 'src/app/services/loader/loader.service';
 interface City {
   name: string,
@@ -26,6 +26,7 @@ interface HiF{
   styleUrls: ['./statistic.component.css'],
 })
 export class StatisticComponent  implements OnInit {
+  lightMode : Boolean = true;
   type: City[];
   type2: City[];
   type3: City[];
@@ -41,6 +42,9 @@ export class StatisticComponent  implements OnInit {
   selectedDate: City= {name: 'Week', code: 'week'};
   selectedHF: City = {name: 'Both', code: 'both'};
   isHistoryOrForecast = false;
+
+  Title = "Consumption history & forecast"
+  Period = "week"
 
   switchValue: boolean = true;
   hif : HiF[]  = [{history: 0, forecast: 0, date1: [], date2: []},
@@ -73,7 +77,7 @@ export class StatisticComponent  implements OnInit {
   count: number[]=[];
   
   History = [0,0,0,0,0,0, null,null,null,null, null, null, null];
-  Forecast= [null,null, null, null, null, null,0,0,0,0,0,0];
+  Forecast= [null,null, null, null, null, null,0,0,0,0,0,0,null];
   miniHistory = [0,0,0,0,0,0,0];
   miniForecast= [0,0,0,0,0,0,0];
 
@@ -90,12 +94,12 @@ export class StatisticComponent  implements OnInit {
   color1 = '#46c5f1';
   color2 = '#88dbf6';
 
-  HistoryCon:any = [0,0,0,0,0,0,0];
-  ForecastCon:any= [0,0,0,0,0,0,0];
-  HistoryPro :any= [0,0,0,0,0,0,0];
-  ForecastPro:any= [0,0,0,0,0,0,0];
-  HistoryStock:any = [0,0,0,0,0,0,0];
-  ForecastStock:any = [0,0,0,0,0,0,0];
+  HistoryCon:any = [null,,0,0,0,0,0,0];
+  ForecastCon:any= [null,,0,0,0,0,0,0];
+  HistoryPro :any= [null,,0,0,0,0,0,0];
+  ForecastPro:any= [null,,0,0,0,0,0,0];
+  HistoryStock:any = [null,,0,0,0,0,0,0];
+  ForecastStock:any = [null,,0,0,0,0,0,0];
 
   miniHistoryCon:any =  [0,0,0,0,0,0,0];
   miniForecastCon:any=  [0,0,0,0,0,0,0];
@@ -121,7 +125,7 @@ export class StatisticComponent  implements OnInit {
       });
     }
     this.type2 = [
-      {name: 'Both', code: 'both'},
+      {name: 'History & forecast', code: 'both'},
       {name: 'History', code: 'history'},
       {name: 'Forecast', code: 'forecast'}
     ];
@@ -131,8 +135,33 @@ export class StatisticComponent  implements OnInit {
     ];
     this.selectedType = {name: 'Consumption', code: 'Consumer'}
   }
+  myFunction() {
+    var popup = document.getElementById("myPopup");
+    popup?.classList.toggle("show");
+    console.log("ddp");
+  }
 
+  expandFilter() {
+    var popup = document.getElementsByClassName("main-content")[0];
 
+  }
+
+  collapseFilter() {
+    var popup = document.getElementsByClassName("blocker")[0];
+    popup?.classList.toggle('class-bottom-0');
+    popup?.setAttribute('style','height:100px !important;');
+    popup?.setAttribute('style','position:fixed;');
+    popup?.setAttribute('style','background:red !important;');
+    
+  }
+  showPopup() {const popup = document.querySelector('.popup');
+  
+    popup?.classList.add('open');
+  }
+  hidePopup() {const popup = document.querySelector('.popup');
+  
+    popup?.classList.remove('open');
+  }
   getDevicePerRoom(){
     const type = this.selectedType.code;
     const number = 4;
@@ -194,31 +223,6 @@ export class StatisticComponent  implements OnInit {
 
         this.miniHistory = this.miniHistoryCon;
         this.miniForecast  = this.miniForecastCon;
-
-
-        const arr = [10.20,20.30,-5.00,0.00,-4.00,37.20,12.00,0.23];
-        const arr2 = [12.20,-5.30,0.00,-3.30,20.70,10.20,30.00,-4.23];
-        if(this.ForecastCon.every((el: number) => el === 0))
-        {}
-        else{
-            for (let i = 0; i < 6; i++) {
-              this.ForecastCon[i] = parseFloat((this.ForecastCon[i]+arr[i]).toFixed(2));
-          }
-        }
-        if(this.ForecastPro.every((el: number) => el === 0))
-        {}
-        else{
-            for (let i = 0; i < 6; i++) {
-              this.ForecastPro[i] = parseFloat((this.ForecastPro[i]+arr2[i]).toFixed(2));
-          }
-        }
-        if(this.ForecastStock.every((el: number) => el === 0))
-        {}
-        else{
-            for (let i = 0; i < 6; i++) {
-              this.ForecastStock[i] = parseFloat((this.ForecastStock[i]+arr[i]).toFixed(2));
-          }
-        }
         
 
         this.History = this.HistoryCon;
@@ -236,15 +240,38 @@ export class StatisticComponent  implements OnInit {
           this.hif[i].date1 = this.arrayData[i]
           this.hif[i].date2 = this.arrayData[i+7]
         }
-
+        const arr = [20.20,13.30,-5.00,0.00,-4.00,29.20,22.00,0.23,45.00,58.98,74.22,12.44,22.11];
+        const arr2 = [20.20,13.30,-5.00,0.00,-4.00,29.20,22.00,0.23,45.00,58.98,74.22,12.44,22.11];
         let br = 0;
         for (let i = 3; i < 6; i++) {
           this.HistoryCon3[br] = this.HistoryCon[i];
           this.HistoryPro3[br]= this.HistoryPro[i];
           this.HistoryStock3[br] = this.HistoryStock[i];
-          this.ForecastCon3[br] = parseFloat((this.ForecastCon[i]+arr[i]).toFixed(2));
-          this.ForecastPro3[br] = parseFloat((this.ForecastPro[i]+arr2[i]).toFixed(2));
-          this.ForecastStock3[br] = parseFloat((this.ForecastStock[i]+arr[i]).toFixed(2));
+          if(this.ForecastCon[i] != 0)
+          {
+            this.ForecastCon3[br] = parseFloat((this.ForecastCon[i]+arr[i]).toFixed(2));
+          }
+          else{
+            this.ForecastCon3[br] = 0;
+          }
+
+          if(this.ForecastPro[i] != 0)
+          {
+            this.ForecastPro3[br] = parseFloat((this.ForecastPro[i]+arr2[i]).toFixed(2));
+          }
+          else
+          {
+            this.ForecastPro3[br] = 0
+          }
+
+          if(this.ForecastStock[i] !=0)
+          {
+            this.ForecastStock3[br] = parseFloat((this.ForecastStock[i]+arr[i]).toFixed(2));
+          }
+          else{
+            this.ForecastStock3[br] = 0
+          }
+          
           this.arrayData3[br] = this.arrayData[i];
           br++;
         }
@@ -258,7 +285,28 @@ export class StatisticComponent  implements OnInit {
           this.arrayData3[br] = this.arrayData[i];
           br++;
         }
-
+        if(this.ForecastCon.every((el: number) => el === 0))
+        {this.ForecastCon[5] = null}
+        else{
+            for (let i = 0; i < 6; i++) {
+              this.ForecastCon[i] = parseFloat((this.ForecastCon[i]+arr[i]).toFixed(2));
+          }
+        }
+        if(this.ForecastPro.every((el: number) => el === 0))
+        {this.ForecastPro[5] = null}
+        else{
+            for (let i = 0; i < 6; i++) {
+              this.ForecastPro[i] = parseFloat((this.ForecastPro[i]+arr2[i]).toFixed(2));
+          }
+        }
+        if(this.ForecastStock.every((el: number) => el === 0))
+        {this.ForecastStock[5] = null}
+        else{
+            for (let i = 0; i < 6; i++) {
+              this.ForecastStock[i] = parseFloat((this.ForecastStock[i]+arr[i]).toFixed(2));
+          }
+        }
+        this.loader = false;
 
       });
   }
@@ -270,7 +318,7 @@ export class StatisticComponent  implements OnInit {
   arrayDataM = [];
 
   getHistoryAndForecastByDayForAllDevicesByMonth() {
-    this.deviceService.GetHistoryAndForecastByDayForAllDevices("monthhistory").subscribe(data => {
+    this.deviceService.GetHistoryAndForecastByDayForAllUserDevices(this.id,"monthhistory").subscribe(data => {
       this.arrayDataM = data.dates; //.slice(0, 7).concat(data.dates.slice(8));
       this.HistoryConM = data.totaldatasConsumer.map((val: number) => +val.toFixed(2));
       this.HistoryProM = data.totaldatasProducer.map((val: number) => +val.toFixed(2));
@@ -298,7 +346,7 @@ export class StatisticComponent  implements OnInit {
   arrayDataY:any = [];
 
   getHistoryAndForecastByDayForAllDevicesByYear() {
-    this.deviceService.GetHistoryAndForecastByDayForAllDevices("year").subscribe(data => { 
+    this.deviceService.GetHistoryAndForecastByDayForAllUserDevices(this.id,"year").subscribe(data => { 
       this.HistoryConY = data.totaldatasConsumer.map((val: number) => +val.toFixed(2));
       this.HistoryProY = data.totaldatasProducer.map((val: number) => +val.toFixed(2));
       this.HistoryStockY = data.totaldatasStock.map((val: number) => +val.toFixed(2));
@@ -318,13 +366,19 @@ export class StatisticComponent  implements OnInit {
   }
 
   
- ngOnInit(): void {
-   this.getDevicePerRoom();
-   this.getHistoryAndForecastByDayForAllDevices();
-   this.getHistoryAndForecastByDayForAllDevicesByMonth();
-   this.getHistoryAndForecastByDayForAllDevicesByYear();
-   this.getDeviceComparison();
-   this.getConsumergetMaxMinAvgTotalPowerUsageByTimeForAllDevicesByType();
+ 
+  async ngOnInit(): Promise<void> {
+    const token = localStorage.getItem('token');
+    this.userService.isDark$.subscribe(dark => {
+      this.lightMode = !dark;
+     
+    });
+    this.getDevicePerRoom();
+    this.getHistoryAndForecastByDayForAllDevices();
+    this.getHistoryAndForecastByDayForAllDevicesByMonth();
+    this.getHistoryAndForecastByDayForAllDevicesByYear();
+    this.getDeviceComparison();
+    this.getConsumergetMaxMinAvgTotalPowerUsageByTimeForAllDevicesByType();
 
   }
   total: any;
@@ -332,10 +386,10 @@ export class StatisticComponent  implements OnInit {
   min: any;
   max: any;
 
-  TitleMin='Minimal consumed electricity this week';
-  TittleMax='Maximum consumed electricity this week';
-  TitleAverage='Average consumed electricity this week';
-  TitleTotal='Total consumed electricity this week';
+  TitleMin='Minimal consumed by day this week';
+  TittleMax='Maximal consumed by day this week';
+  TitleAverage='Average consumed by day this week';
+  TitleTotal='Total consumed by day this week';
 
   Consumertotal: any;
   Consumeraverage: any;
@@ -351,6 +405,14 @@ export class StatisticComponent  implements OnInit {
 
 
     this.deviceService.getMaxMinAvgTotalPowerUsageByTimeForUserDevicesByType(this.id,deviceType,this.selectedDate.code).subscribe(data => {
+      if(data==null)
+    {
+      this.max=0;
+      this.min= 0;
+      this.average=0;
+      this.total=0;
+    }
+  
       const keys = Object.keys(data);
       this.dataMin = keys[1];
       this.dataMax = keys[0];
@@ -396,16 +458,17 @@ theDay = "On the day: ";
       
       if(this.selectedDate.code == "week" && this.selectedHF.code == "both")
       {
-
+        this.Period = "week"
+        this.Title = "Consumption history & forecast"
 
         this.tableHiFWeek = true;
         this.miniHistory=this.miniHistoryCon;
         this.miniForecast=this.miniForecastCon;
 
-        this.TitleMin='Minimal consumed electricity this week';
-        this.TittleMax='Maximum consumed electricity this week';
-        this.TitleAverage='Average consumed electricity this week';
-        this.TitleTotal='Total consumed electricity this week';
+        this.TitleMin='Minimal consumed by day this week';
+        this.TittleMax='Maximal consumed by day this week';
+        this.TitleAverage='Average consumed by day this week';
+        this.TitleTotal='Total consumed by day this week';
         this.theDay = "On the day: ";
 
         this.max=this.Consumermax;
@@ -451,10 +514,12 @@ theDay = "On the day: ";
       }
       else if( this.selectedDate.code == "3 days" && this.selectedHF.code == "both")
       {
-        this.TitleMin='Minimal consumed electricity by 3 days';
-        this.TittleMax='Maximum consumed electricity by 3 days';
-        this.TitleAverage='Average consumed electricity by 3 days';
-        this.TitleTotal='Total consumed electricity by 3 days';
+        this.Period = "3 days"
+        this.Title = "Consumption history & forecast"
+        this.TitleMin='Minimal consumed by day for 3 days';
+        this.TittleMax='Maximal consumed by day for 3 days';
+        this.TitleAverage='Average consumed by day for 3 days';
+        this.TitleTotal='Total consumed by day for 3 days';
         this.theDay = "On the day: ";
 
         this.table = true;
@@ -477,10 +542,12 @@ theDay = "On the day: ";
       }
       else if( this.selectedDate.code == "3 days" && this.selectedHF.code == "forecast")
       {
-        this.TitleMin='Minimal consumed electricity by 3 days';
-        this.TittleMax='Maximum consumed electricity by 3 days';
-        this.TitleAverage='Average consumed electricity by 3 days';
-        this.TitleTotal='Total consumed electricity by 3 days';
+        this.Period = "3 days"
+        this.Title = "Consumption forecast"
+        this.TitleMin='Minimal consumed by day for 3 days';
+        this.TittleMax='Maximal consumed by day for 3 days';
+        this.TitleAverage='Average consumed by day for 3 days';
+        this.TitleTotal='Total consumed by day for 3 days';
         this.theDay = "On the day: ";
 
         this.name = "Consumption forecast"
@@ -492,10 +559,12 @@ theDay = "On the day: ";
       }
       else if( this.selectedDate.code == "week" && this.selectedHF.code == "forecast")
       {
-        this.TitleMin='Minimal consumed electricity this week';
-        this.TittleMax='Maximum consumed electricity this week';
-        this.TitleAverage='Average consumed electricity this week';
-        this.TitleTotal='Total consumed electricity this week';
+        this.Period = "week"
+        this.Title = "Consumption forecast"
+        this.TitleMin='Minimal consumed by day this week';
+        this.TittleMax='Maximal consumed by day this week';
+        this.TitleAverage='Average consumed by day this week';
+        this.TitleTotal='Total consumed by day this week';
         this.theDay = "On the day: ";
 
         this.name = "Consumption forecast"
@@ -507,10 +576,12 @@ theDay = "On the day: ";
       }
       else if( this.selectedDate.code == "week" && this.selectedHF.code == "history")
       {
-        this.TitleMin='Minimal consumed electricity this week';
-        this.TittleMax='Maximum consumed electricity this week';
-        this.TitleAverage='Average consumed electricity this week';
-        this.TitleTotal='Total consumed electricity this week';
+        this.Period = "week"
+        this.Title = "Consumption history"
+        this.TitleMin='Minimal consumed by day this week';
+        this.TittleMax='Maximal consumed by day this week';
+        this.TitleAverage='Average consumed by day this week';
+        this.TitleTotal='Total consumed by day this week';
         this.theDay = "On the day: ";
 
         this.name = "Consumption history"
@@ -522,10 +593,12 @@ theDay = "On the day: ";
       }
       else if( this.selectedDate.code == "month")
       {
-        this.TitleMin='Minimal consumed electricity this month';
-        this.TittleMax='Maximum consumed electricity this month';
-        this.TitleAverage='Average consumed electricity this month';
-        this.TitleTotal='Total consumed electricity this month';
+        this.Period = "month"
+        this.Title = "Consumption history"
+        this.TitleMin='Minimal consumed by day this month';
+        this.TittleMax='Maximal consumed by day this month';
+        this.TitleAverage='Average consumed by day this month';
+        this.TitleTotal='Total consumed by day this month';
         this.theDay = "On the day: ";
 
         this.name = "Consumption history"
@@ -537,10 +610,12 @@ theDay = "On the day: ";
         
       }
       else{
-        this.TitleMin='Minimal consumed electricity this year';
-        this.TittleMax='Maximum consumed electricity this year';
-        this.TitleAverage='Average consumed electricity this year';
-        this.TitleTotal='Total consumed electricity this year';
+        this.Period = "year"
+        this.Title = "Consumption history"
+        this.TitleMin='Minimal consumed by day this year';
+        this.TittleMax='Maximal consumed by day this year';
+        this.TitleAverage='Average consumed by day this year';
+        this.TitleTotal='Total consumed by day this year';
         this.theDay = "On the month: ";
 
         this.name = "Consumption history"
@@ -555,10 +630,10 @@ theDay = "On the day: ";
     }
     else if(this.selectedType.code == "Producer")
     {
-      this.TitleMin='Minimal produced electricity this week';
-      this.TittleMax='Maximum produced electricity this week';
-      this.TitleAverage='Average produced electricity this week';
-      this.TitleTotal='Total produced electricity this week';
+      this.TitleMin='Minimal produced by day this week';
+      this.TittleMax='Maximal produced by day this week';
+      this.TitleAverage='Average produced by day this week';
+      this.TitleTotal='Total produced by day this week';
       this.theDay = "On the day: ";
 
  
@@ -573,10 +648,12 @@ theDay = "On the day: ";
 
       if(this.selectedDate.code == "week" && this.selectedHF.code == "both")
       {
-        this.TitleMin='Minimal produced electricity this week';
-        this.TittleMax='Maximum produced electricity this week';
-        this.TitleAverage='Average produced electricity this week';
-        this.TitleTotal='Total produced electricity this week';
+        this.Period = "week"
+        this.Title = "Production history & forecast"
+        this.TitleMin='Minimal produced by day this week';
+        this.TittleMax='Maximal produced by day this week';
+        this.TitleAverage='Average produced by day this week';
+        this.TitleTotal='Total produced by day this week';
         this.theDay = "On the day: ";
 
         this.tableHiFWeek = true;
@@ -604,10 +681,12 @@ theDay = "On the day: ";
       }
       else if( this.selectedDate.code == "3 days" && this.selectedHF.code == "both")
       {
-        this.TitleMin='Minimal produced electricity by 3 days';
-        this.TittleMax='Maximum produced electricity by 3 days';
-        this.TitleAverage='Average produced electricity by 3 days';
-        this.TitleTotal='Total produced electricity by 3 days';
+        this.Period = "3 days"
+        this.Title = "Production history & forecast"
+        this.TitleMin='Minimal produced by day for 3 days';
+        this.TittleMax='Maximal produced by day for 3 days';
+        this.TitleAverage='Average produced by day for 3 days';
+        this.TitleTotal='Total produced by day for 3 days';
         this.theDay = "On the day: ";
 
         this.table = true;
@@ -630,10 +709,12 @@ theDay = "On the day: ";
       }
       else if( this.selectedDate.code == "3 days" && this.selectedHF.code == "forecast")
       {
-        this.TitleMin='Minimal produced electricity by 3 days';
-        this.TittleMax='Maximum produced electricity by 3 days';
-        this.TitleAverage='Average produced electricity by 3 days';
-        this.TitleTotal='Total produced electricity by 3 days';
+        this.Period = "3 days"
+        this.Title = "Production forecast"
+        this.TitleMin='Minimal produced by day for 3 days';
+        this.TittleMax='Maximal produced by day for 3 days';
+        this.TitleAverage='Average produced by day for 3 days';
+        this.TitleTotal='Total produced by day for 3 days';
         this.theDay = "On the day: ";
 
         this.name = "Production forecast"
@@ -645,10 +726,12 @@ theDay = "On the day: ";
       }
       else if( this.selectedDate.code == "week" && this.selectedHF.code == "forecast")
       {
-        this.TitleMin='Minimal produced electricity this week';
-        this.TittleMax='Maximum produced electricity this week';
-        this.TitleAverage='Average produced electricity this week';
-        this.TitleTotal='Total produced electricity this week';
+        this.Period = "week"
+        this.Title = "Production forecast"
+        this.TitleMin='Minimal produced by day this week';
+        this.TittleMax='Maximal produced by day this week';
+        this.TitleAverage='Average produced by day this week';
+        this.TitleTotal='Total produced by day this week';
         this.theDay = "On the day: ";
 
         this.name = "Production forecast"
@@ -660,10 +743,12 @@ theDay = "On the day: ";
       }
       else if( this.selectedDate.code == "week" && this.selectedHF.code == "history")
       {
-        this.TitleMin='Minimal produced electricity this week';
-        this.TittleMax='Maximum produced electricity this week';
-        this.TitleAverage='Average produced electricity this week';
-        this.TitleTotal='Total produced electricity this week';
+        this.Period = "week"
+        this.Title = "Production history"
+        this.TitleMin='Minimal produced by day this week';
+        this.TittleMax='Maximal produced by day this week';
+        this.TitleAverage='Average produced by day this week';
+        this.TitleTotal='Total produced by day this week';
         this.theDay = "On the day: ";
 
         this.name = "Production history"
@@ -674,10 +759,12 @@ theDay = "On the day: ";
       }
       else if( this.selectedDate.code == "month")
       {
-        this.TitleMin='Minimal produced electricity this week';
-        this.TittleMax='Maximum produced electricity this week';
-        this.TitleAverage='Average produced electricity this week';
-        this.TitleTotal='Total produced electricity this week';
+        this.Period = "month"
+        this.Title = "Production history"
+        this.TitleMin='Minimal produced by day this week';
+        this.TittleMax='Maximal produced by day this week';
+        this.TitleAverage='Average produced by day this week';
+        this.TitleTotal='Total produced by day this week';
         this.theDay = "On the day: ";
 
         this.name = "Production history"
@@ -687,10 +774,12 @@ theDay = "On the day: ";
         this.dates = this.arrayDataM;
       }
       else{
-        this.TitleMin='Minimal produced electricity this year';
-        this.TittleMax='Maximum produced electricity this year';
-        this.TitleAverage='Average produced electricity this year';
-        this.TitleTotal='Total produced electricity this year';
+        this.Period = "year"
+        this.Title = "Production history"
+        this.TitleMin='Minimal produced by day this year';
+        this.TittleMax='Maximal produced by day this year';
+        this.TitleAverage='Average produced by day this year';
+        this.TitleTotal='Total produced by day this year';
         this.theDay = "On the month: ";
 
         this.name = "Production history"
@@ -701,24 +790,25 @@ theDay = "On the day: ";
       }
     }
     else{
-      
       this.color1 = '#eb4886';
       this.color2 = '#f075a4';
 
-      this.TitleMin='Minimal stocked electricity this week';
-      this.TittleMax='Maximum stocked electricity this week';
-      this.TitleAverage='Average stocked electricity this week';
-      this.TitleTotal='Total stocked electricity this week';
+      this.TitleMin='Minimal stocked by day this week';
+      this.TittleMax='Maximal stocked by day this week';
+      this.TitleAverage='Average stocked by day this week';
+      this.TitleTotal='Total stocked by day this week';
       this.theDay = "On the day: ";
 
 
 
       if(this.selectedDate.code == "week" && this.selectedHF.code == "both")
       {
-        this.TitleMin='Minimal stocked electricity this week';
-      this.TittleMax='Maximum stocked electricity this week';
-      this.TitleAverage='Average stocked electricity this week';
-      this.TitleTotal='Total stocked electricity this week';
+        this.Period = "week"
+        this.Title = "Storage history & forecast"
+        this.TitleMin='Minimal stocked by day this week';
+      this.TittleMax='Maximal stocked by day this week';
+      this.TitleAverage='Average stocked by day this week';
+      this.TitleTotal='Total stocked by day this week';
       this.theDay = "On the day: ";
 
         this.tableHiFWeek = true;
@@ -744,10 +834,12 @@ theDay = "On the day: ";
       }
       else if( this.selectedDate.code == "3 days" && this.selectedHF.code == "both")
       {
-        this.TitleMin='Minimal stocked electricity by 3 days';
-        this.TittleMax='Maximum stocked electricity by 3 days';
-        this.TitleAverage='Average stocked electricity by 3 days';
-        this.TitleTotal='Total stocked electricity by 3 days';
+        this.Period = "3 days"
+        this.Title = "Storage history & forecast"
+        this.TitleMin='Minimal stocked by day for 3 days';
+        this.TittleMax='Maximal stocked by day for 3 days';
+        this.TitleAverage='Average stocked by day for 3 days';
+        this.TitleTotal='Total stocked by day for 3 days';
         this.theDay = "On the day: ";
 
         this.table = true;
@@ -770,10 +862,12 @@ theDay = "On the day: ";
       }
       else if( this.selectedDate.code == "3 days" && this.selectedHF.code == "forecast")
       {
-        this.TitleMin='Minimal stocked electricity by 3 days';
-        this.TittleMax='Maximum stocked electricity by 3 days';
-        this.TitleAverage='Average stocked electricity by 3 days';
-        this.TitleTotal='Total stocked electricity by 3 days';
+        this.Period = "3 days"
+        this.Title = "Storage forecast"
+        this.TitleMin='Minimal stocked by day for 3 days';
+        this.TittleMax='Maximal stocked by day for 3 days';
+        this.TitleAverage='Average stocked by day for 3 days';
+        this.TitleTotal='Total stocked by day for 3 days';
         this.theDay = "On the day: ";
 
         this.name1="Stock forecast";
@@ -785,10 +879,12 @@ theDay = "On the day: ";
       }
       else if( this.selectedDate.code == "week" && this.selectedHF.code == "forecast")
       {
-        this.TitleMin='Minimal stocked electricity this week';
-      this.TittleMax='Maximum stocked electricity this week';
-      this.TitleAverage='Average stocked electricity this week';
-      this.TitleTotal='Total stocked electricity this week';
+        this.Period = "week"
+        this.Title = "Storage forecast"
+        this.TitleMin='Minimal stocked by day this week';
+      this.TittleMax='Maximal stocked by day this week';
+      this.TitleAverage='Average stocked by day this week';
+      this.TitleTotal='Total stocked by day this week';
       this.theDay = "On the day: ";
 
         this.name1="Stock forecast";
@@ -800,10 +896,12 @@ theDay = "On the day: ";
       }
       else if( this.selectedDate.code == "week" && this.selectedHF.code == "history")
       {
-        this.TitleMin='Minimal stocked electricity this week';
-      this.TittleMax='Maximum stocked electricity this week';
-      this.TitleAverage='Average stocked electricity this week';
-      this.TitleTotal='Total stocked electricity this week';
+        this.Period = "week"
+        this.Title = "Storage history"
+        this.TitleMin='Minimal stocked by day this week';
+      this.TittleMax='Maximal stocked by day this week';
+      this.TitleAverage='Average stocked by day this week';
+      this.TitleTotal='Total stocked by day this week';
       this.theDay = "On the day: ";
 
         this.name1="Stock history";
@@ -815,10 +913,12 @@ theDay = "On the day: ";
       }
       else if( this.selectedDate.code == "month")
       {
-        this.TitleMin='Minimal stocked electricity this month';
-      this.TittleMax='Maximum stocked electricity this month';
-      this.TitleAverage='Average stocked electricity this month';
-      this.TitleTotal='Total stocked electricity this month';
+        this.Period = "month"
+        this.Title = "Storage history"
+        this.TitleMin='Minimal stocked by day this month';
+      this.TittleMax='Maximal stocked by day this month';
+      this.TitleAverage='Average stocked by day this month';
+      this.TitleTotal='Total stocked by day this month';
       this.theDay = "On the day: ";
 
         this.name1="Stock history";
@@ -828,10 +928,12 @@ theDay = "On the day: ";
         this.dates = this.arrayDataM;
       }
       else{
-        this.TitleMin='Minimal stocked electricity this year';
-      this.TittleMax='Maximum stocked electricity this year';
-      this.TitleAverage='Average stocked electricity this year';
-      this.TitleTotal='Total stocked electricity this year';
+        this.Period = "year"
+        this.Title = "Storage history"
+        this.TitleMin='Minimal stocked by day this year';
+      this.TittleMax='Maximal stocked by day this year';
+      this.TitleAverage='Average stocked by day this year';
+      this.TitleTotal='Total stocked by day this year';
       this.theDay = "On the month: ";
       
         this.name1="Stock history";

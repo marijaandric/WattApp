@@ -4,15 +4,15 @@
   <div class="main-card">
     <div class="top-card">
       <div class="widgets">       
-        <app-widget [subTitle]="SubTitleToday" [Title]="Today +' kW/h'" [isBlue]="true" [isBgBlue]="true" class="widget">
+        <app-widget [subTitle]="SubTitleToday" [Title]="Today +' kWh'" [isBlue]="true" [isBgBlue]="true" class="widget">
         </app-widget>
-        <app-widget [subTitle]="SubTitleWeek" [Title]="Week+' kW/h'" [isYellow]="true" [isBgYellow]="true" class="widget">
+        <app-widget [subTitle]="SubTitleWeek" [Title]="Week+' kWh'" [isYellow]="true" [isBgYellow]="true" class="widget">
         </app-widget>
-        <app-widget [subTitle]="SubTitleMonth" [Title]="Month+' kW/h'" [isPink]="true" [isBgPink]="true" class="widget">
+        <app-widget [subTitle]="SubTitleMonth" [Title]="Month+' kWh'" [isPink]="true" [isBgPink]="true" class="widget">
         </app-widget>
-        <app-widget  [subTitle]="SubTitleYear" [Title]="Year+' kW/h'" [isOrange]="true" [isBgOrange]="true" class="widget">
+        <app-widget  [subTitle]="SubTitleYear" [Title]="Year+' kWh'" [isOrange]="true" [isBgOrange]="true" class="widget">
         </app-widget>
-        <app-widget  [subTitle]="SubTitleAll" [Title]="Year+' kW/h'" [isBlue]="true" [isBgBlue]="true" class="widget">
+        <app-widget  [subTitle]="SubTitleAll" [Title]="Year+' kWh'" [isBlue]="true" [isBgBlue]="true" class="widget">
         </app-widget>
       </div>
     </div>  
@@ -20,7 +20,7 @@
     <div class="bottom-card">
       <div class="bottom-left-card">
         <div class="bottom-left-top-card">
-            <div id="deviceInformation" class="flexColumn device-information" >
+            <div id="deviceInformation" class="flexColumn device-information" [ngClass]="{'light-mode-device-info': lightMode,'dark-mode-device-info':!lightMode}">
               <div class="flexRow">
 
                 <img *ngIf="isPhone" src="../.../../../../../../assets/icons/images/icons8-iphone-14-50.png">
@@ -50,52 +50,103 @@
                 <img *ngIf="isIron" src="../.../../../../../../assets/icons/images/icons8-iron-high-temperature-50.png">
                 <img *ngIf="isLamp" src="../.../../../../../../assets/icons/images/icons8-lamp-50.png">
                 <img *ngIf="isBulb" src="../.../../../../../../assets/icons/images/icons8-bulb-50.png">
+                <img *ngIf="isSmallWindTurbine" src="../.../../../../../../assets/icons/images/icons8-wind-turbine-50.png">
+                <img *ngIf="isPortableGenerator" src="../.../../../../../../assets/icons/images/icons8-generator-60.png">
+                <img *ngIf="isBicycleGenerator" src="../.../../../../../../assets/icons/images/icons8-automotive-generator-50.png">
+                <img *ngIf="isPowerBank" src="../.../../../../../../assets/icons/images/icons8-charging-battery-48.png">
+               
                 <img *ngIf="isOther" src="../.../../../../../../assets/icons/images/icons8-multiple-devices-50.png">
           
-                  <div class="colored-text" ><h5 style="margin-top:10px">{{device.deviceName}}</h5></div>
-                  <p-inputSwitch [(ngModel)]="isChecked" (click)="showDialog2()" class="margin-left__auto width__fit-content"></p-inputSwitch>
+                  <div class="colored-text" ><h5 style="margin-top:10px" [ngClass]="{'color-blue': isConsumer, 'color-purple': isProducer, 'color-pink': isStock}">{{device.deviceName}}</h5></div>
+                  <p-inputSwitch [(ngModel)]="isChecked" (click)="showDialog2()" class="margin-left__auto width__fit-content" style="padding-top:10px;"></p-inputSwitch>
               </div>
         
-              <div style="height:100% ;justify-content:center">
-                <div class="flexRow" style="margin-top:16px">
-                  <span>ID:</span>
-                  <span class="margin-left__auto text-secondary">{{ device.id }}</span>
-                </div>
-          
+              <div style="height:100% ;justify-content:center" #adddv7>
+                
                 <div class="flexRow" style="margin-top:10px">
-                  <span >Model:</span>
+                  <span >Type:</span>
                   <span class="margin-left__auto text-secondary">{{ device.deviceModel }}</span>
+                </div>
+
+                <div class="flexRow" style="margin-top:16px">
+                  <span>Model:</span>
+                  <span class="margin-left__auto text-secondary">{{ device.model }}</span>
                 </div>
           
                 <div class="flexRow"style="margin-top:10px" >
-                  <span>Type:</span>
+                  <span>Category:</span>
                   <span class="margin-left__auto text-secondary">{{ device.deviceType }}</span>
                 </div>
           
                 <div class="flexRow"style="margin-top:10px">
-                  <span>Room:</span>
+                  <span>Location:</span>
                   <span class="margin-left__auto text-secondary">{{ device.room }}</span>
                 </div>
-          
-                <div class="flexRow"style="margin-top:20px">
-                  <span>Visible to operators:</span>
-                  <p-inputSwitch [(ngModel)]="device.allowOperatorVisibility " (ngModelChange)="promijeniStanjeprviPrekidac()"  (onChange)="handleVisibilitySwitchChange()" class="margin-left__auto width__fit-content"/>
+
+                <div class="flexRow" style="margin-top:16px">
+                  <span>Manufacturer:</span>
+                  <span class="margin-left__auto text-secondary">{{ device.manufacturer }}</span>
                 </div>
           
-                <div class="flexRow margin-top__8px">
-                  <span >Managed by operators:</span>
-                  <p-inputSwitch [(ngModel)]="device.allowOperatorControll" (ngModelChange)="promijeniStanjeDrugiPrekidac()" (onChange)="handleManagementSwitchChange()" class="margin-left__auto width__fit-content"/>
+                <div class="flexRow" style="margin-top:16px">
+                  <span>Manufacturing Year:</span>
+                  <span class="margin-left__auto text-secondary">{{ device.manufacturingYear }}</span>
                 </div>
+
+                <div *ngIf="device.deviceType != 'Stock'" class="flexRow" style="margin-top:16px">
+                  <span>Power:</span>
+                  <span class="margin-left__auto text-secondary">{{ device.power }} W</span>
+                </div>
+
+                <div *ngIf="device.deviceType == 'Stock'" class="flexRow" style="margin-top:16px">
+                  <span>Capacity:</span>
+                  <span class="margin-left__auto text-secondary">{{ device.power }} Ah</span>
+                </div><br>
+                
+
+                <p-overlayPanel id="opis-dijalog" #op [style]="{'width': '350px'}" [showCloseIcon]="false"  [ngClass]="{'light-mode':lightMode, 'dark-mode':!lightMode}" [appendTo]="op">
+                  <div *ngIf="device.deviceType == 'Stock'">
+                  <div style="margin-top:20px">
+                    <h5>Battery lifespan:</h5>
+                    <div class="margin-right__auto width__fit-content"> {{ formatBatteryLife(calculateBatteryLife(device.power, 200, 0.7)) }} </div>
+                  </div>
+                  <br>
+                  </div>
+
+                  <div *ngIf="device.deviceType != 'Stock'">
+                    <div style="margin-top:20px">
+                      <h5>Estimated CO2 Emission:</h5>
+                      <div class="margin-right__auto width__fit-content">{{ (device.power * 24 * 0.0550) / 1000 }} kg</div>
+                    </div>
+                    <br>
+                    </div>
+
+                  <h5>DSO control</h5>
+                  <div class="flexRow"style="margin-top:20px">
+                    <span>Visible to operators:</span>
+                    <p-inputSwitch [(ngModel)]="device.allowOperatorVisibility " (ngModelChange)="promijeniStanjeprviPrekidac()"  (onChange)="handleVisibilitySwitchChange()" class="margin-left__auto width__fit-content"/>
+                  </div>
+            
+                  <div class="flexRow margin-top__8px">
+                    <span >Managed by operators:</span>
+                    <p-inputSwitch [(ngModel)]="device.allowOperatorControll" (ngModelChange)="promijeniStanjeDrugiPrekidac()" (onChange)="handleManagementSwitchChange()" class="margin-left__auto width__fit-content"/>
+                  </div>
+
+                </p-overlayPanel>
+
                 <div class="flexRow margin-top__8px ">
+                  <div class="button-div">
+                    <p-button (click)="op.toggle($event)" label="Manage"/>
+                  </div>
                   <div class="button-div">
                   <p-button label="Edit" (click)="showEditDeviceDialog()" />
                   </div>
-                  <div class="button-div">
-                  <p-button label="Schedule"/>
-                  </div>
                   <div class="remove-or-no"><p-button label="Delete" (onClick)="showDialog()" /></div>
                 </div>  
+                
+            
               </div>
+              
             </div>
 
             <div class="stats-cards">
@@ -109,46 +160,53 @@
 
         </div>
 
-        <app-history-forecast id="oneChart"  style="width: 100%;
-        background: linear-gradient(180deg, #151515 50%, #0d0d0d 100%)  !important;" [boja1]="color1" [boja2]="color2" [naziv1]="name1" [naziv2]="name2" [array] = "History" [array2]="Forecast" [array3] = "dates" class="chart" id="oneChart"></app-history-forecast>
+        <app-history-forecast id="oneChart"  style="width: 100%;" [boja1]="color1" [boja2]="color2" [naziv1]="name1" [naziv2]="name2" [array] = "History" [array2]="Forecast" [array3] = "dates" [Title]="Title" [Period]="Period" class="chart" id="oneChart"></app-history-forecast>
 
       </div>
 
       <div class="bottom-right-card pdd-div">
         <div class="display:flex;position:relative; width:100%; height:fit-content;">
-          <div style="width:100%; height:fit-content; display:flex; flex-direction:row;margin-bottom:12px;">
-            <p-dropdown [options]="type2" appendTo="body" [(ngModel)]="selectedHF"  optionLabel="name" (onChange)="updateType3()" >
-            </p-dropdown>
-            <p-dropdown [options]="type3" appendTo="body" [(ngModel)]="selectedDate" optionLabel="name" (onChange)="dropdownChange()" >
-            </p-dropdown>
+          <div style="width:100%; height:fit-content; display:flex; flex-direction:row;margin-bottom:20px;" class="pdd-div ovrplnl">
+            <span><i [ngClass]="{'light-theme-color-gray-323232':lightMode}" class="fa fa-info-circle" style="cursor:pointer; padding-top: 10px; width: 30px;font-size:20px" aria-hidden="true" (click)="op2.toggle($event)"></i></span>
+            <p-overlayPanel #op2 [ngClass]="{'light-mode':lightMode, 'dark-mode':!lightMode}"  [appendTo]="op2">
+              <p style="width:350px">In this application, you can analyze different aspects of energy usage.</p>
+              <p style="width:350px">
+                The first dropdown allows you to choose the data type you want to analyze. Select the appropriate option based on the aspect you are interested in, such as historical data, forecasted data, or a combination of both.
+
+                The second dropdown enables you to specify the time range for your analysis. Choose from options like 'History', 'Forecast', or 'History & Forecast' to focus on the desired timeframe for your data analysis.
+
+                Lastly, the third dropdown lets you select the duration or period you want to analyze. You can choose predefined time periods like 'Last week', 'Last month', or specify a custom range.
+
+                By utilizing these dropdowns effectively, you can gain valuable insights into energy usage patterns and trends within the selected timeframe.</p>
+            </p-overlayPanel>
+            <div [ngClass]="{'light-mode':lightMode,'dark-mode':!lightMode}" ><p-dropdown [options]="type2" [(ngModel)]="selectedHF"  optionLabel="name" (onChange)="updateType3()" >
+            </p-dropdown></div>
+            <div [ngClass]="{'light-mode':lightMode,'dark-mode':!lightMode}" ><p-dropdown [options]="type3" [(ngModel)]="selectedDate" optionLabel="name" (onChange)="dropdownChange()" >
+            </p-dropdown> </div>
           </div>
         </div>
         <app-history-forecast-table *ngIf="table"
         style="
-        margin-top:32px;
+        margin-top:45px;
         display: flex;
         position: relative;
         flex-direction: column;
         height: fit-content;
         border-radius: 20px;
-        background: linear-gradient(180deg, #151515 50%, #0d0d0d 100%) ;
-        box-shadow: 5px 5px 15px black;
         transition: ease-in-out;
         padding:10px 20px 30px 20px;
-        " [name1]="name1" [name2]="name2" [hif]="hif"></app-history-forecast-table>
+        " [name1]="name1" [name2]="name2" [hif]="hif" [ngClass]="{'light-mode':lightMode,'dark-mode':!lightMode,'dark-mode2':!lightMode}" ></app-history-forecast-table>
         <app-history-or-forecast-table  *ngIf="!table"
         style="
-          margin-top:32px;
+          margin-top:45px;
           display: flex;
           position: relative;
           flex-direction: column;
           height: fit-content;
           width: 100%;
           border-radius: 20px;
-          background: linear-gradient(180deg, #151515 50%, #121212 100%) ;
-          box-shadow: 5px 5px 15px black;
           transition: ease-in-out;
-          padding:10px 20px 30px 20px;"  [name]="name" [History]="History" [Forecast]="Forecast" [dates]="dates" >
+          padding:10px 20px 30px 20px;" [ngClass]="{'light-mode':lightMode,'dark-mode':!lightMode,'dark-mode2':!lightMode}"   [name]="name" [History]="History" [Forecast]="Forecast" [dates]="dates" >
           </app-history-or-forecast-table>
       </div>
     </div>
@@ -156,32 +214,42 @@
 </div>
 
 
-<p-dialog id="editDeviceDialogId" [style]="{width:'40%'}"
+<p-dialog id="editDeviceDialogId" [style]="{width:'40%'}" #adddv3
   [draggable]="false" [keepInViewport]="true" [resizable]="false" 
-  [blockScroll]="true" [closeOnEscape]="true" 
+  [blockScroll]="true" [closeOnEscape]="true"  [ngClass]="{'light-mode':lightMode, 'dark-mode':!lightMode}"
   [modal]="true" [(visible)]="displayEditDeviceDialog" [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
   [closable]="true" >
   <ng-template pTemplate="header" class="header-dialog">
-    <span>Edit device</span>
+    <span>Edit device<i class="fa fa-info-circle" style="cursor:pointer" aria-hidden="true" (click)="op3.toggle($event)"></i> </span>
+    <p-overlayPanel #op3 [ngClass]="{'light-mode':lightMode, 'dark-mode':!lightMode}" [appendTo]="adddv3">
+      <p style="width:350px">Dear user,</p> 
+      <p style="width:350px">You must fill in all fields. In the power or capacity field, enter only numbers.</p>
+      <p style="width:350px">If an error occurs while adding your device and you have followed the steps, please consult with your nearest operator for assistance.</p>
+    </p-overlayPanel>
   </ng-template>
   
   <ng-template pTemplate="content">
-    <form id="editDeviceDialogForm" >  
-      <div class="p-inputgroup p-inputtext-lg p-input-filled">
-        <div class="half">
-          Device type
-          <div class="dropdown-div" style="margin-bottom:20px"><p-dropdown [options]="types" [(ngModel)]="typeSelected" name="typeSelected" appendTo="body" optionLabel="name" />
-          </div>Device model
-          <div class="dropdown-div"><p-dropdown [options]="models" [(ngModel)]="modelSelected" name="modelSelected" appendTo="body" optionLabel="name" />
-        </div></div> 
+    <form id="editDeviceDialogForm" [formGroup]="addDeviceForm"> 
+      <div class="p-inputgroup p-inputtext-lg p-input-filled"> 
+      <div class="half"> 
+        <span>Device category</span>
+        <div class="dropdown-div" style="margin-bottom:20px;"><div [ngClass]="{'light-mode':lightMode,'dark-mode':!lightMode}" ><p-dropdown [options]="types"  (onChange)="onTypeChange($event)"  name="typeSelected" [appendTo]="adddv3" optionLabel="name"  /></div></div>
+        <span>Device type</span>
+        <div class="dropdown-div" style="margin-bottom:20px;"><div [ngClass]="{'light-mode':lightMode,'dark-mode':!lightMode}" ><p-dropdown [options]="models" (onChange)="onModelChange($event)" name="modelSelected"  [appendTo]="adddv3" optionLabel="name"  /></div></div>
+        <span>Location</span>
+        <div class="dropdown-div" style="margin-bottom:20px;"><div [ngClass]="{'light-mode':lightMode,'dark-mode':!lightMode}" ><p-dropdown [options]="rooms" (onChange)="onRoomChange($event)"  name="roomSelected"  [appendTo]="adddv3" optionLabel="name" /></div></div>
         
-        <div class="half">
-            Room
-            <div class="dropdown-div" style="margin-bottom:20px"><p-dropdown [options]="rooms" [(ngModel)]="roomSelected" name="roomSelected" appendTo="body" optionLabel="name" />
-            </div>Name
-            <input style="margin-top:0px;" [(ngModel)]="nameSelected" name="nameSelected" appendTo="body" type="text" class="p-inputtext-lg" placeholder="DEVICE NAME"> 
-        </div>
-      </div> 
+      </div>
+      
+      <div class="half">
+        <input formControlName="deviceName" name="deviceName"  type="text"   class="p-inputtext-lg"  placeholder="DEVICE NAME" style="margin-top:2px;">
+        <input formControlName="model" name="model"  type="text"   class="p-inputtext-lg"  placeholder="DEVICE MODEL" style="margin-top:0px;">  
+        <input *ngIf="typeSelected.name == 'Stock'" formControlName="power" name="power"  type="text"   class="p-inputtext-lg"  placeholder="CAPACITY in Ah" style="margin-top:0px;"> 
+        <input *ngIf="typeSelected.name != 'Stock'" formControlName="power" name="power"  type="text"   class="p-inputtext-lg"  placeholder="POWER in W" style="margin-top:0px;"> 
+        <input formControlName="manufacturer" name="manufacturer"  type="text"   class="p-inputtext-lg"  placeholder="MANUFACTURER" style="margin-top:0px;"> 
+        <input formControlName="manufacturingYear" name="manufacturingYear"  type="text"   class="p-inputtext-lg"  placeholder="MANUFACTURING YEAR" style="margin-top:0px;">       
+      </div>
+    </div>
     </form>
   </ng-template>
 
@@ -198,7 +266,7 @@
 
 <p-dialog [style]="{width:'20%'}" header="Title"  [transitionOptions]="'3ms'" 
 [draggable]="false" [keepInViewport]="true" [resizable]="false" 
-[blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true" 
+[blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true"  [ngClass]="{'light-mode':lightMode, 'dark-mode':!lightMode}"
 [modal]="true" [(visible)]="display3" [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
 [closable]="true" >
 <ng-template pTemplate="header" class="header-dialog">
@@ -207,9 +275,10 @@
 
 <ng-template pTemplate="center">
   <div class="delete-device-content">
+    <span>
     Are you sure you want to delete the device?
     All data will be deleted and you will not be able to recover it.
-
+  </span>
   </div>
 </ng-template>
 
@@ -223,13 +292,22 @@
 </ng-template>
 </p-dialog>
 
-<p-dialog [style]="{width:'300px',height:'200px'}" header="Title"  [transitionOptions]="'3ms'" 
+<p-dialog [style]="{width:'300px',height:'360px'}" header="Title"  [transitionOptions]="'3ms'" 
 [draggable]="true" [keepInViewport]="true" [resizable]="false" 
-[blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true" 
+[blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true" [ngClass]="{'light-mode':lightMode, 'dark-mode':!lightMode}"
 [modal]="true" [(visible)]="display2" [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
 [closable]="true" >
 <ng-template pTemplate="header" class="header-dialog">
-  <span >Are you sure you want to change the device activity?</span>
+  <span >Turn on/off</span>
+</ng-template>
+
+<ng-template pTemplate="center" >
+  <div class="delete-device-content">
+  
+    <span *ngIf="isChecked">Are you sure you want to turn off the {{device?.deviceName}}?</span>
+    <span *ngIf="!isChecked">Are you sure you want to turn on the {{device?.deviceName}}?</span>
+  
+  </div>
 </ng-template>
 
 <ng-template pTemplate="footer">

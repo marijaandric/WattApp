@@ -1,9 +1,9 @@
 
-<div class="item_bg"  [ngClass]="{'bg-blue-color' : isBgBlue, 'bg-yellow-color' : isBgYellow, 'bg-pink-color' : isBgPink, 'bg-orange-color' : isBgOrange}"></div>
+<div  class="item_bg"   [ngClass]="{'bg-blue-color' : isBgBlue, 'bg-yellow-color' : isBgYellow, 'bg-pink-color' : isBgPink, 'bg-orange-color' : isBgOrange}"></div>
 <!--<img style="float:left; z-index:2; position:relative; width:3rem; height:3rem;" src="../../../../../assets/icons/images/coins-green.png">
 -->
 <div class="item_date-box" [ngClass]="{'blue-color' : isBlue, 'yellow-color' : isYellow, 'pink-color' : isPink, 'orange-color' : isOrange}">
     {{subTitle}} 
 </div>
-<div class="item_title">{{Title}}
+<div [ngClass]="{'light-theme-text-color-dark-gray': !lightMode}" class="item_title">{{Title}}
 </div>

@@ -5,12 +5,15 @@
       width:100%;
       height:100%;
       border-radius: 20px;
-      background: linear-gradient(180deg, #1e1e1e 50%, #121212 100%) ;
+      /*
       box-shadow: 5px 5px 15px black;
+      */
       transition: ease-in-out;
       z-index: 1;
 }
-
+:host {
+      border-radius: 20px;
+}
   
 button:hover{
       background: none;

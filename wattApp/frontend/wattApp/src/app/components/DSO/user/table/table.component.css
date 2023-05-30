@@ -1,0 +1,29 @@
+
+.light-mode2 {
+  box-shadow: 8px 8px 35px -15px rgb(200, 200, 200) !important;
+    border-radius: 20px;
+    margin-bottom:32px;
+  }
+  
+
+.light-mode {
+    color:#323232 !important;
+}
+
+
+.dark-mode2 {
+    background: linear-gradient(180deg, #151515 30%, #0d0d0d 100%) ;
+    box-shadow: 5px 5px 15px black !important; 
+    border-radius: 20px;
+    margin-bottom:32px;
+
+    
+  }
+
+.dark-mode2 td a {
+    color:white !important;
+}
+
+.dark-mode {
+    color:white !important;
+}

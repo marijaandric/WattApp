@@ -16,7 +16,6 @@
 
 a{
     text-decoration: none;
-    color:white;
 }
 
 .hidden {
@@ -40,3 +39,33 @@ a{
     transform:rotate(-90deg);
     transition-duration: 0.3s;
 }
+
+.light-mode2 {
+    box-shadow: 8px 8px 32px -5px rgb(200, 200, 200); 
+    border-radius: 20px;
+    margin-bottom:32px;
+  }
+  
+
+.light-mode {
+    color:#323232 !important;
+}
+
+
+.dark-mode2 {
+    background: linear-gradient(180deg, #191919 30%, #121212 100%) ;
+    box-shadow: 5px 5px 15px black !important; 
+    border-radius: 20px;
+    margin-bottom:32px;
+
+    
+  }
+
+.dark-mode2 td a {
+    color:white !important;
+}
+
+.dark-mode {
+    color:white !important;
+}
+

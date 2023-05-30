@@ -1,0 +1,130 @@
+p{
+    margin: 5px;
+    font-size: 1.2em;
+    color:rgb(255, 255, 255);
+}
+
+:host{
+    display:flex;
+    color: white;
+    position: relative;
+    flex-direction: column;
+    background-color: transparent;
+    /*
+    background: linear-gradient(180deg, #1e1e1e 30%, #121212 100%) ;
+    */
+    border-radius: 20px;
+    width: 100%;
+    padding:20px;
+    width:450px;
+    /*
+    box-shadow: 5px 5px 15px black;
+    */
+}
+.remove-btn {
+    float:right !important;
+    background: linear-gradient(135deg,#eb4886,#f075a4) !important;
+}
+button {
+    margin: auto;
+    border: none;
+    min-width: 120px;
+    border-radius: 32px;
+    display: block;
+    background: linear-gradient(45deg, #46c5f1 10%, #5245b7 100%);
+    color: #fff;
+    box-shadow: 2px 2px 10px black;
+  font-size: 16px;
+  color:white;
+  padding:8px 20px;
+  }
+
+h6 {
+    padding-left:10px;
+}
+
+.pen:hover {
+    color:#46c5f1;
+    transition:vsc;
+    transition-duration: 0.5s;
+}
+
+@keyframes vsc {
+    0% {
+        rotate:0deg;
+    }
+    10% {
+        transform:rotate(10deg);
+    }
+    30% {
+        transform:rotate(-10deg);
+    }
+    45% {
+        transform:rotate(5deg);
+    }
+    55% {
+        transform:rotate(-5deg);
+    }
+    60% {
+        transform:rotate(0deg);
+    }
+}
+
+/* .pen-container {
+    position: absolute;
+    width:30px;
+    left:250px;
+    top:25px;
+    cursor: pointer;
+    height:30px;
+    padding:6px;
+    font-size:12px;
+    border-radius: 50%;
+    /*
+    background: #1e1e1e;
+    box-shadow: 2px 2px 5px black;
+    */
+    /* box-shadow: 2px 2px 5px rgb(139, 139, 139); */ */
+/* } */
+
+
+button:hover{
+    background: #3b3b3b;
+    box-shadow: none;
+  }
+
+
+
+li{
+    padding-left: 0rem !important;
+    padding:10px 10px;
+    color: white;
+    background-color: transparent;
+}
+
+.text-secondary {
+    font-family: 'Montserrat', sans-serif;
+}
+
+@media only screen and (max-width: 820px) {
+    .pen-container {
+        left:220px;
+        top:25px;
+        cursor: pointer;
+    }
+
+    .text-secondary {
+        margin-left:auto;
+    }
+    
+}
+
+@media only screen and (max-width: 390px) {
+    .pen-container {
+        left:200px;
+        top:25px;
+        cursor: pointer;
+    }
+    
+}
+

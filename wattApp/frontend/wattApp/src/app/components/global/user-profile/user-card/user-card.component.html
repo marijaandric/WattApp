@@ -1,11 +1,11 @@
 
 <div class="d-flex flex-column align-items-center text-center" style="width:100%;">
-  <img [src]="userImageUrlEndpoint" class="rounded-circle" style="background-color: white;" width="110" height="110">
-  <div class="pen-container" (click)="showDialog3()">
+  <img [src]="userImageUrlEndpoint" class="rounded-circle"  width="110" height="110">
+  <div class="pen-container" (click)="showDialog3()" [ngClass]="{'light-theme-text-color-black':!lightMode,'light-theme-background-white':!lightMode,'dark-theme-smaller-shadow':lightMode,'light-theme-smaller-shadow':!lightMode,'dark-theme-background-1b1b1b':lightMode,'color-white':lightMode}">
     <i class="pen fa-solid fa-pen"></i>
   </div>  
-  <div class="mt-3">
-        <h3 style="margin-bottom: 30px;">{{ userInfo?.firstName }} {{ userInfo?.lastName }}</h3>
+  <div class="mt-3" style="margin-bottom:20px;">
+        <h3 style="margin-bottom: 30px;" class="username-title" [ngClass]="{'text-color-blue':!lightMode}">{{ userInfo?.firstName }} {{ userInfo?.lastName }}</h3>
         <h3 style="margin-bottom: 30px;"></h3>
         <div class="flexRow button-div" style="justify-content:center">
           <p-button label="Edit" (click)="showDialog()"></p-button>
@@ -13,13 +13,18 @@
         </div>
 
         <!--Dialog-->
-        <p-dialog header="Title" [style]="{width:'40%'}"  [transitionOptions]="'3ms'" 
+        <p-dialog header="Title" [style]="{width:'40%'}"  [transitionOptions]="'3ms'" #edProfile
           [draggable]="false" [keepInViewport]="true" [resizable]="false" 
-          [blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true" 
+          [blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true"  [ngClass]="{'light-mode':!lightMode, 'dark-mode':lightMode}" 
           [modal]="true" [(visible)]="display" [breakpoints]="{'1360px': '85vw', '740px': '100vw'}"
           [closable]="true">
           <ng-template pTemplate="header" class="header-dialog">
-            <span>Manage user</span>
+            <span>Manage user <i class="fa fa-info-circle" style="cursor:pointer" aria-hidden="true" (click)="op.toggle($event)"></i> </span>
+            <p-overlayPanel #op [ngClass]="{'light-mode':lightMode, 'dark-mode':!lightMode}" [appendTo]="edProfile">
+              <p style="width:350px">Dear user,</p> 
+              <p style="width:350px">Please make sure to fill out all the required fields when editing your profile. The email must be in the format firstPart@secondPart.thirdPart, with the firstPart containing at least 4 letters, and the secondPart and thirdPart having a minimum of 2 and a maximum of 4 letters.</p>
+              <p style="width:350px">Additionally, we kindly ask you to include the city name in the location field when updating it. Once you've made the changes, pressing Enter will display the updated location on the map. You can also click on the map to navigate to the specific location you clicked on.</p>
+            </p-overlayPanel>
           </ng-template>
           
           <ng-template pTemplate="center">
@@ -57,28 +62,28 @@
     </div>
 </div>
 <ul class="list-group list-group-flush">
-    <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap" >
-        <h6 class="mb-0">Full Name</h6>
+    <li class=" d-flex justify-content-between align-items-center flex-wrap" >
+        <h6 class="mb-0" [ngClass]="{'light-theme-text-color-black':!lightMode}">Full Name</h6>
         <span class="text-secondary">{{ userInfo?.firstName }} {{ userInfo?.lastName }}</span>
     </li>
-    <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-        <h6 class="mb-0">Username</h6>
+    <li class="d-flex justify-content-between align-items-center flex-wrap">
+        <h6 class="mb-0" [ngClass]="{'light-theme-text-color-black':!lightMode}">Username</h6>
         <span class="text-secondary">{{userInfo?.username}}</span>
     </li>
-    <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-        <h6 class="mb-0">Email</h6>
+    <li class="d-flex justify-content-between align-items-center flex-wrap">
+        <h6 class="mb-0" [ngClass]="{'light-theme-text-color-black':!lightMode}">Email</h6>
         <span class="text-secondary" >{{ userInfo?.email }}</span>
     </li>
-    <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-        <h6 class="mb-0">Phone</h6>
+    <li class=" d-flex justify-content-between align-items-center flex-wrap">
+        <h6 class="mb-0" [ngClass]="{'light-theme-text-color-black':!lightMode}">Phone</h6>
         <span class="text-secondary">{{userInfo?.phoneNumber}}</span>
     </li>
-    <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap">
-        <h6 class="mb-0">Address</h6>
+    <li class=" d-flex justify-content-between align-items-center flex-wrap">
+        <h6 class="mb-0" [ngClass]="{'light-theme-text-color-black':!lightMode}">Address</h6>
         <span class="text-secondary">{{userInfo?.address}}</span>
     </li>
-    <li class="list-group-item d-flex justify-content-between align-items-center flex-wrap" style="border:none;">
-      <h6 class="mb-0">Role</h6>
+    <li class=" d-flex justify-content-between align-items-center flex-wrap" style="border:none;">
+      <h6 class="mb-0" [ngClass]="{'light-theme-text-color-black':!lightMode}">Role</h6>
       <span class="text-secondary">{{ userInfo?.role }}</span>
   </li>
 </ul>
@@ -87,8 +92,8 @@
 
 
 <p-dialog [style]="{width:'300px'}" header="Title"  [transitionOptions]="'3ms'" 
-[draggable]="true" [keepInViewport]="true" [resizable]="false" 
-[blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true" 
+[draggable]="true" [keepInViewport]="true" [resizable]="false" #edImg 
+[blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true" [ngClass]="{'light-mode':!lightMode, 'dark-mode':lightMode}" 
 [modal]="true" [(visible)]="display3" [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
 [closable]="true" >
 <ng-template pTemplate="header" class="header-dialog">
@@ -97,7 +102,7 @@
 
 <ng-template pTemplate="center">
   <div class="flexRow">
-    <div class="button-div" style="margin-top:5px;color:black;"><p-fileUpload name="file" styleClass="margin-left__16px"
+    <div class="button-div" style="margin-top:5px;color:black;margin-left:20px;"><p-fileUpload name="file" styleClass="margin-left__16px"
       mode="basic" chooseLabel="Upload"
       [url]="userImageUrlEndpoint" (onUpload)="onImageChange($event)"
       accept="image/*" [auto]="true" [maxFileSize]="2000000">

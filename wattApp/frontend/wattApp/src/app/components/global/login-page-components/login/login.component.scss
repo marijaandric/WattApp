@@ -10,6 +10,8 @@ body{
   
 }
 
+
+
 .login_box {
   width: 1050px;
   height: 600px;
@@ -123,10 +125,10 @@ body{
 
 .right {
   background: linear-gradient(45deg, #46c6f185 10%, #5245b78f 100%),
-  url('/assets/images/logo-images/loginImage_2.png');
+  url('/assets/images/landing-page-images/login-image.jpg');
   color: #fff;
   position: relative;
-  background-size: 650px 600px;
+  background-size: auto 600px;
 }
 
 .right .right-text {

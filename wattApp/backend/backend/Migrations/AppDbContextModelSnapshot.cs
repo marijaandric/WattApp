@@ -38,6 +38,18 @@ namespace backend.Migrations
                     b.Property<int?>("ImageId")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("Manufacturer")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ManufacturingYear")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Model")
+                        .HasColumnType("TEXT");
+
+                    b.Property<float>("Power")
+                        .HasColumnType("REAL");
+
                     b.Property<string>("Room")
                         .HasColumnType("TEXT");
 
@@ -71,6 +83,9 @@ namespace backend.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("Created")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Description")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Priority")

@@ -10,6 +10,12 @@
     height:fit-content;
 }
 
+.dark-mode2 {
+  background: linear-gradient(180deg, #1b1b1b 30%, #121212 100%) ;
+  box-shadow: 5px 5px 15px black !important; 
+  border-radius: 20px;
+  margin-bottom:32px;
+}
 .bottom-card {
     width:100%;
     height:100%;
@@ -68,8 +74,6 @@ img {
   padding: 20px;
   border-radius: 20px;
   color: white;
-  background: linear-gradient(180deg, #1b1b1b 50%, #121212 100%) ;
-  box-shadow: 5px 5px 15px black;
 }
 .device-information{
     position: relative;
@@ -78,9 +82,6 @@ img {
     width: 42.5%;
     padding: 20px;
     border-radius: 20px;
-    color: white;
-    background: linear-gradient(180deg, #1b1b1b 50%, #121212 100%) ;
-    box-shadow: 5px 5px 15px black;
 }
 
 
@@ -98,7 +99,6 @@ img {
 .stats-card{
   display:flex;
   flex-basis: 47%;
-  box-shadow: 5px 5px 15px black;
   min-height:150px;
 }
 
@@ -110,7 +110,6 @@ img {
   h5 {
       font-size: 24px;
       font-weight: bolder;
-      
   }
     
 }
@@ -140,5 +139,33 @@ img {
   max-width: 23%;
   min-width: 240px;
   width:20%;
-  box-shadow: 5px 5px 15px black;
+}
+
+
+.color-blue {
+  color: #46c5f1;
+}
+
+.color-purple {
+  color:#885ec0;
+}
+
+.color-pink {
+  color: #eb4886;
+}
+
+
+.light-mode-device-info {
+  
+  box-shadow: 8px 8px 35px -15px rgb(200, 200, 200);
+  span {
+    color: #323232;
+    font-weight: bold;
+  }
+}
+
+
+.dark-mode-device-info {
+  background: linear-gradient(180deg, #1b1b1b 30%, #121212 100%) ;
+  box-shadow: 5px 5px 15px black !important; 
 }

@@ -1,6 +1,6 @@
 <standard-template>
-  <app-title-bar>
-    <h3>Prosumer</h3>
+  <app-title-bar [ngClass]="{'light-mode-title-bar': lightMode}">
+    <h3>Prosumers</h3>
   </app-title-bar>
 
     <!-- optional -->
@@ -11,7 +11,7 @@
   <app-center-bar *ngIf="loader"><app-loader></app-loader></app-center-bar>
     <app-center-bar *ngIf="!loader">
   <div  class="main-grid"> 
-    <app-map [users] = 'users' style="
+    <app-map [users] = 'users2' style="
       height: 79.2vh;
       width:38%; display: flex;
       float:left;
@@ -19,20 +19,20 @@
     </app-map>
 
     <div style="display:flex;float:right; flex-direction:column; width:60%; height:100%">
-      <div style="display:flex;float:right; flex-direction:row; width:100%; height:fit-content; margin-bottom:32px;" class="pdd-div">
-        <div style="display:flex;float:right; flex-direction:column;  width:48%; height:100%" >
+      <div style="display:flex;float:right; flex-direction:row; width:100%; height:fit-content; margin-bottom:32px;" >
+        <div style="display:flex;float:right; flex-direction:column;  width:48%; height:100%" class="pdd-div" >
           
   
-  <p-dropdown [options]="type" appendTo="body" (onChange)="onDropdownChange2()" [(ngModel)]="selectedType" optionLabel="name" >
-  </p-dropdown>
+          <div [ngClass]="{'light-mode':lightMode,'dark-mode':!lightMode}" ><p-dropdown [options]="type" (onChange)="onDropdownChange2()" [(ngModel)]="selectedType" optionLabel="name" >
+  </p-dropdown></div>
         </div>
-        <div style="display:flex;float:right; flex-direction:column; margin-left:calc(3%); width:48%; height:100%" >
+        <div style="display:flex;float:right; flex-direction:column; margin-left:calc(3%); width:48%; height:100%" class="pdd-div">
           
-          <p-dropdown [options]="options" (onChange)="onDropdownChange()" appendTo="body" [(ngModel)]="selectedOption" optionLabel="name"  >
-          </p-dropdown>
+          <div [ngClass]="{'light-mode':lightMode,'dark-mode':!lightMode}" ><p-dropdown [options]="options" (onChange)="onDropdownChange()"  [(ngModel)]="selectedOption" optionLabel="name"  >
+          </p-dropdown></div>
         </div>
       </div>
-      <div style="display:flex;float:right; flex-direction:row; width:100%; height:400px">
+      <div style="display:flex;float:right; flex-direction:row; width:100%;margin-bottom:32px;">
         <div style="display:flex;float:right; flex-direction:column;  width:48%; height:100%" >
           <app-single-area-pie [Series]="values" [chartLabels]="keys"></app-single-area-pie>
         </div>
@@ -41,21 +41,19 @@
         </div>
       </div>
 
+      <div [ngClass]="{'light-mode': lightMode,'light-mode2': lightMode,'dark-mode2':!lightMode,'dark-mode':!lightMode}">
       <div style="display:flex;float:right; flex-direction:row; width:100%; height:100%">
         <!-- [lazy]="true" -->
         <p-table class="d-table" #dtUsers class="ui-table-default" [value]="users" dataKey="id" [scrollable]="true" 
           [rows]="rowsPerPage" [totalRecords]="allUsersCount" [showCurrentPageReport]="true" (onPage)="onPageChange($event)"
-          [globalFilterFields]="['id','firstName','lastName','email','role']" [paginator]="true" 
+          [globalFilterFields]="['id','firstName','lastName','email','role']" [paginator]="true" (onFilter)="onFilter($event)"
           style="
-            margin-top:calc(3.5%);
             display: flex;
             position: relative;
             flex-direction: column;
             height: fit-content;
             width: 100%;
             border-radius: 20px;
-            background: linear-gradient(180deg, #151515 50%, #121212 100%) ;
-            box-shadow: 5px 5px 15px black;
             transition: ease-in-out;
             padding:10px 20px;
             ">
@@ -63,10 +61,10 @@
             <ng-template pTemplate="caption">
               <div class="flexRow">
                   <h3 >
-                  Users</h3>
+                  Prosumers</h3>
                   <span class="p-input-icon-left margin-left__auto margin-right__16px">
                       <i class="pi pi-search"></i>
-                      <input pInputText type="text" (input)="dtUsers.filterGlobal($any($event.target).value, 'contains')" placeholder="Search keyword" />
+                      <input #searchInput pInputText type="text"  (input)="onSearch($any($event.target).value, dtUsers)" placeholder="Search keyword" />
                   </span>
                   <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash" (click)="clear(dtUsers)"></button>
               </div>
@@ -95,22 +93,16 @@
                       <p-columnFilter class="ml-auto" type="text" field="email" display="menu"></p-columnFilter>
                   </div>
                 </th>
-                <th pSortableColumn="role" style="min-width:8rem; border-top:2px solid #46c5f1; border-bottom:2px solid #46c5f1;">
-                  <div class="flexRow">
-                      <p style=" font-size: 18px !important;">Role</p>
-                      <p-sortIcon field="role"></p-sortIcon>
-                      <p-columnFilter class="ml-auto" type="text" field="role" display="menu"></p-columnFilter>
-                  </div>
-                </th>
+                
               </tr>
             </ng-template>
 
               <ng-template pTemplate="body" let-user>
-                <tr routerLink="/userDSO/{{user.id}}">
+                <tr routerLink="/userDSO/{{user.id}}" style="cursor:pointer !important;">
+                  <!-- <tr routerLink="/admin-operator/{{user.id}}"> -->
                   <td><div style="width:20%;position:relative;float:left"><img src="{{ baseUrl + user.id }}" class="rounded-circle" width="25px" height="25px" style="margin-right: 10%"></div><div style="width:70%;position:relative;float:right">{{user.firstName}} {{user.lastName}}</div> </td>
                   <td>{{user.address}}</td>
                   <td>{{user.email}}</td>
-                  <td>{{user.role}}</td>
                 </tr>
               </ng-template>
 
@@ -120,6 +112,7 @@
                 </tr>
             </ng-template>
           </p-table>
+        </div>
         </div>
       </div>
     </div>

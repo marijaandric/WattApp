@@ -1,5 +1,5 @@
 <standard-template>
-    <app-title-bar>
+    <app-title-bar [ngClass]="{'light-mode-title-bar': lightMode}">
       <h3>User</h3>
     </app-title-bar>
     <app-center-bar *ngIf="loader"><app-loader></app-loader></app-center-bar>
@@ -29,18 +29,31 @@
             </p-carousel>
           </div> -->
         </div> 
-        <div style="display:flex;float:right; flex-direction:column; width:52%;padding: 0 2% 30px 2%;">
-          <div style="width:100%; height:fit-content; display:flex; flex-direction:row;margin-bottom:12px;">
-
-            <div class="pdd-div"><p-dropdown [options]="type" appendTo="body" [(ngModel)]="selectedType" optionLabel="name" (onChange)="dropdownChange()" >
-            </p-dropdown></div>
-            <div class="pdd-div"><p-dropdown [options]="type2" appendTo="body" [(ngModel)]="selectedHF"  optionLabel="name" (onChange)="updateType3()" >
-            </p-dropdown></div>
-            <div class="pdd-div"><p-dropdown [options]="type3" appendTo="body" [(ngModel)]="selectedDate" optionLabel="name" (onChange)="dropdownChange()" >
-            </p-dropdown></div>
+        <div style="display:flex;float:right; flex-direction:column; width:52%;padding: 0 2% 30px 2%;"class="pdd-div ovrplnl">
+          <div style="width:100%; height:fit-content; display:flex; flex-direction:row;margin-bottom:12px;" >
+            <span><i [ngClass]="{'light-theme-color-gray-323232':lightMode}" class="fa fa-info-circle" style="cursor:pointer;font-size:20px; padding-top: 10px; width: 30px;" aria-hidden="true" (click)="op.toggle($event)"></i></span>
+            <p-overlayPanel #op [ngClass]="{'light-mode':lightMode, 'dark-mode':!lightMode}"  [appendTo]="op">
+              <p style="width:350px">In this application, you can analyze different aspects of energy usage.</p>
+              <p style="width:350px">
+                The first dropdown allows you to select the type of data you want to analyze, such as 'Consumption', 'Production', or 'Stock'. Choose the option that corresponds to the specific aspect you are interested in.
+                
+                The second dropdown enables you to specify the time range for your analysis. You can choose from options like 'History', 'Forecast', or 'History & Forecast'. Select the appropriate option based on the type of data and timeframe you want to explore.
+                
+                Lastly, the third dropdown lets you choose the duration or period for which you want to view the data. Select the desired time period option to focus your analysis on a specific range.
+                
+                By utilizing these dropdowns effectively, you can gain valuable insights into energy consumption, production, and stock levels based on historical or forecasted data within the desired time frame.</p>
+            </p-overlayPanel>
+            <div class="pdd-div"><div [ngClass]="{'light-mode':lightMode,'dark-mode':!lightMode}" ><p-dropdown [options]="type" [(ngModel)]="selectedType" optionLabel="name" (onChange)="dropdownChange()" >
+            </p-dropdown></div></div>
+            <div class="pdd-div"><div [ngClass]="{'light-mode':lightMode,'dark-mode':!lightMode}" ><p-dropdown [options]="type2" [(ngModel)]="selectedHF"  optionLabel="name" (onChange)="updateType3()" >
+            </p-dropdown></div></div>
+            <div class="pdd-div"><div [ngClass]="{'light-mode':lightMode,'dark-mode':!lightMode}" ><p-dropdown [options]="type3" [(ngModel)]="selectedDate" optionLabel="name" (onChange)="dropdownChange()" >
+            </p-dropdown></div></div>
           </div>
-          <app-history-forecast style="width:100%;margin-top:20px" [boja1]="color1" [boja2]="color2" [naziv1]="name1" [naziv2]="name2" [array] = "History" [array2]="Forecast" [array3] = "dates"></app-history-forecast>
-          <p-selectButton style="margin-top:20px" class="flexRow width__fit-content margin-left__auto " [options]="switchOptions" [(ngModel)]="switchValue" optionLabel="label" optionValue="value"></p-selectButton>
+          <app-history-forecast style="width:100%;margin-top:20px" [boja1]="color1" [boja2]="color2" [naziv1]="name1" [naziv2]="name2" [array] = "History" [array2]="Forecast" [array3] = "dates" [Title]="Title" [Period]="Period"></app-history-forecast>
+          <div [ngClass]="{'light-mode':lightMode}">
+            <p-selectButton style="margin-top:20px" class="flexRow width__fit-content margin-left__auto " [options]="switchOptions" [(ngModel)]="switchValue" optionLabel="label" optionValue="value"></p-selectButton>
+          </div>
           <app-table [id] = 'id' *ngIf="switchValue == false"></app-table>
           <app-history-forecast-table
           style="
@@ -50,11 +63,9 @@
           flex-direction: column;
           height: fit-content;
           border-radius: 20px;
-          background: linear-gradient(180deg, #171717, #0d0d0d);
-          box-shadow: 5px 5px 15px black;
           transition: ease-in-out;
-          padding:10px 20px;
-          " [name1]="name1" [name2]="name2" [hif]="hif" *ngIf="switchValue == true && table"></app-history-forecast-table>
+          padding:10px 20px 20px 20px;
+          " [name1]="name1" [name2]="name2" [hif]="hif" *ngIf="switchValue == true && table"  [ngClass]="{'light-mode':lightMode,'dark-mode7':!lightMode,'dark-mode':!lightMode}"></app-history-forecast-table>
           <app-history-or-forecast-table  *ngIf="switchValue == true && !table"
           style="
             margin-top:calc(2.8%);
@@ -63,16 +74,14 @@
             flex-direction: column;
             height: fit-content;
             border-radius: 20px;
-            background: linear-gradient(180deg, #151515 50%, #121212 100%) ;
-            box-shadow: 5px 5px 15px black;
             transition: ease-in-out;
-            padding:10px 20px"  [name]="name" [History]="History" [Forecast]="Forecast" [dates]="dates" >
+            padding:10px 20px 20px 20px"  [name]="name" [History]="History" [Forecast]="Forecast" [dates]="dates" >
             </app-history-or-forecast-table>
         </div>
         
         <div style="display:flex;float:right; flex-direction:column; width:20%; height:100%">
-        <app-map-for-dso-user [user]="user" style="height: 30%; min-height:250px;"></app-map-for-dso-user>
-        <div class="donuts" style="margin-top:calc(3vh);">
+        <app-map-for-dso-user [user]="user" style=" min-height:350px;"  [ngClass]="{'light-mode':lightMode,'dark-mode7':!lightMode,'dark-mode':!lightMode}"></app-map-for-dso-user>
+        <div class="donuts" style="margin-top:calc(3vh);"  [ngClass]="{'light-mode-circles':lightMode}">
           <h5>Monthly power usage</h5>
           <p>in kWh</p>
           <app-circle [id] = 'id' [type] = 'Consumer'></app-circle>

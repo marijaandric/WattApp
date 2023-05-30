@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, Renderer2 } from '@angular/core';
 import { Observable } from 'rxjs';
 import axios from 'axios';
 import { HttpClient } from '@angular/common/http';
+import { UserService } from 'src/app/services/user/user.service';
 
 @Component({
   selector: 'app-weather-forecast7',
@@ -10,6 +11,9 @@ import { HttpClient } from '@angular/common/http';
 })
 
 export class WeatherForecast7Component implements OnInit{
+  
+  hostElement: HTMLElement | undefined;
+  lightMode: Boolean = true;
   private apiKey = '1702d844857d1ce89239d1c1a641dd84';
   weatherData: any;
   WeatherData: any;
@@ -19,15 +23,27 @@ export class WeatherForecast7Component implements OnInit{
   date : string = this.currentDate.toLocaleDateString();
   boja = "#f5805a";
 
-  constructor() {
+  constructor(private elementRef: ElementRef, private renderer: Renderer2, private userService: UserService) {
     this.getWeatherForecast(44.01860475758608,20.907175572741636).subscribe(data=>{
       this.futureForecast(data.list)
       this.weatherData = this.filterWeatherData;
     })
   }
 
-  ngOnInit(): void {
+  
+  async ngOnInit(): Promise<void> {
     
+    const token = localStorage.getItem('token');
+    this.userService.isDark$.subscribe(dark => {
+      this.hostElement = this.elementRef.nativeElement as HTMLElement;
+      this.lightMode = !dark
+      
+    const waves = this.hostElement?.querySelectorAll('.wave');
+    waves.forEach((wave) => {
+      this.renderer.addClass(wave,'light-theme-bg-blue');
+    });
+
+    });
     this.getWeatherData();
     setInterval(() => {
       this.time = new Date().toLocaleTimeString();
