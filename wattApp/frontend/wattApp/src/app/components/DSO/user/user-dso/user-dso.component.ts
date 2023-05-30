@@ -399,6 +399,8 @@ dataMax: any;
         this.min= 0;
         this.average=0;
         this.total=0;
+        this.dataMax='';
+        this.dataMin='';
         return; 
       }
       const keys = Object.keys(data);
