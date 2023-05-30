@@ -980,6 +980,7 @@ theDay = "On the day: ";
       months.push(monthNames[now.getMonth()]);
       now.setMonth(now.getMonth() + 1);
     }
+    months.push(months[0])
   
     return months;
   }

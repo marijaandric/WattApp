@@ -356,6 +356,7 @@ export class UserDSOComponent implements OnInit{
       months.push(monthNames[now.getMonth()]);
       now.setMonth(now.getMonth() + 1);
     }
+    months.push(months[0])
   
     return months;
   }
@@ -588,7 +589,7 @@ theDay = "On the day: ";
         
       }
       else{
-        this.Period = "month"
+        this.Period = "year"
         this.Title = "Consumption history"
         this.TitleMin='Minimal consumed by day this year';
         this.TittleMax='Maximal consumed by day this year';

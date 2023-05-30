@@ -105,7 +105,6 @@ export class HistoryForecastComponent implements OnInit,OnChanges{
       this.hostElement?.classList.toggle('light-theme-background-white', !dark);
       this.dark = dark;
 
-      
     if(this.array[0] === null)
     {
       this.series = [
