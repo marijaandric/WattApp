@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CarouselModule } from 'primeng/carousel';
 import { DeviceDTO } from 'src/app/dtos/DeviceDTO';
 import { AuthService } from 'src/app/services/auth/auth.service';
-import { UserService } from 'src/app/services/user.service';
+import { UserService } from 'src/app/services/user/user.service';
 import { NgToastService } from 'ng-angular-popup';
 
 
@@ -19,6 +19,7 @@ interface SwitchOption {
   styleUrls: ['./news.component.scss']
 })
 export class NewsComponent implements OnInit{
+  lightMode : Boolean = true;
   loader = true;
   news: any[] = [];
   newsImportant: any[] = [];
@@ -45,6 +46,7 @@ export class NewsComponent implements OnInit{
       title: [value.title, Validators.required],
       authorId :[value.authorId, Validators.required],
       content: [value.content, Validators.required],
+      description:[value.description, Validators.required],
       priority: [value.priority, Validators.required],
       created: [new Date(), Validators.required],
     })
@@ -176,9 +178,6 @@ export class NewsComponent implements OnInit{
       });
       this.MynewsImportant.sort((a, b) => b.id - a.id);
 
-      console.log(this.news);
-      console.log(this.MynewsRegular);
-      console.log(this.MynewsImportant);
       this.loader = false;
      // console.log(this.id);
 
@@ -186,7 +185,13 @@ export class NewsComponent implements OnInit{
   
   }
 
-  ngOnInit(): void {
+   async ngOnInit(): Promise<void> {
+    
+    const token = localStorage.getItem('token');
+    this.userService.isDark$.subscribe(dark => {
+      this.lightMode = !dark;
+    });
+    
     this.getNews();
     
     this.responsiveOptions = [

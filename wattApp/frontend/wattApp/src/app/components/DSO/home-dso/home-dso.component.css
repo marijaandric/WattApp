@@ -4,6 +4,11 @@
     min-height: 100vh;
   }
   
+.dark-mode7 {
+  background: linear-gradient(180deg, #1b1b1b 30%, #121212 100%) ;
+  box-shadow: 5px 5px 15px black !important; 
+}
+  
   .hello {
     position:relative;
     position: relative;
@@ -29,7 +34,8 @@
     flex-direction: row;
     min-width: 240px;
     width:20%;
-    box-shadow: 5px 5px 15px black;
+    /*
+    box-shadow: 5px 5px 15px black;*/
     /*  box-shadow: 5px 5px 10px rgb(198, 198, 198); */
   }
   
@@ -98,7 +104,7 @@
 .stats-card{
   display:flex;
   flex-basis: 47%;
-  box-shadow: 5px 5px 15px black;
+  border:none;
 }
 
 .stats-card:nth-child(1), .stats-card:nth-child(2) {
@@ -199,3 +205,6 @@
   font-family: 'Lato', sans-serif;
 }
   
+.light-mode-title-bar h3{
+  color:#323232;
+}

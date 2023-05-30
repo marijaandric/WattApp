@@ -1,14 +1,21 @@
-<ng-content></ng-content>
+<ng-content ></ng-content>
 
 <p-dialog [style]="{width:'40%'}" header="Title2"  [transitionOptions]="'3ms'" 
-[draggable]="true" [keepInViewport]="true" [resizable]="false" 
-[blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true" 
+[draggable]="true" [keepInViewport]="true" [resizable]="false" #reg 
+[blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true"  [ngClass]="{'light-mode':lightMode, 'dark-mode':!lightMode                                                                 }" 
 [modal]="true" [(visible)]="display" [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
 [closable]="true">
 <ng-template pTemplate="header" class="header-dialog">
 
   
-<span>Registration</span>
+<span>Add user <i class="fa fa-info-circle" style="cursor:pointer" aria-hidden="true" (click)="op.toggle($event)"></i> </span>
+<p-overlayPanel #op  [ngClass]="{'light-mode':lightMode, 'dark-mode':!lightMode}" [appendTo]="reg">
+  <p style="width:370px">Dear user,</p> 
+  <p style="width:370px">All fields are required to be filled out. The email must be in the format firstPart@secondPart.thirdPart. The firstPart must contain at least 3 letters, while the secondPart and thirdPart should have a minimum of 2 and a maximum of 6 letters.</p>
+  <p style="width:370px">We kindly ask you to include the city name in the location field when entering it. Upon pressing Enter, the location will be displayed on the map. By clicking on the map, you can also navigate to the specific location you clicked on. </p>
+  <p style="width:370px">You have to enter a valid phone number. The format should be "+381-[numbers]" or "06[numbers]".</p>
+  <p style="width:370px">Please inform the user you are registering that they will receive a password via email, which they can change later. </p>
+</p-overlayPanel>
 </ng-template>
 
 <ng-template pTemplate="content">
@@ -23,8 +30,9 @@
       <input formControlName="username" name="username"  appendTo="body" type="text"   class="p-inputtext-lg"  placeholder="USERNAME"> 
       <small class="text-danger" *ngIf="signUpForm.controls['username'].dirty && signUpForm.hasError('required','username')">Username is required</small>
       <input formControlName="email" name="email" appendTo="body" type="text"   class="p-inputtext-lg"  placeholder="EMAIL"> 
+
       <small class="text-danger" *ngIf="signUpForm.controls['email'].dirty && signUpForm.hasError('required','email')">Email is required</small>
-      <div class="dropdown-div"><p-dropdown  [options]="roles" appendTo="body" optionLabel="name" (onChange)="onRoleChange($event)"></p-dropdown></div>
+      <div class="dropdown-div" ><div [ngClass]="{'light-mode':lightMode,'dark-mode':!lightMode}" ><p-dropdown  [options]="roles" [appendTo]="reg" optionLabel="name" (onChange)="onRoleChange($event)"></p-dropdown></div></div>
       <input formControlName="phoneNumber" name="phone" appendTo="body" type="text"   class="p-inputtext-lg"  placeholder="PHONE NUMBER"> 
       <small class="text-danger" *ngIf="signUpForm.controls['phoneNumber'].dirty && signUpForm.hasError('required','phoneNumber')">Phone number is required</small>
       
@@ -46,31 +54,42 @@
 </ng-template>
 </p-dialog>
 
-
-<p-dialog [style]="{width:'40%'}" header="Title"  [transitionOptions]="'3ms'" 
-[draggable]="true" [keepInViewport]="true" [resizable]="false" 
+<div >
+<p-dialog [style]="{width:'40%'}" header="Title"  [transitionOptions]="'3ms'" #adddv
+[draggable]="true" [keepInViewport]="true" [resizable]="false" [ngClass]="{'light-mode':lightMode, 'dark-mode':!lightMode}"
 [blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true" 
-[modal]="true" [(visible)]="display2" [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
-[closable]="true" >
+[modal]="true" [(visible)]="display2" [breakpoints]="{'960px': '75vw', '640px': '90vw'}" 
+[closable]="true"  >
 <ng-template pTemplate="header" class="header-dialog">
-  <span>Add Device</span>
+  <span>Add Device <i class="fa fa-info-circle" style="cursor:pointer" aria-hidden="true" (click)="op3.toggle($event)"></i> </span>
+  <p-overlayPanel #op3  [ngClass]="{'light-mode':lightMode, 'dark-mode':!lightMode}" [appendTo]="adddv">
+    <p style="width:350px">Dear user,</p> 
+    <p style="width:350px">You must fill in all fields. In the power or capacity field, enter only numbers.</p>
+    <p style="width:350px">If an error occurs while adding your device and you have followed the steps, please consult with your nearest operator for assistance.</p>
+  </p-overlayPanel>
 </ng-template>
 
 <ng-template pTemplate="content">
   <form [formGroup]="addDeviceForm" >  
   <div class="p-inputgroup p-inputtext-lg p-input-filled">
     <div class="half">  
-      Device type 
-      <div class="dropdown-div" style="margin-bottom:20px;"> <p-dropdown [options]="types" appendTo="body" optionLabel="name" (onChange)="onTypeChange($event)" /></div>
-      Device model 
-      <div class="dropdown-div" style="margin-top:0px;"><p-dropdown [options]="models" appendTo="body" optionLabel="name" (onChange)="onModelChange($event)"/>
-    </div></div>
+      <span>Device category</span> 
+      <div class="dropdown-div" style="margin-bottom:20px;"><div [ngClass]="{'light-mode':lightMode,'dark-mode':!lightMode}" > <p-dropdown [options]="types" [appendTo]="adddv" optionLabel="name" (onChange)="onTypeChange($event)" /></div></div>
+      <span >Device type </span>
+      <div class="dropdown-div" style="margin-bottom:20px;"><div [ngClass]="{'light-mode':lightMode,'dark-mode':!lightMode}" ><p-dropdown [options]="models" [appendTo]="adddv" optionLabel="name" (onChange)="onModelChange($event)"  /></div></div>
+      <span>Location</span>
+      <div class="dropdown-div" style="margin-bottom:20px;"><div [ngClass]="{'light-mode':lightMode,'dark-mode':!lightMode}" ><p-dropdown [options]="rooms" [appendTo]="adddv" optionLabel="name" (onChange)="onRoomChange($event)" /></div></div>
+      <!-- <span> Device name </span>
+      <input formControlName="deviceName" name="name"  type="text"   class="p-inputtext-lg"  placeholder="DEVICE NAME" style="margin-top:0px;">  -->
+    </div>
     
-    <div class="half">       
-       Room
-       <div class="dropdown-div" style="margin-bottom:20px;"><p-dropdown [options]="rooms" appendTo="body" optionLabel="name" (onChange)="onRoomChange($event)" /></div>
-      Device name
-       <input formControlName="deviceName" name="name"  appendTo="body" type="text"   class="p-inputtext-lg"  placeholder="DEVICE NAME" style="margin-top:0px;"> 
+    <div class="half">
+      <input formControlName="deviceName" name="name"  type="text"   class="p-inputtext-lg"  placeholder="DEVICE NAME" style="margin-top:2px;">
+      <input formControlName="model" name="name"  type="text"   class="p-inputtext-lg"  placeholder="DEVICE MODEL" style="margin-top:0px;">  
+      <input *ngIf="typeSelected.name == 'Stock'" formControlName="power" name="power"  type="text"   class="p-inputtext-lg"  placeholder="CAPACITY in Ah" style="margin-top:0px;"> 
+      <input *ngIf="typeSelected.name != 'Stock'" formControlName="power" name="power"  type="text"   class="p-inputtext-lg"  placeholder="POWER in W" style="margin-top:0px;"> 
+      <input formControlName="manufacturer" name="name"  type="text"   class="p-inputtext-lg"  placeholder="MANUFACTURER" style="margin-top:0px;"> 
+      <input formControlName="manufacturingYear" name="name"  type="text"   class="p-inputtext-lg"  placeholder="MANUFACTURING YEAR" style="margin-top:0px;">       
     </div>
   </div> 
   </form>
@@ -81,18 +100,22 @@
   </div>
 </ng-template>
 </p-dialog>
+</div>
 
 
 
 
-
-<p-dialog [style]="{width:'40%'}" header="Title"  [transitionOptions]="'3ms'" 
-    [draggable]="true" [keepInViewport]="true" [resizable]="false" 
-    [blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true" 
+<p-dialog [style]="{width:'40%'}" header="Title"  [transitionOptions]="'3ms'"[ngClass]="{'light-mode':lightMode, 'dark-mode':!lightMode}"
+    [draggable]="true" [keepInViewport]="true" [resizable]="false"  #addn
+    [blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true"  
     [modal]="true" [(visible)]="display3" [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
     [closable]="true" >
     <ng-template pTemplate="header" class="header-dialog">
-      <span>Add news</span>
+      <span>Add news <i class="fa fa-info-circle" style="cursor:pointer" aria-hidden="true" (click)="op2.toggle($event)"></i> </span>
+      <p-overlayPanel #op2  [ngClass]="{'light-mode':lightMode, 'dark-mode':!lightMode}" [appendTo]="addn">
+        <p style="width:350px">Dear user,</p> 
+        <p style="width:350px">You must fill in all fields. If you don't select a news priority, it will be set as regular.</p>
+      </p-overlayPanel>
     </ng-template>
 
     <ng-template pTemplate="content">
@@ -101,7 +124,7 @@
       <div class="p-inputgroup p-inputtext-lg p-input-filled">
         <div class="half">
           <input formControlName="title" name="name" appendTo="body" type="text" class="p-inputtext-lg" placeholder="TITLE"> 
-          <textarea id="text" formControlName="content" name="name" appendTo="body" type="text" class="p-inputtext-lg" style="width:100%;height: 250px;background:#121212 !important;"></textarea>
+          <textarea id="text" formControlName="description" name="name" appendTo="body" type="text" class="p-inputtext-lg" style="width:100%;height: 250px;"  placeholder="Short description"></textarea>
           <div style="display: flex;flex-direction: column; align-items: center;margin-right: 4%;">
             <span style="font-size: 19px;color:gray">Priority:</span>
             <div style="display: inline-flex;">
@@ -113,6 +136,9 @@
               <label for="important" style="margin-top: 15px; margin-left: 5px;">Important</label>
             </div>
           </div>
+        </div>
+        <div class="half">
+          <textarea formControlName="description" placeholder="Description" id="text" formControlName="content" name="name" appendTo="body" type="text" class="p-inputtext-lg" style="width:100%;height: 100%;"></textarea>
         </div>
       </div> 
       </form>
@@ -128,12 +154,17 @@
 
   
 <p-dialog [style]="{width:'30%'}" header="Title"  [transitionOptions]="'3ms'" 
-[draggable]="true" [keepInViewport]="true" [resizable]="false" 
-[blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true" 
+[draggable]="true" [keepInViewport]="true" [resizable]="false" #cng
+[blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true"  [ngClass]="{'light-mode':lightMode, 'dark-mode':!lightMode}"
 [modal]="true" [(visible)]="display4" [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
 [closable]="true" >
 <ng-template pTemplate="header" class="header-dialog">
-  <span>Change password</span>
+  <span>Change password <i class="fa fa-info-circle" style="cursor:pointer" aria-hidden="true" (click)="op4.toggle($event)"></i> </span>
+  <p-overlayPanel #op4  [ngClass]="{'light-mode':lightMode, 'dark-mode':!lightMode}" [appendTo]="cng">
+    <p style="width:350px">Dear user,</p> 
+    <p style="width:350px">You must fill in all fields.</p>
+    <p style="width:350px">Password must have at least one uppercase letter, lowercase letter, number and special character.</p>
+  </p-overlayPanel>
 </ng-template>
 
 <ng-template pTemplate="content">
@@ -144,7 +175,6 @@
       <input formControlName="currentPassword" name="name" appendTo="body" type="password" class="p-inputtext-lg" placeholder="CURRENT PASSWORD"> 
       <input formControlName="newPassword" name="name" appendTo="body" type="password" class="p-inputtext-lg" placeholder="NEW PASSWORD"> 
       <input formControlName="confirmPassword" name="name" appendTo="body" type="password" class="p-inputtext-lg" placeholder="CONFIRM PASSWORD">
-      <p style="font-size:14px"><b>Note</b>: Password must have at least one uppercase letter, lowercase letter, number and special character</p>
     </div>
   </div> 
   </form>
@@ -162,40 +192,41 @@
 
 <nav>
   <ul class="right-part">
-    <div *ngIf="isAdmin()" style="cursor:pointer"><li><a (click)="showDialog()"><div class="fa fa-user-plus " ></div><div class="text" [ngClass]="{ 'hidden-xs': !showText }">Add user</div></a></li></div>
-    <div *ngIf="!isAdmin()" style="cursor:pointer"><li><a (click)="showDialog2()"><div class="fa fa-plus " ></div><div class="text" [ngClass]="{ 'hidden-xs': !showText }">Add device</div></a></li></div>
-    <div *ngIf="isAdmin()" style="cursor:pointer"><li><a (click)="showDialog3()"><div class="fa-solid fa-newspaper " ></div><div class="text" [ngClass]="{ 'hidden-xs': !showText }">Add news</div></a></li></div>
-    <li><a routerLink="/aboutus"><div class="fa fa-address-book" ></div><div class="text" [ngClass]="{ 'hidden-xs': !showText }">About us</div></a></li>
+    <div *ngIf="isAdmin()" style="cursor:pointer" [ngClass]="{'ligh-theme-text-color-gray':lightMode, 'color-white':!lightMode}"><li><a (click)="showDialog()"><div class="fa fa-user-plus " [ngClass]="{'light-mode':lightMode}"></div><div class="text" [ngClass]="{'light-mode':lightMode}" [ngClass]="{ 'hidden-xs': !showText }" ><span [ngClass]="{'light-mode':lightMode}">Add user</span></div></a></li></div>
+    <div *ngIf="!isAdmin()" style="cursor:pointer" [ngClass]="{'ligh-theme-text-color-gray':lightMode, 'color-white':!lightMode}"><li><a (click)="showDialog2()"><div class="fa fa-plus " [ngClass]="{'light-mode':lightMode}"></div><div class="text" [ngClass]="{'light-mode':lightMode}" [ngClass]="{ 'hidden-xs': !showText }"><span [ngClass]="{'light-mode':lightMode,'hidden-xs': !showText }">Add device</span></div></a></li></div>
+    <div *ngIf="isAdmin()" style="cursor:pointer" [ngClass]="{'ligh-theme-text-color-gray':lightMode, 'color-white':!lightMode}"><li><a (click)="showDialog3()"><div class="fa-solid fa-newspaper " [ngClass]="{'light-mode':lightMode}"></div><div class="text"  [ngClass]="{'light-mode':lightMode}" [ngClass]="{ 'hidden-xs': !showText }" ><span [ngClass]="{'light-mode':lightMode}">Add news</span></div></a></li></div>
+    <li><a routerLink="/aboutus"><div class="fa fa-address-book" [ngClass]="{'ligh-theme-text-color-gray':lightMode, 'color-white':!lightMode}"></div><div class="text"  [ngClass]="{'ligh-theme-text-color-gray':lightMode,'hidden-xs': !showText , 'color-white':!lightMode}">About us</div></a></li>
     <li>
       <div class="hero">
         <nav>
       <a><img [src]="userImageUrlEndpoint" (click)="toggleMenu()" class="profile-image"><div class="text1" [ngClass]="{ 'hidden-xs': !showText }"></div></a> 
-          <div class="sub-menu-wrap" #subMenu [class.open-menu]="isMenuOpen" id="subMenu" [class.open-menu]="isMenuOpen">
-            <div class="sub-menu">
+          <div class="sub-menu-wrap" #subMenu [class.open-menu]="isMenuOpen" id="subMenu" [class.open-menu]="isMenuOpen" >
+            <div class="sub-menu"  [ngClass]="{'light-theme-shadow':lightMode , 'dark-theme-smaller-shadow':!lightMode,'dark-theme-background-gray-gradient-3':!lightMode, 'light-theme-background-white':lightMode}">
                 <div class="user-info">
                   <img [src]="userImageUrlEndpoint" class="profile-image"><div class="text" [ngClass]="{ 'hidden-xs': !showText }"></div>
-                    <h5>{{user?.firstName}} {{user?.lastName}}</h5>
+                    <h5 [ngClass]="{'ligh-theme-text-color-gray':lightMode, 'color-white':!lightMode}">{{user?.firstName}} {{user?.lastName}}</h5>
                 </div>
                 <hr>
                 <a class="sub-menu-link">
-                  <i class="fa-solid fa-user"></i>
-                  <p routerLink="/user">Profile</p>
+                  <i class="fa-solid fa-user" [ngClass]="{'ligh-theme-text-color-gray':lightMode, 'color-white':!lightMode}"></i>
+                  <p routerLink="/user" [ngClass]="{'ligh-theme-text-color-gray':lightMode, 'color-white':!lightMode}">Profile</p>
+                </a>
+                <a class="sub-menu-link" style="cursor: default;">
+                  <i class="fa-sharp fa-regular fa-sun" [ngClass]="{'ligh-theme-text-color-gray':lightMode, 'color-white':!lightMode}"></i>
+                  <p [ngClass]="{'ligh-theme-text-color-gray':lightMode, 'color-white':!lightMode}">Light theme</p>
+                  <p-inputSwitch [(ngModel)]="lightMode" class="margin-left__auto width__fit-content" style="margin-left:-5px;margin-top: -7px;" (click)="changeTheme()"/>
                 </a>
                 <a class="sub-menu-link">
-                  <i class="fa-sharp fa-regular fa-sun"></i>
-                  <p>Light theme</p>
+                  <i class="fa-sharp fa-solid fa fa-key" [ngClass]="{'ligh-theme-text-color-gray':lightMode, 'color-white':!lightMode}"></i>
+                  <p (click)="showDialog4()" (click)="setMenuClose()" [ngClass]="{'ligh-theme-text-color-gray':lightMode, 'color-white':!lightMode}">Change password</p>
                 </a>
-                <a class="sub-menu-link">
-                  <i class="fa-sharp fa-solid fa fa-key"></i>
-                  <p (click)="showDialog4()" (click)="setMenuClose()">Change password</p>
+                <a class="sub-menu-link" *ngIf="!isAdmin()">
+                  <i class="fa-sharp fa-solid fa-headset" [ngClass]="{'ligh-theme-text-color-gray':lightMode, 'color-white':!lightMode}"></i>
+                  <p routerLink="/contact" [ngClass]="{'ligh-theme-text-color-gray':lightMode, 'color-white':!lightMode}">Contact us</p>
                 </a>
-                <a class="sub-menu-link">
-                  <i class="fa-sharp fa-solid fa-headset"></i>
-                  <p routerLink="/contact">Contact us</p>
-                </a>
-                <a class="sub-menu-link">
-                  <i class="fa-solid fa-right-from-bracket"></i>
-                  <p (click)="logout()">Log out</p>
+                <a class="sub-menu-link" >
+                  <i class="fa-solid fa-right-from-bracket" [ngClass]="{'ligh-theme-text-color-gray':lightMode, 'color-white':!lightMode}"></i>
+                  <p (click)="logout()" [ngClass]="{'ligh-theme-text-color-gray':lightMode, 'color-white':!lightMode}">Log out</p>
                 </a>
               
             </div>          

@@ -1,5 +1,5 @@
 import { Token } from '@angular/compiler';
-import { Component, ElementRef, OnInit, HostListener ,ViewChild, ɵɵqueryRefresh } from '@angular/core';
+import { Component, ElementRef, OnInit, HostListener ,ViewChild, ɵɵqueryRefresh, Renderer2 } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
@@ -10,10 +10,11 @@ import { DeviceService } from 'src/app/services/device/device.service';
 import { ModelTypesService } from 'src/app/services/model-types/model-types.service';
 import { RoleTypesService } from 'src/app/services/role-types/role-types.service';
 import { RoomTypesService } from 'src/app/services/room-types/room-types.service';
-import { UserService } from 'src/app/services/user.service';
 import axios from 'axios';
 import { DsonewsService } from 'src/app/services/dsonews/dsonews.service';
 import { url } from 'src/app/app.module';
+import { UserService } from 'src/app/services/user/user.service';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
 
 interface Models{
   code: string;
@@ -41,6 +42,8 @@ interface Roles{
   styleUrls: ['./title-bar.component.css']
 })
 export class TitleBarComponent implements OnInit{
+  hostElement: HTMLElement | undefined;
+  lightMode: Boolean = true;
   display : boolean = false;
   display2 : boolean = false;
   display3 : boolean = false;
@@ -68,6 +71,7 @@ export class TitleBarComponent implements OnInit{
 
   isMenuOpen = false;
   user : any;
+
   @ViewChild('subMenu') subMenu: ElementRef | undefined;
 
   toggleMenu() {
@@ -87,13 +91,13 @@ export class TitleBarComponent implements OnInit{
               private fb: FormBuilder,
               private authService: AuthService,
               private toast: NgToastService,
-              private userService: UserService,
+              public userService: UserService,
               private deviceService: DeviceService, 
               private deviceTypesService: DeviceTypesService, 
               private roomTypesService: RoomTypesService, 
               private roleTypesService: RoleTypesService,
               private modelTypesService: ModelTypesService,
-              private dsonewsService : DsonewsService,
+              private dsonewsService : DsonewsService,private elementRef: ElementRef, private renderer: Renderer2,
               private auth:AuthService) {
 
     const token = localStorage.getItem('token');
@@ -103,14 +107,24 @@ export class TitleBarComponent implements OnInit{
     }
   }
 
-  ngOnInit(): void {
+  
+  async ngOnInit(): Promise<void> {
+    
     const token = localStorage.getItem('token');
+    this.userService.isDark$.subscribe(dark => {
+      this.hostElement = this.elementRef.nativeElement as HTMLElement;
+      this.lightMode = !dark
+    });
+    const dd = this.hostElement?.querySelector('.sub-menu');
+    this.renderer.addClass(dd, 'light-theme-shadow');
+    this.renderer.addClass(dd, 'light-theme-background-white');
+
     if(token)
     {
       this.rola = this.userService.getUserRoleFromToken(token);
       const userId = this.userService.getUserIdFromToken(token);
       this.userImageUrlEndpoint = this.baseUrl + userId;
-      this.userService.GetUser(userId,token).subscribe(data=>{
+      await this.userService.GetUser(userId,token).subscribe(data=>{
         this.user = data;
       })
     }
@@ -181,17 +195,12 @@ export class TitleBarComponent implements OnInit{
       isDarkTheme: true
     });
 
-    this.addDeviceForm = this.fb.group({
-      userID :[0, Validators.required],
-      deviceName:['', Validators.required],
-      deviceModel: ['', Validators.required],
-      room: ['', Validators.required],
-      deviceType: ['', Validators.required],
-    })
+    this.resetDeviceDialogValues();
 
     this.newsForm = this.fb.group({
       title: ['', Validators.required],
       authorId :[0, Validators.required],
+      description : ['', Validators.required],
       content: ['', Validators.required],
       priority: ['Regular', Validators.required],
       created: ['', Validators.required],
@@ -206,6 +215,21 @@ export class TitleBarComponent implements OnInit{
 
 
   }
+
+  resetDeviceDialogValues(){
+    this.addDeviceForm = this.fb.group({
+      userID :[0, Validators.required],
+      deviceName:['', Validators.required],
+      deviceModel: ['', Validators.required],
+      room: ['', Validators.required],
+      model:['', Validators.required],
+      manufacturer:['', Validators.required],
+      manufacturingYear:['', Validators.required],
+      power:['', Validators.required],
+      deviceType: ['', Validators.required],
+    })
+  }
+
   logout()
   {
     this.auth.logout();
@@ -217,6 +241,9 @@ export class TitleBarComponent implements OnInit{
   }
 
   showDialog2(){
+    this.resetDeviceDialogValues();
+    this.typeSelected = this.types[0];
+    this.reloadModels(this.typeSelected.code);
     this.display2 = true;
   }
 
@@ -260,8 +287,11 @@ export class TitleBarComponent implements OnInit{
 
   onTypeChange(event:any){
     this.typeSelected = event.value;
+    this.reloadModels(this.typeSelected.code);
+  }
 
-    this.modelTypesService.getAllModelTypes(this.typeSelected.code)
+  reloadModels(code:string){
+    this.modelTypesService.getAllModelTypes(code)
       .pipe(
         map(modelTypes => Object.entries(modelTypes).map(([code, name]) => ({ code, name })))
       )
@@ -280,6 +310,7 @@ export class TitleBarComponent implements OnInit{
     this.roomSelected = event.value;
   }
 
+  phoneNumber: string = "123";
   //registracija
   onSignUp()
   {
@@ -287,15 +318,42 @@ export class TitleBarComponent implements OnInit{
       role : this.roleSelected
     })
 
-    console.log(this.signUpForm.value)
+    if(!this.signUpForm.value.firstName || !this.signUpForm.value.lastName || !this.signUpForm.value.username || !this.signUpForm.value.phoneNumber)
+    {
+      this.toast.error({detail:"ERROR",summary:"Please fill in all fields.",duration:4000});
+      return
+    }
+    if(!this.signUpForm.value.address && !this.signUpForm.value.x && !this.signUpForm.value.y )
+    {
+      this.toast.error({detail:"ERROR",summary:"Please fill in the field intended for correct address",duration:4000});
+      return
+    }
+    const emailRegex: RegExp = /^[a-zA-Z0-9]{3,}@[a-zA-Z]{2,6}\.[a-zA-Z]{2,4}$/;
+
+    if (this.signUpForm.value.email.trim() === '' || !emailRegex.test(this.signUpForm.value.email)) {
+      this.toast.error({detail:"ERROR",summary:"Please enter a valid email format.",duration:4000});
+      return
+    } 
+
+    const phoneNumberRegexWithPrefix = /^\+381-\d{3,14}$/;
+    const phoneNumberRegexWithoutPrefix = /^06\d{7,15}$/;
+    if (!phoneNumberRegexWithPrefix.test(this.signUpForm.value.phoneNumber ) && !phoneNumberRegexWithoutPrefix.test(this.signUpForm.value.phoneNumber)) {
+      this.toast.error({detail:"ERROR",summary:"Please enter a valid phone number format.",duration:4000});
+      return
+    }
+    
     this.authService.signUp(this.signUpForm.value).subscribe({
         next:(res => {
           this.signUpForm.reset()
-          this.toast.success({detail:"SUCCESS",summary:"You have successfully registered",duration:4000});
+          this.toast.success({detail:"SUCCESS",summary:"You have successfully registered",duration:5000});
           this.display = false;
+        setTimeout(() => {
+          location.reload();
+        }, 1350)
+          
         }),
         error:(err => {
-          this.toast.error({detail:"ERROR",summary:"Error",duration:4000});
+          this.toast.error({detail:"ERROR",summary:"Please complete all fields or check if you have already used your mail",duration:4000});
         })
         
       })
@@ -317,14 +375,25 @@ export class TitleBarComponent implements OnInit{
       room : this.roomSelected.name
     })
     
+
+    if(!this.addDeviceForm.value.deviceName)
+    {
+      this.toast.error({detail:"ERROR",summary:"Please fill in all fields.",duration:4000});
+      return
+    }
+    
     this.deviceService.AddDevice(this.addDeviceForm.value).subscribe({
       next:(res => {
         this.addDeviceForm.reset()
-        this.toast.success({detail:"SUCCESS",summary:"You have successfully added device",duration:4000});
+        this.toast.success({detail:"SUCCESS",summary:"You have successfully added device",duration:5000});
         this.display2 = false;
+      setTimeout(() => {
+        location.reload();
+      }, 1350)
+
       }),
       error:(err => {
-        this.toast.error({detail:"ERROR",summary:"Error",duration:4000});
+        this.toast.error({detail:"ERROR",summary:"Our team is working diligently to resolve the issue and get everything back up and running smoothly!",duration:4000});
       })
     }) 
   }
@@ -339,17 +408,25 @@ export class TitleBarComponent implements OnInit{
       created: new Date()
     });
 
+    if(!this.newsForm.value.content || !this.newsForm.value.title)
+    {
+      this.toast.error({detail:"ERROR",summary:"Please write the name of the device.",duration:4000});
+      return
+    }
+
   
     console.log(this.newsForm.value);
     this.dsonewsService.AddNews(this.newsForm.value).subscribe({
       next:(res => {
         this.newsForm.reset()
-        this.toast.success({detail:"SUCCESS",summary:"You have successfully added news",duration:4000});
+        this.toast.success({detail:"SUCCESS",summary:"You have successfully added news",duration:5000});
         this.display3 = false;
-        //location.reload();
+      setTimeout(() => {
+        location.reload();
+      }, 1350)
       }),
       error:(err => {
-        this.toast.error({detail:"ERROR",summary:"Error",duration:4000});
+        this.toast.error({detail:"ERROR",summary:"Our team is working diligently to resolve the issue and get everything back up and running smoothly.",duration:4000});
       })
     }) 
   }
@@ -401,10 +478,23 @@ export class TitleBarComponent implements OnInit{
         this.display4 = false;
       }),
       error:(err => {
-        this.toast.error({detail:"ERROR",summary:"Error",duration:4000});
+        this.toast.error({detail:"ERROR",summary:"Please complete all fields.",duration:4000});
       })
     }) 
   }
 
+  async changeTheme()
+  {
+    this.userService.changeTheme(this.id).subscribe({
+      next:(res => {
+        //this.toast.success({detail:"SUCCESS",summary:"You have successfully changed theme",duration:4000});
+        this.display4 = false;
+        //location.reload()
+      }),
+      error:(err => {
+        this.toast.error({detail:"ERROR",summary:"Error",duration:4000});
+      })
+    })
+  }
   
 }

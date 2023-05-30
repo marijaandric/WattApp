@@ -1,0 +1,79 @@
+<a [routerLink]="['/device', device.id]"  style="display:flex;">
+    <div id="device-card" class="device-card" [ngClass]="{'dark-theme-bigger-shadow':!lightMode,'light-theme-bigger-shadow':lightMode,'dark-theme-background-gray-gradient-1':!lightMode,'light-theme-background-white':lightMode}" >
+        <div class="flexRow">
+            
+    
+              <img *ngIf="isPhone" src="../.../../../../../../assets/icons/images/icons8-iphone-14-50.png">
+              <img *ngIf="isTablet" src="../.../../../../../../assets/icons/images/icons8-ipad-50.png">
+              <img *ngIf="isLaptop" src="../.../../../../../../assets/icons/images/icons8-laptop-closing-50.png">
+              <img *ngIf="isDesktop" src="../.../../../../../../assets/icons/images/icons8-pc-50.png">
+              <img *ngIf="isSmartwatch" src="../.../../../../../../assets/icons/images/icons8-smart-watch-50.png">
+              <img *ngIf="isSmartTV" src="../.../../../../../../assets/icons/images/icons8-tv-show-50.png">
+              <img *ngIf="isGamingConsole" src="../.../../../../../../assets/icons/images/icons8-game-controller-50.png">
+              <img *ngIf="isVirtualAssistant" src="../.../../../../../../assets/icons/images/icons8-amazon-alexa-logo-50.png">
+              <img *ngIf="isCamera" src="../.../../../../../../assets/icons/images/icons8-camera-50.png">
+              <img *ngIf="isDrone" src="../.../../../../../../assets/icons/images/icons8-drone-50.png">
+              <img *ngIf="isWearable" src="../.../../../../../../assets/icons/images/icons8-wearable-technology-50.png">
+              <img *ngIf="isSmartHomeHub" src="../.../../../../../../assets/icons/images/icons8-hub-50.png">
+              <img *ngIf="isCar" src="../.../../../../../../assets/icons/images/icons8-car-50.png">
+              <img *ngIf="isHeadset" src="../.../../../../../../assets/icons/images/icons8-headset-50.png">
+              <img *ngIf="isSpeaker" src="../.../../../../../../assets/icons/images/icons8-subwoofer-50.png">
+              <img *ngIf="isSolarPanel" src="../.../../../../../../assets/icons/images/icons8-solar-panel-50.png" style="height:30px !important;margin-top:5px; ">
+              <img *ngIf="isBattery" src="../.../../../../../../assets/icons/images/icons8-car-battery-50.png">
+              <img *ngIf="isFridge" src="../.../../../../../../assets/icons/images/icons8-fridge-50.png">
+              <img *ngIf="isMicrowave" src="../.../../../../../../assets/icons/images/icons8-microwave-50.png">
+              <img *ngIf="isWashingMachine" src="../.../../../../../../assets/icons/images/icons8-washing-machine-50.png">
+              <img *ngIf="isBlender" src="../.../../../../../../assets/icons/images/icons8-blender-50.png">
+              <img *ngIf="isRadio" src="../.../../../../../../assets/icons/images/icons8-mixer-50.png">
+              <img *ngIf="isStove" src="../.../../../../../../assets/icons/images/icons8-stove-50.png">
+              <img *ngIf="isVacuumCleaner" src="../.../../../../../../assets/icons/images/icons8-vacuum-cleaner-50.png">
+              <img *ngIf="isIron" src="../.../../../../../../assets/icons/images/icons8-iron-high-temperature-50.png">
+              <img *ngIf="isLamp" src="../.../../../../../../assets/icons/images/icons8-lamp-50.png">
+              <img *ngIf="isSmallWindTurbine" src="../.../../../../../../assets/icons/images/icons8-wind-turbine-50.png">
+              <img *ngIf="isPortableGenerator" src="../.../../../../../../assets/icons/images/icons8-generator-60.png">
+              <img *ngIf="isBicycleGenerator" src="../.../../../../../../assets/icons/images/icons8-automotive-generator-50.png">
+              <img *ngIf="isPowerBank" src="../.../../../../../../assets/icons/images/icons8-charging-battery-48.png">
+             
+              <img *ngIf="isOther" src="../.../../../../../../assets/icons/images/icons8-multiple-devices-50.png">
+         
+            <a [routerLink]="['/device', device.id]" class="device-name abbreviate-text" style="padding-top:6px" [ngClass]="{'color-blue': isConsumer, 'color-purple': isProducer, 'color-pink': isStock}">{{ device.deviceName }}</a>
+            <p-inputSwitch [(ngModel)]="isChecked" (click)="showDialog($event)" class="margin-left__auto width__fit-content" style="padding-top:8px;"/>
+        </div>
+        <div class="flexRow" style="margin-top: 16px;">
+            <span [ngClass]="{'light-mode-left-span':lightMode}">Status:</span>
+            <span *ngIf="!isChecked" class="margin-left__auto color-gray">Idle</span>
+            <span *ngIf="isChecked" class="margin-left__auto " [ngClass]="{'light-mode-left-span-run':lightMode}">Running</span>
+        </div>
+        <div class="flexRow" style="margin-top: 6px;">
+            <span [ngClass]="{'light-mode-left-span':lightMode}">Type:</span>
+            <span class="margin-left__auto" [ngClass]="{'color-blue': isConsumer, 'color-purple': isProducer, 'color-pink': isStock}">{{ device.deviceType }}</span>
+        </div>
+        <div class="flexRow" style="margin-top: 6px;">
+            <span *ngIf="device.deviceType === 'Consumer'" [ngClass]="{'light-mode-left-span':lightMode}" >Power consumed:</span>
+            <span *ngIf="device.deviceType === 'Producer'"  [ngClass]="{'light-mode-left-span':lightMode}">Power produced:</span>
+            <span *ngIf="device.deviceType !== 'Consumer' && device.deviceType !== 'Producer'" [ngClass]="{'light-mode-left-span':lightMode}">Power stored:</span>
+            <span class="margin-left__auto color-gray" [ngClass]="{'light-mode-left-span-run':lightMode}">{{ device.power }} kWh</span>
+        </div>
+    </div>
+    
+    </a>
+    <p-dialog [style]="{width:'300px',height:'200px'}" header="Title"  [transitionOptions]="'3ms'" 
+    [draggable]="true" [keepInViewport]="true" [resizable]="false" 
+    [blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true" 
+    [modal]="true" [(visible)]="display" [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
+    [closable]="true" appendTo="">
+    <ng-template pTemplate="header" class="header-dialog">
+      <abbr *ngIf="isChecked">Are you sure you want to turn off the {{device?.deviceName}}?</abbr>
+      <abbr *ngIf="!isChecked">Are you sure you want to turn on the {{device?.deviceName}}</abbr>
+    </ng-template>
+    
+    <ng-template pTemplate="footer">
+      <div class="flexRow" style="margin-top:20px;">
+        <div class="button-div" style="padding-right: 20px;"><p-button  (click)="handleRunningSwitchChange()" label="Yes"> </p-button>
+        </div>
+        <div class="remove-or-no"><p-button  (click)="display=false" label="No"></p-button>
+      </div></div>
+    </ng-template>
+    
+    </p-dialog>
+    

@@ -1,5 +1,5 @@
 <standard-template>
-  <app-title-bar>
+  <app-title-bar [ngClass]="{'light-mode-title-bar': lightMode}">
     <h3>Users</h3>
   </app-title-bar>
 
@@ -13,6 +13,7 @@
   <div  class="main-grid"> 
 
     <div style="display:flex;float:left; flex-direction:column; width:80%; height:100%">
+      <div [ngClass]="{'light-mode': lightMode,'light-mode2': lightMode,'dark-mode2':!lightMode,'dark-mode':!lightMode}">
       <div style="display:flex;float:right; flex-direction:row; width:100%; height:100%">
 
           <p-table class="d-table" #dtUsers class="ui-table-default" [value]="users" dataKey="id" [scrollable]="true" 
@@ -25,8 +26,6 @@
               height: fit-content;
               width: 100%;
               border-radius: 20px;
-              background: linear-gradient(180deg, #151515 50%, #121212 100%) ;
-              box-shadow: 5px 5px 15px black;
               transition: ease-in-out;
               padding:10px 20px;
               ">
@@ -37,7 +36,7 @@
                     All Users</h3>
                     <span class="p-input-icon-left margin-left__auto margin-right__16px">
                         <i class="pi pi-search"></i>
-                        <input pInputText type="text" (input)="dtUsers.filterGlobal($any($event.target).value, 'contains')" placeholder="Search keyword" />
+                        <input #searchInput pInputText type="text" (input)="dtUsers.filterGlobal($any($event.target).value, 'contains')" placeholder="Search keyword" />
                     </span>
                     <button pButton label="Clear" class="p-button-outlined" icon="pi pi-filter-slash" (click)="clear(dtUsers)"></button>
                 </div>
@@ -70,18 +69,35 @@
                     <div class="flexRow">
                         <p style=" font-size: 18px !important;">Role</p>
                         <p-sortIcon field="role"></p-sortIcon>
-                        <p-columnFilter class="ml-auto" type="text" field="role" display="menu"></p-columnFilter>
+                        <!-- <p-columnFilter class="ml-auto" type="text" field="role" display="menu"></p-columnFilter> -->
+                        <p-columnFilter field="deviceType" matchMode="equals" display="menu">
+                          <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+                            <p-dropdown [(ngModel)]="selectedStatusFilter" [options]="statusFilterOptions" (onChange)="filterStatus($event.value)" placeholder="Any">
+                              <ng-template let-option pTemplate="item">
+                                <p-tag [value]="option.value" [severity]="getSeverity(option.label)"></p-tag>
+                              </ng-template>
+                            </p-dropdown>                  
+                          </ng-template>
+                      </p-columnFilter>
+                    </div>
+                  </th>
+                  <th pSortableColumn="role" style="min-width:8rem; border-top:2px solid #46c5f1; border-bottom:2px solid #46c5f1;">
+                    <div class="flexRow">
+                        <p style=" font-size: 18px !important;">Delete</p>
                     </div>
                   </th>
                 </tr>
               </ng-template>
   
                 <ng-template pTemplate="body" let-user>
-                  <tr>
+                  <tr *ngIf="user.id != Myid && user.role != 'admin'" [routerLink]="user.role !== 'prosumer' ? '/admin-operator/' + user.id : '/userDSO/'+ user.id " style="cursor:pointer !important">
                     <td ><img src="{{ baseUrl + user.id }}" class="rounded-circle" width="25px" height="25px" style="margin-right: 8px;"> {{user.firstName}} {{user.lastName}}</td>
                     <td>{{user.address}}</td>
                     <td>{{user.email}}</td>
                     <td>{{user.role}}</td>
+                    <td><div class="remove-or-no">
+                      <p-button  (click)="showDialog($event)" (click)="setID(user.id)" label="Delete User" ></p-button>
+                    </div></td>
                   </tr>
                 </ng-template>
   
@@ -91,6 +107,7 @@
                   </tr>
               </ng-template>
             </p-table>
+        </div>
         </div>
       </div>      
       <div class="widgets-users">     
@@ -109,3 +126,27 @@
   
 </standard-template>
 
+<p-dialog [style]="{width:'20%'}" header="Title"  [transitionOptions]="'3ms'" 
+[draggable]="false" [keepInViewport]="true" [resizable]="false" 
+[blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true"  [ngClass]="{'light-mode':lightMode, 'dark-mode':!lightMode}"
+[modal]="true" [(visible)]="display" [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
+[closable]="true" >
+<ng-template pTemplate="header" class="header-dialog">
+  <span>Delete user</span>
+</ng-template>
+
+<ng-template pTemplate="center">
+  <div class="delete-device-content">
+    <span>Are you sure you want to delete this user?</span>
+  </div>
+</ng-template>
+
+<ng-template pTemplate="footer" >
+  <div class="remove-or-no" style="float:right">
+    <p-button type="button" label="Cancel" (click)="showDialog($event)" ></p-button>
+ </div>
+    <div class="button-div" style="float:right">
+      <p-button type="button" label="Yes" (click)="deleteUser(deleteid)"></p-button>
+    </div>
+</ng-template>
+</p-dialog>

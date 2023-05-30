@@ -6,6 +6,11 @@
   color: #46c5f1 !important;
 }
 
+.light-mode-title-bar h3{
+  color:#323232;
+}
+
+
   .widgets {
     display: flex;
     flex-direction: row;
@@ -24,7 +29,6 @@
   /*max-width: 23%;*/
   min-width: 240px;
   width:20%;
-  box-shadow: 5px 5px 15px black;  
 }
 
 

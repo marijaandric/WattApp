@@ -1,6 +1,6 @@
-import { ChangeDetectorRef, Component, Input, OnChanges, OnInit, SimpleChanges, ViewChild } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef, Input, OnChanges, OnInit, Renderer2, SimpleChanges, ViewChild } from '@angular/core';
 import { StadardTemplateComponent } from 'src/app/components/global/layout-components/standard-template/stadard-template.component';
-import { UserService } from 'src/app/services/user.service';
+import { UserService } from 'src/app/services/user/user.service';
 import { HttpClient } from '@angular/common/http';
 import { DeviceDTO } from 'src/app/dtos/DeviceDTO';
 import { DeviceService } from 'src/app/services/device/device.service';
@@ -41,6 +41,8 @@ interface Roles{
   styleUrls: ['./prosumerhome.component.css']
 })
 export class ProsumerhomeComponent implements OnInit{
+  hostElement : HTMLElement | undefined;
+  lightMode: Boolean = false;
   loader = true;
   user:any;
   id: any;
@@ -62,15 +64,16 @@ roomSelected! : Rooms;
 
   addDeviceForm! : FormGroup;
   display = false;
+  display2 = false;
 
-  @Input() device:any={id:1,deviceName: "default", deviceType:"Consumer",power: 10}
-  @Input() device1:any={id:1,deviceName: "default", deviceType:"Producer",power: 10}
-  @Input() device2:any={id:1,deviceName: "default", deviceType:"Stock",power: 10}
+  @Input() device:any={id:1,deviceName: "default", deviceType:"Consumer",power: 10,power2:12}
+  @Input() device1:any={id:1,deviceName: "default", deviceType:"Producer",power: 10,power2:2}
+  @Input() device2:any={id:1,deviceName: "default", deviceType:"Stock",power: 10,power2:20}
 
   constructor(private fb: FormBuilder,private userService:UserService,private http: HttpClient,private deviceService : DeviceService,private dsonew : DsonewsService,private roomTypesService: RoomTypesService, 
     private roleTypesService: RoleTypesService,
     private modelTypesService: ModelTypesService,
-    private deviceTypesService: DeviceTypesService,private toast:NgToastService,private cdRef: ChangeDetectorRef)
+    private deviceTypesService: DeviceTypesService,private toast:NgToastService,private cdRef: ChangeDetectorRef, private elementRef: ElementRef, private renderer: Renderer2)
   {
     this.quote = this.quotes[Math.floor(Math.random() * this.quotes.length)];
     if(this.token)
@@ -98,9 +101,9 @@ roomSelected! : Rooms;
     
     this.deviceService.getBiggest(this.id,year,month,day,consumer,max).subscribe((response: any) => {
        this.PowerUsageBiggestConsumer=response.averagePowerUsage.toFixed(2);
-       this.device.power = this.PowerUsageBiggestConsumer
        this.device = response.device
        this.devices[0] = this.device
+       this.device.power2 = this.PowerUsageBiggestConsumer
        this.cdRef.markForCheck()
        this.loader = false;
     },(error: any) => {
@@ -124,9 +127,9 @@ roomSelected! : Rooms;
 
     this.deviceService.getBiggest(this.id,year,month,day,consumer,max).subscribe((response: any) => {
       this.PowerUsageBiggestProducer=response.averagePowerUsage.toFixed(2);
-       this.device.power = this.PowerUsageBiggestProducer
-       this.device = response.device
-       this.devices[1] = this.device
+       this.device1 = response.device
+       this.device1.power2 = this.PowerUsageBiggestProducer
+       this.devices[1] = this.device1
        this.cdRef.markForCheck()
        //this.loader = false;
     },(error: any) => {
@@ -152,7 +155,7 @@ roomSelected! : Rooms;
     this.deviceService.getBiggest(this.id,year,month,day,consumer,max).subscribe((response: any) => {
        this.PowerUsageBiggestStorage=response.averagePowerUsage.toFixed(2);
        this.device2 = response.device
-       this.device2.power = this.PowerUsageBiggestStorage
+       this.device2.power2 = this.PowerUsageBiggestStorage
        this.devices[2] = this.device2
        this.cdRef.markForCheck()
       },(error: any) => {
@@ -234,6 +237,14 @@ roomSelected! : Rooms;
   status1 : any;
   status2 : any;
   status3 : any;
+
+  desc1 :any;
+  desc2 :any;
+  desc3 :any;
+
+  id1!:number;
+  id2!:number;
+  id3!:number;
   getNews() {
   
     this.dsonew.getnew().subscribe((data: any) => {
@@ -241,14 +252,21 @@ roomSelected! : Rooms;
       this.news.sort((a, b) => b.id - a.id);
       //console.log(data);
 
+      this.id1 = this.news[0].id
+      this.id2 = this.news[2].id
+      this.id3 = this.news[3].id
 
      this.naslov1 = this.news[0].title;
      this.naslov2 = this.news[1].title;
      this.naslov3 = this.news[2].title;
 
-     this.sadrzaj1 = this.news[0].content;
-     this.sadrzaj2 = this.news[1].content;
-     this.sadrzaj3 = this.news[2].content;
+     this.desc1 = this.news[0].content;
+     this.desc2 = this.news[1].content;
+     this.desc3 = this.news[2].content;
+
+     this.sadrzaj1 = this.news[0].description;
+     this.sadrzaj2 = this.news[1].description;
+     this.sadrzaj3 = this.news[2].description;
 
      this.datum1 = new Date(this.news[0].created).toLocaleDateString();
      this.datum2 = new Date(this.news[1].created).toLocaleDateString();
@@ -264,7 +282,17 @@ roomSelected! : Rooms;
 
 
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    
+    this.hostElement = this.elementRef.nativeElement as HTMLElement;
+    const token = localStorage.getItem('token');
+    this.userService.isDark$.subscribe(dark => {
+      this.lightMode = !dark;
+
+      
+    });
+
+
     this.devices[0]=this.device;
     this.devices[1] = this.device1;
     this.devices[2] = this.device2;
@@ -282,6 +310,10 @@ roomSelected! : Rooms;
       deviceName:['', Validators.required],
       deviceModel: ['', Validators.required],
       room: ['', Validators.required],
+      model:['', Validators.required],
+      manufacturer:['', Validators.required],
+      manufacturingYear:['', Validators.required],
+      power:['', Validators.required],
       deviceType: ['', Validators.required],
     })
 
@@ -319,6 +351,18 @@ roomSelected! : Rooms;
   showDisplay()
   {
     this.display = !this.display;
+  }
+  
+
+  naslov:any;
+  opis:any;
+  desc:any;
+  date:any;
+  priority:any;
+
+  showDisplay2(id:number)
+  {
+    //this.display2 = !this.display2;
   }
 
   onTypeChange(event:any){
@@ -358,16 +402,30 @@ roomSelected! : Rooms;
     this.addDeviceForm.patchValue({
       room : this.roomSelected.name
     })
+    this.addDeviceForm.patchValue({
+      manufacturingYear : this.addDeviceForm.get('manufacturingYear')?.value + " "
+    })
+    
+    
+
+    if(!this.addDeviceForm.value.deviceName)
+    {
+      this.toast.error({detail:"ERROR",summary:"Please fill in all fields.",duration:4000});
+      return
+    }
     
     this.deviceService.AddDevice(this.addDeviceForm.value).subscribe({
       next:(res => {
         this.addDeviceForm.reset()
-        this.toast.success({detail:"SUCCESS",summary:"You have successfully added device",duration:4000});
-        this.display = false;
-        location.reload()
+        this.toast.success({detail:"SUCCESS",summary:"You have successfully added device",duration:5000});
+        this.display2 = false;
+      setTimeout(() => {
+        location.reload();
+      }, 1350)
+
       }),
       error:(err => {
-        this.toast.error({detail:"ERROR",summary:"Error",duration:4000});
+        this.toast.error({detail:"ERROR",summary:"Our team is working diligently to resolve the issue and get everything back up and running smoothly!",duration:4000});
       })
     }) 
   }

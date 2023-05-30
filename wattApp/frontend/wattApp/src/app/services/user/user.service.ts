@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { map, Observable } from 'rxjs';
+import { BehaviorSubject, map, Observable } from 'rxjs';
 import { url } from '../../app.module';
 import { UserDTO } from '../../dtos/UserDTO';
 
@@ -10,8 +10,20 @@ import { UserDTO } from '../../dtos/UserDTO';
 })
 export class UserService {
   private baseUrl: string = url + "/api/User/";
+  public isDark$ : BehaviorSubject<boolean> = new BehaviorSubject<boolean>(true)
+  public isDark = this.isDark$.asObservable();
 
-  constructor(private http: HttpClient,private jwtHelper:JwtHelperService) { }
+  constructor(private http: HttpClient,private jwtHelper:JwtHelperService) 
+  {
+    const storedValue = localStorage.getItem('myVariable');
+    console.log(storedValue)
+    if (storedValue) {
+      this.isDark$.next(JSON.parse(storedValue));
+    }
+    else{
+      this.isDark$.next(true);
+    }
+  }
 
   getAllUsers(): Observable<UserDTO[]> {
     return this.http.get<UserDTO[]>(this.baseUrl).pipe(
@@ -39,7 +51,7 @@ export class UserService {
       'Authorization': 'Bearer ' + token
     });
 
-    return this.http.get(`${this.baseUrl}/${userId}`, { headers });
+    return this.http.get(`${this.baseUrl}${userId}`, { headers });
   }
 
   GetUserWithoutToken(userId: number) {
@@ -59,7 +71,7 @@ export class UserService {
 
   PutUser(id : number,user : any): Observable<any>
   {
-    const url = this.baseUrl+`/${id}`;
+    const url = this.baseUrl+`${id}`;
     return this.http.put(url,user);
   }
   
@@ -90,7 +102,7 @@ export class UserService {
 
   getUsersWithPowerUsage(type:string,ids:number[])
   {
-    const url = this.baseUrl+`/getUsersWithPowerUsage/`+type;
+    const url = this.baseUrl+`getUsersWithPowerUsage/`+type;
     return this.http.put(url,ids);
   }
 
@@ -98,4 +110,16 @@ export class UserService {
     const url = `${this.baseUrl}${id}`;
     return this.http.delete(url);
   }
+
+  changeTheme(id:number)
+  {
+    const x = this.isDark$.value
+    this.isDark$.next(!x)
+    localStorage.setItem('myVariable', String(this.isDark$.value));
+    const url = `${this.baseUrl}updateUserTheme/${id}`;
+    return this.http.put(url,id);
+  }
+
+
+
 }

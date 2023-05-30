@@ -20,6 +20,7 @@ namespace backend.DAL.Interfaces
         public void SaveChanges();
         public void AddDevice(Devices device);
         public void RemoveDevice(Devices device);
+        public void RemoveUserDevices(int userid);
         public bool DevicesExists(int id);
         public int GetNumberOfDevicesByType(int userId, string type);
         public List<int> GetListOfFakeIDsForUserDevices(int userid);

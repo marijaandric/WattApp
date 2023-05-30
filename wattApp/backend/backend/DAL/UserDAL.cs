@@ -37,6 +37,9 @@ namespace backend.DAL
                 return new StatusCodeResult(404);
             }
 
+            List<Devices> devices = _context.Devices.Where(e => e.UserID == id).ToList();
+
+            _context.Devices.RemoveRange(devices);
             _context.Users.Remove(user);
             _context.SaveChangesAsync();
 
@@ -127,12 +130,10 @@ namespace backend.DAL
 
         public int GetNumberOfUsersByType(string type)
         {
-            if(type.ToLower() == "prosumer")
+            if(type.ToLower() == "prosumer" || type.ToLower() == "admin" || type.ToLower() == "operator" || type.ToLower() == "superAdmin")
                 return _context.Users.Where(x => x.Role == type).Count();
-            else if(type.ToLower() == "all")
+            else
                 return _context.Users.Count();
-            else return _context.Users.Where(x => x.Role.ToLower() != "prosumer").Count();
-
 
         }
 

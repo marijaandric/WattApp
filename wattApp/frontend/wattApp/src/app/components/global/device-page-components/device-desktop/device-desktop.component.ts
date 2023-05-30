@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, Input, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { DeviceDTO } from 'src/app/dtos/DeviceDTO';
 import { DeviceService } from 'src/app/services/device/device.service';
@@ -10,6 +10,8 @@ import { lastValueFrom, map, tap } from 'rxjs';
 import { HistoryLineChartComponent } from 'src/app/components/Prosumer/history-line-chart/history-line-chart.component';
 import { HistoryForecastComponent } from '../../history-forecast/history-forecast.component';
 import { ForecastLineChartComponent } from 'src/app/components/Prosumer/forecast-line-chart/forecast-line-chart.component';
+import { UserService } from 'src/app/services/user/user.service';
+import { NgToastService } from 'ng-angular-popup';
 
 interface Models{
   code: string;
@@ -24,6 +26,11 @@ interface Rooms{
 interface Types{
   code: string;
   name: string;
+}
+
+interface Types2{
+  id: number;
+  deviceName: string;
 }
 
 interface City {
@@ -48,9 +55,11 @@ interface HiF{
   styleUrls: ['./device-desktop.component.scss']
 })
 export class DeviceDesktopComponent implements OnInit {
-  device!: DeviceDTO;
+  lightMode: Boolean = true;
+  hostElement: HTMLElement | undefined;
+  device!: any;
   loader=true;
-
+  @Input() idDeviceComp : any;
   displayEditDeviceDialog: boolean = false;
   isRunning: boolean = true;
 
@@ -64,6 +73,7 @@ export class DeviceDesktopComponent implements OnInit {
   modelSelected! : Models;
   display3 : Boolean = false;
   display2 : Boolean = false;
+  
 
   isPhone: boolean = false;
   isTablet: boolean = false;
@@ -93,6 +103,10 @@ export class DeviceDesktopComponent implements OnInit {
   isIron: boolean = false;
   isLamp: boolean = false;
   isBulb: boolean = false;
+  isSmallWindTurbine: boolean = false;
+  isPortableGenerator: boolean = false
+  isPowerBank : boolean = false;
+  isBicycleGenerator: boolean = false;
   isOther: boolean = false;
 
   isConsumer: boolean = false;
@@ -100,6 +114,8 @@ export class DeviceDesktopComponent implements OnInit {
   isStock: boolean = false;
 
   isChecked!:boolean;
+  Title = "Consumption history & forecast"
+  Period = "week"
 
   type: City[];
   type2: City[];
@@ -128,6 +144,7 @@ export class DeviceDesktopComponent implements OnInit {
   name2="Forecast"
 
   switchValue: boolean = true;
+  addDeviceForm! : FormGroup;
 
   switchOptions: SwitchOption[] = [
     {label: 'History', value: true},
@@ -141,7 +158,11 @@ export class DeviceDesktopComponent implements OnInit {
               private fromBuilder: FormBuilder,
               private roomTypesService: RoomTypesService,
               private modelTypesService: ModelTypesService,
-              private deviceTypesService: DeviceTypesService) 
+              private deviceTypesService: DeviceTypesService,
+              private elementRef: ElementRef,
+              private renderer: Renderer2,
+              private userService: UserService,
+              private fb: FormBuilder, private toast: NgToastService)
               {
 
                 this.type = [
@@ -150,7 +171,7 @@ export class DeviceDesktopComponent implements OnInit {
                   {name: 'Stock', code: 'Stock'},
                 ];
                 this.type2 = [
-                  {name: 'Both', code: 'both'},
+                  {name: 'History & forecast', code: 'both'},
                   {name: 'History', code: 'history'},
                   {name: 'Forecast', code: 'forecast'}
                 ];
@@ -159,17 +180,46 @@ export class DeviceDesktopComponent implements OnInit {
                   {name: 'Week', code: 'week'}
                 ];
 
+                this.addDeviceForm = this.fb.group({
+                  userID :[0, Validators.required],
+                  id:[0, Validators.required],
+                  fakeID :[0, Validators.required],
+                  deviceName:['', Validators.required],
+                  deviceModel: ['', Validators.required],
+                  room: ['', Validators.required],
+                  model:['', Validators.required],
+                  manufacturer:['', Validators.required],
+                  manufacturingYear:['', Validators.required],
+                  power:['', Validators.required],
+                  deviceType: ['', Validators.required],
+                })
+
+                
+                
+
                }
 
-  ngOnInit() {
+
+  async ngOnInit(): Promise<void> {
+    const token = localStorage.getItem('token');
+    this.userService.isDark$.subscribe(dark => {
+      this.lightMode = !dark;
+      
+    });
     const id = this.route.snapshot.paramMap.get('id');
     this.getHistoryAndForecastByDayForDevice(id)
     this.getHistoryAndForecastByDayForAllDevicesByMonth(id)
     this.getHistoryAndForecastByDayForAllDevicesByYear(id)
+
+    
+
     if (id){
+    
+
       this.deviceService.getDeviceById(id)
         .subscribe(device => {
           this.device = device;
+          
           this.setIcons()
           this.isChecked = this.device.isActive
           if(!this.device){
@@ -183,6 +233,12 @@ export class DeviceDesktopComponent implements OnInit {
             tap(() => this.typeSelected = { code: this.device.deviceType, name: this.device.deviceType }),
             ).subscribe(mappedDeviceTypes => {
               this.types = mappedDeviceTypes;
+              const selectedIndex = this.types.findIndex(type => type.name === this.typeSelected.code);
+              if (selectedIndex !== -1) {
+                const selectedType = this.types.splice(selectedIndex, 1)[0];
+                this.types.unshift(selectedType);
+              }
+              console.log(this.types)
 
               this.modelTypesService.getAllModelTypes(this.typeSelected.code).pipe(
                 map(modelTypes => {
@@ -191,6 +247,11 @@ export class DeviceDesktopComponent implements OnInit {
                 tap(() => this.modelSelected = { code: this.device.deviceModel, name: this.device.deviceModel }),
               ).subscribe(mappedModelTypes => {
                 this.models = mappedModelTypes;
+                const selectedIndex = this.models.findIndex(model => model.name === this.modelSelected.code);
+                if (selectedIndex !== -1) {
+                  const selectedModel = this.models.splice(selectedIndex, 1)[0];
+                  this.models.unshift(selectedModel);
+                }
               });
           });
           
@@ -201,21 +262,26 @@ export class DeviceDesktopComponent implements OnInit {
             tap(() => this.roomSelected = { code: this.device.room, name: this.device.room }),
           ).subscribe(mappedRoomTypes => {
             this.rooms = mappedRoomTypes;
+            const selectedIndex = this.rooms.findIndex(room => room.name === this.roomSelected.code);
+            if (selectedIndex !== -1) {
+              const selectedRoom = this.rooms.splice(selectedIndex, 1)[0];
+              this.rooms.unshift(selectedRoom);
+            }
           });
-          
+
           this.nameSelected = this.device.deviceName;
           this.getUsageToday();
           this.getUsageWeek();
           this.getUsageMonth();
           this.getUsageYear();
           this.getMaxMinAvgTotalPowerUsageByTimeForDevice();
+          
       });
 
     } else{
       this.navigateToDevices();
     }
 
-    
 
   }
 
@@ -318,7 +384,18 @@ export class DeviceDesktopComponent implements OnInit {
         break;
       case "Bulb":
         this.isBulb = true;
+        break; case "Small Wind Turbine":
+        this.isSmallWindTurbine = true;
         break;
+        case "Portable Generator":
+          this.isPortableGenerator = true;
+          break;
+          case "Bicycle Generator":
+            this.isBicycleGenerator = true;
+            break;
+            case "Power Bank":
+              this.isPowerBank = true;
+              break;
       default:
         this.isOther = true;
         break;
@@ -341,6 +418,20 @@ export class DeviceDesktopComponent implements OnInit {
   }
 
   showEditDeviceDialog() {
+    this.addDeviceForm = this.fb.group({
+      userID :[this.device.userID, Validators.required],
+      id:[this.device.id, Validators.required],
+      fakeID: [this.device.fakeID, Validators.required],
+      deviceName:[this.device.deviceName, Validators.required],
+      deviceModel: [this.device.deviceModel, Validators.required],
+      room: [this.device.room, Validators.required],
+      model:[this.device.model, Validators.required],
+      manufacturer:[this.device.manufacturer, Validators.required],
+      manufacturingYear:[this.device.manufacturingYear, Validators.required],
+      power:[this.device.power, Validators.required],
+      deviceType: [this.device.deviceType, Validators.required],
+    })
+
     this.displayEditDeviceDialog = true;
   }
 
@@ -362,16 +453,46 @@ export class DeviceDesktopComponent implements OnInit {
   }
 
   save(){
-    this.device.deviceModel = this.modelSelected.name;
-    this.device.deviceType = this.typeSelected.name;
-    this.device.room = this.roomSelected.name;
-    this.device.deviceName = this.nameSelected;
-    this.deviceService.updateDevice(this.device).subscribe(
-      (updatedDevice: DeviceDTO) => {
+    // this.device.deviceModel = this.modelSelected.name;
+    // this.device.deviceType = this.typeSelected.name;
+    // this.device.room = this.roomSelected.name;
+    // this.device.deviceName = this.nameSelected;
+
+    
+    this.addDeviceForm.patchValue({
+      deviceModel: this.modelSelected.code
+    });
+    this.addDeviceForm.patchValue({
+      deviceType: this.typeSelected.code
+    });
+    this.addDeviceForm.patchValue({
+      room: this.roomSelected.code
+    });
+
+    if (!this.addDeviceForm.valid) {
+      this.toast.error({detail:"ERROR",summary:"Please fill in all fields.",duration:4000});
+      return
+    }
+
+    // if (!(/^\d+$/.test(this.addDeviceForm.value.power))) {
+    //   this.toast.error({detail:"ERROR",summary:"Please enter numbers only.",duration:4000});
+    //   return
+    // }
+
+
+
+    this.deviceService.updateDevice(this.addDeviceForm.value).subscribe(
+      (updatedDevice: any) => {
         this.displayEditDeviceDialog = false;
+        this.toast.success({detail:"SUCCESS",summary:"You have successfully update device",duration:5000});
+         setTimeout(() => {
+        location.reload();
+      }, 1350)
+
       },
       (error: any) => {
         console.error(error);
+        this.toast.error({detail:"ERROR",summary:"Please enter numbers only.",duration:4000});
       }
     );
   }
@@ -472,8 +593,8 @@ export class DeviceDesktopComponent implements OnInit {
         this.miniForecast  = this.miniForecastCon;
 
 
-        const arr = [10.20,20.30,-6.00,0.00,-7.07,37.20,12.00,0.23];
-        const arr2 = [12.20,-3.30,0.00,-3.30,20.70,10.20,30.00,-8.23];
+        const arr = [20.20,13.30,-5.00,0.00,-4.00,29.20,22.00,0.23,45.00,58.98,74.22,12.44,22.11];
+        const arr2 =[20.20,13.30,-5.00,0.00,-4.00,29.20,22.00,0.23,45.00,58.98,74.22,12.44,22.11];
         if(this.ForecastCon.every((el: number) => el === 0))
         {}
         else{
@@ -515,9 +636,9 @@ export class DeviceDesktopComponent implements OnInit {
           this.HistoryCon3[br] = this.HistoryCon[i];
           this.HistoryPro3[br]= this.HistoryPro[i];
           this.HistoryStock3[br] = this.HistoryStock[i];
-          this.ForecastCon3[br] = parseFloat((this.ForecastCon[i]+arr[i]).toFixed(2));
-          this.ForecastPro3[br] = parseFloat((this.ForecastPro[i]+arr2[i]).toFixed(2));
-          this.ForecastStock3[br] = parseFloat((this.ForecastStock[i]+arr[i]).toFixed(2));
+          this.ForecastCon3[br] = parseFloat((this.ForecastCon[i]).toFixed(2));
+          this.ForecastPro3[br] = parseFloat((this.ForecastPro[i]).toFixed(2));
+          this.ForecastStock3[br] = parseFloat((this.ForecastStock[i]).toFixed(2));
           this.arrayData3[br] = this.arrayData[i];
           br++;
         }
@@ -620,7 +741,7 @@ export class DeviceDesktopComponent implements OnInit {
   
 table = true;
 tableHiFWeek = true;
-name:string="Consumption history"
+name:string="History"
 isForecastTrue = true;
 
   dropdownChange()
@@ -633,6 +754,8 @@ isForecastTrue = true;
       this.color2 = '#88dbf6';
       if(this.selectedDate.code == "week" && this.selectedHF.code == "both")
       {
+        this.Period = "week"
+        this.Title = "History & Forecast"
         this.tableHiFWeek = true;
         this.miniHistory=this.miniHistoryCon;
         this.miniForecast=this.miniForecastCon;
@@ -675,6 +798,8 @@ isForecastTrue = true;
       }
       else if( this.selectedDate.code == "3 days" && this.selectedHF.code == "both")
       {
+        this.Period = "3 years"
+        this.Title = "History & Forecast"
         this.table = true;
         this.History = this.HistoryCon3;
         this.Forecast = this.ForecastCon3;
@@ -693,7 +818,9 @@ isForecastTrue = true;
       }
       else if( this.selectedDate.code == "3 days" && this.selectedHF.code == "forecast")
       {
-        this.name = "Consumption forecast"
+        this.Period = "3 days"
+        this.Title = "Forecast"
+        this.name = "Forecast"
         this.History = [null];
         this.Forecast = [this.ForecastCon3[3],this.ForecastCon3[4],this.ForecastCon3[5]]
 
@@ -702,7 +829,9 @@ isForecastTrue = true;
       }
       else if( this.selectedDate.code == "week" && this.selectedHF.code == "forecast")
       {
-        this.name = "Consumption forecast"
+        this.Period = "week"
+        this.Title = "Forecast"
+        this.name = "Forecast"
         this.History = [null];
         this.Forecast = [this.ForecastCon[6],this.ForecastCon[7],this.ForecastCon[8],this.ForecastCon[9],this.ForecastCon[10],this.ForecastCon[11],this.ForecastCon[12],this.ForecastCon[13]]
 
@@ -711,7 +840,9 @@ isForecastTrue = true;
       }
       else if( this.selectedDate.code == "week" && this.selectedHF.code == "history")
       {
-        this.name = "Consumption history"
+        this.Period = "week"
+        this.Title = "History"
+        this.name = "History"
         this.History = [this.HistoryCon[0],this.HistoryCon[1],this.HistoryCon[2],this.HistoryCon[3],this.HistoryCon[4],this.HistoryCon[5],this.HistoryCon[6]]
         this.Forecast = [null];
 
@@ -720,7 +851,9 @@ isForecastTrue = true;
       }
       else if( this.selectedDate.code == "month")
       {
-        this.name = "Consumption history"
+        this.Period = "month"
+        this.Title = "History"
+        this.name = "History"
         this.History = this.HistoryConM;
         this.Forecast = [null]
 
@@ -729,7 +862,9 @@ isForecastTrue = true;
         
       }
       else{
-        this.name = "Consumption history"
+        this.Period = "year"
+        this.Title = "History"
+        this.name = "History"
         this.History = this.HistoryConY;
         this.Forecast = [null]
 
@@ -826,159 +961,158 @@ dataMax: any;
 theDay = "On the day: ";
 
 
-  getMaxMinAvgTotalPowerUsageByTimeForDevice() {
-    const id = this.device.id;
-    const timeType = this.selectedDate.code;
+ 
+getMaxMinAvgTotalPowerUsageByTimeForDevice() {
+  const id = this.device.id;
+  const timeType = this.selectedDate.code;
 
+  this.deviceService.getMaxMinAvgTotalPowerUsageByTimeForDevice(id,timeType).subscribe(data => {
+    const keys = Object.keys(data);
+    this.dataMin = keys[1];
+    this.dataMax = keys[0];
 
+    this.Consumermax = data[keys[0]].toFixed(2);
+    this.Consumermin = data[keys[1]].toFixed(2);
+    this.Consumertotal=data.total.toFixed(2);
+    this.Consumeraverage=data.average.toFixed(2);
 
-    this.deviceService.getMaxMinAvgTotalPowerUsageByTimeForDevice(id,timeType).subscribe(data => {
-      const keys = Object.keys(data);
-      this.dataMin = keys[1];
-      this.dataMax = keys[0];
+    this.max=this.Consumermax;
+    this.min= this.Consumermin;
+    this.average=this.Consumeraverage;
+    this.total=this.Consumertotal;
 
-      this.Consumermax = data[keys[0]].toFixed(2);
-      this.Consumermin = data[keys[1]].toFixed(2);
-      this.Consumertotal=data.total.toFixed(2);
-      this.Consumeraverage=data.average.toFixed(2);
-
-      this.max=this.Consumermax;
-      this.min= this.Consumermin;
-      this.average=this.Consumeraverage;
-      this.total=this.Consumertotal;
-
-      console.log(this.device.deviceType);
-      if(this.device.deviceType=="Stock")
+    console.log(this.device.deviceType);
+    if(this.device.deviceType=="Stock")
+    {
+      if(this.selectedDate.code == "week")
       {
-        if(this.selectedDate.code == "week")
-        {
-          this.TitleMin='Minimal stocked electricity this week';
-          this.TittleMax='Maximum stocked electricity this week';
-          this.TitleAverage='Average stocked electricity this week';
-          this.TitleTotal='Total stocked electricity this week';
-          this.theDay = "On the day: ";
-        }
-        else if(this.selectedDate.code == "3 days")
-        {
-          this.TitleMin='Minimal stocked electricity by 3 days';
-          this.TittleMax='Maximum stocked electricity by 3 days';
-          this.TitleAverage='Average stocked electricity by 3 days';
-          this.TitleTotal='Total stocked electricity by 3 days';
-          this.theDay = "On the day: ";
-        }
-        else if(this.selectedDate.code == "month")
-        {
-          this.TitleMin='Minimal stocked electricity this month';
-          this.TittleMax='Maximum stocked electricity this month';
-          this.TitleAverage='Average stocked electricity this month';
-          this.TitleTotal='Total stocked electricity this month';
-          this.theDay = "On the day: ";
-        }
-        else
-        {
-          this.TitleMin='Minimal stocked electricity this year';
-         this.TittleMax='Maximum stocked electricity this year';
-          this.TitleAverage='Average stocked electricity this year';
-         this.TitleTotal='Total stocked electricity this year';
-         this.theDay = "On the month: ";
-        }
-        
-
-        this.SubTitleToday='Stock Today';
-        this.SubTitleWeek='Stock this week';
-        this.SubTitleMonth='Stock this month';
-        this.SubTitleYear='Stock this year';
-        this.SubTitleAll='Stock all time';
+        this.TitleMin='Minimal stocked by day this week';
+        this.TittleMax='Maximal stocked by day this week';
+        this.TitleAverage='Average stocked by day this week';
+        this.TitleTotal='Total stocked by day this week';
+        this.theDay = "On the day: ";
       }
-      else if(this.device.deviceType=="Consumer")
+      else if(this.selectedDate.code == "3 days")
       {
-        if(this.selectedDate.code == "week")
-        {
-          this.TitleMin='Minimal consumed electricity this week';
-        this.TittleMax='Maximum consumed electricity this week';
-        this.TitleAverage='Average consumed electricity this week';
-        this.TitleTotal='Total consumed electricity this week';
+        this.TitleMin='Minimal stocked by day for 3 days';
+        this.TittleMax='Maximal stocked by day for 3 days';
+        this.TitleAverage='Average stocked by day for 3 days';
+        this.TitleTotal='Total stocked by day for 3 days';
         this.theDay = "On the day: ";
-        }
-        else if(this.selectedDate.code == "3 days")
-        {
-          this.TitleMin='Minimal consumed electricity by 3 days';
-          this.TittleMax='Maximum consumed electricity by 3 days';
-          this.TitleAverage='Average consumed electricity by 3 days';
-          this.TitleTotal='Total consumed electricity by 3 days';
-          this.theDay = "On the day: ";
-        }
-        else if(this.selectedDate.code == "month")
-        {
-          this.TitleMin='Minimal consumed electricity this month';
-        this.TittleMax='Maximum consumed electricity this month';
-        this.TitleAverage='Average consumed electricity this month';
-        this.TitleTotal='Total consumed electricity this month';
+      }
+      else if(this.selectedDate.code == "month")
+      {
+        this.TitleMin='Minimal stocked by day this month';
+        this.TittleMax='Maximal stocked by day this month';
+        this.TitleAverage='Average stocked by day this month';
+        this.TitleTotal='Total stocked by day this month';
         this.theDay = "On the day: ";
-        }
-        else
-        {
-          this.TitleMin='Minimal consumed electricity this year';
-          this.TittleMax='Maximum consumed electricity this year';
-          this.TitleAverage='Average consumed electricity this year';
-          this.TitleTotal='Total consumed electricity this year';
-          this.theDay = "On the month: ";
-        }
-
-        this.SubTitleToday='Consumption Today';
-        this.SubTitleWeek='Consumption this week';
-        this.SubTitleMonth='Consumption this month';
-        this.SubTitleYear='Consumption this year';
-        this.SubTitleAll='Consumption all time';
       }
       else
       {
-        if(this.selectedDate.code == "week")
-        {
-          this.TitleMin='Minimal produced electricity this week';
-      this.TittleMax='Maximum produced electricity this week';
-      this.TitleAverage='Average produced electricity this week';
-      this.TitleTotal='Total produced electricity this week';
-      this.theDay = "On the day: ";
-        }
-        else if(this.selectedDate.code == "3 days")
-        {
-          this.TitleMin='Minimal produced electricity by 3 days';
-        this.TittleMax='Maximum produced electricity by 3 days';
-        this.TitleAverage='Average produced electricity by 3 days';
-        this.TitleTotal='Total produced electricity by 3 days';
-        this.theDay = "On the day: ";
-        }
-        else if(this.selectedDate.code == "month")
-        {
-          this.TitleMin='Minimal produced electricity this month';
-        this.TittleMax='Maximum produced electricity this month';
-        this.TitleAverage='Average produced electricity this month';
-        this.TitleTotal='Total produced electricity this month';
-        this.theDay = "On the day: ";
-        }
-        else
-        {
-          this.TitleMin='Minimal produced electricity this year';
-        this.TittleMax='Maximum produced electricity this year';
-        this.TitleAverage='Average produced electricity this year';
-        this.TitleTotal='Total produced electricity this year';
-        this.theDay = "On the month: ";
-        }
+        this.TitleMin='Minimal stocked by day this year';
+       this.TittleMax='Maximal stocked by day this year';
+        this.TitleAverage='Average stocked by day this year';
+       this.TitleTotal='Total stocked by day this year';
+       this.theDay = "On the month: ";
+      }
+      
 
-        this.SubTitleToday='Production Today';
-        this.SubTitleWeek='Production this week';
-        this.SubTitleMonth='Production this month';
-        this.SubTitleYear='Production this year';
-        this.SubTitleAll='Production all time';
+      this.SubTitleToday='Stock today';
+      this.SubTitleWeek='Stock this week';
+      this.SubTitleMonth='Stock this month';
+      this.SubTitleYear='Stock this year';
+      this.SubTitleAll='Stock all time';
+    }
+    else if(this.device.deviceType=="Consumer")
+    {
+      if(this.selectedDate.code == "week")
+      {
+        this.TitleMin='Minimal consumed by day this week';
+      this.TittleMax='Maximal consumed by day this week';
+      this.TitleAverage='Average consumed by day this week';
+      this.TitleTotal='Total consumed by day this week';
+      this.theDay = "On the day: ";
+      }
+      else if(this.selectedDate.code == "3 days")
+      {
+        this.TitleMin='Minimal consumed by day for 3 days';
+        this.TittleMax='Maximal consumed by day for 3 days';
+        this.TitleAverage='Average consumed by day for 3 days';
+        this.TitleTotal='Total consumed by day for 3 days';
+        this.theDay = "On the day: ";
+      }
+      else if(this.selectedDate.code == "month")
+      {
+        this.TitleMin='Minimal consumed by day this month';
+      this.TittleMax='Maximal consumed by day this month';
+      this.TitleAverage='Average consumed by day this month';
+      this.TitleTotal='Total consumed by day this month';
+      this.theDay = "On the day: ";
+      }
+      else
+      {
+        this.TitleMin='Minimal consumed by day this year';
+        this.TittleMax='Maximal consumed by day this year';
+        this.TitleAverage='Average consumed by day this year';
+        this.TitleTotal='Total consumed by day this year';
+        this.theDay = "On the month: ";
       }
 
-      // console.log(this.max);
-      // console.log(this.min);
-      // console.log(this.total);
-      // console.log(this.average);
+      this.SubTitleToday='Consumption today';
+      this.SubTitleWeek='Consumption this week';
+      this.SubTitleMonth='Consumption this month';
+      this.SubTitleYear='Consumption this year';
+      this.SubTitleAll='Consumption all time';
+    }
+    else
+    {
+      if(this.selectedDate.code == "week")
+      {
+        this.TitleMin='Minimal produced by day this week';
+    this.TittleMax='Maximal produced by day this week';
+    this.TitleAverage='Average produced by day this week';
+    this.TitleTotal='Total produced by day this week';
+    this.theDay = "On the day: ";
+      }
+      else if(this.selectedDate.code == "3 days")
+      {
+        this.TitleMin='Minimal produced by day for 3 days';
+      this.TittleMax='Maximal produced by day for 3 days';
+      this.TitleAverage='Average produced by day for 3 days';
+      this.TitleTotal='Total produced by day for 3 days';
+      this.theDay = "On the day: ";
+      }
+      else if(this.selectedDate.code == "month")
+      {
+        this.TitleMin='Minimal produced by day this month';
+      this.TittleMax='Maximal produced by day this month';
+      this.TitleAverage='Average produced by day this month';
+      this.TitleTotal='Total produced by day this month';
+      this.theDay = "On the day: ";
+      }
+      else
+      {
+        this.TitleMin='Minimal produced by day this year';
+      this.TittleMax='Maximal produced by day this year';
+      this.TitleAverage='Average produced by day this year';
+      this.TitleTotal='Total produced by day this year';
+      this.theDay = "On the month: ";
+      }
 
-  });
+      this.SubTitleToday='Production today';
+      this.SubTitleWeek='Production this week';
+      this.SubTitleMonth='Production this month';
+      this.SubTitleYear='Production this year';
+      this.SubTitleAll='Production all time';
+    }
+
+    // console.log(this.max);
+    // console.log(this.min);
+    // console.log(this.total);
+    // console.log(this.average);
+
+});
 }
 
 showDialog2(){
@@ -990,6 +1124,55 @@ async handleRunningSwitchChange2(){
   this.device.isActive = this.isChecked 
   await lastValueFrom(this.deviceService.updateDevice(this.device));
   this.display2 = false; // za alert izbrisati ovo
+}
+
+calculateBatteryLife(power: number, consumption: number, efficiency: number): { hours: number, minutes: number } {
+  const batteryLifeInHours = (power / consumption) * efficiency;
+  const batteryLifeInMinutes = Math.round(batteryLifeInHours * 60);
+  const hours = Math.floor(batteryLifeInMinutes / 60);
+  const minutes = batteryLifeInMinutes % 60;
+  return { hours, minutes };
+}
+
+formatBatteryLife(batteryLife: { hours: number, minutes: number }): string {
+  const formattedHours = batteryLife.hours.toString().padStart(2, '0');
+  const formattedMinutes = batteryLife.minutes.toString().padStart(2, '0');
+  if(formattedMinutes == '00')
+  {
+    return `${formattedHours} hours`
+  }
+  else{
+    return `${formattedHours} hours and ${formattedMinutes} minutes`;
+  }
+  
+}
+
+onTypeChange(event:any){
+  this.typeSelected = event.value;
+
+  this.modelTypesService.getAllModelTypes(this.typeSelected.code)
+    .pipe(
+      map(modelTypes => Object.entries(modelTypes).map(([code, name]) => ({ code, name })))
+    )
+    .subscribe(mappedModelTypes => {
+      this.models = mappedModelTypes;
+      this.modelSelected = this.models[0];
+  });
+}
+
+onModelChange(event:any){
+  this.modelSelected = event.value;
+}
+
+onRoomChange(event:any)
+{
+  this.roomSelected = event.value;
+}
+
+navigateToDevice(deviceId: number) {
+  this.router.navigate(['/device', deviceId]).then(() => {
+    window.location.reload();
+  });
 }
 
 }

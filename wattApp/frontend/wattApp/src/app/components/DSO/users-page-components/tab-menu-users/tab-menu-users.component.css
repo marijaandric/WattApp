@@ -24,17 +24,22 @@
 
 .tab-icon {
   font-size: 20px;
+  /*
   color: #fff;
+  */
 }
 
 .tab-title {
   font-size: 15px;
+  /*
   color: #fff;
+  */
 }
 a {
   text-decoration: none;
 }
 
+/*
 :host .tab.active5 .tab-icon {
   color: #fff;
 }
@@ -56,7 +61,7 @@ a {
 :host .tab.active7 .tab-title {
   color: #fff;
 } 
-
+*/
 @media only screen and (max-width: 600px) {
 
     nav a div b {

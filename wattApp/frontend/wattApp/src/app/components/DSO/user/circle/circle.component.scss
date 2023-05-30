@@ -1,4 +1,18 @@
 
+.light-mode-circles {
+    .circle-1 {
+        box-shadow: 4px 4px 40px -5px rgb(207, 207, 207) !important;
+    
+    }
+    .circle-2 {
+        background:white !important;
+        h5,p {
+            color:#323232;
+          }
+    }
+    
+  }
+
 
 .main-card {
     display:flex;
@@ -225,24 +239,6 @@
         color: #6592d9;
     }
     
-}
-
-
-@-webkit-keyframes animate {
-0%{
-    background: linear-gradient(45deg, #b855a4 20%, #f5805a 100%);}
-100%{
-    background: linear-gradient(45deg,#f5805a  20%,  #b855a4 100%);}
-}
-@-moz-keyframes animate {
-0%{background-position:0% 50%}
-50%{background-position:100% 50%}
-100%{background-position:0% 50%}
-}
-@keyframes animate {
-0%{background-position:0% 50%}
-50%{background-position:100% 50%}
-100%{background-position:0% 50%}
 }
 
 

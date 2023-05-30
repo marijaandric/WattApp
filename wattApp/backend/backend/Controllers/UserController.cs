@@ -191,5 +191,12 @@ namespace backend.Controllers
             return _context.ChangePassword(cp.Id,cp.CurrentPassword,cp.NewPassword);
         }
 
+        [HttpPost("contact-us")]
+        public async Task<IActionResult> ContactUs(ContactUsDTO cu)
+        {
+            _context.SendEmailContactUs(cu.Email, cu.Name, cu.Subject, cu.Message);
+            return Ok();
+        }
+
     }
 }

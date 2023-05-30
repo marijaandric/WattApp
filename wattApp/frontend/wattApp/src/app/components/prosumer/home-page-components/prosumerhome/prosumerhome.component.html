@@ -1,12 +1,12 @@
-<standard-template>
-    <app-title-bar>
-      <h3>Home</h3>
+<standard-template >
+    <app-title-bar >
+      <h3  [ngClass]="{'light-theme-color-gray-323232':lightMode}">Home</h3>
     </app-title-bar>
-  
     <app-center-bar *ngIf="loader"><app-loader></app-loader></app-center-bar>
     <app-center-bar *ngIf="!loader">
-    <h3 class="hello">Hello, {{user?.firstName}} {{user?.lastName}}</h3>
-    <h6 style="margin-bottom: -10px;font-size:14px !important;">{{quote}}</h6>
+        <div  #idComponent [ngClass]="{'light-mode':lightMode, 'dark-mode':!lightMode}">
+    <h3 class="hello"  [ngClass]="{'light-theme-color-gray-323232':lightMode}">Hello, {{user?.firstName}} {{user?.lastName}}</h3>
+    <h6 style="margin-bottom: -10px;font-size:14px !important;"  [ngClass]="{'light-theme-color-gray-323232':lightMode}">{{quote}}</h6>
     <div class="prviDeoPrognoza">
     <div class="prviDeo">
     <div class="widgets">
@@ -21,33 +21,33 @@
       </app-widget>
         
     </div>
-    <h3 class="hello">Top Devices</h3>
+    <h3 class="hello"  [ngClass]="{'light-theme-color-gray-323232':lightMode}"  > Top Devices</h3>
     <div style="display: flex;
     flex-direction: row;
     flex-wrap: wrap;">
     <div class="crsl" style="width: 30%;">
-        <p-carousel *ngIf="devices[0].deviceName != 'default'" [value] = "devices" [circular]="false" [numScroll]="1">
+        <p-carousel *ngIf="devices[0]?.deviceName != 'default'" [value] = "devices" [circular]="false" [numScroll]="1">
           <ng-template let-device pTemplate="device">
-              <h6 style="text-align: center;">The biggest {{device.deviceType}}</h6>
-              <div *ngIf ="device.deviceName != 'default'">
-              <app-device-card [device]="device" [devices]="devices"></app-device-card>
+              <h6 style="text-align: center;" [ngClass]="{'light-theme-color-gray-323232':lightMode}">The biggest {{device.deviceType}}</h6>
+              <div *ngIf ="device?.deviceName != 'default'"  style="margin-bottom:20px;">
+              <app-device-card [device]="device" [devices]="devices" [idComponent]="idComponent"></app-device-card>
               </div>
-              <div *ngIf ="device.deviceName == 'default'">
-                <div style="cursor: pointer;margin-top:40px" (click)="showDisplay()">
-                <div style="width:92%;height:170px;margin:auto;background-color: #1b1b1b;border-radius: 20px;box-shadow: 5px 5px 15px black;text-align: center;">
+              <div *ngIf ="device?.deviceName == 'default'" >
+                <div style="cursor: pointer;margin-top:20px" (click)="showDisplay()">
+                <div style="width:90%;min-height:170px;max-width:300px;margin:auto;border-radius: 20px;text-align: center;" [ngClass]="{'light-mode-card':lightMode,'dark-theme-bigger-shadow':!lightMode}">
                 <div style="padding: 20px;padding-top:70px"><i class="fa fa-plus" aria-hidden="true"></i>Add {{device.deviceType}} device</div>
                 </div>
                 </div>
               </div>
           </ng-template>
         </p-carousel>
-        <p-carousel *ngIf="devices[0].deviceName == 'default'" [value] = "devices" [circular]="false" [numScroll]="1">
+        <p-carousel *ngIf="devices[0]?.deviceName == 'default'" [value] = "devices" [circular]="false" [numScroll]="1">
           <ng-template let-device pTemplate="device">
-              <h6 style="text-align: center;">The biggest {{device.deviceType}}</h6>
-              <div *ngIf ="device.deviceName == 'default'">
-                <div style="cursor: pointer;margin-top:40px" (click)="showDisplay()">
-                <div style="width:92%;height:170px;margin:auto;background-color: #1b1b1b;border-radius: 20px;box-shadow: 5px 5px 15px black;text-align: center;">
-                <div style="padding: 20px;padding-top:70px"><i class="fa fa-plus" aria-hidden="true"></i>Add {{device.deviceType}} device</div>
+              <h6 style="text-align: center;"  [ngClass]="{'light-theme-color-gray-323232':lightMode}">The biggest {{device?.deviceType}}</h6>
+              <div *ngIf ="device?.deviceName == 'default'">
+                <div style="cursor: pointer;margin-top:20px" (click)="showDisplay()">
+                <div style="width:90%;min-height:170px;max-width:300px;margin:auto;border-radius: 20px; text-align: center;" [ngClass]="{'light-mode-card':lightMode,'dark-theme-bigger-shadow':!lightMode}" >
+                <div style="padding: 20px;padding-top:70px"><i class="fa fa-plus" aria-hidden="true"></i>Add {{device?.deviceType}} device</div>
                 </div>
                 </div>
               </div>
@@ -55,7 +55,7 @@
         </p-carousel>
         </div>
         
-        <div class="slika" style="">
+        <div class="slika" [ngClass]="{'light-theme-bigger-shadow':lightMode,'dark-theme-bigger-shadow':!lightMode}" >
           
         </div>
     </div>
@@ -68,69 +68,146 @@
       </div>
     </div>
   </div>
-  <h3 class="hello">News and fun</h3>
+  <h3 class="hello"  [ngClass]="{'light-theme-color-gray-323232':lightMode}" style="margin-top:20px;">News and fun</h3>
   <div class="promotions" >
-    <app-promotion [subTitle]="naslov1"
+    <app-promotion (click)="showDisplay2(1)" [subTitle]="naslov1"
      [Title]="sadrzaj1" 
      [Status]="status1"
      [Datum]="datum1"
+     [ID]="id1"
+     [desc] = "desc1"
      [isBlue]="true" [isBgBlue]="true" class="promotion">
     </app-promotion>
-    <app-promotion
+    <app-promotion (click)="showDisplay2(2)"
     [subTitle]="naslov2"
     [Datum]="datum2"
     [Status]="status2"
     [Title]="sadrzaj2"
+    [ID]="id2"
+    [desc] = "desc2"
     [isYellow]="true" [isBgYellow]="true" class="promotion1">
     </app-promotion>
-    <app-promotion
+    <app-promotion (click)="showDisplay2(3)"
     [subTitle]="naslov3"
     [Datum]="datum3"
     [Status]="status3"
     [Title]="sadrzaj3"
+    [desc] = "desc3"
+    [ID]="id3"
     [isPink]="true" [isBgPink]="true" class="promotion1">
     </app-promotion> 
   </div>
 
     
+</div>  
     <!--<div class="filter-div"><span>filter</span></div>-->
   </app-center-bar>
-
   </standard-template>
-  
 
-  
-<p-dialog [style]="{width:'40%'}" header="Title"  [transitionOptions]="'3ms'" 
+
+  <p-dialog [style]="{width:'40%'}" header="Title"  [transitionOptions]="'3ms'" 
 [draggable]="true" [keepInViewport]="true" [resizable]="false" 
 [blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true" 
-[modal]="true" [(visible)]="display" [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
-[closable]="true" >
+[modal]="true" [(visible)]="display2" [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
+[closable]="true" [ngClass]="{'light-mode':lightMode}" appendTo="body">
 <ng-template pTemplate="header" class="header-dialog">
-  <span>Add Device</span>
+  <h2 style="text-align: center;">{{naslov}}</h2>
 </ng-template>
 
 <ng-template pTemplate="content">
+  <div style="text-align: center; font-weight: bold;">{{opis}}</div>
+  <br>
+  <br>
+  <div style="text-align: justify;">{{desc}}</div>
+</ng-template>
+</p-dialog>
+
+  
+
+  
+<!-- <p-dialog [style]="{width:'40%'}" header="Title"  [transitionOptions]="'3ms'" 
+[draggable]="true" [keepInViewport]="true" [resizable]="false" 
+[blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true" 
+[modal]="true" [(visible)]="display" [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
+[closable]="true" [ngClass]="{'light-mode':lightMode}" >
+<ng-template pTemplate="header" class="header-dialog">
+  <span>Add Device <i class="fa fa-info-circle" style="cursor:pointer" aria-hidden="true" (click)="op3.toggle($event)"></i> </span>
+  <p-overlayPanel #op3 >
+    <p style="width:350px">Dear user,</p> 
+    <p style="width:350px">You must fill in all fields.</p>
+    <p style="width:350px">If an error occurs while adding your device and you have followed the steps, please consult with your nearest operator for assistance.</p>
+  </p-overlayPanel>
+</ng-template> -->
+
+<!-- <ng-template pTemplate="content">
   <form [formGroup]="addDeviceForm" >  
   <div class="p-inputgroup p-inputtext-lg p-input-filled">
     <div class="half">  
-      Device type 
-      <p-dropdown [options]="types" appendTo="body" optionLabel="name" (onChange)="onTypeChange($event)"/>
-      Device model 
-      <p-dropdown [options]="models" appendTo="body" optionLabel="name" (onChange)="onModelChange($event)"/>
-    </div>
+      <span>Device category</span> 
+      <div class="dropdown-div" style="margin-bottom:20px;" [ngClass]="{'light-mode':lightMode}"> <p-dropdown [options]="types" appendTo="body" optionLabel="name" (onChange)="onTypeChange($event)" [ngClass]="{'light-mode':lightMode}" /></div>
+      <span >Device type </span>
+      <div class="dropdown-div" style="margin-top:0px;" [ngClass]="{'light-mode':lightMode}"><p-dropdown [options]="models" appendTo="body" optionLabel="name" (onChange)="onModelChange($event)" [ngClass]="{'light-mode':lightMode}" />
+    </div></div>
     
     <div class="half">       
-       Room
-      <p-dropdown [options]="rooms" appendTo="body" optionLabel="name" (onChange)="onRoomChange($event)"/>
-      <input style="margin-top:45px;" formControlName="deviceName" name="name"  appendTo="body" type="text"   class="p-inputtext-lg"  placeholder="DEVICE NAME"> 
+      <span>Location</span>
+       <div class="dropdown-div" style="margin-bottom:20px;" [ngClass]="{'light-mode':lightMode}"><p-dropdown [options]="rooms" appendTo="body" optionLabel="name" (onChange)="onRoomChange($event)" [ngClass]="{'light-mode':lightMode}" /></div>
+       <span> Device name </span>
+       <input formControlName="deviceName" name="name"  type="text"   class="p-inputtext-lg"  placeholder="DEVICE NAME" style="margin-top:0px;"> 
     </div>
   </div> 
   </form>
 </ng-template>
 
 <ng-template pTemplate="footer" style="min-height:100px;" >
-  <button type="button" class="footer-button" icon="pi pi-info-circle" label="Show" (click)="addDevice()"><span>Save</span></button>
+  <div class="button-div"><p-button type="button" class="footer-button" label="Save" (click)="addDevice()"></p-button>
+  </div>
+</ng-template>
+</p-dialog> -->
 
+
+<p-dialog [style]="{width:'40%'}" header="Title"  [transitionOptions]="'3ms'" #adddv
+[draggable]="true" [keepInViewport]="true" [resizable]="false" [ngClass]="{'light-mode':lightMode, 'dark-mode':!lightMode}"
+[blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true" 
+[modal]="true" [(visible)]="display" [breakpoints]="{'960px': '75vw', '640px': '90vw'}" 
+[closable]="true"  id="dijalog-prosumer">
+<ng-template pTemplate="header" class="header-dialog">
+  <span>Add Device <i class="fa fa-info-circle" style="cursor:pointer" aria-hidden="true" (click)="op3.toggle($event)"></i> </span>
+  <p-overlayPanel #op3  [ngClass]="{'light-mode':lightMode, 'dark-mode':!lightMode}">
+    <p style="width:350px">Dear user,</p> 
+    <p style="width:350px">You must fill in all fields. In the power or capacity field, enter only numbers.</p>
+    <p style="width:350px">If an error occurs while adding your device and you have followed the steps, please consult with your nearest operator for assistance.</p>
+  </p-overlayPanel>
+</ng-template>
+
+<ng-template pTemplate="content">
+  <form [formGroup]="addDeviceForm" >  
+  <div class="p-inputgroup p-inputtext-lg p-input-filled">
+    <div class="half">  
+      <span>Device category</span> 
+      <div class="dropdown-div" style="margin-bottom:20px;"><div [ngClass]="{'light-mode':lightMode,'dark-mode':!lightMode}" > <p-dropdown appendTo="body" [options]="types" [appendTo]="adddv" optionLabel="name" (onChange)="onTypeChange($event)" /></div></div>
+      <span >Device type </span>
+      <div class="dropdown-div" style="margin-bottom:20px;"><div [ngClass]="{'light-mode':lightMode,'dark-mode':!lightMode}" ><p-dropdown appendTo="body" [options]="models" [appendTo]="adddv" optionLabel="name" (onChange)="onModelChange($event)"  /></div></div>
+      <span>Location</span>
+      <div class="dropdown-div" style="margin-bottom:20px;"><div [ngClass]="{'light-mode':lightMode,'dark-mode':!lightMode}" ><p-dropdown appendTo="body" [options]="rooms" [appendTo]="adddv" optionLabel="name" (onChange)="onRoomChange($event)" /></div></div>
+      <!-- <span> Device name </span>
+      <input formControlName="deviceName" name="name"  type="text"   class="p-inputtext-lg"  placeholder="DEVICE NAME" style="margin-top:0px;">  -->
+    </div>
+    
+    <div class="half">
+      <input formControlName="deviceName" name="name"  type="text"   class="p-inputtext-lg"  placeholder="DEVICE NAME" style="margin-top:2px;">
+      <input formControlName="model" name="name"  type="text"   class="p-inputtext-lg"  placeholder="DEVICE MODEL" style="margin-top:0px;">  
+      <input *ngIf="typeSelected.name == 'Stock'" formControlName="power" name="power"  type="text"   class="p-inputtext-lg"  placeholder="CAPACITY in Ah" style="margin-top:0px;"> 
+      <input *ngIf="typeSelected.name != 'Stock'" formControlName="power" name="power"  type="text"   class="p-inputtext-lg"  placeholder="POWER in W" style="margin-top:0px;"> 
+      <input formControlName="manufacturer" name="name"  type="text"   class="p-inputtext-lg"  placeholder="MANUFACTURER" style="margin-top:0px;"> 
+      <input formControlName="manufacturingYear" name="name"  type="text"   class="p-inputtext-lg"  placeholder="MANUFACTURING YEAR" style="margin-top:0px;">       
+    </div>
+  </div> 
+  </form>
+</ng-template>
+
+<ng-template pTemplate="footer" style="min-height:100px;" >
+  <div class="button-div"><p-button type="button" class="footer-button" label="Save" (click)="addDevice()"></p-button>
+  </div>
 </ng-template>
 </p-dialog>
-

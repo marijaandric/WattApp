@@ -103,6 +103,15 @@ import { HistoryOrForecastTableComponent } from './components/global/history-or-
 import { LoaderService } from './services/loader/loader.service';
 import { LoaderInterceptor } from './interceptors/loader.interceptor';
 import { MapForUserProfileComponent } from './components/global/user-profile/map-for-user-profile/map-for-user-profile.component';
+import { OverlayPanelModule } from 'primeng/overlaypanel';
+import { AdminPageComponent } from './components/DSO/admin-page/admin-page.component';
+import { AdminCardComponent } from './components/DSO/admin-card/admin-card.component';
+import { TagModule } from 'primeng/tag';
+import { DatasComponent } from './components/Prosumer/data/data.component';
+import { DatasTableComponent } from './components/Prosumer/datas-table/datas-table.component';
+import { AdminMapComponent } from './components/DSO/admin-map/admin-map.component';
+import { WhiteDeviceComponent } from './components/Prosumer/devices-page-components/white-device/white-device.component';
+import { TimelineComponent } from './components/global/landing-page-componenets/timeline/timeline.component';
 
 export const url = 'https://localhost:7158';
 export const deviceFakerUrl = "https://localhost:7233";
@@ -183,7 +192,14 @@ export const deviceFakerUrl = "https://localhost:7233";
     NewsComponent,
     LoaderComponent,
     HistoryOrForecastTableComponent,
-    MapForUserProfileComponent
+    MapForUserProfileComponent,
+    AdminPageComponent,
+    AdminCardComponent,
+    DatasComponent,
+    DatasTableComponent,
+    AdminMapComponent,
+    WhiteDeviceComponent,
+    TimelineComponent
   ],
   imports: [
     CommonModule,
@@ -210,6 +226,8 @@ export const deviceFakerUrl = "https://localhost:7233";
     LeafletModule,
     FileUploadModule,
     ImageModule,
+    OverlayPanelModule,
+    TagModule,
     JwtModule.forRoot({
       config: {
         tokenGetter: () => localStorage.getItem('access_token'),

@@ -5,6 +5,12 @@
     flex-direction:row;
 }
 
+
+.dark-mode7 {
+  background: linear-gradient(180deg, #1b1b1b 30%, #121212 100%) ;
+  box-shadow: 5px 5px 15px black !important; 
+}
+
 .stats-cards{
   display: flex;
   flex-direction: row;
@@ -19,7 +25,6 @@
 .stats-card{
   display:flex;
   flex-basis: 47%;
-  box-shadow: 5px 5px 15px black;
 }
 
 .stats-card:nth-child(1), .stats-card:nth-child(2) {
@@ -67,3 +72,17 @@ position: relative;
 flex-direction: row;
 
 }
+
+
+.light-mode-circles {
+  
+  box-shadow: 8px 8px 35px -15px rgb(200, 200, 200) !important;
+    background:white !important;
+    h5,p {
+      color:#323232;
+    }
+  }
+
+  .light-mode-title-bar h3{
+    color:#323232;
+  }

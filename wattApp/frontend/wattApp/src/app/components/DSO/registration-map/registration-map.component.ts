@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Component, EventEmitter, Input, OnInit, Output, SimpleChanges } from '@angular/core';
 import axios from 'axios';
 import * as L from 'leaflet';
@@ -21,7 +21,10 @@ export class RegistrationMapComponent implements OnInit{
     district: null as any
   }
   
-  all = {address : "", result:""}
+  all! : {
+    formattedAddress: any;
+    locality: any;
+  };
 
   markerIcon = L.icon({
     iconUrl: '/assets/icons/images/marker-pink.png',
@@ -37,12 +40,14 @@ export class RegistrationMapComponent implements OnInit{
 
   }
 
+  
   async ngOnInit(): Promise<void> {
     this.map = L.map('mapa').setView([44.01761719631536, 20.900995763392213], 13);
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; OpenStreetMap contributors'
     }).addTo(this.map);
 
+    
     // Add a click event listener to the map
       this.map.on('click', async (event: { latlng: { lat: any; lng: any; }; }) => {
         // Get the clicked coordinates
@@ -57,14 +62,15 @@ export class RegistrationMapComponent implements OnInit{
           this.message.lat = lat;
           this.message.lon = lng;
           this.all = await this.getAddressFromCoordinates2(this.message.lat,this.message.lon)
-          this.message.address = this.all.address;
-          this.message.district = this.all.result;
-          if(this.message.district === undefined)
+          this.message.address = this.all.formattedAddress;
+          const res = await this.getArea(lat,lng);
+        
+          if(res.district === undefined)
           {
-            this.message.district = "Grad Kragujevac"
+            this.message.district = res.city
           }
           else{
-            this.message.district = this.message.district + ",Крагујевац";
+            this.message.district = res.district + ", " + res.city
           }
           this.messageEvent.emit(this.message);
         }
@@ -74,11 +80,15 @@ export class RegistrationMapComponent implements OnInit{
           this.message.lat = lat;
           this.message.lon = lng;
           this.all = await this.getAddressFromCoordinates2(this.message.lat,this.message.lon)
-          this.message.address = this.all.address;
-          this.message.district = this.all.result;
-          if(this.message.district === undefined)
+          this.message.address = this.all.formattedAddress;
+          const res = await this.getArea(lat,lng);
+        
+          if(res.district === undefined)
           {
-            this.message.district = "Grad Kragujevac"
+            this.message.district = res.city
+          }
+          else{
+            this.message.district = res.district + ", " + res.city
           }
           this.messageEvent.emit(this.message);
         }
@@ -91,69 +101,92 @@ export class RegistrationMapComponent implements OnInit{
     if(changes['address'])
     {
       this.address = changes['address'].currentValue;
-      if(this.address != "")
+      if(this.address != "" && this.address != undefined)
       {
-        const url = 'https://nominatim.openstreetmap.org/search'
+        this.address = "Ulica" +this.address + ", Serbia"
+        console.log(this.address)
+        const apiKey = 'AumQQtxIWQ1XOGigIU7OkM9IVZB9KpZ9Q6nXeNAvf1c5ctZuidAHJ4zXqvjIeedr'; 
+    
+        const url = 'https://dev.virtualearth.net/REST/v1/Locations';
         const params = {
           q: this.address,
-          format: 'json'
+          key: apiKey,
         };
-        try {
-          const response = await axios.get(url, { params });
-          const lat = response.data[0].lat
-          const lon =  response.data[0].lon;
-          if (this.marker) {
-            // If a marker already exists, update its position
-            this.marker.setLatLng([lat, lon]);
-          } else {
-            // Otherwise, create a new marker
-            this.marker = L.marker([lat, lon], {icon:this.markerIcon}).addTo(this.map);
-          }
-          
-          this.message.lat = lat;
-          this.message.lon = lon;
-          this.all = await this.getAddressFromCoordinates2(this.message.lat,this.message.lon)
-          this.message.address = this.all.address;
-          this.message.district = this.all.result;
-          if(this.message.district === undefined)
+      try {
+        const response = await axios.get(url, { params });
+        const coordinates = response.data.resourceSets[0].resources[0].point.coordinates;
+        const lat = coordinates[0];
+        const lon = coordinates[1];
+        this.map.setView([lat, lon], 13);
+        console.log(response.data)
+        if (this.marker) {
+          // If a marker already exists, update its position
+          this.marker.setLatLng([lat, lon]);
+        } else {
+          // Otherwise, create a new marker
+          this.marker = L.marker([lat, lon], { icon: this.markerIcon }).addTo(this.map);
+        }
+
+        this.message.lat = lat;
+        this.message.lon = lon;
+        this.all = await this.getAddressFromCoordinates2(this.message.lat, this.message.lon);
+        this.message.address = this.all.formattedAddress;
+        const res = await this.getArea(lat,lon);
+        
+          if(res.district === undefined)
           {
-            this.message.district = "Grad Kragujevac"
+            this.message.district = res.city
           }
-          this.messageEvent.emit(this.message)
-        } catch (error) {
-          if(this.address != undefined)
-          {
-            this.toast.error({detail:"Error",summary:"Wrong address",duration:4000});
+          else{
+            this.message.district = res.district + ", " + res.city
           }
-          
+        this.messageEvent.emit(this.message);
+      } catch (error) {
+        if (this.address !== undefined) {
+          this.toast.error({ detail: 'Error', summary: 'Wrong address', duration: 4000 });
         }
       }
     }
   }
+}
+  
+  async getAddressFromCoordinates2(lat: number, lon: number): Promise<any> {
+    const apiKey = 'AumQQtxIWQ1XOGigIU7OkM9IVZB9KpZ9Q6nXeNAvf1c5ctZuidAHJ4zXqvjIeedr'; 
+    
+    const url = `https://dev.virtualearth.net/REST/v1/Locations/${lat},${lon}?key=${apiKey}`;
 
-  async getAddressFromCoordinates2(lat: number, lon: number): Promise<{address: string, result: string}> {
-    const url = `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=jsonv2`;
-    return this.http.get(url).toPromise().then((response: any) => {
-      const address = response.address;
-      const result = response.address.suburb;
-      let fullAddress = `${address.road}, ${address.city}`;
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
 
-      if(address.house_number != undefined)
-      {
-        fullAddress = `${address.road} ${address.house_number}, ${address.city}`;
-      }
-      else{
-        this.toast.warning({detail:"Warning",summary:"Please, enter your building number!",duration:4000});
-      }
-
-      if(address.city != "Град Крагујевац")
-      {
-        this.toast.warning({detail:"Warning",summary:"Please, choose a location that belongs to Kragujevac!",duration:4000});
-      }
-
-      return {address: fullAddress, result: result};
-    });
+    if (data.resourceSets && data.resourceSets.length > 0 && data.resourceSets[0].resources && data.resourceSets[0].resources.length > 0) {
+      this.all = {
+          formattedAddress: data.resourceSets[0].resources[0].address.formattedAddress,
+          locality: data.resourceSets[0].resources[0].address.locality,
+        }
+      return this.all;
+    } else {
+      this.toast.error({detail:"Error",summary:"Wrong coordinates",duration:4000});
+    }
+  } catch (error) {
+    throw new Error(`error: ${error}`);
   }
+}
 
+  async getArea(lat: number, lon: number): Promise<any> {
+    const url = `https://nominatim.openstreetmap.org/reverse?lat=${lat}&lon=${lon}&format=jsonv2`;
+    try {
+      const response = await axios.get(url);
+      
+      let result = {district:response.data.address.city_district, city:response.data.address.city};
+      if(result.district == undefined || result.district == null || result.district == "Крагујевац")
+      {
+        result = {district:response.data.address.suburb, city:response.data.address.city};
+      }
+      return result;
+    } catch (error) {
+      throw new Error(`Greška pri dobijanju područja: ${error}`);
+    }
+  }
 }
 

@@ -50,26 +50,35 @@
 
 button{
   position: absolute;
-  color:#b8dcf1;
-  background-color: #5668ce;
-  border: #adadad;
+  color:#ffffff;
+  background-color: #46c5f1;
   white-space: nowrap;
   font-size: 2vw;
   z-index: 1;
-  top:350px;
-  right:68%;
-  border-radius: 20px;
+  top:340px;
+  right:80%;
+  border-radius: 5px;
   padding: 0 30px;
 }
   
 #text{
   position: absolute;
-  color:#f5ffc9;
+  color:#ffffff;
   white-space: nowrap;
   font-size: 4.5vw;
   z-index: 1;
-  top:220px;
-  right:70%
+  top:140px;
+  right:68%
+}
+#text2{
+  position: absolute;
+  color:#ffffff;
+  white-space: nowrap;
+  font-size: 1.5vw;
+  z-index: 1;
+  top:260px;
+  right:77%;
+  max-width:200px;
 }
 
 
@@ -280,7 +289,16 @@ h2{
     white-space: nowrap;
     font-size: 7.5vw;
     z-index: 1;
-    top:100px;
+    top:70px;
+    right:34%
+  }
+  #text2{
+    position: absolute;
+    color:#f5ffc9;
+    white-space: nowrap;
+    font-size: 2.5vw;
+    z-index: 1;
+    top:110px;
     right:34%
   }
   button{

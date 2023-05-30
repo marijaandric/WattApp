@@ -4,13 +4,83 @@
   height: 100vh;
 }
 
-:host ::ng-deep {
+.p-dialog .p-overlay {
+  position:fixed !important;
+}
 
-  .p-dialog {
-    background-color: #d90372;
+:host ::ng-deep {
+  .header-dialog2 {
+    margin-bottom:20px;
+  }
+  @media only screen and (min-width: 639px) {
+    p-dialog#editDeviceDialogId .p-overlay-content{
+        margin-left:-100px;
+        display:block;
+        margin-top:-100px;
+        width:100%;
+      }
+
+      p-dialog#editDeviceDialogId .p-overlaypanel{
+      margin-left:-120px;
+      display:block;
+      margin-top:-70px;
+    }
+
+    #dijalog-prosumer .p-overlaypanel{
+      margin-left:70px !important;
+    }
+
+    #opis-dijalog .p-overlaypanel  {
+      margin-top:-230px !important;
+      margin-left:-100px !important;
+    }
+
+    #opis-dijalog.light-mode {
+      h5,div {
+        color: #323232 !important;  
+      }
+    }
+
+    #opis-dijalog.dark-mode {
+    }
+
+    p-dialog .p-overlay-content{
+      margin-left:-70px;
+      display:block;
+      width:100%;
+    }
+
+    p-dialog.dijalog .p-overlay-content{
+      margin-left:0px !important;
+      display:block;
+      width:100%;
+    }
+
+  }
+  
+  @media only screen and (min-width: 639px) {
+    .ovrplnl .p-overlaypanel{
+      margin-left:-120px;
+      display:block;
+      margin-top:-70px;
+    }
   }
 
-  .p-dropdown {
+  .light-mode textarea {
+    background:white !important;
+    color: #323232;
+    border-color: #46c5f1 !important;
+    border-radius: 5px;
+  }
+  
+  .dark-mode textarea {
+    background:rgb(31, 31, 31) !important;
+    color: white;
+    border-color: #46c5f1 !important;
+    border-radius: 5px;
+  }
+  
+  .dark-mode .p-dropdown {
     position:relative!important;
     border-radius: 20px!important;
     display: flex;
@@ -18,14 +88,53 @@
     font-size:16px!important;
     background: #1b1b1b;
   }
-  .pdd-div .p-dropdown.p-component {
-    min-width:150.953px!important;
+   .pdd-div .dark-mode .p-dropdown.p-component {
+    min-width:200.953px!important;
     width:fit-content !important;
     margin-right:20px !important;
     padding:0px 10px;
     box-shadow: 5px 5px 15px black;
   }
 
+  .light-mode .p-dialog .p-dropdown-panel {
+    position: relative !important;
+    left:-150px !important;
+  }
+  .light-mode .p-dropdown {
+    position:relative!important;
+    border-radius: 20px!important;
+    display: flex;
+    border:none!important;
+    font-size:16px!important;
+    background: #ffffff;
+    color:#323232 !important;
+  }
+   .pdd-div .light-mode .p-dropdown.p-component {
+    min-width:200.953px!important;
+    width:fit-content !important;
+    margin-right:20px !important;
+    padding:0px 10px;
+    box-shadow: 5px 5px 15px rgb(233, 233, 233);
+
+    span {
+      color:#323232 ;
+
+    }
+  }
+  .dropdown-div .light-mode .p-dropdown-panel  {
+    min-width:150.953px!important;
+    width:fit-content !important;
+    margin-right:20px !important;
+    padding:0px 10px;
+    box-shadow: 5px 5px 15px rgb(233, 233, 233);
+
+    span {
+      color:#e91414 !important ;
+
+    }
+  }
+
+  
   .button-div .p-button {
     position:relative!important;
     border-radius: 2px!important;
@@ -51,7 +160,11 @@
       color:#1e1e1e !important;
     }
   }
-
+p-overlaypanel #zib {
+  position: sticky ;
+  left:60px !important;
+  top:100px !important;
+}
   .remove-or-no .p-button {
     position:relative!important;
     border-radius: 2px!important;
@@ -107,13 +220,6 @@
   }
 
 
-  .p-overlay-content{
-    border-radius: 30px;
-    background-color: #d90372;
-    border:none;
-
-  }
-
   .p-inputtext{
     background-color: none;
     background: none;
@@ -150,7 +256,7 @@
     display:flex;
   }
   .p-dialog {
-    background: linear-gradient(180deg, #1e1e1e 50%, #121212 100%) ;
+
     height:fit-content;
     border-radius: 20px;
     margin-bottom: 30px;
@@ -202,7 +308,6 @@
 
     .p-dialog-header {
       width:100%;
-      max-height:10%;
       position: relative;
       padding:20px 20px 20px 20px;
       font-size:24px;
@@ -212,7 +317,7 @@
         padding-left: 5%;
       }
       .pi {
-        color:white !important;
+        color:white ;
       }
     }
 
@@ -374,6 +479,7 @@
         margin:auto;
       }
     }
+    /*Cy2.PckR3Ni*/
     @media only screen and (max-width: 979px) {
       .p-inputgroup {
         flex-basis: 100%;
@@ -400,7 +506,7 @@
       }
 
       .p-dialog-content {
-        padding:0px 32px 32px 32px;
+        padding:0px 10px 10px 10px;
       }
     }
 
@@ -413,5 +519,7 @@
 
   
 }
+
+
 
 

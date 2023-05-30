@@ -1,4 +1,4 @@
-import { Component, OnChanges, OnInit, SimpleChanges, ViewChild, ViewEncapsulation  } from '@angular/core';
+import { Component, ElementRef, OnChanges, OnInit, SimpleChanges, ViewChild, ViewEncapsulation  } from '@angular/core';
 import { UserDTO } from '../../../../dtos/UserDTO';
 import { UserService } from '../../../../services/user/user.service';
 import { DsonewsService } from 'src/app/services/dsonews/dsonews.service';
@@ -12,6 +12,9 @@ import { url } from 'src/app/app.module';
   encapsulation: ViewEncapsulation.None
 })
 export class UsersOperatorsComponent implements OnInit {
+  hostElement: HTMLElement | undefined;
+  lightMode: Boolean = true;
+  @ViewChild('searchInput') searchInput!: ElementRef;
   baseUrl = url + "/api/Images/user/";
   users: UserDTO[] = [];
   @ViewChild('dtUsers') dataTable!: Table;
@@ -19,14 +22,30 @@ export class UsersOperatorsComponent implements OnInit {
   rowsPerPage:number = 10;
   allUsersCount!: number;
   loader=true;
+  token = localStorage.getItem('token');
+
+  Myid : any;
 
   constructor(private userService: UserService,
-                private dsonew:DsonewsService) { }
+                private dsonew:DsonewsService,
+                private elementRef: ElementRef) { }
 
-  ngOnInit() {
+
+  async ngOnInit(): Promise<void> {
+
+    this.hostElement = this.elementRef.nativeElement as HTMLElement;
+    const token = localStorage.getItem('token');
+    this.userService.isDark$.subscribe(dark => {
+      this.lightMode = !dark;
+     
+    });
     this.userService.getCountDataByType("operator").subscribe(result => this.allUsersCount = result);
     this.refreshAllUsers();
     this.getNews();
+    if(this.token)
+    {
+      this.Myid = this.userService.getUserIdFromToken(this.token);
+    }
   }
 
   onPageChange(event: any) {
@@ -40,6 +59,7 @@ export class UsersOperatorsComponent implements OnInit {
   }
 
   clear(dtUsers: any) {
+    this.searchInput.nativeElement.value = '';
     dtUsers.clear();
   }
 

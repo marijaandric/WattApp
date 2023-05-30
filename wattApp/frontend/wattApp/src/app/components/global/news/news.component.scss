@@ -12,6 +12,9 @@
     box-shadow: 5px 5px 15px black;
     border-radius: 20px;
 }
+.light-mode {
+    color: #323232;
+}
 
 .full-width {
     flex-basis: 100%;
@@ -26,7 +29,6 @@
 {
     width:90%;
     margin:5%;
-    background: linear-gradient(180deg, #121212 50%, #0d0d0d 100%) ;
     display: inline-block;
     position:relative;
     flex-direction: row;
@@ -54,3 +56,7 @@
         background-size: cover;
     }
 }
+.light-mode-title-bar h3{
+    color:#323232;
+  }
+  

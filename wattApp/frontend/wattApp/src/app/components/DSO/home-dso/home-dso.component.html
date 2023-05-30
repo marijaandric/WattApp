@@ -1,10 +1,10 @@
-<standard-template>
-    <app-title-bar>
+<standard-template >
+    <app-title-bar [ngClass]="{'light-mode-title-bar': lightMode}">
       <h3>Home</h3>
     </app-title-bar>
     <app-center-bar *ngIf="loader"><app-loader></app-loader></app-center-bar>
     <app-center-bar *ngIf="!loader">
-    <div class="widgets">
+    <div class="widgets" >
     
       <app-widget [subTitle]="'Total consumed electricity this month'" [Title]="monthPowerUsageConsumer + ' kWh'" [isBlue]="true" [isBgBlue]="true" class="widget">
       </app-widget>
@@ -16,19 +16,30 @@
       </app-widget>
         
     </div>
-    <div style="width:100%; height:fit-content; display:flex; flex-direction:row;margin-bottom:32px;" class="pdd-div">
-
-      <p-dropdown [options]="type" appendTo="body" [(ngModel)]="selectedType" optionLabel="name" (onChange)="dropdownChange()" >
-      </p-dropdown>
-      <p-dropdown [options]="type2" appendTo="body" [(ngModel)]="selectedHF"  optionLabel="name" (onChange)="updateType3()" >
-      </p-dropdown>
-      <p-dropdown [options]="type3" appendTo="body" [(ngModel)]="selectedDate" optionLabel="name" (onChange)="dropdownChange()" >
-      </p-dropdown>
+    <div style="width:100%; height:fit-content; display:flex; flex-direction:row;margin-bottom:32px;" class="pdd-div ovrplnl"  >
+      <span #reg><i [ngClass]="{'light-theme-color-gray-323232':lightMode}" class="fa fa-info-circle" style="cursor:pointer; padding-top: 10px; width: 30px;font-size:20px;" aria-hidden="true" (click)="op.toggle($event)"></i></span>
+      <p-overlayPanel #op [ngClass]="{'light-mode':lightMode, 'dark-mode':!lightMode}"  [appendTo]="op">
+        <p style="width:350px">In this application, you can analyze different aspects of energy usage.</p>
+        <p style="width:350px">
+          The first dropdown allows you to select the type of data you want to analyze, such as 'Consumption', 'Production', or 'Stock'. Choose the option that corresponds to the specific aspect you are interested in.
+          
+          The second dropdown enables you to specify the time range for your analysis. You can choose from options like 'History', 'Forecast', or 'History & Forecast'. Select the appropriate option based on the type of data and timeframe you want to explore.
+          
+          Lastly, the third dropdown lets you choose the duration or period for which you want to view the data. Select the desired time period option to focus your analysis on a specific range.
+          
+          By utilizing these dropdowns effectively, you can gain valuable insights into energy consumption, production, and stock levels based on historical or forecasted data within the desired time frame.</p>
+      </p-overlayPanel>
+      <div [ngClass]="{'light-mode':lightMode,'dark-mode':!lightMode}" ><p-dropdown id="p1" [options]="type" [(ngModel)]="selectedType" optionLabel="name" (onChange)="dropdownChange()" >
+      </p-dropdown></div>
+      <div [ngClass]="{'light-mode':lightMode,'dark-mode':!lightMode}" ><p-dropdown id="p2" [options]="type2"  [(ngModel)]="selectedHF"  optionLabel="name" (onChange)="updateType3()" >
+      </p-dropdown></div>
+      <div [ngClass]="{'light-mode':lightMode,'dark-mode':!lightMode}" ><p-dropdown id="p3" [options]="type3" [(ngModel)]="selectedDate" optionLabel="name" (onChange)="dropdownChange()" >
+      </p-dropdown></div>
     </div>
     
   
     <div class="main-grid">
-      <app-history-forecast style="width: 62.5% !important;" [boja1]="color1" [boja2]="color2" [naziv1]="name1" [naziv2]="name2" [array] = "History" [array2]="Forecast" [array3] = "dates" class="chart" id="oneChart"  ></app-history-forecast>
+      <app-history-forecast style="width: 62.5% !important;" [boja1]="color1" [boja2]="color2" [naziv1]="name1" [naziv2]="name2" [array] = "History" [array2]="Forecast" [array3] = "dates" [Title]="Title" [Period]="Period" class="chart" id="oneChart"  ></app-history-forecast>
       
       <div class="stats-cards">
         
@@ -40,12 +51,14 @@
       </div>
 
 <!-- TABELA - LIGT VERZIJA - ne brisati
-  color: #4e4e4e !important;
-  border-radius: 20px;
-  background: white ;
-  box-shadow: 5px 5px 10px rgb(198, 198, 198);
--->
 
+-->
+<!-- 
+  
+          background: linear-gradient(180deg, #151515 50%, #121212 100%) ;
+          box-shadow: 5px 5px 15px black;
+          
+-->
       <div class="bottom-grid">
         <app-history-forecast-table *ngIf="table"
           style="
@@ -56,11 +69,9 @@
           height: fit-content;
           width: 49%;
           border-radius: 20px;
-          background: linear-gradient(180deg, #151515 50%, #121212 100%) ;
-          box-shadow: 5px 5px 15px black;
           transition: ease-in-out;
           padding:10px 20px 30px 20px;" 
-          [name1]="name1" [name2]="name2" [hif]="hif">
+          [name1]="name1" [name2]="name2" [hif]="hif"  [ngClass]="{'light-mode':lightMode,'dark-mode7':!lightMode,'dark-mode':!lightMode}">
         </app-history-forecast-table>
         <app-history-or-forecast-table  *ngIf="!table"
         style="
@@ -71,10 +82,8 @@
           height: fit-content;
           width: 49%;
           border-radius: 20px;
-          background: linear-gradient(180deg, #151515 50%, #121212 100%) ;
-          box-shadow: 5px 5px 15px black;
           transition: ease-in-out;
-          padding:10px 20px 30px 20px;"  [name]="name" [History]="History" [Forecast]="Forecast" [dates]="dates" >
+          padding:10px 20px 30px 20px;"  [name]="name" [History]="History" [Forecast]="Forecast" [dates]="dates" [ngClass]="{'light-mode':lightMode,'dark-mode7':!lightMode,'dark-mode':!lightMode}">
           </app-history-or-forecast-table>
         <div class="bottom-right">
           <div class="map">

@@ -9,6 +9,7 @@ namespace backend.Models
         public string Title { get; set; }
         public int AuthorId { get; set; }
         public string Content { get; set; }
+        public string Description { get; set; }
         public DateTime Created { get; set; }
         public string Priority { get; set; }
     }

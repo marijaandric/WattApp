@@ -4,7 +4,6 @@
     justify-content: space-between;
     padding: 16px 32px 0px 32px;
     height: 60px;
-    color: white;
 }
 
 .right-part{
@@ -47,14 +46,13 @@ li :visited{
 
 .profile-image{
     background-color: white;
+    cursor: pointer;
     width: 2em;
     border-radius: 20px;
     width: 30px;
     height: 30px;
 }
-
 a{
-    color:white;
 }
 nav ul{
     width: 100%;
@@ -67,8 +65,10 @@ nav ul li{
 }
 
 nav ul li a{
-    color:#fff;
     text-decoration: none;
+}
+.light-mode {
+    color:#323232 !important;
 }
 
 .sub-menu-wrap
@@ -84,13 +84,12 @@ nav ul li a{
 }
 .sub-menu-wrap.open-menu
 {
-    max-height: 400px;
+    max-height: 450px;
 }
 .sub-menu{
-    background: linear-gradient(180deg, #1e1e1e 50%, #121212 100%) ;
     padding: 20px;
     margin: 10px;
-    box-shadow: 5px 5px 15px black;
+    border-radius: 20px;
 }
 .user-info{
     display: flex;

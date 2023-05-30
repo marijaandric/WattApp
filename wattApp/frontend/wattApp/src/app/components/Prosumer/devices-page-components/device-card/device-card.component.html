@@ -1,6 +1,7 @@
-<div id="device-card" class="device-card" >
+<a style="display:flex;">
+<div style="cursor:pointer" [routerLink]="['/device', device.id]" id="device-card" class="device-card" [ngClass]="{'dark-theme-bigger-shadow':!lightMode,'light-theme-bigger-shadow':lightMode,'dark-theme-background-gray-gradient-1':!lightMode,'light-theme-background-white':lightMode}" >
     <div class="flexRow">
-        <a [routerLink]="['/device', device.id]"  style="display:flex;">
+        
 
           <img *ngIf="isPhone" src="../.../../../../../../assets/icons/images/icons8-iphone-14-50.png">
           <img *ngIf="isTablet" src="../.../../../../../../assets/icons/images/icons8-ipad-50.png">
@@ -28,42 +29,59 @@
           <img *ngIf="isVacuumCleaner" src="../.../../../../../../assets/icons/images/icons8-vacuum-cleaner-50.png">
           <img *ngIf="isIron" src="../.../../../../../../assets/icons/images/icons8-iron-high-temperature-50.png">
           <img *ngIf="isLamp" src="../.../../../../../../assets/icons/images/icons8-lamp-50.png">
-          <img *ngIf="isBulb" src="../.../../../../../../assets/icons/images/icons8-bulb-50.png">
+          <img *ngIf="isSmallWindTurbine" src="../.../../../../../../assets/icons/images/icons8-wind-turbine-50.png">
+          <img *ngIf="isPortableGenerator" src="../.../../../../../../assets/icons/images/icons8-generator-60.png">
+          <img *ngIf="isBicycleGenerator" src="../.../../../../../../assets/icons/images/icons8-automotive-generator-50.png">
+          <img *ngIf="isPowerBank" src="../.../../../../../../assets/icons/images/icons8-charging-battery-48.png">
+         
           <img *ngIf="isOther" src="../.../../../../../../assets/icons/images/icons8-multiple-devices-50.png">
      
-        </a>
         <a [routerLink]="['/device', device.id]" class="device-name abbreviate-text" style="padding-top:6px" [ngClass]="{'color-blue': isConsumer, 'color-purple': isProducer, 'color-pink': isStock}">{{ device.deviceName }}</a>
-        <p-inputSwitch [(ngModel)]="isChecked" (click)="showDialog()" class="margin-left__auto width__fit-content" style="padding-top:8px;"/>
+        <p-inputSwitch [(ngModel)]="isChecked" (click)="showDialog($event)" class="margin-left__auto width__fit-content" style="padding-top:8px;"/>
     </div>
     <div class="flexRow" style="margin-top: 16px;">
-        <span >Status:</span>
+        <span [ngClass]="{'light-mode-left-span':lightMode}">Status:</span>
         <span *ngIf="!isChecked" class="margin-left__auto color-gray">Idle</span>
-        <span *ngIf="isChecked" class="margin-left__auto ">Running</span>
+        <span *ngIf="isChecked" class="margin-left__auto " [ngClass]="{'light-mode-left-span-run':lightMode}">Running</span>
     </div>
     <div class="flexRow" style="margin-top: 6px;">
-        <span>Type:</span>
+        <span [ngClass]="{'light-mode-left-span':lightMode}">Type:</span>
         <span class="margin-left__auto" [ngClass]="{'color-blue': isConsumer, 'color-purple': isProducer, 'color-pink': isStock}">{{ device.deviceType }}</span>
     </div>
-    <div class="flexRow" style="margin-top: 6px;">
-        <span *ngIf="device.deviceType === 'Consumer'"  >Power consumed:</span>
-        <span *ngIf="device.deviceType === 'Producer'"  >Power produced:</span>
-        <span *ngIf="device.deviceType !== 'Consumer' && device.deviceType !== 'Producer'"  class="bold-text">Power stored:</span>
-        <span class="margin-left__auto color-gray">{{ device.power }} kWh</span>
+    <div class="flexRow" style="margin-top: 6px;" *ngIf="device.power2">
+        <span *ngIf="device.deviceType === 'Consumer'" [ngClass]="{'light-mode-left-span':lightMode}" >Today's consumption:</span>
+        <span *ngIf="device.deviceType === 'Producer'"  [ngClass]="{'light-mode-left-span':lightMode}">Today's production:</span>
+        <span *ngIf="device.deviceType !== 'Consumer' && device.deviceType !== 'Producer'" [ngClass]="{'light-mode-left-span':lightMode}">Today's storage:</span>
+        <span class="margin-left__auto color-gray" [ngClass]="{'light-mode-left-span-run':lightMode}">{{ device.power2 }} kWh</span>
     </div>
+    <div class="flexRow" style="margin-top: 6px;" *ngIf="!device.power2">
+      <span *ngIf="device.deviceType === 'Consumer'" [ngClass]="{'light-mode-left-span':lightMode}" >Power:</span>
+      <span *ngIf="device.deviceType === 'Producer'"  [ngClass]="{'light-mode-left-span':lightMode}">Power:</span>
+      <span *ngIf="device.deviceType !== 'Consumer' && device.deviceType !== 'Producer'" [ngClass]="{'light-mode-left-span':lightMode}">Power:</span>
+      <span *ngIf="device.deviceType === 'Stock'" class="margin-left__auto color-gray" [ngClass]="{'light-mode-left-span-run':lightMode}">{{ device.power }} Ah</span>
+      <span *ngIf="device.deviceType !== 'Stock'" class="margin-left__auto color-gray" [ngClass]="{'light-mode-left-span-run':lightMode}">{{ device.power }} W</span>
+  </div>
 </div>
 
-
-<p-dialog [style]="{width:'300px',height:'200px'}" header="Title"  [transitionOptions]="'3ms'" 
+</a>
+<p-dialog [style]="{width:'330px',height:'250px'}" header="Turn on/off"  [transitionOptions]="'3ms'" 
 [draggable]="true" [keepInViewport]="true" [resizable]="false" 
 [blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true" 
 [modal]="true" [(visible)]="display" [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
-[closable]="true" appendTo="body">
-<ng-template pTemplate="header" class="header-dialog">
-  <span >Are you sure you want to change the device activity?</span>
+[closable]="true" [appendTo]="idComponent">
+<ng-template pTemplate="header" class="header-dialog2">
+  <span>Turn on/off</span>
 </ng-template>
 
+<ng-template pTemplate="content">
+  <div style="width:100%;height:fit-content;display:flex;padding:0px 15px 0px 15px">
+    <span *ngIf="isChecked" >Are you sure you want to turn off the {{device?.deviceName}}?</span>
+    <span *ngIf="!isChecked" >Are you sure you want to turn on the {{device?.deviceName}}?</span>
+
+  </div>
+  </ng-template>
 <ng-template pTemplate="footer">
-  <div class="flexRow" style="margin-top:20px;">
+  <div class="flexRow" >
     <div class="button-div" style="padding-right: 20px;"><p-button  (click)="handleRunningSwitchChange()" label="Yes"> </p-button>
     </div>
     <div class="remove-or-no"><p-button  (click)="display=false" label="No"></p-button>

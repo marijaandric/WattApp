@@ -1,14 +1,23 @@
-
+.light-mode-left-span {
+  color:#4d4d4d !important;
+  font-weight: bold;
+}
+.light-mode-left-span-run {
+  color:#555555 !important;
+}
 .device-card{
     min-width: 250px;
-    width: 92%;    background: linear-gradient(180deg, #1b1b1b 50%, #121212 100%) ;
+    /*
+    box-shadow: 5px 5px 15px black;
+       background: linear-gradient(180deg, #1b1b1b 50%, #121212 100%) ;
+    */
+       width: 90%; 
     border-radius: 20px;
     padding: 16px;
     margin: auto;
-    box-shadow: 5px 5px 15px black;
     min-height:170px;
-    margin-top: 40px;
-    max-width:300px;
+    margin-top: 20px;
+    max-width:320px;
 }
 
 img {
@@ -16,10 +25,9 @@ img {
     width:auto;
     padding-right:10px;
 }
-
-.device-card:hover{
-    transform: scale(1.01);
-}
+:host ::ng-deep .p-dialog-header {
+  margin-bottom: 20px;
+} 
 
 .device-name{
     max-width: 50%;
@@ -31,7 +39,7 @@ a{
     font-size: 18px;
     text-decoration: none;
     color: #46c5f1;
-    font-weight: bold;
+    font-family:'Mandali', sans-serif;
 }
 
 .color-blue {
@@ -127,3 +135,12 @@ button {
   
     }
   } 
+
+
+  @media only screen and (min-width: 1420px) {
+    
+    
+.device-card:hover{
+  transform: scale(1.01);
+}
+}

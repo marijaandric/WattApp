@@ -1,5 +1,18 @@
+<div>
+    <apx-chart 
+    [series]="chartSeries" [chart]="chartDetails" [labels]="chartLabels"
+    [title]="chartTitle" [dataLabels]="chartDataLabels" [legend]="chartLegend"
+    [plotOptions]="plotOptions" [fill]="fill" [stroke]="stroke" [tooltip]="tooltip" [noData]="noData" [responsive]="[responsive]"></apx-chart>
+    
 
-<apx-chart 
-[series]="chartSeries" [chart]="chartDetails" [labels]="chartLabels"
-[title]="chartTitle" [dataLabels]="chartDataLabels" [legend]="chartLegend"
-[plotOptions]="plotOptions" [fill]="fill" [stroke]="stroke" [tooltip]="tooltip" [noData]="noData"></apx-chart>
+</div>
+<!--
+<div *ngIf="!lightMode">
+    <apx-chart 
+    [series]="chartSeries" [chart]="chartDetails" [labels]="chartLabels"
+    [title]="chartTitle2" [dataLabels]="chartDataLabels" [legend]="chartLegend2"
+    [plotOptions]="plotOptions" [fill]="fill" [stroke]="stroke" [tooltip]="tooltip" [noData]="noData" [responsive]="[responsive]"></apx-chart>
+    
+
+</div>
+-->

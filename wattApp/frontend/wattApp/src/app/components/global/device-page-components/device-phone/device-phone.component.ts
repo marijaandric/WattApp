@@ -11,6 +11,8 @@ import { HistoryLineChartComponent } from 'src/app/components/Prosumer/history-l
 import { HistoryForecastComponent } from '../../history-forecast/history-forecast.component';
 import { ForecastLineChartComponent } from 'src/app/components/Prosumer/forecast-line-chart/forecast-line-chart.component';
 import { DeviceDataService } from 'src/app/services/device-data/device-data.service';
+import { NgToastService } from 'ng-angular-popup';
+import { UserService } from 'src/app/services/user/user.service';
 
 interface Models{
   code: string;
@@ -49,8 +51,11 @@ interface HiF{
   styleUrls: ['./device-phone.component.scss']
 })
 export class DevicePhoneComponent implements OnInit{
-  device!: DeviceDTO;
+  device!: any;
   loader = true;
+  isChecked!:boolean;
+  lightMode : Boolean = true;
+  @Input() idDeviceComp : any;
 
   displayEditDeviceDialog: boolean = false;
   isRunning: boolean = true;
@@ -64,6 +69,7 @@ export class DevicePhoneComponent implements OnInit{
   roomSelected! : Rooms;
   modelSelected! : Models;
   display3 : Boolean = false;
+  display: Boolean = false;
 
   evice!: DeviceDTO;
 
@@ -92,6 +98,8 @@ export class DevicePhoneComponent implements OnInit{
   {history: 0, forecast: 0, date1: [], date2: []}];
 
   switchValue: boolean = true;
+  Period = "week"
+  addDeviceForm! : FormGroup;
 
   switchOptions: SwitchOption[] = [
     {label: 'History', value: true},
@@ -103,10 +111,11 @@ export class DevicePhoneComponent implements OnInit{
               private deviceDataService: DeviceDataService,
               private deviceService: DeviceService, 
               private router: Router,
-              private fromBuilder: FormBuilder,
+              private fb: FormBuilder,
               private roomTypesService: RoomTypesService,
               private modelTypesService: ModelTypesService,
-              private deviceTypesService: DeviceTypesService) 
+              private deviceTypesService: DeviceTypesService,private toast:NgToastService,
+              private userService: UserService) 
               {
                 this.type = [
                   {name: 'Consumption', code: 'Consumer'},
@@ -114,7 +123,7 @@ export class DevicePhoneComponent implements OnInit{
                   {name: 'Stock', code: 'Stock'},
                 ];
                 this.type2 = [
-                  {name: 'Both', code: 'both'},
+                  {name: 'History & forecast', code: 'both'},
                   {name: 'History', code: 'history'},
                   {name: 'Forecast', code: 'forecast'}
                 ];
@@ -122,9 +131,27 @@ export class DevicePhoneComponent implements OnInit{
                   {name: '3 days', code: '3 days'},
                   {name: 'Week', code: 'week'}
                 ];
+                this.addDeviceForm = this.fb.group({
+                  userID :[0, Validators.required],
+                  id:[0, Validators.required],
+                  fakeID :[0, Validators.required],
+                  deviceName:['', Validators.required],
+                  deviceModel: ['', Validators.required],
+                  room: ['', Validators.required],
+                  model:['', Validators.required],
+                  manufacturer:['', Validators.required],
+                  manufacturingYear:['', Validators.required],
+                  power:['', Validators.required],
+                  deviceType: ['', Validators.required],
+                })
                }
 
-  ngOnInit() {
+  async ngOnInit(): Promise<void> {
+    const token = localStorage.getItem('token');
+    this.userService.isDark$.subscribe(dark => {
+      this.lightMode = !dark;
+      
+    });
     const id = this.route.snapshot.paramMap.get('id');
     this.getHistoryAndForecastByDayForDevice(id)
     this.getHistoryAndForecastByDayForAllDevicesByYear(id)
@@ -133,6 +160,7 @@ export class DevicePhoneComponent implements OnInit{
       this.deviceService.getDeviceById(id)
         .subscribe(device => {
           this.device = device;
+          this.isChecked = device.isActive
           if(!this.device){
             this.navigateToDevices();
           }
@@ -194,6 +222,19 @@ export class DevicePhoneComponent implements OnInit{
   }
 
   showEditDeviceDialog() {
+    this.addDeviceForm = this.fb.group({
+      userID :[this.device.userID, Validators.required],
+      id:[this.device.id, Validators.required],
+      fakeID: [this.device.fakeID, Validators.required],
+      deviceName:[this.device.deviceName, Validators.required],
+      deviceModel: [this.device.deviceModel, Validators.required],
+      room: [this.device.room, Validators.required],
+      model:[this.device.model, Validators.required],
+      manufacturer:[this.device.manufacturer, Validators.required],
+      manufacturingYear:[this.device.manufacturingYear, Validators.required],
+      power:[this.device.power, Validators.required],
+      deviceType: [this.device.deviceType, Validators.required],
+    })
     this.displayEditDeviceDialog = true;
   }
 
@@ -214,15 +255,36 @@ export class DevicePhoneComponent implements OnInit{
   }
 
   save(){
-    this.device.deviceModel = this.modelSelected.name;
-    this.device.deviceType = this.typeSelected.name;
-    this.device.room = this.roomSelected.name;
-    this.device.deviceName = this.nameSelected;
-    this.deviceService.updateDevice(this.device).subscribe(
-      (updatedDevice: DeviceDTO) => {
+    this.addDeviceForm.patchValue({
+      deviceModel: this.modelSelected.code
+    });
+    this.addDeviceForm.patchValue({
+      deviceType: this.typeSelected.code
+    });
+    this.addDeviceForm.patchValue({
+      room: this.roomSelected.code
+    });
+
+    if (!this.addDeviceForm.valid) {
+      this.toast.error({detail:"ERROR",summary:"Please fill in all fields.",duration:4000});
+      return
+    }
+
+    // if (!(/^\d+$/.test(this.addDeviceForm.value.power))) {
+    //   this.toast.error({detail:"ERROR",summary:"Please enter numbers only.",duration:4000});
+    //   return
+    // }
+
+    this.deviceService.updateDevice(this.addDeviceForm.value).subscribe(
+      (updatedDevice: any) => {
         this.displayEditDeviceDialog = false;
+        this.toast.success({detail:"SUCCESS",summary:"You have successfully update device",duration:5000});
+        setTimeout(() => {
+       location.reload();
+     }, 1350)
       },
       (error: any) => {
+        this.toast.error({detail:"ERROR",summary:"Please enter numbers only.",duration:4000});
         console.error(error);
       }
     );
@@ -244,6 +306,28 @@ export class DevicePhoneComponent implements OnInit{
     this.deviceService.deleteDevice(id).subscribe(() => {
       this.navigateToDevices();
     });
+  }
+
+  onTypeChange(event:any){
+    this.typeSelected = event.value;
+  
+    this.modelTypesService.getAllModelTypes(this.typeSelected.code)
+      .pipe(
+        map(modelTypes => Object.entries(modelTypes).map(([code, name]) => ({ code, name })))
+      )
+      .subscribe(mappedModelTypes => {
+        this.models = mappedModelTypes;
+        this.modelSelected = this.models[0];
+    });
+  }
+  
+  onModelChange(event:any){
+    this.modelSelected = event.value;
+  }
+  
+  onRoomChange(event:any)
+  {
+    this.roomSelected = event.value;
   }
 
 
@@ -325,8 +409,8 @@ export class DevicePhoneComponent implements OnInit{
         this.miniForecast  = this.miniForecastCon;
 
 
-        const arr = [10.20,20.30,-6.00,0.00,-7.07,37.20,12.00,0.23];
-        const arr2 = [12.20,-3.30,0.00,-3.30,20.70,10.20,30.00,-8.23];
+        const arr = [20.20,13.30,-5.00,0.00,-4.00,29.20,22.00,0.23,45.00,58.98,74.22,12.44,22.11];
+        const arr2 = [20.20,13.30,-5.00,0.00,-4.00,29.20,22.00,0.23,45.00,58.98,74.22,12.44,22.11];
         if(this.ForecastCon.every((el: number) => el === 0))
         {}
         else{
@@ -368,9 +452,9 @@ export class DevicePhoneComponent implements OnInit{
           this.HistoryCon3[br] = this.HistoryCon[i];
           this.HistoryPro3[br]= this.HistoryPro[i];
           this.HistoryStock3[br] = this.HistoryStock[i];
-          this.ForecastCon3[br] = parseFloat((this.ForecastCon[i]+arr[i]).toFixed(2));
-          this.ForecastPro3[br] = parseFloat((this.ForecastPro[i]+arr2[i]).toFixed(2));
-          this.ForecastStock3[br] = parseFloat((this.ForecastStock[i]+arr[i]).toFixed(2));
+          this.ForecastCon3[br] = parseFloat((this.ForecastCon[i]).toFixed(2));
+          this.ForecastPro3[br] = parseFloat((this.ForecastPro[i]).toFixed(2));
+          this.ForecastStock3[br] = parseFloat((this.ForecastStock[i]).toFixed(2));
           this.arrayData3[br] = this.arrayData[i];
           br++;
         }
@@ -491,6 +575,7 @@ table = true;
 tableHiFWeek = true;
 name:string="Consumption history"
 isForecastTrue = true;
+Title = "History & Forecast"
 
   dropdownChange()
   {
@@ -502,14 +587,16 @@ isForecastTrue = true;
       this.color2 = '#88dbf6';
       if(this.selectedDate.code == "week" && this.selectedHF.code == "both")
       {
+        this.Period = "week"
+        this.Title = "History & Forecast"
         this.tableHiFWeek = true;
         this.miniHistory=this.miniHistoryCon;
         this.miniForecast=this.miniForecastCon;
 
-        this.TitleMin='Minimal consumed electricity this week';
-        this.TittleMax='Maximum consumed electricity this week';
-        this.TitleAverage='Average consumed electricity this week';
-        this.TitleTotal='Total consumed electricity this week';
+        this.TitleMin='Minimal consumed by day this week';
+        this.TittleMax='Maximal consumed by day  this week';
+        this.TitleAverage='Average consumed by day  this week';
+        this.TitleTotal='Total consumed by day  this week';
 
         this.max=this.Consumermax;
         this.min= this.Consumermin;
@@ -548,6 +635,8 @@ isForecastTrue = true;
       }
       else if( this.selectedDate.code == "3 days" && this.selectedHF.code == "both")
       {
+        this.Period = "3 days"
+        this.Title = "History & Forecast"
         this.table = true;
         this.History = this.HistoryCon3;
         this.Forecast = this.ForecastCon3;
@@ -566,6 +655,8 @@ isForecastTrue = true;
       }
       else if( this.selectedDate.code == "3 days" && this.selectedHF.code == "forecast")
       {
+        this.Period = "3 days"
+        this.Title = "Forecast"
         this.name = "Forecast"
         this.History = [null];
         this.Forecast = [this.ForecastCon3[3],this.ForecastCon3[4],this.ForecastCon3[5]]
@@ -575,6 +666,8 @@ isForecastTrue = true;
       }
       else if( this.selectedDate.code == "week" && this.selectedHF.code == "forecast")
       {
+        this.Period = "week"
+        this.Title = "Forecast"
         this.name = "Forecast"
         this.History = [null];
         this.Forecast = [this.ForecastCon[6],this.ForecastCon[7],this.ForecastCon[8],this.ForecastCon[9],this.ForecastCon[10],this.ForecastCon[11],this.ForecastCon[12],this.ForecastCon[13]]
@@ -584,6 +677,8 @@ isForecastTrue = true;
       }
       else if( this.selectedDate.code == "week" && this.selectedHF.code == "history")
       {
+        this.Period = "week"
+        this.Title = "History"
         this.name = "History"
         this.History = [this.HistoryCon[0],this.HistoryCon[1],this.HistoryCon[2],this.HistoryCon[3],this.HistoryCon[4],this.HistoryCon[5],this.HistoryCon[6]]
         this.Forecast = [null];
@@ -593,6 +688,8 @@ isForecastTrue = true;
       }
       else if( this.selectedDate.code == "month")
       {
+        this.Period = "month"
+        this.Title = "History"
         this.name = "History"
         this.History = this.HistoryConM;
         this.Forecast = [null]
@@ -602,8 +699,8 @@ isForecastTrue = true;
         
       }
       else{
-        console.log(this.HistoryConY)
-        console.log(this.arrayDataY)
+        this.Period = "year"
+        this.Title = "History"
         this.name = "History"
         this.History = this.HistoryConY;
         this.Forecast = [null]
@@ -722,39 +819,39 @@ isForecastTrue = true;
       {
         if(this.selectedDate.code == "week")
         {
-          this.TitleMin='Minimal stocked electricity this week';
-          this.TittleMax='Maximum stocked electricity this week';
-          this.TitleAverage='Average stocked electricity this week';
-          this.TitleTotal='Total stocked electricity this week';
+          this.TitleMin='Minimal stocked by day this week';
+          this.TittleMax='Maximal stocked by day this week';
+          this.TitleAverage='Average stocked by day this week';
+          this.TitleTotal='Total stocked by day this week';
           this.theDay = "On the day: ";
         }
         else if(this.selectedDate.code == "3 days")
         {
-          this.TitleMin='Minimal stocked electricity by 3 days';
-          this.TittleMax='Maximum stocked electricity by 3 days';
-          this.TitleAverage='Average stocked electricity by 3 days';
-          this.TitleTotal='Total stocked electricity by 3 days';
+          this.TitleMin='Minimal stocked by day for 3 days';
+          this.TittleMax='Maximal stocked by day for 3 days';
+          this.TitleAverage='Average stocked by day for 3 days';
+          this.TitleTotal='Total stocked by day for 3 days';
           this.theDay = "On the day: ";
         }
         else if(this.selectedDate.code == "month")
         {
-          this.TitleMin='Minimal stocked electricity this month';
-          this.TittleMax='Maximum stocked electricity this month';
-          this.TitleAverage='Average stocked electricity this month';
-          this.TitleTotal='Total stocked electricity this month';
+          this.TitleMin='Minimal stocked by day this month';
+          this.TittleMax='Maximal stocked by day this month';
+          this.TitleAverage='Average stocked by day this month';
+          this.TitleTotal='Total stocked by day this month';
           this.theDay = "On the day: ";
         }
         else
         {
-          this.TitleMin='Minimal stocked electricity this year';
-         this.TittleMax='Maximum stocked electricity this year';
-          this.TitleAverage='Average stocked electricity this year';
-         this.TitleTotal='Total stocked electricity this year';
+          this.TitleMin='Minimal stocked by day this year';
+         this.TittleMax='Maximal stocked by day this year';
+          this.TitleAverage='Average stocked by day this year';
+         this.TitleTotal='Total stocked by day this year';
          this.theDay = "On the month: ";
         }
         
 
-        this.SubTitleToday='Stock Today';
+        this.SubTitleToday='Stock today';
         this.SubTitleWeek='Stock this week';
         this.SubTitleMonth='Stock this month';
         this.SubTitleYear='Stock this year';
@@ -764,38 +861,38 @@ isForecastTrue = true;
       {
         if(this.selectedDate.code == "week")
         {
-          this.TitleMin='Minimal consumed electricity this week';
-        this.TittleMax='Maximum consumed electricity this week';
-        this.TitleAverage='Average consumed electricity this week';
-        this.TitleTotal='Total consumed electricity this week';
+          this.TitleMin='Minimal consumed by day this week';
+        this.TittleMax='Maximal consumed by day this week';
+        this.TitleAverage='Average consumed by day this week';
+        this.TitleTotal='Total consumed by day this week';
         this.theDay = "On the day: ";
         }
         else if(this.selectedDate.code == "3 days")
         {
-          this.TitleMin='Minimal consumed electricity by 3 days';
-          this.TittleMax='Maximum consumed electricity by 3 days';
-          this.TitleAverage='Average consumed electricity by 3 days';
-          this.TitleTotal='Total consumed electricity by 3 days';
+          this.TitleMin='Minimal consumed by day for 3 days';
+          this.TittleMax='Maximal consumed by day for 3 days';
+          this.TitleAverage='Average consumed by day for 3 days';
+          this.TitleTotal='Total consumed by day for 3 days';
           this.theDay = "On the day: ";
         }
         else if(this.selectedDate.code == "month")
         {
-          this.TitleMin='Minimal consumed electricity this month';
-        this.TittleMax='Maximum consumed electricity this month';
-        this.TitleAverage='Average consumed electricity this month';
-        this.TitleTotal='Total consumed electricity this month';
+          this.TitleMin='Minimal consumed by day this month';
+        this.TittleMax='Maximal consumed by day this month';
+        this.TitleAverage='Average consumed by day this month';
+        this.TitleTotal='Total consumed by day this month';
         this.theDay = "On the day: ";
         }
         else
         {
-          this.TitleMin='Minimal consumed electricity this year';
-          this.TittleMax='Maximum consumed electricity this year';
-          this.TitleAverage='Average consumed electricity this year';
-          this.TitleTotal='Total consumed electricity this year';
+          this.TitleMin='Minimal consumed by day this year';
+          this.TittleMax='Maximal consumed by day this year';
+          this.TitleAverage='Average consumed by day this year';
+          this.TitleTotal='Total consumed by day this year';
           this.theDay = "On the month: ";
         }
 
-        this.SubTitleToday='Consumption Today';
+        this.SubTitleToday='Consumption today';
         this.SubTitleWeek='Consumption this week';
         this.SubTitleMonth='Consumption this month';
         this.SubTitleYear='Consumption this year';
@@ -805,38 +902,38 @@ isForecastTrue = true;
       {
         if(this.selectedDate.code == "week")
         {
-          this.TitleMin='Minimal produced electricity this week';
-      this.TittleMax='Maximum produced electricity this week';
-      this.TitleAverage='Average produced electricity this week';
-      this.TitleTotal='Total produced electricity this week';
+          this.TitleMin='Minimal produced by day this week';
+      this.TittleMax='Maximal produced by day this week';
+      this.TitleAverage='Average produced by day this week';
+      this.TitleTotal='Total produced by day this week';
       this.theDay = "On the day: ";
         }
         else if(this.selectedDate.code == "3 days")
         {
-          this.TitleMin='Minimal produced electricity by 3 days';
-        this.TittleMax='Maximum produced electricity by 3 days';
-        this.TitleAverage='Average produced electricity by 3 days';
-        this.TitleTotal='Total produced electricity by 3 days';
+          this.TitleMin='Minimal produced by day for 3 days';
+        this.TittleMax='Maximal produced by day for 3 days';
+        this.TitleAverage='Average produced by day for 3 days';
+        this.TitleTotal='Total produced by day for 3 days';
         this.theDay = "On the day: ";
         }
         else if(this.selectedDate.code == "month")
         {
-          this.TitleMin='Minimal produced electricity this month';
-        this.TittleMax='Maximum produced electricity this month';
-        this.TitleAverage='Average produced electricity this month';
-        this.TitleTotal='Total produced electricity this month';
+          this.TitleMin='Minimal produced by day this month';
+        this.TittleMax='Maximal produced by day this month';
+        this.TitleAverage='Average produced by day this month';
+        this.TitleTotal='Total produced by day this month';
         this.theDay = "On the day: ";
         }
         else
         {
-          this.TitleMin='Minimal produced electricity this year';
-        this.TittleMax='Maximum produced electricity this year';
-        this.TitleAverage='Average produced electricity this year';
-        this.TitleTotal='Total produced electricity this year';
+          this.TitleMin='Minimal produced by day this year';
+        this.TittleMax='Maximal produced by day this year';
+        this.TitleAverage='Average produced by day this year';
+        this.TitleTotal='Total produced by day this year';
         this.theDay = "On the month: ";
         }
 
-        this.SubTitleToday='Production Today';
+        this.SubTitleToday='Production today';
         this.SubTitleWeek='Production this week';
         this.SubTitleMonth='Production this month';
         this.SubTitleYear='Production this year';
@@ -850,5 +947,64 @@ isForecastTrue = true;
 
   });
 }
+
+showDialog2(){
+  this.isChecked = !this.isChecked
+  this.display = !this.display;
+}
+async handleRunningSwitchChange2(){
+  this.isChecked = !this.isChecked // za alert izbrisati ovo
+  this.device.isActive = this.isChecked 
+  await lastValueFrom(this.deviceService.updateDevice(this.device));
+  this.display = false; // za alert izbrisati ovo
+}
+
+
+// ngOnChanges() {
+//   // Update the switch button state when the device.isActive property changes
+//   const switchButton = document.querySelector('#mySwitch');
+//   if (switchButton) {
+//     switchButton['checked'] = this.device.isActive;
+//   }
+// }
+
+// onSwitchChange(newVal: boolean) {
+//   //this.showDialog();
+//   const confirmed = confirm('Do you want to change the device activity?');
+//   if (confirmed) {
+//     this.device.isActive = newVal;
+//     this.handleRunningSwitchChange();
+//   }
+
+//   // const confirmed = this.showDialog();
+//   // if (confirmed) {
+//   //   this.device.isActive = newVal;
+//   // }
+
+  
+// }
+
+calculateBatteryLife(power: number, consumption: number, efficiency: number): { hours: number, minutes: number } {
+  const batteryLifeInHours = (power / consumption) * efficiency;
+  const batteryLifeInMinutes = Math.round(batteryLifeInHours * 60);
+  const hours = Math.floor(batteryLifeInMinutes / 60);
+  const minutes = batteryLifeInMinutes % 60;
+  return { hours, minutes };
+}
+
+formatBatteryLife(batteryLife: { hours: number, minutes: number }): string {
+  const formattedHours = batteryLife.hours.toString().padStart(2, '0');
+  const formattedMinutes = batteryLife.minutes.toString().padStart(2, '0');
+  if(formattedMinutes == '00')
+  {
+    return `${formattedHours} hours`
+  }
+  else{
+    return `${formattedHours} hours and ${formattedMinutes} minutes`;
+  }
+  
+}
+
+
 
 }
