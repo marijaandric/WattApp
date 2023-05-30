@@ -33,8 +33,8 @@ export class HistoryOrForecastTableComponent implements OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     this.hif = [];
-    let niz = [20.20,13.30,-5.00,0.00,-4.00,29.20,22.00,0.23,45.00,58.98,74.22,12.44,22.11];
-    let niz2 = [55.03,145.12,66.83,-143.11,-74.92,44.65,-10.55,134.22,11.00,67.00,89.77,66.93]
+    let niz = [20.20,13.30,-1.00,0.00,-1.22,29.20,22.00,0.23,45.00,58.98,74.22,12.44,22.11];
+    let niz2 = [55.03,145.12,66.83,-13.11,-14.92,44.65,-10.55,134.22,11.00,67.00,89.77,66.93]
     for(let i=0; i<this.dates.length; i++){
       if(this.History[0] === null && this.Forecast[0] != null)
       {

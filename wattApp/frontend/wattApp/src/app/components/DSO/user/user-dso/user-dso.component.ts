@@ -209,8 +209,8 @@ export class UserDSOComponent implements OnInit{
           this.HistoryStock[i] = null;
         }
 
-        const arr = [10.20,20.30,-6.00,0.00,-7.07,37.20,12.00,0.23];
-        const arr2 = [12.20,-3.30,0.00,-3.30,20.70,10.20,30.00,-8.23];
+        const arr = [20.20,13.30,-1.00,0.00,-1.22,29.20,22.00,0.23,45.00,58.98,74.22,12.44,22.11];
+        const arr2 = [20.20,13.30,-1.10,0.00,-1.20,29.20,22.00,0.23,45.00,58.98,74.22,12.44,22.11];
         if(this.ForecastCon.every((el: number) => el === 0))
         {this.ForecastCon[5] = null}
         else{

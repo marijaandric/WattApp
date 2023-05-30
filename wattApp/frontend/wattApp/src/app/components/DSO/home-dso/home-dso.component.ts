@@ -103,6 +103,7 @@ export class HomeDSOComponent {
 
     this.deviceService.getmonthDSO(type).subscribe((response: any) => {
       this.monthPowerUsageProducer=response.usage.toFixed(2);
+      console.log(response.usage);
     });
   }
 
@@ -223,8 +224,8 @@ export class HomeDSOComponent {
           this.HistoryStock[i] = null;
         }
 
-        const arr = [20.20,13.30,-5.00,0.00,-4.00,29.20,22.00,0.23,45.00,58.98,74.22,12.44,22.11];
-        const arr2 = [20.20,13.30,-5.00,0.00,-4.00,29.20,22.00,0.23,45.00,58.98,74.22,12.44,22.11];
+        const arr = [20.20,13.30,-1.00,0.00,-1.22,29.20,22.00,0.23,45.00,58.98,74.22,12.44,22.11];
+        const arr2 = [20.20,13.30,-1.10,0.00,-1.20,29.20,22.00,0.23,45.00,58.98,74.22,12.44,22.11];
         if(this.ForecastCon.every((el: number) => el === 0))
         {}
         else{
@@ -947,7 +948,7 @@ theDay = "On the day: ";
     const nextYear = now.getFullYear() + 1;
     const next = new Date(nextYear, now.getMonth());
   
-    const monthNames = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec",];
+    const monthNames = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
   
     const months = [];
   

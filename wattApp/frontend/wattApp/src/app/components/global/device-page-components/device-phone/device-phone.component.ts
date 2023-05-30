@@ -409,8 +409,8 @@ export class DevicePhoneComponent implements OnInit{
         this.miniForecast  = this.miniForecastCon;
 
 
-        const arr = [20.20,13.30,-5.00,0.00,-4.00,29.20,22.00,0.23,45.00,58.98,74.22,12.44,22.11];
-        const arr2 = [20.20,13.30,-5.00,0.00,-4.00,29.20,22.00,0.23,45.00,58.98,74.22,12.44,22.11];
+        const arr = [20.20,13.30,-1.00,0.00,-1.22,29.20,22.00,0.23,45.00,58.98,74.22,12.44,22.11];
+        const arr2 = [20.20,13.30,-1.10,0.00,-1.20,29.20,22.00,0.23,45.00,58.98,74.22,12.44,22.11];
         if(this.ForecastCon.every((el: number) => el === 0))
         {}
         else{
@@ -567,6 +567,7 @@ export class DevicePhoneComponent implements OnInit{
       now.setMonth(now.getMonth() + 1);
       months.push(months[0])
     }
+    months.push(months[0])
   
     return months;
   }
