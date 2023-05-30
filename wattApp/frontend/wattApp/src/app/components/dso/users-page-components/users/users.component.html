@@ -81,7 +81,7 @@
               </ng-template>
   
                 <ng-template pTemplate="body" let-user>
-                  <tr *ngIf="user.id != Myid" [routerLink]="user.role !== 'prosumer' ? '/admin-operator/' + user.id : '/userDSO/'+ user.id ">
+                  <tr *ngIf="user.id != Myid" [routerLink]="user.role !== 'prosumer' ? '/admin-operator/' + user.id : '/userDSO/'+ user.id " style="cursor:pointer !important">
                     <td ><img src="{{ baseUrl + user.id }}" class="rounded-circle" width="25px" height="25px" style="margin-right: 8px;"> {{user.firstName}} {{user.lastName}}</td>
                     <td>{{user.address}}</td>
                     <td>{{user.email}}</td>
@@ -119,7 +119,7 @@
 
 <p-dialog [style]="{width:'20%'}" header="Title"  [transitionOptions]="'3ms'" 
 [draggable]="false" [keepInViewport]="true" [resizable]="false" 
-[blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true" [ngClass]="{'light-mode':lightMode}"
+[blockScroll]="true" [closeOnEscape]="true" [dismissableMask]="true"  [ngClass]="{'light-mode':lightMode, 'dark-mode':!lightMode}"
 [modal]="true" [(visible)]="display" [breakpoints]="{'960px': '75vw', '640px': '90vw'}"
 [closable]="true" >
 <ng-template pTemplate="header" class="header-dialog">

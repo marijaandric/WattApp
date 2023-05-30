@@ -2,8 +2,8 @@ import { Component, ElementRef, EventEmitter, OnInit, Output, Renderer2 } from '
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FileUploadService } from 'src/app/services/file-upload/file-upload.service';
-// import { UserService } from 'src/app/services/user/user.service';
-import { UserService } from 'src/app/services/user.service';
+import { UserService } from 'src/app/services/user/user.service';
+//import { UserService } from 'src/app/services/user.service';
 
 
 import { url } from 'src/app/app.module';
@@ -38,21 +38,17 @@ export class AdminCardComponent {
 
     
 
-  ngOnInit() {
-    
-    this.hostElement = this.elementRef.nativeElement as HTMLElement;
-    this.hostElement?.classList.toggle('light-theme-bigger-shadow', true);
-    this.hostElement?.classList.add('light-theme-background-white');
-    
-    const pencnt = this.hostElement.querySelector('.pen-container');
-    this.renderer.addClass(pencnt, 'light-theme-text-color-black')
-    this.renderer.addClass(pencnt, 'light-theme-background-white')
-
-    const usrTitle = this.hostElement.querySelector('.username-title');
-    this.renderer.addClass(usrTitle, 'text-color-blue')
-    const texts = this.hostElement.querySelectorAll('h6');
-    texts.forEach((innerElement) => {
-      this.renderer.addClass(innerElement, 'light-theme-text-color-black');
+  
+  async ngOnInit(): Promise<void> {
+    const token = localStorage.getItem('token');
+    this.userService.isDark$.subscribe(dark => {
+      this.hostElement = this.elementRef.nativeElement as HTMLElement;
+      this.lightMode = dark
+      this.hostElement?.classList.toggle('dark-theme-bigger-shadow', dark);
+      this.hostElement?.classList.toggle('light-theme-bigger-shadow', !dark);
+      this.hostElement?.classList.toggle('dark-theme-background-gray-gradient-1', dark);
+      this.hostElement?.classList.toggle('light-theme-background-white', !dark);
+      
     });
 
     this.getUser();
