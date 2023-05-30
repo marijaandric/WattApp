@@ -8,7 +8,7 @@
 <ng-template pTemplate="header" class="header-dialog">
 
   
-<span>Add prosumer <i class="fa fa-info-circle" style="cursor:pointer" aria-hidden="true" (click)="op.toggle($event)"></i> </span>
+<span>Add user <i class="fa fa-info-circle" style="cursor:pointer" aria-hidden="true" (click)="op.toggle($event)"></i> </span>
 <p-overlayPanel #op  [ngClass]="{'light-mode':lightMode, 'dark-mode':!lightMode}" [appendTo]="reg">
   <p style="width:370px">Dear user,</p> 
   <p style="width:370px">All fields are required to be filled out. The email must be in the format firstPart@secondPart.thirdPart. The firstPart must contain at least 3 letters, while the secondPart and thirdPart should have a minimum of 2 and a maximum of 6 letters.</p>
