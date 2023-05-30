@@ -81,7 +81,7 @@
                       </p-columnFilter>
                     </div>
                   </th>
-                  <th pSortableColumn="role" style="min-width:8rem; border-top:2px solid #46c5f1; border-bottom:2px solid #46c5f1;">
+                  <th *ngIf="isAdmin2()"  pSortableColumn="role" style="min-width:8rem; border-top:2px solid #46c5f1; border-bottom:2px solid #46c5f1;">
                     <div class="flexRow">
                         <p style=" font-size: 18px !important;">Delete</p>
                     </div>
@@ -90,12 +90,12 @@
               </ng-template>
   
                 <ng-template pTemplate="body" let-user>
-                  <tr *ngIf="user.id != Myid && user.role != 'admin'" [routerLink]="user.role !== 'prosumer' ? '/admin-operator/' + user.id : '/userDSO/'+ user.id " style="cursor:pointer !important">
+                  <tr *ngIf="user.id != Myid" [routerLink]="user.role !== 'prosumer' ? '/admin-operator/' + user.id : '/userDSO/'+ user.id " style="cursor:pointer !important">
                     <td ><img src="{{ baseUrl + user.id }}" class="rounded-circle" width="25px" height="25px" style="margin-right: 8px;"> {{user.firstName}} {{user.lastName}}</td>
                     <td>{{user.address}}</td>
                     <td>{{user.email}}</td>
                     <td>{{user.role}}</td>
-                    <td><div class="remove-or-no">
+                    <td *ngIf="isAdmin2()"><div class="remove-or-no" >
                       <p-button  (click)="showDialog($event)" (click)="setID(user.id)" label="Delete User" ></p-button>
                     </div></td>
                   </tr>

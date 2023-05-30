@@ -75,7 +75,7 @@
             height: fit-content;
             border-radius: 20px;
             transition: ease-in-out;
-            padding:10px 20px 20px 20px"  [name]="name" [History]="History" [Forecast]="Forecast" [dates]="dates" >
+            padding:10px 20px 20px 20px"  [name]="name" [History]="History" [Forecast]="Forecast" [dates]="dates" [ngClass]="{'light-mode':lightMode,'dark-mode7':!lightMode,'dark-mode':!lightMode}" >
             </app-history-or-forecast-table>
         </div>
         

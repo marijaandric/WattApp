@@ -26,6 +26,7 @@ export class HomeComponent implements OnInit{
       this.userService.GetUser(id,token).subscribe( data => {
         this.user = data
         localStorage.setItem('myVariable', this.user.isDarkTheme);
+        this.userService.isDark$.next(this.user.isDarkTheme);
       })
     }
 

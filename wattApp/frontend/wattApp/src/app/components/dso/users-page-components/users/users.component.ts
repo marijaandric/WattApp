@@ -131,6 +131,14 @@ export class UsersComponent implements OnInit{
     const userRole = this.userService.getUserRoleFromToken(token);
     return userRole === 'operator' || userRole === 'admin' || userRole === 'superadmin';
   }
+  isAdmin2(): boolean {
+    const token = this.authService.getToken();
+    if (!token) {
+      return false;
+    }
+    const userRole = this.userService.getUserRoleFromToken(token);
+    return userRole === 'admin' || userRole === 'superadmin';
+  }
 
   filterStatus(value: any) {
     this.table.filter(value, 'role', 'equals');
