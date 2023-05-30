@@ -77,13 +77,16 @@ export class AdminCardComponent {
   showDialog()
   {
     this.display = !this.display;
+    console.log("Usao sam sad!");
+
   }
 
   deleteUser()
   {
+    console.log("Usao sam sad!");
     this.userService.deleteUser(this.id).subscribe(data=>{
       this.toast.success({detail:"SUCCESS",summary:"You have successfully delete user" ,duration:3000});
-      this.routers.navigate(['/users'])
+      this.routers.navigate(['/users']);
     })
   }
 
