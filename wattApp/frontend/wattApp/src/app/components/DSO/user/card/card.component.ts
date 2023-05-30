@@ -57,7 +57,7 @@ export class CardComponent implements OnInit{
   {
     this.userService.deleteUser(this.user.id).subscribe(data=>{
       this.toast.success({detail:"SUCCESS",summary:"You have successfully delete user" ,duration:3000});
-      this.router.navigate(['/users/prosumers'])
+      this.router.navigate(['/users'])
     })
 
   }
