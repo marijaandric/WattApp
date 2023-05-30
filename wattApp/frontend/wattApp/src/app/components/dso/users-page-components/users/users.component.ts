@@ -7,6 +7,8 @@ import { PaginationService } from 'src/app/services/pagination/pagination.servic
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { Router } from '@angular/router';
 import { NgToastService } from 'ng-angular-popup';
+import { Table } from 'primeng/table';
+import { SelectItem } from 'primeng/api';
 
 @Component({
   selector: 'users',
@@ -19,6 +21,7 @@ export class UsersComponent implements OnInit{
   lightMode: Boolean = true;
   darkMode:Boolean = false;
   @ViewChild('searchInput') searchInput!: ElementRef;
+  @ViewChild('dtUsers', { static: false }) table!: Table;
   baseUrl = url + "/api/Images/user/";
   users: UserDTO[] = [];
   allUsersCount!: number;
@@ -30,7 +33,8 @@ export class UsersComponent implements OnInit{
   numberOFOperator: any;
   token = localStorage.getItem('token');
   display=false;
-
+  statusFilterOptions: SelectItem[];
+  selectedStatusFilter: any;
   Myid : any;
 
   constructor(private userService: UserService, 
@@ -41,6 +45,11 @@ export class UsersComponent implements OnInit{
               private paginationService: PaginationService,
               private elementRef: ElementRef,) {
 
+                this.statusFilterOptions = [
+                  { label: 'Prosumer', value: 'prosumer' },
+                  { label: 'Admin', value: 'admin' },
+                  { label: 'Operator', value: 'operator' }
+                ];
                
                }
 
@@ -121,6 +130,22 @@ export class UsersComponent implements OnInit{
     }
     const userRole = this.userService.getUserRoleFromToken(token);
     return userRole === 'operator' || userRole === 'admin' || userRole === 'superadmin';
+  }
+
+  filterStatus(value: any) {
+    this.table.filter(value, 'role', 'equals');
+  }
+
+  getSeverity(label: string):string {
+    if (label === 'Consumer') {
+      return 'Consumer';
+    } else if (label === 'Producer') {
+      return 'Producer';
+    } else if (label === 'Stock') {
+      return 'Stock';
+    } else {
+      return 'All';
+    }
   }
 
 
