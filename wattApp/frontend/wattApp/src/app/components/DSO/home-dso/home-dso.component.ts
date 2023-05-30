@@ -80,7 +80,7 @@ export class HomeDSOComponent {
       {name: 'Stock', code: 'Stock'},
     ];
     this.type2 = [
-      {name: 'Both', code: 'both'},
+      {name: 'History & forecast', code: 'both'},
       {name: 'History', code: 'history'},
       {name: 'Forecast', code: 'forecast'}
     ];
@@ -956,6 +956,7 @@ theDay = "On the day: ";
       months.push(monthNames[now.getMonth()]);
       now.setMonth(now.getMonth() + 1);
     }
+    months.push(months[0])
   
     return months;
   }
