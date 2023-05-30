@@ -1,4 +1,4 @@
-.gallery{
+/* .gallery{
     margin-top: 50px;
 }
 
@@ -39,7 +39,6 @@
 }
 .tile .text
 {
-/*   z-index:99; */
   position:absolute;
   padding:30px;
   height:calc(100% - 60px);
@@ -62,7 +61,6 @@
   font-weight:300;
   margin:20px 0 0 0;
   line-height: 25px;
-/*   opacity:0; */
   transform: translateX(-200px);
   transition-delay: 0.2s;
 }
@@ -73,7 +71,6 @@
 }
 .tile:hover
 {
-/*   background-color:#99aeff; */
 box-shadow: 0px 35px 77px -17px rgba(0,0,0,0.64);
   transform:scale(1.05);
 }
@@ -99,4 +96,157 @@ box-shadow: 0px 35px 77px -17px rgba(0,0,0,0.64);
    flex-direction: column;
     width:400px;
   }
+} */
+
+
+/*
+	Using Bootstrap
+*/
+
+
+
+/* PEN STYLES ========== */
+
+.row {
+	margin: 0;
+  display:flex;
+  flex-direction: column;
+}
+
+.test_box {
+	padding: 0;
+}
+.test_box .inner {
+	background: #333;
+	display: block;
+	margin: 20px;
+	overflow: hidden;
+}
+.test_box .inner .test_click {
+	-webkit-align-content: center;
+	-ms-flex-line-pack: center;
+	align-content: center;
+	-webkit-align-items: center;
+	-ms-flex-align: center;
+	align-items: center;
+	background-color: rgba(0,0,0,.1);
+	color: #fff;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	flex-wrap: wrap;
+	height: 300px;
+	mix-blend-mode: normal;
+	text-align: center;
+	text-decoration: none;
+	-webkit-transition: all 300ms ease;
+	transition: all 300ms ease;
+}
+.test_box .inner .test_click:hover {
+	background-color: #333; 
+	mix-blend-mode: hard-light;
+}
+.flex_this {
+	-webkit-align-content: center;
+	-ms-flex-line-pack: center;
+	align-content: center;
+	display: inherit;
+	flex-wrap: inherit;
+	height: auto;
+	margin: 0;
+	padding: 10px;
+	-webkit-transition: all 300ms ease;
+	transition: all 300ms ease;
+	width: 100%;
+
+}
+.test_box .inner .test_click:hover .flex_this {
+	margin-top: -5px;
+}
+
+.test_title {
+	display: block;
+	font-weight: 700;
+	margin: 0 0 20px;
+	width: 100%;
+}
+.test_link {
+	display: inline-block;
+	font-size: .8em;
+	font-weight: 700;
+	letter-spacing: .1em;
+	margin: 0 auto;
+	padding: 10px 30px;
+	text-transform: uppercase;
+}
+
+.box-01 .inner {
+	background-image: url('https://i.pinimg.com/originals/5d/cc/6c/5dcc6c6c274e22b04b58e7c3132a71a9.jpg');
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+.box-02 .inner {
+	background-image: url('https://shop.smeguk.com/globalassets/productimages/fab28rdeg5_100.jpg?width=320');
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+.box-03 .inner {
+	background-image: url('https://wallpapers.com/images/hd/vintage-aesthetic-clouds-window-view-duifnt09om64fr8r.jpg');
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+.box-04 .inner {
+	background-image: url('https://www.ikea.com/us/en/images/products/aroed-work-lamp-turquoise__1036386_pe838433_s5.jpg?f=s');
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+.box-05 .inner {
+	background-image: url('https://www.bestelectricradiators.co.uk/wp-content/uploads/elementor/thumbs/Alternatives-To-Gas-Boilers-plbzx2ct8r9vhxw28g552jh9jdxrxde7kaq061zaeg.jpg');
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+.box-06 .inner {
+	background-image: url('https://motionarray.imgix.net/preview-221851-DHrCPsJGJv-high_0005.jpg?w=660&q=60&fit=max&auto=format');
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+.box-07 .inner {
+	background-image: url('https://t4.ftcdn.net/jpg/00/69/00/63/360_F_69006368_MS1e8PzAoHeFGaq3nV6ExjMSOqlj4TVG.jpg');
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+.box-09 .inner {
+	background-image: url('https://www.unionelectronics.rs/media/UNION-electronics-Vas-novi-clan-porodice-Sporet-cover-2.jpg');
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+.box-08 .inner {
+	background-image: url('https://techcrunch.com/wp-content/uploads/2017/09/gettyimages-675926040.jpg?w=1024');
+	background-position: 50% 50%;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+@media screen and (min-width: 600px) {
+  .container {
+    display:flex;
+    flex-direction: row;
+  }
+  
+}
+
+@media screen and (max-width: 600px) {
+  .container {
+    display:flex;
+    flex-direction: column;
+  }
+  
 }

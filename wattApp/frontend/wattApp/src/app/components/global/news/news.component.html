@@ -5,7 +5,7 @@
     <app-center-bar *ngIf="loader"><app-loader></app-loader></app-center-bar>
     <app-center-bar *ngIf="!loader">
     <div class="main-grid">
-      <div class="image-div">
+      <div class="image-div" [ngClass]="{'light-theme-bigger-shadow':lightMode, 'dark-theme-bigger-shadow':!lightMode}">
       </div>
 
       <div class="carousels" >
